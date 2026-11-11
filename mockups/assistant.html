@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shopping assistant (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070A12;--panel:#131B2E;--panel2:#0F1626;--line:rgba(255,255,255,.08);--or:#F59E0B;--mut:#94A3B8;--txt:#E5E7EB;--green:#34D399}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(70% 90vh at 50% 0%,rgba(43,78,150,.42),rgba(43,78,150,0)),linear-gradient(180deg,#0D1527,#070A12);color:var(--txt);font:15px/1.45 "Exo 2",system-ui,sans-serif;min-height:100vh}
+.wrap{max-width:1200px;margin:0 auto;padding:28px 20px}
+.as{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.5);padding:22px 24px 24px;overflow:hidden}
+.as h1{margin:0;font-size:28px;font-weight:800;color:#fff}
+.as h1 span{color:var(--or)}
+.as .sub{margin:4px 0 16px;color:var(--mut)}
+/* task list */
+.tasks{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -4px 18px;padding:0 4px}
+.tasks::-webkit-scrollbar{display:none}
+.tasks button{flex:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:#CBD5E1;font:700 14px "Exo 2",sans-serif;cursor:pointer;transition:.2s}
+.tasks button:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.tasks button.on{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.55);color:var(--or)}
+.tasks button i{font-style:normal;font-size:16px}
+/* slider */
+.vp{overflow:hidden;border-radius:14px;transition:height .45s ease}
+.track{display:flex;align-items:flex-start;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.card{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;padding:2px}
+.left{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.left h2{margin:0 0 4px;font-size:22px;color:#fff}
+.left p.d{margin:0 0 14px;color:var(--mut)}
+.f{margin:0 0 14px}
+.f b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#131B2E;color:#CBD5E1;font-size:13px;font-weight:600;cursor:pointer;user-select:none}
+.chips span.on{border-color:var(--or);color:var(--or);background:rgba(245,158,11,.08)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rng{display:flex;align-items:center;gap:10px;color:#CBD5E1;font-weight:700}
+.rng input{width:180px;accent-color:var(--or)}
+.chk{display:inline-flex;align-items:center;gap:8px;color:#CBD5E1;font-weight:600}
+.chk input{width:18px;height:18px;accent-color:var(--or)}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:12px;border:0;background:var(--or);color:#111;font:800 15px "Exo 2",sans-serif;cursor:pointer;text-decoration:none}
+.cta.g{background:#1A2540;color:#E5E7EB;border:1px solid var(--line)}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.inp{height:48px;flex:1 1 220px;border-radius:12px;border:1px solid var(--line);background:#0B1220;color:#fff;padding:0 14px;font:500 15px "Exo 2",sans-serif}
+.gbtn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#fff;color:#1f1f1f;font:700 14px system-ui,sans-serif;border:0}
+.gbtn svg{width:18px;height:18px}
+/* offer */
+.offer{position:relative;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;min-height:300px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(7,10,18,.15),rgba(7,10,18,.92)),var(--img,#1b1b1b) center/cover;overflow:hidden}
+.offer .tag{position:absolute;top:14px;left:14px;padding:4px 10px;border-radius:8px;background:var(--or);color:#111;font-size:11px;font-weight:800;letter-spacing:.08em}
+.offer .tag.gr{background:rgba(16,185,129,.18);color:var(--green)}
+.offer h3{margin:0 0 4px;font-size:20px;color:#fff}
+.offer p{margin:0 0 10px;color:#CBD5E1;font-size:14px}
+.offer ul{margin:0 0 12px;padding:0;list-style:none;color:#CBD5E1;font-size:13px}
+.offer li:before{content:"✓ ";color:var(--green);font-weight:800}
+.price{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.price s{color:var(--mut)}
+.price b{font-size:26px;color:#fff}
+.covers{position:absolute;top:14px;right:14px;display:flex;gap:6px}
+.covers i{width:56px;height:56px;border-radius:10px;background:center/cover;box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:8px;height:8px;border-radius:99px;background:#2A3754;transition:.3s}
+.dots i.on{width:24px;background:var(--or)}
+@media (max-width:760px){
+  .wrap{padding:14px 12px}.as{padding:16px 14px}.as h1{font-size:22px}
+  .card{grid-template-columns:1fr;gap:12px}
+  .offer{min-height:0;padding-top:52px}
+  .left{padding:16px}
+  .f .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+  .f .chips::-webkit-scrollbar{display:none}
+  .f .chips span{flex:none}
+  .acts .cta{flex:1 1 auto}
+  .rng input{width:130px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="as" aria-label="Shopping assistant">
+  <h1>What are you <span>working on?</span></h1>
+  <p class="sub">Pick your task — we’ll show exactly what helps.</p>
+  <nav class="tasks" role="tablist">
+    <button class="on" data-i="0"><i>🎹</i>Writing a track</button>
+    <button data-i="1"><i>🎚</i>Finishing a track</button>
+    <button data-i="2"><i>🚀</i>Releasing</button>
+    <button data-i="3"><i>🎧</i>DJ set</button>
+    <button data-i="4"><i>🎬</i>Video &amp; ads</button>
+    <button data-i="5"><i>🎁</i>Just starting</button>
+    <button data-i="6"><i>＋</i>More</button>
+  </nav>
+  <div class="vp"><div class="track">
+
+    <!-- 0 writing -->
+    <div class="card"><div class="left">
+      <h2>Templates &amp; presets for your next track</h2><p class="d">Real Ableton projects you can open, learn from and finish.</p>
+      <div class="f"><b>Genre</b><div class="chips"><span class="on">Techno</span><span>Dark Techno</span><span>Melodic Techno</span><span>Tech House</span><span>House</span><span>Cinematic</span></div></div>
+      <div class="f row"><div><b>BPM</b><div class="rng"><input type="range" min="90" max="150" value="130"><span>128–132</span></div></div><div><b>Key</b><div class="chips"><span class="on">Am</span><span>Bm</span><span>G</span><span>Any</span></div></div></div>
+      <div class="f row"><div><b>Ableton</b><div class="chips"><span>10</span><span class="on">11</span><span>12</span></div></div><label class="chk"><input type="checkbox" checked> No external plugins</label></div>
+      <div class="acts"><a class="cta" href="#">Show 12 templates →</a><a class="cta g" href="#">Presets</a></div>
+    </div>
+    <div class="offer" style="--img:url('https://solid-sound.net/wp-content/uploads/Intricate_Logo_JPG-400x400.jpg')">
+      <span class="tag">PRODUCER KIT</span>
+      <h3>3 templates + Serum bank</h3><p>Intricate, Mutualism, Infinity + Melodic Techno Presets.</p>
+      <div class="price"><s>€88</s><b>€59</b></div><a class="cta" href="#">Get the kit</a>
+    </div></div>
+
+    <!-- 1 finishing -->
+    <div class="card"><div class="left">
+      <h2>Make it sound release-ready</h2><p class="d">Mixing and mastering by our engineers. Comment on any second of each revision.</p>
+      <div class="f"><b>What do you need?</b><div class="chips"><span>Mastering</span><span>Mixing</span><span class="on">Mix &amp; Master</span><span>Stem mastering</span></div></div>
+      <div class="f"><b>Genre</b><div class="chips"><span class="on">Techno</span><span>House</span><span>Hip-hop</span><span>Pop / Vocal</span><span>Other</span></div></div>
+      <div class="f"><b>Deadline</b><div class="chips"><span class="on">Standard · 5–7 days</span><span>Rush · 3 days</span></div></div>
+      <div class="acts"><a class="cta" href="#">Get my price →</a><a class="cta g" href="#">How it works</a></div>
+    </div>
+    <div class="offer" style="--img:linear-gradient(135deg,#1e2a4a,#0b1220)">
+      <span class="tag">MOST POPULAR</span>
+      <h3>Mix &amp; Master</h3>
+      <ul><li>3 free revisions</li><li>Comments right on the waveform</li><li>WAV + MP3, streaming-ready</li><li>5–7 days</li></ul>
+      <div class="price"><s>€75</s><b>€69</b></div><a class="cta" href="#">Start my project</a>
+    </div></div>
+
+    <!-- 2 releasing -->
+    <div class="card"><div class="left">
+      <h2>Ready for Beatport, Spotify and labels</h2><p class="d">Everything your track needs before it goes out.</p>
+      <div class="f"><b>Pick what you need</b><div class="chips"><span class="on">Streaming master</span><span class="on">Club master</span><span>Extended mix</span><span>Release kit</span><span>Label demo tips</span></div></div>
+      <div class="acts"><a class="cta" href="#">Build my release pack →</a></div>
+    </div>
+    <div class="offer" style="--img:linear-gradient(135deg,#2a1a3a,#0b1220)">
+      <span class="tag">LABEL PACK</span>
+      <h3>Master + Extended mix + Release kit</h3><p>Loudness for every platform, metadata, a checklist for labels.</p>
+      <div class="price"><b>from €49</b></div><a class="cta" href="#">Get the pack</a>
+    </div></div>
+
+    <!-- 3 DJ -->
+    <div class="card"><div class="left">
+      <h2>Tracks and tools for your set</h2><p class="d">Find music by tempo and key, or get a DJ-friendly version of your own track.</p>
+      <div class="f"><b>Genre</b><div class="chips"><span class="on">Techno</span><span>Melodic</span><span>House</span></div></div>
+      <div class="f row"><div><b>BPM</b><div class="rng"><input type="range" min="110" max="150" value="128"><span>126–130</span></div></div><div><b>Key</b><div class="chips"><span>Am</span><span>Bm</span><span class="on">Any</span></div></div></div>
+      <div class="acts"><a class="cta" href="#">Show tracks &amp; loops →</a></div>
+    </div>
+    <div class="offer" style="--img:linear-gradient(135deg,#123a3a,#0b1220)">
+      <span class="tag">DJ EDIT</span>
+      <h3>DJ version of your track</h3><ul><li>Intro &amp; outro for mixing</li><li>Extended mix</li><li>Club master</li></ul>
+      <div class="price"><b>from €35</b></div><a class="cta" href="#">Order a DJ edit</a>
+    </div></div>
+
+    <!-- 4 video -->
+    <div class="card"><div class="left">
+      <h2>Sound for video, ads and podcasts</h2><p class="d">Clean dialogue, sound design and music — delivered to your platform’s spec.</p>
+      <div class="f"><b>Project</b><div class="chips"><span class="on">YouTube</span><span>Ad spot</span><span>Film / trailer</span><span>Podcast</span></div></div>
+      <div class="f"><b>What do you need?</b><div class="chips"><span class="on">Clean dialogue</span><span>Sound design</span><span>Music</span><span>Final mix</span></div></div>
+      <div class="acts"><a class="cta" href="#">Get a quote in 24 h →</a><a class="cta g" href="#">Before / after</a></div>
+    </div>
+    <div class="offer" style="--img:linear-gradient(135deg,#3a2414,#0b1220)">
+      <span class="tag">DIALOGUE RESCUE</span>
+      <h3>Hum, wind and echo — gone</h3><p>Clear voice and the right loudness for YouTube, TV or ads.</p>
+      <div class="price"><b>from €40</b><span style="color:#94A3B8">/ video up to 10 min</span></div><a class="cta" href="#">Fix my audio</a>
+    </div></div>
+
+    <!-- 5 starting -->
+    <div class="card"><div class="left">
+      <h2>Start with a free pack</h2><p class="d">A full Ableton template with stock plugins, Serum presets and a free mix audit coupon.</p>
+      <div class="acts"><button class="gbtn"><svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.8c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.8c-2.1 1.4-4.8 2.2-8.5 2.2-6.2 0-11.5-4.1-13.4-9.9l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>Get it with Google</button></div>
+      <p class="d" style="margin:12px 0 8px">or</p>
+      <div class="acts"><input class="inp" placeholder="Your best email"><a class="cta" href="#">Get the free pack →</a></div>
+      <p class="d" style="font-size:12px;margin-top:10px">You’ll get the pack and our emails. Unsubscribe anytime.</p>
+    </div>
+    <div class="offer" style="--img:linear-gradient(135deg,#0f3a2a,#0b1220)">
+      <span class="tag gr">FREE</span>
+      <div class="covers"><i style="background-image:url('https://solid-sound.net/wp-content/uploads/Mutualism_Logo_JPG-400x400.jpg')"></i><i style="background-image:url('https://solid-sound.net/wp-content/uploads/Infinity_Logo_JPG-400x400.jpg')"></i></div>
+      <h3>Solid Starter Pack</h3><ul><li>Ableton template, stock plugins</li><li>Serum presets</li><li>Free mix audit coupon</li></ul>
+      <div class="price"><s>€36</s><b>€0</b></div>
+    </div></div>
+
+    <!-- 6 more -->
+    <div class="card"><div class="left">
+      <h2>More ways we can help</h2><p class="d">Pick what fits you best.</p>
+      <div class="chips" style="gap:10px">
+        <span>🧩 Stuck on a track — feedback &amp; 1-on-1</span><span>🎛 Preparing a live set</span><span>🎤 Recording vocals</span><span>💰 Selling my sounds</span><span>🎓 Learning production</span>
+      </div>
+    </div>
+    <div class="offer" style="--img:linear-gradient(135deg,#1a2540,#0b1220)">
+      <span class="tag">TRACK REVIEW</span>
+      <h3>Pro notes on your track</h3><p>Timestamped comments from our engineer: arrangement, sound, mix.</p>
+      <div class="price"><b>€19</b></div><a class="cta" href="#">Get a review</a>
+    </div></div>
+
+  </div></div>
+  <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</section>
+</div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tasks button')), track=document.querySelector('.track'), dots=[].slice.call(document.querySelectorAll('.dots i'));
+  var vp=document.querySelector('.vp'), cards=[].slice.call(document.querySelectorAll('.card'));
+  function fit(i){ vp.style.height=cards[i].offsetHeight+'px'; }
+  function go(i){ fit(i); track.style.transform='translateX('+(-100*i)+'%)'; tabs.forEach(function(t,k){ t.classList.toggle('on',k===i); }); dots.forEach(function(d,k){ d.classList.toggle('on',k===i); }); try{ localStorage.setItem('ss_task',i); }catch(e){} tabs[i].scrollIntoView({inline:'nearest',block:'nearest',behavior:'smooth'}); }
+  tabs.forEach(function(t,i){ t.addEventListener('click',function(){ go(i); }); });
+  dots.forEach(function(d,i){ d.addEventListener('click',function(){ go(i); }); });
+  document.querySelectorAll('.chips span').forEach(function(c){ c.addEventListener('click',function(){ c.classList.toggle('on'); }); });
+  /* swipe on phones */
+  var x0=null, cur=0; track.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX; },{passive:true});
+  track.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null; cur=tabs.findIndex(function(t){ return t.classList.contains('on'); }); if(Math.abs(dx)>50) go(Math.max(0,Math.min(tabs.length-1,cur+(dx<0?1:-1)))); });
+  var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s);
+  addEventListener('resize',function(){ fit(tabs.findIndex(function(t){ return t.classList.contains('on'); })); });
+})();
+</script>
+</body>
+</html>
