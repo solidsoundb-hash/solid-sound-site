@@ -1,4 +1,4 @@
-# Site check 2026-11-11T15:08:21.653Z
+# Site check 2026-11-11T15:28:36.314Z
 
 ## guest · phone
 - /en/ → HTTP 200 · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -8,8 +8,7 @@
 ## guest · desktop
 - /en/ → HTTP 200 · [guest_desktop_en.jpg](guest_desktop_en.jpg)
 - /en/my-account/ → HTTP 200 · [guest_desktop_en_my_account.jpg](guest_desktop_en_my_account.jpg)
-- /product/infinity/ → HTTP 200 · ⚠ 1 console errors · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
-    - console: Permissions policy violation: compute-pressure is not allowed in this document.
+- /product/infinity/ → HTTP 200 · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
 - /en/all-products/ → HTTP 200 · ⚠ horizontal scroll · [guest_desktop_en_all_products.jpg](guest_desktop_en_all_products.jpg)
 
 ## user · phone
