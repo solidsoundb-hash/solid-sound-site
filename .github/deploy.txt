@@ -5,3 +5,4 @@
 5 2026-11-11 13:18:02 switch ON: optimized build for all visitors (owner: сделай и выложи уже на сайте)
 6 2026-11-11 13:32:15 My account overview server-rendered, all blocks visible (owner ok: выкладывай)
 7 2026-11-11 13:54:52 home as cached files, account menu everywhere, Purchases wording (owner ok: выкладывай)
+7b 2026-11-11 14:13:11 retry deploy #7 with logged health check (owner ok: выкладывай)
