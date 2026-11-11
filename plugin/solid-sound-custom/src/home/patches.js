@@ -95,5 +95,9 @@ module.exports = function (a, window) {
     var SH_OLD = "T('Album calculator', ic.disc, menus.services[2].href), ";
     if (a[0].split(SH_OLD).length !== 2) throw new Error('home: services sheet not found');
     a[0]=a[0].split(SH_OLD).join(SH_OLD + "T('Examples', ic.sliders, '#examples'), T('Reviews', ic.chat, '#reviews'), T('How it works', ic.layers, '#dashboard'), ");
+    /* (11.11.2026) Header like the other pages: logo 52px (44px phone) */
+    var LG_OLD = "logoW: isM ? 56 : 68, logoH: isM ? 38 : 46, logoWpx: isM ? '56px' : '68px'";
+    if (a[0].split(LG_OLD).length !== 2) throw new Error('home: logo size not found');
+    a[0]=a[0].split(LG_OLD).join("logoW: isM ? 44 : 52, logoH: isM ? 30 : 35, logoWpx: isM ? '44px' : '52px'");
   return a;
 };

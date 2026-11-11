@@ -47,11 +47,14 @@
 .ssx .dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
 .ssx .dots i{width:8px;height:8px;border-radius:99px;background:#2A3754;transition:.3s}
 .ssx .dots i.on{width:24px;background:var(--or)}
+.ssx .kitc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:34px 0 auto;padding-bottom:16px}
+.ssx .kitc i{display:block;aspect-ratio:1;border-radius:10px;background:#1b1b1b center/cover no-repeat;box-shadow:0 8px 20px rgba(0,0,0,.5)}
 @media (max-width:760px){
 .ssx{padding:16px 14px}
 .ssx .ssx-t{font-size:22px}
 .ssx .card{grid-template-columns:minmax(0,1fr);gap:12px}
 .ssx .offer{min-height:0;padding-top:52px}
+.ssx .kitc{margin-top:0}
 .ssx .left{padding:16px}
 .ssx .f .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
 .ssx .f .chips::-webkit-scrollbar{display:none}
