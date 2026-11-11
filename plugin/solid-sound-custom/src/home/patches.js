@@ -75,5 +75,12 @@ module.exports = function (a, window) {
     /* (11.11.2026) hero slides move sideways like the All products carousel (was a fade in place) */
     a[0]=a[0].split("vis: on ? 'visibility: visible; opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; z-index: 1' : 'visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s; z-index: 0',").join("vis: on ? 'visibility: visible; opacity: 1; transform: translateX(0); transition: transform .6s cubic-bezier(.22,.61,.36,1), opacity .45s ease; z-index: 1' : 'visibility: hidden; opacity: 0; transform: translateX(' + (i < s.slide ? '-' : '') + '60%); transition: transform .6s cubic-bezier(.22,.61,.36,1), opacity .45s ease, visibility 0s linear .6s; z-index: 0',");
     a[0]=a[0].split('<div style="display: grid">\n    <sc-for list="{{allSlides}}"').join('<div style="display: grid; overflow: hidden; padding: 14px 18px; margin: -14px -18px">\n    <sc-for list="{{allSlides}}"'); /* clip the sliding slides */
+    /* (11.11.2026) the seasonal slide (Black Month) shows only while the sale runs; slider adapts to the slide count */
+    var SALE_END = '2026-11-30T23:59:59+01:00';
+    a[0]=a[0].split("cardHref: '#shop' }\n    ];").join("cardHref: '#shop' }\n    ];\n    if (Date.now() > new Date('" + SALE_END + "').getTime()) slides = slides.filter(function (x) { return !x.timer; });\n    window.SS_NSLIDES = slides.length;")
+      .split('self.setState({ slide: (st.slide + 1) % 3 })').join('self.setState({ slide: (st.slide + 1) % (window.SS_NSLIDES || 3) })')
+      .split('slide: (i + 3) % 3,').join('slide: (i + (window.SS_NSLIDES || 3)) % (window.SS_NSLIDES || 3),')
+      .split("' / 03'").join("' / 0' + (window.SS_NSLIDES || 3)")
+      .split("' of 3'").join("' of ' + (window.SS_NSLIDES || 3)");
   return a;
 };
