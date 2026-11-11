@@ -144,3 +144,36 @@
   },true);
   addEventListener('scroll',close,{passive:true}); addEventListener('resize',close,{passive:true});
 })();
+/* Home menu (desktop with a mouse): hover opens the dropdown; a click on "Products" / "Services" itself scrolls
+   to that section of the home page; the dropdown items lead to the full pages. Touch screens keep tap = open. */
+(function(){
+  if(!(window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches)) return;
+  var TARGET={Products:'shop',Services:'services'};
+  function label(b){ var s=b.querySelector('span'); return s ? (s.textContent||'').trim() : ''; }
+  function menuBtn(el){ return el && el.closest ? el.closest('#ss-app header nav[aria-label="Main"] button[aria-expanded]') : null; }
+  /* real clicks on Products/Services: scroll instead of toggling (synthetic clicks from hover still toggle) */
+  document.addEventListener('click',function(e){
+    var b=menuBtn(e.target); if(!b || !e.isTrusted) return;
+    var id=TARGET[label(b)]; if(!id) return;
+    var sec=document.getElementById(id); if(!sec) return;
+    e.preventDefault(); e.stopPropagation();
+    if(b.getAttribute('aria-expanded')==='true') b.click();
+    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(x){ sec.scrollIntoView(); }
+  },true);
+  /* hover opens / leaving closes (small delay so the pointer can travel into the dropdown) */
+  var timer=null;
+  document.addEventListener('mouseover',function(e){
+    var b=menuBtn(e.target), wrap=b ? b.parentElement : (e.target.closest ? e.target.closest('#ss-app header nav[aria-label="Main"] > div, #ss-app header nav[aria-label="Main"] div[style*="position: relative"]') : null);
+    if(!wrap) return;
+    var btn=wrap.querySelector(':scope > button[aria-expanded]') || b; if(!btn) return;
+    clearTimeout(timer);
+    document.querySelectorAll('#ss-app header nav[aria-label="Main"] button[aria-expanded="true"]').forEach(function(o){ if(o!==btn) o.click(); });
+    if(btn.getAttribute('aria-expanded')!=='true') btn.click();
+  });
+  document.addEventListener('mouseout',function(e){
+    var nav=e.target.closest ? e.target.closest('#ss-app header nav[aria-label="Main"]') : null; if(!nav) return;
+    if(e.relatedTarget && nav.contains(e.relatedTarget)) return;
+    clearTimeout(timer);
+    timer=setTimeout(function(){ nav.querySelectorAll('button[aria-expanded="true"]').forEach(function(o){ o.click(); }); },250);
+  });
+})();

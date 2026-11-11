@@ -46,8 +46,9 @@ var I={
 };
 var S='https://solid-sound.net', L=S+'/en';
 var NAV=[
-  {t:'Products',i:'grid',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
-  {t:'Services',i:'serv',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/Services-Calculator/'],['Mastering Album Calculator','disc',S+'/mastering-album-calculator/']]},
+  {t:'Home',i:'home',h:L+'/'},
+  {t:'Products',i:'grid',h:L+'/all-products/',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
+  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/Services-Calculator/'],['Mastering Album Calculator','disc',S+'/mastering-album-calculator/']]},
   {t:'Wiki',i:'wiki',h:L+'/wiki/'},
   {t:'FAQ',i:'faq',sub:[['Common Questions','faq',L+'/faq/'],['Contact Us','mail',S+'/contacts'],['Terms of Sale','doc',L+'/terms/'],['Refund Policy','refund',S+'/refund_returns/'],['License Agreement','shield',S+'/license/'],['Privacy Policy','lock',S+'/privacy-policy/'],['Legal Notice','scale',L+'/legal-notice/']]},
   {t:'Free',i:'free',h:L+'/free/'},
@@ -144,7 +145,7 @@ function navHtml(){
     if(n.sub){
       var cur=n.sub.some(function(s){ return isCur(s[2]); });
       var dd=n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],18)+s[0].replace(/&/g,'and')); }).join('');
-      h+=tag('div',{'class':'g-it'},tag('button',{type:'button','class':'g-a'+(cur ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I[n.i])+tag('span',{'class':'g-l'},n.t+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu'},dd));
+      h+=tag('div',{'class':'g-it'},tag('button',(function(o){ if(n.h) o['data-h']=n.h; return o; })({type:'button','class':'g-a'+(cur ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'}),ico(I[n.i])+tag('span',{'class':'g-l'},n.t+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu'},dd));
     } else {
       h+=tag('div',{'class':'g-it'},tag('a',{'class':'g-a'+(isCur(n.h) ? ' cur' : ''),href:n.h},ico(I[n.i])+tag('span',{'class':'g-l'},n.t)));
     }
@@ -192,7 +193,7 @@ function sheetHtml(){
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k},tag('b',{'class':'g-lc'},l.t)+l.n); }).join('');
   return h+LT+'/div'+GT;
 }
-var BAR=[['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
+var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? isCur(b[2]) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
 function mount(){
@@ -220,6 +221,7 @@ function promo(canvas,hd){
 function wire(hd,sh){
   hd.addEventListener('click',function(e){
     var b=e.target.closest('.g-it > button.g-a');
+    if(b && b.getAttribute('data-h') && matchMedia('(hover:hover) and (pointer:fine)').matches){ location.href=b.getAttribute('data-h'); return; }
     if(b){ var it=b.parentNode, on=!it.classList.contains('open'); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); if(on) it.classList.add('open'); b.setAttribute('aria-expanded',on ? 'true' : 'false'); e.preventDefault(); return; }
     if(e.target.closest('.g-burger')){ openSheet(true); }
   });
