@@ -48,7 +48,7 @@ var logged=B.classList.contains('logged-in');
 var DSH=L+'/client-dashboard/';
 /* Sign in = WooCommerce account page with the 3 tabs (Log in / Create account / Become a vendor).
    The client dashboard is separate: shown as its own item only when logged in. */
-var MYA=L+'/my-account/', VND=L+'/store-manager/';
+var MYA=L+'/my-account/', VND=L+'/store-manager/', VENDOR=window.ssRole==='vendor';
 var ACC=logged ? {t:'Dashboard',i:'user',h:DSH} : {t:'Sign in',i:'user',h:MYA};
 var CART={t:'Cart',i:'cart',h:L+'/cart/'};
 var FAV={t:'Favorites',i:'fav',h:logged ? DSH : MYA};
@@ -140,7 +140,8 @@ function navHtml(){
 /* Logged in: "Account" dropdown (Dashboard / Producer space / Account settings / Log out). Guest: plain "Sign in" link. */
 function accItem(){
   if(!logged) return rItem(ACC);
-  var dd=[['Dashboard','user',DSH],['Producer space','sell',VND],['Account settings','doc',MYA],['Log out','signin',MYA+'customer-logout/']]
+  var dd=(VENDOR ? [['Producer space','sell',VND],['Dashboard','user',DSH]] : [['Dashboard','user',DSH],['Start selling','sell',L+'/vendor-register/']])
+    .concat([['Account settings','doc',MYA],['Log out','signin',MYA+'customer-logout/']])
     .map(function(s){ return tag('a',{href:s[2],role:'menuitem'},ico(I[s[1]],18)+s[0]); }).join('');
   return tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a'+(isCur(DSH) ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I.user)+tag('span',{'class':'g-l'},'Account'+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu',style:'left:auto;right:0;min-width:210px'},dd));
 }
@@ -158,7 +159,7 @@ var head=tag('div',{'class':'g-in'},
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
   NAV.forEach(function(n){ if(n.sub){ h+=tag('div',{'class':'s-g'},n.t)+n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],20)+s[0].replace(/&/g,'and')); }).join(''); } });
-  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(logged ? tag('a',{href:VND},ico(I.sell,20)+'Producer space')+tag('a',{href:MYA},ico(I.doc,20)+'Account settings')+tag('a',{href:MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
+  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(logged ? (VENDOR ? tag('a',{href:VND},ico(I.sell,20)+'Producer space') : '')+tag('a',{href:MYA},ico(I.doc,20)+'Account settings')+tag('a',{href:MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h},l.t); }).join('');
   return h+LT+'/div'+GT;
 }

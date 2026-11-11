@@ -5894,6 +5894,7 @@ add_action( 'wp_head', function () {
    Not on the front page: the home app has its own header. */
 add_action( 'wp_head', function () {
 	if ( is_admin() || is_front_page() ) return;
-	echo '<script>window.__ssg=1;window.__sslb=1;</script>';
+	$role = ! is_user_logged_in() ? 'guest' : ( ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ) || current_user_can( 'manage_woocommerce' ) ? 'vendor' : 'customer' );
+	echo '<script>window.__ssg=1;window.__sslb=1;window.ssRole="' . esc_js( $role ) . '";</script>';
 	ss_asset( 'ss-global', 'defer' );
 }, 2 );
