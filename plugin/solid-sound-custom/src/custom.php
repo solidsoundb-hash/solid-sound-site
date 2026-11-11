@@ -4778,6 +4778,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 			'fb' => array( 'en' => 'Track feedback', 'ua' => 'Розбір треку', 'de' => 'Track-Feedback', 'fr' => 'Avis sur ton morceau', 'pt' => 'Feedback da faixa' ),
 			'tpl' => array( 'en' => 'Ableton templates', 'ua' => 'Шаблони Ableton', 'de' => 'Ableton-Templates', 'fr' => 'Templates Ableton', 'pt' => 'Templates Ableton' ),
 			'new' => array( 'en' => 'What’s new', 'ua' => 'Що нового', 'de' => 'Was ist neu', 'fr' => 'Quoi de neuf', 'pt' => 'O que há de novo' ),
+			'best' => array( 'en' => 'Best products', 'ua' => 'Найкращі товари', 'de' => 'Beste Produkte', 'fr' => 'Meilleurs produits', 'pt' => 'Melhores produtos' ),
 			'svc' => array( 'en' => 'Services', 'ua' => 'Послуги', 'de' => 'Services', 'fr' => 'Services', 'pt' => 'Serviços' ),
 			'browse' => array( 'en' => 'Browse products', 'ua' => 'Дивитися товари', 'de' => 'Produkte ansehen', 'fr' => 'Voir les produits', 'pt' => 'Ver produtos' ),
 			'prices' => array( 'en' => 'All prices', 'ua' => 'Усі ціни', 'de' => 'Alle Preise', 'fr' => 'Tous les prix', 'pt' => 'Todos os preços' ),
@@ -4807,7 +4808,10 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 		$fb = get_permalink( 1709 ); if ( ! $fb ) $fb = home_url( '/free-demo-feedback/' );
 		$fp = get_page_by_path( 'free' ); $free = $fp ? get_permalink( $fp ) : home_url( '/free/' );
 		$svc = array( array( 'mixing', '60€' ), array( 'mastering', '15€' ), array( 'remix', '150€' ), array( 'remake', '120€' ), array( 'ghost', '300€' ), array( 'coproducing', '40€' ), array( 'post', '40€' ) );
-		$q = new WP_Query( array( 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => 14, 'orderby' => 'date', 'order' => 'DESC', 'no_found_rows' => true ) );
+		/* (11.11.2026 owner) "Best products" = order of the quality rating (WooCommerce -> Ranking); newest if no rating yet */
+		$q = new WP_Query( array( 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => 14, 'meta_key' => '_ss_score', 'orderby' => 'meta_value_num', 'order' => 'DESC', 'no_found_rows' => true ) );
+		if ( $q->post_count < 4 ) $q = new WP_Query( array( 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => 14, 'orderby' => 'date', 'order' => 'DESC', 'no_found_rows' => true ) );
+		$ssh_rank = 0;
 		$arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 		$chev = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 		ob_start(); ?>
@@ -4820,34 +4824,19 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 		$sck = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'; ?>
 		<p class="ssh-sub"><span class="ssh-sub-t"><?php echo esc_html( $ssub[0] ); ?></span><span class="ssh-tr"><?php echo $sck . esc_html( $ssub[1] ); ?></span><span class="ssh-tr"><?php $sp2 = preg_split( '/\s+/u', $ssub[2], 3 ); echo $sck . esc_html( $sp2[0] . ( isset( $sp2[1] ) ? ' ' . $sp2[1] : '' ) ); if ( isset( $sp2[2] ) ) echo '<span class="ssh-tr-x">' . esc_html( $sp2[2] ) . '</span>'; ?></span><span class="ssh-tr"><?php echo $sck . esc_html( $ssub[3] ); ?></span></p>
 		<div class="ssh-cols">
-			<div class="ssh-col ssh-col-free">
-				<h2 class="ssh-h2"><?php echo esc_html( ss_h3_t( 'try' ) ); ?></h2>
-				<a class="ssh-lead" href="<?php echo esc_url( $fb ); ?>">
-					<b>FREE</b>
-					<span class="ssh-lt"><?php echo esc_html( ss_h3_t( 'fb' ) ); ?></span>
-					<span class="ssh-ls"><?php echo esc_html( ss_h3_t( 'fb_s' ) ); ?></span>
-					<i><?php echo $arrow; ?></i>
-				</a>
-				<a class="ssh-lead" href="<?php echo esc_url( $free ); ?>">
-					<b>FREE</b>
-					<span class="ssh-lt"><?php echo esc_html( ss_h3_t( 'tpl' ) ); ?></span>
-					<span class="ssh-ls"><?php echo esc_html( ss_h3_t( 'tpl_s' ) ); ?></span>
-					<i><?php echo $arrow; ?></i>
-				</a>
-			</div>
 			<div class="ssh-col ssh-col-new">
-				<h2 class="ssh-h2"><?php echo esc_html( ss_h3_t( 'new' ) ); ?></h2>
+				<h2 class="ssh-h2"><?php echo esc_html( ss_h3_t( 'best' ) ); ?></h2>
 				<div class="ssh-car">
 					<button type="button" class="ssh-a ssh-a-prev" data-d="-1" aria-label="<?php echo esc_attr( ss_h3_t( 'prev' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
 					<button type="button" class="ssh-a ssh-a-next" data-d="1" aria-label="<?php echo esc_attr( ss_h3_t( 'next' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 					<div class="ssh-track">
-					<?php while ( $q->have_posts() ) : $q->the_post(); $pid = get_the_ID(); $p = wc_get_product( $pid ); if ( ! $p || ! $p->is_visible() || ! has_post_thumbnail( $pid ) ) continue;
+					<?php while ( $q->have_posts() ) : $q->the_post(); $pid = get_the_ID(); $p = wc_get_product( $pid ); if ( ! $p || ! $p->is_visible() || ! has_post_thumbnail( $pid ) || get_post_meta( $pid, '_ss_hide_home', true ) ) continue;
 						$img = get_the_post_thumbnail_url( $pid, 'woocommerce_single' );
 						$fmts = wp_get_post_terms( $pid, 'product-format', array( 'fields' => 'slugs' ) ); $fmt = '';
 						if ( ! is_wp_error( $fmts ) ) foreach ( array( 'templates', 'presets', 'music' ) as $f ) if ( in_array( $f, $fmts, true ) ) { $fmt = $f; break; } ?>
 						<?php $smp3 = ''; $stxt = get_post_field( 'post_excerpt', $pid ) . ' ' . get_post_field( 'post_content', $pid ); if ( preg_match( '#https?://[^\s"\'\]]+?\.mp3#i', $stxt, $smm ) ) $smp3 = $smm[0]; ?>
 						<a class="ssh-card" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" data-pid="<?php echo (int) $pid; ?>"<?php if ( $smp3 ) : ?> data-src="<?php echo esc_url( $smp3 ); ?>" data-t="<?php echo esc_attr( get_the_title() ); ?>" data-i="<?php echo esc_url( get_the_post_thumbnail_url( $pid, 'thumbnail' ) ); ?>"<?php endif; ?>>
-							<span class="ssh-cov"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" <?php $ssh_i = isset( $ssh_i ) ? $ssh_i + 1 : 0; echo $ssh_i < 2 ? 'loading="eager"' . ( 0 === $ssh_i ? ' fetchpriority="high"' : '' ) : 'loading="lazy"'; ?> decoding="async" width="560" height="560"></span>
+							<span class="ssh-cov"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" <?php $ssh_i = isset( $ssh_i ) ? $ssh_i + 1 : 0; echo $ssh_i < 2 ? 'loading="eager"' . ( 0 === $ssh_i ? ' fetchpriority="high"' : '' ) : 'loading="lazy"'; ?> decoding="async" width="560" height="560"><?php $ssh_rank++; $ssh_tier = (string) get_post_meta( $pid, '_ss_tier', true ); ?><em class="ssh-rk">#<?php echo (int) $ssh_rank; ?></em><?php if ( 'best' === $ssh_tier || 'trending' === $ssh_tier ) : ?><em class="ssh-tier ssh-tier-<?php echo esc_attr( $ssh_tier ); ?>"><?php echo 'best' === $ssh_tier ? 'Best seller' : 'Trending'; ?></em><?php endif; ?></span>
 							<span class="ssh-meta"><span class="ssh-tt"><?php the_title(); ?></span><?php $price = wp_strip_all_tags( $p->get_price_html() ); if ( $price ) : ?><span class="ssh-pr"><?php echo esc_html( html_entity_decode( $price ) ); ?></span><?php endif; ?></span>
 							<span class="ssh-row"><?php if ( $fmt ) : ?><span class="ssh-tag ssh-tag-<?php echo esc_attr( $fmt ); ?>"><?php echo esc_html( ss_h3_t( $fmt ) ); ?></span><?php endif; ?><span class="ssh-acts"><?php $syt = function_exists( 'ss_yt_map' ) ? ss_yt_map() : array(); if ( ! empty( $syt[ $pid ] ) ) : ?><span class="ssh-yt" role="button" tabindex="0" aria-label="Video" title="Video" data-yt="<?php echo esc_attr( $syt[ $pid ] ); ?>"><i></i></span><?php endif; if ( $smp3 ) : ?><span class="ssh-add" role="button" tabindex="0" aria-label="Add to queue" title="Add to queue"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ssh-i-plus" d="M12 6v12M6 12h12"/><path class="ssh-i-ok" d="M6 12.5l4 4L18 8"/></svg></span><?php endif; ?><?php if ( $smp3 ) : ?><span class="ssh-play" role="button" tabindex="0" aria-label="Play"><svg class="ssh-i-pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ssh-i-pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span><?php endif; ?></span></span>
 						</a>
@@ -4855,15 +4844,6 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 					</div>
 				</div>
 				<a class="ssh-btn" href="#templates"><?php echo esc_html( ss_h3_t( 'browse' ) ); ?><?php echo $arrow; ?></a>
-			</div>
-			<div class="ssh-col ssh-col-svc">
-				<h2 class="ssh-h2"><?php echo esc_html( ss_h3_t( 'svc' ) ); ?></h2>
-				<ul class="ssh-svc">
-					<?php foreach ( $svc as $s ) : ?>
-						<li><a href="<?php echo esc_url( $sp . '#svc-' . $s[0] ); ?>"><span class="ssh-sn"><?php echo esc_html( ss_h3_t( 's_' . $s[0] ) ); ?></span><span class="ssh-sp"><span class="ssh-from"><?php echo esc_html( ss_h3_t( 'from' ) ); ?></span> <?php echo esc_html( $s[1] ); ?><?php echo $chev; ?></span></a></li>
-					<?php endforeach; ?>
-					<li class="ssh-svc-all"><a href="<?php echo esc_url( $sp ); ?>"><span class="ssh-sn"><?php echo esc_html( ss_h3_t( 'prices' ) ); ?></span><span class="ssh-sp"><?php echo $arrow; ?></span></a></li>
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -5051,6 +5031,27 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 .ssh-cols{row-gap:10px!important}
 .ssh-svc a{padding:4px 10px!important}
 }
+
+/*ssh-best 11.11.2026: one wide "Best products" carousel*/
+.ssh .ssh-cols{display:block!important}
+.ssh .ssh-col-new{max-width:1240px;margin:0 auto;gap:14px}
+.ssh .ssh-h2{font-size:28px!important;line-height:36px!important;height:auto;color:#F4EFE8!important}
+.ssh .ssh-car{padding:4px 2px}
+.ssh .ssh-car:before,.ssh .ssh-car:after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
+.ssh .ssh-car:before{left:0;background:linear-gradient(90deg,rgba(7,7,7,.75),transparent)}.ssh .ssh-car:after{right:0;background:linear-gradient(270deg,rgba(7,7,7,.75),transparent)}
+.ssh .ssh-track{gap:18px!important;padding:6px 4px 10px}
+.ssh .ssh-card{flex:0 0 calc(20% - 15px)!important;width:auto!important;padding:10px 10px 12px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);transition:transform .25s ease,border-color .25s,box-shadow .25s}
+.ssh .ssh-card:hover{transform:translateY(-4px);border-color:rgba(224,153,0,.55);box-shadow:0 14px 34px rgba(0,0,0,.55),0 0 0 1px rgba(224,153,0,.25),0 0 28px rgba(224,153,0,.18)}
+.ssh .ssh-cov{border-radius:12px}
+.ssh .ssh-cov img{transition:transform .5s ease}.ssh .ssh-card:hover .ssh-cov img{transform:scale(1.05)}
+.ssh .ssh-rk{position:absolute;left:8px;top:8px;z-index:1;min-width:30px;height:26px;padding:0 7px;border-radius:8px;background:rgba(0,0,0,.72);color:#E09900;font:800 13px/26px Roboto,sans-serif;font-style:normal;text-align:center;backdrop-filter:blur(4px)}
+.ssh .ssh-tier{position:absolute;right:8px;top:8px;z-index:1;padding:4px 8px;border-radius:999px;font:800 10.5px/1.2 Roboto,sans-serif;font-style:normal;letter-spacing:.04em;text-transform:uppercase}
+.ssh .ssh-tier-best{background:#E09900;color:#111}.ssh .ssh-tier-trending{background:rgba(52,211,153,.9);color:#062}
+.ssh .ssh-a{width:46px;height:46px;border-radius:50%!important;background:rgba(20,20,20,.85)!important;border:1px solid rgba(255,255,255,.18)!important;z-index:3;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.ssh .ssh-a:hover{border-color:#E09900!important}
+.ssh .ssh-btn{align-self:center;padding:0 26px;border-radius:999px;margin-top:2px}
+@media(max-width:1180px){.ssh .ssh-card{flex:0 0 calc(33.333% - 12px)!important}}
+@media(max-width:699px){.ssh .ssh-card{flex:0 0 62%!important}.ssh .ssh-h2{font-size:22px!important}.ssh .ssh-car:before,.ssh .ssh-car:after{width:16px}.ssh .ssh-a{display:none}}
 </style>
 <script id="ssh-js">
 (function(){var root=document.querySelector('.ssh');if(!root||root.dataset.on)return;root.dataset.on=1;

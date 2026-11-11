@@ -79,6 +79,7 @@ var css=[
 '#ssg{position:sticky;top:0;z-index:9000;background:#1E2630;border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 10px 30px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3);font-family:"Exo 2",system-ui,sans-serif}',
 'body.admin-bar #ssg{top:32px}@media (max-width:782px){body.admin-bar #ssg{top:46px}}@media (max-width:600px){body.admin-bar #ssg{top:0}}',
 '#ssg *{box-sizing:border-box}',
+'.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
 '#ssg .g-in{display:flex;align-items:center;gap:10px;padding:10px 24px;max-width:none;min-height:72px}',
 '#ssg a{text-decoration:none!important}',
 '#ssg .g-logo{flex:none;display:block;width:52px;margin-right:6px;-webkit-tap-highlight-color:transparent;cursor:pointer}#ssg .g-logo svg{display:block;width:100%;height:auto;transform-origin:50% 60%;transition:transform .34s cubic-bezier(.34,1.8,.5,1),filter .22s}#ssg .g-logo.ss-press svg{transform:scale(.86) translateY(1px);filter:brightness(.75);transition:transform .07s ease-out,filter .07s}',
@@ -213,6 +214,9 @@ function mount(){
   var sh=D.createElement('div'); sh.id='ssg-sheet'; sh.innerHTML=sheetHtml(); B.appendChild(sh);
   D.documentElement.classList.add('ssg-on');
   wire(hd,sh); ssgAI(); playIcons();
+  /* catalog filters bar sticks right under this header (owner 11.11.2026): its top = header's sticky top + height */
+  var hset=function(){ var t=parseFloat(getComputedStyle(hd).top)||0; D.documentElement.style.setProperty('--ssg-h',Math.round(t+hd.offsetHeight)+'px'); };
+  hset(); if(window.ResizeObserver) new ResizeObserver(hset).observe(hd); window.addEventListener('resize',hset,{passive:true});
 }
 /* Promo strip above the menu, same as on the home page (desktop only). Hidden after the sale ends. */
 var PROMO_END=new Date('2026-11-30T23:59:59+01:00').getTime();
