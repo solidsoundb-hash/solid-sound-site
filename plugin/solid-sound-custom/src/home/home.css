@@ -72,3 +72,5 @@ button:has(path[d^="M6.87"]),.ssh-play{background:transparent!important;border-c
 /* (11.11.2026) menu items light up on hover / when open, like the header on the other pages */
 #ss-app .ss-nav > div > a,#ss-app .ss-nav > div > button,#ss-app .ss-nav sc-if > a,#ss-app .ss-nav button[aria-expanded]{border-radius:10px;transition:background .2s,color .2s;cursor:pointer}
 #ss-app .ss-nav a:not(.ss-drop a):hover,#ss-app .ss-nav button[aria-expanded]:hover,#ss-app .ss-nav button[aria-expanded="true"]{background:rgba(255,255,255,.05)!important;color:#fff!important}
+
+html,body{overflow-x:clip!important}

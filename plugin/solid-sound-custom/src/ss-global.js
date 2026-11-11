@@ -106,6 +106,7 @@ var css=[
 '#ssg .g-lc,#ssg-sheet .g-lc{display:inline-block;min-width:28px;font-weight:800;color:#F59E0B}#ssg .g-dd a.cur{background:#1A2540;color:#F59E0B}.ss-flags{display:none!important}',
 '#ssg .g-cnt{position:absolute;top:0;right:10px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#F59E0B;color:#111;font-weight:800;font-size:10px;line-height:16px;font-family:inherit;text-align:center}',
 '#ssg .g-burger,#ssg .g-msign{display:none}',
+'html,body{overflow-x:clip!important}',
 '#ssg-bar{display:none}',
 '#ssg-promo{display:flex;align-items:center;justify-content:center;gap:4px 10px;white-space:nowrap;min-height:36px;padding:6px 12px;box-sizing:border-box;background:linear-gradient(180deg,#0D1527,#0B1220);border-bottom:1px solid rgba(255,255,255,.06);color:#CBD5E1!important;text-decoration:none!important;font:13px/1.45 "Exo 2",system-ui,sans-serif;text-align:center}',
 '#ssg-promo b{color:#fff;font-variant-numeric:tabular-nums}#ssg-promo .p-b{padding:2px 8px;border-radius:6px;background:#F59E0B;color:#111;font-size:11px;font-weight:800;letter-spacing:.08em}#ssg-promo .p-c{color:#F59E0B;font-weight:700}',
