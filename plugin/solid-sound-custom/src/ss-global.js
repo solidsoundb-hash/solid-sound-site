@@ -34,14 +34,22 @@ var I={
   doc:'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h6',
   forum:'M7 8h10M7 12h6M21 12a8 8 0 0 1-11.8 7L3 21l2-6.2A8 8 0 1 1 21 12z',
   down:'M6 9l6 6 6-6',
-  dl:'M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2'
+  dl:'M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2',
+  /* same icons as the home app (src/home/app.template.html, var ic) */
+  grid:'M4.5 3h4A1.5 1.5 0 0 1 10 4.5v4A1.5 1.5 0 0 1 8.5 10h-4A1.5 1.5 0 0 1 3 8.5v-4A1.5 1.5 0 0 1 4.5 3zM15.5 3h4A1.5 1.5 0 0 1 21 4.5v4a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 14 8.5v-4A1.5 1.5 0 0 1 15.5 3zM4.5 14h4a1.5 1.5 0 0 1 1.5 1.5v4A1.5 1.5 0 0 1 8.5 21h-4A1.5 1.5 0 0 1 3 19.5v-4A1.5 1.5 0 0 1 4.5 14zM15.5 14h4a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5v-4a1.5 1.5 0 0 1 1.5-1.5z',
+  mail:'M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM3 7l9 6 9-6',
+  refund:'M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5',
+  shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
+  lock:'M6 11h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1zM8 11V7a4 4 0 0 1 8 0v4',
+  scale:'M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z',
+  globe:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z'
 };
 var S='https://solid-sound.net', L=S+'/en';
 var NAV=[
-  {t:'Products',i:'prod',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
+  {t:'Products',i:'grid',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
   {t:'Services',i:'serv',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/Services-Calculator/'],['Mastering Album Calculator','disc',S+'/mastering-album-calculator/']]},
   {t:'Wiki',i:'wiki',h:L+'/wiki/'},
-  {t:'FAQ',i:'faq',sub:[['Common questions','faq',L+'/faq/'],['Contact us','chat',S+'/contacts'],['Forum','forum',S+'/forum/'],['Terms of sale','doc',L+'/terms/'],['Refund policy','doc',S+'/refund_returns/'],['License agreement','doc',S+'/license/'],['Privacy policy','doc',S+'/privacy-policy/'],['Legal notice','doc',L+'/legal-notice/']]},
+  {t:'FAQ',i:'faq',sub:[['Common Questions','faq',L+'/faq/'],['Contact Us','mail',S+'/contacts'],['Terms of Sale','doc',L+'/terms/'],['Refund Policy','refund',S+'/refund_returns/'],['License Agreement','shield',S+'/license/'],['Privacy Policy','lock',S+'/privacy-policy/'],['Legal Notice','scale',L+'/legal-notice/']]},
   {t:'Free',i:'free',h:L+'/free/'},
   {t:'Sell',i:'sell',h:L+'/vendor-register/'}
 ];
@@ -88,6 +96,7 @@ var css=[
 '#ssg .ss-mic.ss-live{animation:ssgPulse 1.2s ease-out infinite}@keyframes ssgPulse{0%{box-shadow:0 0 0 0 rgba(245,158,11,.65)}100%{box-shadow:0 0 0 10px rgba(245,158,11,0)}}',
 '#ssg .g-right{display:flex;align-items:center;gap:2px;margin-left:auto;flex:none}',
 '#ssg .g-lang{font-weight:700;font-size:13px;font-family:inherit;color:#fff;padding:6px 8px;border-radius:8px}',
+'#ssg .g-lc,#ssg-sheet .g-lc{display:inline-block;min-width:28px;font-weight:800;color:#F59E0B}#ssg .g-dd a.cur{background:#1A2540}.ss-flags{display:none!important}',
 '#ssg .g-cnt{position:absolute;top:0;right:10px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#F59E0B;color:#111;font-weight:800;font-size:10px;line-height:16px;font-family:inherit;text-align:center}',
 '#ssg .g-burger,#ssg .g-msign{display:none}',
 '#ssg-bar{display:none}',
@@ -99,7 +108,7 @@ var css=[
 '#ssg-sheet a{display:flex;align-items:center;gap:12px;padding:11px 10px;border-radius:10px;color:#E5E7EB!important;text-decoration:none!important;font-weight:600;font-size:15px;line-height:1.2;font-family:inherit}',
 '#ssg-sheet a:hover{background:#1A2540}#ssg-sheet a svg{color:#F59E0B;flex:none}',
 '#ssg-sheet .s-x{width:40px;height:40px;border:0;border-radius:10px;background:#1A2540;color:#fff;display:flex;align-items:center;justify-content:center}',
-'@media (max-width:1180px){#ssg .g-nav .g-a{min-width:46px;padding:4px 3px}#ssg .g-right .g-lang{display:none}#ssg .g-in{padding:10px 14px}}',
+'@media (max-width:1180px){#ssg .g-nav .g-a{min-width:46px;padding:4px 3px}#ssg .g-in{padding:10px 14px}}',
 '@media (max-width:1000px){#ssg .g-nav{display:none}#ssg .g-burger{display:flex}}',
 '@media (max-width:760px){',
 ' #ssg .g-in{min-height:60px;padding:8px 10px;gap:8px}',
@@ -155,10 +164,18 @@ function accItem(){
   return tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a'+(isCur(DSH) ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I.user)+tag('span',{'class':'g-l'},(VENDOR ? 'Account' : 'My account')+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu',style:'left:auto;right:0;min-width:210px'},dd));
 }
 function rItem(o,extra){ return tag('div',{'class':'g-it g-r-it'},tag('a',{'class':'g-a'+((o!==FAV ? isCur(o.h) : false) ? ' cur' : ''),href:o.h},ico(I[o.i])+tag('span',{'class':'g-l'},o.t))+(extra||'')); }
-var langs=[]; D.querySelectorAll('.l-header a[hreflang], .l-header .lang-item a, .l-header [class*="lang"] a').forEach(function(a){ var hl=a.getAttribute('hreflang')||a.textContent.trim().slice(0,2); if(a.href ? !langs.some(function(x){return x.h===a.href;}) : false) langs.push({h:a.href,t:(hl||'').toUpperCase().slice(0,2)}); });
-var lang=(D.documentElement.lang||'en').slice(0,2).toUpperCase();
+/* languages: text labels (no flags), taken from the page's hreflang alternates printed by Polylang,
+   falling back to the old theme header switcher. Same list and look as on the home page. */
+var LN={en:'English',uk:'Українська',de:'Deutsch',fr:'Français',es:'Español',it:'Italiano',pt:'Português',pl:'Polski',ru:'Русский'};
+function lcode(c){ c=(c||'').toLowerCase().slice(0,2); return c==='uk' ? 'UA' : c.toUpperCase(); }
+var langs=[];
+function addLang(code,href){ code=(code||'').toLowerCase(); if(!code||code==='x-default'||!href) return; var k=code.slice(0,2); if(langs.some(function(x){ return x.k===k; })) return; langs.push({k:k,h:href,t:lcode(k),n:LN[k]||lcode(k)}); }
+D.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(l){ addLang(l.getAttribute('hreflang'),l.href); });
+D.querySelectorAll('.l-header a[hreflang], .l-header .lang-item a').forEach(function(a){ addLang(a.getAttribute('hreflang')||a.getAttribute('lang'),a.href); });
+window.ssLangs=langs;
+var lang=lcode(D.documentElement.lang||'en');
 var cartN=0; var cq=D.querySelector('.l-header .w-cart-quantity'); if(cq) cartN=parseInt(cq.textContent,10)||0;
-var langHtml=langs.length>1 ? tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a g-lang','aria-haspopup':'true','aria-label':'Language'},lang)+tag('div',{'class':'g-dd',style:'left:auto;right:0;min-width:120px'},langs.map(function(l){ return tag('a',{href:l.h},l.t); }).join(''))) : tag('div',{'class':'g-it g-r-it'},tag('span',{'class':'g-a g-lang'},lang));
+var langHtml=langs.length>1 ? tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a g-lang','aria-haspopup':'true','aria-label':'Language'},lang)+tag('div',{'class':'g-dd',style:'left:auto;right:0;min-width:190px'},langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k,'class':l.t===lang ? 'cur' : ''},tag('b',{'class':'g-lc'},l.t)+l.n); }).join(''))) : tag('div',{'class':'g-it g-r-it'},tag('span',{'class':'g-a g-lang'},lang));
 var head=tag('div',{'class':'g-in'},
   tag('a',{'class':'g-logo',href:L+'/','aria-label':'Solid Sound home'},tag('svg',{viewBox:'0 0 341 230',role:'img','aria-hidden':'true'},tag('path',{fill:'#F59E0B','fill-rule':'evenodd',d:LOGO})))+
   tag('nav',{'class':'g-nav','aria-label':'Main'},navHtml())+
@@ -169,7 +186,7 @@ function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
   NAV.forEach(function(n){ if(n.sub){ h+=tag('div',{'class':'s-g'},n.t)+n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],20)+s[0].replace(/&/g,'and')); }).join(''); } });
   h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(!logged ? tag('a',{href:MYA+'?ss_tab=reg'},ico(I.user,20)+'Create account')+tag('a',{href:MYA+'?ss_tab=sell'},ico(I.sell,20)+'Become a vendor') : '')+(logged ? (VENDOR || ROLE==='admin' ? tag('a',{href:VND},ico(I.sell,20)+'Producer space') : '')+(VENDOR ? '' : tag('a',{href:MYA+'orders/'},ico(I.cart,20)+'Purchases')+tag('a',{href:MYA+'edit-account/'},ico(I.doc,20)+'Settings'))+tag('a',{href:window.ssLogout||MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
-  if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h},l.t); }).join('');
+  if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k},tag('b',{'class':'g-lc'},l.t)+l.n); }).join('');
   return h+LT+'/div'+GT;
 }
 var BAR=[['Shop','prod',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];

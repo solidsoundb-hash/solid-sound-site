@@ -98,12 +98,12 @@
     : R==='vendor' ? [['Producer space','sell',VND],['Log out','out',OUT]]
     : (R==='admin' ? [['Producer space','sell',VND]] : []).concat(client,[['Log out','out',OUT]]);
   var st=document.createElement('style');
-  st.textContent='#ss-acc{position:fixed;z-index:2147483001;min-width:220px;padding:6px;background:#131B2E;border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.6);font-family:"Exo 2",system-ui,sans-serif}#ss-acc a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}#ss-acc a:hover{background:#1A2540;color:#fff}#ss-acc svg{color:#F59E0B;flex:none}';
+  st.textContent='.ss-pop{position:fixed;z-index:2147483001;min-width:220px;padding:6px;background:#131B2E;border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.6);font-family:"Exo 2",system-ui,sans-serif}.ss-pop a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}.ss-pop a:hover{background:#1A2540;color:#fff}.ss-pop svg{color:#F59E0B;flex:none}';
   document.head.appendChild(st);
   var box=null;
   function close(){ if(box){ box.remove(); box=null; } }
   function open(a){
-    close(); box=document.createElement('div'); box.id='ss-acc'; box.setAttribute('role','menu');
+    close(); box=document.createElement('div'); box.id='ss-acc'; box.className='ss-pop'; box.setAttribute('role','menu');
     box.innerHTML=items.map(function(i){ return '<a role="menuitem" href="'+i[2]+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+P[i[1]]+'"></path></svg>'+i[0]+'</a>'; }).join('');
     document.body.appendChild(box);
     var r=a.getBoundingClientRect(), w=box.offsetWidth, h=box.offsetHeight;
@@ -118,4 +118,29 @@
   },true);
   addEventListener('scroll',close,{passive:true}); addEventListener('resize',close,{passive:true});
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+/* Language menu on the home app: the "EN" button lists every language of this page (Polylang hreflang links), as text */
+(function(){
+  var N={en:'English',uk:'Українська',de:'Deutsch',fr:'Français',es:'Español',it:'Italiano',pt:'Português',pl:'Polski',ru:'Русский'};
+  function code(c){ c=(c||'').toLowerCase().slice(0,2); return c==='uk' ? 'UA' : c.toUpperCase(); }
+  var L=[]; document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(l){ var k=(l.getAttribute('hreflang')||'').toLowerCase().slice(0,2); if(!k||k==='x-'||L.some(function(x){ return x.k===k; })) return; L.push({k:k,h:l.href}); });
+  var cur=code(document.documentElement.lang||'en');
+  window.ssOnDom && ssOnDom(function(){ var b=document.querySelector('#ss-app button[aria-label^="Language"]'); if(b && b.textContent!==cur) b.textContent=cur; });
+  if(L.length<2) return;
+  var box=null;
+  function close(){ if(box){ box.remove(); box=null; } }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest ? e.target.closest('#ss-app button[aria-label^="Language"]') : null;
+    if(b){
+      e.preventDefault(); e.stopPropagation(); if(box){ close(); return; }
+      box=document.createElement('div'); box.className='ss-pop'; box.setAttribute('role','menu');
+      box.innerHTML=L.map(function(l){ var c=code(l.k); return '<a role="menuitem" hreflang="'+l.k+'" href="'+l.h+'"'+(c===cur?' style="background:#1A2540"':'')+'><b style="min-width:28px;color:#F59E0B;font-weight:800">'+c+'</b>'+(N[l.k]||c)+'</a>'; }).join('');
+      document.body.appendChild(box);
+      var r=b.getBoundingClientRect(), w=box.offsetWidth;
+      box.style.left=Math.min(Math.max(8,r.right-w),innerWidth-w-8)+'px'; box.style.top=(r.bottom+6)+'px';
+      return;
+    }
+    if(box && !box.contains(e.target)) close();
+  },true);
+  addEventListener('scroll',close,{passive:true}); addEventListener('resize',close,{passive:true});
 })();
