@@ -88,5 +88,12 @@ module.exports = function (a, window) {
     var HERO = '<div style="max-width: 1200px; margin: 0 auto; padding: 0 {{side}}">\n   <div style="background: #131B2E; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3); padding: {{heroBoxPad}}">';
     if (a[0].split(HERO).length !== 2) throw new Error('home: hero wrapper not found');
     a[0]=a[0].split(HERO).join(ASSIST + '\n' + HERO.replace('<div style="max-width: 1200px;', '<div style="display: none; max-width: 1200px;'));
+    /* (11.11.2026) Services menu: Examples / Reviews / How it works scroll to their home blocks (owner) */
+    var SV_OLD = "href: 'https://solid-sound.net/mastering-album-calculator/' }],";
+    if (a[0].split(SV_OLD).length !== 2) throw new Error('home: services menu not found');
+    a[0]=a[0].split(SV_OLD).join("href: 'https://solid-sound.net/mastering-album-calculator/' }, { label: 'Examples', icon: ic.sliders, href: '#examples' }, { label: 'Reviews', icon: ic.chat, href: '#reviews' }, { label: 'How it works', icon: ic.layers, href: '#dashboard' }],");
+    var SH_OLD = "T('Album calculator', ic.disc, menus.services[2].href), ";
+    if (a[0].split(SH_OLD).length !== 2) throw new Error('home: services sheet not found');
+    a[0]=a[0].split(SH_OLD).join(SH_OLD + "T('Examples', ic.sliders, '#examples'), T('Reviews', ic.chat, '#reviews'), T('How it works', ic.layers, '#dashboard'), ");
   return a;
 };

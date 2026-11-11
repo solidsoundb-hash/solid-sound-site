@@ -48,7 +48,7 @@ var S='https://solid-sound.net', L=S+'/en';
 var NAV=[
   {t:'Home',i:'home',h:L+'/'},
   {t:'Products',i:'grid',h:L+'/all-products/',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
-  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/Services-Calculator/'],['Mastering Album Calculator','disc',S+'/mastering-album-calculator/']]},
+  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/Services-Calculator/'],['Mastering Album Calculator','disc',S+'/mastering-album-calculator/'],['Examples','wave',L+'/#examples'],['Reviews','chat',L+'/#reviews'],['How it works','layers',L+'/#dashboard']]},
   {t:'Wiki',i:'wiki',h:L+'/wiki/'},
   {t:'FAQ',i:'faq',sub:[['Common Questions','faq',L+'/faq/'],['Contact Us','mail',S+'/contacts'],['Terms of Sale','doc',L+'/terms/'],['Refund Policy','refund',S+'/refund_returns/'],['License Agreement','shield',S+'/license/'],['Privacy Policy','lock',S+'/privacy-policy/'],['Legal Notice','scale',L+'/legal-notice/']]},
   {t:'Free',i:'free',h:L+'/free/'},

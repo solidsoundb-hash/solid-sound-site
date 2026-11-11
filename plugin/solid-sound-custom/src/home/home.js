@@ -229,10 +229,19 @@ window.ssGoTo=ssGoTo;
 })();
 /* Same precise scroll for in-page links to the products / services blocks (bottom bar Shop/Studio, buttons) */
 document.addEventListener('click',function(e){
-  var a=e.target.closest ? e.target.closest('#ss-app a[href="#shop"], #ss-app a[href="#services"]') : null; if(!a || e.defaultPrevented) return;
+  var a=e.target.closest ? e.target.closest('#ss-app a[href="#shop"], #ss-app a[href="#services"], #ss-app a[href="#examples"], #ss-app a[href="#reviews"], #ss-app a[href="#dashboard"]') : null; if(!a || e.defaultPrevented) return;
   var sec=document.getElementById(a.getAttribute('href').slice(1)); if(!sec || !window.ssGoTo) return;
-  e.preventDefault(); window.ssGoTo(sec);
+  e.preventDefault();
+  /* close an open dropdown / menu sheet first, then scroll */
+  document.querySelectorAll('#ss-app header button[aria-expanded="true"]').forEach(function(b){ b.click(); });
+  window.ssGoTo(sec);
 });
+/* Arriving from another page with /en/#examples etc.: scroll once the block has rendered */
+(function(){
+  var id=(location.hash||'').slice(1); if(!/^(shop|services|examples|reviews|dashboard)$/.test(id)) return;
+  var done=0;
+  window.ssOnDom(function(){ if(done) return; var s=document.getElementById(id); if(!s || !s.offsetHeight || !window.ssGoTo) return; done=1; setTimeout(function(){ window.ssGoTo(s); },300); });
+})();
 /* Shopping assistant on the first screen: task list → the slider moves to that task's card.
    Event delegation (the block is rendered by the home app), choice remembered, swipe on phones. */
 (function(){
