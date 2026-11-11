@@ -21,3 +21,4 @@
 18 2026-11-11 21:27:59 footer like home, header logo/hover, kit covers (owner ok: выложи)
 19 2026-11-11 21:38:32 menu highlights current page (owner ok: выложи по завершению)
 20 2026-11-11 22:11:08 similar sounds, license line+certificate, 3% bonus, All products Best carousel, sticky filters, no catalog search (owner ok: по окончанию выкладывай)
+21 2026-11-11 22:13:08 Products click on its own page scrolls to catalog (owner ok: ок)
