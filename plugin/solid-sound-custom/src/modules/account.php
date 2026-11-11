@@ -72,7 +72,7 @@ function ss_acc_nav() {
 	if ( '' === $ep ) return; /* the overview shows everything at once, like the client dashboard */
 	$tabs = array(
 		array( 'My account', 'dash', $root, false ),
-		array( 'Orders', 'bag', ss_acc_myaccount_url( 'orders' ), in_array( $ep, array( 'orders', 'view-order' ), true ) ),
+		array( 'Purchases', 'bag', ss_acc_myaccount_url( 'orders' ), in_array( $ep, array( 'orders', 'view-order' ), true ) ),
 		array( 'Downloads', 'down', ss_acc_myaccount_url( 'downloads' ), 'downloads' === $ep ),
 		array( 'Settings', 'set', ss_acc_myaccount_url( 'edit-account' ), $settings ),
 	);
@@ -82,7 +82,7 @@ function ss_acc_nav() {
 	}
 	echo '<a class="out" href="' . esc_url( wc_logout_url() ) . '">' . ss_acc_icon( $i['out'] ) . '<span>Log out</span></a></nav>';
 	if ( $settings ) {
-		$sub = array( array( 'Account details', 'edit-account' ), array( 'Addresses', 'edit-address' ), array( 'Payment methods', 'payment-methods' ) );
+		$sub = array( array( 'Account details', 'edit-account' ), array( 'Billing details', 'edit-address' ), array( 'Payment methods', 'payment-methods' ) );
 		echo '<nav class="ssa-sub" aria-label="Settings">';
 		foreach ( $sub as $s ) {
 			$on = $ep === $s[1] || ( 'payment-methods' === $s[1] && 'add-payment-method' === $ep );
@@ -216,14 +216,14 @@ function ss_acc_render( $d ) {
 	$h .= '</section>';
 
 	/* orders */
-	$h .= '<section class="p" id="orders">' . $head( 'My orders', 'bag' );
+	$h .= '<section class="p" id="purchases">' . $head( 'Purchases', 'bag' );
 	if ( $d['orders'] ) {
 		foreach ( array_slice( $d['orders'], 0, 5 ) as $o ) {
 			$h .= '<a class="row" href="' . esc_url( $o['url'] ) . '"><span class="t" style="width:48px;height:48px">' . ss_acc_ic( 'bag', 22 ) . '</span><div class="nm"><b>Order #' . $e( $o['num'] ) . ' · ' . $e( $o['total'] ) . '</b><small>' . $e( $o['date'] . ' · ' . implode( ', ', $o['items'] ) ) . '</small></div><span class="badge' . ( false !== stripos( $o['status'], 'complet' ) ? '' : ' w' ) . '">' . $e( $o['status'] ) . '</span></a>';
 		}
-		$h .= '<a class="btn g" href="' . esc_url( ss_acc_myaccount_url( 'orders' ) ) . '">All orders and invoices</a>';
+		$h .= '<a class="btn g" href="' . esc_url( ss_acc_myaccount_url( 'orders' ) ) . '">All purchases &amp; receipts</a>';
 	} else {
-		$h .= '<div class="empty">Your orders and invoices will appear here.</div>';
+		$h .= '<div class="empty">Everything you buy appears here, with a receipt for each payment.</div>';
 	}
 	$h .= '</section></div><div>';
 
@@ -242,7 +242,7 @@ function ss_acc_render( $d ) {
 	$h .= '</section>';
 	$set = array(
 		array( ss_acc_myaccount_url( 'edit-account' ), 'user', 'Account details', 'Name, email and password' ),
-		array( ss_acc_myaccount_url( 'edit-address' ), 'home', 'Addresses', 'Billing address for invoices' ),
+		array( ss_acc_myaccount_url( 'edit-address' ), 'home', 'Billing details', 'Name, country and company for receipts' ),
 		array( ss_acc_myaccount_url( 'payment-methods' ), 'card', 'Payment methods', 'Saved cards' ),
 		array( wc_logout_url(), 'out', 'Log out', '' ),
 	);
@@ -251,3 +251,7 @@ function ss_acc_render( $d ) {
 	$h .= '</section></div></div></div>';
 	return $h;
 }
+
+/* Digital store wording on account sub pages: billing details only, no shipping address */
+add_filter( 'woocommerce_my_account_my_address_title', function () { return 'Billing details'; } );
+add_filter( 'woocommerce_my_account_get_addresses', function ( $a ) { return isset( $a['billing'] ) ? array( 'billing' => 'Billing details' ) : $a; } );

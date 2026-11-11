@@ -41,5 +41,5 @@
 }
 #ssd a.st{text-decoration:none;color:inherit;transition:border-color .15s}
 #ssd a.st:hover{border-color:rgba(245,158,11,.4)}
-#ssd #orders .row .badge{margin-left:auto;flex:none}
-#ssd #orders > .btn{margin-top:10px}
+#ssd #purchases .row .badge{margin-left:auto;flex:none}
+#ssd #purchases > .btn{margin-top:10px}
