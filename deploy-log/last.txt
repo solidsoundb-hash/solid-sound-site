@@ -1,0 +1,6 @@
+run 10 2026-11-11T14:57:12Z commit 62e416186cfb7fcf98b3de90c16cd86ef1a2a36a
+https://solid-sound.net/en/?ss_v2=0 -> HTTP 200 
+https://solid-sound.net/en/?ss_v2=1 -> HTTP 200 
+https://solid-sound.net/product/infinity/?ss_v2=1 -> HTTP 200 
+https://solid-sound.net/en/my-account/?ss_v2=1 -> HTTP 200 
+OK
