@@ -15,3 +15,4 @@
 12 2026-11-11 17:50:14 precise section scroll, seasonal slide auto-hide (owner ok: выкладывай)
 13 2026-11-11 18:10:55 Google sign-in (owner ok: выкладывай)
 14 2026-11-11 18:23:04 one account two roles (owner ok: выкладывай)
+15 2026-11-11 20:08:13 home shopping assistant (owner ok: устанавливай и выкладывай)
