@@ -1619,7 +1619,7 @@ if(img)img.required=false;if(file)file.required=false;
 function mp3Val(){var w=q('.ss-ap-mp3 textarea');if(!w)return '';if(window.tinymce&&tinymce.get(w.id))return tinymce.get(w.id).getContent();return w.value}
 function has(n){var w=F(n);if(!w)return true;if(n==='mp3')return /\.mp3/i.test(mp3Val());var s=w.querySelector('select');if(s)return [].some.call(s.options,function(o){return o.selected&&o.value});return qa('input:not([type=hidden])',w).some(function(i){return i.checked||(i.type!='checkbox'&&i.type!='radio'&&i.value)})}
 function ss(){var items=[['Name',!!(name&&name.value.trim())],['Format',!!fmtKey()],['Genre',has('genre')],['BPM',has('bpm')],['Key',has('key')],['Description',!!(desc&&desc.value.trim().length>20)],['Price',!!(price&&price.value)],['Cover',!!(img&&img.files.length)],['ZIP',!!(file&&file.files.length)],['MP3',has('mp3')]];var ok=items.filter(function(x){return x[1]}).length,p=Math.round(ok/items.length*100);ai.querySelector('.pc').textContent=p+'%';ai.querySelector('.bar i').style.width=p+'%';ai.querySelector('.chips').innerHTML=items.map(function(x){return '<span'+(x[1]?' class="ok"':'')+'>'+x[0]+'</span>'}).join('')}
-form.addEventListener('click',function(e){var li=e.target.closest&&e.target.closest('.acf-checkbox-list>li,.acf-radio-list>li');if(!li||e.target.tagName==='INPUT'||e.target.closest('label'))return;var i=li.querySelector('input');if(i&&!i.disabled)i.click()});form.addEventListener('input',ss);form.addEventListener('change',ss);setInterval(ss,1500);apply();
+form.addEventListener('click',function(e){var li=e.target.closest&&e.target.closest('.acf-checkbox-list>li,.acf-radio-list>li');if(!li||e.target.tagName==='INPUT'||e.target.closest('label'))return;var i=li.querySelector('input');if(i&&!i.disabled)i.click()});form.addEventListener('input',ss);form.addEventListener('change',ss);window.ssOnDom?ssOnDom(ss):setInterval(ss,1500);apply();
 /* checks before sending */
 form.addEventListener('submit',function(e){
   qa('.ss-ap-err').forEach(function(x){x.remove()});qa('.ss-ap-bad').forEach(function(x){x.classList.remove('ss-ap-bad')});
@@ -2103,7 +2103,7 @@ if ( ! function_exists( 'ss_mobile_player_first' ) ) {
 /* Solid Sound 15.10.2026: bottom stack - player at the bottom, chat above it, back-to-top arrow on top */
 if ( ! function_exists( 'ss_bottom_stack' ) ) {
 	function ss_bottom_stack() { ?>
-<script>(function(){function fix(){var p=document.querySelector('.ssp');var ph=(document.body.classList.contains('ssp-open')&&p&&p.offsetHeight)?p.offsetHeight:0;var h=document.getElementById('tidio-chat');if(h){h.style.setProperty('top','auto','important');h.style.setProperty('bottom',ph+'px','important');h.style.setProperty('height','calc(100% - '+ph+'px)','important')}var t=document.querySelector('.w-toplink');if(!t)return;var b=h&&h.shadowRoot&&h.shadowRoot.getElementById('button');var br=b?b.getBoundingClientRect():null;var off=(br&&br.height)?(window.innerHeight-br.top+10):(ph+10);t.style.setProperty('bottom',Math.round(off)+'px','important')}setInterval(fix,600);})();</script>
+<script>(function(){function fix(){var p=document.querySelector('.ssp');var ph=(document.body.classList.contains('ssp-open')&&p&&p.offsetHeight)?p.offsetHeight:0;var h=document.getElementById('tidio-chat');if(h){h.style.setProperty('top','auto','important');h.style.setProperty('bottom',ph+'px','important');h.style.setProperty('height','calc(100% - '+ph+'px)','important')}var t=document.querySelector('.w-toplink');if(!t)return;var b=h&&h.shadowRoot&&h.shadowRoot.getElementById('button');var br=b?b.getBoundingClientRect():null;var off=(br&&br.height)?(window.innerHeight-br.top+10):(ph+10);t.style.setProperty('bottom',Math.round(off)+'px','important')}window.ssOnDom?ssOnDom(fix):setInterval(fix,600);})();</script>
 	<?php }
 	add_action( 'wp_footer', 'ss_bottom_stack', 99 );
 }
@@ -4523,7 +4523,7 @@ function tidio(){var a=window.tidioChatApi;if(!a||a.__ssb)return;a.__ssb=1;try{a
 document.addEventListener('tidioChat-ready',tidio);tidio();
 /* keep above the bottom audio player */
 function lift(){var p=document.querySelector('.ssp.is-open,.ssp-open .ssp');var h=0;if(p){var r=p.getBoundingClientRect();if(r.height&&r.top<innerHeight)h=innerHeight-r.top}root.style.setProperty('--b',(h?h+14:20)+'px')}
-lift();setInterval(lift,800);addEventListener('resize',lift);
+lift();window.ssOnDom?ssOnDom(lift):setInterval(lift,800);addEventListener('resize',lift);
 document.querySelectorAll('a[href*="#ss-ask"],[data-ss-ask]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open();human()})});
 })();
 </script>
@@ -5240,7 +5240,7 @@ window.ssTrack=ev;
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.ss-cc button')){setTimeout(function(){var y=/(?:^|;\s*)ss_consent=yes/.test(document.cookie);gtag('consent','update',{analytics_storage:y?'granted':'denied',ad_storage:y?'granted':'denied',ad_user_data:y?'granted':'denied',ad_personalization:y?'granted':'denied'})},150)}},true);
 /* demo plays (SSP player) — once per track per page */
 var played={};function wrapSSP(){var S=window.SSP;if(!S||!S.play||S.__ssga)return!!(S&&S.__ssga);var o=S.play;S.play=function(t){try{var k=t&&(t.pid||t.src);if(k&&!played[k]){played[k]=1;ev('play_demo',{item_id:t.pid?String(t.pid):'',item_name:t.t||'',content_type:'audio_preview'});px('PlayDemo',{content_ids:t.pid?[String(t.pid)]:[],content_name:t.t||''},1)}}catch(e){}return o.apply(this,arguments)};S.__ssga=1;return true}
-var tries=0,iv=setInterval(function(){if(wrapSSP()||++tries>40)clearInterval(iv)},500);
+if(!wrapSSP()){if(window.ssOnDom){ssOnDom(wrapSSP)}else{var tries=0,iv=setInterval(function(){if(wrapSSP()||++tries>40)clearInterval(iv)},500)}}
 /* add to cart: AJAX buttons + single product form */
 document.addEventListener('DOMContentLoaded',function(){if(window.jQuery)jQuery(document.body).on('added_to_cart',function(e,f,h,b){var id=b&&b.data?String(b.data('product_id')||''):'';ev('add_to_cart',{currency:CUR,items:[{item_id:id}]})});
 document.querySelectorAll('form.cart').forEach(function(f){f.addEventListener('submit',function(){ev('add_to_cart',{currency:CUR,value:VI?VI.price:undefined,items:VI?[VI]:[]})})});
@@ -5880,3 +5880,11 @@ if ( ! function_exists( 'ss_wikisound_redirect' ) ) {
 	add_action( 'template_redirect', 'ss_wikisound_redirect', 0 );
 	add_action( 'parse_request', 'ss_wikisound_redirect', 0 );
 }
+
+/* ss-core: one shared DOM watcher instead of many setInterval loops.
+   ssOnDom(fn) runs fn now and again (max once per animation frame) when the page changes:
+   nodes added/removed, <body> class change (player open, menus), media play/pause/ended, resize, load. */
+add_action( 'wp_head', function () {
+	if ( is_admin() ) return;
+	?><script id="ss-core">(function(w,d){if(w.ssOnDom)return;var q=[],p=0,last=0;function run(){p=0;last=Date.now();for(var i=0;i<q.length;i++){try{q[i]()}catch(e){}}}function tick(){if(p)return;p=1;var g=Date.now()-last;g<120?setTimeout(function(){requestAnimationFrame(run)},120-g):requestAnimationFrame(run)}w.ssOnDom=function(f){q.push(f);try{f()}catch(e){}};new MutationObserver(tick).observe(d.documentElement,{childList:true,subtree:true});function body(){new MutationObserver(tick).observe(d.body,{attributes:true,attributeFilter:['class']})}d.body?body():d.addEventListener('DOMContentLoaded',body);['play','pause','ended','loadedmetadata'].forEach(function(e){d.addEventListener(e,tick,true)});w.addEventListener('resize',tick,{passive:true});w.addEventListener('load',tick)})(window,document);</script><?php
+}, 0 );

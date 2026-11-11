@@ -10,7 +10,7 @@ const root = new URL('../plugin/solid-sound-custom/', import.meta.url).pathname;
 const raw = '/tmp/ss-build-raw';
 rmSync(root + 'build', { recursive: true, force: true }); rmSync(raw, { recursive: true, force: true });
 mkdirSync(root + 'build/assets', { recursive: true });
-execFileSync('php', [new URL('extract-assets.php', import.meta.url).pathname, root + 'includes/custom.php', root + 'build/custom.php', raw], { stdio: 'inherit' });
+execFileSync('php', [new URL('extract-assets.php', import.meta.url).pathname, root + 'src/custom.php', root + 'build/custom.php', raw], { stdio: 'inherit' });
 execFileSync('php', ['-l', root + 'build/custom.php'], { stdio: 'inherit' });
 const manifest = JSON.parse(readFileSync(raw + '/manifest.json', 'utf8'));
 const map = {}; let before = 0, after = 0;
