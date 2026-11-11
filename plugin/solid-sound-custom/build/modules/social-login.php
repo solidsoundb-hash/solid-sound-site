@@ -60,19 +60,20 @@ function ss_google_signin( WP_REST_Request $r ) {
 	do_action( 'wp_login', $user->user_login, $user );
 
 	$back = esc_url_raw( (string) $r->get_param( 'back' ) );
-	$to = wc_get_page_permalink( 'myaccount' );
-	if ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $user->ID ) ) $to = function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' );
+	$to = wc_get_page_permalink( 'myaccount' ); /* one account, two roles: My account first */
+	if ( 'vendor' === $r->get_param( 'as' ) && ! ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $user->ID ) ) ) $to = home_url( '/sell/#apply' );
 	elseif ( $back && false !== strpos( $back, 'checkout' ) && 0 === strpos( $back, home_url() ) ) $to = $back;
 	return array( 'ok' => true, 'new' => $new, 'redirect' => $to );
 }
 
 /* ---------- front: button + One Tap (guests only, only on account and checkout pages) ---------- */
-function ss_google_button() {
+function ss_google_button( $as = '' ) {
 	if ( is_user_logged_in() ) return;
+	if ( 'vendor' === $as ) { echo '<div class="ss-gsi" data-as="vendor"><div class="ss-gsi-btn" data-text="signup_with"></div><div class="ss-gsi-or"><span>or</span></div></div>'; return; }
 	echo '<div class="ss-gsi"><div class="ss-gsi-btn"></div><div class="ss-gsi-or"><span>or</span></div></div>';
 }
-add_action( 'woocommerce_login_form_start', 'ss_google_button', 1 );
-add_action( 'woocommerce_register_form_start', 'ss_google_button', 1 );
+add_action( 'woocommerce_login_form_start', function () { ss_google_button(); }, 1 );
+add_action( 'woocommerce_register_form_start', function () { ss_google_button(); }, 1 );
 add_action( 'woocommerce_before_checkout_form', function () {
 	if ( ! is_user_logged_in() ) echo '<div class="ss-gsi ss-gsi-co"><p>Have a Google account? Check out faster:</p><div class="ss-gsi-btn"></div></div>';
 }, 4 );
@@ -84,10 +85,12 @@ add_action( 'wp_footer', function () {
 <style id="ss-gsi-css">.ss-gsi{margin:0 0 16px}.ss-gsi-btn{display:flex;justify-content:center;min-height:44px}.ss-gsi-or{display:flex;align-items:center;gap:12px;margin:16px 0 4px;color:#94A3B8;font-size:13px}.ss-gsi-or:before,.ss-gsi-or:after{content:"";flex:1;height:1px;background:rgba(255,255,255,.1)}.ss-gsi-co{padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:12px;text-align:center}.ss-gsi-co p{margin:0 0 10px;color:#CBD5E1}.ss-gsi-msg{color:#F87171;font-size:13px;text-align:center;margin-top:8px}</style>
 <script id="ss-gsi-js">
 (function(){
-  var C=<?php echo wp_json_encode( $cfg ); ?>, busy=false;
+  var C=<?php echo wp_json_encode( $cfg ); ?>, busy=false, intent='';
+  /* which button was used: the vendor tab one leads to the vendor application */
+  document.addEventListener('pointerdown',function(e){ var g=e.target.closest ? e.target.closest('.ss-gsi') : null; if(g) intent=g.getAttribute('data-as')||''; },true);
   function done(resp){
     if(busy || !resp || !resp.credential) return; busy=true;
-    fetch(C.api,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-WP-Nonce':C.nonce},body:JSON.stringify({credential:resp.credential,back:location.href})})
+    fetch(C.api,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-WP-Nonce':C.nonce},body:JSON.stringify({credential:resp.credential,back:location.href,as:intent})})
       .then(function(r){ return r.json(); })
       .then(function(j){
         if(j && j.ok){ try{ if(window.gtag) gtag('event', j['new'] ? 'sign_up' : 'login', {method:'Google'}); }catch(x){} location.href=j.redirect; return; }
@@ -99,7 +102,7 @@ add_action( 'wp_footer', function () {
     google.accounts.id.initialize({client_id:C.id,callback:done,auto_select:false,cancel_on_tap_outside:true,itp_support:true,use_fedcm_for_prompt:true});
     document.querySelectorAll('.ss-gsi-btn').forEach(function(el){
       var w=Math.min(400,Math.max(220,el.offsetWidth||320));
-      google.accounts.id.renderButton(el,{theme:'filled_black',size:'large',shape:'pill',text:'continue_with',logo_alignment:'left',width:w});
+      google.accounts.id.renderButton(el,{theme:'filled_black',size:'large',shape:'pill',text:el.getAttribute('data-text')||'continue_with',logo_alignment:'left',width:w});
     });
     if(C.onetap) google.accounts.id.prompt();
   }

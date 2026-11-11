@@ -1172,6 +1172,7 @@ function ss_auth_close() {
 			<li><i>&#9733;</i><span><b>Featured from day one</b> &mdash; homepage &amp; our socials</span></li>
 			<li><i>&#9889;</i><span><b>Approved in 24 h</b> &middot; no fees &middot; non-exclusive</span></li>
 		</ul>
+		<?php if ( ! is_user_logged_in() && function_exists( 'ss_google_button' ) ) ss_google_button( 'vendor' ); ?>
 		<a class="ssam-btn" href="<?php echo esc_url( $sell . '#apply' ); ?>">Become a vendor &rarr;</a>
 		<div class="ssam-foot"><a href="<?php echo esc_url( $sell ); ?>">See all benefits</a><a href="#" data-go="login">Already a vendor? Log in</a></div>
 	</div>
@@ -1319,7 +1320,7 @@ function ss_sell_page() {
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1426'); ?>
+<?php ss_asset('css-l1427'); ?>
 
 <section class="sssell-hero">
 	<div>
@@ -1760,7 +1761,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2073'); ?>
+<?php ss_asset('js-l2074'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -4133,7 +4134,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4864'); ?>
+<?php ss_asset('js-l4865'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4883,7 +4884,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5886'); ?>
+<?php ss_asset('css-l5887'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5462,7 +5463,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6499'); ?>
+<?php ss_asset('css-l6500'); ?>
 		<?php
 		return ob_get_clean();
 	}
@@ -5912,8 +5913,7 @@ function ss_dashboard_url() { return wc_get_page_permalink( 'myaccount' ); }
 function ss_after_auth_redirect( $redirect, $user ) {
 	if ( ! empty( $_REQUEST['redirect'] ) || ( function_exists( 'is_checkout' ) && is_checkout() ) ) return $redirect;
 	if ( $redirect && false === strpos( $redirect, 'my-account' ) ) return $redirect;
-	if ( ss_is_vendor_user( $user ) ) return function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' );
-	return ss_dashboard_url();
+	return ss_dashboard_url(); /* one account, two roles (owner 11.11.2026): Producer space is linked from My account */
 }
 add_filter( 'woocommerce_login_redirect', 'ss_after_auth_redirect', 20, 2 );
 add_filter( 'woocommerce_registration_redirect', function ( $redirect ) { return ss_after_auth_redirect( $redirect, wp_get_current_user() ); }, 20 );

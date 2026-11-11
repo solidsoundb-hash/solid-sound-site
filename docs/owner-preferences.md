@@ -122,3 +122,7 @@
 - (11.11.2026) Google Sign-In: Client ID 152337347722-trdd5avbmpcqplnrd3un7p5g78vm18ko.apps.googleusercontent.com
   (проект Google Cloud «Solid Sound», владелец). Модуль modules/social-login.php. Персонал (админ, менеджер) —
   только по паролю. Владелец должен нажать Publish app (Audience) в Google Cloud.
+- (11.11.2026) ЗАМЕНЕНО решение «раздельные аккаунты»: теперь **один аккаунт, две роли** (как Etsy/Gumroad).
+  Все вошедшие видят «My account» (клиентская часть). У продавца дополнительно «Producer space» (в меню и в
+  кабинете), у остальных — «Start selling» (→ /sell/#apply). В кабинете метка «Client account» / «Client · Vendor».
+  Google: на вкладке «Become a vendor» кнопка «Sign up with Google» ведёт к анкете продавца.

@@ -97,8 +97,7 @@
     bag:'M6 7h12l1 14H5zM9 7a3 3 0 0 1 6 0',dl:'M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2',doc:'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6',out:'M10 17l5-5-5-5M15 12H3M14 3h6v18h-6'};
   var client=[['My account','user',MYA],['Purchases','bag',MYA+'orders/'],['Downloads','dl',MYA+'downloads/'],['Settings','doc',MYA+'edit-account/']];
   var items=R==='guest' ? [['Log in','user',MYA+'?ss_tab=login'],['Create account','user',MYA+'?ss_tab=reg'],['Become a vendor','sell',MYA+'?ss_tab=sell']]
-    : R==='vendor' ? [['Producer space','sell',VND],['Log out','out',OUT]]
-    : (R==='admin' ? [['Producer space','sell',VND]] : []).concat(client,[['Log out','out',OUT]]);
+    : client.concat(R==='vendor' || R==='admin' ? [['Producer space','sell',VND]] : [['Start selling','sell','https://solid-sound.net/sell/']],[['Log out','out',OUT]]);
   var st=document.createElement('style');
   st.textContent='.ss-pop{position:fixed;z-index:2147483001;min-width:220px;padding:6px;background:#131B2E;border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.6);font-family:"Exo 2",system-ui,sans-serif}.ss-pop a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}.ss-pop a:hover{background:#1A2540;color:#fff}.ss-pop svg{color:#F59E0B;flex:none}';
   document.head.appendChild(st);

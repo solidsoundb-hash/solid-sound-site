@@ -18,9 +18,10 @@ function ss_acc_myaccount_url( $endpoint = '' ) {
 function ss_acc_is_vendor_only() {
 	return is_user_logged_in() && function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() && ! current_user_can( 'manage_woocommerce' );
 }
-function ss_acc_is_client_view() {
-	return is_user_logged_in() && ! ss_acc_is_vendor_only() && function_exists( 'is_account_page' ) && is_account_page();
+function ss_acc_is_client_view() { /* one account, two roles: everyone gets the client view */
+	return is_user_logged_in() && function_exists( 'is_account_page' ) && is_account_page();
 }
+function ss_acc_is_vendor() { return function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor(); }
 
 /* ---------- redirects ---------- */
 add_action( 'template_redirect', function () {
@@ -30,10 +31,6 @@ add_action( 'template_redirect', function () {
 	if ( is_page( $ids ) ) {
 		$hash = '';
 		wp_safe_redirect( ss_acc_myaccount_url() . $hash, 301 );
-		exit;
-	}
-	if ( is_account_page() && ss_acc_is_vendor_only() && ! is_wc_endpoint_url() ) {
-		wp_safe_redirect( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) );
 		exit;
 	}
 } );
@@ -170,7 +167,12 @@ function ss_acc_render( $d ) {
 	$active = 0; foreach ( $proj as $o ) if ( ss_acc_step( $o ) < 4 ) $active++;
 	$head = function ( $t, $i ) { return '<h2><span class="t">' . ss_acc_ic( $i ) . '</span>' . $t . '</h2>'; };
 
-	$h  = '<div id="ssd" data-ssr="1"><div class="top"><div><h1>My account</h1><p class="sub">' . ( $d['name'] ? 'Hi ' . esc_html( $d['name'] ) . '! ' : '' ) . 'Your projects, revisions and downloads.</p></div><a class="btn" href="' . $S . '/Services-Calculator/">' . ss_acc_ic( 'calc' ) . 'Order a mix or master</a></div>';
+	$vendor = ss_acc_is_vendor();
+	$role = '<span class="ssa-role">' . ( $vendor ? 'Client · Vendor' : 'Client account' ) . '</span>';
+	$second = $vendor
+		? '<a class="btn g" href="' . esc_url( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) ) . '">' . ss_acc_ic( 'serv' ) . 'Producer space</a>'
+		: '<a class="btn g" href="' . esc_url( home_url( '/sell/' ) ) . '">' . ss_acc_ic( 'free' ) . 'Start selling</a>';
+	$h  = '<div id="ssd" data-ssr="1"><div class="top"><div><h1>My account ' . $role . '</h1><p class="sub">' . ( $d['name'] ? 'Hi ' . esc_html( $d['name'] ) . '! ' : '' ) . 'Your projects, revisions and downloads.</p></div><div class="top-b">' . $second . '<a class="btn" href="' . $S . '/Services-Calculator/">' . ss_acc_ic( 'calc' ) . 'Order a mix or master</a></div></div>';
 	$h .= '<div class="stats">';
 	foreach ( array( array( $active, 'Active projects', '#projects' ), array( count( $proj ) - $active, 'Delivered', '#projects' ), array( count( $d['downloads'] ), 'Downloads', '#downloads' ), array( 0, 'Favourites', '#favourites' ) ) as $st )
 		$h .= '<a class="st" href="' . $st[2] . '"' . ( 'Favourites' === $st[1] ? ' data-favn' : '' ) . '><b>' . (int) $st[0] . '</b><span>' . $st[1] . '</span></a>';

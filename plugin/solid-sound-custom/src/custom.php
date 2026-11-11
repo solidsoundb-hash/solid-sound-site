@@ -1277,6 +1277,7 @@ function ss_auth_close() {
 			<li><i>&#9733;</i><span><b>Featured from day one</b> &mdash; homepage &amp; our socials</span></li>
 			<li><i>&#9889;</i><span><b>Approved in 24 h</b> &middot; no fees &middot; non-exclusive</span></li>
 		</ul>
+		<?php if ( ! is_user_logged_in() && function_exists( 'ss_google_button' ) ) ss_google_button( 'vendor' ); ?>
 		<a class="ssam-btn" href="<?php echo esc_url( $sell . '#apply' ); ?>">Become a vendor &rarr;</a>
 		<div class="ssam-foot"><a href="<?php echo esc_url( $sell ); ?>">See all benefits</a><a href="#" data-go="login">Already a vendor? Log in</a></div>
 	</div>
@@ -6947,8 +6948,7 @@ function ss_dashboard_url() { return wc_get_page_permalink( 'myaccount' ); }
 function ss_after_auth_redirect( $redirect, $user ) {
 	if ( ! empty( $_REQUEST['redirect'] ) || ( function_exists( 'is_checkout' ) && is_checkout() ) ) return $redirect;
 	if ( $redirect && false === strpos( $redirect, 'my-account' ) ) return $redirect;
-	if ( ss_is_vendor_user( $user ) ) return function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' );
-	return ss_dashboard_url();
+	return ss_dashboard_url(); /* one account, two roles (owner 11.11.2026): Producer space is linked from My account */
 }
 add_filter( 'woocommerce_login_redirect', 'ss_after_auth_redirect', 20, 2 );
 add_filter( 'woocommerce_registration_redirect', function ( $redirect ) { return ss_after_auth_redirect( $redirect, wp_get_current_user() ); }, 20 );
