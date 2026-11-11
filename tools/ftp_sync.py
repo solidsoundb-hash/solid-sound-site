@@ -4,6 +4,7 @@
   ftp_sync.py download <remote_dir> <local_dir>     copy a server folder down (backup)
   ftp_sync.py upload   <local_path> <remote_path>   upload a file or a folder (creates folders)
   ftp_sync.py restore  <local_dir>  <remote_dir>    upload a folder and delete server files that are not in it
+  ftp_sync.py get      <remote_file> <local_file>   download one file
 
 Credentials: env FTP_HOST, FTP_USER, FTP_PASS. Uses FTPS when the server offers it, plain FTP otherwise.
 Every network operation has a timeout and is retried.
@@ -144,6 +145,10 @@ def main():
         download(c, a, b)
     elif cmd == 'upload':
         upload(c, a, b)
+    elif cmd == 'get':
+        os.makedirs(os.path.dirname(b) or '.', exist_ok=True)
+        with open(b, 'wb') as out:
+            c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), a)
     elif cmd == 'restore':
         upload(c, a, b)
         prune(c, a, b)
