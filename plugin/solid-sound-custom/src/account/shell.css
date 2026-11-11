@@ -39,3 +39,7 @@
   .ssa-on .woocommerce-MyAccount-content table.shop_table_responsive tr{display:block;border-bottom:1px solid rgba(255,255,255,.08)}
   .ssa-on .woocommerce-MyAccount-content table.shop_table_responsive td{display:flex;justify-content:space-between;gap:10px;border:0}
 }
+#ssd a.st{text-decoration:none;color:inherit;transition:border-color .15s}
+#ssd a.st:hover{border-color:rgba(245,158,11,.4)}
+#ssd #orders .row .badge{margin-left:auto;flex:none}
+#ssd #orders > .btn{margin-top:10px}

@@ -173,7 +173,18 @@
     root.innerHTML='<div class="p"><h2>My account</h2><p class="sub">Some parts could not be shown. Your data is safe.</p><p style="margin:14px 0"><a class="btn" href="'+ACC+'orders/">Orders</a> <a class="btn g" href="'+ACC+'downloads/">Downloads</a> <a class="btn g" href="'+ACC+'edit-account/">Settings</a></p><small style="color:#64748B">'+esc(String(err && err.message || err))+'</small></div>';
     try{ if(window.gtag) gtag('event','exception',{description:'account: '+String(err && err.message || err),fatal:false}); }catch(e){}
   }
-  if(window.SSD){
+  if(root.getAttribute('data-ssr')){
+    /* server already rendered everything: add the interactive parts only */
+    root.querySelectorAll('.rev').forEach(function(b){ try{ initRev(b); }catch(e){} });
+    var ch=root.querySelector('[data-chat]'); if(ch) ch.addEventListener('click',function(e){ e.preventDefault(); sendChat(''); });
+    favsP.then(function(f){
+      f=Array.isArray(f) ? f : []; if(!f.length) return;
+      var n=root.querySelector('[data-favn] b'); if(n) n.textContent=f.length;
+      var box=root.querySelector('#favourites .fav-list'); if(box) box.innerHTML=f.map(function(p){ return '<a class="row" href="'+esc(p.permalink)+'"><span class="cv" style="background-image:url('+esc((p.images[0]||{}).thumbnail||'')+')"></span><div class="nm"><b>'+esc(p.name)+'</b><small>'+esc(p.prices ? (p.prices.currency_symbol+Math.round(p.prices.price/Math.pow(10,p.prices.currency_minor_unit))) : '')+'</small></div></a>'; }).join('');
+    });
+    try{ if(window.gtag) gtag('event','dashboard_view',{projects:root.querySelectorAll('.proj').length,downloads:root.querySelectorAll('#downloads .row').length}); }catch(e){}
+    if(location.hash){ var t=D.getElementById(location.hash.slice(1)); if(t) t.scrollIntoView(); }
+  } else if(window.SSD){
     var X=window.SSD;
     favsP.then(function(f){
       try{
