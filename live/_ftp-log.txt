@@ -1,14 +1,45 @@
-pull 2026-11-11T15:05:25Z
-  retry after EOFError()
+pull 2026-11-11T22:27:30Z
 ok  solid-sound.net/www/wp-content/plugins/solid-sound-custom
 ok  solid-sound.net/www/wp-content/themes/Impreza/functions.php
 ok  solid-sound.net/www/wp-content/wp-cache-config.php
-ok  solid-sound.net/www/wp-content/advanced-cache.php
+ok  solid-sound.net/www/wp-content/themes/Impreza/common/functions
+Traceback (most recent call last):
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 166, in <module>
+    main()
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 156, in main
+    c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), a)
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 45, in run
+    return fn(self.f, *a)
+           ^^^^^^^^^^^^^^
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 156, in <lambda>
+    c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), a)
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ftplib.py", line 436, in retrbinary
+    with self.transfercmd(cmd, rest) as conn:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ftplib.py", line 393, in transfercmd
+    return self.ntransfercmd(cmd, rest)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ftplib.py", line 771, in ntransfercmd
+    conn, size = super().ntransfercmd(cmd, rest)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ftplib.py", line 359, in ntransfercmd
+    resp = self.sendcmd(cmd)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ftplib.py", line 281, in sendcmd
+    return self.getresp()
+           ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ftplib.py", line 254, in getresp
+    raise error_perm(resp)
+ftplib.error_perm: 550 solid-sound.net/www/wp-content/advanced-cache.php: No such file or directory
+--  solid-sound.net/www/wp-content/advanced-cache.php (missing)
 ok  solid-sound.net/www/.htaccess
   live/root/.htaccess
   live/wp-content/wp-cache-config.php
-  live/wp-content/advanced-cache.php
   live/themes/Impreza/functions.php
+  live/themes/Impreza/common/functions/menu.php
+  live/themes/Impreza/common/functions/helpers.php
+  live/themes/Impreza/common/functions/comments.php
   live/_ftp-log.txt
   live/plugins/solid-sound-custom/exports/post-52.php
   live/plugins/solid-sound-custom/exports/meta.php

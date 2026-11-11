@@ -5,6 +5,7 @@ WP-Cache Config Sample File
 See wp-cache.php for author details.
 */
 
+$wp_cache_debug_username = '9f0230f4ea161ffa60c9a50327794c10';
 $wp_cache_home_path = '/';
 $wp_cache_slash_check = 1;
 $cache_page_secret = '1904a5ef552c7c9145ea0210103ea9cb';
@@ -14,7 +15,7 @@ if ( ! defined('WPCACHEHOME') )
 
 $cache_compression = 0; // Super cache compression
 $cache_enabled = false;
-$super_cache_enabled = false;
+$super_cache_enabled = true;
 $cache_max_time = 1800;
 //$use_flock = true; // Set it true or false if you know what to use
 $cache_path = WP_CONTENT_DIR . '/cache/';
@@ -64,7 +65,7 @@ $wp_cache_debug_to_file = 0;
 $wp_super_cache_debug = 0;
 $wp_cache_debug_level = 5;
 $wp_cache_debug_ip = '';
-$wp_cache_debug_log = '';
+$wp_cache_debug_log = '4c9486d3aaa96f4d40beb8217227f887.php';
 $wp_cache_debug_email = '';
 $wp_cache_pages[ "search" ] = 0;
 $wp_cache_pages[ "feed" ] = 0;
