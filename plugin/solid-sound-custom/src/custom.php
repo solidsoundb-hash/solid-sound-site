@@ -4075,6 +4075,7 @@ add_action( 'wp_head', function () {
 add_action( 'after_setup_theme', function () { remove_theme_support( 'wc-product-gallery-zoom' ); }, 100 );
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 add_action( 'woocommerce_after_single_product', function () {
+	return; /* 11.11.2026 owner: no water-ripple effects (only logo press + icon animations stay) */
 	if ( ! function_exists( 'is_product' ) || ! is_product() ) return; ?>
 <style id="ss-ripple-css">.ss-ripple{position:absolute;opacity:0;transition:opacity .3s;border-radius:16px;z-index:2;cursor:pointer}</style>
 <script id="ss-ripple-js">
@@ -4253,6 +4254,7 @@ html body .ss-top ol.ss-top-l.is-active>li.ss-top-i{flex:0 0 82%;scroll-snap-ali
 
 /* ═══ Solid Sound — 17.10.2026: water-ripple hover effect on product grid covers (desktop mouse only; canvas never takes clicks, so the cover click still opens the video popup) ═══ */
 add_action( 'wp_footer', function () {
+	return; /* 11.11.2026 owner: no water-ripple effects (only logo press + icon animations stay) */
 	if ( is_admin() ) return;
 	?>
 <style id="ss-ripple-g-css">.ss-ripple.ss-ripple-g{position:absolute;opacity:0;transition:opacity .3s;pointer-events:none!important;z-index:1;cursor:inherit}</style>

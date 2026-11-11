@@ -100,6 +100,9 @@ var css=[
 '#ssg .g-cnt{position:absolute;top:0;right:10px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#F59E0B;color:#111;font-weight:800;font-size:10px;line-height:16px;font-family:inherit;text-align:center}',
 '#ssg .g-burger,#ssg .g-msign{display:none}',
 '#ssg-bar{display:none}',
+'#ssg-promo{display:flex;align-items:center;justify-content:center;gap:4px 10px;white-space:nowrap;min-height:36px;padding:6px 12px;box-sizing:border-box;background:linear-gradient(180deg,#0D1527,#0B1220);border-bottom:1px solid rgba(255,255,255,.06);color:#CBD5E1!important;text-decoration:none!important;font:13px/1.45 "Exo 2",system-ui,sans-serif;text-align:center}',
+'#ssg-promo b{color:#fff;font-variant-numeric:tabular-nums}#ssg-promo .p-b{padding:2px 8px;border-radius:6px;background:#F59E0B;color:#111;font-size:11px;font-weight:800;letter-spacing:.08em}#ssg-promo .p-c{color:#F59E0B;font-weight:700}',
+'@media (max-width:760px){#ssg-promo{display:none}}',
 '#ssg-sheet{position:fixed;inset:0;z-index:99995;display:none}#ssg-sheet.open{display:block}',
 '#ssg-sheet .s-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}',
 '#ssg-sheet .s-p{position:absolute;right:0;top:0;bottom:0;width:min(340px,88vw);background:#131B2E;overflow:auto;padding:14px 12px calc(90px + env(safe-area-inset-bottom));box-shadow:-20px 0 50px rgba(0,0,0,.6);font-family:"Exo 2",system-ui,sans-serif}',
@@ -189,7 +192,7 @@ function sheetHtml(){
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k},tag('b',{'class':'g-lc'},l.t)+l.n); }).join('');
   return h+LT+'/div'+GT;
 }
-var BAR=[['Shop','prod',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
+var BAR=[['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? isCur(b[2]) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
 function mount(){
@@ -198,10 +201,21 @@ function mount(){
   var st=D.createElement('style'); st.id='ssg-css'; st.textContent=css; D.head.appendChild(st);
   var hd=D.createElement('header'); hd.id='ssg'; hd.innerHTML=head;
   var canvas=D.querySelector('.l-canvas')||B; canvas.insertBefore(hd,canvas.firstChild);
+  promo(canvas,hd);
   var bar=D.createElement('nav'); bar.id='ssg-bar'; bar.setAttribute('aria-label','Quick menu'); bar.innerHTML=barHtml; B.appendChild(bar); B.classList.add('ssg-bar-on');
   var sh=D.createElement('div'); sh.id='ssg-sheet'; sh.innerHTML=sheetHtml(); B.appendChild(sh);
   D.documentElement.classList.add('ssg-on');
   wire(hd,sh); ssgAI(); playIcons();
+}
+/* Promo strip above the menu, same as on the home page (desktop only). Hidden after the sale ends. */
+var PROMO_END=new Date('2026-11-30T23:59:59+01:00').getTime();
+function promoLeft(){ var t=Math.max(0,PROMO_END-Date.now()), d=Math.floor(t/864e5), h=Math.floor(t%864e5/36e5), m=Math.floor(t%36e5/6e4); return d+'d '+h+'h '+m+'m'; }
+function promo(canvas,hd){
+  if(Date.now()>PROMO_END) return;
+  var p=D.createElement('a'); p.id='ssg-promo'; p.href=L+'/all-products/';
+  p.innerHTML=tag('span',{'class':'p-b'},'BLACK MONTH')+tag('span',{},tag('b',{},'\u221250%')+' on all Ableton templates &amp; Serum presets \u00b7 ends in '+tag('b',{'class':'p-t'},promoLeft()))+tag('span',{'class':'p-c'},'Shop the sale \u2192');
+  canvas.insertBefore(p,hd);
+  setInterval(function(){ var t=p.querySelector('.p-t'); if(t) t.textContent=promoLeft(); },60000);
 }
 function wire(hd,sh){
   hd.addEventListener('click',function(e){
