@@ -132,7 +132,9 @@ add_action( 'wp', function () {
 	remove_action( 'woocommerce_account_content', 'woocommerce_account_content' );
 	add_action( 'woocommerce_account_content', function () {
 		if ( '' !== WC()->query->get_current_endpoint() ) { woocommerce_account_content(); return; }
-		echo '<script>window.SSD=' . wp_json_encode( ss_acc_data(), JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE ) . ';</script>';
+		try { $data = ss_acc_data(); } catch ( \Throwable $e ) { $data = array( 'name' => '', 'orders' => array(), 'downloads' => array(), 'error' => $e->getMessage() ); }
+		$json = wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+		echo '<script>window.SSD=' . ( $json ? $json : '{"name":"","orders":[],"downloads":[]}' ) . ';</script>';
 		echo '<div id="ssd" aria-live="polite"><div class="sk" style="width:40%"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div>';
 	} );
 	add_action( 'wp_head', function () { ss_asset( 'ss-account-css' ); }, 50 );

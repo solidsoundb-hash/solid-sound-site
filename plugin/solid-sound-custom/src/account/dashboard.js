@@ -164,10 +164,24 @@
   var liked=[]; try{ liked=JSON.parse(localStorage.getItem('ss_liked')||'[]').map(String).filter(function(x){ return /^[0-9]+$/.test(x); }); }catch(e){}
   /* Data comes with the page (window.SSD, printed by modules/account.php): no extra page loads.
      Fallback for old placements: read the WooCommerce account pages like before. */
-  var favsP=liked.length ? fetch('/wp-json/wc/store/v1/products?include='+liked.slice(0,12).join(',')).then(function(r){ return r.json(); }).catch(function(){ return []; }) : Promise.resolve([]);
+  /* never hang on the favourites request */
+  var favsP=liked.length ? Promise.race([
+    fetch('/wp-json/wc/store/v1/products?include='+liked.slice(0,12).join(','),{credentials:'same-origin'}).then(function(r){ return r.json(); }).catch(function(){ return []; }),
+    new Promise(function(r){ setTimeout(function(){ r([]); },4000); })
+  ]) : Promise.resolve([]);
+  function fail(err){
+    root.innerHTML='<div class="p"><h2>My account</h2><p class="sub">Some parts could not be shown. Your data is safe.</p><p style="margin:14px 0"><a class="btn" href="'+ACC+'orders/">Orders</a> <a class="btn g" href="'+ACC+'downloads/">Downloads</a> <a class="btn g" href="'+ACC+'edit-account/">Settings</a></p><small style="color:#64748B">'+esc(String(err && err.message || err))+'</small></div>';
+    try{ if(window.gtag) gtag('event','exception',{description:'account: '+String(err && err.message || err),fatal:false}); }catch(e){}
+  }
   if(window.SSD){
-    var X=window.SSD; X.orders.forEach(function(o){ o.service=o.items.some(function(n){ return SVC.test(n); }); });
-    favsP.then(function(f){ render(X.orders,X.downloads,Array.isArray(f) ? f : [],X.name); if(location.hash){ var t=D.getElementById(location.hash.slice(1)); if(t) t.scrollIntoView(); } });
+    var X=window.SSD;
+    favsP.then(function(f){
+      try{
+        X.orders=(X.orders||[]).map(function(o){ o.items=o.items||[]; o.notes=(o.notes||[]).map(function(n){ n.audio=n.audio||[]; n.text=String(n.text||''); return n; }); o.status=String(o.status||''); o.service=o.items.some(function(n){ return SVC.test(n); }); return o; });
+        render(X.orders,X.downloads||[],Array.isArray(f) ? f : [],X.name||'');
+        if(location.hash){ var t=D.getElementById(location.hash.slice(1)); if(t) t.scrollIntoView(); }
+      }catch(e){ fail(e); }
+    });
   } else
   Promise.all([
     get(ACC+'orders/').then(function(doc){ var os=parseOrders(doc).slice(0,8); return Promise.all(os.map(function(o){ return get(o.url).then(function(d){ return parseOrder(d,o); }).catch(function(){ o.items=[]; o.notes=[]; o.service=false; return o; }); })); }).catch(function(){ return []; }),
