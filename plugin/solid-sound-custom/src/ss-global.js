@@ -231,7 +231,13 @@ function promo(canvas,hd){
 function wire(hd,sh){
   hd.addEventListener('click',function(e){
     var b=e.target.closest('.g-it > button.g-a');
-    if(b && b.getAttribute('data-h') && matchMedia('(hover:hover) and (pointer:fine)').matches){ location.href=b.getAttribute('data-h'); return; }
+    if(b && b.getAttribute('data-h') && matchMedia('(hover:hover) and (pointer:fine)').matches){
+      /* already on that page (e.g. Products on All products): scroll to the catalog instead of reloading the same page */
+      if(isCur(b.getAttribute('data-h'))){ e.preventDefault(); var tg=D.querySelector('.sstb')||D.querySelector('.w-grid'), off=(parseFloat(getComputedStyle(D.documentElement).getPropertyValue('--ssg-h'))||72)+8;
+        var y=tg ? Math.max(0,tg.getBoundingClientRect().top+window.pageYOffset-off) : 0; if(Math.abs(window.pageYOffset-y)<4) y=0;
+        try{ window.scrollTo({top:y,behavior:'smooth'}); }catch(x){ window.scrollTo(0,y); }
+        hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); return; }
+      location.href=b.getAttribute('data-h'); return; }
     if(b){ var it=b.parentNode, on=!it.classList.contains('open'); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); if(on) it.classList.add('open'); b.setAttribute('aria-expanded',on ? 'true' : 'false'); e.preventDefault(); return; }
     if(e.target.closest('.g-burger')){ openSheet(true); }
   });
