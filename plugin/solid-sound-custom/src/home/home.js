@@ -146,6 +146,14 @@
   },true);
   addEventListener('scroll',close,{passive:true}); addEventListener('resize',close,{passive:true});
 })();
+/* Precise scroll to a home section: its heading lands just under the sticky header, so the whole block fits */
+function ssGoTo(sec){
+  var h=sec.querySelector('h2') || sec, hdr=document.querySelector('#ss-app header'), bar=document.getElementById('wpadminbar');
+  var off=(hdr ? hdr.getBoundingClientRect().height : 90) + (bar ? bar.offsetHeight : 0) + 14;
+  var y=window.scrollY + h.getBoundingClientRect().top - off;
+  try{ window.scrollTo({top:Math.max(0,y),behavior:'smooth'}); }catch(x){ window.scrollTo(0,Math.max(0,y)); }
+}
+window.ssGoTo=ssGoTo;
 /* Home menu (desktop with a mouse): hover opens the dropdown; a click on "Products" / "Services" itself scrolls
    to that section of the home page; the dropdown items lead to the full pages. Touch screens keep tap = open. */
 (function(){
@@ -160,7 +168,7 @@
     var sec=document.getElementById(id); if(!sec) return;
     e.preventDefault(); e.stopPropagation();
     if(b.getAttribute('aria-expanded')==='true') b.click();
-    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(x){ sec.scrollIntoView(); }
+    ssGoTo(sec);
   },true);
   /* hover opens / leaving closes (small delay so the pointer can travel into the dropdown) */
   var timer=null;
@@ -220,3 +228,9 @@
     setTimeout(function(){ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(x){ window.scrollTo(0,0); } },120);
   },true);
 })();
+/* Same precise scroll for in-page links to the products / services blocks (bottom bar Shop/Studio, buttons) */
+document.addEventListener('click',function(e){
+  var a=e.target.closest ? e.target.closest('#ss-app a[href="#shop"], #ss-app a[href="#services"]') : null; if(!a || e.defaultPrevented) return;
+  var sec=document.getElementById(a.getAttribute('href').slice(1)); if(!sec || !window.ssGoTo) return;
+  e.preventDefault(); window.ssGoTo(sec);
+});
