@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *   ?ss_v2=1  -> optimized build (cookie, 1 day)      ?ss_v2=0 -> original
  * Rollback without FTP: set SS_BUILD_DEFAULT to false (or delete the build/ folder).
  */
-if ( ! defined( 'SS_BUILD_DEFAULT' ) ) define( 'SS_BUILD_DEFAULT', false );
+if ( ! defined( 'SS_BUILD_DEFAULT' ) ) define( 'SS_BUILD_DEFAULT', true );
 function ss_use_build() {
 	static $use = null;
 	if ( null !== $use ) return $use;
