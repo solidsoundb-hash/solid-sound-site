@@ -12,7 +12,7 @@ on:
     paths: [".github/deploy.txt"]
 concurrency: deploy
 permissions:
-  contents: read
+  contents: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -46,18 +46,29 @@ jobs:
           lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --parallel=4 build $REMOTE/build; mirror -R includes $REMOTE/includes; mirror -R backup $REMOTE/backup; put solid-sound-custom.php -o $REMOTE/solid-sound-custom.php; $( [ -f export-request ] && echo "put export-request -o $REMOTE/export-request;" ) bye" "$FTP_HOST"
       - name: Health check (auto-rollback on PHP fatal error)
         run: |
-          UA="Mozilla/5.0 (deploy-check) Chrome/130"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"
+          mkdir -p deploy-log; LOG=deploy-log/last.txt
+          echo "run ${{ github.run_number }} $(date -u +%FT%TZ) commit ${{ github.sha }}" > $LOG
           bad=0
-          for q in "?ss_v2=0" "?ss_v2=1"; do
-            for i in 1 2 3 4; do
-              code=$(curl -s -A "$UA" -o page.html -w '%{http_code}' "$SITE$q&nocache=$RANDOM")
+          for u in "$SITE?ss_v2=0" "$SITE?ss_v2=1" "https://solid-sound.net/product/infinity/?ss_v2=1" "https://solid-sound.net/en/my-account/?ss_v2=1"; do
+            for i in 1 2 3 4 5; do
+              code=$(curl -s -A "$UA" -o page.html -w '%{http_code}' "$u&nocache=$RANDOM")
               [ "$code" = 429 ] && { sleep 20; continue; }; break
             done
-            echo "$q -> HTTP $code"
-            if [ "${code:0:1}" = 5 ] || grep -qiE 'critical error|Fatal error|Parse error' page.html; then bad=1; fi
+            hit=$(grep -oiE 'There has been a critical error[^<]{0,80}|<b>(Fatal|Parse) error</b>.{0,300}' page.html | head -2)
+            echo "$u -> HTTP $code ${hit:+FATAL: $hit}" | tee -a $LOG
+            if [ "${code:0:1}" = 5 ] || [ -n "$hit" ]; then bad=1; fi
           done
           if [ $bad = 1 ]; then
-            echo "::error::Site broken after deploy, restoring backup"
+            echo "ROLLED BACK" | tee -a $LOG
             lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --delete server-backup $REMOTE; bye" "$FTP_HOST"
-            exit 1
+          else
+            echo "OK" | tee -a $LOG
           fi
+          echo $bad > /tmp/bad
+      - name: Save the deploy log in the repo
+        if: always()
+        run: |
+          git config user.name "deploy-bot"; git config user.email "actions@users.noreply.github.com"
+          git add deploy-log && git commit -m "deploy log: run ${{ github.run_number }}" && git pull --rebase -q origin main && git push || true
+          [ "$(cat /tmp/bad 2>/dev/null)" != 1 ]
