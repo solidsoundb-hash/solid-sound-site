@@ -1,0 +1,54 @@
+# Забирает с хостинга по FTP только код (наш плагин, mu-plugins, functions.php темы)
+# и кладёт его в папку live/. wp-config.php и uploads НЕ скачиваются.
+# Запуск: вкладка Actions -> "FTP: pull site code" -> Run workflow,
+# или коммит, меняющий файл .github/ftp-pull.txt.
+name: "FTP: pull site code"
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/ftp-pull.txt"]
+permissions:
+  contents: write
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get -qq update && sudo apt-get -qq install -y lftp
+      - name: Download code over FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          set -u
+          mkdir -p live
+          LOG=live/_ftp-log.txt; : > $LOG
+          L() { lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; set net:max-retries 2; set net:timeout 20; $1; bye" "$FTP_HOST"; }
+          # Найти папку wp-content (у FTP-пользователя может быть разный корень)
+          WPC=""
+          for p in wp-content www/wp-content public_html/wp-content solid-sound.net/www/wp-content .; do
+            if L "cls -1 $p/plugins/" >/dev/null 2>&1; then WPC=$p; break; fi
+          done
+          echo "FTP connected. wp-content: '${WPC:-NOT FOUND}'" | tee -a $LOG
+          L "cls -1" >> $LOG 2>&1 || echo "FTP login failed" | tee -a $LOG
+          [ -n "$WPC" ] || { echo "wp-content not found, see listing above" >> $LOG; exit 0; }
+          echo "--- plugins ---" >> $LOG; L "cls -1 $WPC/plugins/" >> $LOG 2>&1
+          echo "--- themes ---"  >> $LOG; L "cls -1 $WPC/themes/"  >> $LOG 2>&1
+          # Наши плагины: всё, где в имени есть solid / ss-
+          for d in $(L "cls -1 $WPC/plugins/" 2>/dev/null | grep -iE 'solid|^ss[-_]' | tr -d '/'); do
+            L "mirror --exclude-glob *.zip $WPC/plugins/$d live/plugins/$d" >> $LOG 2>&1
+          done
+          L "mirror $WPC/mu-plugins live/mu-plugins" >> $LOG 2>&1 || echo "no mu-plugins" >> $LOG
+          for t in $(L "cls -1 $WPC/themes/" 2>/dev/null | tr -d '/'); do
+            mkdir -p live/themes/$t
+            L "get $WPC/themes/$t/functions.php -o live/themes/$t/functions.php" >> $LOG 2>&1 || true
+          done
+          # Защита: никогда не коммитим конфиг с паролями
+          find live -name 'wp-config*.php' -delete
+          find live -type f | sed 's/^/  /' >> $LOG
+      - name: Commit
+        run: |
+          git config user.name "ftp-bot"; git config user.email "actions@users.noreply.github.com"
+          git add live && git commit -m "FTP pull: site code snapshot" && git push || echo "nothing new"
