@@ -1,14 +1,15 @@
 # Deploy plugin/solid-sound-custom to the live site over FTP.
-# Trigger: push a tag "deploy-<anything>" (or Actions -> Deploy -> Run workflow).
+# Trigger: a commit that changes .github/deploy.txt (or Actions -> Deploy plugin -> Run workflow).
 # Safety: 1) the build must be up to date and pass PHP lint;
 #         2) the current server copy is downloaded first (artifact "server-backup-<run>")
 #         3) after upload the site is checked; on a PHP fatal error the backup is put back automatically.
-# Rollback by hand: push a tag "deploy-..." on an older commit.
+# Rollback by hand: revert the plugin/ change in git and bump .github/deploy.txt.
 name: Deploy plugin
 on:
   workflow_dispatch:
   push:
-    tags: ["deploy-*"]
+    branches: [main]
+    paths: [".github/deploy.txt"]
 concurrency: deploy
 permissions:
   contents: read
