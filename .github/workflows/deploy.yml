@@ -47,6 +47,8 @@ jobs:
           python3 tools/ftp_sync.py upload $P/includes "$REMOTE/includes"
           python3 tools/ftp_sync.py upload $P/backup "$REMOTE/backup"
           python3 tools/ftp_sync.py upload $P/solid-sound-custom.php "$REMOTE/solid-sound-custom.php"
+      - name: Clear the page cache (WP Super Cache) so visitors get the new version
+        run: python3 tools/ftp_sync.py purge solid-sound.net/www/wp-content/cache/supercache || echo "no page cache to clear"
       - name: Health check (auto-rollback on PHP fatal error)
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"

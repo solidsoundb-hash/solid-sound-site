@@ -5,6 +5,7 @@
   ftp_sync.py upload   <local_path> <remote_path>   upload a file or a folder (creates folders)
   ftp_sync.py restore  <local_dir>  <remote_dir>    upload a folder and delete server files that are not in it
   ftp_sync.py get      <remote_file> <local_file>   download one file
+  ftp_sync.py purge    <remote_dir>                 delete everything inside a server folder (page cache)
 
 Credentials: env FTP_HOST, FTP_USER, FTP_PASS. Uses FTPS when the server offers it, plain FTP otherwise.
 Every network operation has a timeout and is retried.
@@ -139,12 +140,16 @@ def prune(c, local, remote):
 
 
 def main():
-    cmd, a, b = sys.argv[1], sys.argv[2], sys.argv[3]
+    cmd, a = sys.argv[1], sys.argv[2]
+    b = sys.argv[3] if len(sys.argv) > 3 else ''
     c = Conn()
     if cmd == 'download':
         download(c, a, b)
     elif cmd == 'upload':
         upload(c, a, b)
+    elif cmd == 'purge':
+        # empty a server folder (page cache) but keep the folder itself
+        prune(c, '/nonexistent', a)
     elif cmd == 'get':
         os.makedirs(os.path.dirname(b) or '.', exist_ok=True)
         with open(b, 'wb') as out:
