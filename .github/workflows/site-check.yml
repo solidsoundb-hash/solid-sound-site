@@ -1,0 +1,39 @@
+# Site check: screenshots as guest / test user / admin on phone + desktop, console errors.
+# Runs after every successful deploy, or on a commit that changes .github/check.txt.
+# Result is committed to checks/latest/ (report.md + screenshots).
+name: Site check
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Deploy plugin"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths: [".github/check.txt"]
+permissions:
+  contents: write
+concurrency: site-check
+jobs:
+  check:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Check the site
+        env:
+          PW_CHANNEL: chrome   # Google Chrome is preinstalled on GitHub runners: no download needed
+          TEST_USER: ${{ secrets.TEST_USER }}
+          TEST_PASS: ${{ secrets.TEST_PASS }}
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/site-check.js
+      - name: Save the result in the repo
+        if: always()
+        run: |
+          git config user.name "check-bot"; git config user.email "actions@users.noreply.github.com"
+          git add checks && git commit -m "site check: $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"
