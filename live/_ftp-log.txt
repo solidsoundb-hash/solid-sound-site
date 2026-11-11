@@ -1,58 +1,12 @@
-FTP connected. wp-content: 'solid-sound.net/www/wp-content'
-.backup-account
-.backup-sites
-.backup-tstamp
-.bash_history
-.bash_profile
-.bashrc
-.cache/
-.config/
-.local/
-.wp-cli/
-solid-sound.net/
---- plugins ---
-solid-sound.net/www/wp-content/plugins/Ultimate_VC_Addons/
-solid-sound.net/www/wp-content/plugins/advanced-custom-fields/
-solid-sound.net/www/wp-content/plugins/ai-engine/
-solid-sound.net/www/wp-content/plugins/duplicate-post/
-solid-sound.net/www/wp-content/plugins/easy-waveform-player/
-solid-sound.net/www/wp-content/plugins/enable-jquery-migrate-helper/
-solid-sound.net/www/wp-content/plugins/facebook-for-woocommerce/
-solid-sound.net/www/wp-content/plugins/filebird-pro/
-solid-sound.net/www/wp-content/plugins/fluent-smtp/
-solid-sound.net/www/wp-content/plugins/fondy-woocommerce-payment-gateway/
-solid-sound.net/www/wp-content/plugins/google-listings-and-ads/
-solid-sound.net/www/wp-content/plugins/index.php
-solid-sound.net/www/wp-content/plugins/js_composer/
-solid-sound.net/www/wp-content/plugins/mailin/
-solid-sound.net/www/wp-content/plugins/monopay/
-solid-sound.net/www/wp-content/plugins/official-facebook-pixel/
-solid-sound.net/www/wp-content/plugins/polylang/
-solid-sound.net/www/wp-content/plugins/snapchat-for-woocommerce/
-solid-sound.net/www/wp-content/plugins/solid-sound-custom/
-solid-sound.net/www/wp-content/plugins/taxonomy-terms-order/
-solid-sound.net/www/wp-content/plugins/tidio-live-chat/
-solid-sound.net/www/wp-content/plugins/tiktok-for-business/
-solid-sound.net/www/wp-content/plugins/us-core/
-solid-sound.net/www/wp-content/plugins/wc-frontend-manager/
-solid-sound.net/www/wp-content/plugins/wc-multivendor-marketplace/
-solid-sound.net/www/wp-content/plugins/wc-multivendor-membership/
-solid-sound.net/www/wp-content/plugins/woocommerce/
-solid-sound.net/www/wp-content/plugins/woocommerce-gateway-amazon-payments-advanced/
-solid-sound.net/www/wp-content/plugins/woocommerce-payments/
-solid-sound.net/www/wp-content/plugins/woocommerce-paypal-payments/
-solid-sound.net/www/wp-content/plugins/woocustomizer/
-solid-sound.net/www/wp-content/plugins/wp-media-folder/
-solid-sound.net/www/wp-content/plugins/wp-media-folder-addon/
-solid-sound.net/www/wp-content/plugins/wpforo/
-solid-sound.net/www/wp-content/plugins/zero-bs-crm/
---- themes ---
-solid-sound.net/www/wp-content/themes/Impreza/
-solid-sound.net/www/wp-content/themes/Impreza.zip
-solid-sound.net/www/wp-content/themes/index.php
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/mu-plugins: No such file or directory
-no mu-plugins
-get: solid-sound.net/www/wp-content/themes/Impreza/functions.php: /home/runner/work/solid-sound-site/solid-sound-site/live/themes/Impreza/functions.php: file already exists and xfer:clobber is unset
+pull 2026-11-11T15:00:49Z
+ok  solid-sound.net/www/wp-content/plugins/solid-sound-custom
+ok  solid-sound.net/www/wp-content/themes/Impreza/functions.php
+ok  solid-sound.net/www/wp-content/wp-cache-config.php
+ok  solid-sound.net/www/wp-content/advanced-cache.php
+ok  solid-sound.net/www/.htaccess
+  live/root/.htaccess
+  live/wp-content/wp-cache-config.php
+  live/wp-content/advanced-cache.php
   live/themes/Impreza/functions.php
   live/_ftp-log.txt
   live/plugins/solid-sound-custom/exports/post-52.php

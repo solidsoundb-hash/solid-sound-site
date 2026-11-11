@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *   ?ss_v2=1  -> optimized build (cookie, 1 day)      ?ss_v2=0 -> original
  * Rollback without FTP: set SS_BUILD_DEFAULT to false (or delete the build/ folder).
  */
-if ( ! defined( 'SS_BUILD_DEFAULT' ) ) define( 'SS_BUILD_DEFAULT', false );
+if ( ! defined( 'SS_BUILD_DEFAULT' ) ) define( 'SS_BUILD_DEFAULT', true );
 function ss_use_build() {
 	static $use = null;
 	if ( null !== $use ) return $use;
@@ -32,7 +32,7 @@ function ss_use_build() {
 	return $use;
 }
 /* Prints a cached file in place of a big inline <style>/<script> (same position, same conditions). */
-function ss_asset( $name ) {
+function ss_asset( $name, $mode = '' ) {
 	static $map = null;
 	if ( null === $map ) $map = (array) include __DIR__ . '/build/assets.php';
 	if ( empty( $map[ $name ] ) ) return;
@@ -40,7 +40,7 @@ function ss_asset( $name ) {
 	$url = plugins_url( 'build/assets/' . $a['f'], __FILE__ );
 	$id  = $a['id'] ? ' id="' . esc_attr( $a['id'] ) . '"' : '';
 	if ( 'css' === $a['t'] ) echo '<link rel="stylesheet"' . $id . ' href="' . esc_url( $url ) . '">';
-	else echo '<script' . $id . ' src="' . esc_url( $url ) . '"></script>';
+	else echo '<script' . $id . ' src="' . esc_url( $url ) . '"' . ( 'defer' === $mode ? ' defer' : '' ) . '></script>';
 }
 
 /* Load after the theme's functions.php. If the old copy is still inside the theme, skip (no duplicate functions). */
