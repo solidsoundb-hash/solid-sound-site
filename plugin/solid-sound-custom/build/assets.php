@@ -127,7 +127,7 @@ return array(
   'id' => null
  ),
  'home-app' => array(
-  'f' => 'home-app.c8cf1db6bd.js',
+  'f' => 'home-app.b706da073d.js',
   't' => 'js',
   'id' => null
  ),

@@ -67,5 +67,7 @@ module.exports = function (a, window) {
     /* (11.11.2026) left sidebar hidden for now (owner); flip showSide to true to bring it back */
     a[0]=a[0].split('isM: isM, isD: !isM,').join('isM: isM, isD: !isM, showSide: false,')
       .split('<sc-if value="{{isD}}" hint-placeholder-val="{{ true }}">\n<aside class="ss-side"').join('<sc-if value="{{showSide}}" hint-placeholder-val="{{ false }}">\n<aside class="ss-side"');
+    /* (11.11.2026) the products section shows the best products (quality ranking), not the newest */
+    a[0]=a[0].split('New products').join('Best products');
   return a;
 };
