@@ -5927,3 +5927,4 @@ add_action( 'wp_head', function () {
 	$out  = is_user_logged_in() && function_exists( 'wc_logout_url' ) ? wc_logout_url() : '';
 	echo '<script>window.ssRole=' . wp_json_encode( $role ) . ';window.ssLogout=' . wp_json_encode( $out ) . ';</script>';
 }, 1 );
+require_once __DIR__ . '/modules/all-products.php';
