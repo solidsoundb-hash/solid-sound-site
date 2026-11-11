@@ -1,4 +1,4 @@
 FTP connected. wp-content: 'NOT FOUND'
-Not connected
+Login failed: 530 User 'cinearts_claude' denied by access rules (https://www.ukraine.com.ua/wiki/hosting/ftp/issues/user-denied-by-access-rules/)
 FTP login failed
 wp-content not found, see listing above
