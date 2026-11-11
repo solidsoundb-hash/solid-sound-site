@@ -5898,3 +5898,28 @@ add_action( 'wp_head', function () {
 	echo '<script>window.__ssg=1;window.__sslb=1;window.ssRole="' . esc_js( $role ) . '";</script>';
 	ss_asset( 'ss-global', 'defer' );
 }, 2 );
+
+/* Client accounts and vendor accounts are separate. The client dashboard (page 2561) belongs to client accounts:
+   - first item "Dashboard" in WooCommerce My Account menu (clients only)
+   - after login/registration from the account page: client -> dashboard, vendor -> Producer space (WCFM)
+     (logins from checkout or with an explicit redirect keep their redirect) */
+function ss_is_vendor_user( $user = null ) {
+	$uid = $user ? $user->ID : get_current_user_id();
+	return ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $uid ) ) || user_can( $uid, 'manage_woocommerce' );
+}
+function ss_dashboard_url() { $u = get_permalink( function_exists( 'pll_get_post' ) ? ( pll_get_post( 2561 ) ?: 2561 ) : 2561 ); return $u ?: home_url( '/en/client-dashboard/' ); }
+add_filter( 'woocommerce_account_menu_items', function ( $items ) {
+	if ( ss_is_vendor_user() ) return $items;
+	return array( 'ss-dashboard' => __( 'Dashboard', 'woocommerce' ) ) + $items;
+}, 20 );
+add_filter( 'woocommerce_get_endpoint_url', function ( $url, $endpoint ) {
+	return 'ss-dashboard' === $endpoint ? ss_dashboard_url() : $url;
+}, 10, 2 );
+function ss_after_auth_redirect( $redirect, $user ) {
+	if ( ! empty( $_REQUEST['redirect'] ) || ( function_exists( 'is_checkout' ) && is_checkout() ) ) return $redirect;
+	if ( $redirect && false === strpos( $redirect, 'my-account' ) ) return $redirect;
+	if ( ss_is_vendor_user( $user ) ) return function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' );
+	return ss_dashboard_url();
+}
+add_filter( 'woocommerce_login_redirect', 'ss_after_auth_redirect', 20, 2 );
+add_filter( 'woocommerce_registration_redirect', function ( $redirect ) { return ss_after_auth_redirect( $redirect, wp_get_current_user() ); }, 20 );
