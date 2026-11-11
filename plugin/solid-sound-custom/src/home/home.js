@@ -177,3 +177,28 @@
     timer=setTimeout(function(){ nav.querySelectorAll('button[aria-expanded="true"]').forEach(function(o){ o.click(); }); },250);
   });
 })();
+/* Scroll-spy: while the products / services section is on screen, its menu item lights up (and Home dims).
+   IntersectionObserver only — no scroll polling. */
+(function(){
+  if(!window.IntersectionObserver) return;
+  var MAP={shop:'Products',services:'Services'}, cur='';
+  var st=document.createElement('style');
+  st.textContent='#ss-app header .ss-spy{color:#F59E0B!important}#ss-app header .ss-spy-off{color:#94A3B8!important}';
+  document.head.appendChild(st);
+  function paint(){
+    var nav=document.querySelector('#ss-app header nav[aria-label="Main"]'); if(!nav) return;
+    nav.querySelectorAll('button[aria-expanded]').forEach(function(b){ var s=b.querySelector('span'); var on=!!cur && s && s.textContent.trim()===MAP[cur]; b.classList.toggle('ss-spy',on); });
+    var home=nav.querySelector('a[href$="/en/"]'); if(home) home.classList.toggle('ss-spy-off',!!cur);
+  }
+  var seen={};
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    var n=''; ['shop','services'].forEach(function(id){ if(seen[id]) n=n||id; });
+    if(n!==cur){ cur=n; paint(); }
+  },{rootMargin:'-40% 0px -50% 0px'});
+  var watched={};
+  (window.ssOnDom||function(f){f();})(function(){
+    ['shop','services'].forEach(function(id){ var el=document.getElementById(id); if(el && watched[id]!==el){ watched[id]=el; io.observe(el); } });
+    paint();
+  });
+})();
