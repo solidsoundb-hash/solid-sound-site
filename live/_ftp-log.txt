@@ -50,44 +50,16 @@ solid-sound.net/www/wp-content/plugins/zero-bs-crm/
 solid-sound.net/www/wp-content/themes/Impreza/
 solid-sound.net/www/wp-content/themes/Impreza.zip
 solid-sound.net/www/wp-content/themes/index.php
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsUltimate_VC_Addons: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsadvanced-custom-fields: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsai-engine: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsduplicate-post: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginseasy-waveform-player: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsenable-jquery-migrate-helper: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsfacebook-for-woocommerce: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsfilebird-pro: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsfluent-smtp: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsfondy-woocommerce-payment-gateway: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsgoogle-listings-and-ads: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsindex.php: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsjs_composer: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsmailin: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsmonopay: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsofficial-facebook-pixel: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginspolylang: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginssnapchat-for-woocommerce: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginssolid-sound-custom: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginstaxonomy-terms-order: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginstidio-live-chat: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginstiktok-for-business: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginsus-core: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswc-frontend-manager: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswc-multivendor-marketplace: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswc-multivendor-membership: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswoocommerce: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswoocommerce-gateway-amazon-payments-advanced: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswoocommerce-payments: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswoocommerce-paypal-payments: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswoocustomizer: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswp-media-folder: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswp-media-folder-addon: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginswpforo: No such file or directory
-mirror: Access failed: 550 /solid-sound.net/www/wp-content/plugins/solid-sound.netwwwwp-contentpluginszero-bs-crm: No such file or directory
 mirror: Access failed: 550 /solid-sound.net/www/wp-content/mu-plugins: No such file or directory
 no mu-plugins
-get: Access failed: 550 solid-sound.net/www/wp-content/themes/solid-sound.netwwwwp-contentthemesImpreza/functions.php: No such file or directory
-get: Access failed: 550 solid-sound.net/www/wp-content/themes/solid-sound.netwwwwp-contentthemesImpreza.zip/functions.php: No such file or directory
-get: Access failed: 550 solid-sound.net/www/wp-content/themes/solid-sound.netwwwwp-contentthemesindex.php/functions.php: No such file or directory
+  live/themes/Impreza/functions.php
   live/_ftp-log.txt
+  live/plugins/solid-sound-custom/solid-sound-custom.php
+  live/plugins/solid-sound-custom/includes/custom.php
+  live/plugins/solid-sound-custom/includes/index.php
+  live/plugins/solid-sound-custom/backup/theme-functions-header.php
+  live/plugins/solid-sound-custom/backup/theme-options-head.php
+  live/plugins/solid-sound-custom/backup/index.php
+  live/plugins/solid-sound-custom/backup/theme-options-css.php
+  live/plugins/solid-sound-custom/backup/README.php
+  live/plugins/solid-sound-custom/backup/theme-options-body.php
