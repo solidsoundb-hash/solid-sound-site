@@ -72,5 +72,8 @@ module.exports = function (a, window) {
     /* (11.11.2026) Best products come from the quality ranking (window.SS_CATALOG, modules/ranking.php);
        the built-in list stays as a fallback */
     a[0]=a[0].split('var catalog = [').join('var catalog = (window.SS_CATALOG && window.SS_CATALOG.length >= 4) ? window.SS_CATALOG : [');
+    /* (11.11.2026) hero slides move sideways like the All products carousel (was a fade in place) */
+    a[0]=a[0].split("vis: on ? 'visibility: visible; opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; z-index: 1' : 'visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s; z-index: 0',").join("vis: on ? 'visibility: visible; opacity: 1; transform: translateX(0); transition: transform .6s cubic-bezier(.22,.61,.36,1), opacity .45s ease; z-index: 1' : 'visibility: hidden; opacity: 0; transform: translateX(' + (i < s.slide ? '-' : '') + '60%); transition: transform .6s cubic-bezier(.22,.61,.36,1), opacity .45s ease, visibility 0s linear .6s; z-index: 0',");
+    a[0]=a[0].split('<div style="display: grid">\n    <sc-for list="{{allSlides}}"').join('<div style="display: grid; overflow: hidden; padding: 14px 18px; margin: -14px -18px">\n    <sc-for list="{{allSlides}}"'); /* clip the sliding slides */
   return a;
 };
