@@ -165,12 +165,14 @@
   /* hover opens / leaving closes (small delay so the pointer can travel into the dropdown) */
   var timer=null;
   document.addEventListener('mouseover',function(e){
-    var b=menuBtn(e.target), wrap=b ? b.parentElement : (e.target.closest ? e.target.closest('#ss-app header nav[aria-label="Main"] > div, #ss-app header nav[aria-label="Main"] div[style*="position: relative"]') : null);
-    if(!wrap) return;
-    var btn=wrap.querySelector(':scope > button[aria-expanded]') || b; if(!btn) return;
+    var nav=e.target.closest ? e.target.closest('#ss-app header nav[aria-label="Main"]') : null; if(!nav) return;
+    /* the top-level item under the pointer (a link like Home/Wiki, or a dropdown wrapper) */
+    var item=e.target; while(item && item.parentElement && !item.parentElement.matches('nav[aria-label="Main"], nav[aria-label="Main"] > sc-for, nav[aria-label="Main"] > div:not([style*="position: relative"])')) item=item.parentElement;
+    var btn=item && item.querySelector ? item.querySelector('button[aria-expanded]') : null;
+    if(btn && btn.closest('[role="menu"], div[style*="position: absolute"]')) btn=null;
     clearTimeout(timer);
-    document.querySelectorAll('#ss-app header nav[aria-label="Main"] button[aria-expanded="true"]').forEach(function(o){ if(o!==btn) o.click(); });
-    if(btn.getAttribute('aria-expanded')!=='true') btn.click();
+    nav.querySelectorAll('button[aria-expanded="true"]').forEach(function(o){ if(o!==btn) o.click(); });
+    if(btn && btn.getAttribute('aria-expanded')!=='true') btn.click();
   });
   document.addEventListener('mouseout',function(e){
     var nav=e.target.closest ? e.target.closest('#ss-app header nav[aria-label="Main"]') : null; if(!nav) return;
@@ -203,4 +205,18 @@
     ['shop','services'].forEach(function(id){ var el=document.getElementById(id); if(el && watched[id]!==el){ watched[id]=el; io.observe(el); } });
     paint();
   });
+})();
+/* Logo = Home button with a press effect (same as on the other pages) */
+(function(){
+  var st=document.createElement('style');
+  st.textContent='#ss-app header a[aria-label^="Solid Sound"]{-webkit-tap-highlight-color:transparent;cursor:pointer}#ss-app header a[aria-label^="Solid Sound"] svg{transform-origin:50% 60%;transition:transform .34s cubic-bezier(.34,1.8,.5,1),filter .22s}#ss-app header a.ss-press[aria-label^="Solid Sound"] svg{transform:scale(.86) translateY(1px);filter:brightness(.75);transition:transform .07s ease-out,filter .07s}';
+  document.head.appendChild(st);
+  function lg(t){ return t && t.closest ? t.closest('#ss-app header a[aria-label^="Solid Sound"]') : null; }
+  document.addEventListener('pointerdown',function(e){ var a=lg(e.target); if(a) a.classList.add('ss-press'); },true);
+  ['pointerup','pointercancel','pointerleave'].forEach(function(n){ document.addEventListener(n,function(e){ var a=lg(e.target); if(a) setTimeout(function(){ a.classList.remove('ss-press'); },60); },true); });
+  document.addEventListener('click',function(e){
+    var a=lg(e.target); if(!a || e.metaKey || e.ctrlKey) return;
+    e.preventDefault(); a.classList.add('ss-press'); setTimeout(function(){ a.classList.remove('ss-press'); },110);
+    setTimeout(function(){ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(x){ window.scrollTo(0,0); } },120);
+  },true);
 })();
