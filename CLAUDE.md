@@ -14,7 +14,12 @@
 - Сначала бэкап, потом staging, потом прод.
 - Дизайн и функции сохраняй 1-в-1.
 
+## Как устроено (ноябрь 2026)
+- `plugin/solid-sound-custom/` — плагин на сайте. `includes/custom.php` — замороженный оригинал (`?ss_v2=0`), `src/` — рабочие исходники, `build/` — собранная версия (`node tools/build.mjs`), её видят по `?ss_v2=1` или всем при `SS_BUILD_DEFAULT=true`.
+- Выкладка: правка `.github/deploy.txt` → GitHub Action `deploy.yml` (бэкап с сервера, заливка по FTP, проверка, автооткат). Забрать файлы с сервера: правка `.github/ftp-pull.txt` → `live/`.
+- `tools/compare.js` — скриншоты старой и новой версии и разница в пикселях.
+
 ## Файлы
-- `src/ss-global.full.js` — общее меню (шапка, нижняя панель, AI-поиск). На сайте сейчас v7 из `/wp-content/uploads/ss-global7-gz.txt`. Этот файл новее: в нём убран Home и добавлено нажатие логотипа. На сайте это пока сделано отдельной вставкой в футер (page block 52).
+- `plugin/solid-sound-custom/src/ss-global.js` — общее меню (шапка, нижняя панель, AI-поиск). На сайте сейчас v7 из `/wp-content/uploads/ss-global7-gz.txt`. Этот файл новее: в нём убран Home и добавлено нажатие логотипа. На сайте это пока сделано отдельной вставкой в футер (page block 52).
 - `src/dashboard.html` — страница 2561 `/en/client-dashboard/`.
 - `src/new-home.html` — исходник приложения главной, страница 2433. На сайт он попадает сжатым в `/wp-content/uploads/ss-newhome-app-gz.txt`, а поверх в контенте страницы 2433 применяются патчи.

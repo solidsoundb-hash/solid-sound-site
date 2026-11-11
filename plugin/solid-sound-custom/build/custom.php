@@ -5888,3 +5888,12 @@ add_action( 'wp_head', function () {
 	if ( is_admin() ) return;
 	?><script id="ss-core">(function(w,d){if(w.ssOnDom)return;var q=[],p=0,last=0;function run(){p=0;last=Date.now();for(var i=0;i<q.length;i++){try{q[i]()}catch(e){}}}function tick(){if(p)return;p=1;var g=Date.now()-last;g<120?setTimeout(function(){requestAnimationFrame(run)},120-g):requestAnimationFrame(run)}w.ssOnDom=function(f){q.push(f);try{f()}catch(e){}};new MutationObserver(tick).observe(d.documentElement,{childList:true,subtree:true});function body(){new MutationObserver(tick).observe(d.body,{attributes:true,attributeFilter:['class']})}d.body?body():d.addEventListener('DOMContentLoaded',body);['play','pause','ended','loadedmetadata'].forEach(function(e){d.addEventListener(e,tick,true)});w.addEventListener('resize',tick,{passive:true});w.addEventListener('load',tick)})(window,document);</script><?php
 }, 0 );
+
+/* Global menu (#ssg) as a normal cached file (src/ss-global.js), instead of the gzip+base64+localStorage+new Function
+   loader in footer page block 52. The flags make the old loader and the old logo script stand down.
+   Not on the front page: the home app has its own header. */
+add_action( 'wp_head', function () {
+	if ( is_admin() || is_front_page() ) return;
+	echo '<script>window.__ssg=1;window.__sslb=1;</script>';
+	ss_asset( 'ss-global', 'defer' );
+}, 2 );

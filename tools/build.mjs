@@ -14,8 +14,12 @@ execFileSync('php', [new URL('extract-assets.php', import.meta.url).pathname, ro
 execFileSync('php', ['-l', root + 'build/custom.php'], { stdio: 'inherit' });
 const manifest = JSON.parse(readFileSync(raw + '/manifest.json', 'utf8'));
 const map = {}; let before = 0, after = 0;
+// standalone source files that become assets as they are
+for (const [name, file] of [['ss-global', 'src/ss-global.js']]) {
+  manifest[name] = { type: 'js', id: null, standalone: root + file };
+}
 for (const [name, m] of Object.entries(manifest)) {
-  const src = readFileSync(`${raw}/${name}.${m.type}`, 'utf8');
+  const src = readFileSync(m.standalone || `${raw}/${name}.${m.type}`, 'utf8');
   const out = transformSync(src, { loader: m.type, minify: true, legalComments: 'none', target: m.type === 'js' ? 'es2017' : undefined }).code;
   const hash = createHash('sha256').update(out).digest('hex').slice(0, 10);
   const file = `${name}.${hash}.${m.type}`;

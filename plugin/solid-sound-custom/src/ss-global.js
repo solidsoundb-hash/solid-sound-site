@@ -1,6 +1,6 @@
 /* Solid Sound global header (same menu as the new home), mobile bottom bar + menu sheet, AI search, voice, reference match, triangle play icons */
 (function(){
-if(window.__ssg) return; window.__ssg=1;
+if(window.__ssgS) return; window.__ssgS=window.__ssg=1; /* __ssg also stops the old v7 loader in the footer block */
 var D=document, B=D.body, LOGO='M169 2L168 225L170 226L339 120L340 113L338 111L172 2ZM201 60L287 113L287 117L287 121L284 123L200 172L199 164L199 62ZM153 3L140 3L130 19L127 21L120 15L110 10L92 2L83 1L55 2L48 4L34 11L26 18L16 28L11 39L7 53L6 76L12 94L18 104L26 112L34 118L45 123L66 130L109 141L120 146L128 154L132 162L133 181L130 188L126 196L120 203L110 209L104 211L91 213L70 211L62 208L52 202L46 198L37 188L26 170L17 147L4 146L2 148L2 224L4 226L15 226L27 210L30 207L50 219L67 225L100 226L109 225L129 217L141 208L152 197L158 185L163 170L163 139L156 123L148 114L140 108L126 100L102 92L68 84L53 79L46 74L40 66L36 59L35 46L36 38L41 30L47 24L54 20L62 16L72 14L88 16L104 24L110 28L120 38L129 53L138 74L140 78L152 79L153 78Z';
 var TRI='M6.87 3.80L6.80 20.23L6.95 20.30L19.40 12.49L19.47 11.98L19.32 11.83L7.09 3.80ZM9.23 8.07L15.57 11.98L15.57 12.27L15.57 12.57L15.34 12.71L9.16 16.32L9.08 15.73L9.08 8.22Z';
 var LT='\x3c', GT='>';
@@ -46,9 +46,12 @@ var NAV=[
 ];
 var logged=B.classList.contains('logged-in');
 var DSH=L+'/client-dashboard/';
-var ACC={t:logged ? 'Dashboard' : 'Sign in',i:'user',h:DSH};
+/* Sign in = WooCommerce account page with the 3 tabs (Log in / Create account / Become a vendor).
+   The client dashboard is separate: shown as its own item only when logged in. */
+var MYA=L+'/my-account/', VND=L+'/store-manager/';
+var ACC=logged ? {t:'Dashboard',i:'user',h:DSH} : {t:'Sign in',i:'user',h:MYA};
 var CART={t:'Cart',i:'cart',h:L+'/cart/'};
-var FAV={t:'Favorites',i:'fav',h:DSH};
+var FAV={t:'Favorites',i:'fav',h:logged ? DSH : MYA};
 var path=location.pathname.replace(/[/]+$/,'')||'/';
 function isCur(h){ try{ var p=new URL(h).pathname.replace(/[/]+$/,'')||'/'; return p===path; }catch(e){ return false; } }
 
@@ -134,6 +137,13 @@ function navHtml(){
   });
   return h;
 }
+/* Logged in: "Account" dropdown (Dashboard / Producer space / Account settings / Log out). Guest: plain "Sign in" link. */
+function accItem(){
+  if(!logged) return rItem(ACC);
+  var dd=[['Dashboard','user',DSH],['Producer space','sell',VND],['Account settings','doc',MYA],['Log out','signin',MYA+'customer-logout/']]
+    .map(function(s){ return tag('a',{href:s[2],role:'menuitem'},ico(I[s[1]],18)+s[0]); }).join('');
+  return tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a'+(isCur(DSH) ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I.user)+tag('span',{'class':'g-l'},'Account'+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu',style:'left:auto;right:0;min-width:210px'},dd));
+}
 function rItem(o,extra){ return tag('div',{'class':'g-it g-r-it'},tag('a',{'class':'g-a'+((o!==FAV ? isCur(o.h) : false) ? ' cur' : ''),href:o.h},ico(I[o.i])+tag('span',{'class':'g-l'},o.t))+(extra||'')); }
 var langs=[]; D.querySelectorAll('.l-header a[hreflang], .l-header .lang-item a, .l-header [class*="lang"] a').forEach(function(a){ var hl=a.getAttribute('hreflang')||a.textContent.trim().slice(0,2); if(a.href ? !langs.some(function(x){return x.h===a.href;}) : false) langs.push({h:a.href,t:(hl||'').toUpperCase().slice(0,2)}); });
 var lang=(D.documentElement.lang||'en').slice(0,2).toUpperCase();
@@ -143,16 +153,16 @@ var head=tag('div',{'class':'g-in'},
   tag('a',{'class':'g-logo',href:L+'/','aria-label':'Solid Sound home'},tag('svg',{viewBox:'0 0 341 230',role:'img','aria-hidden':'true'},tag('path',{fill:'#F59E0B','fill-rule':'evenodd',d:LOGO})))+
   tag('nav',{'class':'g-nav','aria-label':'Main'},navHtml())+
   tag('form',{role:'search',onsubmit:'return false'},ico(I.search,18)+tag('label',{'for':'top-q',style:'position:absolute;left:-9999px'},'Search')+tag('input',{id:'top-q',type:'search',enterkeyhint:'search',autocomplete:'off',placeholder:'Search'})+tag('span',{'class':'ss-ai',role:'button',tabindex:'0','aria-label':'AI search'},'AI')+tag('button',{type:'button','class':'g-b ss-mic','aria-label':'Voice search'},ico(I.mic,20))+tag('button',{type:'button','class':'g-b g-ref','aria-label':'Match by reference track',title:'Match by reference track'},ico(I.wave,20))+tag('button',{type:'button','class':'g-find'},'Find'))+
-  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '')+rItem(ACC)+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
+  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
 );
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
   NAV.forEach(function(n){ if(n.sub){ h+=tag('div',{'class':'s-g'},n.t)+n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],20)+s[0].replace(/&/g,'and')); }).join(''); } });
-  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
+  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(logged ? tag('a',{href:VND},ico(I.sell,20)+'Producer space')+tag('a',{href:MYA},ico(I.doc,20)+'Account settings')+tag('a',{href:MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h},l.t); }).join('');
   return h+LT+'/div'+GT;
 }
-var BAR=[['Shop','prod',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',DSH],['Cart','cart',L+'/cart/']];
+var BAR=[['Shop','prod',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? isCur(b[2]) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
 function mount(){
@@ -187,7 +197,7 @@ function playIcons(){
   D.querySelectorAll('path[d="M8 5v14l11-7z"]').forEach(function(p){ p.setAttribute('d',TRI); p.setAttribute('fill-rule','evenodd'); });
   D.querySelectorAll('#ss-ai-panel [data-ai=play]').forEach(function(b){ if(b.textContent==='▶'){ b.innerHTML=triIcon(18); } });
 }
-setInterval(playIcons,800);
+window.ssOnDom ? ssOnDom(playIcons) : setInterval(playIcons,800);
 
 function ssgAI(){
   var SVC=/(mix|master|vocal|tuning|ghost|feedback|loud|сведен|мастер|свест|вокал)/;
@@ -229,7 +239,7 @@ function ssgAI(){
     }
   }
   window.ssMic=function(on,msg){ micOn=!!on; micMsg=on ? '' : (msg||micMsg); paint(true); if(micMsg){ setTimeout(function(){ if(!micOn){ micMsg=''; paint(true); } },4000); } };
-  setInterval(paint,700); window.addEventListener('resize',function(){ paint(true); },{passive:true});
+  window.ssOnDom ? ssOnDom(paint) : setInterval(paint,700); window.addEventListener('resize',function(){ paint(true); },{passive:true});
 
   function load(){
     if(cache) return Promise.resolve(cache);

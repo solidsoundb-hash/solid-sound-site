@@ -125,5 +125,10 @@ return array(
   'f' => 'css-l6497.555a2d388e.css',
   't' => 'css',
   'id' => null
+ ),
+ 'ss-global' => array(
+  'f' => 'ss-global.f115ec9b8e.js',
+  't' => 'js',
+  'id' => null
  )
 );
