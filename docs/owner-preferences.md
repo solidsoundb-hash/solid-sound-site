@@ -119,3 +119,6 @@
 - (11.11.2026) Регистрация/вход — максимально удобные: вход через Google (One Tap) и другие соцсети,
   вход по ссылке на почту, регистрация в одно поле (email), покупка без регистрации с авто-аккаунтом.
   Apple — платно ($99/год), Facebook — позже. Делать встроенно (без тяжёлых плагинов) в окно с вкладками.
+- (11.11.2026) Google Sign-In: Client ID 152337347722-trdd5avbmpcqplnrd3un7p5g78vm18ko.apps.googleusercontent.com
+  (проект Google Cloud «Solid Sound», владелец). Модуль modules/social-login.php. Персонал (админ, менеджер) —
+  только по паролю. Владелец должен нажать Publish app (Audience) в Google Cloud.
