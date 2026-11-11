@@ -10,7 +10,7 @@
   window.ssOnDom(function(){ document.querySelectorAll('path[d="M8 5v14l11-7z"],path[d="M7 4l13 8-13 8z"]').forEach(function(p){ p.setAttribute('d',window.SS_TRI); p.setAttribute('fill-rule','evenodd'); }); });
   /* account links (Sign in, Favorites, Saved, Account) → My account: login with 3 tabs for guests,
      the client dashboard for clients, the Producer space for vendors (server decides) */
-  window.ssOnDom(function(){ document.querySelectorAll('#ss-app a[href="#top"], #ss-app a[href="#shop"], #ss-app a[href="#dashboard"]').forEach(function(a){ var t=((a.textContent||'')+' '+(a.getAttribute('aria-label')||'')).trim(); if(/Sign in|Favorites|Saved|Client dashboard|Account/i.test(t)) a.setAttribute('href','https://solid-sound.net/en/my-account/'+(/Favorites|Saved/i.test(t)?'#favourites':'')); }); });
+  window.ssOnDom(function(){ document.querySelectorAll('#ss-app a[href="#top"], #ss-app a[href="#shop"]').forEach(function(a){ var t=((a.textContent||'')+' '+(a.getAttribute('aria-label')||'')).trim(); if(/Sign in|Favorites|Saved/i.test(t)) a.setAttribute('href','https://solid-sound.net/en/my-account/'+(/Favorites|Saved/i.test(t)?'#favourites':'')); }); });
   /* open dropdowns in the header close on any click outside them */
   document.addEventListener('click',function(e){
     var t=e.target; document.querySelectorAll('#ss-app header button[aria-expanded="true"]').forEach(function(b){

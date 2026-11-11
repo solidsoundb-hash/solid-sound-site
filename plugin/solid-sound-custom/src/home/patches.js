@@ -59,8 +59,7 @@ module.exports = function (a, window) {
       .split('style="grid-area: 1 / 1; display: flex; flex-wrap: wrap; align-items: center; gap: {{heroGap}}; {{sl.vis}}">').join('style="grid-area: 1 / 1; display: flex; flex-wrap: wrap; align-items: center; gap: {{heroGap}}; {{sl.vis}}"><div class="ss-art" aria-hidden="true"><sc-for list="{{sl.art}}" as="im" hint-placeholder-count="3"><span class="{{im.k}}" style="{{im.st}}"></span></sc-for><b class="ss-art-b">{{sl.artBadge}}</b></div>');
     a[0]=a[0].split('<sc-if value="{{isD}}" hint-placeholder-val="{{ true }}"><span class="ss-sx" style="flex: none;').join('<span class="ss-ai" role="button" tabindex="0" aria-label="AI search" style="cursor: pointer; flex: none;').split('AI</span></sc-if>').join('AI</span>').split("isM ? 'Search sounds, services…'").join("isM ? 'Ask AI: dark techno…'");
     a[0]=a[0].split('d="M7 4l13 8-13 8z"').join('d="'+window.SS_TRI+'" fill-rule="evenodd"');
-    /* 11.11.2026: the client dashboard is now My account */
-    a[0]=a[0].split('Client dashboard').join('My account');
+    /* (11.11.2026) the "Client dashboard" section on the home page stays: it explains the feature (owner) */
     /* account entry: "Sign in" for guests, "My account" after login; both open the account menu (home.js) */
     a[0]=a[0].split("mk('Sign in', ic.user, '#top')").join("mk(window.ssRole && window.ssRole !== 'guest' ? 'My account' : 'Sign in', ic.user, '#account')")
       .split("T('Sign in', ic.user, '#top')").join("T(window.ssRole && window.ssRole !== 'guest' ? 'My account' : 'Sign in', ic.user, '#account')")
