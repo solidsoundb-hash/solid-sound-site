@@ -59,13 +59,20 @@ function ss_custom_backup_code( $file ) {
 function ss_custom_option( $key ) {
 	return function_exists( 'us_get_option' ) ? (string) us_get_option( $key, '' ) : '';
 }
+/* Player code (styles + "Solid Sound Player"). While it is still pasted in Theme Options the theme prints it and we
+   stay silent. Once those two fields are emptied: the optimized build serves it as cached files (src/theme/),
+   the original version (?ss_v2=0) prints the saved copy from /backup. */
 add_action( 'wp_head', function () {
 	if ( is_admin() ) return;
-	if ( strpos( ss_custom_option( 'custom_html_head' ), '.ssp{' ) === false ) echo ss_custom_backup_code( 'theme-options-head.php' );
+	if ( strpos( ss_custom_option( 'custom_html_head' ), '.ssp{' ) !== false ) return;
+	if ( ss_use_build() && is_readable( __DIR__ . '/build/assets.php' ) ) ss_asset( 'theme-player-css' );
+	else echo ss_custom_backup_code( 'theme-options-head.php' );
 }, 99 );
 add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
-	if ( strpos( ss_custom_option( 'custom_html' ), 'Solid Sound Player' ) === false ) echo ss_custom_backup_code( 'theme-options-body.php' );
+	if ( strpos( ss_custom_option( 'custom_html' ), 'Solid Sound Player' ) !== false ) return;
+	if ( ss_use_build() && is_readable( __DIR__ . '/build/assets.php' ) ) ss_asset( 'theme-player-js' );
+	else echo ss_custom_backup_code( 'theme-options-body.php' );
 }, 99 );
 
 

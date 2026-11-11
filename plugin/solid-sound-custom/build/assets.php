@@ -151,6 +151,16 @@ return array(
   't' => 'css',
   'id' => null
  ),
+ 'theme-player-css' => array(
+  'f' => 'theme-player-css.55a970a7fb.css',
+  't' => 'css',
+  'id' => null
+ ),
+ 'theme-player-js' => array(
+  'f' => 'theme-player-js.a637962a4b.js',
+  't' => 'js',
+  'id' => null
+ ),
  'home-js' => array(
   'f' => 'home-js.ebbefa6ddc.js',
   't' => 'js',

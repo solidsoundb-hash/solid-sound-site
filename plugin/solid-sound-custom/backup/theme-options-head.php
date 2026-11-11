@@ -365,4 +365,7 @@ body.ssp-open .w-toplink{bottom:90px!important}
 .vc_col-sm-3 .ss-top-lk{display:none!important}
 /* Best Products without outer panel */
 .vc_col-sm-3:has(.ss-top)>.vc_column-inner{background:none!important;padding:0!important}
+/* dropdowns near right edge open to the left */
+.ssf-bar.state_desktop .w-filter-item:not(.ssf-fmt):nth-last-child(-n+3) .w-filter-item-values{left:auto!important;right:0!important}
+.ssf-bar.state_desktop .ssf-chips .w-filter-item-values{width:min(380px,calc(100vw - 40px))!important}
 </style>
