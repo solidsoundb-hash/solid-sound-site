@@ -172,7 +172,7 @@ function ss_acc_render( $d ) {
 	$second = $vendor
 		? '<a class="btn g" href="' . esc_url( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) ) . '">' . ss_acc_ic( 'serv' ) . 'Producer space</a>'
 		: '<a class="btn g" href="' . esc_url( home_url( '/sell/' ) ) . '">' . ss_acc_ic( 'free' ) . 'Start selling</a>';
-	$h  = '<div id="ssd" data-ssr="1"><div class="top"><div><h1>My account ' . $role . '</h1><p class="sub">' . ( $d['name'] ? 'Hi ' . esc_html( $d['name'] ) . '! ' : '' ) . 'Your projects, revisions and downloads.</p></div><div class="top-b">' . $second . '<a class="btn" href="' . $S . '/Services-Calculator/">' . ss_acc_ic( 'calc' ) . 'Order a mix or master</a></div></div>';
+	$h  = '<div id="ssd" data-ssr="1"><div class="top"><div><h1>My account ' . $role . '</h1><p class="sub">' . ( $d['name'] ? 'Hi ' . esc_html( $d['name'] ) . '! ' : '' ) . 'Your projects, revisions and downloads.' . apply_filters( 'ss_acc_sub_extra', '' ) . '</p></div><div class="top-b">' . $second . '<a class="btn" href="' . $S . '/Services-Calculator/">' . ss_acc_ic( 'calc' ) . 'Order a mix or master</a></div></div>';
 	$h .= '<div class="stats">';
 	foreach ( array( array( $active, 'Active projects', '#projects' ), array( count( $proj ) - $active, 'Delivered', '#projects' ), array( count( $d['downloads'] ), 'Downloads', '#downloads' ), array( 0, 'Favourites', '#favourites' ) ) as $st )
 		$h .= '<a class="st" href="' . $st[2] . '"' . ( 'Favourites' === $st[1] ? ' data-favn' : '' ) . '><b>' . (int) $st[0] . '</b><span>' . $st[1] . '</span></a>';

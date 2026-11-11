@@ -59,3 +59,4 @@
 @keyframes ssdSk{0%{background-position:0 0}100%{background-position:-200% 0}}
 @media (max-width:900px){#ssd .grid{grid-template-columns:minmax(0,1fr)}#ssd .stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){#ssd{padding:18px 12px 40px}#ssd h1{font-size:24px}#ssd .steps li{font-size:10px}#ssd .p{padding:14px}#ssd .cm input{font-size:16px}}
+#ssd .ssa-bonus{display:inline-block;margin-left:6px}#ssd .ssa-bonus b{color:#F59E0B}
