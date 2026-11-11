@@ -18,3 +18,4 @@
 15 2026-11-11 20:08:13 home shopping assistant (owner ok: устанавливай и выкладывай)
 16 2026-11-11 20:44:11 home assistant card fits phone screen (owner ok: выкладывайсразу)
 17 2026-11-11 21:10:19 Services menu: Examples/Reviews/How it works scroll to home blocks + phone card fix (owner ok: ты все изменения выложи)
+18 2026-11-11 21:27:59 footer like home, header logo/hover, kit covers (owner ok: выложи)
