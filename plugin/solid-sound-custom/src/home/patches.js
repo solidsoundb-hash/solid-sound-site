@@ -64,5 +64,8 @@ module.exports = function (a, window) {
     a[0]=a[0].split("mk('Sign in', ic.user, '#top')").join("mk(window.ssRole && window.ssRole !== 'guest' ? 'My account' : 'Sign in', ic.user, '#account')")
       .split("T('Sign in', ic.user, '#top')").join("T(window.ssRole && window.ssRole !== 'guest' ? 'My account' : 'Sign in', ic.user, '#account')")
       .split('<a href="#top" aria-label="Sign in"').join('<a href="#account" aria-label="Account"');
+    /* (11.11.2026) left sidebar hidden for now (owner); flip showSide to true to bring it back */
+    a[0]=a[0].split('isM: isM, isD: !isM,').join('isM: isM, isD: !isM, showSide: false,')
+      .split('<sc-if value="{{isD}}" hint-placeholder-val="{{ true }}">\n<aside class="ss-side"').join('<sc-if value="{{showSide}}" hint-placeholder-val="{{ false }}">\n<aside class="ss-side"');
   return a;
 };
