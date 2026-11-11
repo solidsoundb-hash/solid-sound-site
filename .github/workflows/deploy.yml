@@ -16,6 +16,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       FTP_HOST: ${{ secrets.FTP_HOST }}
       FTP_USER: ${{ secrets.FTP_USER }}
@@ -36,14 +37,14 @@ jobs:
       - run: sudo apt-get -qq update && sudo apt-get -qq install -y lftp
       - name: Back up the server copy
         run: |
-          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror $REMOTE server-backup; bye" "$FTP_HOST"
+          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; set net:timeout 20; set net:max-retries 3; set net:reconnect-interval-base 5; set ftp:passive-mode on; mirror $REMOTE server-backup; bye" "$FTP_HOST"
           test -f server-backup/solid-sound-custom.php
       - uses: actions/upload-artifact@v4
         with: { name: "server-backup-${{ github.run_number }}", path: server-backup, retention-days: 90 }
       - name: Upload (build first, loader last)
         run: |
           cd plugin/solid-sound-custom
-          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --parallel=4 build $REMOTE/build; mirror -R includes $REMOTE/includes; mirror -R backup $REMOTE/backup; put solid-sound-custom.php -o $REMOTE/solid-sound-custom.php; $( [ -f export-request ] && echo "put export-request -o $REMOTE/export-request;" ) bye" "$FTP_HOST"
+          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; set net:timeout 20; set net:max-retries 3; set net:reconnect-interval-base 5; set ftp:passive-mode on; mirror -R --parallel=4 build $REMOTE/build; mirror -R includes $REMOTE/includes; mirror -R backup $REMOTE/backup; put solid-sound-custom.php -o $REMOTE/solid-sound-custom.php; $( [ -f export-request ] && echo "put export-request -o $REMOTE/export-request;" ) bye" "$FTP_HOST"
       - name: Health check (auto-rollback on PHP fatal error)
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"
@@ -61,7 +62,7 @@ jobs:
           done
           if [ $bad = 1 ]; then
             echo "ROLLED BACK" | tee -a $LOG
-            lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --delete server-backup $REMOTE; bye" "$FTP_HOST"
+            lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; set net:timeout 20; set net:max-retries 3; set net:reconnect-interval-base 5; set ftp:passive-mode on; mirror -R --delete server-backup $REMOTE; bye" "$FTP_HOST"
           else
             echo "OK" | tee -a $LOG
           fi
