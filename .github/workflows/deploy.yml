@@ -43,7 +43,7 @@ jobs:
       - name: Upload (build first, loader last)
         run: |
           cd plugin/solid-sound-custom
-          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --parallel=4 build $REMOTE/build; mirror -R includes $REMOTE/includes; mirror -R backup $REMOTE/backup; put solid-sound-custom.php -o $REMOTE/solid-sound-custom.php; bye" "$FTP_HOST"
+          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --parallel=4 build $REMOTE/build; mirror -R includes $REMOTE/includes; mirror -R backup $REMOTE/backup; put solid-sound-custom.php -o $REMOTE/solid-sound-custom.php; $( [ -f export-request ] && echo "put export-request -o $REMOTE/export-request;" ) bye" "$FTP_HOST"
       - name: Health check (auto-rollback on PHP fatal error)
         run: |
           UA="Mozilla/5.0 (deploy-check) Chrome/130"

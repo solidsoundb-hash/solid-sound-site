@@ -112,3 +112,23 @@ add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
 	?><script>document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('ss-lead'))return;e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.ss-lead-msg');b.disabled=true;fetch('/wp-json/ss/v1/wiki-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,lang:f.dataset.lang||'en',consent:f.consent.checked?1:0,website:f.website.value})}).then(function(r){return r.json()}).then(function(j){if(j&&j.ok){f.classList.add('done');m.innerHTML=f.dataset.ok+(j.pdf?' <a href="'+j.pdf+'" target="_blank" rel="noopener">PDF ↓</a>':'');try{window.gtag&&gtag('event','generate_lead',{form:'wiki_checklist',lang:f.dataset.lang})}catch(x){}}else{m.textContent=f.dataset.err;b.disabled=false}}).catch(function(){m.textContent=f.dataset.err;b.disabled=false})});</script><?php
 }, 100 );
+
+/*
+ * One-time export of code stored in the database (Theme Options > Custom Code and page contents),
+ * so it can be moved into versioned files. Runs only when the file "export-request" exists here;
+ * writes exports/*.php (not web-readable: each starts with <?php exit; ?>) and deletes the request file.
+ */
+add_action( 'wp_loaded', function () {
+	$req = __DIR__ . '/export-request';
+	if ( ! file_exists( $req ) ) return;
+	@unlink( $req );
+	$dir = __DIR__ . '/exports';
+	wp_mkdir_p( $dir );
+	$put = function ( $name, $data ) use ( $dir ) { file_put_contents( $dir . '/' . $name . '.php', "<?php exit; ?>\n" . $data ); };
+	foreach ( array( 'custom_html_head', 'custom_html', 'custom_css' ) as $k ) $put( 'theme-' . $k, ss_custom_option( $k ) );
+	foreach ( array( 2433, 2, 52, 2561 ) as $id ) {
+		$p = get_post( $id );
+		if ( $p ) $put( 'post-' . $id, $p->post_content );
+	}
+	$put( 'meta', wp_json_encode( array( 'time' => gmdate( 'c' ), 'theme' => get_option( 'stylesheet' ) ) ) );
+} );

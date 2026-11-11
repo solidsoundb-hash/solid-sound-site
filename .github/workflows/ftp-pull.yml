@@ -38,7 +38,7 @@ jobs:
           echo "--- themes ---"  >> $LOG; L "cls -1 $WPC/themes/"  >> $LOG 2>&1
           # Наши плагины: всё, где в имени есть solid / ss-
           for d in $(L "cls -1 $WPC/plugins/" 2>/dev/null | sed 's#/$##; s#.*/##' | grep -iE '^solid|^ss[-_]'); do
-            L "mirror --exclude-glob *.zip --exclude-glob *.mp3 --exclude-glob *.wav $WPC/plugins/$d live/plugins/$d" >> $LOG 2>&1
+            L "mirror --exclude-glob *.zip --exclude-glob *.mp3 --exclude-glob *.wav --exclude-glob build/ $WPC/plugins/$d live/plugins/$d" >> $LOG 2>&1
           done
           L "mirror $WPC/mu-plugins live/mu-plugins" >> $LOG 2>&1 || echo "no mu-plugins" >> $LOG
           for t in $(L "cls -1 $WPC/themes/" 2>/dev/null | grep '/$' | sed 's#/$##; s#.*/##'); do
