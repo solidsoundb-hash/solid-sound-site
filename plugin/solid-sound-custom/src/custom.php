@@ -5037,8 +5037,6 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 .ssh .ssh-col-new{max-width:1240px;margin:0 auto;gap:14px}
 .ssh .ssh-h2{font-size:28px!important;line-height:36px!important;height:auto;color:#F4EFE8!important}
 .ssh .ssh-car{padding:4px 2px}
-.ssh .ssh-car:before,.ssh .ssh-car:after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
-.ssh .ssh-car:before{left:0;background:linear-gradient(90deg,rgba(7,7,7,.75),transparent)}.ssh .ssh-car:after{right:0;background:linear-gradient(270deg,rgba(7,7,7,.75),transparent)}
 .ssh .ssh-track{gap:18px!important;padding:6px 4px 10px}
 .ssh .ssh-card{flex:0 0 calc(20% - 15px)!important;width:auto!important;padding:10px 10px 12px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);transition:transform .25s ease,border-color .25s,box-shadow .25s}
 .ssh .ssh-card:hover{transform:translateY(-4px);border-color:rgba(224,153,0,.55);box-shadow:0 14px 34px rgba(0,0,0,.55),0 0 0 1px rgba(224,153,0,.25),0 0 28px rgba(224,153,0,.18)}
@@ -5049,9 +5047,11 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 .ssh .ssh-tier-best{background:#E09900;color:#111}.ssh .ssh-tier-trending{background:rgba(52,211,153,.9);color:#062}
 .ssh .ssh-a{width:46px;height:46px;border-radius:50%!important;background:rgba(20,20,20,.85)!important;border:1px solid rgba(255,255,255,.18)!important;z-index:3;box-shadow:0 6px 18px rgba(0,0,0,.5)}
 .ssh .ssh-a:hover{border-color:#E09900!important}
-.ssh .ssh-btn{align-self:center;padding:0 26px;border-radius:999px;margin-top:2px}
+.ssh .ssh-btn{align-self:center;width:auto!important;display:inline-flex!important;padding:0 28px!important;border-radius:999px!important;margin-top:6px!important}
+.ssh .ssh-card{justify-content:flex-start!important;gap:8px!important;height:auto!important}.ssh .ssh-track{align-items:flex-start!important}
+.ssh .ssh-cov{margin:0!important}.ssh .ssh-meta{margin-top:2px!important}.ssh .ssh-row{margin-top:2px!important}
 @media(max-width:1180px){.ssh .ssh-card{flex:0 0 calc(33.333% - 12px)!important}}
-@media(max-width:699px){.ssh .ssh-card{flex:0 0 62%!important}.ssh .ssh-h2{font-size:22px!important}.ssh .ssh-car:before,.ssh .ssh-car:after{width:16px}.ssh .ssh-a{display:none}}
+@media(max-width:699px){.ssh .ssh-card{flex:0 0 62%!important}.ssh .ssh-h2{font-size:22px!important}.ssh .ssh-a{display:none}}
 </style>
 <script id="ssh-js">
 (function(){var root=document.querySelector('.ssh');if(!root||root.dataset.on)return;root.dataset.on=1;
