@@ -1,0 +1,4 @@
+FTP connected. wp-content: 'NOT FOUND'
+Not connected
+FTP login failed
+wp-content not found, see listing above
