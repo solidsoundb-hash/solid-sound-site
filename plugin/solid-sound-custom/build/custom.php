@@ -5919,3 +5919,4 @@ add_filter( 'woocommerce_registration_redirect', function ( $redirect ) { return
 
 /* Modules (separate files) */
 require_once __DIR__ . '/modules/account.php';
+require_once __DIR__ . '/modules/home.php';
