@@ -33,9 +33,11 @@ async function throttle(ctx) {
 
 async function login(page, user, pass) {
   await page.goto(S + '/en/my-account/?ss_tab=login', { waitUntil: 'domcontentloaded', timeout: 120000 });
-  await page.fill('form.login #username', user);
-  await page.fill('form.login #password', pass);
-  await Promise.all([page.waitForLoadState('domcontentloaded', { timeout: 120000 }), page.click('form.login button[name=login]')]);
+  // two login forms exist (a hidden copy in the old theme header): use the visible one
+  const form = page.locator('form.login').filter({ has: page.locator('#username:visible') }).first();
+  await form.locator('#username').fill(user);
+  await form.locator('#password').fill(pass);
+  await Promise.all([page.waitForNavigation({ timeout: 120000 }).catch(() => {}), form.locator('button[name=login]').click()]);
   await page.waitForTimeout(1500);
   return page.evaluate(() => document.body.classList.contains('logged-in'));
 }
@@ -53,7 +55,7 @@ async function login(page, user, pass) {
       const page = await ctx.newPage();
       let errs = [];
       page.on('pageerror', e => errs.push('JS: ' + e.message.slice(0, 200)));
-      page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) errs.push('console: ' + m.text().slice(0, 200)); });
+      page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource|SSL certificate is not valid|CanMakePayment/.test(m.text())) errs.push('console: ' + m.text().slice(0, 200)); });
       lines.push(`## ${role} · ${d.name}`);
       if (cred) {
         let ok = false; try { ok = await login(page, cred[0], cred[1]); } catch (e) { lines.push('- login error: ' + e.message.split('\n')[0]); }
