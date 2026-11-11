@@ -1,0 +1,62 @@
+# Deploy plugin/solid-sound-custom to the live site over FTP.
+# Trigger: push a tag "deploy-<anything>" (or Actions -> Deploy -> Run workflow).
+# Safety: 1) the build must be up to date and pass PHP lint;
+#         2) the current server copy is downloaded first (artifact "server-backup-<run>")
+#         3) after upload the site is checked; on a PHP fatal error the backup is put back automatically.
+# Rollback by hand: push a tag "deploy-..." on an older commit.
+name: Deploy plugin
+on:
+  workflow_dispatch:
+  push:
+    tags: ["deploy-*"]
+concurrency: deploy
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASS: ${{ secrets.FTP_PASS }}
+      REMOTE: solid-sound.net/www/wp-content/plugins/solid-sound-custom
+      SITE: https://solid-sound.net/en/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Rebuild and verify the committed build is current
+        run: |
+          npm i --no-save esbuild@0.24.2
+          node tools/build.mjs
+          git status --porcelain plugin/ | tee /tmp/dirty
+          [ ! -s /tmp/dirty ] || { echo "::error::build/ is out of date: run node tools/build.mjs and commit"; exit 1; }
+          find plugin -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: sudo apt-get -qq update && sudo apt-get -qq install -y lftp
+      - name: Back up the server copy
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror $REMOTE server-backup; bye" "$FTP_HOST"
+          test -f server-backup/solid-sound-custom.php
+      - uses: actions/upload-artifact@v4
+        with: { name: "server-backup-${{ github.run_number }}", path: server-backup, retention-days: 90 }
+      - name: Upload (build first, loader last)
+        run: |
+          cd plugin/solid-sound-custom
+          lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --parallel=4 build $REMOTE/build; mirror -R includes $REMOTE/includes; mirror -R backup $REMOTE/backup; put solid-sound-custom.php -o $REMOTE/solid-sound-custom.php; bye" "$FTP_HOST"
+      - name: Health check (auto-rollback on PHP fatal error)
+        run: |
+          UA="Mozilla/5.0 (deploy-check) Chrome/130"
+          bad=0
+          for q in "?ss_v2=0" "?ss_v2=1"; do
+            for i in 1 2 3 4; do
+              code=$(curl -s -A "$UA" -o page.html -w '%{http_code}' "$SITE$q&nocache=$RANDOM")
+              [ "$code" = 429 ] && { sleep 20; continue; }; break
+            done
+            echo "$q -> HTTP $code"
+            if [ "${code:0:1}" = 5 ] || grep -qiE 'critical error|Fatal error|Parse error' page.html; then bad=1; fi
+          done
+          if [ $bad = 1 ]; then
+            echo "::error::Site broken after deploy, restoring backup"
+            lftp -u "$FTP_USER","$FTP_PASS" -e "set ftp:ssl-allow yes; mirror -R --delete server-backup $REMOTE; bye" "$FTP_HOST"
+            exit 1
+          fi
