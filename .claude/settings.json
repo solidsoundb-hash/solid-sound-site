@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "mcp__www_solid-sound_net__wp_get_post",
+      "mcp__www_solid-sound_net__wp_get_option",
+      "mcp__www_solid-sound_net__wp_update_post",
+      "mcp__www_solid-sound_net__wp_update_option"
+    ]
+  }
+}
