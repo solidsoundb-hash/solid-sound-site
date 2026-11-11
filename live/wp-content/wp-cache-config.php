@@ -8,13 +8,13 @@ See wp-cache.php for author details.
 $wp_cache_home_path = '/';
 $wp_cache_slash_check = 1;
 $cache_page_secret = '1904a5ef552c7c9145ea0210103ea9cb';
-$cache_time_interval = 600;
+$cache_time_interval = '600';
 if ( ! defined('WPCACHEHOME') )
 	define( 'WPCACHEHOME', WP_CONTENT_DIR . "/plugins/wp-super-cache/" );
 
 $cache_compression = 0; // Super cache compression
 $cache_enabled = false;
-$super_cache_enabled = true;
+$super_cache_enabled = false;
 $cache_max_time = 1800;
 //$use_flock = true; // Set it true or false if you know what to use
 $cache_path = WP_CONTENT_DIR . '/cache/';
@@ -24,7 +24,7 @@ $ossdlcdn = 0;
 // Array of files that have 'wp-' but should still be cached
 $cache_acceptable_files = array( 'wp-comments-popup.php', 'wp-links-opml.php', 'wp-locations.php' );
 
-$cache_rejected_uri = array('wp-.*\\.php', 'index\\.php');
+$cache_rejected_uri = array ( 0 => 'wp-.*\\.php', 1 => 'index\\.php', 2 => '/cart', 3 => '/checkout', 4 => '/my-account', 5 => '/store-manager', 6 => '/client-dashboard', 7 => '/vendor-register', 8 => '/wp-json', );
 $cache_rejected_user_agent = array();
 
 $cache_rebuild_files = 1;
@@ -77,7 +77,7 @@ $wp_cache_pages[ "pages" ] = 0;
 $wp_cache_pages[ "single" ] = 0;
 $wp_cache_pages[ "author" ] = 0;
 $wp_cache_hide_donation = 0;
-$wp_cache_not_logged_in = 0;
+$wp_cache_not_logged_in = 2;
 $wp_cache_clear_on_post_edit = 0;
 $wp_cache_hello_world = 0;
 $wp_cache_mobile_enabled = 0;
