@@ -6965,3 +6965,4 @@ add_action( 'wp_head', function () {
 	echo '<script>window.ssRole=' . wp_json_encode( $role ) . ';window.ssLogout=' . wp_json_encode( $out ) . ';</script>';
 }, 1 );
 require_once __DIR__ . '/modules/all-products.php';
+require_once __DIR__ . '/modules/ranking.php';

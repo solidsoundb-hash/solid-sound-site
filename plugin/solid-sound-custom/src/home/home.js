@@ -67,10 +67,12 @@
     var n=b, cov=null; while(n){ if(n.querySelector){ cov=n.querySelector('.ss-cov'); if(cov) break; } n=n.parentElement; }
     var name=cov?(cov.getAttribute('aria-label')||'').replace(/^Open /,''):'';
     if(!name){ if(/Pause|Stop/i.test(lab)){AU.pause();CUR='';} return; }
+    /* demos of ranked products (window.SS_CATALOG, printed by the server); added here because the app data loads later */
+    if(window.SS_CATALOG){ window.SS_MP3=window.SS_MP3||{}; window.SS_CATALOG.forEach(function(c){ if(c.mp3 && !window.SS_MP3[c.name]) window.SS_MP3[c.name]=c.mp3; }); }
     var key=null; for(var k in window.SS_MP3){ if(name.indexOf(k)===0) key=k; }
     if(!key) return;
     if(CUR===key){ AU.pause(); CUR=''; return; }
-    AU.src='https://solid-sound.net/wp-content/uploads/'+window.SS_MP3[key]; AU.play(); CUR=key;
+    var f=window.SS_MP3[key]; AU.src=/^https?:/.test(f) ? f : 'https://solid-sound.net/wp-content/uploads/'+f; AU.play(); CUR=key;
     try{if(window.gtag)gtag('event','play_demo',{item_name:key,source:'new_home'});}catch(x){}
   },true);
   var FREE='https://solid-sound.net/en/free/';

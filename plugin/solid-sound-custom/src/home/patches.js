@@ -69,5 +69,8 @@ module.exports = function (a, window) {
       .split('<sc-if value="{{isD}}" hint-placeholder-val="{{ true }}">\n<aside class="ss-side"').join('<sc-if value="{{showSide}}" hint-placeholder-val="{{ false }}">\n<aside class="ss-side"');
     /* (11.11.2026) the products section shows the best products (quality ranking), not the newest */
     a[0]=a[0].split('New products').join('Best products');
+    /* (11.11.2026) Best products come from the quality ranking (window.SS_CATALOG, modules/ranking.php);
+       the built-in list stays as a fallback */
+    a[0]=a[0].split('var catalog = [').join('var catalog = (window.SS_CATALOG && window.SS_CATALOG.length >= 4) ? window.SS_CATALOG : [');
   return a;
 };
