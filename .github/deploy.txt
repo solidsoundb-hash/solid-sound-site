@@ -7,3 +7,4 @@
 7 2026-11-11 13:54:52 home as cached files, account menu everywhere, Purchases wording (owner ok: выкладывай)
 7b 2026-11-11 14:13:11 retry deploy #7 with logged health check (owner ok: выкладывай)
 7c 2026-11-11 14:33:21 retry deploy #7 after cancelling hung run (owner ok: выкладывай)
+7d 2026-11-11 14:54:38 retry deploy #7 with python FTP (owner ok: выкладывай)
