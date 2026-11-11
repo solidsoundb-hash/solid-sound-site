@@ -9,10 +9,44 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/*
+ * Release switch.
+ *   build/custom.php    = optimized build (made by tools/build.mjs in the git repo; do not edit on the server)
+ *   includes/custom.php = original code, kept as instant fallback
+ * Visitors get the build when SS_BUILD_DEFAULT is true. Anyone can preview the other version:
+ *   ?ss_v2=1  -> optimized build (cookie, 1 day)      ?ss_v2=0 -> original
+ * Rollback without FTP: set SS_BUILD_DEFAULT to false (or delete the build/ folder).
+ */
+if ( ! defined( 'SS_BUILD_DEFAULT' ) ) define( 'SS_BUILD_DEFAULT', false );
+function ss_use_build() {
+	static $use = null;
+	if ( null !== $use ) return $use;
+	$use = SS_BUILD_DEFAULT;
+	if ( isset( $_GET['ss_v2'] ) ) {
+		$use = '1' === $_GET['ss_v2'];
+		if ( ! headers_sent() ) setcookie( 'ss_v2', $use ? '1' : '0', time() + DAY_IN_SECONDS, '/', '', is_ssl(), true );
+	} elseif ( isset( $_COOKIE['ss_v2'] ) ) {
+		$use = '1' === $_COOKIE['ss_v2'];
+	}
+	if ( $use && ! is_readable( __DIR__ . '/build/custom.php' ) ) $use = false;
+	return $use;
+}
+/* Prints a cached file in place of a big inline <style>/<script> (same position, same conditions). */
+function ss_asset( $name ) {
+	static $map = null;
+	if ( null === $map ) $map = (array) include __DIR__ . '/build/assets.php';
+	if ( empty( $map[ $name ] ) ) return;
+	$a   = $map[ $name ];
+	$url = plugins_url( 'build/assets/' . $a['f'], __FILE__ );
+	$id  = $a['id'] ? ' id="' . esc_attr( $a['id'] ) . '"' : '';
+	if ( 'css' === $a['t'] ) echo '<link rel="stylesheet"' . $id . ' href="' . esc_url( $url ) . '">';
+	else echo '<script' . $id . ' src="' . esc_url( $url ) . '"></script>';
+}
+
 /* Load after the theme's functions.php. If the old copy is still inside the theme, skip (no duplicate functions). */
 add_action( 'after_setup_theme', function () {
 	if ( function_exists( 'rating_and_sidebar' ) ) return;
-	require_once __DIR__ . '/includes/custom.php';
+	require_once __DIR__ . ( ss_use_build() ? '/build/custom.php' : '/includes/custom.php' );
 }, 0 );
 
 /* Safety net: if Theme Options > Custom Code got wiped (theme reset / theme change), print the saved copy from /backup. */
@@ -78,3 +112,23 @@ add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
 	?><script>document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('ss-lead'))return;e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.ss-lead-msg');b.disabled=true;fetch('/wp-json/ss/v1/wiki-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,lang:f.dataset.lang||'en',consent:f.consent.checked?1:0,website:f.website.value})}).then(function(r){return r.json()}).then(function(j){if(j&&j.ok){f.classList.add('done');m.innerHTML=f.dataset.ok+(j.pdf?' <a href="'+j.pdf+'" target="_blank" rel="noopener">PDF ↓</a>':'');try{window.gtag&&gtag('event','generate_lead',{form:'wiki_checklist',lang:f.dataset.lang})}catch(x){}}else{m.textContent=f.dataset.err;b.disabled=false}}).catch(function(){m.textContent=f.dataset.err;b.disabled=false})});</script><?php
 }, 100 );
+
+/*
+ * One-time export of code stored in the database (Theme Options > Custom Code and page contents),
+ * so it can be moved into versioned files. Runs only when the file "export-request" exists here;
+ * writes exports/*.php (not web-readable: each starts with <?php exit; ?>) and deletes the request file.
+ */
+add_action( 'wp_loaded', function () {
+	$req = __DIR__ . '/export-request';
+	if ( ! file_exists( $req ) ) return;
+	@unlink( $req );
+	$dir = __DIR__ . '/exports';
+	wp_mkdir_p( $dir );
+	$put = function ( $name, $data ) use ( $dir ) { file_put_contents( $dir . '/' . $name . '.php', "<?php exit; ?>\n" . $data ); };
+	foreach ( array( 'custom_html_head', 'custom_html', 'custom_css' ) as $k ) $put( 'theme-' . $k, ss_custom_option( $k ) );
+	foreach ( array( 2433, 2, 52, 2561 ) as $id ) {
+		$p = get_post( $id );
+		if ( $p ) $put( 'post-' . $id, $p->post_content );
+	}
+	$put( 'meta', wp_json_encode( array( 'time' => gmdate( 'c' ), 'theme' => get_option( 'stylesheet' ) ) ) );
+} );

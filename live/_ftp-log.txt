@@ -52,8 +52,17 @@ solid-sound.net/www/wp-content/themes/Impreza.zip
 solid-sound.net/www/wp-content/themes/index.php
 mirror: Access failed: 550 /solid-sound.net/www/wp-content/mu-plugins: No such file or directory
 no mu-plugins
+get: solid-sound.net/www/wp-content/themes/Impreza/functions.php: /home/runner/work/solid-sound-site/solid-sound-site/live/themes/Impreza/functions.php: file already exists and xfer:clobber is unset
   live/themes/Impreza/functions.php
   live/_ftp-log.txt
+  live/plugins/solid-sound-custom/exports/post-52.php
+  live/plugins/solid-sound-custom/exports/meta.php
+  live/plugins/solid-sound-custom/exports/theme-custom_html_head.php
+  live/plugins/solid-sound-custom/exports/post-2.php
+  live/plugins/solid-sound-custom/exports/theme-custom_html.php
+  live/plugins/solid-sound-custom/exports/theme-custom_css.php
+  live/plugins/solid-sound-custom/exports/post-2433.php
+  live/plugins/solid-sound-custom/exports/post-2561.php
   live/plugins/solid-sound-custom/solid-sound-custom.php
   live/plugins/solid-sound-custom/includes/custom.php
   live/plugins/solid-sound-custom/includes/index.php
