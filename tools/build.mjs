@@ -15,11 +15,21 @@ execFileSync('php', ['-l', root + 'build/custom.php'], { stdio: 'inherit' });
 const manifest = JSON.parse(readFileSync(raw + '/manifest.json', 'utf8'));
 const map = {}; let before = 0, after = 0;
 // standalone source files that become assets as they are
-for (const [name, file] of [['ss-global', 'src/ss-global.js']]) {
-  manifest[name] = { type: 'js', id: null, standalone: root + file };
+for (const [name, type, files] of [
+  ['ss-global', 'js', ['src/ss-global.js']],
+  ['ss-account-css', 'css', ['src/account/dashboard.css', 'src/account/shell.css']],
+  ['ss-account-js', 'js', ['src/account/dashboard.js']],
+]) {
+  manifest[name] = { type, id: null, standalone: files.map(f => root + f) };
+}
+// PHP modules are copied as they are
+mkdirSync(root + 'build/modules', { recursive: true });
+for (const f of readdirSync(root + 'src/modules')) {
+  writeFileSync(root + 'build/modules/' + f, readFileSync(root + 'src/modules/' + f));
+  execFileSync('php', ['-l', root + 'build/modules/' + f], { stdio: 'inherit' });
 }
 for (const [name, m] of Object.entries(manifest)) {
-  const src = readFileSync(m.standalone || `${raw}/${name}.${m.type}`, 'utf8');
+  const src = m.standalone ? m.standalone.map(f => readFileSync(f, 'utf8')).join('\n') : readFileSync(`${raw}/${name}.${m.type}`, 'utf8');
   const out = transformSync(src, { loader: m.type, minify: true, legalComments: 'none', target: m.type === 'js' ? 'es2017' : undefined }).code;
   const hash = createHash('sha256').update(out).digest('hex').slice(0, 10);
   const file = `${name}.${hash}.${m.type}`;

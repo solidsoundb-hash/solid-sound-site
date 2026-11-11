@@ -6929,7 +6929,7 @@ add_action( 'wp_head', function () {
    Not on the front page: the home app has its own header. */
 add_action( 'wp_head', function () {
 	if ( is_admin() || is_front_page() ) return;
-	$role = ! is_user_logged_in() ? 'guest' : ( ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ) || current_user_can( 'manage_woocommerce' ) ? 'vendor' : 'customer' );
+	$role = ! is_user_logged_in() ? 'guest' : ( current_user_can( 'manage_woocommerce' ) ? 'admin' : ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ? 'vendor' : 'customer' ) );
 	echo '<script>window.__ssg=1;window.__sslb=1;window.ssRole="' . esc_js( $role ) . '";</script>';
 	ss_asset( 'ss-global', 'defer' );
 }, 2 );
@@ -6942,14 +6942,7 @@ function ss_is_vendor_user( $user = null ) {
 	$uid = $user ? $user->ID : get_current_user_id();
 	return ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $uid ) ) || user_can( $uid, 'manage_woocommerce' );
 }
-function ss_dashboard_url() { $u = get_permalink( function_exists( 'pll_get_post' ) ? ( pll_get_post( 2561 ) ?: 2561 ) : 2561 ); return $u ?: home_url( '/en/client-dashboard/' ); }
-add_filter( 'woocommerce_account_menu_items', function ( $items ) {
-	if ( ss_is_vendor_user() ) return $items;
-	return array( 'ss-dashboard' => __( 'Dashboard', 'woocommerce' ) ) + $items;
-}, 20 );
-add_filter( 'woocommerce_get_endpoint_url', function ( $url, $endpoint ) {
-	return 'ss-dashboard' === $endpoint ? ss_dashboard_url() : $url;
-}, 10, 2 );
+function ss_dashboard_url() { return wc_get_page_permalink( 'myaccount' ); }
 function ss_after_auth_redirect( $redirect, $user ) {
 	if ( ! empty( $_REQUEST['redirect'] ) || ( function_exists( 'is_checkout' ) && is_checkout() ) ) return $redirect;
 	if ( $redirect && false === strpos( $redirect, 'my-account' ) ) return $redirect;
@@ -6958,3 +6951,6 @@ function ss_after_auth_redirect( $redirect, $user ) {
 }
 add_filter( 'woocommerce_login_redirect', 'ss_after_auth_redirect', 20, 2 );
 add_filter( 'woocommerce_registration_redirect', function ( $redirect ) { return ss_after_auth_redirect( $redirect, wp_get_current_user() ); }, 20 );
+
+/* Modules (separate files) */
+require_once __DIR__ . '/modules/account.php';

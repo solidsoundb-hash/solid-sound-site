@@ -33,7 +33,8 @@ var I={
   chat:'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
   doc:'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h6',
   forum:'M7 8h10M7 12h6M21 12a8 8 0 0 1-11.8 7L3 21l2-6.2A8 8 0 1 1 21 12z',
-  down:'M6 9l6 6 6-6'
+  down:'M6 9l6 6 6-6',
+  dl:'M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2'
 };
 var S='https://solid-sound.net', L=S+'/en';
 var NAV=[
@@ -45,13 +46,14 @@ var NAV=[
   {t:'Sell',i:'sell',h:L+'/vendor-register/'}
 ];
 var logged=B.classList.contains('logged-in');
-var DSH=L+'/client-dashboard/';
-var MYA=L+'/my-account/', VND=L+'/store-manager/', VENDOR=window.ssRole==='vendor';
+/* Accounts: client -> My account (the client dashboard), vendor -> Producer space (WCFM), admin -> both */
+var MYA=L+'/my-account/', VND=L+'/store-manager/', ROLE=window.ssRole||'', VENDOR=ROLE==='vendor';
+var DSH=MYA;
 /* Sign in = WooCommerce account page with the 3 tabs (Log in / Create account / Become a vendor).
    The client dashboard is separate: shown as its own item only when logged in. */
-var ACC=logged ? (VENDOR ? {t:'Producer space',i:'sell',h:VND} : {t:'Dashboard',i:'user',h:DSH}) : {t:'Sign in',i:'user',h:MYA};
+var ACC=logged ? (VENDOR ? {t:'Producer space',i:'sell',h:VND} : {t:'My account',i:'user',h:MYA}) : {t:'Sign in',i:'user',h:MYA};
 var CART={t:'Cart',i:'cart',h:L+'/cart/'};
-var FAV={t:'Favorites',i:'fav',h:logged ? DSH : MYA};
+var FAV={t:'Favorites',i:'fav',h:logged && !VENDOR ? MYA+'#favourites' : MYA};
 var path=location.pathname.replace(/[/]+$/,'')||'/';
 function isCur(h){ try{ var p=new URL(h).pathname.replace(/[/]+$/,'')||'/'; return p===path; }catch(e){ return false; } }
 
@@ -141,10 +143,11 @@ function navHtml(){
 function accItem(){
   if(!logged) return rItem(ACC);
   /* separate accounts: a vendor account has the Producer space, a client account has the Dashboard */
-  var dd=(VENDOR ? [['Producer space','sell',VND]] : [['Dashboard','user',DSH]])
-    .concat([['Account settings','doc',MYA],['Log out','signin',MYA+'customer-logout/']])
+  var client=[['My account','user',MYA],['Orders','cart',MYA+'orders/'],['Downloads','dl',MYA+'downloads/'],['Settings','doc',MYA+'edit-account/']];
+  var dd=(VENDOR ? [['Producer space','sell',VND]] : ROLE==='admin' ? [['Producer space','sell',VND]].concat(client) : client)
+    .concat([['Log out','signin',MYA+'customer-logout/']])
     .map(function(s){ return tag('a',{href:s[2],role:'menuitem'},ico(I[s[1]],18)+s[0]); }).join('');
-  return tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a'+(isCur(DSH) ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I.user)+tag('span',{'class':'g-l'},'Account'+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu',style:'left:auto;right:0;min-width:210px'},dd));
+  return tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a'+(isCur(DSH) ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I.user)+tag('span',{'class':'g-l'},(VENDOR ? 'Account' : 'My account')+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu',style:'left:auto;right:0;min-width:210px'},dd));
 }
 function rItem(o,extra){ return tag('div',{'class':'g-it g-r-it'},tag('a',{'class':'g-a'+((o!==FAV ? isCur(o.h) : false) ? ' cur' : ''),href:o.h},ico(I[o.i])+tag('span',{'class':'g-l'},o.t))+(extra||'')); }
 var langs=[]; D.querySelectorAll('.l-header a[hreflang], .l-header .lang-item a, .l-header [class*="lang"] a').forEach(function(a){ var hl=a.getAttribute('hreflang')||a.textContent.trim().slice(0,2); if(a.href ? !langs.some(function(x){return x.h===a.href;}) : false) langs.push({h:a.href,t:(hl||'').toUpperCase().slice(0,2)}); });
@@ -160,7 +163,7 @@ var head=tag('div',{'class':'g-in'},
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
   NAV.forEach(function(n){ if(n.sub){ h+=tag('div',{'class':'s-g'},n.t)+n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],20)+s[0].replace(/&/g,'and')); }).join(''); } });
-  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(logged ? tag('a',{href:MYA},ico(I.doc,20)+'Account settings')+tag('a',{href:MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
+  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/vendor-register/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(logged ? (VENDOR || ROLE==='admin' ? tag('a',{href:VND},ico(I.sell,20)+'Producer space') : '')+(VENDOR ? '' : tag('a',{href:MYA+'orders/'},ico(I.cart,20)+'Orders')+tag('a',{href:MYA+'edit-account/'},ico(I.doc,20)+'Settings'))+tag('a',{href:MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h},l.t); }).join('');
   return h+LT+'/div'+GT;
 }

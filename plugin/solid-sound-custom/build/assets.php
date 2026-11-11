@@ -127,7 +127,17 @@ return array(
   'id' => null
  ),
  'ss-global' => array(
-  'f' => 'ss-global.4f840424f9.js',
+  'f' => 'ss-global.fee2363ee7.js',
+  't' => 'js',
+  'id' => null
+ ),
+ 'ss-account-css' => array(
+  'f' => 'ss-account-css.beafe45d56.css',
+  't' => 'css',
+  'id' => null
+ ),
+ 'ss-account-js' => array(
+  'f' => 'ss-account-js.6ddfde86f3.js',
   't' => 'js',
   'id' => null
  )

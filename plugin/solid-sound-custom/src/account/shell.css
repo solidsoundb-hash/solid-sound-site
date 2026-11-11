@@ -1,0 +1,41 @@
+/* My account shell (clients): tab bar + WooCommerce pages in the dashboard design */
+.ssa-on .woocommerce{max-width:1180px;margin:0 auto;padding:0 20px;font-family:"Exo 2",system-ui,sans-serif;color:#E5E7EB}
+.ssa-on .woocommerce-MyAccount-content{float:none!important;width:auto!important;margin:0!important}
+.ssa-on #ssd{padding-left:0;padding-right:0}
+.ssa-nav{display:flex;gap:6px;margin:8px 0 22px;padding:6px;background:#131B2E;border:1px solid rgba(255,255,255,.07);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.ssa-nav::-webkit-scrollbar{display:none}
+.ssa-nav a{flex:none;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 14px;border-radius:10px;color:#CBD5E1!important;font-weight:700;font-size:14px;text-decoration:none!important;white-space:nowrap;transition:background .15s,color .15s}
+.ssa-nav a:hover{background:rgba(255,255,255,.05);color:#fff!important}
+.ssa-nav a.on{background:rgba(245,158,11,.14);color:#F59E0B!important;box-shadow:inset 0 0 0 1px rgba(245,158,11,.35)}
+.ssa-nav a.out{margin-left:auto;color:#94A3B8!important}
+.ssa-sub{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 18px}
+.ssa-sub a{height:34px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#CBD5E1!important;font-size:13px;font-weight:700;text-decoration:none!important}
+.ssa-sub a.on{border-color:#F59E0B;color:#F59E0B!important}
+/* WooCommerce content (orders, downloads, settings) as dashboard panels */
+.ssa-on .woocommerce-MyAccount-content{background:#131B2E;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.25)}
+.ssa-on .woocommerce-MyAccount-content:has(#ssd){background:none;border:0;box-shadow:none;padding:0}
+.ssa-on .woocommerce-MyAccount-content h2,.ssa-on .woocommerce-MyAccount-content h3{color:#fff;font-weight:800;font-size:19px;margin:0 0 14px}
+.ssa-on .woocommerce-MyAccount-content p,.ssa-on .woocommerce-MyAccount-content address{color:#CBD5E1;font-size:15px;line-height:1.55}
+.ssa-on .woocommerce-MyAccount-content a:not(.button){color:#F59E0B}
+.ssa-on .woocommerce-MyAccount-content table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;background:#0F1626;margin:0 0 16px}
+.ssa-on .woocommerce-MyAccount-content th,.ssa-on .woocommerce-MyAccount-content td{padding:12px 14px!important;border:0;border-bottom:1px solid rgba(255,255,255,.06);color:#E5E7EB;font-size:14px;text-align:left;background:none}
+.ssa-on .woocommerce-MyAccount-content thead th{color:#94A3B8;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.ssa-on .woocommerce-MyAccount-content tr:last-child td{border-bottom:0}
+.ssa-on .woocommerce-MyAccount-content .button,.ssa-on .woocommerce-MyAccount-content button[type=submit]{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;border:0;background:#F59E0B!important;color:#111!important;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;font-family:inherit}
+.ssa-on .woocommerce-MyAccount-content input.input-text,.ssa-on .woocommerce-MyAccount-content input[type=text],.ssa-on .woocommerce-MyAccount-content input[type=email],.ssa-on .woocommerce-MyAccount-content input[type=password],.ssa-on .woocommerce-MyAccount-content input[type=tel],.ssa-on .woocommerce-MyAccount-content select,.ssa-on .woocommerce-MyAccount-content textarea{width:100%;min-height:46px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:#0B1220;color:#fff;font-size:16px;font-family:inherit}
+.ssa-on .woocommerce-MyAccount-content label{color:#E5E7EB;font-weight:700;font-size:14px}
+.ssa-on .woocommerce-MyAccount-content fieldset{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin:16px 0}
+.ssa-on .woocommerce-MyAccount-content legend{color:#fff;font-weight:800;padding:0 6px}
+.ssa-on .woocommerce-Addresses{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.ssa-on .woocommerce-Addresses .woocommerce-Address{float:none;width:auto;background:#0F1626;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px}
+.ssa-on .woocommerce-info,.ssa-on .woocommerce-message{background:#0F1626!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:12px;color:#CBD5E1!important}
+@media (max-width:767px){
+  .ssa-on .woocommerce{padding:0 12px}
+  .ssa-nav{margin:4px 0 16px}
+  .ssa-nav a{height:40px;padding:0 12px;font-size:13px}
+  .ssa-nav a.out{margin-left:0}
+  .ssa-on .woocommerce-MyAccount-content{padding:14px}
+  .ssa-on .woocommerce-MyAccount-content table.shop_table_responsive thead{display:none}
+  .ssa-on .woocommerce-MyAccount-content table.shop_table_responsive tr{display:block;border-bottom:1px solid rgba(255,255,255,.08)}
+  .ssa-on .woocommerce-MyAccount-content table.shop_table_responsive td{display:flex;justify-content:space-between;gap:10px;border:0}
+}
