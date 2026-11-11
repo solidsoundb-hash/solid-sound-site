@@ -233,3 +233,33 @@ document.addEventListener('click',function(e){
   var sec=document.getElementById(a.getAttribute('href').slice(1)); if(!sec || !window.ssGoTo) return;
   e.preventDefault(); window.ssGoTo(sec);
 });
+/* Shopping assistant on the first screen: task list → the slider moves to that task's card.
+   Event delegation (the block is rendered by the home app), choice remembered, swipe on phones. */
+(function(){
+  function el(){ return document.querySelector('#ss-app .ssx'); }
+  function idx(b){ return +(b.getAttribute('data-i')||0); }
+  function go(i, quiet){
+    var r=el(); if(!r) return;
+    var tabs=r.querySelectorAll('.tasks button'), cards=r.querySelectorAll('.card'), dots=r.querySelectorAll('.dots i');
+    i=Math.max(0,Math.min(cards.length-1,i));
+    r.querySelector('.track').style.transform='translateX('+(-100*i)+'%)';
+    r.querySelector('.vp').style.height=cards[i].offsetHeight+'px';
+    tabs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
+    dots.forEach(function(d,k){ d.classList.toggle('on',k===i); });
+    r.setAttribute('data-cur',i);
+    if(!quiet){ try{ localStorage.setItem('ss_task',i); }catch(e){} if(tabs[i]) tabs[i].scrollIntoView({inline:'nearest',block:'nearest',behavior:'smooth'});
+      try{ if(window.gtag) gtag('event','select_task',{task:(tabs[i]||{}).textContent}); }catch(x){} }
+  }
+  document.addEventListener('click',function(e){
+    var r=el(); if(!r || !r.contains(e.target)) return;
+    var t=e.target.closest('.tasks button'); if(t){ e.preventDefault(); go(idx(t)); return; }
+    var d=e.target.closest('.dots i'); if(d){ go([].indexOf.call(d.parentNode.children,d)); return; }
+    var c=e.target.closest('.chips span'); if(c){ c.classList.toggle('on'); }
+  });
+  var x0=null;
+  document.addEventListener('touchstart',function(e){ var r=el(); if(r && e.target.closest && e.target.closest('#ss-app .ssx .track') && !e.target.closest('.chips,input')) x0=e.touches[0].clientX; },{passive:true});
+  document.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null; var r=el(); if(r && Math.abs(dx)>50) go(+(r.getAttribute('data-cur')||0)+(dx<0?1:-1)); });
+  var done=null;
+  (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
+  addEventListener('resize',function(){ var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
+})();

@@ -82,5 +82,11 @@ module.exports = function (a, window) {
       .split('slide: (i + 3) % 3,').join('slide: (i + (window.SS_NSLIDES || 3)) % (window.SS_NSLIDES || 3),')
       .split("' / 03'").join("' / 0' + (window.SS_NSLIDES || 3)")
       .split("' of 3'").join("' of ' + (window.SS_NSLIDES || 3)");
+    /* (11.11.2026) first screen = shopping assistant ("What are you working on?") instead of the promo slider.
+       The slider stays in the template, hidden (display: none), as a saved component. */
+    var ASSIST = require('fs').readFileSync(require('path').join(__dirname, 'parts', 'assistant.html'), 'utf8');
+    var HERO = '<div style="max-width: 1200px; margin: 0 auto; padding: 0 {{side}}">\n   <div style="background: #131B2E; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3); padding: {{heroBoxPad}}">';
+    if (a[0].split(HERO).length !== 2) throw new Error('home: hero wrapper not found');
+    a[0]=a[0].split(HERO).join(ASSIST + '\n' + HERO.replace('<div style="max-width: 1200px;', '<div style="display: none; max-width: 1200px;'));
   return a;
 };

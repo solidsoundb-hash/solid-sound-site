@@ -1,0 +1,63 @@
+.ssx{--bg:#070A12;--panel:#131B2E;--panel2:#0F1626;--line:rgba(255,255,255,.08);--or:#F59E0B;--mut:#94A3B8;--txt:#E5E7EB;--green:#34D399}
+.ssx,.ssx *{box-sizing:border-box}
+.ssx{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.5);padding:22px 24px 24px;overflow:hidden}
+.ssx .ssx-t{margin:0;font-size:28px;font-weight:800;color:#fff}
+.ssx .ssx-t span{color:var(--or)}
+.ssx .sub{margin:4px 0 16px;color:var(--mut)}
+.ssx .tasks{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -4px 18px;padding:0 4px}
+.ssx .tasks::-webkit-scrollbar{display:none}
+.ssx .tasks button{flex:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:#CBD5E1;font:700 14px "Exo 2",sans-serif;cursor:pointer;transition:.2s}
+.ssx .tasks button:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.ssx .tasks button.on{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.55);color:var(--or)}
+.ssx .tasks button i{font-style:normal;font-size:16px}
+.ssx .vp{overflow:hidden;border-radius:14px;transition:height .45s ease}
+.ssx .track{display:flex;align-items:flex-start;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.ssx .card{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;padding:2px}
+.ssx .left{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.ssx .left h2{margin:0 0 4px;font-size:22px;color:#fff}
+.ssx .left p.d{margin:0 0 14px;color:var(--mut)}
+.ssx .f{margin:0 0 14px}
+.ssx .f b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.ssx .chips{display:flex;flex-wrap:wrap;gap:8px}
+.ssx .chips span{display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#131B2E;color:#CBD5E1;font-size:13px;font-weight:600;cursor:pointer;user-select:none}
+.ssx .chips span.on{border-color:var(--or);color:var(--or);background:rgba(245,158,11,.08)}
+.ssx .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ssx .rng{display:flex;align-items:center;gap:10px;color:#CBD5E1;font-weight:700}
+.ssx .rng input{width:180px;accent-color:var(--or)}
+.ssx .chk{display:inline-flex;align-items:center;gap:8px;color:#CBD5E1;font-weight:600}
+.ssx .chk input{width:18px;height:18px;accent-color:var(--or)}
+.ssx .cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:12px;border:0;background:var(--or);color:#111;font:800 15px "Exo 2",sans-serif;cursor:pointer;text-decoration:none}
+.ssx .cta.g{background:#1A2540;color:#E5E7EB;border:1px solid var(--line)}
+.ssx .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.ssx .inp{height:48px;flex:1 1 220px;border-radius:12px;border:1px solid var(--line);background:#0B1220;color:#fff;padding:0 14px;font:500 15px "Exo 2",sans-serif}
+.ssx .gbtn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#fff;color:#1f1f1f;font:700 14px system-ui,sans-serif;border:0}
+.ssx .gbtn svg{width:18px;height:18px}
+.ssx .offer{position:relative;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;min-height:300px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(7,10,18,.15),rgba(7,10,18,.92)),var(--img,#1b1b1b) center/cover;overflow:hidden}
+.ssx .offer .tag{position:absolute;top:14px;left:14px;padding:4px 10px;border-radius:8px;background:var(--or);color:#111;font-size:11px;font-weight:800;letter-spacing:.08em}
+.ssx .offer .tag.gr{background:rgba(16,185,129,.18);color:var(--green)}
+.ssx .offer h3{margin:0 0 4px;font-size:20px;color:#fff}
+.ssx .offer p{margin:0 0 10px;color:#CBD5E1;font-size:14px}
+.ssx .offer ul{margin:0 0 12px;padding:0;list-style:none;color:#CBD5E1;font-size:13px}
+.ssx .offer li:before{content:"✓ ";color:var(--green);font-weight:800}
+.ssx .price{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.ssx .price s{color:var(--mut)}
+.ssx .price b{font-size:26px;color:#fff}
+.ssx .covers{position:absolute;top:14px;right:14px;display:flex;gap:6px}
+.ssx .covers i{width:56px;height:56px;border-radius:10px;background:center/cover;box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.ssx .dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.ssx .dots i{width:8px;height:8px;border-radius:99px;background:#2A3754;transition:.3s}
+.ssx .dots i.on{width:24px;background:var(--or)}
+@media (max-width:760px){
+.ssx{padding:16px 14px}
+.ssx .ssx-t{font-size:22px}
+.ssx .card{grid-template-columns:1fr;gap:12px}
+.ssx .offer{min-height:0;padding-top:52px}
+.ssx .left{padding:16px}
+.ssx .f .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.ssx .f .chips::-webkit-scrollbar{display:none}
+.ssx .f .chips span{flex:none}
+.ssx .acts .cta{flex:1 1 auto}
+.ssx .rng input{width:130px}
+}
+.ssx{max-width:1200px;margin:0 auto 8px;font-family:'Exo 2',system-ui,sans-serif;color:#E5E7EB}.ssx .chips a{display:inline-flex;align-items:center;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:#131B2E;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}.ssx .chips a:hover{border-color:#F59E0B;color:#F59E0B}.ssx a.cta,.ssx a.gbtn{text-decoration:none}
+@media (max-width:760px){.ssx{margin:0 12px 8px}}

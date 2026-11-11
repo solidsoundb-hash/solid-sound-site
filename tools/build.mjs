@@ -47,7 +47,7 @@ for (const [name, type, files, noMinify] of [
   ['ss-global', 'js', ['src/ss-global.js']],
   ['ss-account-css', 'css', ['src/account/dashboard.css', 'src/account/shell.css']],
   ['ss-account-js', 'js', ['src/account/dashboard.js']],
-  ['home-css', 'css', ['src/home/home.css']],
+  ['home-css', 'css', ['src/home/home.css', 'src/home/parts/assistant.css']],
   ['home-js', 'js', ['src/home/home.js']],
   ['home-ai', 'js', ['src/home/ai-search.js']],
   ['react', 'js', ['src/home/vendor/react.production.min.js'], true],
