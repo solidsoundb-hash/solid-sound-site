@@ -87,3 +87,35 @@
     if(/Upload demo|Drop or choose|Send for free feedback/i.test(t)){e.preventDefault();location.href=FREE;}
   },true);
 })();
+/* Account menu on the home app: "Sign in" (guest) / "My account" (logged in) opens a small menu */
+(function(){
+  var MYA='https://solid-sound.net/en/my-account/', VND='https://solid-sound.net/en/store-manager/';
+  var R=window.ssRole||'guest', OUT=window.ssLogout||MYA+'customer-logout/';
+  var P={user:'M16 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6',sell:'M12 15V3m0 0L8 7m4-4l4 4M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5',
+    bag:'M6 7h12l1 14H5zM9 7a3 3 0 0 1 6 0',dl:'M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2',doc:'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6',out:'M10 17l5-5-5-5M15 12H3M14 3h6v18h-6'};
+  var client=[['My account','user',MYA],['Purchases','bag',MYA+'orders/'],['Downloads','dl',MYA+'downloads/'],['Settings','doc',MYA+'edit-account/']];
+  var items=R==='guest' ? [['Log in','user',MYA+'?ss_tab=login'],['Create account','user',MYA+'?ss_tab=reg'],['Become a vendor','sell',MYA+'?ss_tab=sell']]
+    : R==='vendor' ? [['Producer space','sell',VND],['Log out','out',OUT]]
+    : (R==='admin' ? [['Producer space','sell',VND]] : []).concat(client,[['Log out','out',OUT]]);
+  var st=document.createElement('style');
+  st.textContent='#ss-acc{position:fixed;z-index:2147483001;min-width:220px;padding:6px;background:#131B2E;border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.6);font-family:"Exo 2",system-ui,sans-serif}#ss-acc a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}#ss-acc a:hover{background:#1A2540;color:#fff}#ss-acc svg{color:#F59E0B;flex:none}';
+  document.head.appendChild(st);
+  var box=null;
+  function close(){ if(box){ box.remove(); box=null; } }
+  function open(a){
+    close(); box=document.createElement('div'); box.id='ss-acc'; box.setAttribute('role','menu');
+    box.innerHTML=items.map(function(i){ return '<a role="menuitem" href="'+i[2]+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+P[i[1]]+'"></path></svg>'+i[0]+'</a>'; }).join('');
+    document.body.appendChild(box);
+    var r=a.getBoundingClientRect(), w=box.offsetWidth, h=box.offsetHeight;
+    var left=Math.min(Math.max(8,r.right-w), innerWidth-w-8), top=r.bottom+6;
+    if(top+h>innerHeight-8) top=Math.max(8,r.top-h-6); /* bottom bar on phones: open upwards */
+    box.style.left=left+'px'; box.style.top=top+'px';
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest ? e.target.closest('#ss-app a[href="#account"]') : null;
+    if(a){ e.preventDefault(); e.stopPropagation(); box ? close() : open(a); return; }
+    if(box && !box.contains(e.target)) close();
+  },true);
+  addEventListener('scroll',close,{passive:true}); addEventListener('resize',close,{passive:true});
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();

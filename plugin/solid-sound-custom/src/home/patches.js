@@ -61,5 +61,9 @@ module.exports = function (a, window) {
     a[0]=a[0].split('d="M7 4l13 8-13 8z"').join('d="'+window.SS_TRI+'" fill-rule="evenodd"');
     /* 11.11.2026: the client dashboard is now My account */
     a[0]=a[0].split('Client dashboard').join('My account');
+    /* account entry: "Sign in" for guests, "My account" after login; both open the account menu (home.js) */
+    a[0]=a[0].split("mk('Sign in', ic.user, '#top')").join("mk(window.ssRole && window.ssRole !== 'guest' ? 'My account' : 'Sign in', ic.user, '#account')")
+      .split("T('Sign in', ic.user, '#top')").join("T(window.ssRole && window.ssRole !== 'guest' ? 'My account' : 'Sign in', ic.user, '#account')")
+      .split('<a href="#top" aria-label="Sign in"').join('<a href="#account" aria-label="Account"');
   return a;
 };

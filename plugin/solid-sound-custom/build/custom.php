@@ -5894,8 +5894,7 @@ add_action( 'wp_head', function () {
    Not on the front page: the home app has its own header. */
 add_action( 'wp_head', function () {
 	if ( is_admin() || is_front_page() ) return;
-	$role = ! is_user_logged_in() ? 'guest' : ( current_user_can( 'manage_woocommerce' ) ? 'admin' : ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ? 'vendor' : 'customer' ) );
-	echo '<script>window.__ssg=1;window.__sslb=1;window.ssRole="' . esc_js( $role ) . '";</script>';
+	echo '<script>window.__ssg=1;window.__sslb=1;</script>';
 	ss_asset( 'ss-global', 'defer' );
 }, 2 );
 
@@ -5920,3 +5919,11 @@ add_filter( 'woocommerce_registration_redirect', function ( $redirect ) { return
 /* Modules (separate files) */
 require_once __DIR__ . '/modules/account.php';
 require_once __DIR__ . '/modules/home.php';
+
+/* Who is looking (for the account menu): guest / customer / vendor / admin, plus a working log-out link */
+add_action( 'wp_head', function () {
+	if ( is_admin() ) return;
+	$role = ! is_user_logged_in() ? 'guest' : ( current_user_can( 'manage_woocommerce' ) ? 'admin' : ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ? 'vendor' : 'customer' ) );
+	$out  = is_user_logged_in() && function_exists( 'wc_logout_url' ) ? wc_logout_url() : '';
+	echo '<script>window.ssRole=' . wp_json_encode( $role ) . ';window.ssLogout=' . wp_json_encode( $out ) . ';</script>';
+}, 1 );
