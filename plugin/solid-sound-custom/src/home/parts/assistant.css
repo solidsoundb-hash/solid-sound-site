@@ -12,7 +12,7 @@
 .ssx .tasks button i{font-style:normal;font-size:16px}
 .ssx .vp{overflow:hidden;border-radius:14px;transition:height .45s ease}
 .ssx .track{display:flex;align-items:flex-start;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.ssx .card{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;padding:2px}
+.ssx .card{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;padding:2px}
 .ssx .left{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px}
 .ssx .left h2{margin:0 0 4px;font-size:22px;color:#fff}
 .ssx .left p.d{margin:0 0 14px;color:var(--mut)}
@@ -50,7 +50,7 @@
 @media (max-width:760px){
 .ssx{padding:16px 14px}
 .ssx .ssx-t{font-size:22px}
-.ssx .card{grid-template-columns:1fr;gap:12px}
+.ssx .card{grid-template-columns:minmax(0,1fr);gap:12px}
 .ssx .offer{min-height:0;padding-top:52px}
 .ssx .left{padding:16px}
 .ssx .f .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
