@@ -14,3 +14,4 @@
 11 2026-11-11 17:44:33 home hero slider slides sideways (owner ok: выкладывай)
 12 2026-11-11 17:50:14 precise section scroll, seasonal slide auto-hide (owner ok: выкладывай)
 13 2026-11-11 18:10:55 Google sign-in (owner ok: выкладывай)
+14 2026-11-11 18:23:04 one account two roles (owner ok: выкладывай)
