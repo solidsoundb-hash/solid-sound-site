@@ -2263,7 +2263,7 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 			$o .= '</div><div class="ssw-card sscp-tw"><table class="sscp-t"><thead><tr><th>Thumbnail</th><th>Name</th><th>Status</th><th>Price</th><th>Qty sold</th><th>Earned</th><th>Actions</th></tr></thead><tbody>';
 			if ( ! $rows ) $o .= '<tr><td colspan="7" class="sscp-empty">You have no products yet. <a href="' . esc_url( ss_cp_url( 'ss-add-product' ) ) . '">Add your first product</a>.</td></tr>';
 			$lbl = array( 'publish' => 'Live', 'pending' => 'In review', 'draft' => 'Draft', 'private' => 'Hidden' );
-			foreach ( $rows as $r ) { $p = $r['p']; $o .= '<tr><td>' . $p->get_image( array( 48, 48 ) ) . '</td><td><b>' . esc_html( $p->get_name() ) . '</b></td><td><span class="sscp-st ' . esc_attr( $r['st'] ) . '">' . esc_html( $lbl[ $r['st'] ] ?? $r['st'] ) . '</span></td><td>' . wp_kses_post( wc_price( $p->get_price() ) ) . '</td><td>' . (int) $r['q'] . '</td><td class="gr">' . wp_kses_post( ss_cp_money( $r['e'] ) ) . '</td><td><a class="ssw-btn sm" href="' . esc_url( trailingslashit( get_wcfm_url() ) . 'products-manage/' . $p->get_id() . '/' ) . '">Edit</a> ' . ( 'publish' === $r['st'] ? '<a class="ssw-btn ghost sm" target="_blank" href="' . esc_url( get_permalink( $p->get_id() ) ) . '">View</a>' : '' ) . '</td></tr>'; }
+			foreach ( $rows as $r ) { $p = $r['p']; $o .= '<tr><td>' . $p->get_image( array( 48, 48 ) ) . '</td><td><b>' . esc_html( $p->get_name() ) . '</b></td><td><span class="sscp-st ' . esc_attr( $r['st'] ) . '">' . esc_html( $lbl[ $r['st'] ] ?? $r['st'] ) . '</span>' . ( function_exists( 'ss_cr_status_note' ) ? ss_cr_status_note( $p->get_id(), $r['st'] ) : '' ) . '</td><td>' . wp_kses_post( wc_price( $p->get_price() ) ) . '</td><td>' . (int) $r['q'] . '</td><td class="gr">' . wp_kses_post( ss_cp_money( $r['e'] ) ) . '</td><td><a class="ssw-btn sm" href="' . esc_url( trailingslashit( get_wcfm_url() ) . 'products-manage/' . $p->get_id() . '/' ) . '">Edit</a> ' . ( 'publish' === $r['st'] ? '<a class="ssw-btn ghost sm" target="_blank" href="' . esc_url( get_permalink( $p->get_id() ) ) . '">View</a>' : '' ) . '</td></tr>'; }
 			$o .= '</tbody></table></div>';
 		}
 		if ( 'ss-earnings' === $s ) {
@@ -5406,6 +5406,7 @@ if ( ! function_exists( 'ss_tg_api' ) ) {
 		$sec = (string) get_option( 'ss_tg_secret', '' );
 		if ( ! $sec || ! hash_equals( $sec, (string) $req->get_header( 'x_telegram_bot_api_secret_token' ) ) ) return new WP_REST_Response( array( 'ok' => false ), 403 );
 		$u = $req->get_json_params();
+		if ( ! empty( $u['callback_query'] ) && function_exists( 'ss_cr_tg_callback' ) ) return ss_cr_tg_callback( $u['callback_query'] );
 		if ( ! empty( $u['edited_message'] ) && function_exists( 'ss_tg_edit' ) ) { ss_tg_edit( $u['edited_message'] ); return array( 'ok' => true ); }
 		$m = isset( $u['message'] ) ? $u['message'] : null;
 		if ( ! $m || empty( $m['chat']['id'] ) ) return array( 'ok' => true );
@@ -5477,7 +5478,7 @@ if ( ! function_exists( 'ss_tg_api' ) ) {
 					$me = ss_tg_api( 'getMe' );
 					if ( $me && ! empty( $me['ok'] ) ) {
 						update_option( 'ss_tg_bot', sanitize_text_field( $me['result']['username'] ), false );
-						$wh = ss_tg_api( 'setWebhook', array( 'url' => rest_url( 'ss-chat/v1/tg' ), 'secret_token' => $sec, 'allowed_updates' => array( 'message', 'edited_message' ), 'drop_pending_updates' => true ) );
+						$wh = ss_tg_api( 'setWebhook', array( 'url' => rest_url( 'ss-chat/v1/tg' ), 'secret_token' => $sec, 'allowed_updates' => array( 'message', 'edited_message', 'callback_query' ), 'drop_pending_updates' => true ) );
 						ss_tg_api( 'setMyCommands', array( 'commands' => array( array( 'command' => 'connect', 'description' => 'Receive solid-sound.net chat messages here' ) ), 'scope' => array( 'type' => 'all_group_chats' ) ) );
 						update_option( 'ss_tg_pair_until', time() + 30 * MINUTE_IN_SECONDS, false );
 						$note = ( $wh && ! empty( $wh['ok'] ) ) ? 'ok' : 'webhook';
@@ -5880,7 +5881,7 @@ if ( ! function_exists( 'ss_tg_del' ) ) {
 	}
 	add_action( 'admin_init', function () {
 		if ( (int) get_option( 'ss_tg_wh_v', 0 ) >= 2 || ! function_exists( 'ss_tg_token' ) || ! ss_tg_token() ) return;
-		$r = ss_tg_api( 'setWebhook', array( 'url' => rest_url( 'ss-chat/v1/tg' ), 'secret_token' => (string) get_option( 'ss_tg_secret', '' ), 'allowed_updates' => array( 'message', 'edited_message' ) ) );
+		$r = ss_tg_api( 'setWebhook', array( 'url' => rest_url( 'ss-chat/v1/tg' ), 'secret_token' => (string) get_option( 'ss_tg_secret', '' ), 'allowed_updates' => array( 'message', 'edited_message', 'callback_query' ) ) );
 		if ( $r && ! empty( $r['ok'] ) ) update_option( 'ss_tg_wh_v', 2, false );
 	} );
 }
