@@ -101,3 +101,39 @@ add_action( 'template_redirect', function () {
 	echo '</ul><p class="ft">Full terms: <a href="' . esc_url( ss_lic_url() ) . '">' . esc_html( ss_lic_url() ) . '</a>. The full License Agreement prevails over this summary.</p></div></body></html>';
 	exit;
 }, 1 );
+
+/* (12.11.2026) Exclusive license on request (idea from WeMake, they sell exclusives for $1,299–1,499):
+   templates get a "Request exclusive rights" form; the owner agrees the price and removes the product from sale by hand. */
+add_action( 'woocommerce_single_product_summary', function () {
+	global $product;
+	if ( ! $product || ( function_exists( 'ss_pd_format' ) && 'templates' !== ss_pd_format( $product->get_id() ) ) ) return;
+	echo '<details class="ss-excl" style="margin:0 0 14px;color:#CBD5E1;font-size:13px"><summary style="cursor:pointer;color:#F59E0B">Want this track only for you? Request an exclusive license</summary>'
+		. '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="margin-top:8px;display:grid;gap:6px">'
+		. '<input type="hidden" name="action" value="ss_excl_request"><input type="hidden" name="pid" value="' . (int) $product->get_id() . '">'
+		. '<input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">'
+		. '<p style="margin:0">Exclusive = full rights, the product is removed from sale after your purchase. We reply with the price within 24 h.</p>'
+		. '<input type="email" name="email" required placeholder="Your email" style="background:#0B1220;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px">'
+		. '<textarea name="message" rows="2" placeholder="Artist name, label / release plans (optional)" style="background:#0B1220;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px;font-family:inherit"></textarea>'
+		. '<button type="submit" style="justify-self:start;border:0;border-radius:10px;background:#F59E0B;color:#111;font-weight:800;padding:10px 16px;cursor:pointer">Request exclusive license</button></form></details>';
+}, 34 );
+add_action( 'admin_post_nopriv_ss_excl_request', 'ss_excl_request' );
+add_action( 'admin_post_ss_excl_request', 'ss_excl_request' );
+function ss_excl_request() {
+	$pid = isset( $_POST['pid'] ) ? absint( $_POST['pid'] ) : 0;
+	$back = $pid ? get_permalink( $pid ) : home_url( '/' );
+	if ( ! empty( $_POST['website'] ) ) { wp_safe_redirect( $back ); exit; }
+	$k = 'ss_excl_rl_' . md5( isset( $_SERVER['REMOTE_ADDR'] ) ? (string) $_SERVER['REMOTE_ADDR'] : '' );
+	if ( (int) get_transient( $k ) >= 3 ) wp_die( 'Please try again later or write to info@solid-sound.net.' );
+	set_transient( $k, (int) get_transient( $k ) + 1, HOUR_IN_SECONDS );
+	$email = sanitize_email( isset( $_POST['email'] ) ? wp_unslash( $_POST['email'] ) : '' );
+	if ( ! is_email( $email ) || ! $pid ) wp_die( 'Please go back and enter a valid email.' );
+	$msg = isset( $_POST['message'] ) ? mb_substr( sanitize_textarea_field( wp_unslash( $_POST['message'] ) ), 0, 2000 ) : '';
+	$txt = "Exclusive license request\n\nProduct: " . get_the_title( $pid ) . "\n" . get_permalink( $pid ) . "\nEmail: " . $email . "\n\n" . $msg;
+	wp_mail( get_option( 'admin_email' ), 'Exclusive license request: ' . get_the_title( $pid ), $txt, array( 'Reply-To: ' . $email ) );
+	if ( function_exists( 'ss_tg_send' ) ) ss_tg_send( '💎 ' . $txt );
+	wp_safe_redirect( add_query_arg( 'excl', 'sent', $back ) );
+	exit;
+}
+add_action( 'woocommerce_before_single_product', function () {
+	if ( isset( $_GET['excl'] ) && 'sent' === $_GET['excl'] && function_exists( 'wc_print_notice' ) ) wc_print_notice( 'Thank you! We will reply about the exclusive license within 24 hours.', 'success' );
+} );

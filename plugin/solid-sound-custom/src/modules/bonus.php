@@ -155,3 +155,22 @@ add_filter( 'ss_acc_sub_extra', function ( $s ) {
 	$uid = get_current_user_id();
 	return $uid ? $s . ' <span class="ssa-bonus">Bonus balance: <b>' . esc_html( ss_bonus_money( ss_bonus_get( $uid ) ) ) . '</b></span>' : $s;
 } );
+
+/* (12.11.2026) +1 bonus for a review of a product the customer bought — once per product (idea from WeMake's store credit for reviews) */
+define( 'SS_BONUS_REVIEW', 1 );
+function ss_bonus_review( $cid ) {
+	$c = get_comment( $cid );
+	if ( ! $c || '1' !== (string) $c->comment_approved || 'product' !== get_post_type( $c->comment_post_ID ) || 'review' !== ( $c->comment_type ?: 'review' ) ) return;
+	$uid = (int) $c->user_id;
+	if ( ! $uid || get_user_meta( $uid, '_ss_rv_' . $c->comment_post_ID, true ) ) return;
+	if ( function_exists( 'wc_customer_bought_product' ) && ! wc_customer_bought_product( '', $uid, $c->comment_post_ID ) ) return;
+	if ( mb_strlen( trim( wp_strip_all_tags( $c->comment_content ) ) ) < 20 ) return; /* a real sentence, not "ok" */
+	ss_bonus_add( $uid, SS_BONUS_REVIEW );
+	update_user_meta( $uid, '_ss_rv_' . $c->comment_post_ID, 1 );
+}
+add_action( 'comment_post', function ( $cid, $approved ) { if ( 1 === $approved || '1' === $approved ) ss_bonus_review( $cid ); }, 20, 2 );
+add_action( 'comment_unapproved_to_approved', function ( $c ) { ss_bonus_review( $c->comment_ID ); } );
+/* tell buyers about it under the review form */
+add_action( 'comment_form_top', function () {
+	if ( function_exists( 'is_product' ) && is_product() ) echo '<p class="ss-rv-bonus" style="margin:0 0 10px;padding:8px 12px;border-radius:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);color:#E5E7EB;font-size:14px">Bought this product? Leave an honest review (a sentence or two) and get <b style="color:#F59E0B">+' . esc_html( ss_bonus_money( SS_BONUS_REVIEW ) ) . ' bonus</b> for your next order.</p>';
+} );
