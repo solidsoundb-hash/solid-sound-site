@@ -284,17 +284,19 @@ document.addEventListener('click',function(e){
 /* (12.11.2026) mixing examples: one audio file = BEFORE (0–7.5 s) + AFTER (7.5–15 s), drawn as a waveform.
    The switch jumps to the same moment in the other half; playback loops inside the chosen half. One shared <audio>. */
 (function(){
-  var CUT=7.5, au=null, cur=null;
+  var CUT=7.5, au=null, cur=null, AFT={};
   function A(){ if(!au){ au=document.createElement('audio'); au.className='ss-abx'; au.preload='none'; document.body.appendChild(au);
     au.addEventListener('timeupdate',tick); au.addEventListener('play',ui); au.addEventListener('pause',ui); } return au; }
   function aft(b){ return b.classList.contains('aft'); }
   function svg(p,c){ var b=''; for(var i=0;i<p.length;i++){ var h=Math.max(2,(p.charCodeAt(i)-48)); b+='<rect x="'+(i*5)+'" y="'+((44-h)/2)+'" width="3" height="'+h+'" rx="1.5"/>'; }
     return 'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+(p.length*5)+' 44" preserveAspectRatio="none" fill="'+c+'">'+b+'</svg>')+'")'; }
-  function paint(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ var w=b.querySelector('.ss-abw'); if(!w || w.getAttribute('data-k')===b.getAttribute('data-src')) return;
+  function paint(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ var src=b.getAttribute('data-src'), sa=!!AFT[src];
+    if(b.classList.contains('aft')!==sa) b.classList.toggle('aft',sa); var on=!!(au && !au.paused && au.getAttribute('src')===src); if(b.classList.contains('on')!==on) b.classList.toggle('on',on);
+    var w=b.querySelector('.ss-abw'); if(!w || w.getAttribute('data-k')===b.getAttribute('data-src')) return;
     w.setAttribute('data-k',b.getAttribute('data-src'));
     [['b','pb'],['a','pa']].forEach(function(k){ var p=b.getAttribute('data-'+k[1])||''; var l=w.querySelectorAll('i.'+k[0]); if(l[0]) l[0].style.backgroundImage=svg(p,'#3A4766'); if(l[1]) l[1].style.backgroundImage=svg(p,'#F59E0B'); }); }); }
   (window.ssOnDom||function(f){f();})(paint);
-  function ui(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ b.classList.toggle('on', b===cur && au && !au.paused); }); }
+  function ui(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ b.classList.toggle('on', !!(au && !au.paused && au.getAttribute('src')===b.getAttribute('data-src'))); }); }
   function tick(){ if(!cur||!cur.isConnected||cur.getAttribute('data-src')!==au.getAttribute('src')){ if(au&&!au.paused) au.pause(); return; } var t=au.currentTime, d=au.duration||CUT*2, a=aft(cur);
     if(a){ if(t<CUT-0.05) au.currentTime=t=CUT; else if(t>=d-0.25) au.currentTime=t=CUT; }
     else if(t>=CUT-0.1) au.currentTime=t=0;
@@ -309,7 +311,7 @@ document.addEventListener('click',function(e){
     var b=t.closest('.ss-ab'), x=A();
     if(t.classList.contains('ss-abb')){ if(cur===b && !x.paused){ x.pause(); return; } var keep=cur===b ? ((x.currentTime||0)%CUT) : 0; start(b,keep); return; }
     if(t.classList.contains('ss-abw')){ var r=t.getBoundingClientRect(); start(b, Math.max(0,Math.min(CUT-0.2,(e.clientX-r.left)/r.width*CUT))); return; }
-    var a=!aft(b); b.classList.toggle('aft',a); t.setAttribute('aria-checked',a?'true':'false');
+    var a=!aft(b); AFT[b.getAttribute('data-src')]=a; b.classList.toggle('aft',a); t.setAttribute('aria-checked',a?'true':'false');
     if(cur===b && !x.paused){ var pos=(x.currentTime||0)%CUT; x.currentTime=(a?CUT:0)+pos; } else start(b,0);
   });
   /* when the home app re-renders and the card disappears, stop */

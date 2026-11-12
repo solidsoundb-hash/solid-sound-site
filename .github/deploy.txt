@@ -39,3 +39,4 @@
 35 2026-11-12 21:26:02 home: examples as waveform player with before/after switch, BPM slider fix (owner ok: сделай и выложи)
 36 2026-11-12 21:30:09 home: line icons in the site style instead of emoji on the first screen (owner ok: сделай и выложи)
 37 2026-11-12 21:43:09 home: pause on examples no longer starts a product track, aligned example cards, clear video titles, type BPM (owner ok: выкладывай все)
+38 2026-11-12 21:46:00 home: before/after switch knob moves and stays (owner ok: выложи все)
