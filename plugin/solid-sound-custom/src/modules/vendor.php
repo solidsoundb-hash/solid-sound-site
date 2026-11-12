@@ -117,3 +117,15 @@ add_action( 'wp_footer', function () {
 		. 'if(/store-manager\/?$|store-manager\/ss-|add-product|logout|customer-logout/.test(h))return;d.remove()})}'
 		. '(window.ssOnDom||function(f){document.readyState!=="loading"?f():document.addEventListener("DOMContentLoaded",f)})(clean)})();</script>';
 }, 99 );
+
+/* (12.11.2026) "Sell" for someone who is already a creator (or the owner): straight to the dashboard, not the sign-up form */
+add_action( 'template_redirect', function () {
+	if ( ! is_user_logged_in() ) return;
+	$p = strtolower( trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ) );
+	if ( ! preg_match( '#^([a-z]{2}/)?(sell|vendor-register|vendor-membership)$#', $p ) ) return;
+	$is = ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ) || current_user_can( 'manage_woocommerce' );
+	if ( ! $is ) { $u = wp_get_current_user(); $is = (bool) array_intersect( (array) $u->roles, array( 'wcfm_vendor', 'seller', 'vendor' ) ); }
+	if ( ! $is ) return;
+	wp_safe_redirect( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) );
+	exit;
+}, 2 );

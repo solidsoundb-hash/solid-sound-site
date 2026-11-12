@@ -49,7 +49,7 @@ add_action( 'wp_footer', function () {
 	);
 	$h  = '<footer class="ssf"><div class="w"><div class="cols">';
 	$h .= $col( 'Products', array( array( 'Templates', $S . '/templates' ), array( 'Presets', $S . '/presets' ), array( 'Music', $S . '/music' ), array( 'Free', $S . '/en/free/' ) ) );
-	$h .= $col( 'Services', array( array( 'Services & Prices', $S . '/en/services-prices/' ), array( 'Mixing & Mastering Calculator', $S . '/Services-Calculator/' ), array( 'Mastering Album Calculator', $S . '/mastering-album-calculator/' ), array( 'Become a vendor', $S . '/en/vendor-register/' ) ) );
+	$h .= $col( 'Services', array( array( 'Services & Prices', $S . '/en/services-prices/' ), array( 'Mixing & Mastering Calculator', $S . '/studio-calculator/?s=mixing' ), array( 'Mastering Album Calculator', $S . '/studio-calculator/?s=mastering' ), array( 'Become a vendor', $S . '/en/vendor-register/' ) ) );
 	$h .= $col( 'Community', array( array( 'Wiki', $S . '/en/wiki/' ), array( 'FAQ', $S . '/en/faq/' ), array( 'Contact us', $S . '/contacts' ) ) );
 	$h .= '<div><b>Secure checkout</b><span class="note">Faulty file? Fix, replacement or refund within 30 days. Services: cancel within 14 days.</span><div class="pay">';
 	foreach ( array( 'VISA', 'MASTERCARD', 'APPLE PAY', 'GOOGLE PAY', 'STRIPE' ) as $p ) $h .= '<span>' . $p . '</span>';

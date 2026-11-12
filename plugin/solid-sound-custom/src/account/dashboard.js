@@ -139,11 +139,11 @@
   /* ---------- render ---------- */
   function render(orders,downs,favs,name){
     var proj=orders.filter(function(o){ return o.service; }), active=proj.filter(function(o){ return stepOf(o)<4; });
-    var h='<div class="top"><div><h1>My account</h1><p class="sub">'+(name ? 'Hi '+esc(name)+'! ' : '')+'Your projects, revisions and downloads.</p></div><a class="btn" href="'+S+'/Services-Calculator/">'+ic(I.calc,18)+'Order a mix or master</a></div>';
+    var h='<div class="top"><div><h1>My account</h1><p class="sub">'+(name ? 'Hi '+esc(name)+'! ' : '')+'Your projects, revisions and downloads.</p></div><a class="btn" href="'+S+'/studio-calculator/?s=mixing">'+ic(I.calc,18)+'Order a mix or master</a></div>';
     h+='<div class="stats">'+[[active.length,'Active projects'],[proj.length-active.length,'Delivered'],[downs.length,'Downloads'],[favs.length,'Favourites']].map(function(s){ return '<div class="st"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>'; }).join('')+'</div>';
     h+='<div class="grid"><div>';
     h+='<section class="p" id="projects">'+head('My projects',I.serv);
-    h+=proj.length ? proj.slice(0,6).map(projCard).join('') : '<div class="empty">No studio projects yet. Order mixing or mastering and follow every step here: received, in work, revision, delivered.</div><a class="btn" href="'+S+'/Services-Calculator/">Get a price in 1 minute</a>';
+    h+=proj.length ? proj.slice(0,6).map(projCard).join('') : '<div class="empty">No studio projects yet. Order mixing or mastering and follow every step here: received, in work, revision, delivered.</div><a class="btn" href="'+S+'/studio-calculator/?s=mixing">Get a price in 1 minute</a>';
     h+='</section>';
     h+='<section class="p" id="downloads">'+head('My downloads',I.down);
     h+=downs.length ? downs.map(function(d){ return '<div class="row"><span class="t" style="width:48px;height:48px">'+ic(I.down,22)+'</span><div class="nm"><b>'+esc(d.name)+'</b><small>'+esc([d.left ? 'Downloads left: '+d.left : '', d.exp ? 'Expires: '+d.exp : ''].filter(Boolean).join(' · '))+'</small></div><a class="btn g" href="'+esc(d.url)+'">'+ic(I.down,16)+'Download</a></div>'; }).join('') : '<div class="empty">Templates, presets and packs you buy appear here, ready to download again anytime.</div><a class="btn g" href="'+L+'/all-products/">Browse products</a>';
@@ -152,7 +152,7 @@
     h+=favs.length ? favs.map(function(p){ return '<a class="row" href="'+esc(p.permalink)+'"><span class="cv" style="background-image:url('+esc((p.images[0]||{}).thumbnail||'')+')"></span><div class="nm"><b>'+esc(p.name)+'</b><small>'+esc(p.prices ? (p.prices.currency_symbol+Math.round(p.prices.price/Math.pow(10,p.prices.currency_minor_unit))) : '')+'</small></div></a>'; }).join('') : '<div class="empty">Tap the heart on any product to save it here.</div>';
     h+='</section>';
     h+='<section class="p acts">'+head('Quick actions',I.dash)+
-      [[S+'/Services-Calculator/',I.calc,'Order mixing or mastering','Price in 1 minute'],[L+'/free-demo-feedback/',I.head,'Free feedback on your track','Pro notes from our engineer'],[L+'/free/',I.free,'Free packs','Templates and presets'],['#chat',I.chat,'Ask the team','We reply in minutes'],[ACC+'orders/',I.bag,'Orders and invoices','All purchases'],[ACC+'edit-account/',I.user,'Account details','Email and password'],[ACC+'customer-logout/',I.out,'Sign out','']]
+      [[S+'/studio-calculator/?s=mixing',I.calc,'Order mixing or mastering','Price in 1 minute'],[L+'/free-demo-feedback/',I.head,'Free feedback on your track','Pro notes from our engineer'],[L+'/free/',I.free,'Free packs','Templates and presets'],['#chat',I.chat,'Ask the team','We reply in minutes'],[ACC+'orders/',I.bag,'Orders and invoices','All purchases'],[ACC+'edit-account/',I.user,'Account details','Email and password'],[ACC+'customer-logout/',I.out,'Sign out','']]
       .map(function(a){ return '<a href="'+a[0]+'"'+(a[0]==='#chat' ? ' data-chat="1"' : '')+'>'+ic(a[1],20)+'<span>'+a[2]+(a[3] ? '<small>'+a[3]+'</small>' : '')+'</span></a>'; }).join('')+'</section>';
     h+='</div></div>';
     root.innerHTML=h;

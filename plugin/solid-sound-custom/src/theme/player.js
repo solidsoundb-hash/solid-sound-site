@@ -450,7 +450,7 @@ function scan(root){
    AJAX NAVIGATION (only while the player is open)
    ============================================================ */
 /* (12.11.2026 owner) music must not stop on ANY page: only admin, login/logout, payment (checkout) and the vendor panel still load fully */
-var NO_AJAX=/^\/([a-z]{2}\/)?(wp-admin|wp-login|wp-json|checkout|add-product|store-manager|feed|wcfm|lost-password|my-account\/customer-logout)/i;
+var NO_AJAX=/^\/([a-z]{2}\/)?(wp-admin|wp-login|wp-json|checkout|add-product|store-manager|feed|wcfm|lost-password|my-account\/customer-logout|sell\/?$|vendor-register|vendor-membership)/i;
 var loadBar=null;
 function progressBar(on){if(!loadBar){loadBar=el('div','ssp-loadbar');document.body.appendChild(loadBar)}loadBar.classList.toggle('is-on',on)}
 function canAjax(a,e){

@@ -263,7 +263,13 @@ document.addEventListener('click',function(e){
     var r=el(); if(!r || !r.contains(e.target)) return;
     var t=e.target.closest('.tasks button'); if(t){ e.preventDefault(); go(idx(t)); return; }
     var d=e.target.closest('.dots i'); if(d){ go([].indexOf.call(d.parentNode.children,d)); return; }
-    var c=e.target.closest('.chips span'); if(c){ c.classList.toggle('on'); }
+    var c=e.target.closest('.chips span'); if(!c || c.parentNode.classList.contains('fixed')) return;
+    if(!c.parentNode.classList.contains('one')){ c.classList.toggle('on'); return; }
+    [].forEach.call(c.parentNode.children,function(x){ x.classList.toggle('on',x===c); });
+    var k=c.closest('.card'), h=c.getAttribute('data-h'); if(!k||!h) return;
+    k.querySelectorAll('[data-link]').forEach(function(a){ a.href=h; });
+    var ti=k.querySelector('[data-ti]'), pr=k.querySelector('[data-pr]');
+    if(ti) ti.textContent=c.getAttribute('data-t'); if(pr) pr.textContent=c.getAttribute('data-p');
   });
   var x0=null;
   document.addEventListener('touchstart',function(e){ var r=el(); if(r && e.target.closest && e.target.closest('#ss-app .ssx .track') && !e.target.closest('.chips,input')) x0=e.touches[0].clientX; },{passive:true});

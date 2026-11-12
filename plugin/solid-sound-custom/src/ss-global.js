@@ -48,7 +48,7 @@ var S='https://solid-sound.net', L=S+'/en';
 var NAV=[
   {t:'Home',i:'home',h:L+'/'},
   {t:'Products',i:'grid',h:L+'/all-products/',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
-  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/Services-Calculator/'],['Mastering Album Calculator','disc',S+'/mastering-album-calculator/'],['Examples','wave',L+'/#examples'],['Reviews','chat',L+'/#reviews'],['How it works','layers',L+'/#dashboard']]},
+  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/studio-calculator/?s=mixing'],['Mastering Album Calculator','disc',S+'/studio-calculator/?s=mastering'],['Examples','wave',L+'/#examples'],['Reviews','chat',L+'/#reviews'],['How it works','layers',L+'/#dashboard']]},
   {t:'Wiki',i:'wiki',h:L+'/wiki/'},
   {t:'FAQ',i:'faq',sub:[['Common Questions','faq',L+'/faq/'],['Contact Us','mail',S+'/contacts'],['Terms of Sale','doc',L+'/terms/'],['Refund Policy','refund',S+'/refund_returns/'],['License Agreement','shield',S+'/license/'],['Privacy Policy','lock',S+'/privacy-policy/'],['Legal Notice','scale',L+'/legal-notice/']]},
   {t:'Free',i:'free',h:L+'/free/'},
@@ -70,7 +70,7 @@ function isHome(h){ try{ return normP(new URL(h,location.href).pathname)==='/'; 
 function go(h){ if(!(window.sspGo && window.sspGo(h))) location.href=h; }
 function isCur(h){ try{ return normP(new URL(h,location.href).pathname)===path; }catch(e){ return false; } }
 /* a whole section lights up its menu item (product pages -> Products, calculators -> Services ...) */
-var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator)([/]|$)/,FAQ:/^[/](faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/};
+var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator|studio-calculator)([/]|$)/,FAQ:/^[/](faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/};
 function inSec(t){ return !!(SEC[t] && SEC[t].test(path)); }
 
 /* ---------- styles ---------- */
@@ -379,7 +379,7 @@ function ssgAI(){
       if(top.length){ h+='<div style="font-size:12px;color:#94A3B8;margin:0 2px 8px">Best matches</div>'+top.map(card).join(''); }
       else if(!svc){ h+='<div style="font-size:13px;color:#cbd5e1;margin:0 2px 8px">No exact match yet. Popular picks:</div>'+r.slice(0,3).map(card).join(''); }
       if(svc || top.length===0){
-        h+='<a href="https://solid-sound.net/Services-Calculator/" style="display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fff;text-decoration:none;margin-bottom:8px"><span style="font-size:20px">🎚️</span><span style="flex:1"><b>Mixing + mastering by our engineer</b><br><span style="color:#94A3B8;font-size:12px">Get your price in 1 minute</span></span><span style="color:#F59E0B;font-weight:700">→</span></a>';
+        h+='<a href="https://solid-sound.net/studio-calculator/?s=mixing" style="display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fff;text-decoration:none;margin-bottom:8px"><span style="font-size:20px">🎚️</span><span style="flex:1"><b>Mixing + mastering by our engineer</b><br><span style="color:#94A3B8;font-size:12px">Get your price in 1 minute</span></span><span style="color:#F59E0B;font-weight:700">→</span></a>';
         h+='<a href="https://solid-sound.net/en/free-demo-feedback/" style="display:block;padding:10px 12px;border-radius:12px;background:#1A2540;color:#cbd5e1;text-decoration:none;margin-bottom:8px;font-size:13px">🎧 Free feedback on your track →</a>';
       }
       h+='<div style="display:flex;gap:8px;margin-top:6px"><button type="button" data-ai="all" style="flex:1;height:42px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#fff;font-weight:600">All results</button><button type="button" data-ai="chat" style="flex:1;height:42px;border-radius:10px;border:0;background:#F59E0B;color:#111;font-weight:700">Ask in chat</button></div>';

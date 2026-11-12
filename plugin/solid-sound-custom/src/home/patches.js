@@ -31,8 +31,8 @@ module.exports = function (a, window) {
     a[0]=a[0].split('[Guarantee / refund terms — confirm]').join('Faulty file? Fix, replacement or refund within 30 days. Services: cancel within 14 days.')
       .split("title: 'Your next Spotify release, [done for you]. [40% off].'").join("title: 'Your next release, [done for you]. Template + mix [€69].'")
       .split("sub: 'Stop collecting demos. Each bundle: a pro track template, a preset pack and a custom mix of your version by our engineer.'").join("sub: 'Stop collecting demos. Take a top-selling template like Intricate, build your version, and our engineer mixes it to a release-ready sound.'")
-      .split("cta: 'See turnkey bundles', href: '#services'").join("cta: 'Get the bundle', href: 'https://solid-sound.net/Services-Calculator/'")
-      .split("cardBg: '#1b1670', cardCover: 'Bundle', cardTag: 'PRODUCT + SERVICE', cardTitle: 'Template + presets + mixing', oldPrice: '€96', newPrice: '€58', cardText: 'Mutualism template + Melodic Techno Presets + mixing of your track.', cardCta: 'Add bundle to cart · €58', cardHref: '#shop'").join("cardBg: '"+G+"url("+U+"Intricate_Logo_JPG-400x400.jpg) center / cover', cardCover: '', cardTag: 'TEMPLATE + MIXING', cardTitle: 'Intricate + mix of your track', oldPrice: '€86', newPrice: '€69', cardText: 'Dark techno project for Ableton Live 11 (native plugins) + a full mix of your version by our engineer.', cardCta: 'Get the bundle · €69', cardHref: 'https://solid-sound.net/Services-Calculator/'")
+      .split("cta: 'See turnkey bundles', href: '#services'").join("cta: 'Get the bundle', href: 'https://solid-sound.net/studio-calculator/?s=mixing'")
+      .split("cardBg: '#1b1670', cardCover: 'Bundle', cardTag: 'PRODUCT + SERVICE', cardTitle: 'Template + presets + mixing', oldPrice: '€96', newPrice: '€58', cardText: 'Mutualism template + Melodic Techno Presets + mixing of your track.', cardCta: 'Add bundle to cart · €58', cardHref: '#shop'").join("cardBg: '"+G+"url("+U+"Intricate_Logo_JPG-400x400.jpg) center / cover', cardCover: '', cardTag: 'TEMPLATE + MIXING', cardTitle: 'Intricate + mix of your track', oldPrice: '€86', newPrice: '€69', cardText: 'Dark techno project for Ableton Live 11 (native plugins) + a full mix of your version by our engineer.', cardCta: 'Get the bundle · €69', cardHref: 'https://solid-sound.net/studio-calculator/?s=mixing'")
       .split("cardBg: '#3a1414', cardCover: 'Black Month'").join("cardBg: '"+G+"url("+U+"Mutualism_Logo_JPG-400x400.jpg) center / cover', cardCover: ''")
       .split("chips: [{ i: 'M4 4h16v16H4zM4 9h16M9 9v11', l: 'Pro template' }").join("chips: [{ i: 'M4 4h16v16H4zM4 9h16M9 9v11', l: 'Intricate template' }")
       .split("l: 'Preset pack' }").join("l: 'Or Mutualism / Infinity' }")
@@ -40,6 +40,10 @@ module.exports = function (a, window) {
     a[0]=a[0].split("products: [{ label: 'Templates', icon: ic.layers, href: 'https://solid-sound.net/templates' }").join("products: [{ label: 'All products', icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', href: 'https://solid-sound.net/en/all-products/' }, { label: 'Templates', icon: ic.layers, href: 'https://solid-sound.net/templates' }")
       .split("label: 'All products', href: 'https://solid-sound.net/en/'").join("label: 'All products', href: 'https://solid-sound.net/en/all-products/'")
       .split('Template + mix bundle −40%').join('Template + mix · €69').split('Bundle −40%').join('Bundle €69');
+    /* (12.11.2026) one calculator for the whole site: the old in-app calculator buttons open /studio-calculator/ (same service keys) */
+    var OC="    var openCalcPage = function (svcKey) {\n      return function (e) {\n        if (e && e.preventDefault) e.preventDefault();\n";
+    if (a[0].split(OC).length !== 2) throw new Error('home: openCalcPage not found');
+    a[0]=a[0].split(OC).join(OC + "        var cu = 'https://solid-sound.net/studio-calculator/' + (svcKey ? '?s=' + svcKey : ''); if (!(window.sspGo && window.sspGo(cu))) location.href = cu; return;\n");
     /* perf 10.11: no fixed background repaint, countdown re-render once a minute instead of every second */
     a[0]=a[0].split("background-attachment: fixed; position: relative").join("position: relative").split("self.setState({ tick: Date.now() }); }, 1000").join("self.setState({ tick: Date.now() }); }, 60000").split("p(m) + 'm ' + p(sec) + 's'").join("p(m) + 'm'");
     a[0]=a[0].split("try { window.addEventListener('resize', function () { self.setState({ vw: window.innerWidth }); }); } catch (e) {}").join("try { var lw = window.innerWidth; window.addEventListener('resize', function () { var w = window.innerWidth; if ((w < 760) !== (lw < 760)) { lw = w; self.setState({ vw: w }); } lw = w; }, { passive: true }); } catch (e) {}")
@@ -89,9 +93,9 @@ module.exports = function (a, window) {
     if (a[0].split(HERO).length !== 2) throw new Error('home: hero wrapper not found');
     a[0]=a[0].split(HERO).join(ASSIST + '\n' + HERO.replace('<div style="max-width: 1200px;', '<div style="display: none; max-width: 1200px;'));
     /* (11.11.2026) Services menu: Examples / Reviews / How it works scroll to their home blocks (owner) */
-    var SV_OLD = "href: 'https://solid-sound.net/mastering-album-calculator/' }],";
+    var SV_OLD = "href: 'https://solid-sound.net/studio-calculator/?s=mastering' }],";
     if (a[0].split(SV_OLD).length !== 2) throw new Error('home: services menu not found');
-    a[0]=a[0].split(SV_OLD).join("href: 'https://solid-sound.net/mastering-album-calculator/' }, { label: 'Examples', icon: ic.sliders, href: '#examples' }, { label: 'Reviews', icon: ic.chat, href: '#reviews' }, { label: 'How it works', icon: ic.layers, href: '#dashboard' }],");
+    a[0]=a[0].split(SV_OLD).join("href: 'https://solid-sound.net/studio-calculator/?s=mastering' }, { label: 'Examples', icon: ic.sliders, href: '#examples' }, { label: 'Reviews', icon: ic.chat, href: '#reviews' }, { label: 'How it works', icon: ic.layers, href: '#dashboard' }],");
     var SH_OLD = "T('Album calculator', ic.disc, menus.services[2].href), ";
     if (a[0].split(SH_OLD).length !== 2) throw new Error('home: services sheet not found');
     a[0]=a[0].split(SH_OLD).join(SH_OLD + "T('Examples', ic.sliders, '#examples'), T('Reviews', ic.chat, '#reviews'), T('How it works', ic.layers, '#dashboard'), ");

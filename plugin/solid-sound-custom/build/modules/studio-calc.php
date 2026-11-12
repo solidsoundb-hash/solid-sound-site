@@ -66,7 +66,7 @@ add_action( 'template_redirect', function () {
 	$wp_query->is_404 = false;
 	status_header( 200 );
 	add_filter( 'pre_get_document_title', function () { return 'Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound'; } );
-	add_filter( 'wp_robots', function ( $r ) { $r['noindex'] = true; return $r; } ); /* until the owner approves the prices */
+	add_action( 'wp_head', function () { echo '<meta name="description" content="Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.">' . "\n" . '<link rel="canonical" href="' . esc_url( home_url( '/studio-calculator/' ) ) . '">'; }, 1 );
 	add_action( 'wp_head', function () { echo '<style>' . ss_sc_css() . '</style>'; } );
 	get_header();
 	echo '<main id="page-content" class="l-main"><section class="l-section"><div class="l-section-h">' . ss_sc_html() . '</div></section></main>';
@@ -140,3 +140,20 @@ document.addEventListener('change',function(ev){var t=ev.target;if(t.dataset&&t.
 var q=new URLSearchParams(location.search).get('s');if(q&&P[q])S.svc=q;svcBtns();body()})();
 JS;
 }
+
+/* (12.11.2026) one calculator: the old calculator pages send visitors (and search engines) to the new one */
+add_action( 'template_redirect', function () {
+	$p = strtolower( rtrim( (string) parse_url( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '', PHP_URL_PATH ), '/' ) );
+	$map = array( '/services-calculator' => 'mixing', '/en/services-calculator' => 'mixing', '/mastering-album-calculator' => 'mastering', '/en/mastering-album-calculator' => 'mastering' );
+	if ( isset( $map[ $p ] ) ) { wp_redirect( home_url( '/studio-calculator/?s=' . $map[ $p ] ), 301 ); exit; }
+}, 0 );
+
+/* (12.11.2026) technical product "Product limit credit purchase" (WCFM credits, $0) is not shown in the shop, search or carousels */
+define( 'SS_HIDDEN_PRODUCTS', '1971' );
+add_action( 'pre_get_posts', function ( $q ) {
+	if ( is_admin() && ! wp_doing_ajax() ) return;
+	$pt = $q->get( 'post_type' );
+	if ( 'product' !== $pt && ! ( is_array( $pt ) && in_array( 'product', $pt, true ) ) && ! $q->is_search() && ! $q->get( 'product_cat' ) ) return;
+	if ( $q->is_singular() || $q->get( 'p' ) || $q->get( 'post__in' ) ) return;
+	$q->set( 'post__not_in', array_merge( (array) $q->get( 'post__not_in' ), array_map( 'intval', explode( ',', SS_HIDDEN_PRODUCTS ) ) ) );
+} );
