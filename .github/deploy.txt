@@ -31,3 +31,4 @@
 27 2026-11-12 14:37:15 All products: no layout jump (owner ok: выложишь потом все изменения)
 28 2026-11-12 16:01:22 menu on other-language home pages (owner standing ok: все исправления выкладывай)
 29 2026-11-12 18:33:48 author dashboard on phones + current menu item (owner ok: выложи все изменения)
+30 2026-11-12 18:50:58 author dashboard phone menu icons visible (owner ok: выложи все изменения)
