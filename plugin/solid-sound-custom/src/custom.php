@@ -4715,6 +4715,9 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 }
 
 /*ssh-best 11.11.2026: one wide "Best products" carousel*/
+/*12.11.2026 speed: these were applied by the menu script after the first paint and made the page jump*/
+.ssh br{display:none!important}
+.l-main:has(.ssh) .vc_col-sm-3:has(.ss-top){display:none!important}.l-main:has(.ssh) .vc_col-sm-3:has(.ss-top)~.vc_col-sm-9{width:100%!important;max-width:100%!important;flex:0 0 100%!important}
 .ssh .ssh-cols{display:block!important}
 .ssh .ssh-col-new{max-width:1240px;margin:0 auto;gap:14px}
 .ssh .ssh-h2{font-size:28px!important;line-height:36px!important;height:auto;color:#F4EFE8!important}
