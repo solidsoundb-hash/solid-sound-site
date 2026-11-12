@@ -2084,7 +2084,7 @@ var tpl=pick(['reviews','settings','products','']);if(!tpl)return;
 var seq=[[['ss-add-product'],'Add Product','fa-plus-circle'],[[''],'Dashboard','fa-home'],['stub','Products','fa-play-circle','/store-manager/ss-products/'],['stub','Earnings','fa-dollar-sign','/store-manager/ss-earnings/'],['stub','Payouts','fa-credit-card','/store-manager/ss-payouts/'],['stub','Bundles','fa-cube','/store-manager/ss-bundles/'],['stub','Albums','fa-compact-disc','/store-manager/ss-albums/'],['stub','Videos','fa-video','/store-manager/ss-videos/'],['stub','Reviews','fa-star','/store-manager/ss-reviews/'],['stub','Settings','fa-cog','/store-manager/ss-settings/'],['stub','Help / FAQ','fa-question-circle','/store-manager/ss-help/']];
 var used=[];seq.forEach(function(o){var d;if(o[0]==='stub')d=mk(o[1],o[2],o[3],false);else if(o[0]==='soon')d=mk(o[1],o[2],'#',true);else if(o[0]==='help'){d=mk(o[1],o[2],'/sell/#faq',false);d.querySelector('a').target='_blank'}else{d=pick(o[0]);if(!d&&o[3])d=mk(o[1],o[2],o[3],false);if(!d)return;lab(d,o[1],o[2])}box.appendChild(d);used.push(d)});
 items.forEach(function(d){if(used.indexOf(d)>-1||slug(d)==='logout')return;var sl=slug(d),t=d.querySelector('.text');if(t&&['products','payments','reviews','settings','profile','reports-sales-by-date','withdrawal','withdrawal-requests'].indexOf(sl)>-1&&!/^WCFM /.test(t.textContent))t.textContent='WCFM '+t.textContent.trim();box.appendChild(d)});
-if(by.logout)box.appendChild(by.logout);var path=location.pathname.replace(/\/+$/,'');[].forEach.call(box.querySelectorAll(':scope > .wcfm_menu_items'),function(d){var a=d.querySelector('a'),hp=a?(a.pathname||'').replace(/\/+$/,''):'';if(hp&&hp!=='/store-manager'&&path.indexOf(hp)===0){d.classList.add('ss-cur');[].forEach.call(box.querySelectorAll('a.active'),function(x){if(x!==a)x.classList.remove('active')});a.classList.add('active')}});
+if(by.logout)box.appendChild(by.logout);var path=location.pathname.replace(/\/+$/,'');[].forEach.call(box.querySelectorAll(':scope > .wcfm_menu_items'),function(d){var a=d.querySelector('a'),hp=a?(a.pathname||'').replace(/\/+$/,''):'';if(hp&&(/\/store-manager$/.test(hp)?path===hp:path.indexOf(hp)===0)){d.classList.add('ss-cur');[].forEach.call(box.querySelectorAll('a.active'),function(x){if(x!==a)x.classList.remove('active')});a.classList.add('active')}});
 })();
 </script>
 	<?php }
@@ -6663,4 +6663,5 @@ require_once __DIR__ . '/modules/footer.php';
 require_once __DIR__ . '/modules/similar.php';
 require_once __DIR__ . '/modules/license.php';
 require_once __DIR__ . '/modules/bonus.php';
+require_once __DIR__ . '/modules/vendor.php';
 require_once __DIR__ . '/modules/cleanup.php';

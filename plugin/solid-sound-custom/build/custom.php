@@ -5805,4 +5805,5 @@ require_once __DIR__ . '/modules/footer.php';
 require_once __DIR__ . '/modules/similar.php';
 require_once __DIR__ . '/modules/license.php';
 require_once __DIR__ . '/modules/bonus.php';
+require_once __DIR__ . '/modules/vendor.php';
 require_once __DIR__ . '/modules/cleanup.php';

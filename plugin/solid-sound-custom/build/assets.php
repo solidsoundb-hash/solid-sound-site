@@ -32,7 +32,7 @@ return array(
   'id' => 'ss-wcfm-skin'
  ),
  'js-l2068' => array(
-  'f' => 'js-l2068.98a7b32915.js',
+  'f' => 'js-l2068.a0a8396f1f.js',
   't' => 'js',
   'id' => null
  ),
