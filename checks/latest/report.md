@@ -1,7 +1,7 @@
-# Site check 2026-11-12T16:12:27.115Z
+# Site check 2026-11-12T16:23:12.684Z
 
 ## guest · phone
-- /en/ → HTTP 200 · inline 195 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
+- /en/ → HTTP 200 · inline 194 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
 - /en/my-account/ → HTTP 200 · ⚠ 7 console errors · inline 192 KB · player files · [guest_phone_en_my_account.jpg](guest_phone_en_my_account.jpg)
     - console: [GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' p
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
@@ -55,12 +55,12 @@
 - logged in: true
 - /en/my-account/ → HTTP 200 · inline 193 KB · player files · [admin_desktop_en_my_account.jpg](admin_desktop_en_my_account.jpg)
 - /en/store-manager/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager.jpg](admin_desktop_en_store_manager.jpg)
-- /en/store-manager/ss-products/ → HTTP 200 · inline 297 KB · player files · [admin_desktop_en_store_manager_ss_products.jpg](admin_desktop_en_store_manager_ss_products.jpg)
+- /en/store-manager/ss-products/ → HTTP 200 · inline 296 KB · player files · [admin_desktop_en_store_manager_ss_products.jpg](admin_desktop_en_store_manager_ss_products.jpg)
 - /add-product/ → HTTP 200 · inline 321 KB · player files · [admin_desktop_add_product.jpg](admin_desktop_add_product.jpg)
 - /en/store-manager/ss-earnings/ → HTTP 200 · inline 296 KB · player files · [admin_desktop_en_store_manager_ss_earnings.jpg](admin_desktop_en_store_manager_ss_earnings.jpg)
 - /en/store-manager/ss-payouts/ → HTTP 200 · inline 296 KB · player files · [admin_desktop_en_store_manager_ss_payouts.jpg](admin_desktop_en_store_manager_ss_payouts.jpg)
 - /en/store-manager/ss-reviews/ → HTTP 200 · inline 296 KB · player files · [admin_desktop_en_store_manager_ss_reviews.jpg](admin_desktop_en_store_manager_ss_reviews.jpg)
 - /en/store-manager/ss-settings/ → HTTP 200 · inline 296 KB · player files · [admin_desktop_en_store_manager_ss_settings.jpg](admin_desktop_en_store_manager_ss_settings.jpg)
-- /en/store-manager/ss-help/ → HTTP 200 · inline 296 KB · player files · [admin_desktop_en_store_manager_ss_help.jpg](admin_desktop_en_store_manager_ss_help.jpg)
+- /en/store-manager/ss-help/ → HTTP 200 · inline 295 KB · player files · [admin_desktop_en_store_manager_ss_help.jpg](admin_desktop_en_store_manager_ss_help.jpg)
 
 ## vendor: no credentials, skipped
