@@ -24,3 +24,4 @@
 21 2026-11-11 22:13:08 Products click on its own page scrolls to catalog (owner ok: ок)
 22 2026-11-11 23:56:42 audit fixes: no h-scroll, emoji off, old footer scripts gone, player-as-files ready (owner ok: віложи по окончанию)
 23 2026-11-12 05:24:38 player code as cached files (owner: сделай все сам)
+24 2026-11-12 06:11:47 player keeps playing on menu navigation
