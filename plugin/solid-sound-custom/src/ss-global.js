@@ -255,7 +255,7 @@ function wire(hd,sh){
   /* links in our header always do a full load (the player keeps the track) */
   /* menu links switch pages without a reload while the player is playing (music keeps going);
      only the home page (its own app) still loads fully, and the player resumes there */
-  D.addEventListener('click',function(e){ var a=e.target.closest ? e.target.closest('#ssg a,#ssg-bar a,#ssg-sheet a') : null; if(a && isHome(a.href)) a.classList.add('no-ajax'); },true);
+  /* (12.11.2026) Home links switch without reload too: the player keeps playing everywhere */
   function markCur(){ path=normP(location.pathname); D.querySelectorAll('#ssg a[href],#ssg-bar a[href]').forEach(function(a){ if(a.id==='ssg-promo'||a.classList.contains('g-logo')) return; var it=a.closest('.g-it'), on=isCur(a.getAttribute('href')); a.classList.toggle('cur',on); }); D.querySelectorAll('#ssg .g-nav .g-it').forEach(function(it){ var top=it.querySelector(':scope > .g-a'); if(top && it.querySelector('.g-dd')) top.classList.toggle('cur',!!it.querySelector('.g-dd a.cur')||(function(h){ return !!h && isCur(h); })(top.getAttribute('data-h')||top.getAttribute('href')||'')||inSec(((top.querySelector('.g-l')||{}).textContent||'').trim())); }); }
   D.addEventListener('ssp:url',markCur); D.addEventListener('ssp:navigated',markCur); window.addEventListener('popstate',function(){ setTimeout(markCur,50); });
 }

@@ -18,8 +18,7 @@
       var w=b.parentElement; if(w ? !w.contains(t) : false){ b.click(); }
     });
   },true);
-  /* links from the new home always do a full page load, so other pages get their own header */
-  document.addEventListener('click',function(e){ var a=e.target.closest ? e.target.closest('a') : null; if(a) a.classList.add('no-ajax'); },true);
+  /* (12.11.2026) links from home now switch pages WITHOUT reload (music keeps playing); other pages build their own header */
   /* chat bubble above the bottom app bar on phones; normal position when the chat is open */
   function tdFix(f){ var up=(f.offsetHeight < 300) ? window.innerWidth < 761 : false; var v=up ? 'translateY(-84px)' : 'none'; if(f.style.transform!==v){ f.style.setProperty('transform',v,'important'); } }
   window.ssOnDom(function(){ var f=document.getElementById('tidio-chat-iframe'); if(!f ? true : f.ssRo) return; f.ssRo=1; tdFix(f); if(window.ResizeObserver) new ResizeObserver(function(){ tdFix(f); }).observe(f); });
@@ -35,7 +34,8 @@
       if(f){ var r=f.getBoundingClientRect(); base=(window.innerHeight-r.top)+6; } else { base=(window.innerWidth < 761) ? 96 : 24; }
       if(base > window.innerHeight*0.6) base=(window.innerWidth < 761) ? 180 : 110;
       t.style.bottom=base+'px';
-      t.style.display=(window.scrollY > 500) ? 'flex' : 'none';
+      /* phones: no floating back-to-top (it covered text next to the chat bubble; Home is in the bottom bar) */
+      t.style.display=(window.scrollY > 500 && window.innerWidth > 760) ? 'flex' : 'none';
     }
     var plP=0; function plQ(){ if(plP) return; plP=1; requestAnimationFrame(function(){ plP=0; place(); }); }
     window.addEventListener('scroll',plQ,{passive:true}); window.addEventListener('resize',plQ,{passive:true}); plQ();
