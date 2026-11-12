@@ -84,6 +84,10 @@ var css=[
 '.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
 '.l-main{overflow-x:clip}',
 'body.ss-newhome #ssg,body.ss-newhome #ssg-bar,body.ss-newhome #ssg-promo,body.ss-newhome #ssg-sheet{display:none!important}',
+/* closed player must not peek out above the phone bottom bar (it was sliding down only its own height) */
+'#ssp:not(.is-open){visibility:hidden!important;pointer-events:none!important}',
+/* (12.11.2026 QA on Samsung A31 / iPhone) no stray <br> gaps in the All products carousel; catalog toolbar = one compact row on phones; phone selects not clipped; free-zone chips centred */
+'.ssh br{display:none!important}@media(max-width:760px){.sstb{flex-wrap:nowrap!important;gap:6px!important;padding:6px 8px!important;align-items:center!important}.sstb .sstb-lead{flex:none!important;margin:0!important}.sstb .sstb-count{display:none!important}.sstb .w-order{flex:1 1 auto!important;min-width:0!important;margin:0!important;order:3}.sstb .sstb-filters{flex:none!important;margin:0!important;padding:0!important;min-height:0!important;order:2}.sstb .sstb-filters *{margin-top:0!important;margin-bottom:0!important}.sstb form.w-filter{padding:0!important;margin:0!important;min-height:0!important}.sstb .sstb-active{flex-basis:100%!important;order:4}select{height:auto!important;min-height:44px;line-height:1.3!important;padding-top:10px!important;padding-bottom:10px!important;text-overflow:ellipsis}.ssf-chip span{line-height:1.2!important}}',
 '#ssg .g-in{display:flex;align-items:center;gap:10px;padding:10px 24px;max-width:none;min-height:72px}',
 '#ssg a{text-decoration:none!important}',
 '#ssg .g-logo{flex:none;display:block;width:52px;margin-right:6px;-webkit-tap-highlight-color:transparent;cursor:pointer}#ssg .g-logo svg{display:block;width:100%;height:auto;transform-origin:50% 60%;transition:transform .34s cubic-bezier(.34,1.8,.5,1),filter .22s}#ssg .g-logo.ss-press svg{transform:scale(.86) translateY(1px);filter:brightness(.75);transition:transform .07s ease-out,filter .07s}',

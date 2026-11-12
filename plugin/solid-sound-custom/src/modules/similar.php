@@ -65,6 +65,15 @@ add_action( 'wp', function () {
 	}, $pr );
 }, 30 );
 
+/* phones: two even columns instead of one narrow column */
+add_action( 'wp_head', function () {
+	if ( ! function_exists( 'is_product' ) || ! is_product() ) return;
+	echo '<style id="ss-sim-css">@media(max-width:760px){.single-product section.related ul.products{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;overflow:visible!important;padding:0!important}'
+		. '.single-product section.related ul.products li.product{width:auto!important;max-width:none!important;flex:none!important;margin:0!important;padding:8px 8px 10px!important}'
+		. '.single-product section.related ul.products li.product .button{width:100%!important;text-align:center!important;padding:8px 6px!important;font-size:13px!important}'
+		. '.single-product section.related ul.products li.product h2{font-size:14px!important}.single-product section.related>h2{font-size:22px!important}}</style>';
+}, 60 );
+
 add_filter( 'woocommerce_product_related_products_heading', function () { return 'Similar sounds you may like'; } );
 
 /* product saved -> forget cached lists */

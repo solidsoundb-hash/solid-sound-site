@@ -90,7 +90,7 @@ const AUDIT = () => {
       await page.waitForTimeout(4000);
       const a = await page.evaluate(AUDIT);
       const plays0 = await page.evaluate(() => window.__plays || 0);
-      await page.screenshot({ path: `${OUT}/${dn}_${slug(p)}.jpg`, type: 'jpeg', quality: 55, fullPage: true }).catch(() => {});
+      await page.screenshot({ path: `${OUT}/${dn}_${slug(p)}.jpg`, type: 'jpeg', quality: 55, fullPage: true, timeout: 45000 }).catch(() => {});
       report.push(`## ${dn} ${p} → ${st}${a.blocked ? ' BLOCKED' : ''} · sw ${a.sw}/${a.W}${plays0 ? ' · ⚠ AUDIO PLAYED ON LOAD ' + plays0 : ''}`);
       for (const k of ['overflow', 'tiny', 'small', 'broken']) if (a[k].length) report.push(`- ${k}: ` + a[k].join(' | '));
       if (process.env.QA_CLICK && !a.blocked) {
@@ -111,6 +111,7 @@ const AUDIT = () => {
       }
       if (errs.length) report.push('- errors: ' + [...new Set(errs)].slice(0, 5).join(' | '));
       await page.close();
+      fs.writeFileSync(`${OUT}/report.md`, report.join('\n') + '\n');
       await sleep(6000);
     }
     await ctx.close();
