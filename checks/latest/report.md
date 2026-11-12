@@ -1,4 +1,4 @@
-# Site check 2026-11-12T21:11:06.495Z
+# Site check 2026-11-12T21:19:00.483Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 187 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -8,7 +8,8 @@
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
-- /product/infinity/ → HTTP 200 · inline 200 KB · player files · [guest_phone_product_infinity.jpg](guest_phone_product_infinity.jpg)
+- /product/infinity/ → HTTP 200 · ⚠ 1 console errors · inline 200 KB · player files · [guest_phone_product_infinity.jpg](guest_phone_product_infinity.jpg)
+    - console: Permissions policy violation: compute-pressure is not allowed in this document.
 - /en/all-products/ → HTTP 200 · inline 188 KB · player files · [guest_phone_en_all_products.jpg](guest_phone_en_all_products.jpg)
 - /en/vendor-register/ → HTTP 200 · inline 228 KB · player files · [guest_phone_en_vendor_register.jpg](guest_phone_en_vendor_register.jpg)
 - /sell/ → HTTP 200 · inline 179 KB · player files · [guest_phone_sell.jpg](guest_phone_sell.jpg)
@@ -56,7 +57,7 @@
 - /en/my-account/ → HTTP 200 · inline 193 KB · player files · [admin_desktop_en_my_account.jpg](admin_desktop_en_my_account.jpg)
 - /en/store-manager/ → HTTP 200 · inline 313 KB · player files · [admin_desktop_en_store_manager.jpg](admin_desktop_en_store_manager.jpg)
 - /en/store-manager/ss-products/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_products.jpg](admin_desktop_en_store_manager_ss_products.jpg)
-- /add-product/ → HTTP 200 · inline 0 KB · [admin_desktop_add_product.jpg](admin_desktop_add_product.jpg)
+- /add-product/ → HTTP 200 · inline 330 KB · player files · [admin_desktop_add_product.jpg](admin_desktop_add_product.jpg)
 - /en/store-manager/ss-earnings/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_earnings.jpg](admin_desktop_en_store_manager_ss_earnings.jpg)
 - /en/store-manager/ss-payouts/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_payouts.jpg](admin_desktop_en_store_manager_ss_payouts.jpg)
 - /en/store-manager/ss-reviews/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_reviews.jpg](admin_desktop_en_store_manager_ss_reviews.jpg)
