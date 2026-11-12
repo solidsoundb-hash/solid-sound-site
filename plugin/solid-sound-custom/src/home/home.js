@@ -64,7 +64,9 @@
     if(!e.target.closest) return;
     var b=e.target.closest('#ss-app button'); if(!b) return;
     if(b.closest('header')) return; var lab=b.getAttribute('aria-label')||''; if(!/^(Play|Pause|Stop)/i.test(lab)) return;
-    var n=b, cov=null; while(n){ if(n.querySelector){ cov=n.querySelector('.ss-cov'); if(cov) break; } n=n.parentElement; }
+    if(b.closest('.ss-ab,.ssx')) return; /* examples and the first screen have their own players */
+    /* the product cover must be in the same card: stop as soon as a parent holds more than one cover (= a list of cards) */
+    var n=b, cov=null, lv=0; while(n && lv++<8){ if(n.querySelectorAll){ var cs=n.querySelectorAll('.ss-cov'); if(cs.length>1) break; if(cs.length===1){ cov=cs[0]; break; } } n=n.parentElement; }
     var name=cov?(cov.getAttribute('aria-label')||'').replace(/^Open /,''):'';
     if(!name){ if(/Pause|Stop/i.test(lab)){AU.pause();CUR='';} return; }
     /* demos of ranked products (window.SS_CATALOG, printed by the server); added here because the app data loads later */
@@ -293,7 +295,7 @@ document.addEventListener('click',function(e){
     [['b','pb'],['a','pa']].forEach(function(k){ var p=b.getAttribute('data-'+k[1])||''; var l=w.querySelectorAll('i.'+k[0]); if(l[0]) l[0].style.backgroundImage=svg(p,'#3A4766'); if(l[1]) l[1].style.backgroundImage=svg(p,'#F59E0B'); }); }); }
   (window.ssOnDom||function(f){f();})(paint);
   function ui(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ b.classList.toggle('on', b===cur && au && !au.paused); }); }
-  function tick(){ if(!cur||!cur.isConnected) return; var t=au.currentTime, d=au.duration||CUT*2, a=aft(cur);
+  function tick(){ if(!cur||!cur.isConnected||cur.getAttribute('data-src')!==au.getAttribute('src')){ if(au&&!au.paused) au.pause(); return; } var t=au.currentTime, d=au.duration||CUT*2, a=aft(cur);
     if(a){ if(t<CUT-0.05) au.currentTime=t=CUT; else if(t>=d-0.25) au.currentTime=t=CUT; }
     else if(t>=CUT-0.1) au.currentTime=t=0;
     var p=Math.max(0,Math.min(100,((a?t-CUT:t)/CUT)*100)); var w=cur.querySelector('.ss-abw'); if(w){ w.style.setProperty('--p',p+'%'); w.setAttribute('aria-valuenow',Math.round(p)); } }
@@ -313,11 +315,13 @@ document.addEventListener('click',function(e){
   /* when the home app re-renders and the card disappears, stop */
   document.addEventListener('ssp:navigated',function(){ if(au) au.pause(); });
 })();
-/* (12.11.2026) assistant BPM slider: the label follows the slider */
+/* (12.11.2026) assistant BPM: slider and number box move together; type any BPM */
 document.addEventListener('input',function(e){
-  var r=e.target; if(!r.closest || r.type!=='range' || !r.closest('#ss-app .ssx .rng')) return;
-  var v=+r.value, s=r.parentNode.querySelector('span'); if(s) s.textContent=(v-2)+'–'+(v+2)+' BPM';
+  var r=e.target; if(!r.closest || !r.closest('#ss-app .ssx .rng')) return;
+  var box=r.closest('.rng'), rg=box.querySelector('input[type=range]'), nb=box.querySelector('input[type=number]');
+  if(r===rg && nb) nb.value=rg.value; else if(r===nb && rg && nb.value!=='') rg.value=Math.max(60,Math.min(200,+nb.value));
 });
+document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='number' || !r.closest || !r.closest('#ss-app .ssx .rng')) return; if(r.value==='') return; r.value=Math.max(60,Math.min(200,Math.round(+r.value)||128)); });
 (window.ssOnDom||function(f){f();})(function(){
   document.querySelectorAll('#ss-app .ssx .rng input[data-v]').forEach(function(r){ if(r.getAttribute('data-i')) return; r.setAttribute('data-i','1'); r.value=r.getAttribute('data-v'); });
 });

@@ -18,10 +18,10 @@ module.exports = function (a, window) {
       {id:'e5',title:'Kick and bass — client track',genre:'Before / after',g:'mix',service:'Kick and bass working together',video:true,src:UP+'02-Example-Before-After.mp4'},
       {id:'e6',title:'In My Mind — client track',genre:'Before / after',g:'mix',service:'Sound design that makes transitions huge',video:true,src:UP+'Example-In-My-Mind.mp4'},
       {id:'e7',title:'Ava Kedavra — client track',genre:'Before / after',g:'master',service:'Mud and rumble removed, tight low end',video:true,src:UP+'Mixing-Example-AVA-KEDAVRA.mp4.mp4'},
-      {id:'p1',title:'Post-production reel',genre:'Film · Ads · Video',g:'video',service:'Sound design, Foley, music and mix',video:true,yt:YT+'lpjlnxQxvAY'},
-      {id:'p2',title:'Post-production reel 2',genre:'Film · Ads · Video',g:'video',service:'Sound for film, TV and ads',video:true,yt:YT+'vYIh0YHw33A'},
-      {id:'p3',title:'Sound design for video — after',genre:'Film · Ads · Video',g:'video',service:'Atmospheres, effects and final mix',video:true,yt:YT+'SEFtbYJUvvo'},
-      {id:'p4',title:'Audio post — after',genre:'Film · Ads · Video',g:'video',service:'Cleanup, restoration and mix',video:true,yt:YT+'AoHIenCHQY4'}
+      {id:'p1',title:'Film & ads showreel',genre:'Film · Ads · Video',g:'video',service:'Sound design, Foley, music and mix',video:true,yt:YT+'lpjlnxQxvAY'},
+      {id:'p2',title:'Sound for TV & ads',genre:'Film · Ads · Video',g:'video',service:'Sound for film, TV and ads',video:true,yt:YT+'vYIh0YHw33A'},
+      {id:'p3',title:'Sound design for video',genre:'Film · Ads · Video',g:'video',service:'Atmospheres, effects and final mix',video:true,yt:YT+'SEFtbYJUvvo'},
+      {id:'p4',title:'Audio cleanup & restoration',genre:'Film · Ads · Video',g:'video',service:'Cleanup, restoration and mix',video:true,yt:YT+'AoHIenCHQY4'}
     ];
     /* (12.11.2026) music examples play as audio with a real waveform (before = first 7.5 s, after = last 7.5 s of the old clip) */
     var PK=JSON.parse(require('fs').readFileSync(require('path').join(__dirname,'..','media','ab','peaks.json'),'utf8'));

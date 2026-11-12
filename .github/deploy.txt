@@ -38,3 +38,4 @@
 34 2026-11-12 21:13:56 home first screen: real products/services and prices, one studio calculator (old ones redirect), Sell -> dashboard for creators, junk product hidden (owner ok: выложи все как только будет готово / сделай и выложи)
 35 2026-11-12 21:26:02 home: examples as waveform player with before/after switch, BPM slider fix (owner ok: сделай и выложи)
 36 2026-11-12 21:30:09 home: line icons in the site style instead of emoji on the first screen (owner ok: сделай и выложи)
+37 2026-11-12 21:43:09 home: pause on examples no longer starts a product track, aligned example cards, clear video titles, type BPM (owner ok: выкладывай все)

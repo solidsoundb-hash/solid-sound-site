@@ -65,3 +65,4 @@
 .ssx{max-width:1200px;margin:0 auto 8px;font-family:'Exo 2',system-ui,sans-serif;color:#E5E7EB}.ssx .chips a{display:inline-flex;align-items:center;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:#131B2E;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}.ssx .chips a:hover{border-color:#F59E0B;color:#F59E0B}.ssx a.cta,.ssx a.gbtn{text-decoration:none}
 @media (max-width:760px){.ssx{margin:0 12px 8px}}
 .ssx .chips.fixed span{cursor:default}
+.ssx .rng .bpm{display:inline-flex;align-items:center;gap:6px;color:#CBD5E1;font-weight:700}.ssx .rng .bpm input{width:64px;height:34px;padding:0 8px;border-radius:10px;border:1px solid var(--line);background:#131B2E;color:#fff;font:inherit;font-weight:700;text-align:center;-moz-appearance:textfield}.ssx .rng .bpm input::-webkit-inner-spin-button{opacity:.6}
