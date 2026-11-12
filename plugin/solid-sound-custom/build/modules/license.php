@@ -16,7 +16,7 @@ add_action( 'woocommerce_single_product_summary', function () {
 	$fmt = function_exists( 'ss_pd_format' ) ? ss_pd_format( $product->get_id() ) : 'templates';
 	$what = 'music' === $fmt ? 'Royalty-free for videos, podcasts and business projects' : 'Royalty-free for your releases';
 	echo '<div class="ss-lic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>'
-		. '<span><b>' . esc_html( $what ) . '</b> · instant download · personal license certificate after purchase. '
+		. '<span><b>' . esc_html( $what ) . '</b> · personal license certificate after purchase. '
 		. '<a href="' . esc_url( ss_lic_url() ) . '" target="_blank" rel="noopener">License details</a></span></div>';
 }, 32 );
 

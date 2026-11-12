@@ -82,6 +82,7 @@ var css=[
 'body.admin-bar #ssg{top:32px}@media (max-width:782px){body.admin-bar #ssg{top:46px}}@media (max-width:600px){body.admin-bar #ssg{top:0}}',
 '#ssg *{box-sizing:border-box}',
 '.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
+'.l-main{overflow-x:clip}',
 '#ssg .g-in{display:flex;align-items:center;gap:10px;padding:10px 24px;max-width:none;min-height:72px}',
 '#ssg a{text-decoration:none!important}',
 '#ssg .g-logo{flex:none;display:block;width:52px;margin-right:6px;-webkit-tap-highlight-color:transparent;cursor:pointer}#ssg .g-logo svg{display:block;width:100%;height:auto;transform-origin:50% 60%;transition:transform .34s cubic-bezier(.34,1.8,.5,1),filter .22s}#ssg .g-logo.ss-press svg{transform:scale(.86) translateY(1px);filter:brightness(.75);transition:transform .07s ease-out,filter .07s}',

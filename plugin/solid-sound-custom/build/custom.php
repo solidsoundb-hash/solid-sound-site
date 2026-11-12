@@ -961,7 +961,7 @@ if ( ! function_exists( 'ss_trust_block' ) ) {
 		if ( ! $product->is_downloadable() && ! $product->is_virtual() ) return;
 		echo '<ul class="ss-trust">'
 			. '<li>Instant download after payment</li>'
-			. '<li>Royalty-free &ndash; <a href="' . esc_url( home_url( '/license/' ) ) . '">license terms</a></li>'
+			/* royalty-free / license: shown once, in the green license box (modules/license.php) */
 			. '<li>Secure payment: card &amp; PayPal</li>'
 			. '<li><a href="' . esc_url( home_url( '/refund_returns/' ) ) . '">Refund policy</a> &middot; <a href="' . esc_url( home_url( '/contacts/' ) ) . '">Questions?</a></li>'
 			. '</ul>';
