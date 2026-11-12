@@ -74,3 +74,6 @@ button:has(path[d^="M6.87"]),.ssh-play{background:transparent!important;border-c
 #ss-app .ss-nav a:not(.ss-drop a):hover,#ss-app .ss-nav button[aria-expanded]:hover,#ss-app .ss-nav button[aria-expanded="true"]{background:rgba(255,255,255,.05)!important;color:#fff!important}
 
 html,body{overflow-x:clip!important}
+
+/* no-reload navigation into the home app: hide what the previous page left outside the content */
+body.ss-newhome .l-header,body.ss-newhome .ssf,body.ss-newhome #ssg,body.ss-newhome #ssg-bar,body.ss-newhome #ssg-promo{display:none!important}

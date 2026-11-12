@@ -1,6 +1,6 @@
 (function(){
-  /* arrived here via the player's AJAX navigation (old theme header still on screen): load the home page properly */
-  if(document.querySelector('.l-header')){ location.replace(location.href); return; }
+  /* arrived via the player's no-reload navigation: the theme header / site footer of the previous page are hidden by CSS
+     (body.ss-newhome) instead of reloading, so the music keeps playing (owner 12.11.2026) */
   document.body.classList.add('ss-newhome');
   /* play icon = the triangle from the SD logo, same on every page */
   window.SS_TRI='M6.87 3.80L6.80 20.23L6.95 20.30L19.40 12.49L19.47 11.98L19.32 11.83L7.09 3.80ZM9.23 8.07L15.57 11.98L15.57 12.27L15.57 12.57L15.34 12.71L9.16 16.32L9.08 15.73L9.08 8.22Z';

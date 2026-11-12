@@ -10,13 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ss_footer_enabled() {
 	if ( is_admin() ) return false;
-	if ( function_exists( 'ss_home_is_app_page' ) && ss_home_is_app_page() ) return false;
+	/* printed on the home page too (hidden there by CSS): the player switches pages without reload, so it must exist when leaving home */
 	return true;
 }
 
 add_action( 'wp_head', function () {
 	if ( ! ss_footer_enabled() ) return;
-	echo '<style id="ss-foot-css">.l-footer{display:none!important}'
+	echo '<style id="ss-foot-css">.l-footer{display:none!important}body.ss-newhome .ssf{display:none!important}'
 		. '.ssf{display:block;width:100%;box-sizing:border-box;clear:both;background:#131B2E;border-top:1px solid rgba(255,255,255,.08);padding:24px 0 28px;color:#E5E7EB;font-family:"Exo 2",system-ui,sans-serif;font-size:14px;line-height:1.4}'
 		. '.ssf .w{max-width:1200px;margin:0 auto;padding:0 24px;box-sizing:border-box}'
 		. '.ssf .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px}'

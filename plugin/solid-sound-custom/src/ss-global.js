@@ -67,7 +67,7 @@ var FAV={t:'Favorites',i:'fav',h:logged ? MYA+'#favourites' : MYA};
 function normP(p){ p=(p||'/').toLowerCase().replace(/[/]+$/,'')||'/'; return p.replace(/^[/](en|de|fr|es|it|pt|ua|uk|pl|ru)(?=[/]|$)/,'')||'/'; }
 var path=normP(location.pathname);
 function isHome(h){ try{ return normP(new URL(h,location.href).pathname)==='/'; }catch(e){ return false; } }
-function go(h){ if(isHome(h) || !(window.sspGo && window.sspGo(h))) location.href=h; }
+function go(h){ if(!(window.sspGo && window.sspGo(h))) location.href=h; }
 function isCur(h){ try{ return normP(new URL(h,location.href).pathname)===path; }catch(e){ return false; } }
 /* a whole section lights up its menu item (product pages -> Products, calculators -> Services ...) */
 var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator)([/]|$)/,FAQ:/^[/](faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/};
@@ -83,6 +83,7 @@ var css=[
 '#ssg *{box-sizing:border-box}',
 '.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
 '.l-main{overflow-x:clip}',
+'body.ss-newhome #ssg,body.ss-newhome #ssg-bar,body.ss-newhome #ssg-promo,body.ss-newhome #ssg-sheet{display:none!important}',
 '#ssg .g-in{display:flex;align-items:center;gap:10px;padding:10px 24px;max-width:none;min-height:72px}',
 '#ssg a{text-decoration:none!important}',
 '#ssg .g-logo{flex:none;display:block;width:52px;margin-right:6px;-webkit-tap-highlight-color:transparent;cursor:pointer}#ssg .g-logo svg{display:block;width:100%;height:auto;transform-origin:50% 60%;transition:transform .34s cubic-bezier(.34,1.8,.5,1),filter .22s}#ssg .g-logo.ss-press svg{transform:scale(.86) translateY(1px);filter:brightness(.75);transition:transform .07s ease-out,filter .07s}',
@@ -255,7 +256,7 @@ function wire(hd,sh){
   /* menu links switch pages without a reload while the player is playing (music keeps going);
      only the home page (its own app) still loads fully, and the player resumes there */
   D.addEventListener('click',function(e){ var a=e.target.closest ? e.target.closest('#ssg a,#ssg-bar a,#ssg-sheet a') : null; if(a && isHome(a.href)) a.classList.add('no-ajax'); },true);
-  function markCur(){ path=normP(location.pathname); D.querySelectorAll('#ssg a[href],#ssg-bar a[href]').forEach(function(a){ if(a.id==='ssg-promo'||a.classList.contains('g-logo')) return; var it=a.closest('.g-it'), on=isCur(a.getAttribute('href')); a.classList.toggle('cur',on); }); D.querySelectorAll('#ssg .g-nav .g-it').forEach(function(it){ var top=it.querySelector(':scope > .g-a'); if(top && it.querySelector('.g-dd')) top.classList.toggle('cur',!!it.querySelector('.g-dd a.cur')||isCur(top.getAttribute('data-h')||top.getAttribute('href')||'')||inSec(((top.querySelector('.g-l')||{}).textContent||'').trim())); }); }
+  function markCur(){ path=normP(location.pathname); D.querySelectorAll('#ssg a[href],#ssg-bar a[href]').forEach(function(a){ if(a.id==='ssg-promo'||a.classList.contains('g-logo')) return; var it=a.closest('.g-it'), on=isCur(a.getAttribute('href')); a.classList.toggle('cur',on); }); D.querySelectorAll('#ssg .g-nav .g-it').forEach(function(it){ var top=it.querySelector(':scope > .g-a'); if(top && it.querySelector('.g-dd')) top.classList.toggle('cur',!!it.querySelector('.g-dd a.cur')||(function(h){ return !!h && isCur(h); })(top.getAttribute('data-h')||top.getAttribute('href')||'')||inSec(((top.querySelector('.g-l')||{}).textContent||'').trim())); }); }
   D.addEventListener('ssp:url',markCur); D.addEventListener('ssp:navigated',markCur); window.addEventListener('popstate',function(){ setTimeout(markCur,50); });
 }
 
@@ -487,4 +488,6 @@ D.addEventListener('pointerdown',function(e){ var a=lgOf(e.target); if(a) a.clas
 ['pointerup','pointercancel','pointerleave'].forEach(function(ev){ D.addEventListener(ev,function(e){ var a=lgOf(e.target); if(a) setTimeout(function(){ a.classList.remove('ss-press'); },60); },true); });
 D.addEventListener('click',function(e){ var a=lgOf(e.target); if(!a) return; if(e.metaKey ? true : e.ctrlKey) return; e.preventDefault(); a.classList.add('ss-press'); var h=a.href; setTimeout(function(){ a.classList.remove('ss-press'); },110); setTimeout(function(){ go(h); },230); },true);
 if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',mount); else mount();
+/* page switched by the player without reload (e.g. from the home app to a shop page): the menu must exist there too */
+D.addEventListener('ssp:navigated',function(){ if(!D.getElementById('ssg')) mount(); });
 })();

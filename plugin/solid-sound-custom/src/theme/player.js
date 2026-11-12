@@ -439,7 +439,8 @@ function scan(root){
 /* ============================================================
    AJAX NAVIGATION (only while the player is open)
    ============================================================ */
-var NO_AJAX=/^\/(wp-admin|wp-login|wp-json|cart|checkout|my-account|add-product|store-manager|forum|services-calculator|mastering-album-calculator|feed|wcfm|vendor-register|lost-password)/i;
+/* (12.11.2026 owner) music must not stop on ANY page: only admin, login/logout, payment (checkout) and the vendor panel still load fully */
+var NO_AJAX=/^\/([a-z]{2}\/)?(wp-admin|wp-login|wp-json|checkout|add-product|store-manager|feed|wcfm|lost-password|my-account\/customer-logout)/i;
 var loadBar=null;
 function progressBar(on){if(!loadBar){loadBar=el('div','ssp-loadbar');document.body.appendChild(loadBar)}loadBar.classList.toggle('is-on',on)}
 function canAjax(a,e){
@@ -449,7 +450,6 @@ function canAjax(a,e){
   var href=a.getAttribute('href')||'';if(!href||href.charAt(0)==='#'||/^(javascript|mailto|tel):/i.test(href))return false;
   var u;try{u=new URL(a.href,location.href)}catch(x){return false}
   if(u.origin!==location.origin)return false;
-  if(/^\/([a-z]{2}\/?)?$/i.test(u.pathname))return false; /* home page is its own app: full load, the player resumes */
   if(NO_AJAX.test(u.pathname)||/add-to-cart|add_to_wishlist|wc-ajax|action=|customize|preview=/i.test(u.search))return false;
   if(/\.(mp3|wav|zip|rar|pdf|jpe?g|png|gif|webp|svg|xml|txt|als)$/i.test(u.pathname))return false;
   if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return false;
@@ -497,7 +497,7 @@ function reinitTheme(main){
   try{$(document.body).trigger('post-load')}catch(e){}
 }
 function markMenu(){document.querySelectorAll('#page-header .menu-item').forEach(function(li){var a=li.querySelector(':scope > a');li.classList.toggle('current-menu-item',!!(a&&a.href&&a.href.split('#')[0].replace(/\/$/,'')===location.href.split('#')[0].split('?')[0].replace(/\/$/,'')))})}
-var navToken=0;
+var navToken=0,homeRuns=0;
 function navigate(url,push){
   var my=++navToken;progressBar(true);
   return fetch(url,{credentials:'same-origin',headers:{'X-SSP-Ajax':'1'}}).then(function(r){
@@ -514,7 +514,7 @@ function navigate(url,push){
     syncHead(doc);
     document.title=doc.title;
     /* keep classes added by scripts (player, site menu, theme state, Woo js flag); take the rest from the new page */
-    var keep=[].filter.call(document.body.classList,function(c){return /^(ssp-|ssg-|ss-|state_|woocommerce-js$)/.test(c)});
+    var keep=[].filter.call(document.body.classList,function(c){return /^(ssp-|ssg-|ss-|state_|woocommerce-js$)/.test(c)&&c!=='ss-newhome'});
     document.body.className=doc.body.className;
     if(keep.some(function(c){return c.indexOf('state_')===0}))[].slice.call(document.body.classList).forEach(function(c){if(c.indexOf('state_')===0)document.body.classList.remove(c)});
     if(keep.indexOf('woocommerce-js')>=0)document.body.classList.remove('woocommerce-no-js');
@@ -534,12 +534,16 @@ function navigate(url,push){
         if(old.src){loadScript(old.src);return}
         runInline(old.textContent);
       });
+      /* home page app: mount it (the first visit loads its scripts above; later visits run the app script again) */
+      var app=imported.querySelector('#ss-app');
+      if(app&&!app.firstChild){var hs=[].filter.call(doc.querySelectorAll('script[src]'),function(x){return /home-app/.test(x.getAttribute('src'))})[0];
+        if(hs){var ns=document.createElement('script');ns.src=new URL(hs.getAttribute('src'),location.href).href+'#r'+(++homeRuns);document.body.appendChild(ns)}}
       reinitTheme(imported);scan(imported);
       try{if(window.fbq)window.fbq('track','PageView')}catch(e){}
       try{document.dispatchEvent(new CustomEvent('ssp:navigated',{detail:{url:res.url}}))}catch(e){}
       progressBar(false);
     });
-  }).catch(function(){if(my===navToken){location.href=url}});
+  }).catch(function(err){try{console.warn('[ssp] no-reload navigation failed, loading the page normally:',err&&err.message)}catch(x){}if(my===navToken){location.href=url}});
 }
 /* used by the site menu (logo, Products/Services buttons): switch page without stopping the music */
 window.sspGo=function(url){var a=document.createElement('a');a.href=url;var u=canAjax(a);if(!u)return false;navigate(u.href,true);return true};
