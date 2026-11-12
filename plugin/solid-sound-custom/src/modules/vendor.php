@@ -53,3 +53,67 @@ add_action( 'wp_head', function () {
 		. '</style>';
 }, 100 );
 
+
+/* (12.11.2026 owner) readable, calm dashboard: the upload form, "Get started" card, tables and buttons in the site colours */
+add_action( 'wp_head', function () {
+	if ( is_admin() || ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return;
+	$c = '#wcfm-main-contentainer';
+	$f = '#solid-sound-upload-form';
+	echo '<style id="ss-vendor-read">'
+		/* upload form: one dark panel, light readable text */
+		. "$f{background:#131B2E!important;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px!important;color:#E5E7EB!important}"
+		. "$f div,$f section,$f ul,$f li,$f p,$f fieldset,$f label,$f span,$f .acf-fields,$f .acf-field,$f .acf-input,$f .acf-label{background-color:transparent!important}"
+		. "$f,$f p,$f span,$f li,$f label,$f .acf-label label,$f .ss-wm-l,$f strong,$f b,$f h1,$f h2,$f h3{color:#E5E7EB!important}"
+		. "$f .description,$f .acf-label p,$f i,$f em,$f small{color:#94A3B8!important}"
+		. "$f ul.acf-radio-list li,$f ul.acf-checkbox-list li{border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:#0F1626!important}"
+		. "$f ul.acf-radio-list li:has(input:checked),$f ul.acf-checkbox-list li:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.1)!important}"
+		. "$f input[type=radio],$f input[type=checkbox]{accent-color:#F59E0B}"
+		. "$f [type=submit],$f button[type=submit],$c .ss-wm-send,$c .ss-ap-send{background:#F59E0B!important;color:#111!important;border:0!important;font-weight:800!important;border-radius:10px!important}"
+		. "$f .ss-req,$f .acf-required{color:#F59E0B!important}"
+		/* the white strip with the page title above the form */
+		. "$c .wcfm-collapse-content > div:first-child,$c .wcfm-page-headig{background:transparent!important}"
+		/* Get started card: dark with an orange edge instead of the purple gradient */
+		. "$c .ssw-card.ssw-start{background:#131B2E!important;border:1px solid rgba(245,158,11,.35)!important;color:#E5E7EB!important}"
+		. "$c .ssw-card.ssw-start *{color:#E5E7EB}$c .ssw-card.ssw-start small,$c .ssw-card.ssw-start p,$c .ssw-card.ssw-start .ssw-sub{color:#94A3B8!important}"
+		. "$c .ssw-card.ssw-start > div > div,$c .ssw-card.ssw-start li{background:rgba(255,255,255,.04)!important;border-color:rgba(255,255,255,.08)!important}"
+		. "$c .ssw-card.ssw-start a,$c .ssw-card.ssw-start button{background:#F59E0B!important;color:#111!important;border:0!important}"
+		/* tables */
+		. "$c table,$c thead,$c tbody,$c tr,$c th,$c td{background-color:transparent!important;color:#E5E7EB!important;border-color:rgba(255,255,255,.08)!important}"
+		. "$c thead th{color:#94A3B8!important;font-size:12px!important;letter-spacing:.04em}"
+		/* phones: icon labels must not run into each other */
+		. '@media(max-width:767px){#wcfm-content #wcfm_menu .wcfm_menu_items a.wcfm_menu_item{width:82px!important;min-width:82px!important}#wcfm-content #wcfm_menu .wcfm_menu_items a.wcfm_menu_item .text{font-size:9.5px!important;letter-spacing:0!important;overflow:hidden;text-overflow:ellipsis;max-width:78px}}'
+		. '</style>';
+}, 101 );
+
+/* ---------- authors see only their own area ---------- */
+function ss_vendor_only() {
+	return is_user_logged_in() && function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() && ! current_user_can( 'manage_woocommerce' );
+}
+/* no WordPress admin for authors (AJAX and form posts still work) */
+add_action( 'admin_init', function () {
+	if ( ! ss_vendor_only() || wp_doing_ajax() ) return;
+	$f = isset( $_SERVER['SCRIPT_NAME'] ) ? basename( (string) $_SERVER['SCRIPT_NAME'] ) : '';
+	if ( in_array( $f, array( 'admin-post.php', 'async-upload.php', 'media-upload.php' ), true ) ) return;
+	wp_safe_redirect( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) );
+	exit;
+} );
+add_filter( 'show_admin_bar', function ( $show ) { return ss_vendor_only() ? false : $show; } );
+/* inside the dashboard: only our sections + editing their own products */
+add_action( 'template_redirect', function () {
+	if ( ! ss_vendor_only() || ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return;
+	global $wp;
+	foreach ( array_keys( (array) $wp->query_vars ) as $k ) {
+		if ( 0 !== strpos( $k, 'wcfm-' ) ) continue;
+		if ( preg_match( '#^wcfm-(ss-[a-z0-9-]+|products-manage|profile|notices|notice-view|messages)$#', $k ) ) continue;
+		wp_safe_redirect( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) );
+		exit;
+	}
+}, 20 );
+/* authors: the menu shows only our sections (the plugin's own leftovers — orders, coupons, articles… — are removed) */
+add_action( 'wp_footer', function () {
+	if ( ! ss_vendor_only() || ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return;
+	echo '<script>(function(){function clean(){var m=document.getElementById("wcfm_menu");if(!m)return;'
+		. 'm.querySelectorAll(".wcfm_menu_items").forEach(function(d){var a=d.querySelector("a");var h=a?(a.getAttribute("href")||""):"";'
+		. 'if(/store-manager\/?$|store-manager\/ss-|add-product|logout|customer-logout/.test(h))return;d.remove()})}'
+		. '(window.ssOnDom||function(f){document.readyState!=="loading"?f():document.addEventListener("DOMContentLoaded",f)})(clean)})();</script>';
+}, 99 );
