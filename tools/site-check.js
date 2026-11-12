@@ -82,9 +82,9 @@ async function login(page, user, pass) {
         }));
         if (process.env.DOM_DUMP && /store-manager\/$|add-product/.test(p)) {
           // structure only (tags, ids, classes, sizes, position) — no text, no form values
-          const dom = await page.evaluate(() => { const out = []; const W = (e, d) => { if (d > 7 || out.length > 900) return; const r = e.getBoundingClientRect(), s = getComputedStyle(e); if (s.display === 'none') return;
+          const dom = await page.evaluate(() => { const out = []; const W = (e, d) => { if (d > 16 || out.length > 1400) return; const r = e.getBoundingClientRect(), s = getComputedStyle(e); if (s.display === 'none') return;
             out.push('  '.repeat(d) + e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + (typeof e.className === 'string' && e.className.trim() ? '.' + e.className.trim().split(/\s+/).slice(0, 4).join('.') : '') + ` [${Math.round(r.left)},${Math.round(r.top)} ${Math.round(r.width)}x${Math.round(r.height)} ${s.position}${s.zIndex !== 'auto' ? ' z' + s.zIndex : ''}]`);
-            [...e.children].forEach(k => W(k, d + 1)); }; W(document.body, 0); return out.join('\n'); });
+            [...e.children].forEach(k => W(k, d + 1)); }; W(document.getElementById('wcfm-main-content') || document.body, 0); return out.join('\n'); });
           fs.writeFileSync(`${OUT}/dom_${role}_${d.name}_${slug(p)}.txt`, dom);
         }
         const file = `${role}_${d.name}_${slug(p)}.jpg`;
