@@ -26,6 +26,7 @@ jobs:
       - run: npm i --no-save playwright@1.49.1
       - name: Check the site
         env:
+          DOM_DUMP: '1'
           PW_CHANNEL: chrome   # Google Chrome is preinstalled on GitHub runners: no download needed
           TEST_USER: ${{ secrets.TEST_USER }}
           TEST_PASS: ${{ secrets.TEST_PASS }}

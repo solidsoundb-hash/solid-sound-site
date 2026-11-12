@@ -2,3 +2,4 @@
 2 15:08:02 login fix
 2026-11-12T05:35:07Z inline/player check
 2026-11-12T16:07:28Z vendor pages audit
+2026-11-12T16:22:49Z vendor DOM dump
