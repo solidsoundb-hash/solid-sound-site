@@ -73,10 +73,13 @@ async function login(page, user, pass) {
           hscroll: document.documentElement.scrollWidth > window.innerWidth + 1,
           title: document.title.slice(0, 80),
           fatal: /critical error|Fatal error/i.test(document.body.innerText.slice(0, 5000)),
+          inlineKB: Math.round([...document.querySelectorAll('script:not([src]),style')].reduce((n, e) => n + e.textContent.length, 0) / 1024),
+          oldPlayer: [...document.querySelectorAll('script:not([src]),style')].some(e => /\.ssp\{|Solid Sound Player/.test(e.textContent)),
+          playerFiles: !!document.querySelector('link[href*="theme-player"],script[src*="theme-player"]'),
         }));
         const file = `${role}_${d.name}_${slug(p)}.jpg`;
         await page.screenshot({ path: `${OUT}/${file}`, type: 'jpeg', quality: 60, fullPage: false });
-        lines.push(`- ${p} → HTTP ${status}${info.hscroll ? ' · ⚠ horizontal scroll' : ''}${info.fatal ? ' · ❌ PHP ERROR' : ''}${errs.length ? ' · ⚠ ' + errs.length + ' console errors' : ''} · [${file}](${file})`);
+        lines.push(`- ${p} → HTTP ${status}${info.hscroll ? ' · ⚠ horizontal scroll' : ''}${info.fatal ? ' · ❌ PHP ERROR' : ''}${errs.length ? ' · ⚠ ' + errs.length + ' console errors' : ''} · inline ${info.inlineKB} KB${info.oldPlayer ? ' · ⚠ old inline player' : ''}${info.playerFiles ? ' · player files' : ''} · [${file}](${file})`);
         errs.slice(0, 5).forEach(e => lines.push('    - ' + e));
       }
       await ctx.close();
