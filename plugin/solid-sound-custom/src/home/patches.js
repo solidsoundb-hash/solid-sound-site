@@ -99,5 +99,9 @@ module.exports = function (a, window) {
     var LG_OLD = "logoW: isM ? 56 : 68, logoH: isM ? 38 : 46, logoWpx: isM ? '56px' : '68px'";
     if (a[0].split(LG_OLD).length !== 2) throw new Error('home: logo size not found');
     a[0]=a[0].split(LG_OLD).join("logoW: isM ? 44 : 52, logoH: isM ? 30 : 35, logoWpx: isM ? '44px' : '52px'");
+    /* (12.11.2026 owner) "All products →" under Best products leads to All products, not Templates */
+    var AP_OLD = '<a href="https://solid-sound.net/templates" style="display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border-radius: 10px; border: 1px solid #F59E0B; color: #F59E0B; font-weight: 700; font-size: 15px; text-decoration: none; box-sizing: border-box; width: {{moreW}}">All products →</a>';
+    if (a[0].split(AP_OLD).length !== 2) throw new Error('home: All products button not found');
+    a[0]=a[0].split(AP_OLD).join(AP_OLD.replace('https://solid-sound.net/templates','https://solid-sound.net/en/all-products/'));
   return a;
 };
