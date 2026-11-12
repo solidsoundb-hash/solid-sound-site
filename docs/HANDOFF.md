@@ -97,3 +97,11 @@
    затем включить WP Super Cache, Lighthouse «до/после» (база — `reports/baseline-2026-11-11.md`).
 7. SEO/AI-поиск: FAQ, schema.org, переводы; письма Brevo после Free pack; Cloudflare в конце.
 8. Напомнить владельцу: включить ограничение FTP по IP в конце; хостинг оплачен до 11.12.2026.
+
+## 9. 12.11.2026
+- Выкладка №23: код плеера (84 KB) больше не печатается из Theme Options — фильтр `ss_theme_code_from_files`
+  в загрузчике скрывает два поля Custom Code от темы (база не менялась), плеер грузится файлами
+  `theme-player-css/js` (`src/theme/`). Робот site-check теперь пишет «inline N KB» и «⚠ old inline player».
+- Осталось ~190 KB встроенного кода на каждой странице — следующая цель по скорости.
+- Google Sign-In: в консоли «The given origin is not allowed for the given client ID» — владельцу добавить
+  `https://solid-sound.net` в Authorized JavaScript origins клиента OAuth.
