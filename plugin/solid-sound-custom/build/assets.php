@@ -132,7 +132,7 @@ return array(
   'id' => null
  ),
  'ss-global' => array(
-  'f' => 'ss-global.c2b5223654.js',
+  'f' => 'ss-global.8a27b70b29.js',
   't' => 'js',
   'id' => null
  ),
