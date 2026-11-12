@@ -1,4 +1,4 @@
-# Site check 2026-11-12T14:15:39.003Z
+# Site check 2026-11-12T14:33:56.126Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 195 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -18,24 +18,23 @@
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
-- /product/infinity/ → HTTP 200 · ⚠ 1 console errors · inline 211 KB · player files · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
-    - console: Permissions policy violation: compute-pressure is not allowed in this document.
+- /product/infinity/ → HTTP 200 · inline 211 KB · player files · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
 - /en/all-products/ → HTTP 200 · inline 199 KB · player files · [guest_desktop_en_all_products.jpg](guest_desktop_en_all_products.jpg)
 
 ## user · phone
 - logged in: true
-- /en/ → HTTP 200 · inline 207 KB · player files · [user_phone_en.jpg](user_phone_en.jpg)
+- /en/ → HTTP 200 · inline 206 KB · player files · [user_phone_en.jpg](user_phone_en.jpg)
 - /en/my-account/ → HTTP 200 · inline 191 KB · player files · [user_phone_en_my_account.jpg](user_phone_en_my_account.jpg)
 - /en/my-account/orders/ → HTTP 200 · inline 191 KB · player files · [user_phone_en_my_account_orders.jpg](user_phone_en_my_account_orders.jpg)
 - /en/my-account/edit-account/ → HTTP 200 · inline 192 KB · player files · [user_phone_en_my_account_edit_account.jpg](user_phone_en_my_account_edit_account.jpg)
 - /en/my-account/edit-address/ → HTTP 200 · inline 252 KB · player files · [user_phone_en_my_account_edit_address.jpg](user_phone_en_my_account_edit_address.jpg)
 ## user · desktop
 - logged in: true
-- /en/ → HTTP 200 · inline 207 KB · player files · [user_desktop_en.jpg](user_desktop_en.jpg)
+- /en/ → HTTP 200 · inline 206 KB · player files · [user_desktop_en.jpg](user_desktop_en.jpg)
 - /en/my-account/ → HTTP 200 · inline 191 KB · player files · [user_desktop_en_my_account.jpg](user_desktop_en_my_account.jpg)
 - /en/my-account/orders/ → HTTP 200 · inline 191 KB · player files · [user_desktop_en_my_account_orders.jpg](user_desktop_en_my_account_orders.jpg)
 - /en/my-account/edit-account/ → HTTP 200 · inline 192 KB · player files · [user_desktop_en_my_account_edit_account.jpg](user_desktop_en_my_account_edit_account.jpg)
-- /en/my-account/edit-address/ → HTTP 200 · inline 252 KB · player files · [user_desktop_en_my_account_edit_address.jpg](user_desktop_en_my_account_edit_address.jpg)
+- /en/my-account/edit-address/ → HTTP 200 · inline 251 KB · player files · [user_desktop_en_my_account_edit_address.jpg](user_desktop_en_my_account_edit_address.jpg)
 
 ## admin · phone
 - logged in: true
@@ -43,6 +42,6 @@
 - /en/store-manager/ → HTTP 200 · inline 305 KB · player files · [admin_phone_en_store_manager.jpg](admin_phone_en_store_manager.jpg)
 ## admin · desktop
 - logged in: true
-- /en/my-account/ → HTTP 200 · inline 194 KB · player files · [admin_desktop_en_my_account.jpg](admin_desktop_en_my_account.jpg)
+- /en/my-account/ → HTTP 200 · inline 193 KB · player files · [admin_desktop_en_my_account.jpg](admin_desktop_en_my_account.jpg)
 - /en/store-manager/ → HTTP 200 · inline 305 KB · player files · [admin_desktop_en_store_manager.jpg](admin_desktop_en_store_manager.jpg)
 
