@@ -1,4 +1,4 @@
-# Site check 2026-11-12T21:50:38.292Z
+# Site check 2026-11-12T21:58:40.903Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 186 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -54,9 +54,7 @@
 ## admin · desktop
 - logged in: true
 - /en/my-account/ → HTTP 200 · inline 193 KB · player files · [admin_desktop_en_my_account.jpg](admin_desktop_en_my_account.jpg)
-- /en/store-manager/ → HTTP 200 · ⚠ 2 console errors · inline 313 KB · player files · [admin_desktop_en_store_manager.jpg](admin_desktop_en_store_manager.jpg)
-    - JS: mod_pagespeed_J7j2TN1bYE is not defined
-    - JS: mod_pagespeed_2wQEwK5Pbq is not defined
+- /en/store-manager/ → HTTP 200 · inline 313 KB · player files · [admin_desktop_en_store_manager.jpg](admin_desktop_en_store_manager.jpg)
 - /en/store-manager/ss-products/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_products.jpg](admin_desktop_en_store_manager_ss_products.jpg)
 - /add-product/ → HTTP 200 · inline 329 KB · player files · [admin_desktop_add_product.jpg](admin_desktop_add_product.jpg)
 - /en/store-manager/ss-earnings/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_earnings.jpg](admin_desktop_en_store_manager_ss_earnings.jpg)
