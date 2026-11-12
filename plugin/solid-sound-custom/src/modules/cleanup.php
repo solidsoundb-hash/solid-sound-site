@@ -40,3 +40,11 @@ function ss_cleanup_old_footer_scripts( $c ) {
 }
 add_filter( 'the_content', 'ss_cleanup_old_footer_scripts', 1 );
 add_filter( 'us_page_block_the_content', 'ss_cleanup_old_footer_scripts', 1 );
+
+/* 3. Forum hidden for now (owner 12.11.2026): no links in menus/footers (removed there), not indexed by search engines.
+   The forum and its data stay; to bring it back remove this block and add the links again. */
+add_filter( 'wp_robots', function ( $r ) {
+	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+	if ( preg_match( '#^/([a-z]{2}/)?(forum|community)(/|$)#', $p ) ) { $r['noindex'] = true; $r['nofollow'] = true; }
+	return $r;
+} );
