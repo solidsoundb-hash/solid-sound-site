@@ -33,3 +33,4 @@
 29 2026-11-12 18:33:48 author dashboard on phones + current menu item (owner ok: выложи все изменения)
 30 2026-11-12 18:50:58 author dashboard phone menu icons visible (owner ok: выложи все изменения)
 31 2026-11-12 20:39:31 creators: dark dashboard, guidelines, upload robot, auto specs, Telegram moderation (owner ok: да и выложи все по окончании)
+32 2026-11-12 20:56:50 readable author dashboard, authors only see their area, forum hidden (owner ok: короче выкладывай все)
