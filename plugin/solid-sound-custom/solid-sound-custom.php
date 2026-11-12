@@ -31,6 +31,18 @@ function ss_use_build() {
 	if ( $use && ! is_readable( __DIR__ . '/build/custom.php' ) ) $use = false;
 	return $use;
 }
+/* Theme Options -> Custom Code holds the player (84 KB, printed inline on every page). In the optimized build the
+   theme gets those two fields empty and the plugin serves the same code as cached files (see the wp_head /
+   wp_footer hooks below). The admin screen still shows the original code; nothing in the database changes. */
+add_filter( 'option_usof_options_' . ( defined( 'US_THEMENAME' ) ? US_THEMENAME : 'Impreza' ), 'ss_theme_code_from_files' );
+add_filter( 'option_usof_options_Impreza', 'ss_theme_code_from_files' );
+function ss_theme_code_from_files( $o ) {
+	if ( is_admin() || ! is_array( $o ) || ! function_exists( 'ss_use_build' ) || ! ss_use_build() || ! is_readable( __DIR__ . '/build/assets.php' ) ) return $o;
+	if ( isset( $o['custom_html_head'] ) && false !== strpos( (string) $o['custom_html_head'], '.ssp{' ) ) $o['custom_html_head'] = '';
+	if ( isset( $o['custom_html'] ) && false !== strpos( (string) $o['custom_html'], 'Solid Sound Player' ) ) $o['custom_html'] = '';
+	return $o;
+}
+
 /* Prints a cached file in place of a big inline <style>/<script> (same position, same conditions). */
 function ss_asset( $name, $mode = '' ) {
 	static $map = null;
