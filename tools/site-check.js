@@ -6,9 +6,12 @@ const fs = require('fs');
 const OUT = 'checks/latest';
 const S = 'https://solid-sound.net';
 const PAGES = {
-  guest: ['/en/', '/en/my-account/', '/product/infinity/', '/en/all-products/'],
+  guest: ['/en/', '/en/my-account/', '/product/infinity/', '/en/all-products/', '/en/vendor-register/', '/sell/'],
   user: ['/en/', '/en/my-account/', '/en/my-account/orders/', '/en/my-account/edit-account/', '/en/my-account/edit-address/'],
-  admin: ['/en/my-account/', '/en/store-manager/'],
+  admin: ['/en/my-account/', '/en/store-manager/', '/en/store-manager/ss-products/', '/add-product/', '/en/store-manager/ss-earnings/',
+    '/en/store-manager/ss-payouts/', '/en/store-manager/ss-reviews/', '/en/store-manager/ss-settings/', '/en/store-manager/ss-help/'],
+  // a real author account (secrets TEST_VENDOR_USER / TEST_VENDOR_PASS) — skipped until the owner adds it
+  vendor: ['/en/my-account/', '/en/store-manager/', '/en/store-manager/ss-products/', '/add-product/', '/en/store-manager/ss-earnings/', '/en/store-manager/ss-settings/'],
 };
 const DEVICES = [
   { name: 'phone', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, ua: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' },
@@ -46,7 +49,7 @@ async function login(page, user, pass) {
   fs.rmSync(OUT, { recursive: true, force: true }); fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const lines = ['# Site check ' + new Date().toISOString(), ''];
-  const who = { guest: null, user: [process.env.TEST_USER, process.env.TEST_PASS], admin: [process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS] };
+  const who = { guest: null, user: [process.env.TEST_USER, process.env.TEST_PASS], admin: [process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS], vendor: [process.env.TEST_VENDOR_USER, process.env.TEST_VENDOR_PASS] };
   for (const [role, cred] of Object.entries(who)) {
     if (cred && !(cred[0] && cred[1])) { lines.push(`## ${role}: no credentials, skipped`); continue; }
     for (const d of DEVICES) {

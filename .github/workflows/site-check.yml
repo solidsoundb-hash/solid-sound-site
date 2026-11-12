@@ -31,6 +31,8 @@ jobs:
           TEST_PASS: ${{ secrets.TEST_PASS }}
           TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
           TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+          TEST_VENDOR_USER: ${{ secrets.TEST_VENDOR_USER }}
+          TEST_VENDOR_PASS: ${{ secrets.TEST_VENDOR_PASS }}
         run: node tools/site-check.js
       - name: Save the result in the repo
         if: always()
