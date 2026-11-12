@@ -29,3 +29,27 @@ add_action( 'wp_head', function () {
 		. '#wcfm-content .wcfm-container,#wcfm-content .wcfm-content{max-width:100%!important;overflow-x:auto}'
 		. '}</style>';
 }, 99 );
+
+/* (12.11.2026 owner) dashboard in the site's dark look: WCFM's own white blocks, tables and inputs */
+add_action( 'wp_head', function () {
+	if ( is_admin() || ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return;
+	$c = '#wcfm-main-contentainer';
+	echo '<style id="ss-vendor-dark">'
+		. "$c #wcfm-content,$c .wcfm-collapse,$c .wcfm-collapse-content,$c .wcfm-page-headig{background:transparent!important;color:#E5E7EB!important}"
+		. "$c .wcfm-container,$c .wcfm-content,$c .page_collapsible,$c .wcfm_dashboard_stats_block,$c .wcfm-tabWrap,$c .wcfm_welcomebox_header,$c .dataTables_wrapper,$c table.dataTable,$c table.dataTable tbody tr,$c .wcfm-action-icon"
+		. "{background:#131B2E!important;color:#E5E7EB!important;border-color:rgba(255,255,255,.08)!important;box-shadow:none!important}"
+		. "$c table.dataTable thead th,$c table.dataTable tfoot th{background:#0F1626!important;color:#94A3B8!important;border-color:rgba(255,255,255,.08)!important}"
+		. "$c table.dataTable td{border-color:rgba(255,255,255,.06)!important;color:#E5E7EB!important}"
+		. "$c h1,$c h2,$c h3,$c h4,$c .wcfm-page-heading-text,$c .wcfm_dashboard_stats_block strong,$c label,$c .wcfm_title{color:#F3F4F6!important}"
+		. "$c p,$c .description,$c .instructions,$c small{color:#94A3B8}"
+		. "$c input[type=text],$c input[type=email],$c input[type=number],$c input[type=url],$c input[type=password],$c input[type=search],$c input[type=tel],$c select,$c textarea"
+		. "{background:#0B1220!important;color:#fff!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:10px!important;box-shadow:none!important}"
+		. "$c input::placeholder,$c textarea::placeholder{color:#64748B!important}"
+		. "$c a{color:#F59E0B}"
+		. "$c .wcfm_submit_button,$c input[type=submit],$c button.wcfm_submit_button,$c a.add_new_wcfm_ele_dashboard{background:#F59E0B!important;color:#111!important;border:0!important;border-radius:10px!important}"
+		. "$c #wcfm_menu{background:#0F1626!important}"
+		. "$c #wcfm_menu .wcfm_menu_items a.wcfm_menu_item{color:#CBD5E1!important}"
+		. "$c #wcfm_menu .wcfm_menu_items a.wcfm_menu_item.active,$c #wcfm_menu .wcfm_menu_items.ss-cur a.wcfm_menu_item{background:linear-gradient(135deg,#F59E0B,#D97706)!important;color:#111!important}"
+		. '</style>';
+}, 100 );
+

@@ -1750,7 +1750,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 		if ( ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return; ?>
 <style>
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item span.wcfmfa{border:0!important;background:rgba(255,255,255,.1)!important;width:44px!important;height:44px!important;line-height:44px!important;font-size:18px!important}
-#wcfm_menu .wcfm_menu_items a.wcfm_menu_item.active,#wcfm_menu .wcfm_menu_items.ss-cur a.wcfm_menu_item{background:linear-gradient(135deg,#7b8cf0,#7a55c4)!important;box-shadow:inset -5px 0 0 #fff!important}
+#wcfm_menu .wcfm_menu_items a.wcfm_menu_item.active,#wcfm_menu .wcfm_menu_items.ss-cur a.wcfm_menu_item{background:linear-gradient(135deg,#F59E0B,#D97706)!important;box-shadow:inset -5px 0 0 #fff!important}
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item.active span.wcfmfa{background:rgba(255,255,255,.22)!important}
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
@@ -1779,7 +1779,7 @@ if ( ! function_exists( 'ss_stub_pages' ) ) {
 		$s = preg_replace( '/^wcfm-/', '', (string) $ep );
 		if ( ! isset( $pages[ $s ] ) ) return;
 		$p = $pages[ $s ];
-		echo '<div class="collapse wcfm-collapse"><div class="wcfm-page-headig"><span class="wcfm-page-heading-text">' . esc_html( $p[0] ) . '</span></div><div class="wcfm-collapse-content"><div class="ssw-card" style="max-width:900px;margin:24px auto"><div class="ssw-h"><b>' . esc_html( $p[0] ) . '</b><span class="ssw-btn" style="opacity:.5;cursor:default">' . esc_html( $p[1] ) . '</span></div><p style="color:#6b7183;margin:0 0 18px">' . esc_html( $p[2] ) . '</p><div style="border:1px dashed #d5d9e2;border-radius:10px;padding:34px;text-align:center;color:#6b7183"><b style="display:block;color:#1d2130;font-size:17px;margin-bottom:4px">Coming soon</b>We are building this feature. You will get an email when it is ready.</div></div></div></div>';
+		echo '<div class="collapse wcfm-collapse"><div class="wcfm-page-headig"><span class="wcfm-page-heading-text">' . esc_html( $p[0] ) . '</span></div><div class="wcfm-collapse-content"><div class="ssw-card" style="max-width:900px;margin:24px auto"><div class="ssw-h"><b>' . esc_html( $p[0] ) . '</b><span class="ssw-btn" style="opacity:.5;cursor:default">' . esc_html( $p[1] ) . '</span></div><p style="color:#94A3B8;margin:0 0 18px">' . esc_html( $p[2] ) . '</p><div style="border:1px dashed rgba(255,255,255,.1);border-radius:10px;padding:34px;text-align:center;color:#94A3B8"><b style="display:block;color:#E5E7EB;font-size:17px;margin-bottom:4px">Coming soon</b>We are building this feature. You will get an email when it is ready.</div></div></div></div>';
 	}, 50 );
 }
 
@@ -5806,4 +5806,5 @@ require_once __DIR__ . '/modules/similar.php';
 require_once __DIR__ . '/modules/license.php';
 require_once __DIR__ . '/modules/bonus.php';
 require_once __DIR__ . '/modules/vendor.php';
+require_once __DIR__ . '/modules/creators.php';
 require_once __DIR__ . '/modules/cleanup.php';

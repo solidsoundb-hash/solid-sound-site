@@ -27,17 +27,17 @@ return array(
   'id' => 'ss-ap'
  ),
  'ss-wcfm-skin' => array(
-  'f' => 'ss-wcfm-skin.6ed66d67b5.css',
+  'f' => 'ss-wcfm-skin.1cd28263b7.css',
   't' => 'css',
   'id' => 'ss-wcfm-skin'
  ),
  'js-l2068' => array(
-  'f' => 'js-l2068.a0a8396f1f.js',
+  'f' => 'js-l2068.a89f73cd1a.js',
   't' => 'js',
   'id' => null
  ),
  'ss-cp' => array(
-  'f' => 'ss-cp.9ad6ef4502.css',
+  'f' => 'ss-cp.02bb67af13.css',
   't' => 'css',
   'id' => 'ss-cp'
  ),
