@@ -1654,12 +1654,6 @@ form.addEventListener('submit',function(e){
 }
 
 /* Solid Sound 14.10.2026: narrow phones header (logo vs social icons) */
-if ( ! function_exists( 'ss_narrow_header_css' ) ) {
-	function ss_narrow_header_css() { ?>
-<style id="ss-narrow">@media(max-width:420px){.l-header .w-socials{display:none!important}.l-header .w-popup .w-btn,.l-header a.w-btn{padding-left:.7em!important;padding-right:.7em!important}.l-header .w-btn .w-btn-label{display:none}.l-header .w-btn i{margin:0!important}}</style>
-<?php }
-	add_action( 'wp_head', 'ss_narrow_header_css', 99 );
-}
 
 /* ═══ Solid Sound — 14.10.2026: WCFM dashboard reskin (WeMake-style) + creator Get Started ═══ */
 if ( ! function_exists( 'ss_wd_is_page' ) ) {
@@ -1761,7 +1755,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2074'); ?>
+<?php ss_asset('js-l2068'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3005,12 +2999,6 @@ mark();var tq;new MutationObserver(function(ms){if(tq)return;for(var i=0;i<ms.le
 	}, 60 );
 }
 
-/* ═══ Solid Sound — 16.10.2026: header — language flag styled like the social icons, account button = person icon only ═══ */
-add_action( 'wp_footer', function () { if ( is_admin() ) return; ?>
-<?php ss_asset('ss-hdr2'); ?>
-<script>[].forEach.call(document.querySelectorAll('.l-header .w-popup-trigger.type_btn'),function(b){var l=b.querySelector('.w-btn-label');var t=l?l.textContent.trim():'Account';b.setAttribute('aria-label',t||'Account');b.setAttribute('title',t||'Account')});</script>
-<?php }, 30 );
-
 /* ═══ Solid Sound — 16.10.2026: product page layout (tags, big BUY, "What you'll learn" + specs/requirements, video, FAQ). Works for every product automatically. ═══ */
 if ( ! function_exists( 'ss_pd_t' ) ) {
 	function ss_pd_t( $k ) {
@@ -3585,13 +3573,6 @@ add_action( 'wp_head', function () {
 /* ═══ Solid Sound — 17.10.2026: product cover — water ripple effect under the cursor (WebGL, runs only while moving) ═══ */
 add_action( 'after_setup_theme', function () { remove_theme_support( 'wc-product-gallery-zoom' ); }, 100 );
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
-add_action( 'woocommerce_after_single_product', function () {
-	return; /* 11.11.2026 owner: no water-ripple effects (only logo press + icon animations stay) */
-	if ( ! function_exists( 'is_product' ) || ! is_product() ) return; ?>
-<style id="ss-ripple-css">.ss-ripple{position:absolute;opacity:0;transition:opacity .3s;border-radius:16px;z-index:2;cursor:pointer}</style>
-<?php ss_asset('ss-ripple-js'); ?>
-<?php }, 70 );
-
 /* ═══ Solid Sound — 17.10.2026: product grid — hover on cover plays muted YouTube preview (desktop only); click still opens popup with sound ═══ */
 add_action( 'wp_footer', function () {
 	return; /* 17.10.2026: hover preview switched off at the owner's request — cover click opens the video popup */
@@ -3704,29 +3685,6 @@ add_action( 'wp_footer', function () {
 	echo '<script>(function(){function tgt(h){if(!h||h.length<2)return null;var s;try{s=document.querySelector(h)}catch(e){return null}if(!s)return null;return s.querySelector(".sstb")||s.querySelector(".w-grid.layout_195")}function go(el,smooth){var hd=document.querySelector(".l-header");var off=(hd&&getComputedStyle(hd).position!=="static"?hd.getBoundingClientRect().height:0)+(document.getElementById("wpadminbar")?document.getElementById("wpadminbar").offsetHeight:0)+12;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-off,behavior:smooth?"smooth":"auto"})}document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href*=\"#\"]");if(!a)return;var u;try{u=new URL(a.href,location.href)}catch(x){return}if(u.pathname!==location.pathname||!u.hash)return;var el=tgt(u.hash);if(!el)return;e.preventDefault();e.stopImmediatePropagation();go(el,true);try{history.replaceState(null,"",u.hash)}catch(x){}},true);function onLoad(){var el=tgt(location.hash);if(el)setTimeout(function(){go(el,false)},60)}if(document.readyState==="complete")onLoad();else window.addEventListener("load",onLoad)})();</script>';
 }, 99 );
 
-/* ═══ Solid Sound — 17.10.2026: mobile — Best Products becomes a compact swipe strip (one row) so the product grid and filters start right below ═══ */
-add_action( 'wp_head', function () {
-	return; /* switched off 17.10.2026 at the owner's request — Best Products back to the original list */
-	echo '<style id="ss-top-mob">@media(max-width:767px){
-html body .ss-top{padding:12px 0 10px!important}
-html body .ss-top .ss-top-hd{margin:0 0 8px!important;padding:0 12px}
-html body .ss-top .ss-top-tabs{display:none!important}
-html body .ss-top ol.ss-top-l.is-active,html body .ss-top.tabbed ol.ss-top-l.is-active{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0!important;padding:0 12px 2px!important}
-html body .ss-top ol.ss-top-l.is-active::-webkit-scrollbar{display:none}
-html body .ss-top ol.ss-top-l.is-active>li.ss-top-i{flex:0 0 82%;scroll-snap-align:start;border:1px solid rgba(255,255,255,.08)!important;border-radius:12px;padding:8px 10px!important;margin:0!important;background:rgba(255,255,255,.03)}
-}</style>';
-}, 99 );
-
-/* ═══ Solid Sound — 17.10.2026: water-ripple hover effect on product grid covers (desktop mouse only; canvas never takes clicks, so the cover click still opens the video popup) ═══ */
-add_action( 'wp_footer', function () {
-	return; /* 11.11.2026 owner: no water-ripple effects (only logo press + icon animations stay) */
-	if ( is_admin() ) return;
-	?>
-<style id="ss-ripple-g-css">.ss-ripple.ss-ripple-g{position:absolute;opacity:0;transition:opacity .3s;pointer-events:none!important;z-index:1;cursor:inherit}</style>
-<?php ss_asset('ss-ripple-g-js'); ?>
-<?php
-}, 100 );
-
 /* ═══ Solid Sound — 17.10.2026: iPhone/iPad — the YouTube popup starts muted (Safari blocks autoplay with sound); a big "Tap for sound" button unmutes it ═══ */
 add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
@@ -3749,81 +3707,6 @@ add_action( 'wp_footer', function () {
 <?php ss_asset('ss-ytb-js'); ?>
 <?php
 }, 100 );
-
-/* ═══ Solid Sound — 17.10.2026: home hero — same content, restyled: eyebrow, bigger title, feature chips, two buttons (Browse products · Free track feedback), trust row. Printed inside the page content so it also runs after the player's AJAX page switches ═══ */
-add_filter( 'the_content', function ( $content ) {
-	static $done = false;
-	if ( $done || is_admin() || ! is_front_page() || ! in_the_loop() || ! is_main_query() ) return $content;
-	return $content; /* 17.10.2026: old hero restyle switched off — replaced by the new first screen (ss_h3_render) */
-	$done = true;
-	$l = function_exists( 'pll_current_language' ) ? pll_current_language() : 'en';
-	$S = array(
-		'en' => array( 'Ableton templates · Presets · Mixing & mastering', 'Browse products', 'Free track feedback', array( 'Beatport Top 10', 'Instant download after payment', 'Royalty-free – {L}license terms{/L}', 'Secure payment: card & PayPal' ) ),
-		'ua' => array( 'Шаблони Ableton · Пресети · Зведення та мастеринг', 'Дивитися товари', 'Безкоштовний розбір треку', array( 'Beatport Top 10', 'Миттєве завантаження після оплати', 'Без роялті – {L}умови ліцензії{/L}', 'Безпечна оплата: картка та PayPal' ) ),
-		'de' => array( 'Ableton-Templates · Presets · Mixing & Mastering', 'Produkte ansehen', 'Kostenloses Track-Feedback', array( 'Beatport Top 10', 'Sofort-Download nach der Zahlung', 'Lizenzfrei – {L}Lizenzbedingungen{/L}', 'Sichere Zahlung: Karte & PayPal' ) ),
-		'fr' => array( 'Templates Ableton · Presets · Mixage & mastering', 'Voir les produits', 'Avis gratuit sur ton morceau', array( 'Beatport Top 10', 'Téléchargement immédiat après paiement', 'Libre de droits – {L}conditions de licence{/L}', 'Paiement sécurisé : carte & PayPal' ) ),
-		'pt' => array( 'Templates Ableton · Presets · Mixagem e masterização', 'Ver produtos', 'Feedback grátis da sua faixa', array( 'Beatport Top 10', 'Download imediato após o pagamento', 'Livre de royalties – {L}termos de licença{/L}', 'Pagamento seguro: cartão e PayPal' ) ),
-	);
-	if ( 'uk' === $l ) $l = 'ua';
-	$t = isset( $S[ $l ] ) ? $S[ $l ] : $S['en'];
-	$fb = get_permalink( 1709 );
-	$SV = array(
-		'en' => array( 'Services', 'Details', array( array( 'Mixing & Mastering', 'Release-ready, loud and clean' ), array( 'Project Reworks', 'Remix or remake of your track' ), array( 'Custom Production', 'Ghost & co-production to order' ) ) ),
-		'ua' => array( 'Послуги', 'Детальніше', array( array( 'Зведення та мастеринг', 'Звук, готовий до релізу' ), array( 'Переробка проєктів', 'Ремікс або рімейк твого треку' ), array( 'Продакшн на замовлення', 'Гост- та ко-продакшн' ) ) ),
-		'de' => array( 'Services', 'Details', array( array( 'Mixing & Mastering', 'Release-fertiger Sound' ), array( 'Projekt-Reworks', 'Remix oder Remake deines Tracks' ), array( 'Custom Production', 'Ghost- & Co-Production' ) ) ),
-		'fr' => array( 'Services', 'Détails', array( array( 'Mixage & mastering', 'Un son prêt pour la sortie' ), array( 'Reworks de projets', 'Remix ou remake de ton morceau' ), array( 'Production sur mesure', 'Ghost & co-production' ) ) ),
-		'pt' => array( 'Serviços', 'Detalhes', array( array( 'Mixagem e masterização', 'Som pronto para lançamento' ), array( 'Reworks de projetos', 'Remix ou remake da sua faixa' ), array( 'Produção sob medida', 'Ghost e coprodução' ) ) ),
-	);
-	$sv = isset( $SV[ $l ] ) ? $SV[ $l ] : $SV['en'];
-	$FR = array( 'en' => 'from', 'ua' => 'від', 'de' => 'ab', 'fr' => 'dès', 'pt' => 'a partir de' ); $from = isset( $FR[ $l ] ) ? $FR[ $l ] : 'from';
-	$sp = get_permalink( 1947 ); if ( ! $sp ) $sp = home_url( '/services-prices/' );
-	$svc = array( 'label' => $sv[0], 'go' => $sv[1], 'items' => array(
-		array( 'ic' => 'mix', 'p' => $from . ' 15€', 't' => $sv[2][0][0], 's' => $sv[2][0][1], 'u' => $sp . '#svc-mixing' ),
-		array( 'ic' => 'rework', 'p' => $from . ' 120€', 't' => $sv[2][1][0], 's' => $sv[2][1][1], 'u' => $sp . '#svc-remix' ),
-		array( 'ic' => 'custom', 'p' => $from . ' 40€', 't' => $sv[2][2][0], 's' => $sv[2][2][1], 'u' => $sp . '#svc-ghost' ),
-	) );
-	$lic = esc_url( home_url( '/license/' ) ); $tr = array(); foreach ( $t[3] as $x ) $tr[] = str_replace( array( '{L}', '{/L}' ), array( '<a href="' . $lic . '">', '</a>' ), esc_html( $x ) );
-	$NW = array(
-		'en' => array( 'New arrivals', 'View all', 'Template', 'Presets', 'Music' ),
-		'ua' => array( 'Нові надходження', 'Усі товари', 'Шаблон', 'Пресети', 'Музика' ),
-		'de' => array( 'Neuheiten', 'Alle ansehen', 'Template', 'Presets', 'Musik' ),
-		'fr' => array( 'Nouveautés', 'Tout voir', 'Template', 'Presets', 'Musique' ),
-		'pt' => array( 'Novidades', 'Ver tudo', 'Template', 'Presets', 'Música' ),
-	);
-	$nw = isset( $NW[ $l ] ) ? $NW[ $l ] : $NW['en'];
-	$data = array( 'nw' => $nw, 'svc' => $svc, 'eb' => $t[0], 'b1' => $t[1], 'b2' => $t[2], 'tr' => $tr, 'fb' => $fb ? $fb : home_url( '/free-demo-feedback/' ) );
-	ob_start(); ?>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('ss-hero2-css'); ?>
-<script id="ss-hero2-js">
-(function(){var D=<?php echo wp_json_encode( $data ); ?>;
-var b=document.querySelector('#page-content a[href="#templates"]')||document.querySelector('a[href="#templates"]');if(!b)return;
-var inner=b.closest('.vc_column-inner');if(!inner)return;var col=inner.querySelector('.wpb_wrapper');if(!col||col.classList.contains('ss-hero2'))return;
-var h1=col.querySelector('h1');if(!h1)return;col.classList.add('ss-hero2');var cA=inner.closest('.wpb_column'),row=cA&&cA.parentElement;if(row){var sc=row.closest('.l-section');if(sc)sc.classList.add('ss-hsec');if(row.children.length===2){row.classList.add('ss-hrow2');[].forEach.call(row.children,function(cc,i){var ii=cc.querySelector('.vc_column-inner');if(ii)ii.classList.add('ss-hc',i?'ss-hc-r':'ss-hc-l')})}}
-var h1box=h1.closest('.wpb_text_column')||h1;
-var eb=document.createElement('div');eb.className='ss-eyebrow';eb.textContent=D.eb;col.insertBefore(eb,h1box);
-var tgt=h1.querySelector('strong')||h1;if(/Solid Sound\s*$/.test(tgt.textContent)){tgt.innerHTML=tgt.textContent.replace(/Solid Sound\s*$/,'<span class="ss-acc">Solid Sound</span>')}
-var ps=[].slice.call(col.querySelectorAll('.wpb_text_column p')).filter(function(p){return !p.closest('h1')&&/<br/i.test(p.innerHTML)});
-if(ps[0]){var parts=ps[0].innerHTML.split(/<br\s*\/?>/i).map(function(s){return s.trim()}).filter(function(s){return s.replace(/<[^>]+>/g,'').trim()});var ul=document.createElement('ul');ul.className='ss-hero-feats';var IC={mix:'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',rework:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',custom:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>'};
-var g=document.createElement('div');g.className='ss-hgroup';var lb=document.createElement('div');lb.className='ss-hg-label';lb.textContent=D.svc.label;g.appendChild(lb);var gr=document.createElement('div');gr.className='ss-hg-grid';
-D.svc.items.forEach(function(it){var a=document.createElement('a');a.className='ss-svc';a.href=it.u;a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[it.ic]+'</svg><b></b><span class="ss-svc-s"></span><span class="ss-go"></span>';a.querySelector('b').textContent=it.t;a.querySelector('.ss-svc-s').textContent=it.s;a.querySelector('.ss-go').innerHTML='<em></em><i></i>';a.querySelector('.ss-go em').textContent=it.p||'';a.querySelector('.ss-go i').textContent=D.svc.go+' →';gr.appendChild(a)});g.appendChild(gr);
-parts.slice(1).forEach(function(s){var li=document.createElement('li');li.innerHTML=s;ul.appendChild(li)});ul.classList.add('ss-hf3');var box=document.createElement('div');box.className='ss-hgroups';box.appendChild(g);box.appendChild(ul);ps[0].parentNode.replaceChild(box,ps[0])}
-var bc=b.closest('.vc_btn3-container')||b;
-var ct=document.createElement('div');ct.className='ss-hero-ctas';
-var a1=document.createElement('a');a1.className='ss-hb1';a1.href='#templates';a1.innerHTML='<span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';a1.firstChild.textContent=D.b1;
-var a2=document.createElement('a');a2.className='ss-hb2';a2.href=D.fb;a2.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#E09900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2"/></svg><span></span>';a2.lastChild.textContent=D.b2;
-ct.appendChild(a1);ct.appendChild(a2);bc.parentNode.insertBefore(ct,bc);bc.style.display='none';
-var tr=document.createElement('ul');tr.className='ss-trust';D.tr.forEach(function(x){var li=document.createElement('li');li.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#E09900" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span></span>';li.lastChild.innerHTML=x;tr.appendChild(li)});ct.parentNode.insertBefore(tr,ct.nextSibling);
-(function(){var rw=inner.closest('.wpb_column');rw=rw&&rw.parentElement;var cg=rw&&rw.children[1]&&rw.children[1].querySelector('.w-grid');if(!cg||cg.dataset.ssNw)return;cg.dataset.ssNw=1;
-var hd=document.createElement('div');hd.className='ss-nh';hd.innerHTML='<span class="ss-nh-l"></span><a class="ss-nh-a" href="#templates"></a>';hd.firstChild.textContent=D.nw[0];hd.lastChild.textContent=D.nw[1]+' →';cg.parentNode.insertBefore(hd,cg);
-function tag(root){[].forEach.call(root.querySelectorAll('.w-grid-item'),function(it){if(it.querySelector('.ss-cat'))return;var m=it.className.match(/product-format-(templates|presets|music)/);if(!m)return;var t=it.querySelector('.post_title');if(!t)return;var s=document.createElement('span');s.className='ss-cat ss-cat-'+m[1];s.textContent=D.nw[{templates:2,presets:3,music:4}[m[1]]];t.parentNode.insertBefore(s,t.nextSibling)})}
-tag(cg);var q=0;new MutationObserver(function(){if(q)return;q=setTimeout(function(){q=0;tag(cg)},120)}).observe(cg,{childList:true,subtree:true})})();
-[].forEach.call(col.children,function(el,i){if(el.style.display==='none')return;el.classList.add('ss-anim');el.style.animationDelay=(i*0.09)+'s'});
-})();
-</script>
-<?php
-	return $content . ob_get_clean();
-}, 99 );
 
 /* ═══ Solid Sound — 17.10.2026: Services & Prices page — section anchors (#svc-mixing, #svc-remix, #svc-ghost-producing …) for the hero service tiles ═══ */
 add_action( 'wp_footer', function () {
@@ -4114,7 +3997,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4846'); ?>
+<?php ss_asset('js-l4528'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4864,7 +4747,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5888'); ?>
+<?php ss_asset('css-l5570'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5443,7 +5326,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6501'); ?>
+<?php ss_asset('css-l6183'); ?>
 		<?php
 		return ob_get_clean();
 	}
@@ -5594,8 +5477,6 @@ add_filter( 'style_loader_tag', function ( $tag, $handle ) {
 add_action( 'wp_head', function () {
 	if ( is_front_page() ) echo '<meta name="google-site-verification" content="Vpzw7aOfQg7PmFsFGB5io7K_VvI4o18HY5rNGVvAtHc" />' . "\n";
 }, 1 );
-
-/* ═══ 24.10.2026: ES/IT added in Polylang — hide their flags/links for visitors until translation is deployed (remove this block after) ═══ */
 
 /* ═══ Solid Sound — 24.10.2026: ES + IT — translation layer for custom blocks (hero, chat, FREE zone, follow block, UI) ═══
  * Our dictionaries fall back to EN on /es/ and /it/; this layer swaps the EN strings in the final HTML (plain, HTML-escaped and JSON-escaped forms).
@@ -5878,6 +5759,12 @@ add_action( 'wp_head', function () {
 add_action( 'wp_head', function () {
 	if ( is_admin() || is_front_page() ) return;
 	echo '<script>window.__ssg=1;window.__sslb=1;</script>';
+	/* (12.11.2026 speed) the old theme header is hidden from the first paint (it used to flash and pull in 3 icon fonts,
+	   ~450 KB) and the new menu's place is reserved before the script adds it (the whole page jumped down: CLS 0.54) */
+	$promo = time() < strtotime( '2026-11-30 23:59:59 +0100' ) ? 36 : 0;
+	echo '<style id="ss-ssg-reserve">.l-header,.l-subheader,.w-toplink{display:none!important}'
+		. '.l-canvas:not(:has(> #ssg))::before{content:"";display:block;height:' . ( 73 + $promo ) . 'px}'
+		. '@media(max-width:760px){.l-canvas:not(:has(> #ssg))::before{height:61px}}</style>';
 	ss_asset( 'ss-global', 'defer' );
 }, 2 );
 

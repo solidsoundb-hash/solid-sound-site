@@ -81,3 +81,10 @@ add_action( 'save_post_product', function () {
 	global $wpdb;
 	$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\_transient\_ss\_sim\_%' OR option_name LIKE '\_transient\_timeout\_ss\_sim\_%'" );
 } );
+
+/* (12.11.2026 speed) the main product image is the largest thing on the page: load it first, never lazily */
+add_filter( 'woocommerce_gallery_image_html_attachment_image_params', function ( $p, $id, $size, $main ) {
+	if ( $main ) { $p['fetchpriority'] = 'high'; $p['loading'] = 'eager'; $p['decoding'] = 'async'; }
+	return $p;
+}, 10, 4 );
+

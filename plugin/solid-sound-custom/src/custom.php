@@ -1912,12 +1912,6 @@ form.addEventListener('submit',function(e){
 }
 
 /* Solid Sound 14.10.2026: narrow phones header (logo vs social icons) */
-if ( ! function_exists( 'ss_narrow_header_css' ) ) {
-	function ss_narrow_header_css() { ?>
-<style id="ss-narrow">@media(max-width:420px){.l-header .w-socials{display:none!important}.l-header .w-popup .w-btn,.l-header a.w-btn{padding-left:.7em!important;padding-right:.7em!important}.l-header .w-btn .w-btn-label{display:none}.l-header .w-btn i{margin:0!important}}</style>
-<?php }
-	add_action( 'wp_head', 'ss_narrow_header_css', 99 );
-}
 
 /* ═══ Solid Sound — 14.10.2026: WCFM dashboard reskin (WeMake-style) + creator Get Started ═══ */
 if ( ! function_exists( 'ss_wd_is_page' ) ) {
@@ -3399,30 +3393,6 @@ mark();var tq;new MutationObserver(function(ms){if(tq)return;for(var i=0;i<ms.le
 	}, 60 );
 }
 
-/* ═══ Solid Sound — 16.10.2026: header — language flag styled like the social icons, account button = person icon only ═══ */
-add_action( 'wp_footer', function () { if ( is_admin() ) return; ?>
-<style id="ss-hdr2">
-.l-header .ss-flags{margin:0 12px!important;gap:0!important;align-self:center}
-.l-header .ss-flags a{width:32px!important;height:32px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:inset 0 0 0 2px #423c36!important;opacity:1!important;display:inline-flex!important;align-items:center;justify-content:center;transition:box-shadow .15s}
-.l-header .ss-flags a:hover,.l-header .ss-flags.open a.on{box-shadow:inset 0 0 0 2px #e09900!important}
-.l-header .ss-flags a:after,.l-header .ss-flags a.on:after{display:none!important;content:none!important}
-.l-header .ss-flags img{width:20px!important;height:14px!important;object-fit:cover;border-radius:2px;display:block}
-.l-header .ss-flags .ss-fl-list{top:calc(100% + 6px)!important;left:0!important;right:auto!important;padding:0!important;gap:0!important;background:#1d1916!important;border-radius:0!important;box-shadow:0 8px 24px rgba(0,0,0,.5)!important}
-.l-header .ss-flags .ss-fl-list a{display:flex!important}
-.l-header .w-popup-trigger.type_btn .w-btn-label{display:none!important}
-.l-header .w-popup-trigger.type_btn{width:32px!important;height:32px!important;min-width:0!important;padding:0!important;display:inline-flex!important;align-items:center;justify-content:center;border-radius:4px!important}
-.l-header .w-popup-trigger.type_btn i{margin:0!important;font-size:15px!important}
-.l-header .at_right > .w-popup{line-height:1!important;height:auto!important;display:flex!important;align-items:center;align-self:center;margin-left:14px!important}
-.l-header .at_right > .w-popup .w-btn-wrapper{display:flex!important;align-items:center;margin:0!important;line-height:1!important}
-.l-header .w-popup-trigger.type_btn{vertical-align:middle!important}
-.l-header .at_right > .w-socials{margin-left:0!important}
-.l-header .at_right > .w-cart{margin-left:2px!important}
-.l-header .ss-flags{margin:0 2px 0 14px!important}
-@media(max-width:1024px){.l-header .ss-flags{margin:0 4px 0 6px!important}.l-header .at_right > .w-popup{margin-left:8px!important}.l-header .ss-flags a,.l-header .w-popup-trigger.type_btn{width:34px!important;height:34px!important}}
-</style>
-<script>[].forEach.call(document.querySelectorAll('.l-header .w-popup-trigger.type_btn'),function(b){var l=b.querySelector('.w-btn-label');var t=l?l.textContent.trim():'Account';b.setAttribute('aria-label',t||'Account');b.setAttribute('title',t||'Account')});</script>
-<?php }, 30 );
-
 /* ═══ Solid Sound — 16.10.2026: product page layout (tags, big BUY, "What you'll learn" + specs/requirements, video, FAQ). Works for every product automatically. ═══ */
 if ( ! function_exists( 'ss_pd_t' ) ) {
 	function ss_pd_t( $k ) {
@@ -4075,59 +4045,6 @@ add_action( 'wp_head', function () {
 /* ═══ Solid Sound — 17.10.2026: product cover — water ripple effect under the cursor (WebGL, runs only while moving) ═══ */
 add_action( 'after_setup_theme', function () { remove_theme_support( 'wc-product-gallery-zoom' ); }, 100 );
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
-add_action( 'woocommerce_after_single_product', function () {
-	return; /* 11.11.2026 owner: no water-ripple effects (only logo press + icon animations stay) */
-	if ( ! function_exists( 'is_product' ) || ! is_product() ) return; ?>
-<style id="ss-ripple-css">.ss-ripple{position:absolute;opacity:0;transition:opacity .3s;border-radius:16px;z-index:2;cursor:pointer}</style>
-<script id="ss-ripple-js">
-(function(){
-if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-function init(){
-var img=document.querySelector('.woocommerce-product-gallery__image img');if(!img||img.dataset.ssRipple)return;
-var host=img.parentElement;if(getComputedStyle(host).position==='static')host.style.position='relative';
-img.dataset.ssRipple=1;
-var cv=document.createElement('canvas');cv.className='ss-ripple';host.insertBefore(cv,img.nextSibling);
-var gl=cv.getContext('webgl',{premultipliedAlpha:false,alpha:true});if(!gl){cv.remove();return}
-var N=24;
-var vs='attribute vec2 a;varying vec2 v;void main(){v=a*0.5+0.5;gl_Position=vec4(a,0.,1.);}';
-var fs='precision mediump float;uniform sampler2D T;uniform float time,asp;uniform vec4 R['+N+'];varying vec2 v;'+
-'void main(){vec2 off=vec2(0.);float sh=0.;for(int i=0;i<'+N+';i++){vec4 r=R[i];float age=time-r.z;if(r.w<=0.||age<0.||age>2.6)continue;'+
-'vec2 dv=v-r.xy;dv.x*=asp;float d=length(dv);float fr=age*0.32;float k=d-fr;'+
-'float w=sin(k*60.)*exp(-abs(k)*16.)*exp(-age*1.5)*r.w*smoothstep(0.,0.02,fr);'+
-'vec2 dir=dv/(d+1e-4);dir.x/=asp;off+=dir*w*0.015;sh+=w;}'+
-'vec4 c=texture2D(T,clamp(v+off,0.,1.));c.rgb+=sh*0.07;gl_FragColor=c;}';
-function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
-var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
-if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.remove();return}
-gl.useProgram(pr);
-var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-var al=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(al);gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
-var uT=gl.getUniformLocation(pr,'time'),uA=gl.getUniformLocation(pr,'asp'),uR=gl.getUniformLocation(pr,'R');
-var tex=gl.createTexture(),ready=false;
-var src=new Image();src.crossOrigin='anonymous';
-src.onload=function(){gl.bindTexture(gl.TEXTURE_2D,tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
-try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,src)}catch(e){cv.remove();return}
-gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
-gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);ready=true};
-src.src=img.currentSrc||img.src;
-var rp=new Float32Array(N*4),ri=0,t0=performance.now(),raf=0,last={x:-1,y:-1,t:0};
-function now(){return (performance.now()-t0)/1000}
-function size(){var r=img.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);cv.style.left=img.offsetLeft+'px';cv.style.top=img.offsetTop+'px';cv.style.width=r.width+'px';cv.style.height=r.height+'px';var w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}gl.viewport(0,0,w,h);gl.uniform1f(uA,r.width/Math.max(1,r.height))}
-function add(x,y,s){rp[ri*4]=x;rp[ri*4+1]=y;rp[ri*4+2]=now();rp[ri*4+3]=s;ri=(ri+1)%N;if(!raf)raf=requestAnimationFrame(draw)}
-function draw(){raf=0;if(!ready){raf=requestAnimationFrame(draw);return}var t=now(),alive=false;for(var i=0;i<N;i++)if(rp[i*4+3]>0&&t-rp[i*4+2]<2.6)alive=true;
-gl.uniform1f(uT,t);gl.uniform4fv(uR,rp);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-if(alive){cv.style.opacity=1;raf=requestAnimationFrame(draw)}else cv.style.opacity=0}
-function pos(e){var r=cv.getBoundingClientRect(),p=e.touches?e.touches[0]:e;return{x:(p.clientX-r.left)/r.width,y:1-(p.clientY-r.top)/r.height}}
-function move(e){var p=pos(e),t=performance.now(),dx=p.x-last.x,dy=p.y-last.y;if(t-last.t<45&&dx*dx+dy*dy<0.0009)return;last={x:p.x,y:p.y,t:t};add(p.x,p.y,0.55)}
-if(!window.matchMedia||matchMedia('(hover:hover)').matches){cv.addEventListener('mouseenter',size);cv.addEventListener('mousemove',move);}cv.addEventListener('touchmove',move,{passive:true});
-cv.addEventListener('mousedown',function(e){var p=pos(e);add(p.x,p.y,1.3)});var tEl=cv;if(window.matchMedia&&!matchMedia('(hover:hover)').matches){cv.style.pointerEvents='none';cv.style.cursor='default';tEl=host}tEl.addEventListener('touchstart',function(e){size();var p=pos(e);if(p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1)add(p.x,p.y,1.1)},{passive:true});
-window.addEventListener('resize',size);size();
-}
-if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);window.addEventListener('load',function(){window.dispatchEvent(new Event('resize'))});
-})();
-</script>
-<?php }, 70 );
-
 /* ═══ Solid Sound — 17.10.2026: product grid — hover on cover plays muted YouTube preview (desktop only); click still opens popup with sound ═══ */
 add_action( 'wp_footer', function () {
 	return; /* 17.10.2026: hover preview switched off at the owner's request — cover click opens the video popup */
@@ -4240,77 +4157,6 @@ add_action( 'wp_footer', function () {
 	echo '<script>(function(){function tgt(h){if(!h||h.length<2)return null;var s;try{s=document.querySelector(h)}catch(e){return null}if(!s)return null;return s.querySelector(".sstb")||s.querySelector(".w-grid.layout_195")}function go(el,smooth){var hd=document.querySelector(".l-header");var off=(hd&&getComputedStyle(hd).position!=="static"?hd.getBoundingClientRect().height:0)+(document.getElementById("wpadminbar")?document.getElementById("wpadminbar").offsetHeight:0)+12;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-off,behavior:smooth?"smooth":"auto"})}document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href*=\"#\"]");if(!a)return;var u;try{u=new URL(a.href,location.href)}catch(x){return}if(u.pathname!==location.pathname||!u.hash)return;var el=tgt(u.hash);if(!el)return;e.preventDefault();e.stopImmediatePropagation();go(el,true);try{history.replaceState(null,"",u.hash)}catch(x){}},true);function onLoad(){var el=tgt(location.hash);if(el)setTimeout(function(){go(el,false)},60)}if(document.readyState==="complete")onLoad();else window.addEventListener("load",onLoad)})();</script>';
 }, 99 );
 
-/* ═══ Solid Sound — 17.10.2026: mobile — Best Products becomes a compact swipe strip (one row) so the product grid and filters start right below ═══ */
-add_action( 'wp_head', function () {
-	return; /* switched off 17.10.2026 at the owner's request — Best Products back to the original list */
-	echo '<style id="ss-top-mob">@media(max-width:767px){
-html body .ss-top{padding:12px 0 10px!important}
-html body .ss-top .ss-top-hd{margin:0 0 8px!important;padding:0 12px}
-html body .ss-top .ss-top-tabs{display:none!important}
-html body .ss-top ol.ss-top-l.is-active,html body .ss-top.tabbed ol.ss-top-l.is-active{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0!important;padding:0 12px 2px!important}
-html body .ss-top ol.ss-top-l.is-active::-webkit-scrollbar{display:none}
-html body .ss-top ol.ss-top-l.is-active>li.ss-top-i{flex:0 0 82%;scroll-snap-align:start;border:1px solid rgba(255,255,255,.08)!important;border-radius:12px;padding:8px 10px!important;margin:0!important;background:rgba(255,255,255,.03)}
-}</style>';
-}, 99 );
-
-/* ═══ Solid Sound — 17.10.2026: water-ripple hover effect on product grid covers (desktop mouse only; canvas never takes clicks, so the cover click still opens the video popup) ═══ */
-add_action( 'wp_footer', function () {
-	return; /* 11.11.2026 owner: no water-ripple effects (only logo press + icon animations stay) */
-	if ( is_admin() ) return;
-	?>
-<style id="ss-ripple-g-css">.ss-ripple.ss-ripple-g{position:absolute;opacity:0;transition:opacity .3s;pointer-events:none!important;z-index:1;cursor:inherit}</style>
-<script id="ss-ripple-g-js">
-(function(){
-if(!window.matchMedia||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var HOVER=matchMedia('(hover:hover) and (pointer:fine)').matches;
-var SEL='.w-grid.layout_195 .post_image img, .ssh-cov img';
-var gl,cv,uT,uA,uR,N=24,rp=new Float32Array(N*4),ri=0,t0=performance.now(),raf=0,cur=null,texs={},ready=false,last={x:-1,y:-1,t:0},failed=false;
-function now(){return (performance.now()-t0)/1000}
-function setup(){
-cv=document.createElement('canvas');cv.className='ss-ripple ss-ripple-g';
-gl=cv.getContext('webgl',{premultipliedAlpha:false,alpha:true});if(!gl){failed=true;return false}
-var vs='attribute vec2 a;varying vec2 v;void main(){v=a*0.5+0.5;gl_Position=vec4(a,0.,1.);}';
-var fs='precision mediump float;uniform sampler2D T;uniform float time,asp;uniform vec4 R['+N+'];varying vec2 v;'+
-'void main(){vec2 off=vec2(0.);float sh=0.;for(int i=0;i<'+N+';i++){vec4 r=R[i];float age=time-r.z;if(r.w<=0.||age<0.||age>2.6)continue;'+
-'vec2 dv=v-r.xy;dv.x*=asp;float d=length(dv);float fr=age*0.32;float k=d-fr;'+
-'float w=sin(k*60.)*exp(-abs(k)*16.)*exp(-age*1.5)*r.w*smoothstep(0.,0.02,fr);'+
-'vec2 dir=dv/(d+1e-4);dir.x/=asp;off+=dir*w*0.015;sh+=w;}'+
-'vec4 c=texture2D(T,clamp(v+off,0.,1.));c.rgb+=sh*0.07;gl_FragColor=c;}';
-function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
-var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
-if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){failed=true;return false}
-gl.useProgram(pr);
-var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-var al=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(al);gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
-uT=gl.getUniformLocation(pr,'time');uA=gl.getUniformLocation(pr,'asp');uR=gl.getUniformLocation(pr,'R');
-gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
-return true}
-function texFor(img,cb){var s=img.currentSrc||img.src;if(texs[s]){cb(texs[s]);return}
-var im=new Image();im.crossOrigin='anonymous';im.onload=function(){var t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
-try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im)}catch(e){return}
-gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
-gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);texs[s]=t;cb(t)};im.src=s}
-function attach(img){if(failed)return;if(!gl&&!setup())return;if(cur===img&&cv.parentNode===img.parentElement)return;cur=img;ready=false;rp.fill(0);cv.style.opacity=0;
-var host=img.parentElement;if(getComputedStyle(host).position==='static')host.style.position='relative';host.insertBefore(cv,img.nextSibling);
-var r=img.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);cv.style.left=img.offsetLeft+'px';cv.style.top=img.offsetTop+'px';cv.style.width=r.width+'px';cv.style.height=r.height+'px';cv.style.borderRadius=getComputedStyle(img).borderRadius;
-var w=Math.max(1,Math.round(r.width*dpr)),h=Math.max(1,Math.round(r.height*dpr));if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}gl.viewport(0,0,w,h);gl.uniform1f(uA,r.width/Math.max(1,r.height));
-texFor(img,function(t){if(cur!==img)return;gl.bindTexture(gl.TEXTURE_2D,t);ready=true})}
-function add(x,y,s){rp[ri*4]=x;rp[ri*4+1]=y;rp[ri*4+2]=now();rp[ri*4+3]=s;ri=(ri+1)%N;if(!raf)raf=requestAnimationFrame(draw)}
-function draw(){raf=0;if(!ready){raf=requestAnimationFrame(draw);return}var t=now(),alive=false;for(var i=0;i<N;i++)if(rp[i*4+3]>0&&t-rp[i*4+2]<2.6)alive=true;
-gl.uniform1f(uT,t);gl.uniform4fv(uR,rp);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-if(alive){cv.style.opacity=1;raf=requestAnimationFrame(draw)}else cv.style.opacity=0}
-function imgOf(t){if(!t||!t.closest)return null;if(t.matches&&t.matches(SEL))return t;var h=t.closest('.w-grid.layout_195 .post_image, .ssh-cov');if(!h)return null;var i=h.querySelector('img');return i&&i.matches(SEL)?i:null}
-function at(img,e){var r=img.getBoundingClientRect(),p=e.changedTouches?e.changedTouches[0]:e;var x=(p.clientX-r.left)/r.width,y=1-(p.clientY-r.top)/r.height;return(x<0||x>1||y<0||y>1)?null:{x:x,y:y}}
-function move(e){var img=imgOf(e.target);if(!img)return;attach(img);if(cur!==img)return;var p=at(img,e);if(!p)return;var t=performance.now(),dx=p.x-last.x,dy=p.y-last.y;if(t-last.t<45&&dx*dx+dy*dy<0.0009)return;last={x:p.x,y:p.y,t:t};add(p.x,p.y,0.55)}
-function tap(e){var img=imgOf(e.target);if(!img)return;attach(img);var p=at(img,e);if(p)add(p.x,p.y,1.2)}
-if(HOVER){document.addEventListener('mousemove',move,{passive:true});document.addEventListener('mousedown',tap,{passive:true})}
-else{var ts=null;document.addEventListener('touchstart',function(e){var img=imgOf(e.target);if(!img){ts=null;return}var t=e.touches[0];ts={img:img,x:t.clientX,y:t.clientY,t:Date.now()};tap(e)},{passive:true});
-document.addEventListener('touchend',function(e){if(!ts)return;var s=ts;ts=null;var t=e.changedTouches&&e.changedTouches[0];if(!t||Math.abs(t.clientX-s.x)>12||Math.abs(t.clientY-s.y)>12||Date.now()-s.t>700)return;var it=s.img.closest('.w-grid-item');if(!it||!it.classList.contains('ss-has-yt'))return;var a=s.img.closest('a');if(!a)return;e.preventDefault();a.click()},{passive:false})}
-window.addEventListener('resize',function(){var c=cur;cur=null;if(c)attach(c)});
-})();
-</script>
-<?php
-}, 100 );
-
 /* ═══ Solid Sound — 17.10.2026: iPhone/iPad — the YouTube popup starts muted (Safari blocks autoplay with sound); a big "Tap for sound" button unmutes it ═══ */
 add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
@@ -4346,170 +4192,6 @@ document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' '
 </script>
 <?php
 }, 100 );
-
-/* ═══ Solid Sound — 17.10.2026: home hero — same content, restyled: eyebrow, bigger title, feature chips, two buttons (Browse products · Free track feedback), trust row. Printed inside the page content so it also runs after the player's AJAX page switches ═══ */
-add_filter( 'the_content', function ( $content ) {
-	static $done = false;
-	if ( $done || is_admin() || ! is_front_page() || ! in_the_loop() || ! is_main_query() ) return $content;
-	return $content; /* 17.10.2026: old hero restyle switched off — replaced by the new first screen (ss_h3_render) */
-	$done = true;
-	$l = function_exists( 'pll_current_language' ) ? pll_current_language() : 'en';
-	$S = array(
-		'en' => array( 'Ableton templates · Presets · Mixing & mastering', 'Browse products', 'Free track feedback', array( 'Beatport Top 10', 'Instant download after payment', 'Royalty-free – {L}license terms{/L}', 'Secure payment: card & PayPal' ) ),
-		'ua' => array( 'Шаблони Ableton · Пресети · Зведення та мастеринг', 'Дивитися товари', 'Безкоштовний розбір треку', array( 'Beatport Top 10', 'Миттєве завантаження після оплати', 'Без роялті – {L}умови ліцензії{/L}', 'Безпечна оплата: картка та PayPal' ) ),
-		'de' => array( 'Ableton-Templates · Presets · Mixing & Mastering', 'Produkte ansehen', 'Kostenloses Track-Feedback', array( 'Beatport Top 10', 'Sofort-Download nach der Zahlung', 'Lizenzfrei – {L}Lizenzbedingungen{/L}', 'Sichere Zahlung: Karte & PayPal' ) ),
-		'fr' => array( 'Templates Ableton · Presets · Mixage & mastering', 'Voir les produits', 'Avis gratuit sur ton morceau', array( 'Beatport Top 10', 'Téléchargement immédiat après paiement', 'Libre de droits – {L}conditions de licence{/L}', 'Paiement sécurisé : carte & PayPal' ) ),
-		'pt' => array( 'Templates Ableton · Presets · Mixagem e masterização', 'Ver produtos', 'Feedback grátis da sua faixa', array( 'Beatport Top 10', 'Download imediato após o pagamento', 'Livre de royalties – {L}termos de licença{/L}', 'Pagamento seguro: cartão e PayPal' ) ),
-	);
-	if ( 'uk' === $l ) $l = 'ua';
-	$t = isset( $S[ $l ] ) ? $S[ $l ] : $S['en'];
-	$fb = get_permalink( 1709 );
-	$SV = array(
-		'en' => array( 'Services', 'Details', array( array( 'Mixing & Mastering', 'Release-ready, loud and clean' ), array( 'Project Reworks', 'Remix or remake of your track' ), array( 'Custom Production', 'Ghost & co-production to order' ) ) ),
-		'ua' => array( 'Послуги', 'Детальніше', array( array( 'Зведення та мастеринг', 'Звук, готовий до релізу' ), array( 'Переробка проєктів', 'Ремікс або рімейк твого треку' ), array( 'Продакшн на замовлення', 'Гост- та ко-продакшн' ) ) ),
-		'de' => array( 'Services', 'Details', array( array( 'Mixing & Mastering', 'Release-fertiger Sound' ), array( 'Projekt-Reworks', 'Remix oder Remake deines Tracks' ), array( 'Custom Production', 'Ghost- & Co-Production' ) ) ),
-		'fr' => array( 'Services', 'Détails', array( array( 'Mixage & mastering', 'Un son prêt pour la sortie' ), array( 'Reworks de projets', 'Remix ou remake de ton morceau' ), array( 'Production sur mesure', 'Ghost & co-production' ) ) ),
-		'pt' => array( 'Serviços', 'Detalhes', array( array( 'Mixagem e masterização', 'Som pronto para lançamento' ), array( 'Reworks de projetos', 'Remix ou remake da sua faixa' ), array( 'Produção sob medida', 'Ghost e coprodução' ) ) ),
-	);
-	$sv = isset( $SV[ $l ] ) ? $SV[ $l ] : $SV['en'];
-	$FR = array( 'en' => 'from', 'ua' => 'від', 'de' => 'ab', 'fr' => 'dès', 'pt' => 'a partir de' ); $from = isset( $FR[ $l ] ) ? $FR[ $l ] : 'from';
-	$sp = get_permalink( 1947 ); if ( ! $sp ) $sp = home_url( '/services-prices/' );
-	$svc = array( 'label' => $sv[0], 'go' => $sv[1], 'items' => array(
-		array( 'ic' => 'mix', 'p' => $from . ' 15€', 't' => $sv[2][0][0], 's' => $sv[2][0][1], 'u' => $sp . '#svc-mixing' ),
-		array( 'ic' => 'rework', 'p' => $from . ' 120€', 't' => $sv[2][1][0], 's' => $sv[2][1][1], 'u' => $sp . '#svc-remix' ),
-		array( 'ic' => 'custom', 'p' => $from . ' 40€', 't' => $sv[2][2][0], 's' => $sv[2][2][1], 'u' => $sp . '#svc-ghost' ),
-	) );
-	$lic = esc_url( home_url( '/license/' ) ); $tr = array(); foreach ( $t[3] as $x ) $tr[] = str_replace( array( '{L}', '{/L}' ), array( '<a href="' . $lic . '">', '</a>' ), esc_html( $x ) );
-	$NW = array(
-		'en' => array( 'New arrivals', 'View all', 'Template', 'Presets', 'Music' ),
-		'ua' => array( 'Нові надходження', 'Усі товари', 'Шаблон', 'Пресети', 'Музика' ),
-		'de' => array( 'Neuheiten', 'Alle ansehen', 'Template', 'Presets', 'Musik' ),
-		'fr' => array( 'Nouveautés', 'Tout voir', 'Template', 'Presets', 'Musique' ),
-		'pt' => array( 'Novidades', 'Ver tudo', 'Template', 'Presets', 'Música' ),
-	);
-	$nw = isset( $NW[ $l ] ) ? $NW[ $l ] : $NW['en'];
-	$data = array( 'nw' => $nw, 'svc' => $svc, 'eb' => $t[0], 'b1' => $t[1], 'b2' => $t[2], 'tr' => $tr, 'fb' => $fb ? $fb : home_url( '/free-demo-feedback/' ) );
-	ob_start(); ?>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&display=swap" media="print" onload="this.media='all'">
-<style id="ss-hero2-css">
-.ss-hero2{display:flex!important;flex-direction:column;align-items:center;text-align:center;max-width:660px;margin:0 auto!important}
-.ss-hero2 .ss-eyebrow{justify-content:center}
-@media(min-width:1025px){.ss-hrow2{display:flex!important;flex-wrap:nowrap!important;justify-content:center;align-items:center;gap:56px;margin:0 auto!important;max-width:1400px}.ss-hrow2>.wpb_column{flex:none!important;max-width:none!important}.ss-hrow2>.wpb_column:first-child{width:600px!important}.ss-hrow2>.wpb_column:last-child{width:min(700px,calc(100% - 656px))!important}.ss-hrow2>.wpb_column>.vc_column-inner{padding-left:0!important;padding-right:0!important}.ss-hrow2 .ss-hero2{max-width:600px}}
-.ss-hero2 .ss-eyebrow:after{content:"";width:28px;height:2px;border-radius:2px;background:#E09900;flex:none}
-.ss-hero2 h1{text-align:center!important}
-.ss-hero2 .ss-hero-feats{margin-left:auto!important;margin-right:auto!important;text-align:left}
-.ss-hero2 .ss-hero-ctas{justify-content:center}
-.ss-hero2 .ss-trust{justify-content:center;text-align:left}
-.ss-hrow{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px!important;margin:0!important;align-items:stretch!important}
-.ss-hrow>.wpb_column{width:auto!important;max-width:none!important;padding:0!important;margin:0!important;flex:none!important}
-.ss-hsec{background:url(/wp-content/uploads/solid_bg_optimized.jpg) 50% 50%/cover no-repeat fixed!important}.ss-hsec>.l-section-overlay{display:none!important}
-.ss-hsec:before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.8);pointer-events:none;z-index:0}.ss-hsec>.l-section-h{position:relative;z-index:1}
-.ss-hsec .owl-carousel .owl-nav .owl-prev{left:8px!important}.ss-hsec .owl-carousel .owl-nav .owl-next{right:8px!important;left:auto!important}
-.ss-hsec .owl-carousel .owl-nav button{z-index:5;background:rgba(20,18,16,.78)!important;border-radius:50%!important;color:#F4EFE8!important;box-shadow:0 4px 16px rgba(0,0,0,.45)}
-.ss-hsec .owl-carousel .owl-nav button:hover{background:#E09900!important;color:#141210!important}
-.ss-hrow .ss-hcard{height:100%;box-sizing:border-box;background:rgba(20,18,16,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:40px 44px!important;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.ss-hrow .ss-hcard-r{padding:28px 28px!important}
-.ss-hrow .ss-hcard-l{background:radial-gradient(120% 90% at 0% 0%,rgba(224,153,0,.10),transparent 55%),rgba(20,18,16,.72)}
-@media(max-width:1024px){.ss-hrow{grid-template-columns:1fr}.ss-hrow .ss-hcard{padding:28px 22px!important}.ss-hrow .ss-hcard-r{padding:18px!important}}
-@media(max-width:767px){.ss-hrow{gap:14px!important}.ss-hrow .ss-hcard{border-radius:18px;padding:24px 18px!important}}
-.ss-hero2>*{margin-left:0!important;margin-right:0!important}
-.ss-hero2 .wpb_text_column,.ss-hero2 .wpb_content_element{margin-bottom:0!important}
-.ss-eyebrow{font:700 12.5px/1.4 Sora,Roboto,sans-serif;letter-spacing:2.4px;text-transform:uppercase;color:#E09900;margin:0 0 14px;display:flex;align-items:center;gap:10px}
-.ss-eyebrow:before{content:"";width:28px;height:2px;border-radius:2px;background:#E09900;flex:none}
-.ss-hero2 h1{font-family:Sora,Roboto,sans-serif!important;font-size:clamp(34px,3.5vw,54px)!important;line-height:1.08!important;font-weight:700!important;letter-spacing:-.6px!important;margin:0 0 22px!important;color:#F4EFE8!important;text-align:center!important}
-.ss-hero2 h1 strong{font-weight:inherit!important}
-.ss-hero2 .ss-acc{color:#E09900}
-.ss-hero-feats{list-style:none!important;margin:0 0 26px!important;padding:0!important;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:520px}
-.ss-hero-feats li{display:flex;align-items:center;gap:10px;margin:0!important;padding:11px 14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:12px;font-size:15px;line-height:1.3;color:#E6DED3;transition:border-color .2s,background .2s}
-.ss-hero-feats li:hover{border-color:rgba(224,153,0,.5);background:rgba(224,153,0,.06)}
-.ss-hero-feats li:before{display:none!important}
-.ss-hero-feats img.emoji{width:18px!important;height:18px!important;margin:0!important;flex:none}
-.ss-hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 22px}
-.ss-hb1,.ss-hb2{height:52px;padding:0 26px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 15px/1 Sora,Roboto,sans-serif;letter-spacing:.2px;text-decoration:none!important;box-sizing:border-box;transition:background .2s,transform .2s,box-shadow .2s}
-.ss-hb1{background:#E09900;color:#141210!important;box-shadow:0 6px 22px rgba(224,153,0,.28)}
-.ss-hb1:hover{background:#ffb21a;transform:translateY(-1px);box-shadow:0 10px 28px rgba(224,153,0,.38)}
-.ss-hb2{border:1.5px solid #E09900;color:#F4EFE8!important;background:transparent}
-.ss-hb2:hover{background:rgba(224,153,0,.12);transform:translateY(-1px)}
-.ss-hb1 svg,.ss-hb2 svg{width:18px;height:18px;flex:none}
-.ss-trust{list-style:none!important;margin:0!important;padding:0!important;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:#CFC6BA}
-.ss-trust li{display:flex;align-items:center;gap:7px;margin:0!important;padding:0!important}
-.ss-trust li:before{display:none!important}
-.ss-trust svg{width:15px;height:15px;flex:none}.ss-hero2 .ss-trust svg path{stroke:#4CC46A}.ss-hero2 .ss-trust{display:grid!important;grid-template-columns:repeat(2,max-content);gap:9px 26px!important;border:0!important;border-radius:0!important;background:none!important;padding:0!important;margin:0!important;font-size:14px}@media(max-width:767px){.ss-hero2 .ss-trust{grid-template-columns:1fr}}.ss-hero2 .ss-trust a{color:#E09900;text-decoration:underline;text-underline-offset:3px}.ss-hero2 .ss-trust a:hover{color:#ffb21a}
-@keyframes ssUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.ss-hero2>.ss-anim{animation:ssUp .7s cubic-bezier(.2,.7,.2,1) both}
-@media (prefers-reduced-motion:reduce){.ss-hero2>.ss-anim{animation:none}}
-@media(max-width:767px){.ss-hero-feats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.ss-hero-feats li{font-size:13.5px;padding:9px 11px}.ss-hero-ctas{width:100%;flex-direction:column}.ss-hb1,.ss-hb2{width:100%}.ss-eyebrow{font-size:11px;letter-spacing:1.8px}}
-
-/* blocks & buttons in the site's own style (as the Play All / filters panel) */
-.ss-hrow2{background:rgba(24,22,20,.96)!important;border:.8px solid rgba(255,255,255,.08)!important;border-radius:12px!important;padding:12px 28px!important;margin:12px 0!important;max-width:none!important;box-sizing:border-box}
-@media(max-width:1024px){.ss-hrow2{padding:10px 14px!important;margin:8px 0!important}}
-.ss-hrow2 .ss-hc{background:none;border:0;border-radius:0;box-sizing:border-box;padding:24px 0!important;display:flex;flex-direction:column;justify-content:center;height:100%}
-.ss-hrow2 .ss-hc-r{padding:24px 0!important}
-.ss-hrow2 .ss-hc-r .owl-carousel .owl-nav .owl-prev{left:4px!important}.ss-hrow2 .ss-hc-r .owl-carousel .owl-nav .owl-next{right:4px!important}
-@media(min-width:1025px){.ss-hrow2{align-items:stretch!important;gap:24px!important}.ss-hrow2>.wpb_column:first-child{width:640px!important}.ss-hrow2>.wpb_column:last-child{width:min(720px,calc(100% - 664px))!important}.ss-hrow2 .ss-hero2{max-width:none}}
-@media(max-width:1024px){.ss-hrow2>.wpb_column{margin-bottom:16px!important}.ss-hrow2 .ss-hc{padding:16px 0!important}.ss-hrow2 .ss-hc-r{padding:8px 0!important}}
-.ss-hero2 .ss-hb1,.ss-hero2 .ss-hb2{height:46px;padding:0 22px;border-radius:8px;font:700 15px/1 Jura,sans-serif;letter-spacing:.3px}
-.ss-hero2 .ss-hb1{background:#E09900;color:#111!important;box-shadow:none}
-.ss-hero2 .ss-hb1:hover{background:#f2a800;transform:none;box-shadow:none}
-.ss-hero2 .ss-hb2{background:rgba(255,255,255,.04);border:.8px solid rgba(255,255,255,.12);color:#EDE7DF!important}
-.ss-hero2 .ss-hb2:hover{border-color:#E09900;background:rgba(224,153,0,.08);transform:none}
-.ss-hero2 .ss-hero-feats li{border-radius:8px;border:.8px solid rgba(255,255,255,.07);background:rgba(255,255,255,.035);font-family:Jura,sans-serif;font-weight:600;color:#DAD2C7}
-.ss-hero2 .ss-trust{font-family:Jura,sans-serif;font-weight:600}
-/* 17.10 final: full-width dark band like before, no gap under header, ribbon top-aligned with the text */
-.ss-hsec{background:#1a1a1a!important;padding-top:14px!important;padding-bottom:26px!important}.ss-hsec:before{display:none!important}.ss-hsec>.l-section-overlay{display:block!important}
-.ss-hrow2{background:none!important;border:0!important;border-radius:0!important;padding:0!important;margin:0 auto!important}
-.ss-hrow2 .ss-hc{justify-content:flex-start!important;padding:0!important;height:auto!important}
-@media(min-width:1025px){.ss-hrow2{align-items:flex-start!important;max-width:none!important}.ss-hrow2>.wpb_column:last-child{width:calc(100% - 656px)!important}}
-.ss-hgroups{width:100%;display:flex;flex-direction:column;gap:10px;margin:0 0 24px}.ss-hero2 .ss-hero-ctas{margin-top:22px!important}
-.ss-hgroup{width:100%}
-.ss-hg-label{font:700 11px/1 Jura,sans-serif;letter-spacing:2.2px;text-transform:uppercase;color:#9B9288;margin:0 0 8px;text-align:left}
-.ss-hg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.ss-svc{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:14px 14px 12px;border-radius:8px;border:.8px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);text-decoration:none!important;color:#EDE7DF!important;text-align:left;transition:border-color .2s,background .2s,transform .2s}
-.ss-svc:hover{border-color:#E09900;background:rgba(224,153,0,.08);transform:translateY(-2px)}
-.ss-svc svg{width:22px;height:22px;stroke:#E09900;margin-bottom:4px}
-.ss-svc b{font:700 15px/1.2 Jura,sans-serif;color:#F4EFE8}
-.ss-svc .ss-svc-s{font:600 12.5px/1.35 Jura,sans-serif;color:#A39A8F}
-.ss-svc .ss-go{margin-top:6px;width:100%;display:flex;justify-content:space-between;gap:8px;font:700 12.5px/1 Jura,sans-serif;color:#E09900}.ss-svc .ss-go em{font-style:normal;color:#F4EFE8}.ss-svc .ss-go i{font-style:normal}
-.ss-hero2 .ss-hero-feats.ss-hf3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;margin:0!important}
-.ss-hero2 .ss-hero-feats.ss-hf3 li{font-size:13.5px;padding:9px 12px}
-@media(max-width:767px){.ss-hg-grid{grid-template-columns:1fr;gap:8px}.ss-svc{display:grid;grid-template-columns:24px 1fr auto;column-gap:12px;align-items:center;padding:12px}.ss-svc svg{grid-row:span 2;margin:0}.ss-svc .ss-go{grid-row:span 2;grid-column:3;grid-row-start:1;margin:0}.ss-hero2 .ss-hero-feats.ss-hf3{grid-template-columns:1fr}}
-.ss-nh{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}
-.ss-nh-l{font:700 12.5px/1.4 Sora,Roboto,sans-serif;letter-spacing:2.4px;text-transform:uppercase;color:#E09900;display:flex;align-items:center;gap:10px}
-.ss-nh-l:before{content:"";width:28px;height:2px;border-radius:2px;background:#E09900}
-.ss-nh-a{font:700 13px/1 Jura,sans-serif;color:#E09900!important;text-decoration:none!important}.ss-nh-a:hover{color:#ffb21a!important}
-.ss-hsec .w-grid-item .ss-cat{display:inline-block;margin-top:7px;font:700 11px/1 Jura,sans-serif;letter-spacing:1.2px;text-transform:uppercase;color:#E09900;background:rgba(224,153,0,.12);border-radius:6px;padding:5px 8px}
-.ss-hsec .w-grid-item .ss-cat-presets{color:#C9A7FF;background:rgba(160,110,255,.14)}
-.ss-hsec .w-grid-item .ss-cat-music{color:#8FD3C7;background:rgba(80,190,170,.14)}
-</style>
-<script id="ss-hero2-js">
-(function(){var D=<?php echo wp_json_encode( $data ); ?>;
-var b=document.querySelector('#page-content a[href="#templates"]')||document.querySelector('a[href="#templates"]');if(!b)return;
-var inner=b.closest('.vc_column-inner');if(!inner)return;var col=inner.querySelector('.wpb_wrapper');if(!col||col.classList.contains('ss-hero2'))return;
-var h1=col.querySelector('h1');if(!h1)return;col.classList.add('ss-hero2');var cA=inner.closest('.wpb_column'),row=cA&&cA.parentElement;if(row){var sc=row.closest('.l-section');if(sc)sc.classList.add('ss-hsec');if(row.children.length===2){row.classList.add('ss-hrow2');[].forEach.call(row.children,function(cc,i){var ii=cc.querySelector('.vc_column-inner');if(ii)ii.classList.add('ss-hc',i?'ss-hc-r':'ss-hc-l')})}}
-var h1box=h1.closest('.wpb_text_column')||h1;
-var eb=document.createElement('div');eb.className='ss-eyebrow';eb.textContent=D.eb;col.insertBefore(eb,h1box);
-var tgt=h1.querySelector('strong')||h1;if(/Solid Sound\s*$/.test(tgt.textContent)){tgt.innerHTML=tgt.textContent.replace(/Solid Sound\s*$/,'<span class="ss-acc">Solid Sound</span>')}
-var ps=[].slice.call(col.querySelectorAll('.wpb_text_column p')).filter(function(p){return !p.closest('h1')&&/<br/i.test(p.innerHTML)});
-if(ps[0]){var parts=ps[0].innerHTML.split(/<br\s*\/?>/i).map(function(s){return s.trim()}).filter(function(s){return s.replace(/<[^>]+>/g,'').trim()});var ul=document.createElement('ul');ul.className='ss-hero-feats';var IC={mix:'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',rework:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',custom:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>'};
-var g=document.createElement('div');g.className='ss-hgroup';var lb=document.createElement('div');lb.className='ss-hg-label';lb.textContent=D.svc.label;g.appendChild(lb);var gr=document.createElement('div');gr.className='ss-hg-grid';
-D.svc.items.forEach(function(it){var a=document.createElement('a');a.className='ss-svc';a.href=it.u;a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[it.ic]+'</svg><b></b><span class="ss-svc-s"></span><span class="ss-go"></span>';a.querySelector('b').textContent=it.t;a.querySelector('.ss-svc-s').textContent=it.s;a.querySelector('.ss-go').innerHTML='<em></em><i></i>';a.querySelector('.ss-go em').textContent=it.p||'';a.querySelector('.ss-go i').textContent=D.svc.go+' →';gr.appendChild(a)});g.appendChild(gr);
-parts.slice(1).forEach(function(s){var li=document.createElement('li');li.innerHTML=s;ul.appendChild(li)});ul.classList.add('ss-hf3');var box=document.createElement('div');box.className='ss-hgroups';box.appendChild(g);box.appendChild(ul);ps[0].parentNode.replaceChild(box,ps[0])}
-var bc=b.closest('.vc_btn3-container')||b;
-var ct=document.createElement('div');ct.className='ss-hero-ctas';
-var a1=document.createElement('a');a1.className='ss-hb1';a1.href='#templates';a1.innerHTML='<span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';a1.firstChild.textContent=D.b1;
-var a2=document.createElement('a');a2.className='ss-hb2';a2.href=D.fb;a2.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#E09900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2"/></svg><span></span>';a2.lastChild.textContent=D.b2;
-ct.appendChild(a1);ct.appendChild(a2);bc.parentNode.insertBefore(ct,bc);bc.style.display='none';
-var tr=document.createElement('ul');tr.className='ss-trust';D.tr.forEach(function(x){var li=document.createElement('li');li.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#E09900" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span></span>';li.lastChild.innerHTML=x;tr.appendChild(li)});ct.parentNode.insertBefore(tr,ct.nextSibling);
-(function(){var rw=inner.closest('.wpb_column');rw=rw&&rw.parentElement;var cg=rw&&rw.children[1]&&rw.children[1].querySelector('.w-grid');if(!cg||cg.dataset.ssNw)return;cg.dataset.ssNw=1;
-var hd=document.createElement('div');hd.className='ss-nh';hd.innerHTML='<span class="ss-nh-l"></span><a class="ss-nh-a" href="#templates"></a>';hd.firstChild.textContent=D.nw[0];hd.lastChild.textContent=D.nw[1]+' →';cg.parentNode.insertBefore(hd,cg);
-function tag(root){[].forEach.call(root.querySelectorAll('.w-grid-item'),function(it){if(it.querySelector('.ss-cat'))return;var m=it.className.match(/product-format-(templates|presets|music)/);if(!m)return;var t=it.querySelector('.post_title');if(!t)return;var s=document.createElement('span');s.className='ss-cat ss-cat-'+m[1];s.textContent=D.nw[{templates:2,presets:3,music:4}[m[1]]];t.parentNode.insertBefore(s,t.nextSibling)})}
-tag(cg);var q=0;new MutationObserver(function(){if(q)return;q=setTimeout(function(){q=0;tag(cg)},120)}).observe(cg,{childList:true,subtree:true})})();
-[].forEach.call(col.children,function(el,i){if(el.style.display==='none')return;el.classList.add('ss-anim');el.style.animationDelay=(i*0.09)+'s'});
-})();
-</script>
-<?php
-	return $content . ob_get_clean();
-}, 99 );
 
 /* ═══ Solid Sound — 17.10.2026: Services & Prices page — section anchors (#svc-mixing, #svc-remix, #svc-ghost-producing …) for the hero service tiles ═══ */
 add_action( 'wp_footer', function () {
@@ -6651,8 +6333,6 @@ add_action( 'wp_head', function () {
 	if ( is_front_page() ) echo '<meta name="google-site-verification" content="Vpzw7aOfQg7PmFsFGB5io7K_VvI4o18HY5rNGVvAtHc" />' . "\n";
 }, 1 );
 
-/* ═══ 24.10.2026: ES/IT added in Polylang — hide their flags/links for visitors until translation is deployed (remove this block after) ═══ */
-
 /* ═══ Solid Sound — 24.10.2026: ES + IT — translation layer for custom blocks (hero, chat, FREE zone, follow block, UI) ═══
  * Our dictionaries fall back to EN on /es/ and /it/; this layer swaps the EN strings in the final HTML (plain, HTML-escaped and JSON-escaped forms).
  * Single words are only swapped as whole element text (>Word<) so code, classes and URLs are never touched. */
@@ -6934,6 +6614,12 @@ add_action( 'wp_head', function () {
 add_action( 'wp_head', function () {
 	if ( is_admin() || is_front_page() ) return;
 	echo '<script>window.__ssg=1;window.__sslb=1;</script>';
+	/* (12.11.2026 speed) the old theme header is hidden from the first paint (it used to flash and pull in 3 icon fonts,
+	   ~450 KB) and the new menu's place is reserved before the script adds it (the whole page jumped down: CLS 0.54) */
+	$promo = time() < strtotime( '2026-11-30 23:59:59 +0100' ) ? 36 : 0;
+	echo '<style id="ss-ssg-reserve">.l-header,.l-subheader,.w-toplink{display:none!important}'
+		. '.l-canvas:not(:has(> #ssg))::before{content:"";display:block;height:' . ( 73 + $promo ) . 'px}'
+		. '@media(max-width:760px){.l-canvas:not(:has(> #ssg))::before{height:61px}}</style>';
 	ss_asset( 'ss-global', 'defer' );
 }, 2 );
 

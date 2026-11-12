@@ -31,8 +31,8 @@ return array(
   't' => 'css',
   'id' => 'ss-wcfm-skin'
  ),
- 'js-l2074' => array(
-  'f' => 'js-l2074.98a7b32915.js',
+ 'js-l2068' => array(
+  'f' => 'js-l2068.98a7b32915.js',
   't' => 'js',
   'id' => null
  ),
@@ -51,11 +51,6 @@ return array(
   't' => 'css',
   'id' => 'ss-yt'
  ),
- 'ss-hdr2' => array(
-  'f' => 'ss-hdr2.87a28d450b.css',
-  't' => 'css',
-  'id' => 'ss-hdr2'
- ),
  'ss-pd2-css' => array(
   'f' => 'ss-pd2-css.448b78a850.css',
   't' => 'css',
@@ -65,16 +60,6 @@ return array(
   'f' => 'ss-pd3-compact.63aff8845a.css',
   't' => 'css',
   'id' => 'ss-pd3-compact'
- ),
- 'ss-ripple-js' => array(
-  'f' => 'ss-ripple-js.68e03af1f6.js',
-  't' => 'js',
-  'id' => 'ss-ripple-js'
- ),
- 'ss-ripple-g-js' => array(
-  'f' => 'ss-ripple-g-js.e315579904.js',
-  't' => 'js',
-  'id' => 'ss-ripple-g-js'
  ),
  'ss-snd-js' => array(
   'f' => 'ss-snd-js.f8664eb0fa.js',
@@ -86,18 +71,13 @@ return array(
   't' => 'js',
   'id' => 'ss-ytb-js'
  ),
- 'ss-hero2-css' => array(
-  'f' => 'ss-hero2-css.2390090ed4.css',
-  't' => 'css',
-  'id' => 'ss-hero2-css'
- ),
  'ss-free-css' => array(
   'f' => 'ss-free-css.86a8c3c487.css',
   't' => 'css',
   'id' => 'ss-free-css'
  ),
- 'js-l4846' => array(
-  'f' => 'js-l4846.3d9ca230af.js',
+ 'js-l4528' => array(
+  'f' => 'js-l4528.3d9ca230af.js',
   't' => 'js',
   'id' => null
  ),
@@ -116,13 +96,13 @@ return array(
   't' => 'css',
   'id' => 'ssb-css'
  ),
- 'css-l5888' => array(
-  'f' => 'css-l5888.6846b70d1f.css',
+ 'css-l5570' => array(
+  'f' => 'css-l5570.6846b70d1f.css',
   't' => 'css',
   'id' => null
  ),
- 'css-l6501' => array(
-  'f' => 'css-l6501.555a2d388e.css',
+ 'css-l6183' => array(
+  'f' => 'css-l6183.555a2d388e.css',
   't' => 'css',
   'id' => null
  ),
