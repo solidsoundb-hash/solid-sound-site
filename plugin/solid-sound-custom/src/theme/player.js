@@ -449,6 +449,7 @@ function canAjax(a,e){
   var href=a.getAttribute('href')||'';if(!href||href.charAt(0)==='#'||/^(javascript|mailto|tel):/i.test(href))return false;
   var u;try{u=new URL(a.href,location.href)}catch(x){return false}
   if(u.origin!==location.origin)return false;
+  if(/^\/([a-z]{2}\/?)?$/i.test(u.pathname))return false; /* home page is its own app: full load, the player resumes */
   if(NO_AJAX.test(u.pathname)||/add-to-cart|add_to_wishlist|wc-ajax|action=|customize|preview=/i.test(u.search))return false;
   if(/\.(mp3|wav|zip|rar|pdf|jpe?g|png|gif|webp|svg|xml|txt|als)$/i.test(u.pathname))return false;
   if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return false;
@@ -512,14 +513,18 @@ function navigate(url,push){
     var scripts=newScriptsFrom(doc,nm);
     syncHead(doc);
     document.title=doc.title;
-    var keep=['ssp-open'].filter(function(c){return document.body.classList.contains(c)});
-    document.body.className=doc.body.className;keep.forEach(function(c){document.body.classList.add(c)});
+    /* keep classes added by scripts (player, site menu, theme state, Woo js flag); take the rest from the new page */
+    var keep=[].filter.call(document.body.classList,function(c){return /^(ssp-|ssg-|ss-|state_|woocommerce-js$)/.test(c)});
+    document.body.className=doc.body.className;
+    if(keep.some(function(c){return c.indexOf('state_')===0}))[].slice.call(document.body.classList).forEach(function(c){if(c.indexOf('state_')===0)document.body.classList.remove(c)});
+    if(keep.indexOf('woocommerce-js')>=0)document.body.classList.remove('woocommerce-no-js');
+    keep.forEach(function(c){document.body.classList.add(c)});
     var imported=document.importNode(nm,true);
     cm.parentNode.replaceChild(imported,cm);
     if(push)history.pushState({ssp:1},'',res.url);
     var u=new URL(res.url);
     if(u.hash&&document.getElementById(u.hash.slice(1)))document.getElementById(u.hash.slice(1)).scrollIntoView();else window.scrollTo(0,0);
-    markMenu();
+    markMenu();try{document.dispatchEvent(new CustomEvent('ssp:url',{detail:{url:res.url}}))}catch(e){}
     /* run new external scripts in order, then inline scripts inside the new content */
     var chain=Promise.resolve();
     scripts.forEach(function(s){chain=chain.then(function(){if(s.before)runInline(s.before);if(s.b2)runInline(s.b2);return loadScript(s.src).then(function(){if(s.after)runInline(s.after)})})});
@@ -536,6 +541,8 @@ function navigate(url,push){
     });
   }).catch(function(){if(my===navToken){location.href=url}});
 }
+/* used by the site menu (logo, Products/Services buttons): switch page without stopping the music */
+window.sspGo=function(url){var a=document.createElement('a');a.href=url;var u=canAjax(a);if(!u)return false;navigate(u.href,true);return true};
 document.addEventListener('click',function(e){
   var a=e.target.closest&&e.target.closest('a');if(!a)return;
   var u=canAjax(a,e);if(!u)return;

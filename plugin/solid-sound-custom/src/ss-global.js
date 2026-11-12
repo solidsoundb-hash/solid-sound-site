@@ -66,6 +66,8 @@ var FAV={t:'Favorites',i:'fav',h:logged ? MYA+'#favourites' : MYA};
 /* current page: the language prefix (/en/, /de/ ...) and case are ignored, so /en/templates/ = /templates */
 function normP(p){ p=(p||'/').toLowerCase().replace(/[/]+$/,'')||'/'; return p.replace(/^[/](en|de|fr|es|it|pt|ua|uk|pl|ru)(?=[/]|$)/,'')||'/'; }
 var path=normP(location.pathname);
+function isHome(h){ try{ return normP(new URL(h,location.href).pathname)==='/'; }catch(e){ return false; } }
+function go(h){ if(isHome(h) || !(window.sspGo && window.sspGo(h))) location.href=h; }
 function isCur(h){ try{ return normP(new URL(h,location.href).pathname)===path; }catch(e){ return false; } }
 /* a whole section lights up its menu item (product pages -> Products, calculators -> Services ...) */
 var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator)([/]|$)/,FAQ:/^[/](faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/};
@@ -238,7 +240,7 @@ function wire(hd,sh){
         var y=tg ? Math.max(0,tg.getBoundingClientRect().top+window.pageYOffset-off) : 0; if(Math.abs(window.pageYOffset-y)<4) y=0;
         try{ window.scrollTo({top:y,behavior:'smooth'}); }catch(x){ window.scrollTo(0,y); }
         hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); return; }
-      location.href=b.getAttribute('data-h'); return; }
+      go(b.getAttribute('data-h')); return; }
     if(b){ var it=b.parentNode, on=!it.classList.contains('open'); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); if(on) it.classList.add('open'); b.setAttribute('aria-expanded',on ? 'true' : 'false'); e.preventDefault(); return; }
     if(e.target.closest('.g-burger')){ openSheet(true); }
   });
@@ -249,7 +251,11 @@ function wire(hd,sh){
   D.addEventListener('click',function(e){ if(e.target.closest('#ssg-bar .g-sheet-open')) openSheet(true); });
   D.addEventListener('keydown',function(e){ if(e.key==='Escape'){ openSheet(false); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); } });
   /* links in our header always do a full load (the player keeps the track) */
-  D.addEventListener('click',function(e){ var a=e.target.closest ? e.target.closest('#ssg a,#ssg-bar a,#ssg-sheet a') : null; if(a) a.classList.add('no-ajax'); },true);
+  /* menu links switch pages without a reload while the player is playing (music keeps going);
+     only the home page (its own app) still loads fully, and the player resumes there */
+  D.addEventListener('click',function(e){ var a=e.target.closest ? e.target.closest('#ssg a,#ssg-bar a,#ssg-sheet a') : null; if(a && isHome(a.href)) a.classList.add('no-ajax'); },true);
+  function markCur(){ path=normP(location.pathname); D.querySelectorAll('#ssg a[href],#ssg-bar a[href]').forEach(function(a){ if(a.id==='ssg-promo'||a.classList.contains('g-logo')) return; var it=a.closest('.g-it'), on=isCur(a.getAttribute('href')); a.classList.toggle('cur',on); }); D.querySelectorAll('#ssg .g-nav .g-it').forEach(function(it){ var top=it.querySelector(':scope > .g-a'); if(top && it.querySelector('.g-dd')) top.classList.toggle('cur',!!it.querySelector('.g-dd a.cur')||isCur(top.getAttribute('data-h')||top.getAttribute('href')||'')||inSec(((top.querySelector('.g-l')||{}).textContent||'').trim())); }); }
+  D.addEventListener('ssp:url',markCur); D.addEventListener('ssp:navigated',markCur); window.addEventListener('popstate',function(){ setTimeout(markCur,50); });
 }
 
 /* ---------- triangle play icons everywhere ---------- */
@@ -478,6 +484,6 @@ function ssgAI(){
 function lgOf(t){ return t.closest ? t.closest('#ssg .g-logo') : null; }
 D.addEventListener('pointerdown',function(e){ var a=lgOf(e.target); if(a) a.classList.add('ss-press'); },true);
 ['pointerup','pointercancel','pointerleave'].forEach(function(ev){ D.addEventListener(ev,function(e){ var a=lgOf(e.target); if(a) setTimeout(function(){ a.classList.remove('ss-press'); },60); },true); });
-D.addEventListener('click',function(e){ var a=lgOf(e.target); if(!a) return; if(e.metaKey ? true : e.ctrlKey) return; e.preventDefault(); a.classList.add('ss-press'); var h=a.href; setTimeout(function(){ a.classList.remove('ss-press'); },110); setTimeout(function(){ location.href=h; },230); },true);
+D.addEventListener('click',function(e){ var a=lgOf(e.target); if(!a) return; if(e.metaKey ? true : e.ctrlKey) return; e.preventDefault(); a.classList.add('ss-press'); var h=a.href; setTimeout(function(){ a.classList.remove('ss-press'); },110); setTimeout(function(){ go(h); },230); },true);
 if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',mount); else mount();
 })();
