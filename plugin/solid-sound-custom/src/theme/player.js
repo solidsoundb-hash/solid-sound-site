@@ -140,7 +140,7 @@ function load(t,queue,opts){
   if(opts.at!=null)P.pendingSeek=opts.at;
   Bar.show();Bar.render();syncAll();media();save();
 }
-function play(){if(!P.cur)return;if(typeof vidOn!=='undefined'&&vidOn)[].forEach.call(document.querySelectorAll('video'),function(v){try{v.pause()}catch(x){}});setLoading(true);var p=audio.play();if(p&&p.catch)p.catch(function(){setLoading(false);Bar.el.classList.add('ssp-resume')})}
+function play(){if(!P.cur)return;if(typeof vidOn!=='undefined'&&vidOn)[].forEach.call(document.querySelectorAll('video,audio.ss-abx'),function(v){try{v.pause()}catch(x){}});setLoading(true);var p=audio.play();if(p&&p.catch)p.catch(function(){setLoading(false);Bar.el.classList.add('ssp-resume')})}
 function pause(){audio.pause()}
 function toggle(){if(!P.cur)return;if(audio.paused)play();else pause()}
 function pageNext(){if(!P.cur)return null;var pq=pageQueue();for(var i=0;i<pq.length-1;i++){if(fileOf(pq[i].src)===fileOf(P.cur.src)){var n=pq[i+1];for(var k=0;k<P.queue.length;k++){if(fileOf(P.queue[k].src)===fileOf(n.src))return null}return n}}return null}
@@ -173,10 +173,10 @@ audio.addEventListener('pause',function(){setLoading(false);syncAll();save();if(
    video starts -> music pauses and the phone's media buttons (notification, lock screen, headphones) go to the video;
    video pauses / ends -> the music does NOT start by itself. Before, pausing a video on Android could start the music. */
 var vidOn=0;
-function vidPlay(e){var t=e.target;if(!t||t===audio||t.tagName!=='VIDEO')return;vidOn++;
+function vidPlay(e){var t=e.target;if(!t||t===audio||(t.tagName!=='VIDEO'&&!(t.classList&&t.classList.contains('ss-abx'))))return;vidOn++;
   if(!audio.paused)audio.pause();
   if('mediaSession' in navigator){['play','pause','previoustrack','nexttrack','seekto'].forEach(function(k){try{navigator.mediaSession.setActionHandler(k,null)}catch(x){}})}}
-function vidStop(e){var t=e.target;if(!t||t===audio||t.tagName!=='VIDEO')return;vidOn=Math.max(0,vidOn-1);
+function vidStop(e){var t=e.target;if(!t||t===audio||(t.tagName!=='VIDEO'&&!(t.classList&&t.classList.contains('ss-abx'))))return;vidOn=Math.max(0,vidOn-1);
   if(!vidOn)setTimeout(function(){if(!vidOn&&P.cur)media()},1500)}
 document.addEventListener('play',vidPlay,true);document.addEventListener('pause',vidStop,true);document.addEventListener('ended',vidStop,true);
 audio.addEventListener('ended',function(){var c=P.cur;next();if(P.cur===c){audio.currentTime=0;syncAll()}});

@@ -3,13 +3,14 @@
 //   build/assets/*.css|js minified, content-hashed (cache forever)
 //   build/assets.php      name => file map used by ss_asset()
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync, cpSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { transformSync } from 'esbuild';
 const root = new URL('../plugin/solid-sound-custom/', import.meta.url).pathname;
 const raw = '/tmp/ss-build-raw';
 rmSync(root + 'build', { recursive: true, force: true }); rmSync(raw, { recursive: true, force: true });
 mkdirSync(root + 'build/assets', { recursive: true });
+cpSync(root + 'src/media', root + 'build/media', { recursive: true }); /* static media (example audio) */
 execFileSync('php', [new URL('extract-assets.php', import.meta.url).pathname, root + 'src/custom.php', root + 'build/custom.php', raw], { stdio: 'inherit' });
 execFileSync('php', ['-l', root + 'build/custom.php'], { stdio: 'inherit' });
 const manifest = JSON.parse(readFileSync(raw + '/manifest.json', 'utf8'));
