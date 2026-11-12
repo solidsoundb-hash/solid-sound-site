@@ -1,4 +1,4 @@
-# Site check 2026-11-12T21:32:56.129Z
+# Site check 2026-11-12T21:40:39.149Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 187 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -31,8 +31,9 @@
 - /en/my-account/ → HTTP 200 · inline 190 KB · player files · [user_phone_en_my_account.jpg](user_phone_en_my_account.jpg)
 - /en/my-account/orders/ → HTTP 200 · inline 190 KB · player files · [user_phone_en_my_account_orders.jpg](user_phone_en_my_account_orders.jpg)
 - /en/my-account/edit-account/ → HTTP 200 · inline 191 KB · player files · [user_phone_en_my_account_edit_account.jpg](user_phone_en_my_account_edit_account.jpg)
-- /en/my-account/edit-address/ → HTTP 200 · inline 251 KB · player files · [user_phone_en_my_account_edit_address.jpg](user_phone_en_my_account_edit_address.jpg)
+- /en/my-account/edit-address/ → HTTP 503 · inline 0 KB · [user_phone_en_my_account_edit_address.jpg](user_phone_en_my_account_edit_address.jpg)
 ## user · desktop
+- login error: locator.fill: Timeout 30000ms exceeded.
 - logged in: false
 
 ## admin · phone
@@ -53,7 +54,7 @@
 - /en/store-manager/ss-products/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_products.jpg](admin_desktop_en_store_manager_ss_products.jpg)
 - /add-product/ → HTTP 200 · inline 329 KB · player files · [admin_desktop_add_product.jpg](admin_desktop_add_product.jpg)
 - /en/store-manager/ss-earnings/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_earnings.jpg](admin_desktop_en_store_manager_ss_earnings.jpg)
-- /en/store-manager/ss-payouts/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_payouts.jpg](admin_desktop_en_store_manager_ss_payouts.jpg)
+- /en/store-manager/ss-payouts/ → HTTP 404 · inline 130 KB · player files · [admin_desktop_en_store_manager_ss_payouts.jpg](admin_desktop_en_store_manager_ss_payouts.jpg)
 - /en/store-manager/ss-reviews/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_reviews.jpg](admin_desktop_en_store_manager_ss_reviews.jpg)
 - /en/store-manager/ss-settings/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_settings.jpg](admin_desktop_en_store_manager_ss_settings.jpg)
 - /en/store-manager/ss-help/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_help.jpg](admin_desktop_en_store_manager_ss_help.jpg)
