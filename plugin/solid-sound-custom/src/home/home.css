@@ -77,3 +77,6 @@ html,body{overflow-x:clip!important}
 
 /* no-reload navigation into the home app: hide what the previous page left outside the content */
 body.ss-newhome .l-header,body.ss-newhome .ssf,body.ss-newhome #ssg,body.ss-newhome #ssg-bar,body.ss-newhome #ssg-promo{display:none!important}
+/* slider dots: same look, bigger invisible tap area for fingers */
+#ss-app button[aria-label^="Page "],.ssx .dots i{position:relative}
+#ss-app button[aria-label^="Page "]::after{content:"";position:absolute;inset:-12px -4px}
