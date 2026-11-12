@@ -15,6 +15,10 @@ add_action( 'wp_head', function () {
 		. 'margin:0 0 10px!important;padding:4px!important;border-radius:12px!important;z-index:50!important;box-shadow:0 6px 18px rgba(0,0,0,.35)}'
 		. '#wcfm-content #wcfm_menu::-webkit-scrollbar{display:none}'
 		. '#wcfm-content #wcfm_menu .wcfm_menu_logo{display:none!important}'
+		/* WCFM hides the items on phones (collapsed "toggle" state) — show them as the icon row */
+		. '#wcfm-main-contentainer #wcfm-content #wcfm_menu.wcfm_menu_toggle,#wcfm-main-contentainer #wcfm-content #wcfm_menu{width:100%!important;max-width:100%!important;box-sizing:border-box}'
+		. '#wcfm-main-contentainer #wcfm-content #wcfm_menu .wcfm_menu_items,#wcfm-main-contentainer #wcfm-content #wcfm_menu.wcfm_menu_toggle .wcfm_menu_items{display:block!important;visibility:visible!important;opacity:1!important}'
+		. '#wcfm-main-contentainer #wcfm-content #wcfm_menu .wcfm_menu_items a.wcfm_menu_item{visibility:visible!important;opacity:1!important}'
 		. '#wcfm-content #wcfm_menu .wcfm_menu_items{flex:0 0 auto!important;width:auto!important;height:auto!important;margin:0!important;float:none!important}'
 		. '#wcfm-content #wcfm_menu .wcfm_menu_items a.wcfm_menu_item{width:74px!important;min-width:74px!important;height:58px!important;padding:6px 2px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px;box-shadow:none!important;border-radius:10px!important}'
 		. '#wcfm-content #wcfm_menu .wcfm_menu_items a.wcfm_menu_item .text{display:block!important;font-size:10px!important;line-height:1.1!important;white-space:normal!important;text-align:center;position:static!important;opacity:1!important;visibility:visible!important;width:auto!important;background:none!important;padding:0!important}'
