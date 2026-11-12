@@ -9,7 +9,7 @@
 .ssx .tasks button{flex:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:#CBD5E1;font:700 14px "Exo 2",sans-serif;cursor:pointer;transition:.2s}
 .ssx .tasks button:hover{color:#fff;border-color:rgba(255,255,255,.2)}
 .ssx .tasks button.on{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.55);color:var(--or)}
-.ssx .tasks button i{font-style:normal;font-size:16px}
+.ssx .tasks button i{font-style:normal;display:inline-flex;color:var(--or)}.ssx .tasks button i svg{display:block}
 .ssx .vp{overflow:hidden;border-radius:14px;transition:height .45s ease}
 .ssx .track{display:flex;align-items:flex-start;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .ssx .card{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;padding:2px}
