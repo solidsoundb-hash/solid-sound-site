@@ -6666,4 +6666,6 @@ require_once __DIR__ . '/modules/license.php';
 require_once __DIR__ . '/modules/bonus.php';
 require_once __DIR__ . '/modules/vendor.php';
 require_once __DIR__ . '/modules/creators.php';
+require_once __DIR__ . '/modules/studio-calc.php';
+require_once __DIR__ . '/modules/perf.php';
 require_once __DIR__ . '/modules/cleanup.php';
