@@ -5757,7 +5757,9 @@ add_action( 'wp_head', function () {
    loader in footer page block 52. The flags make the old loader and the old logo script stand down.
    Not on the front page: the home app has its own header. */
 add_action( 'wp_head', function () {
-	if ( is_admin() || is_front_page() ) return;
+	/* (12.11.2026) only the home APP has its own header. The other-language home pages (/de/, /ua/ …) are the old
+	   layout without a header: is_front_page() left them with no menu at all */
+	if ( is_admin() || ( function_exists( 'ss_home_is_app_page' ) ? ss_home_is_app_page() : is_front_page() ) ) return;
 	echo '<script>window.__ssg=1;window.__sslb=1;</script>';
 	/* (12.11.2026 speed) the old theme header is hidden from the first paint (it used to flash and pull in 3 icon fonts,
 	   ~450 KB) and the new menu's place is reserved before the script adds it (the whole page jumped down: CLS 0.54) */
