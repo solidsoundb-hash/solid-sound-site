@@ -22,8 +22,8 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
     await sleep(2500);
     // accept/close cookie bar only if present (no other clicks)
     try { await page.getByRole('button', { name: /^(Accept|Decline)$/ }).first().click({ timeout: 2000 }); } catch (e) {}
-    const email = page.locator('input[type=email], input[name*="email" i], input[name="login[username]"]').first();
-    const pw = page.locator('input[type=password]').first();
+    const email = page.locator('#login-form #login-email, #login-form input[name="login[username]"]').first();
+    const pw = page.locator('#login-form #login-password, #login-form input[name="login[password]"]').first();
     await email.fill(user); await pw.fill(pass);
     await Promise.all([page.waitForNavigation({ timeout: 90000 }).catch(() => {}), pw.press('Enter')]);
     await sleep(4000);
