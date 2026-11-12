@@ -1,4 +1,4 @@
-# Site check 2026-11-11T22:31:39.520Z
+# Site check 2026-11-12T00:04:01.542Z
 
 ## guest · phone
 - /en/ → HTTP 200 · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -19,7 +19,7 @@
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
 - /product/infinity/ → HTTP 200 · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
-- /en/all-products/ → HTTP 200 · ⚠ horizontal scroll · [guest_desktop_en_all_products.jpg](guest_desktop_en_all_products.jpg)
+- /en/all-products/ → HTTP 200 · [guest_desktop_en_all_products.jpg](guest_desktop_en_all_products.jpg)
 
 ## user · phone
 - logged in: true
