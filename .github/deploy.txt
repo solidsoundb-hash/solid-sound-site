@@ -25,3 +25,4 @@
 22 2026-11-11 23:56:42 audit fixes: no h-scroll, emoji off, old footer scripts gone, player-as-files ready (owner ok: віложи по окончанию)
 23 2026-11-12 05:24:38 player code as cached files (owner: сделай все сам)
 24 2026-11-12 06:11:47 player keeps playing on menu navigation
+22 2026-11-12 11:51:53 license shown once, no sideways scroll on All products (owner ok: все исправлять и выкладывать)
