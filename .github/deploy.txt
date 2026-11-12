@@ -28,3 +28,4 @@
 22 2026-11-12 11:51:53 license shown once, no sideways scroll on All products (owner ok: все исправлять и выкладывать)
 25 2026-11-12 14:11:15 QA pass phones+desktop: music never stops, no empty player bar, compact catalog toolbar, similar 2 cols, vendor form dark, All products link (owner ok: все исправления все выкладывай)
 26 2026-11-12 14:27:34 speed: no header jump/icon fonts, product image first, dead code removed (owner ok: выложишь потом все изменения)
+27 2026-11-12 14:37:15 All products: no layout jump (owner ok: выложишь потом все изменения)
