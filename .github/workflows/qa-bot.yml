@@ -1,0 +1,59 @@
+# QA bot ("автотестировщик"): walks the site like a person and writes a bug list.
+#  - quick check after every successful deploy
+#  - full check every Monday night (all pages, all languages, every button)
+#  - on demand: add a line to .github/qa.txt ("full" or "quick" in the line)
+# Result: qa/latest/report.md + bugs.json + shots/*.jpg (committed to the repo).
+name: QA bot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "quick or full", default: "full" }
+  workflow_run:
+    workflows: ["Deploy plugin"]
+    types: [completed]
+  schedule:
+    - cron: "17 0 * * 1"   # Monday 02:17 Kyiv
+  push:
+    branches: [main]
+    paths: [".github/qa.txt"]
+permissions:
+  contents: write
+concurrency: qa-bot
+jobs:
+  qa:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Pick the mode
+        id: mode
+        run: |
+          M=quick
+          case "${{ github.event_name }}" in
+            schedule) M=full ;;
+            workflow_dispatch) M="${{ github.event.inputs.mode }}" ;;
+            push) tail -1 .github/qa.txt | grep -qi full && M=full ;;
+          esac
+          echo "mode=$M" >> $GITHUB_OUTPUT
+          if [ "$M" = full ]; then echo "budget=140" >> $GITHUB_OUTPUT; else echo "budget=40" >> $GITHUB_OUTPUT; fi
+      - name: Run the QA bot
+        timeout-minutes: 160
+        env:
+          QA_MODE: ${{ steps.mode.outputs.mode }}
+          QA_BUDGET_MIN: ${{ steps.mode.outputs.budget }}
+          PW_CHANNEL: chrome   # Google Chrome is preinstalled on GitHub runners
+          TEST_USER: ${{ secrets.TEST_USER }}
+          TEST_PASS: ${{ secrets.TEST_PASS }}
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/qa/qa.js
+      - name: Save the report in the repo
+        if: always()
+        run: |
+          git config user.name "qa-bot"; git config user.email "actions@users.noreply.github.com"
+          git add qa && git commit -m "QA bot (${{ steps.mode.outputs.mode }}): $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"
