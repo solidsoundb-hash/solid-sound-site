@@ -318,6 +318,8 @@ body.ssp-open .w-toplink{bottom:90px!important}
 .w-grid.layout_195 .ss-ib{width:40px!important;height:40px!important;min-width:0!important;padding:0!important;border-radius:10px!important;background:rgba(255,255,255,.04)!important;border:1px solid rgba(255,255,255,.14)!important;color:#e8e8e8!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;box-shadow:none!important}
 .w-grid.layout_195 .ss-ib .w-btn-label,.w-grid.layout_195 .ss-cartbtn .w-btn-label{display:none!important}
 .w-grid.layout_195 .ss-ib svg{width:20px;height:20px;flex:0 0 auto}.w-grid.layout_195 .ss-ib:hover{border-color:#e09900!important;color:#e09900!important}
+.w-grid.layout_195 .ss-cartbtn.has-p{width:auto!important;min-width:46px;padding:0 14px 0 12px!important;gap:7px}
+.w-grid.layout_195 .ss-cartbtn.has-p .ss-cbp{font-size:15px;font-weight:800;color:inherit;white-space:nowrap}
 .w-grid.layout_195 .ss-cartbtn{width:46px!important;height:40px!important;padding:0!important;border-radius:10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}
 .w-grid.layout_195 .ss-cartbtn svg{width:21px;height:21px;flex:0 0 auto}.w-grid.layout_195 .ss-cartbtn.loading svg{opacity:.3}
 .w-grid.layout_195 .usg_hwrapper_5 a.added_to_cart{font-size:12px;white-space:nowrap}

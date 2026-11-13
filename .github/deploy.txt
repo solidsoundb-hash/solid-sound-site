@@ -56,3 +56,4 @@
 52 2026-11-13 16:32:21 carousel price/card link/waveform + theme inline CSS to cached files (owner ok: Как сделаешь все выложи)
 53 2026-11-13 16:37:23 price on every buy button: product page and catalog show 'Buy · $13' / 'Add to cart · $13' (sale included) (owner ok: замени кнопки на корзину с ценниками, касается всего)
 54 2026-11-13 16:40:55 carousel: no theme lightbox on product cards (owner ok: Как сделаешь все выложи)
+55 2026-11-13 16:49:23 catalog cart buttons show the price on the icon button (sale price), e.g. cart + $13 (owner ok: замени кнопки на корзину с ценниками, касается всего)

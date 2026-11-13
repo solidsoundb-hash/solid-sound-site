@@ -433,7 +433,11 @@ function cardUI(root){
     if(it.classList.contains('ss-ui'))return;it.classList.add('ss-ui');
     var det=b.querySelector('.usg_btn_2');if(det){det.classList.add('ss-ib');det.setAttribute('aria-label','Details');det.title='Details';det.insertAdjacentHTML('afterbegin',ICO_INFO)}
     var cart=b.querySelector('.add_to_cart_button');
-    if(cart){cart.classList.add('ss-cartbtn');cart.title='Add to cart';cart.setAttribute('aria-label',(cart.getAttribute('aria-label')||'Add to cart'));cart.insertAdjacentHTML('afterbegin',ICO_CART)}
+    if(cart){cart.classList.add('ss-cartbtn');cart.title='Add to cart';cart.setAttribute('aria-label',(cart.getAttribute('aria-label')||'Add to cart'));cart.insertAdjacentHTML('afterbegin',ICO_CART);
+      /* (13.11.2026 owner) price on the cart button, not a bare icon */
+      try{ var pe=it.querySelector('.product_field.price ins .amount, .price ins .amount') || it.querySelector('.product_field.price .amount, .price .amount'); /* sale price first, then regular */
+        var pt=pe?pe.textContent.replace(/\s+/g,'').replace(/[.,]00$/,''):'';
+        if(pt && !cart.querySelector('.ss-cbp')){ var sp=document.createElement('span'); sp.className='ss-cbp'; sp.textContent=pt; cart.appendChild(sp); cart.classList.add('has-p'); } }catch(e){} }
   });
 }
 
