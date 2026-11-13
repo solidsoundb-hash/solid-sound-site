@@ -40,7 +40,7 @@ const DEVICES = {
 // requests that change data on the site: answered by the bot, never sent
 const SIDE_EFFECT = /ss_rt_like|ss_rt_play|ss_calc_send|album_mastering_quote|ss_free_join|ss_free_dl|ss_bot_lead|ss_chat_|ss_fb_submit|mwai|ss_ai|ai_search|wpforo|comment|contact|subscribe|newsletter|lead|sib_|mailin|brevo/i;
 // third-party hosts the pages may load (fonts, CDN). Everything else (pixels, analytics, chat, payments) is skipped.
-const ALLOWED_HOSTS = /(^|\.)(solid-sound\.net|jsdelivr\.net|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unpkg\.com)$/;
+const ALLOWED_HOSTS = /(^|\.)(solid-sound\.net|jsdelivr\.net|ytimg\.com|youtube-nocookie\.com|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unpkg\.com)$/;
 // buttons the bot never presses on its own
 const DANGER = /delete|remove|видал|удал|log ?out|sign ?out|вийти|выйти|abmelden|\bbuy\b|купити|checkout|\bpay\b|оплат|place order|subscribe|підпис|\bsend\b|submit|надісл|отправ|\bjoin\b|download|завантаж|скачат|clear all|reset|скинути|\bai\b|mic|voice|record|upload|accept all|прийняти|google|facebook|apple|create account|log ?in|sign ?in|увійти|register|зареєстр/i;
 const SKIP_CLICK_SEL = '.ss-ai,.g-ref,.g-mic,[class*="mic"],#top-q,.ss-cc,.ss-cc-no,.ss-cc-yes,#tidio-chat,.ssp,.ssw,.add_to_cart_button,.single_add_to_cart_button,.ss-like,[class*="like"],[class*="play"],[aria-label*="Play" i],[aria-label*="Pause" i],.g-lang,.g-logo,#wpadminbar,input,select,textarea';
@@ -182,7 +182,7 @@ async function facts(page) {
       account: txt(document.querySelector('#ssg .g-right .g-it > .g-a[aria-haspopup], #ssg .g-right a.g-a[href*="my-account"]') || document.createElement('i')),
     };
     const links = [...document.querySelectorAll('a[href]')].filter(a => a.href.startsWith(location.origin)).map(a => ({ h: a.href.split('#')[0], t: txt(a).slice(0, 40) }));
-    const anchors = [...document.querySelectorAll('a[href^="#"]')].filter(vis).map(a => a.getAttribute('href')).filter(h => h.length > 1 && !/^#(\/|!|top$|0$)/.test(h)).filter(h => { try { return !document.getElementById(decodeURIComponent(h.slice(1))) && !document.querySelector('[name="' + h.slice(1).replace(/"/g, '') + '"]'); } catch (e) { return false; } });
+    const anchors = [...document.querySelectorAll('a[href^="#"]')].filter(vis).map(a => a.getAttribute('href')).filter(h => h.length > 1 && !/^#(\/|!|top$|0$|account$)/.test(h)).filter(h => { try { return !document.getElementById(decodeURIComponent(h.slice(1))) && !document.querySelector('[name="' + h.slice(1).replace(/"/g, '') + '"]'); } catch (e) { return false; } });
     // button shapes: the house style is a rounded rectangle (corner radius 8–12px), not a "pill" or a circle
     const shapes = [];
     document.querySelectorAll('button, a.button, .w-btn, input[type=submit], a[class*="btn"], [role=button]').forEach(e => {
