@@ -97,3 +97,5 @@ body.ss-newhome .l-header,body.ss-newhome .ssf,body.ss-newhome #ssg,body.ss-newh
 #ss-app .ss-ab .a,#ss-app .ss-ab.aft .b{display:none}#ss-app .ss-ab.aft .a{display:block}
 /* example cards: players and videos sit at the bottom, aligned across cards */
 #ss-app .ss-ab,#ss-app article>iframe{margin-top:auto}
+#ss-app .ss-pw .ssw{margin:4px 0 0}#ss-app .ss-pw audio{display:none}
+#ss-app .ss-pw .ssw-add,#ss-app .ss-pw .ssw-cur{display:none}

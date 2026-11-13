@@ -65,6 +65,7 @@
     var b=e.target.closest('#ss-app button'); if(!b) return;
     if(b.closest('header')) return; var lab=b.getAttribute('aria-label')||''; if(!/^(Play|Pause|Stop)/i.test(lab)) return;
     if(b.closest('.ss-ab,.ssx')) return; /* examples and the first screen have their own players */
+    var art=b.closest('article'); if(art && art.querySelector('.ss-pw .ssw-btn')) return; /* product cards play through the site player */
     /* the product cover must be in the same card: stop as soon as a parent holds more than one cover (= a list of cards) */
     var n=b, cov=null, lv=0; while(n && lv++<8){ if(n.querySelectorAll){ var cs=n.querySelectorAll('.ss-cov'); if(cs.length>1) break; if(cs.length===1){ cov=cs[0]; break; } } n=n.parentElement; }
     var name=cov?(cov.getAttribute('aria-label')||'').replace(/^Open /,''):'';
@@ -326,4 +327,32 @@ document.addEventListener('input',function(e){
 document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='number' || !r.closest || !r.closest('#ss-app .ssx .rng')) return; if(r.value==='') return; r.value=Math.max(60,Math.min(200,Math.round(+r.value)||128)); });
 (window.ssOnDom||function(f){f();})(function(){
   document.querySelectorAll('#ss-app .ssx .rng input[data-v]').forEach(function(r){ if(r.getAttribute('data-i')) return; r.setAttribute('data-i','1'); r.value=r.getAttribute('data-v'); });
+});
+
+/* (12.11.2026 owner) Best products: waveform players in the cards (site player, keeps playing across pages).
+   The cover play button plays the same track through the site player. */
+(function(){
+  function rt(pid){ var R=window.SS_RT&&window.SS_RT.p; return R&&R[pid]; }
+  function mount(){
+    if(!window.SSP||!window.SSP.wave) return;
+    document.querySelectorAll('#ss-app .ss-pw[data-pid]').forEach(function(h){
+      var pid=h.getAttribute('data-pid'), d=rt(pid); if(!d||!d.s) { h.innerHTML=''; return; }
+      var a=h.querySelector('audio');
+      if(a && a.getAttribute('data-pid')!==pid){ h.innerHTML=''; a=null; }
+      if(!a){ a=document.createElement('audio'); a.className='ss-cardau'; a.preload='none'; a.setAttribute('data-pid',pid); a.src=d.s; h.appendChild(a); }
+      window.SSP.wave(a);
+    });
+  }
+  (window.ssOnDom||function(f){f();})(mount);
+  document.addEventListener('click',function(e){
+    var b=e.target.closest && e.target.closest('#ss-app article button[aria-label^="Play "], #ss-app article button[aria-label^="Pause "]'); if(!b) return;
+    var card=b.closest('article'), w=card && card.querySelector('.ss-pw .ssw-btn'); if(!w) return;
+    e.preventDefault(); e.stopImmediatePropagation(); w.click();
+  },true);
+})();
+
+/* (13.11.2026) Black Month −50% (until 30.11, see modules/sale.php): sale price on the first-screen offer */
+(window.ssOnDom||function(f){f();})(function(){
+  if(Date.now()>new Date('2026-11-30T23:59:59+01:00').getTime()) return;
+  document.querySelectorAll('#ss-app .ssx [data-bm]').forEach(function(b){ if(b.textContent===b.getAttribute('data-bm')) return; b.textContent=b.getAttribute('data-bm'); var o=b.parentNode.querySelector('[data-bms]'); if(o) o.hidden=false; });
 });

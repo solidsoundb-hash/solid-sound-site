@@ -49,6 +49,10 @@ module.exports = function (a, window) {
     var OC="    var openCalcPage = function (svcKey) {\n      return function (e) {\n        if (e && e.preventDefault) e.preventDefault();\n";
     if (a[0].split(OC).length !== 2) throw new Error('home: openCalcPage not found');
     a[0]=a[0].split(OC).join(OC + "        var cu = 'https://solid-sound.net/studio-calculator/' + (svcKey ? '?s=' + svcKey : ''); if (!(window.sspGo && window.sspGo(cu))) location.href = cu; return;\n");
+    /* (12.11.2026 owner) Best products: a real waveform player under each card (site player: plays across pages) */
+    if (a[0].split('name: c.name, genre: c.genre,').length !== 2) throw new Error('home: product map not found');
+    a[0]=a[0].split('name: c.name, genre: c.genre,').join("pid: c.pid || '', name: c.name, genre: c.genre,");
+    a[0]=a[0].split('<div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">').join('<div class="ss-pw" data-pid="{{p.pid}}"></div><div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">');
     /* perf 10.11: no fixed background repaint, countdown re-render once a minute instead of every second */
     a[0]=a[0].split("background-attachment: fixed; position: relative").join("position: relative").split("self.setState({ tick: Date.now() }); }, 1000").join("self.setState({ tick: Date.now() }); }, 60000").split("p(m) + 'm ' + p(sec) + 's'").join("p(m) + 'm'");
     a[0]=a[0].split("try { window.addEventListener('resize', function () { self.setState({ vw: window.innerWidth }); }); } catch (e) {}").join("try { var lw = window.innerWidth; window.addEventListener('resize', function () { var w = window.innerWidth; if ((w < 760) !== (lw < 760)) { lw = w; self.setState({ vw: w }); } lw = w; }, { passive: true }); } catch (e) {}")

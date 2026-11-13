@@ -5811,3 +5811,4 @@ require_once __DIR__ . '/modules/creators.php';
 require_once __DIR__ . '/modules/studio-calc.php';
 require_once __DIR__ . '/modules/perf.php';
 require_once __DIR__ . '/modules/cleanup.php';
+require_once __DIR__ . '/modules/sale.php';

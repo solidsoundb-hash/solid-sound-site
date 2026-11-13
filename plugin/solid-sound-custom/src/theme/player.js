@@ -584,7 +584,9 @@ function start(){
   window.addEventListener('pagehide',save);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
-window.SSP={play:playTrack,toggle:toggle,next:next,prev:prev,close:close,state:P,navigate:navigate};
+window.SSP={play:playTrack,toggle:toggle,next:next,prev:prev,close:close,state:P,navigate:navigate,
+  /* (12.11.2026) waveform for an <audio> placed by another script (home product carousel); rebuilt if its widget was removed */
+  wave:function(a){if(!a)return;var pv=a.previousElementSibling;if(a.dataset.ssw&&!(pv&&pv.classList.contains('ssw')))delete a.dataset.ssw;try{build(a);syncAll()}catch(e){}}};
 }catch(err){document.documentElement.classList.add('ssw-fail');if(window.console)console.error('SSP',err)}
 })();
 
