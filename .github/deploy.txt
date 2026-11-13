@@ -60,3 +60,4 @@
 56 2026-11-13 17:01:33 catalog: remove the duplicate top price (it is now on the cart button) (owner ok: только сверху ценник тогда убери)
 57 2026-11-13 17:11:50 phone: cart moved to the top-right header (with count badge), removed from the bottom bar — shop/product/catalog pages (owner ok: Хочу корзину видеть в меню справа а не внизу про телефон)
 58 2026-11-13 17:15:35 phone home app: cart moved to the top-right header too, removed from the bottom bar (owner ok: корзину справа а не внизу)
+59 2026-11-13 20:11:30 carousel: remove red line (owner ok: Выкладывай)
