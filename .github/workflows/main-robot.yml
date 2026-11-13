@@ -1,0 +1,73 @@
+# MAIN ROBOT — once a week (Monday night, Kyiv) starts every bot one after another (one at a time, so the hosting
+# does not block us), then checks them, keeps week-by-week statistics and writes the development plan:
+#   1. QA bot, full check        -> qa/latest/report.md
+#   2. Speed bot                 -> speed/latest.md
+#   3. Site screenshots          -> checks/latest/report.md
+#   4. Growth bots (SEO, sales, products, competitors, promos, security) -> reports/weekly/latest.md
+#   5. Supervisor: health + trends + plan -> reports/bots-health/latest.md
+# The weekly Claude session reads the plan and improves the bots. On demand: a line in .github/main-robot.txt.
+name: Main robot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 23 * * 0"   # Monday 01:17 Kyiv
+  push:
+    branches: [main]
+    paths: [".github/main-robot.txt"]
+permissions:
+  contents: write
+concurrency: main-robot
+jobs:
+  qa:
+    uses: ./.github/workflows/qa-bot.yml
+    with: { mode: full }
+    secrets: inherit
+  speed:
+    needs: qa
+    if: always()
+    uses: ./.github/workflows/speed.yml
+    secrets: inherit
+  screenshots:
+    needs: speed
+    if: always()
+    uses: ./.github/workflows/site-check.yml
+    secrets: inherit
+  growth:
+    needs: screenshots
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Growth bots
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+          GSC_SITE: ${{ secrets.GSC_SITE }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          WC_KEY: ${{ secrets.WC_KEY }}
+          WC_SECRET: ${{ secrets.WC_SECRET }}
+          WPSCAN_TOKEN: ${{ secrets.WPSCAN_TOKEN }}
+        run: node tools/bots/weekly.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=main-robot bash .github/save.sh "growth bots: $(date -u +%F)" reports
+  supervisor:
+    needs: growth
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Check the bots, statistics, development plan
+        run: node tools/bots/supervisor.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=main-robot bash .github/save.sh "main robot: $(date -u +%F)" reports

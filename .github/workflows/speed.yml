@@ -5,8 +5,7 @@
 name: Speed bot
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "41 2 * * 1"   # Monday 04:41 Kyiv
+  workflow_call:          # started by the main robot (main-robot.yml) every Monday
   push:
     branches: [main]
     paths: [".github/speed.txt"]
@@ -39,5 +38,4 @@ jobs:
       - name: Save
         if: steps.gate.outputs.skip != '1'
         run: |
-          git config user.name "speed-bot"; git config user.email "actions@users.noreply.github.com"
-          git add speed && git commit -m "speed: $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"
+          BOT_NAME=speed-bot bash .github/save.sh "speed: $(date -u +%FT%TZ)" speed

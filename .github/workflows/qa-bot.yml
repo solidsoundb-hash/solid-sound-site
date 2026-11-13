@@ -8,8 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       mode: { description: "smoke, quick or full", default: "quick" }
-  schedule:
-    - cron: "17 0 * * 1"         # full: Monday 02:17 Kyiv
+  workflow_call:                 # started by the main robot (main-robot.yml) every Monday
+    inputs:
+      mode: { type: string, default: "full" }
   push:
     branches: [main]
     paths: [".github/qa.txt"]
@@ -28,10 +29,8 @@ jobs:
         id: mode
         run: |
           M=quick
+          [ -n "${{ inputs.mode }}" ] && M="${{ inputs.mode }}"
           case "${{ github.event_name }}" in
-            schedule) [ "${{ github.event.schedule }}" = "17 0 * * 1" ] && M=full ;;
-            workflow_dispatch) M="${{ github.event.inputs.mode }}" ;;
-            workflow_run) M=smoke ;;
             push) L=$(tail -1 .github/qa.txt); echo "$L" | grep -qi full && M=full; echo "$L" | grep -qi smoke && M=smoke ;;
           esac
           OUT=qa/latest; [ "$M" = smoke ] && OUT=qa/smoke
@@ -63,5 +62,4 @@ jobs:
       - name: Save the report in the repo
         if: always() && steps.mode.outputs.skip != '1'
         run: |
-          git config user.name "qa-bot"; git config user.email "actions@users.noreply.github.com"
-          git add qa && git commit -m "QA bot (${{ steps.mode.outputs.mode }}): $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"
+          BOT_NAME=qa-bot bash .github/save.sh "QA bot (${{ steps.mode.outputs.mode }}): $(date -u +%FT%TZ)" qa

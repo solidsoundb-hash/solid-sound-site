@@ -5,8 +5,7 @@
 name: Site check
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "5 1 * * 1"   # Monday 03:05 Kyiv
+  workflow_call:          # started by the main robot (main-robot.yml) every Monday
   push:
     branches: [main]
     paths: [".github/check.txt"]
@@ -38,5 +37,4 @@ jobs:
       - name: Save the result in the repo
         if: always()
         run: |
-          git config user.name "check-bot"; git config user.email "actions@users.noreply.github.com"
-          git add checks && git commit -m "site check: $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"
+          BOT_NAME=check-bot bash .github/save.sh "site check: $(date -u +%FT%TZ)" checks
