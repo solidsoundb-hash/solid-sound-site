@@ -171,7 +171,7 @@ async function facts(page) {
     main.querySelectorAll('[class]').forEach(e => { if (typeof e.className !== 'string') return; e.className.split(/\s+/).forEach(c => { if (c && c.length < 40 && !/\d{3,}|^(vc_custom|us_custom|is-|active|cur|open|ss-ui|ssp-|loaded|lazy|wpb_animate|animated|start)/.test(c)) fp.push(c); }); });
     const hreflang = {}; document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(l => { hreflang[l.getAttribute('hreflang')] = l.href; });
     const menu = {
-      top: [...document.querySelectorAll('#ssg .g-nav > .g-it')].map(it => { const a = it.querySelector(':scope > .g-a'); if (!a) return null; return { label: txt(a), href: abs(a.getAttribute('href') || a.getAttribute('data-h') || ''), cur: a.classList.contains('cur'), sub: [...it.querySelectorAll('.g-dd a[href]')].map(x => ({ label: txt(x), href: x.href, cur: x.classList.contains('cur') })) }; }).filter(Boolean),
+      top: [...document.querySelectorAll('#ssg .g-nav > .g-it')].map(it => { const a = it.querySelector(':scope > .g-a'); if (!a) return null; return { label: txt(a), href: (a.getAttribute('href') || a.getAttribute('data-h')) ? abs(a.getAttribute('href') || a.getAttribute('data-h')) : '', cur: a.classList.contains('cur'), sub: [...it.querySelectorAll('.g-dd a[href]')].map(x => ({ label: txt(x), href: x.href, cur: x.classList.contains('cur') })) }; }).filter(Boolean),
       right: [...document.querySelectorAll('#ssg .g-right .g-it > a.g-a, #ssg .g-right .g-it > button.g-a:not(.g-lang)')].map(a => ({ label: txt(a), href: a.href || '', cur: a.classList.contains('cur') })),
       bar: [...document.querySelectorAll('#ssg-bar a[href]')].map(x => ({ label: txt(x), href: x.href, cur: x.classList.contains('cur') })),
       sheet: [...document.querySelectorAll('#ssg-sheet a[href]')].map(x => ({ label: txt(x), href: x.href })),
@@ -281,7 +281,7 @@ async function checkMenu(page, f, url, dev, L) {
     const diffs = [];
     for (let i = 0; i < Math.max(a.length, b.length); i++) {
       if (!a[i] || !b[i]) { diffs.push(`пункт №${i + 1}: ${b[i] ? `лишний «${b[i].label}»` : `нет пункта «${a[i].label}»`}`); continue; }
-      if (normPath(a[i].href) !== normPath(b[i].href)) diffs.push(`пункт №${i + 1} «${b[i].label}» ведёт на ${normPath(b[i].href)}, а в EN «${a[i].label}» → ${normPath(a[i].href)}`);
+      if ((a[i].href || b[i].href) && normPath(a[i].href || '/x') !== normPath(b[i].href || '/x')) diffs.push(`пункт №${i + 1} «${b[i].label}» ведёт на ${normPath(b[i].href)}, а в EN «${a[i].label}» → ${normPath(a[i].href)}`);
       const sa = (a[i].sub || []).map(s => normPath(s.href)), sb = (b[i].sub || []).map(s => normPath(s.href));
       sa.forEach((p, j) => { if (sb[j] !== p) diffs.push(`в выпадающем списке «${b[i].label}» пункт №${j + 1} «${(b[i].sub[j] || {}).label || '—'}» ведёт на ${sb[j] || '—'}, а в EN на ${p}`); });
     }
@@ -440,7 +440,11 @@ async function scLanguageSwitch(page, dev) {
     try { await btn.click({ timeout: 5000 }); } catch (e) { await bug({ page: '/en/', device: devName, sev: 'major', type: 'langbtn', sig: 'langbtn|' + dev, title: `Не нажимается кнопка выбора языка (${devName})`, steps: ['Открыть главную', dev === 'phone' ? 'Нажать «Menu»' : 'Нажать «EN» вверху справа'], expected: 'Открывается список языков', actual: e.message.split('\n')[0].slice(0, 120) }, page); return; }
     await page.waitForTimeout(800);
     const opt = page.locator(`a[hreflang="${HREFLANG[L]}"]:visible, a[href="${BASE}/${L}/"]:visible, a[href="/${L}/"]:visible`).first();
-    if (!(await opt.count())) { await bug({ page: '/en/', device: devName, sev: 'major', type: 'langopt', sig: 'langopt|' + dev + '|' + L, title: `В списке языков нет ${LANG_SHORT[L]} (${devName})`, steps: ['Открыть главную', 'Открыть список языков'], expected: `Есть ${LANG_SHORT[L]}`, actual: 'Нет' }, page); continue; }
+    if (!(await opt.count())) {
+      const none = !(await page.locator('a[hreflang]:visible, a[href$="/ua/"]:visible, a[href$="/de/"]:visible').count());
+      await bug({ page: '/en/', device: devName, sev: 'major', type: 'langopt', sig: 'langopt|' + dev + (none ? '' : '|' + L), title: none ? `На главной (${devName}) нельзя выбрать язык — в меню нет списка языков` : `В списке языков нет ${LANG_SHORT[L]} (${devName})`, steps: ['Открыть главную', dev === 'phone' ? 'Нажать кнопку меню' : 'Нажать кнопку языка'], expected: 'Список языков: EN, UA, DE, FR, PT, ES, IT', actual: none ? 'Списка языков нет' : `Нет ${LANG_SHORT[L]}` }, page);
+      if (none) return; continue;
+    }
     const label = (await opt.innerText().catch(() => L)).replace(/\s+/g, ' ').trim();
     await Promise.all([page.waitForNavigation({ timeout: 90000 }).catch(() => {}), opt.click({ timeout: 5000 }).catch(() => {})]);
     await page.waitForTimeout(3000);
@@ -552,9 +556,9 @@ async function checkLinks(ctx, limit) {
 /* menu item text vs the page it opens (English menu only — wrong or swapped pages) */
 async function menuVsTarget(titles) {
   const ref = refMenu.desktop; if (!ref) return;
-  const syn = { home: ['solid', 'sound', 'ableton'], shop: ['products', 'product', 'all'], products: ['products', 'product', 'all', 'shop'], studio: ['services', 'service', 'mixing', 'mastering', 'prices'], services: ['services', 'service', 'mixing', 'mastering', 'prices', 'calculator'], sell: ['vendor', 'sell', 'creator', 'store'], saved: ['account', 'favourites', 'favorites', 'wishlist'], favorites: ['account', 'favourites', 'favorites', 'wishlist'], cart: ['cart', 'basket'], 'sign': ['account', 'login'], free: ['free'], faq: ['faq', 'questions'] };
+  const syn = { home: ['solid', 'sound', 'ableton'], shop: ['products', 'product', 'all'], products: ['products', 'product', 'all', 'shop'], studio: ['services', 'service', 'mixing', 'mastering', 'prices'], services: ['services', 'service', 'mixing', 'mastering', 'prices', 'calculator'], sell: ['vendor', 'sell', 'creator', 'store'], saved: ['account', 'favourites', 'favorites', 'wishlist'], favorites: ['account', 'favourites', 'favorites', 'wishlist'], cart: ['cart', 'basket'], 'sign': ['account', 'login'], free: ['free'], faq: ['faq', 'questions'], questions: ['faq'], common: ['faq'], contact: ['contacts', 'contact'], calculator: ['calculator', 'quote', 'price'] };
   const stem = (w) => w.toLowerCase().replace(/[^a-z]/g, '').slice(0, 5);
-  const items = ref.top.flatMap(x => [x, ...x.sub]).filter(x => x.href && x.href.startsWith(BASE) && x.label);
+  const items = ref.top.flatMap(x => [x, ...x.sub]).filter(x => x.href && x.href.startsWith(BASE) && !x.href.includes('#') && x.label);
   for (const x of items) {
     const k = rel(x.href); const v = visited.get(k + '|desktop');
     const t = ((v ? v.title + ' ' + v.h1 : titles.get(k)) || '') + ' ' + normPath(x.href).replace(/[/-]/g, ' ');
