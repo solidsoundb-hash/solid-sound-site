@@ -1,0 +1,799 @@
+{
+ "mode": "smoke",
+ "date": "2026-11-13T15:17:24.955Z",
+ "stats": {
+  "pages": 8,
+  "clicks": 0,
+  "sounds": 7,
+  "links": 0,
+  "blockedRequests": 13
+ },
+ "bugs": [
+  {
+   "sev": "critical",
+   "type": "langlook",
+   "title": "Главная на других языках — другая (старая) страница, а не переведённая новая",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Открыть https://solid-sound.net/ua/",
+    "Сравнить"
+   ],
+   "expected": "Та же страница, только переведённая",
+   "actual": "UA: совпадает с английской на 11%",
+   "sig": "langlook|/",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/031.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "404 /wp-content/plugins/solid-sound-custom/build/assets/js-l4539.5790d159cd.js",
+   "sig": "res|404 /wp-content/plugins/solid-sound-custom/build/assets/js-l4539.5790d159cd.js",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "404 /wp-content/plugins/solid-sound-custom/build/assets/ssb-js.e35f0dad8c.js",
+   "sig": "res|404 /wp-content/plugins/solid-sound-custom/build/assets/ssb-js.e35f0dad8c.js",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "404 /wp-content/plugins/solid-sound-custom/build/assets/ss-goto-js.a15f61046a.js",
+   "sig": "res|404 /wp-content/plugins/solid-sound-custom/build/assets/ss-goto-js.a15f61046a.js",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "404 /wp-content/plugins/solid-sound-custom/build/assets/ss-foot-js.4f48c742d2.js",
+   "sig": "res|404 /wp-content/plugins/solid-sound-custom/build/assets/ss-foot-js.4f48c742d2.js",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "kb-mob-covered",
+   "title": "Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)",
+    "Где: a.button.product_type_simple «Add to cart: “Time Goes Fast Documentary» ← закрывает div.w-filter-item.ssf-fmt «Templates Presets Reconstructed Template»; a.button.product_type_simple «Add to cart: “Mutualism”» ← закрывает button.ssb-fab «Questions? Ask here»"
+   ],
+   "expected": "Сдвинуть плавающие элементы или добавить отступ снизу.",
+   "actual": "Почему важно: Нажимается не кнопка, а то, что её закрывает.",
+   "sig": "kb|kb-mob-covered|Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/017.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶",
+   "sig": "sndicon|Play|/en/all-products/",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/019.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на UA ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на UA",
+   "actual": "13 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Послуги» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/vendor-register/, «Shop» → /en/all-products/, «Studio» → /en/services-prices/ …",
+   "sig": "menulang|ua",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "search",
+   "title": "Поиск по слову «techno» ничего не находит",
+   "steps": [
+    "Открыть главную",
+    "Ввести «techno» в поиск",
+    "Нажать Enter"
+   ],
+   "expected": "Список товаров",
+   "actual": "Открылось https://solid-sound.net/?post_type=product&s=techno, товаров: 0",
+   "sig": "search",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/032.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-blocking-js",
+   "title": "Скрипты в <head> без defer/async — тормозят показ страницы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"
+   ],
+   "expected": "defer (правило проекта в CLAUDE.md).",
+   "actual": "Почему важно: Браузер ждёт скачивания скрипта, страница белая.",
+   "sig": "kb|kb-perf-blocking-js|Скрипты в <head> без defer/async — тормозят показ страницы",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/product/infinity/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/004.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-font",
+   "title": "Слишком мелкий текст на телефоне (меньше 12 px)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (телефон)",
+    "Где: span.ss-ai «AI search» 10px"
+   ],
+   "expected": "Минимум 12–13 px для подписей, 15–16 для текста.",
+   "actual": "Почему важно: Нечитаемо без увеличения.",
+   "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/product/infinity/",
+    "/ua/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/007.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-input-label",
+   "title": "Поле ввода без подписи",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: input.inp [Your best email]"
+   ],
+   "expected": "<label> или aria-label.",
+   "actual": "Почему важно: Когда человек начал печатать, подсказка-placeholder исчезает — непонятно, что вводить.",
+   "sig": "kb|kb-a11y-input-label|Поле ввода без подписи",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/003.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-tap",
+   "title": "Кнопки/ссылки слишком маленькие для пальца",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (телефон)",
+    "Где: span.ss-ai «AI search» 41×21; input 18×18; button «Page 1» 24×8; button «Page 2» 8×8; button «Page 3» 8×8"
+   ],
+   "expected": "Увеличить зону нажатия (padding).",
+   "actual": "Почему важно: Промахиваются и жмут соседнюю кнопку. Норма — 44×44 px (Apple), 48 px (Google).",
+   "sig": "kb|kb-mob-tap|Кнопки/ссылки слишком маленькие для пальца",
+   "where": [
+    "/en/",
+    "/product/infinity/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/006.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-dup-id",
+   "title": "Одинаковые id у разных элементов",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)",
+    "Где: templates"
+   ],
+   "expected": "Уникальные id.",
+   "actual": "Почему важно: Кнопки, якоря и подписи полей начинают работать не с тем элементом.",
+   "sig": "kb|kb-a11y-dup-id|Одинаковые id у разных элементов",
+   "where": [
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/016.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-contrast",
+   "title": "Текст плохо читается: слишком бледный на фоне",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: span.w-text-value «GENRE:» 4.3:1; span.w-text-value «LENGTH:» 4.3:1; span.w-text-value «DAW:» 4.3:1; span.w-text-value «BPM:» 4.3:1"
+   ],
+   "expected": "Контраст не ниже 4.5:1 (мелкий текст).",
+   "actual": "Почему важно: На телефоне на улице такой текст не видно.",
+   "sig": "kb|kb-a11y-contrast|Текст плохо читается: слишком бледный на фоне",
+   "where": [
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/020.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-input-zoom",
+   "title": "Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: select#us_grid_order_1 «Newest Top Sellers Popular Highest Price» 14px"
+   ],
+   "expected": "font-size: 16px у полей ввода на телефоне.",
+   "actual": "Почему важно: При нажатии на поле страница «прыгает» и съезжает — раздражает на оформлении заказа.",
+   "sig": "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу",
+   "where": [
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/021.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-link-empty",
+   "title": "Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: a.ssp-cover «Open the product page»"
+   ],
+   "expected": "Настоящий адрес или кнопка с действием.",
+   "actual": "Почему важно: Человек нажимает — и ничего.",
+   "sig": "kb|kb-link-empty|Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/005.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Browse products» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Найти кнопку «Browse products»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 44px)",
+   "sig": "pill|Browse products",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/012.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-seo-desc",
+   "title": "Нет описания страницы (meta description)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
+   ],
+   "expected": "Описание 70–160 символов.",
+   "actual": "Описания нет. Почему важно: Google сам вырезает кусок текста — часто неудачный.",
+   "sig": "kb|kb-seo-desc|Нет описания страницы (meta description)",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/015.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /all-products не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/all-products",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-lcp-lazy",
+   "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: 0621-%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0-e17555510432"
+   ],
+   "expected": "Для первого экрана — без lazy, с fetchpriority=high.",
+   "actual": "Почему важно: Самая важная картинка появляется последней.",
+   "sig": "kb|kb-perf-lcp-lazy|Главная картинка первого экрана грузится «лениво» (loading=lazy)",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/022.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «BUY» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/product/infinity/",
+    "Найти кнопку «BUY»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 54px)",
+   "sig": "pill|BUY",
+   "where": [
+    "/product/infinity/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/023.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-img-dims",
+   "title": "Картинки без размеров — страница «прыгает» при загрузке",
+   "steps": [
+    "Открыть https://solid-sound.net/product/infinity/ (компьютер)",
+    "Где: hqdefault.jpg"
+   ],
+   "expected": "width/height или aspect-ratio.",
+   "actual": "Почему важно: Пока грузится картинка, текст и кнопки съезжают — промахи, плохая оценка Google (CLS).",
+   "sig": "kb|kb-perf-img-dims|Картинки без размеров — страница «прыгает» при загрузке",
+   "where": [
+    "/product/infinity/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/024.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Дивитися товари» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/",
+    "Найти кнопку «Дивитися товари»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 44px)",
+   "sig": "pill|Дивитися товари",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/027.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "menutr",
+   "title": "Меню на UA (компьютер) частично не переведено",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Все пункты меню на UA",
+   "actual": "На английском: Products, All products, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Examples, How it works, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell",
+   "sig": "menutr|desktop|ua",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/029.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "menutr",
+   "title": "Меню на UA (телефон) частично не переведено",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Все пункты меню на UA",
+   "actual": "На английском: Shop, Studio, Sell, Saved",
+   "sig": "menutr|phone|ua",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/030.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Questions? Ask here» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Questions? Ask here",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/product/infinity/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/002.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «+» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 30px)",
+   "sig": "circle|+",
+   "where": [
+    "/en/all-products/",
+    "/product/infinity/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/013.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Add to queue» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 32px)",
+   "sig": "circle|Add to queue",
+   "where": [
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/010.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Video» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 32px)",
+   "sig": "circle|Video",
+   "where": [
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/011.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Watch video» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 30px)",
+   "sig": "circle|Watch video",
+   "where": [
+    "/en/all-products/",
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/014.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Get the free pack →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Get the free pack →",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/001.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Previous» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Previous",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/008.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Next» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Next",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/009.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "kb-perf-dom",
+   "title": "Слишком много элементов на странице (>3000)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
+   ],
+   "expected": "Меньше вложенности, подгружать по частям.",
+   "actual": "Элементов: 3272. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3268. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/018.jpg",
+   "more": 1,
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Назад» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Назад",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/025.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Далі» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Далі",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/026.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Є питання? Пишіть» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Є питання? Пишіть",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/028.jpg",
+   "isNew": false
+  }
+ ],
+ "notChecked": [
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation"
+ ]
+}
