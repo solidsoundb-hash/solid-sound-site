@@ -2,3 +2,4 @@
 2026-11-13T06:50:20Z quick — after fixes + knowledge base
 2026-11-13T09:54:37Z quick — check after crash fix
 2026-11-13T11:09:12Z full — owner: check every page with the updated knowledge base (A)
+2026-11-13T11:20:40Z smoke — first short check

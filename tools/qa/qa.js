@@ -19,9 +19,10 @@ let KB = null; try { KB = require('./kb'); } catch (e) {}   // common-bug knowle
 const BASE = 'https://solid-sound.net';
 const MODE = (process.env.QA_MODE || 'quick').toLowerCase();
 const FULL = MODE === 'full';
+const SMOKE = MODE === 'smoke';   // short check after a deploy (~5–8 min): key pages, sound, UA, cart, search
 const OUT = process.env.QA_OUT || 'qa/latest';
 const PROXY = process.env.HTTPS_PROXY || process.env.https_proxy || '';
-const BUDGET_MS = (+(process.env.QA_BUDGET_MIN || (FULL ? 140 : 40))) * 60000;
+const BUDGET_MS = (+(process.env.QA_BUDGET_MIN || (FULL ? 140 : SMOKE ? 8 : 40))) * 60000;
 const T0 = Date.now();
 const timeLeft = () => BUDGET_MS - (Date.now() - T0);
 
@@ -434,7 +435,7 @@ async function pressEverything(page, url, dev, max) {
 async function scLanguageSwitch(page, dev) {
   // what the owner does: home -> language button -> Українська (and every other language)
   const devName = DEVICES[dev].name;
-  for (const L of LANGS.filter(x => x !== 'en')) {
+  for (const L of LANGS.filter(x => x !== 'en' && (!SMOKE || x === 'ua'))) {
     if (timeLeft() < 0) return;
     await open(page, '/en/');
     const enFp = (await facts(page)).fp;
@@ -595,7 +596,7 @@ function writeReport(final = true) {
   const cnt = (s) => list.filter(b => b.sev === s).length;
   const mins = Math.round((Date.now() - T0) / 60000);
   const L = [];
-  L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : 'быстрая проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
+  L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : SMOKE ? 'короткая проверка после выкладки' : 'ежедневная проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
   L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, ссылок ${stats.links}. Время: ${mins} мин.`);
   L.push(`Найдено: ${SEV.critical} ${cnt('critical')} · ${SEV.major} ${cnt('major')} · ${SEV.minor} ${cnt('minor')} · ${SEV.check} ${cnt('check')}` + (prevSigs ? ` · новых ${list.filter(b => b.isNew).length} · исправлено с прошлого раза ${fixed.length}` : ''), '');
   L.push('Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.', '');
@@ -650,7 +651,7 @@ function writeReport(final = true) {
     const KEY = ['/en/', '/en/all-products/', '/product/infinity/', '/en/wiki/', '/en/free/', '/en/services-prices/', '/en/faq/', '/en/sell/'];
     if (process.env.QA_PAGES) pages = process.env.QA_PAGES.split(',');
     else if (FULL) { pages = await sitemapPages(desk); if (!pages.length) { pages = KEY; notChecked.push('Карта сайта не загрузилась — проверены только основные страницы'); } }
-    else pages = KEY;
+    else pages = SMOKE ? ['/en/', '/en/all-products/', '/product/infinity/'] : KEY;
     const en = pages.filter(p => !urlLang(p) || urlLang(p) === 'en');
     const other = pages.filter(p => urlLang(p) && urlLang(p) !== 'en');
     // home first in every language (reference menu), English pages first
@@ -659,11 +660,12 @@ function writeReport(final = true) {
     // 1) English + product pages: computer and phone, with sound and "hands"
     for (const p of ['/en/', ...en.filter(x => x !== '/en/')]) {
       const deep = FULL || KEY.includes(p) || process.env.QA_PAGES;
-      if (await checkPage(dp, p, 'desktop')) { if (deep) { await testSound(dp, p, 'desktop', FULL ? 10 : 5); await open(dp, p); await pressEverything(dp, p, 'desktop', FULL ? 40 : 20); } }
+      if (await checkPage(dp, p, 'desktop')) { if (deep) { await testSound(dp, p, 'desktop', FULL ? 10 : SMOKE ? 3 : 5); if (!SMOKE) { await open(dp, p); await pressEverything(dp, p, 'desktop', FULL ? 40 : 20); } } }
+      if (SMOKE) { await checkPage(pp, p, 'phone'); continue; }
       if (await checkPage(pp, p, 'phone')) { if (deep && (FULL || p === '/en/' || p === '/en/all-products/')) { await testSound(pp, p, 'phone', 3); await open(pp, p); await pressEverything(pp, p, 'phone', FULL ? 25 : 12); } }
     }
     // 2) other languages: their home always (menu vs English), all pages in full mode
-    for (const p of [...homeAll.filter(h => h !== '/en/'), ...(FULL ? other.filter(x => !homeAll.includes(x)) : [])]) {
+    for (const p of [...(SMOKE ? ['/ua/'] : homeAll.filter(h => h !== '/en/')), ...(FULL ? other.filter(x => !homeAll.includes(x)) : [])]) {
       await checkPage(dp, p, 'desktop');
       if (homeAll.includes(p)) await checkPage(pp, p, 'phone');
     }
@@ -678,7 +680,7 @@ function writeReport(final = true) {
       }
     }
     // 4) scenarios a person would do
-    for (const [name, fn] of [['Выбор языка (компьютер)', () => scLanguageSwitch(dp, 'desktop')], ['Выбор языка (телефон)', () => scLanguageSwitch(pp, 'phone')], ['Музыка при переходах', () => scPlayerAcrossPages(dp)], ['Поиск', () => scSearch(dp)], ['Корзина', () => scCart(dp)]]) {
+    for (const [name, fn] of [['Выбор языка (компьютер)', () => scLanguageSwitch(dp, 'desktop')], ...(SMOKE ? [] : [['Выбор языка (телефон)', () => scLanguageSwitch(pp, 'phone')]]), ['Музыка при переходах', () => scPlayerAcrossPages(dp)], ['Поиск', () => scSearch(dp)], ['Корзина', () => scCart(dp)]]) {
       try { await fn(); } catch (e) { notChecked.push(`Сценарий «${name}» прервался: ${e.message.split('\n')[0].slice(0, 150)}`); }
     }
     await desk.close(); await phone.close();
@@ -686,7 +688,7 @@ function writeReport(final = true) {
     // 5) logged in: client and admin (pages open, menu shows the account, no errors)
     const roles = [['user', process.env.TEST_USER, process.env.TEST_PASS, ['/en/my-account/', '/en/my-account/orders/', '/en/my-account/edit-account/']],
       ['admin', process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS, ['/en/my-account/', '/en/store-manager/']]];
-    for (const [role, u, pw, list] of roles) {
+    for (const [role, u, pw, list] of SMOKE ? [] : roles) {
       if (!u || !pw) { notChecked.push(`Вход как ${role === 'user' ? 'клиент' : 'админ'} — нет тестового логина в секретах`); continue; }
       for (const dev of ['desktop', 'phone']) {
         if (timeLeft() < 0) break;
@@ -702,7 +704,7 @@ function writeReport(final = true) {
     }
     // 6) every link found on the way
     const lc = await newContext(browser, 'desktop');
-    const titles = await checkLinks(lc, FULL ? 600 : 150);
+    const titles = await checkLinks(lc, FULL ? 600 : SMOKE ? 25 : 150);
     await menuVsTarget(titles);
     await lc.close();
   } catch (e) {

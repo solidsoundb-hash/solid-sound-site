@@ -1,0 +1,47 @@
+# Speed bot: Google PageSpeed (Lighthouse) for key pages, phone + computer; warns when the site got slower.
+#  - after a deploy (at most once every 2 hours, to save free GitHub minutes)
+#  - every night
+#  - on demand: a line in .github/speed.txt
+# Result: speed/latest.md (+ latest.json, history.csv).
+name: Speed bot
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Deploy plugin"]
+    types: [completed]
+  schedule:
+    - cron: "41 2 * * *"   # every night 04:41 Kyiv
+  push:
+    branches: [main]
+    paths: [".github/speed.txt"]
+permissions:
+  contents: write
+concurrency: speed-bot
+jobs:
+  speed:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - name: Skip if measured less than 2 hours ago (after deploys only)
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = workflow_run ] && [ -f speed/latest.json ]; then
+            last=$(python3 -c "import json,datetime;d=json.load(open('speed/latest.json'))['date'];print(int(datetime.datetime.fromisoformat(d.replace('Z','+00:00')).timestamp()))" 2>/dev/null || echo 0)
+            if [ $(( $(date +%s) - last )) -lt 7200 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "measured recently, skipping"; fi
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.skip != '1'
+        with: { node-version: 22 }
+      - name: Measure
+        if: steps.gate.outputs.skip != '1'
+        env:
+          PSI_KEY: ${{ secrets.PSI_KEY }}
+        run: node tools/speed/speed.js
+      - name: Save
+        if: steps.gate.outputs.skip != '1'
+        run: |
+          git config user.name "speed-bot"; git config user.email "actions@users.noreply.github.com"
+          git add speed && git commit -m "speed: $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"

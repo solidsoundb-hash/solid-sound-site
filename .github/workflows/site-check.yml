@@ -1,12 +1,12 @@
 # Site check: screenshots as guest / test user / admin on phone + desktop, console errors.
-# Runs after every successful deploy, or on a commit that changes .github/check.txt.
+# Runs every night (it used to run after every deploy — moved to save free GitHub minutes; the QA bot's
+# short check runs after deploys), or on a commit that changes .github/check.txt.
 # Result is committed to checks/latest/ (report.md + screenshots).
 name: Site check
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Deploy plugin"]
-    types: [completed]
+  schedule:
+    - cron: "5 1 * * *"   # every night 03:05 Kyiv
   push:
     branches: [main]
     paths: [".github/check.txt"]

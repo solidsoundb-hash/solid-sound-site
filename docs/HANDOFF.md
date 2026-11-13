@@ -106,3 +106,11 @@
 - Осталось ~190 KB встроенного кода на каждой странице — следующая цель по скорости.
 - Google Sign-In: в консоли «The given origin is not allowed for the given client ID» — владельцу добавить
   `https://solid-sound.net` в Authorized JavaScript origins клиента OAuth.
+
+## 10. Боты (13.11.2026) — экономия минут GitHub (2000/мес) и лимитов Claude
+- После выкладки: QA-бот в режиме `smoke` (5–8 мин, не чаще раза в 2 ч) → `qa/smoke/`; бот скорости (Google PageSpeed,
+  не чаще раза в 2 ч) → `speed/latest.md`.
+- Каждую ночь: QA-бот `quick` → `qa/latest/`, скорость, снимки `site-check` → `checks/latest/`.
+- В ночь на понедельник: QA-бот `full`.
+- Описание: `docs/qa-bot.md`. Рутину делают скрипты — Claude только читает короткие отчёты и чинит.
+- «Сайт упал»: бесплатный UptimeRobot — регистрирует владелец (инструкция в чате 13.11).

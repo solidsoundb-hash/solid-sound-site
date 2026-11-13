@@ -1,18 +1,20 @@
 # QA bot ("автотестировщик"): walks the site like a person and writes a bug list.
-#  - quick check after every successful deploy
-#  - full check every Monday night (all pages, all languages, every button)
-#  - on demand: add a line to .github/qa.txt ("full" or "quick" in the line)
-# Result: qa/latest/report.md + bugs.json + shots/*.jpg (committed to the repo).
+#  - short check after a deploy (smoke, ~5–8 min, at most once every 2 hours) -> qa/smoke/
+#  - daily check every night (key pages, all languages, buttons, links, logins) -> qa/latest/
+#  - full check every Monday night (all pages, all languages, every button)    -> qa/latest/
+#  - on demand: a line in .github/qa.txt ("full" / "smoke" in the line, otherwise daily)
+# Free GitHub minutes are limited (2000/month for a private repo) — that is why checks after deploys are short.
 name: QA bot
 on:
   workflow_dispatch:
     inputs:
-      mode: { description: "quick or full", default: "full" }
+      mode: { description: "smoke, quick or full", default: "quick" }
   workflow_run:
     workflows: ["Deploy plugin"]
     types: [completed]
   schedule:
-    - cron: "17 0 * * 1"   # Monday 02:17 Kyiv
+    - cron: "17 0 * * 1"         # full: Monday 02:17 Kyiv
+    - cron: "23 1 * * 0,2-6"     # daily: other nights 03:23 Kyiv
   push:
     branches: [main]
     paths: [".github/qa.txt"]
@@ -27,24 +29,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
-      - uses: actions/setup-node@v4
-        with: { node-version: 22 }
-      - run: npm i --no-save playwright@1.49.1
       - name: Pick the mode
         id: mode
         run: |
           M=quick
           case "${{ github.event_name }}" in
-            schedule) M=full ;;
+            schedule) [ "${{ github.event.schedule }}" = "17 0 * * 1" ] && M=full ;;
             workflow_dispatch) M="${{ github.event.inputs.mode }}" ;;
-            push) tail -1 .github/qa.txt | grep -qi full && M=full ;;
+            workflow_run) M=smoke ;;
+            push) L=$(tail -1 .github/qa.txt); echo "$L" | grep -qi full && M=full; echo "$L" | grep -qi smoke && M=smoke ;;
           esac
-          echo "mode=$M" >> $GITHUB_OUTPUT
-          if [ "$M" = full ]; then echo "budget=140" >> $GITHUB_OUTPUT; else echo "budget=40" >> $GITHUB_OUTPUT; fi
+          OUT=qa/latest; [ "$M" = smoke ] && OUT=qa/smoke
+          B=40; [ "$M" = full ] && B=140; [ "$M" = smoke ] && B=8
+          echo "mode=$M" >> $GITHUB_OUTPUT; echo "out=$OUT" >> $GITHUB_OUTPUT; echo "budget=$B" >> $GITHUB_OUTPUT
+          # after deploys: at most once every 2 hours (the nightly check covers the rest)
+          if [ "$M" = smoke ] && [ "${{ github.event_name }}" = workflow_run ] && [ -f qa/smoke/bugs.json ]; then
+            last=$(python3 -c "import json,datetime;d=json.load(open('qa/smoke/bugs.json'))['date'];print(int(datetime.datetime.fromisoformat(d.replace('Z','+00:00')).timestamp()))" 2>/dev/null || echo 0)
+            if [ $(( $(date +%s) - last )) -lt 7200 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "checked recently, skipping"; fi
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.mode.outputs.skip != '1'
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+        if: steps.mode.outputs.skip != '1'
       - name: Run the QA bot
+        if: steps.mode.outputs.skip != '1'
         timeout-minutes: 160
         env:
           QA_MODE: ${{ steps.mode.outputs.mode }}
+          QA_OUT: ${{ steps.mode.outputs.out }}
           QA_BUDGET_MIN: ${{ steps.mode.outputs.budget }}
           PW_CHANNEL: chrome   # Google Chrome is preinstalled on GitHub runners
           TEST_USER: ${{ secrets.TEST_USER }}
@@ -53,7 +66,7 @@ jobs:
           TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
         run: node tools/qa/qa.js
       - name: Save the report in the repo
-        if: always()
+        if: always() && steps.mode.outputs.skip != '1'
         run: |
           git config user.name "qa-bot"; git config user.email "actions@users.noreply.github.com"
           git add qa && git commit -m "QA bot (${{ steps.mode.outputs.mode }}): $(date -u +%FT%TZ)" && git pull --rebase -q origin main && git push || echo "nothing to save"
