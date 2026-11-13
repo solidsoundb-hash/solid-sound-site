@@ -59,7 +59,8 @@ async function psi(url, strategy) {
   const sec = (ms) => (ms / 1000).toFixed(1) + ' с';
   const L = [`# Скорость сайта — ${date.slice(0, 16).replace('T', ' ')} UTC`, '',
     'Google PageSpeed (Lighthouse). Оценка 90–100 — отлично, 50–89 — средне, ниже 50 — плохо. «Главный блок» (LCP) — когда видно основное: норма до 2.5 с.', ''];
-  L.push(warn.length ? '## ⚠️ Стало хуже / проблемы\n\n' + warn.map(w => '- ' + w).join('\n') + '\n' : '## ✅ Скорость не ухудшилась\n');
+  const measured = Object.values(results).filter(r => !r.error).length;
+  L.push(!measured ? '## ⏸ Ничего не измерено — см. причину в таблице\n' : warn.length ? '## ⚠️ Стало хуже / проблемы\n\n' + warn.map(w => '- ' + w).join('\n') + '\n' : '## ✅ Скорость не ухудшилась\n');
   L.push('| Страница | Устройство | Оценка | Главный блок (LCP) | Первый показ | Блокировка | Сдвиги (CLS) | Вес | Запросов |', '|---|---|---|---|---|---|---|---|---|');
   for (const [k, r] of Object.entries(results)) {
     const [p, s] = k.split('|'); const o = prev[k];
