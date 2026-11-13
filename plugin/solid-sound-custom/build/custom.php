@@ -5530,3 +5530,4 @@ require_once __DIR__ . '/modules/cleanup.php';
 require_once __DIR__ . '/modules/sale.php';
 require_once __DIR__ . '/modules/search.php';
 require_once __DIR__ . '/modules/wiki.php';
+require_once __DIR__ . '/modules/css-files.php';
