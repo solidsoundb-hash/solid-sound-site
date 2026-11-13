@@ -242,6 +242,7 @@ if(LG) BAR.forEach(function(b){ b[2]=tr(b[2]); });
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
 /* (13.11.2026) keep the cart badge (header + bottom bar) in sync when WooCommerce updates the mini-cart via AJAX */
+window.ssCartPaint=cartPaint;
 function cartPaint(n){
   var hd=D.getElementById('ssg'); if(hd){ var c=hd.querySelector('.g-right .g-cnt'), a=[].slice.call(hd.querySelectorAll('.g-right .g-r-it')).filter(function(x){return /cart/i.test((x.querySelector('.g-l')||{}).textContent||'');})[0];
     if(!c && n>0 && a){ c=D.createElement('span'); c.className='g-cnt'; a.querySelector('.g-a').appendChild(c); }

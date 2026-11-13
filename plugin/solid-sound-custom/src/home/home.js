@@ -371,3 +371,25 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
   document.addEventListener('ssp:state',function(){ setTimeout(upd,30); });
   (window.ssOnDom||function(f){f();})(upd);
 })();
+
+/* (13.11.2026 owner: "у нас покупают и услуги") the home "Add to cart" really adds the product to the WooCommerce cart
+   (it used to only change the on-screen state). If "add mixing" is ticked, we send them to the studio calculator to order
+   the service (mixing is not a shop product — it is quoted in the calculator). */
+(function(){
+  var S='https://solid-sound.net', nonce=null, adding=false;
+  function getNonce(){ return fetch(S+'/wp-json/wc/store/v1/cart',{credentials:'include',headers:{'Accept':'application/json'}}).then(function(r){ nonce=r.headers.get('Nonce')||r.headers.get('X-WC-Store-API-Nonce')||nonce; return r.json(); }); }
+  function badge(j){ try{ if(j&&typeof j.items_count==='number'){ localStorage.setItem('ss_cart_n',String(j.items_count)); if(window.ssCartPaint) ssCartPaint(j.items_count); } }catch(e){} }
+  function addItem(pid){ return fetch(S+'/wp-json/wc/store/v1/cart/add-item',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json','Accept':'application/json','Nonce':nonce||''},body:JSON.stringify({id:+pid,quantity:1})}).then(function(r){ return r.json(); }); }
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest && e.target.closest('#ss-app .ss-realadd'); if(!btn) return;
+    var pid=btn.getAttribute('data-pid'); if(!pid) return;
+    var card=btn.closest('article'), mixBox=card&&card.querySelector('input[type=checkbox]:checked'); var wantMix=!!mixBox;
+    if(adding) return; adding=true;
+    (nonce?Promise.resolve():getNonce()).then(function(){ return addItem(pid); }).then(function(j){
+      adding=false;
+      if(j&&j.items_count!=null){ badge(j); }
+      else if(j&&j.code){ /* nonce expired: refresh once and retry */ return getNonce().then(function(){ return addItem(pid); }).then(badge); }
+      if(wantMix){ var cu=S+'/studio-calculator/?s=mixing'; setTimeout(function(){ if(!(window.sspGo&&window.sspGo(cu))) location.href=cu; },300); }
+    }).catch(function(){ adding=false; });
+  },true);
+})();

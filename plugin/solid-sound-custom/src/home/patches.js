@@ -58,6 +58,10 @@ module.exports = function (a, window) {
     if (a[0].split(LANG_OLD).length !== 2) throw new Error('home: language menu item not found');
     var GL = "'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18'";
     a[0]=a[0].split(LANG_OLD).join("] },\n      { label: 'LANGUAGE', items: [" + [['English · EN', '/en/'], ['Українська · UA', '/ua/'], ['Deutsch · DE', '/de/'], ['Français · FR', '/fr/'], ['Español · ES', '/es/'], ['Italiano · IT', '/it/'], ['Português · PT', '/pt/']].map(function (x) { return "T('" + x[0] + "', " + GL + ", 'https://solid-sound.net" + x[1] + "', '#94A3B8')"; }).join(', ') + "] },");
+    /* (13.11.2026 owner: real purchases, services too) home "Add to cart" must really add the product; mark the button + card with the product id */
+    a[0]=a[0].split('<article style="{{p.cardStyle}}">').join('<article data-pid="{{p.pid}}" style="{{p.cardStyle}}">');
+    if (a[0].split("onClick=\"{{p.add}}\" style=\"width: 100%; min-height: 44px").length !== 2) throw new Error('home: add-to-cart button not found');
+    a[0]=a[0].split('<button type="button" onClick="{{p.add}}" style="width: 100%; min-height: 44px').join('<button type="button" class="ss-realadd" data-pid="{{p.pid}}" onClick="{{p.add}}" style="width: 100%; min-height: 44px');
     /* perf 10.11: no fixed background repaint, countdown re-render once a minute instead of every second */
     a[0]=a[0].split("background-attachment: fixed; position: relative").join("position: relative").split("self.setState({ tick: Date.now() }); }, 1000").join("self.setState({ tick: Date.now() }); }, 60000").split("p(m) + 'm ' + p(sec) + 's'").join("p(m) + 'm'");
     a[0]=a[0].split("try { window.addEventListener('resize', function () { self.setState({ vw: window.innerWidth }); }); } catch (e) {}").join("try { var lw = window.innerWidth; window.addEventListener('resize', function () { var w = window.innerWidth; if ((w < 760) !== (lw < 760)) { lw = w; self.setState({ vw: w }); } lw = w; }, { passive: true }); } catch (e) {}")
