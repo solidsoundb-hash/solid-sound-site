@@ -47,3 +47,4 @@
 43 2026-11-13 11:11:27 rule: every checklist on the site with orange check icons (owner ok: выкладывай сразу все что готово)
 44 2026-11-13 11:23:25 checklists: a meaningful icon on every item instead of identical ticks (owner ok: Мне не нужны те галочки мне нужны иконки / выкладывай сразу)
 45 2026-11-13 11:37:01 wiki home: icons, summaries, reading time, start-here path; meaningful section icons in all articles (owner ok: выкладывай сразу все что готово)
+46 2026-11-13 12:31:47 speed: our inline code to cached files (owner ok: Берись)
