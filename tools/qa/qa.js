@@ -14,6 +14,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
+let KB = null; try { KB = require('./kb'); } catch (e) {}   // common-bug knowledge base (SEO, prices, phone, accessibility…), see docs/qa-knowledge.md
 
 const BASE = 'https://solid-sound.net';
 const MODE = (process.env.QA_MODE || 'quick').toLowerCase();
@@ -256,6 +257,7 @@ async function checkPage(page, url, dev, opts = {}) {
     else if (x.kind === 'circle') await bug({ ...here, sev: 'check', type: 'style-circle', sig: 'circle|' + lab, title: `Круглая кнопка-значок «${lab}» — нужна ли квадратная со скруглёнными углами?`, steps: [`Открыть ${BASE}${rel(url)}`], expected: 'Квадратная кнопка со скруглёнными углами 8–12px', actual: `Круг (радиус ${x.r}px, размер ${x.h}px)` }, page, el);
     else await bug({ ...here, sev: 'check', type: 'style-odd', sig: 'odd|' + lab, title: `Кнопка «${lab}» скруглена не так, как остальные`, steps: [`Открыть ${BASE}${rel(url)}`], expected: 'Скругление углов 8–12px', actual: `Радиус ${x.r}px` }, page, el);
   }
+  if (KB) { try { for (const b of await KB.run(page, { url, dev, devName })) await bug({ page: url, device: devName, ...b }, page); } catch (e) {} }
   await checkMenu(page, f, url, dev, L);
   if (dev === 'desktop') await checkLangOptions(page, f, url);
   f.links.forEach(l => { const k = l.h; if (!linkSources.has(k)) linkSources.set(k, new Set()); linkSources.get(k).add(rel(url)); });
@@ -319,7 +321,7 @@ async function testSound(page, url, dev, max) {
   const sel = 'button[aria-label^="Play" i]:visible, [role="button"][aria-label^="Play" i]:visible, .ssh-play:visible, .ss-abb:visible, .ssw button:visible';
   let handles = await page.$$(sel);
   // the bottom player bar is tested separately (it shows the last track, not a page button)
-  const keep = []; for (const h of handles) { if (!(await h.evaluate(e => !!e.closest('#ssp')).catch(() => true))) keep.push(h); }
+  const keep = []; for (const h of handles) { if (!(await h.evaluate(e => !!e.closest('#ssp') || /video|youtube|queue/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className)).catch(() => true))) keep.push(h); }
   handles = keep.slice(0, max);
   if (!handles.length) return;
   await page.evaluate(() => window.__qaStopAll()).catch(() => {});
@@ -661,11 +663,9 @@ function writeReport() {
       }
     }
     // 4) scenarios a person would do
-    await scLanguageSwitch(dp, 'desktop');
-    await scLanguageSwitch(pp, 'phone');
-    await scPlayerAcrossPages(dp);
-    await scSearch(dp);
-    await scCart(dp);
+    for (const [name, fn] of [['Выбор языка (компьютер)', () => scLanguageSwitch(dp, 'desktop')], ['Выбор языка (телефон)', () => scLanguageSwitch(pp, 'phone')], ['Музыка при переходах', () => scPlayerAcrossPages(dp)], ['Поиск', () => scSearch(dp)], ['Корзина', () => scCart(dp)]]) {
+      try { await fn(); } catch (e) { notChecked.push(`Сценарий «${name}» прервался: ${e.message.split('\n')[0].slice(0, 150)}`); }
+    }
     await desk.close(); await phone.close();
 
     // 5) logged in: client and admin (pages open, menu shows the account, no errors)
