@@ -1,4 +1,4 @@
-# Site check 2026-11-12T21:58:40.903Z
+# Site check 2026-11-13T06:29:03.042Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 186 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -43,7 +43,7 @@
 ## admin · phone
 - logged in: true
 - /en/my-account/ → HTTP 200 · inline 193 KB · player files · [admin_phone_en_my_account.jpg](admin_phone_en_my_account.jpg)
-- /en/store-manager/ → HTTP 200 · inline 313 KB · player files · [admin_phone_en_store_manager.jpg](admin_phone_en_store_manager.jpg)
+- /en/store-manager/ → HTTP 200 · inline 312 KB · player files · [admin_phone_en_store_manager.jpg](admin_phone_en_store_manager.jpg)
 - /en/store-manager/ss-products/ → HTTP 200 · inline 304 KB · player files · [admin_phone_en_store_manager_ss_products.jpg](admin_phone_en_store_manager_ss_products.jpg)
 - /add-product/ → HTTP 200 · inline 330 KB · player files · [admin_phone_add_product.jpg](admin_phone_add_product.jpg)
 - /en/store-manager/ss-earnings/ → HTTP 200 · inline 304 KB · player files · [admin_phone_en_store_manager_ss_earnings.jpg](admin_phone_en_store_manager_ss_earnings.jpg)
