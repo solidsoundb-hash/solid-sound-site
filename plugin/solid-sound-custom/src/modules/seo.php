@@ -19,8 +19,12 @@ add_action( 'wp_head', function () {
 	} elseif ( function_exists( 'is_account_page' ) && is_account_page() ) {
 		$d = 'Your Solid Sound account: orders, downloads and studio projects in one place.';
 	} elseif ( is_singular() ) {
-		$id = get_queried_object_id();
-		$d  = wp_strip_all_tags( get_post_field( 'post_excerpt', $id ) ?: get_post_field( 'post_content', $id ) );
+		$id  = get_queried_object_id();
+		$raw = get_post_field( 'post_excerpt', $id );
+		if ( ! $raw ) $raw = get_post_field( 'post_content', $id );
+		$raw = preg_replace( '/\[[^\]]*\]/', ' ', (string) $raw );   /* drop [vc_row], [shortcodes] and page-builder markup */
+		$d   = wp_strip_all_tags( strip_shortcodes( $raw ) );
+		if ( mb_strlen( trim( $d ) ) < 40 ) $d = '';                 /* builder page with no real text -> brand default */
 	}
 	if ( ! $d ) $d = 'Solid Sound — royalty-free Ableton Live templates, Serum presets, music for video, and online mixing & mastering by our engineers.';
 	$d = trim( preg_replace( '/\s+/', ' ', $d ) );
