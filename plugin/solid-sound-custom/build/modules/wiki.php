@@ -23,6 +23,15 @@ function ss_wiki_icon( $name ) {
 		'wave'   => 'M2 12h2M6 8v8M10 5v14M14 8v8M18 10v4M22 12h-2',
 		'book'   => 'M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z',
 		'bolt'   => 'M13 2L4 14h7l-1 8 9-12h-7z',
+		'phones' => 'M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z',
+		'plug'   => 'M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4',
+		'clock'  => 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+		'star'   => 'M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z',
+		'alert'  => 'M12 3l10 18H2zM12 10v5M12 18h.01',
+		'usb'    => 'M12 2v14M9 5l3-3 3 3M8 10v3l4 3M16 8v3l-4 3M12 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4z',
+		'shield' => 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
+		'box'    => 'M3 7h18v10H3zM7 12h.01M11 12h.01M15 10v4M18 10v4',
+		'ear'    => 'M7 10a5 5 0 0 1 10 0c0 3-3 4-3 7a3 3 0 0 1-6 0M10 10a2 2 0 0 1 4 0',
 		'dot'    => 'M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0',
 	);
 	$d = isset( $p[ $name ] ) ? $p[ $name ] : $p['dot'];
@@ -34,7 +43,13 @@ function ss_wiki_pick( $id, $text ) {
 		'room' => 'home', 'mix' => 'sliders', 'checklist' => 'check', 'faq' => 'help', 'summary' => 'flag' );
 	if ( $id && isset( $by_id[ $id ] ) ) return $by_id[ $id ];
 	$t = mb_strtolower( wp_strip_all_tags( $text ) );
-	$words = array( 'faq' => 'help', 'question' => 'help', 'checklist' => 'check', 'bottom line' => 'flag', 'summary' => 'flag', 'conclusion' => 'flag',
+	$words = array( 'checklist' => 'check', 'bottom line' => 'flag', 'faq' => 'help', 'question' => 'help', 'summary' => 'flag', 'conclusion' => 'flag',
+		'respected' => 'star', 'standards' => 'star', 'quality' => 'star', 'trust' => 'star', 'how long' => 'ruler', 'care' => 'shield', 'keep them' => 'shield',
+		'impedance' => 'bolt', '48v' => 'bolt', 'phantom' => 'bolt', 'one-ear' => 'ear', 'latency' => 'clock', 'sample rate' => 'wave', 'bit depth' => 'wave',
+		'driver' => 'usb', 'usb' => 'usb', 'bleed' => 'alert', 'hum' => 'alert', 'ground loop' => 'alert', 'noise' => 'alert',
+		'preamp' => 'sliders', 'gain' => 'sliders', 'click track' => 'phones', 'monitoring' => 'phones',
+		'headphone' => 'phones', 'closed-back' => 'phones', 'open-back' => 'phones', 'fit, pads' => 'phones', 'comfort' => 'phones',
+		'xlr' => 'plug', 'trs' => 'plug', 'cable' => 'plug', 'balanced' => 'plug', 'interface' => 'box',
 		'why' => 'bulb', 'distance' => 'ruler', 'angle' => 'angle', 'consisten' => 'lock', 'microphone' => 'mic', 'mic ' => 'mic', 'vocal' => 'mic',
 		'room' => 'home', 'acoustic' => 'home', 'mix' => 'sliders', 'eq' => 'sliders', 'compress' => 'sliders', 'master' => 'sliders',
 		'sound' => 'wave', 'step' => 'bolt', 'quick' => 'bolt', 'learn' => 'book', 'guide' => 'book' );
@@ -45,7 +60,8 @@ function ss_wiki_pick( $id, $text ) {
 /* icon for one checklist item: by meaning (owner 13.11.2026: icons, not identical ticks) */
 function ss_wiki_item_icon( $text ) {
 	$t = mb_strtolower( wp_strip_all_tags( $text ) );
-	$map = array( 'same position' => 'lock', 'every take' => 'lock', 'spot' => 'lock', 'floor' => 'lock', 'shock mount' => 'lock', 'tight' => 'lock',
+	$map = array( 'xlr' => 'plug', 'trs' => 'plug', 'cable' => 'plug', 'usb' => 'usb', 'driver' => 'usb', '48v' => 'bolt', 'phantom' => 'bolt', 'headphone' => 'phones', 'closed-back' => 'phones', 'latency' => 'clock', 'buffer' => 'clock', 'sample rate' => 'wave', 'bit' => 'wave', 'hum' => 'alert', 'ground' => 'alert', 'impedance' => 'bolt', 'volume' => 'sliders', 'click' => 'phones',
+		'same position' => 'lock', 'every take' => 'lock', 'spot' => 'lock', 'floor' => 'lock', 'shock mount' => 'lock', 'tight' => 'lock',
 		'°' => 'angle', 'turn' => 'angle', 'angle' => 'angle', 'beside' => 'angle', 'lip level' => 'angle',
 		'back of the mic' => 'mic', 'pop filter' => 'mic',
 		'gain' => 'sliders', 'peak' => 'sliders', 'dbfs' => 'sliders', 'level' => 'sliders', 'eq' => 'sliders', 'compress' => 'sliders',
@@ -117,4 +133,50 @@ add_filter( 'the_content', function ( $html ) {
 	if ( is_admin() || false === strpos( $html, 'class="ssa"' ) ) return $html;
 	if ( isset( $_GET['ss_wiki'] ) && '0' === $_GET['ss_wiki'] ) return $html;
 	return ss_wiki_css() . ss_wiki_transform( $html );
+}, 50 );
+
+/* ---------- wiki home (/en/wiki/): icon, one-line summary and reading time on every card; "start here" path ---------- */
+function ss_wiki_cards() {
+	/* slug => [icon, summary, minutes, step in the home-recording path] */
+	return array(
+		'audio-interface-for-vocals'          => array( 'box', 'Preamps, 48V, gain staging and latency — set it up once, right.', 9, 1 ),
+		'balanced-vs-unbalanced-cables'       => array( 'plug', 'XLR, TRS or TS: which cable goes where, and how to kill hum.', 9, 2 ),
+		'closed-back-headphones-for-recording'=> array( 'phones', 'Stop headphone bleed: models, fit, levels and the click track.', 8, 3 ),
+		'record-clean-vocals-at-home'         => array( 'mic', 'Distance, angle, consistency — three free rules for clean vocals.', 10, 4 ),
+	);
+}
+function ss_wiki_index( $html ) {
+	$C = ss_wiki_cards();
+	$html = preg_replace_callback( '#<a class="card" href="([^"]*/wiki/([^/"]+)/?)"><b>(.*?)</b><span>Read →</span></a>#s', function ( $m ) use ( $C ) {
+		$c = isset( $C[ $m[2] ] ) ? $C[ $m[2] ] : array( ss_wiki_pick( '', $m[3] ), '', 0, 0 );
+		return '<a class="card wc" href="' . esc_url( $m[1] ) . '" data-step="' . (int) $c[3] . '"><span class="wi">' . ss_wiki_icon( $c[0] ) . '</span><b>' . $m[3] . '</b>'
+			. ( $c[1] ? '<span class="ws">' . esc_html( $c[1] ) . '</span>' : '' ) . '<span class="wm">' . ( $c[2] ? (int) $c[2] . ' min read · ' : '' ) . 'Read →</span></a>';
+	}, $html );
+	/* cards inside a topic in the order of the learning path */
+	$html = preg_replace_callback( '#<div class="grid">(.*?)</div>\s*</section>#s', function ( $m ) {
+		preg_match_all( '#<a class="card wc"[^>]*data-step="(\d+)".*?</a>#s', $m[1], $all, PREG_SET_ORDER );
+		if ( count( $all ) < 2 ) return $m[0];
+		usort( $all, function ( $a, $b ) { return (int) $a[1] - (int) $b[1]; } );
+		return '<div class="grid">' . implode( '', array_map( function ( $x ) { return $x[0]; }, $all ) ) . '</div></section>';
+	}, $html );
+	/* start here: the 4 steps to record at home */
+	$steps = '';
+	foreach ( $C as $slug => $c ) {
+		$steps .= '<a class="st" href="' . esc_url( home_url( '/en/wiki/' . $slug . '/' ) ) . '"><span class="sn">' . (int) $c[3] . '</span><span class="wi">' . ss_wiki_icon( $c[0] ) . '</span><span class="sx">' . esc_html( array( 1 => 'Audio interface', 2 => 'Cables', 3 => 'Headphones', 4 => 'Mic technique' )[ $c[3] ] ) . '</span></a>';
+	}
+	$path = '<div class="wpath"><b class="wp-t">Start here: record at home in 4 steps</b><div class="wp-s">' . $steps . '</div></div>';
+	$html = preg_replace( '#(</nav>\s*</div>)#', '$1' . $path, $html, 1 );
+	$css = '<style id="ss-wiki-home">.ssw .wc{display:flex;flex-direction:column;gap:8px}.ssw .wc .wi,.ssw .st .wi{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:rgba(224,153,0,.12);border:1px solid rgba(224,153,0,.3);color:#e09900}'
+		. '.ssw .wc .ws{color:#bdb8b1;font-size:14.5px;line-height:1.4}.ssw .wc .wm{margin-top:auto;color:#e09900;font-weight:700;font-size:14px}'
+		. '.ssw .wpath{margin:22px 0 8px;padding:16px;border-radius:14px;background:#1c1a18;border:1px solid rgba(224,153,0,.28)}.ssw .wp-t{display:block;color:#fff;font-size:17px;margin-bottom:12px}'
+		. '.ssw .wp-s{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;counter-reset:none}.ssw .st{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;background:#131210;border:1px solid rgba(255,255,255,.08);color:#e6e2dc;text-decoration:none;min-width:0}'
+		. '.ssw .st:hover{border-color:#e09900}.ssw .sn{flex:none;width:24px;height:24px;border-radius:50%;background:#e09900;color:#111;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}.ssw .sx{font-weight:700;font-size:14.5px;line-height:1.25}'
+		. '.ssw .sh{display:flex;align-items:center;gap:12px}.ssw .sh .ic{flex:none;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:rgba(224,153,0,.12);border:1px solid rgba(224,153,0,.3);color:#e09900}.ssw .sh .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}'
+		. '@media(max-width:767px){.ssw .wp-s{grid-template-columns:1fr 1fr}}@media(max-width:420px){.ssw .wp-s{grid-template-columns:1fr}}</style>';
+	return $css . $html;
+}
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || false === strpos( $html, '<div class="ssw">' ) || false === strpos( $html, 'class="card"' ) ) return $html;
+	if ( isset( $_GET['ss_wiki'] ) && '0' === $_GET['ss_wiki'] ) return $html;
+	return ss_wiki_index( $html );
 }, 50 );
