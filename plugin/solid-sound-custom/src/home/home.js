@@ -393,3 +393,34 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
     }).catch(function(){ adding=false; });
   },true);
 })();
+
+/* (13.11.2026 owner: cart in the top-right on phones) on the home app, show the cart in the header (next to Sign in)
+   and take it out of the bottom bar — same as the shop pages. */
+(function(){
+  var CART='https://solid-sound.net/en/cart/';
+  function count(){ try{ return +localStorage.getItem('ss_cart_n')||0; }catch(e){ return 0; } }
+  function sync(){
+    if(innerWidth>=760) return;
+    var signin=document.querySelector('#ss-app a[href="#account"], #ss-app a[aria-label="Account"], #ss-app a[aria-label="Sign in"], #ss-app a[aria-label="My account"]');
+    var head=signin&&signin.parentNode;
+    if(head && !head.querySelector('.ss-mh-cart')){
+      var a=document.createElement('a'); a.href=CART; a.className='ss-mh-cart'; a.setAttribute('aria-label','Cart');
+      a.style.cssText='position:relative;flex:none;order:3;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:#131B2E;color:#fff;display:flex;align-items:center;justify-content:center';
+      a.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg><span class="ss-mh-n" style="position:absolute;top:-5px;right:-5px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#F59E0B;color:#111;font-size:10px;font-weight:800;line-height:16px;text-align:center;display:none"></span>';
+      head.insertBefore(a,signin);
+    }
+    var n=count(), badge=head&&head.querySelector('.ss-mh-cart .ss-mh-n');
+    if(badge){ if(n>0){ badge.textContent=String(n); badge.style.display=''; } else badge.style.display='none'; }
+    /* take Cart out of the bottom bar on phones — only if the header cart is in place, so the cart never disappears */
+    if(head && head.querySelector('.ss-mh-cart')){
+      document.querySelectorAll('#ss-app nav a[href*="/cart/"]').forEach(function(x){
+        var nav=x.closest('nav'); if(!nav) return; var r=nav.getBoundingClientRect();
+        if(r.bottom>innerHeight-90 && /cart/i.test(x.textContent)){ x.style.display='none'; }
+      });
+    }
+  }
+  (window.ssOnDom||function(f){f();})(sync);
+  addEventListener('resize',sync,{passive:true});
+  /* refresh the count from the real cart once */
+  try{ if(window.fetch){ fetch('https://solid-sound.net/wp-json/wc/store/v1/cart',{credentials:'include'}).then(function(r){return r.json();}).then(function(j){ if(j&&j.items_count!=null){ try{localStorage.setItem('ss_cart_n',String(j.items_count));}catch(e){} sync(); } }).catch(function(){}); } }catch(e){}
+})();
