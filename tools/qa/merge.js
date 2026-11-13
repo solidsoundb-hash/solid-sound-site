@@ -14,12 +14,12 @@ const ORDER = ['critical', 'major', 'minor', 'check'];
 const BASE = 'https://solid-sound.net';
 
 fs.rmSync(path.join(OUT, 'shots'), { recursive: true, force: true });
-fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true });
-const copyShot = (dir, shot, tag) => {
+fs.mkdirSync(OUT, { recursive: true });
+// screenshots are not copied (no duplicates in the repo): links point to the source report's folder
+const copyShot = (dir, shot) => {
   if (!shot) return '';
   const src = path.join(dir, shot); if (!fs.existsSync(src)) return '';
-  const name = 'shots/' + tag + '-' + path.basename(shot);
-  fs.copyFileSync(src, path.join(OUT, name)); return name;
+  return path.relative(OUT, src).split(path.sep).join('/');
 };
 
 const all = new Map();

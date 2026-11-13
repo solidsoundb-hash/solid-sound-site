@@ -155,7 +155,7 @@ function collect() {
   { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let k = 0;
     while (w.nextNode() && k++ < 20000) { const t = w.currentNode.textContent; if (!/(^|\s)[$€]\s?0(?:[.,]00)?(\s|$)/.test(t)) continue; const el = w.currentNode.parentElement; if (!el || !vis(el)) continue;
       const card = el.closest('article, .offer, .card, li, .product, .w-grid-item, tr') || el.parentElement; const ct = (card && card.innerText || '').slice(0, 400);
-      if (/free|безкошт|бесплат|gratis|kostenlos|gratuit|starter/i.test(ct) || card.querySelector('s, del')) continue; f.zero = ct.replace(/\s+/g, ' ').slice(0, 90); break; } }
+      if (/free|безкошт|бесплат|gratis|kostenlos|gratuit|starter|fee|commission|комісі|комисс|gebühr|frais|tarifa|commissione/i.test(ct) || card.querySelector('s, del')) continue; f.zero = ct.replace(/\s+/g, ' ').slice(0, 90); break; } }
   f.textHead = text.slice(0, 20000);
   f.years = (text.match(/©\s?(20\d\d)/g) || []).map(s => +s.replace(/\D/g, ''));
   // images
