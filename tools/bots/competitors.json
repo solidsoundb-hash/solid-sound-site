@@ -1,0 +1,8 @@
+{
+  "_note": "Competitor shops watched once a week (public product lists only). Shopify stores expose /products.json. Add or remove lines freely.",
+  "shopify": [
+    { "name": "Scraps Audio (Ableton templates)", "url": "https://scrapsaudio.com/collections/ableton-templates/products.json?limit=250" },
+    { "name": "Production Music Live", "url": "https://productionmusiclive.com/products.json?limit=250" },
+    { "name": "Cymatics", "url": "https://cymatics.fm/products.json?limit=250" }
+  ]
+}
