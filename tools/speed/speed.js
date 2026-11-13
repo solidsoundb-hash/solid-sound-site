@@ -10,14 +10,16 @@ const PAGES = (process.env.SPEED_PAGES || '/en/,/en/all-products/,/product/infin
 const BASE = 'https://solid-sound.net';
 const KEY = process.env.PSI_KEY || '';
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+const T0 = Date.now(); const BUDGET = (+(process.env.SPEED_BUDGET_MIN || 14)) * 60000; // stop measuring in time, save what we have
 
 async function psi(url, strategy) {
   const q = new URLSearchParams({ url, strategy, category: 'performance' });
   if (KEY) q.set('key', KEY);
   let last = '';
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 2; i++) {
+    if (Date.now() - T0 > BUDGET) return { error: 'не хватило времени (Google отвечал медленно)' };
     try {
-      const r = await fetch('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?' + q, { signal: AbortSignal.timeout(120000) });
+      const r = await fetch('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?' + q, { signal: AbortSignal.timeout(90000) });
       const j = await r.json();
       if (r.ok && j.lighthouseResult) {
         const a = j.lighthouseResult.audits; const n = (k) => (a[k] && a[k].numericValue) || 0;
@@ -31,8 +33,9 @@ async function psi(url, strategy) {
         };
       }
       last = (j.error && j.error.message) || ('HTTP ' + r.status);
+      if (r.status === 429) return { error: 'лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)' };
     } catch (e) { last = e.message; }
-    await sleep(15000 * (i + 1));
+    await sleep(10000);
   }
   return { error: last.slice(0, 200) };
 }
@@ -42,7 +45,8 @@ async function psi(url, strategy) {
   let prev = {}; try { prev = JSON.parse(fs.readFileSync(path.join(OUT, 'latest.json'), 'utf8')).results || {}; } catch (e) {}
   const results = {}; const warn = []; const date = new Date().toISOString();
   for (const p of PAGES) for (const s of ['mobile', 'desktop']) {
-    const k = p + '|' + s; results[k] = await psi(BASE + p, s);
+    const k = p + '|' + s; const t = Date.now(); results[k] = await psi(BASE + p, s);
+    console.log(k, results[k].error ? 'ERROR ' + results[k].error : 'score ' + results[k].score, Math.round((Date.now() - t) / 1000) + 's');
     const r = results[k], o = prev[k];
     if (r.error) continue;
     if (o && !o.error) {
