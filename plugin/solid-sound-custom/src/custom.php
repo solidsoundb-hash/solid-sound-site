@@ -1173,8 +1173,10 @@ add_action( 'wp_footer', 'ss_2610_footer', 120 );
 function ss_2610_footer() {
 	if ( is_admin() ) return;
 	$acc = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : home_url( '/my-account/' );
+	/* page data stays inline (tiny); the code below is static, so the build serves it as a cached file */
+	echo '<script>window.SS_FT=' . wp_json_encode( array( 'acc' => $acc, 'terms' => home_url( '/sell/#terms' ), 'priv' => ss_auth_privacy_url() ) ) . ';</script>';
 	?>
-<script>
+<script id="ss-foot-js">
 (function(){
 'use strict';
 function go(box,t){
@@ -1191,7 +1193,7 @@ function ssEye(i){if(i.dataset.eye)return;i.dataset.eye=1;var w=i.parentNode;if(
 function ssMatch(p1,p2){if(!p1||!p2||p2.dataset.pm)return;p2.dataset.pm=1;var m=document.createElement('span');m.className='ss-pwmsg';m.setAttribute('aria-live','polite');var an=p2.closest('.ssam-row')||p2.closest('.form-row')||p2.parentNode;an.parentNode.insertBefore(m,an.nextSibling);function u(){if(!p2.value){m.textContent='';m.className='ss-pwmsg';return}var ok=p1.value===p2.value&&p1.value.length>=8;m.textContent=p1.value!==p2.value?'Passwords do not match':(p1.value.length<8?'At least 8 characters':'\u2713 Passwords match');m.className='ss-pwmsg '+(ok?'ok':'bad')}p1.addEventListener('input',u);p2.addEventListener('input',u)}
 function initAuth(){
   /* forms inside the header popup post to My Account, so errors are shown on a full page */
-  var acc=<?php echo wp_json_encode( $acc ); ?>;
+  var acc=(window.SS_FT||{}).acc;
   document.querySelectorAll('.w-popup .ssam form.login,.w-popup .ssam form.register,.w-popup-box .ssam form.login,.w-popup-box .ssam form.register').forEach(function(f){f.setAttribute('action',acc)});
   document.querySelectorAll('.ssam form.register button[type=submit]').forEach(function(b){b.textContent='Create account'});
   document.querySelectorAll('.ssam #reg_password').forEach(function(i){i.setAttribute('placeholder','8+ characters');i.setAttribute('minlength','8')});
@@ -1219,7 +1221,7 @@ function initChips(){
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function initWcfm(){
   var f=document.querySelector('.sssell-form #wcfm_membership_registration_form');if(!f||f.dataset.ss)return;f.dataset.ss=1;
-  var TERMS=<?php echo wp_json_encode( home_url( '/sell/#terms' ) ); ?>,PRIV=<?php echo wp_json_encode( ss_auth_privacy_url() ); ?>;
+  var TERMS=(window.SS_FT||{}).terms,PRIV=(window.SS_FT||{}).priv;
   function title(inp){var t=inp.previousElementSibling;while(t&&!(t.classList&&t.classList.contains('wcfm_title')))t=t.previousElementSibling;return t}
   [['first_name','First name','given-name'],['last_name','Last name','family-name']].forEach(function(a){var i=f.querySelector('[name="'+a[0]+'"]');if(!i)return;i.setAttribute('data-required','1');i.setAttribute('data-required_message',a[1]+': This field is required.');i.setAttribute('autocomplete',a[2]);var t=title(i);if(t)t.innerHTML='<strong>'+a[1]+'</strong><span class="required">*</span>'});
   var sn=f.querySelector('[name="store_name"]');if(sn){var st=title(sn),s=st&&st.querySelector('strong');if(s&&s.firstChild&&s.firstChild.nodeType===3)s.firstChild.nodeValue='Artist / store name';else if(st)st.insertAdjacentHTML('afterbegin','');var p1=f.querySelector('[name=passoword]'),p2=f.querySelector('[name=confirm_pwd]');if(p2){var ct=title(p2),cs=ct&&ct.querySelector('strong');if(cs&&cs.firstChild&&cs.firstChild.nodeType===3)cs.firstChild.nodeValue='Confirm password'}if(p1)p1.setAttribute('placeholder','8+ characters');if(p2)p2.setAttribute('placeholder','Repeat password');f.querySelectorAll('input[type=password]').forEach(ssEye);ssMatch(p1,p2);var sb=f.querySelector('input[type=submit]');if(sb)sb.value='Send application';var vb=f.querySelector('[name=wcfm_email_verified_button]');if(vb&&/re-?send/i.test(vb.value))vb.value='Send code';sn.setAttribute('placeholder','e.g. Grenør')}
@@ -3511,7 +3513,8 @@ if ( ! function_exists( 'ss_pd_t' ) ) {
 	}, 5 );
 	add_filter( 'woocommerce_product_tabs', function ( $tabs ) { unset( $tabs['description'], $tabs['additional_information'] ); return $tabs; }, 98 );
 	add_action( 'wp_head', function () {
-		if ( ! function_exists( 'is_product' ) || ! is_product() ) return; ?>
+		if ( ! function_exists( 'is_product' ) || ! is_product() ) return;
+		echo '<style>.single-product .wcpay-express-checkout-wrapper:before{content:"' . esc_js( ss_pd_t( 'orpay' ) ) . '"}</style>'; ?>
 <style id="ss-pd-css">
 .single-product .ss-chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
 .single-product .ss-chip{display:inline-block;padding:4px 10px;border:1px solid #423c36;border-radius:999px;font-size:13px;line-height:1.3;color:#ccc4bc;text-decoration:none}
@@ -3519,7 +3522,7 @@ if ( ! function_exists( 'ss_pd_t' ) ) {
 .single-product form.cart{display:block!important;margin:14px 0 10px!important}
 .single-product form.cart .single_add_to_cart_button{width:100%!important;height:52px!important;font-size:17px!important;letter-spacing:.06em;border-radius:6px!important;float:none!important;margin:0!important}
 .single-product .wcpay-express-checkout-wrapper{margin:6px 0 4px!important}
-.single-product .wcpay-express-checkout-wrapper:before{content:"<?php echo esc_js( ss_pd_t( 'orpay' ) ); ?>";display:block;text-align:center;font-size:12px;color:#8a8079;margin:0 0 6px}
+.single-product .wcpay-express-checkout-wrapper:before{display:block;text-align:center;font-size:12px;color:#8a8079;margin:0 0 6px}
 .ss-pd{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:34px 0 10px;clear:both}
 .ss-pd h2,.ss-pd-video h2,.ss-pd-faq h2{font-size:20px;margin:0 0 14px}
 .ss-learn{list-style:none;margin:0;padding:0}
@@ -3715,14 +3718,15 @@ if ( ! function_exists( 'ss_pd2_t' ) ) {
 @media(max-width:900px){.ss-use-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.ss-use-grid{grid-template-columns:1fr;gap:10px}.ss-use-i{padding:14px;display:grid;grid-template-columns:40px 1fr;column-gap:12px}.ss-use-ic{width:40px;height:40px;margin:0;grid-row:span 2}.ss-use-i h3{font-size:15px}.ss-use-i p{font-size:13.5px;line-height:1.5}.ss-sbar-in img{display:none}.ss-sbar-b{padding:9px 16px}}
 </style>
-<script>
+<?php echo '<script>window.SS_PDYT=' . wp_json_encode( $yt ) . ';</script>'; ?>
+<script id="ss-sbar-js">
 function ssSbarInit(){var bar=document.getElementById('ss-sbar'),btn=document.querySelector('form.cart .single_add_to_cart_button');if(!bar||!btn||bar.dataset.init)return;bar.dataset.init=1;
 function hh(){var h=document.querySelector('.l-header');var b=h?h.getBoundingClientRect().bottom:0;bar.style.setProperty('--ss-hh',Math.max(0,b)+'px')}
 bar.querySelector('.ss-sbar-b').addEventListener('click',function(){var x=document.querySelector('form.cart .single_add_to_cart_button');if(x)x.click()});
 if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){var show=!e.isIntersecting&&e.boundingClientRect.top<0;bar.classList.toggle('on',show);bar.setAttribute('aria-hidden',show?'false':'true');if(show)hh()})}).observe(btn)}
 window.addEventListener('resize',hh);window.addEventListener('scroll',function(){requestAnimationFrame(hh)},{passive:true});hh();}
 if(document.readyState==='complete')ssSbarInit();else window.addEventListener('load',ssSbarInit);document.addEventListener('DOMContentLoaded',ssSbarInit);
-(function(){var Y=<?php echo wp_json_encode( $yt ); ?>;if(!Y)return;var g=document.querySelector('.woocommerce-product-gallery');if(!g)return;var im=g.querySelector('.woocommerce-product-gallery__image a')||g.querySelector('.woocommerce-product-gallery__image')||g;im.style.position='relative';im.style.display='inline-block';im.style.maxWidth='100%';g.classList.add('ss-has-video');var b=document.createElement('span');b.className='ss-yt-pd';b.setAttribute('role','button');b.setAttribute('aria-label','Play video');b.innerHTML='<i></i>';im.appendChild(b);
+(function(){var Y=window.SS_PDYT;if(!Y)return;var g=document.querySelector('.woocommerce-product-gallery');if(!g)return;var im=g.querySelector('.woocommerce-product-gallery__image a')||g.querySelector('.woocommerce-product-gallery__image')||g;im.style.position='relative';im.style.display='inline-block';im.style.maxWidth='100%';g.classList.add('ss-has-video');var b=document.createElement('span');b.className='ss-yt-pd';b.setAttribute('role','button');b.setAttribute('aria-label','Play video');b.innerHTML='<i></i>';im.appendChild(b);
 function open(){var m=document.getElementById('ss-ytm');if(!m){m=document.createElement('div');m.id='ss-ytm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.innerHTML='<div class="ss-ytm-box"><button type="button" class="ss-ytm-x" aria-label="Close">×</button></div>';document.body.appendChild(m);m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('ss-ytm-x'))close()});document.addEventListener('keydown',function(e){if(e.key==='Escape')close()})}
 [].forEach.call(document.querySelectorAll('audio,video'),function(a){try{a.pause()}catch(x){}});var box=m.querySelector('.ss-ytm-box');if(!box.querySelector('iframe')){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+Y+'?autoplay=1&rel=0&playsinline=1';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;box.appendChild(f)}m.classList.add('open')}
 function close(){var m=document.getElementById('ss-ytm');if(!m)return;var f=m.querySelector('iframe');if(f)f.remove();m.classList.remove('open')}
@@ -3899,7 +3903,8 @@ if ( ! defined( 'SS_PD3' ) ) {
 		echo '</div></section>';
 	}, 7 );
 	add_action( 'wp_head', function () {
-		if ( ! function_exists( 'is_product' ) || ! is_product() ) return; ?>
+		if ( ! function_exists( 'is_product' ) || ! is_product() ) return;
+		if ( ! (int) get_comments_number( get_queried_object_id() ) ) echo '<style>.single-product .wcz-product-reviews{display:none!important}</style>'; ?>
 <style id="ss-pd3-css">
 .single-product .ss-pd,.single-product .ss-pd-video,.single-product .ss-pd-faq,.single-product .wcz-product-long-desc{display:none!important}
 .single-product .ss-use-i h3{margin:0 0 6px!important;padding:0!important;line-height:1.35!important}
@@ -3972,7 +3977,6 @@ if ( ! defined( 'SS_PD3' ) ) {
 .single-product section.related ul.products li.product img{border-radius:10px}
 .single-product .woocommerce-tabs{clear:both}
 .single-product .wcz-product-reviews{background:var(--ss-card);border:1px solid var(--ss-line);border-radius:16px;padding:22px 26px;margin-top:22px;clear:both}
-<?php if ( ! (int) get_comments_number( get_queried_object_id() ) ) echo '.single-product .wcz-product-reviews{display:none!important}'; ?>
 @media(max-width:1024px){.ss-desc-cols{grid-template-columns:1fr}}
 @media(max-width:767px){
 .single-product div.product:before{height:260px;top:-20px}
@@ -4115,7 +4119,8 @@ add_filter( 'woocommerce_short_description', function ( $ex ) {
 /* ═══ Solid Sound — 17.10.2026: product hero — wider info card, more compact buy area (font sizes unchanged) ═══ */
 add_action( 'wp_head', function () {
 	if ( ! function_exists( 'is_product' ) || ! is_product() ) return;
-	echo '<style id="ss-hero-wide">
+	?>
+<style id="ss-hero-wide">
 .ss-buyrow form.cart{display:flex!important;align-items:center;margin:0!important}
 .ss-buyrow form.cart .quantity{display:none!important}
 .ss-buyrow form.cart .single_add_to_cart_button{flex:1}
@@ -4134,7 +4139,8 @@ html body.single-product div.product .summary.entry-summary{width:calc(100% - 42
 .ss-buyrow .wcpay-express-checkout-wrapper::before{width:auto!important;flex:none;white-space:nowrap;margin:0!important}
 .ss-buyrow .wcpay-express-checkout-wrapper .StripeElement{flex:1;min-width:0;padding-top:6px!important;padding-bottom:6px!important}
 }
-</style>';
+</style>
+<?php
 }, 99 );
 
 /* ═══ Solid Sound — 17.10.2026: product cover never opens the raw .jpg — clicks made before the page finishes loading are queued and open the video once ready ═══ */
@@ -4157,7 +4163,9 @@ add_action( 'wp_head', function () {
 /* ═══ Solid Sound — 17.10.2026: "Browse products / templates" buttons (#templates etc.) scroll straight to the product grid toolbar (Play All · search · filters), not to the Best Products box ═══ */
 add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
-	echo '<script>(function(){function tgt(h){if(!h||h.length<2)return null;var s;try{s=document.querySelector(h)}catch(e){return null}if(!s)return null;return s.querySelector(".sstb")||s.querySelector(".w-grid.layout_195")}function go(el,smooth){var hd=document.querySelector(".l-header");var off=(hd&&getComputedStyle(hd).position!=="static"?hd.getBoundingClientRect().height:0)+(document.getElementById("wpadminbar")?document.getElementById("wpadminbar").offsetHeight:0)+12;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-off,behavior:smooth?"smooth":"auto"})}document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href*=\"#\"]");if(!a)return;var u;try{u=new URL(a.href,location.href)}catch(x){return}if(u.pathname!==location.pathname||!u.hash)return;var el=tgt(u.hash);if(!el)return;e.preventDefault();e.stopImmediatePropagation();go(el,true);try{history.replaceState(null,"",u.hash)}catch(x){}},true);function onLoad(){var el=tgt(location.hash);if(el)setTimeout(function(){go(el,false)},60)}if(document.readyState==="complete")onLoad();else window.addEventListener("load",onLoad)})();</script>';
+	?>
+<script id="ss-goto-js">(function(){function tgt(h){if(!h||h.length<2)return null;var s;try{s=document.querySelector(h)}catch(e){return null}if(!s)return null;return s.querySelector(".sstb")||s.querySelector(".w-grid.layout_195")}function go(el,smooth){var hd=document.querySelector(".l-header");var off=(hd&&getComputedStyle(hd).position!=="static"?hd.getBoundingClientRect().height:0)+(document.getElementById("wpadminbar")?document.getElementById("wpadminbar").offsetHeight:0)+12;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-off,behavior:smooth?"smooth":"auto"})}document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href*=\"#\"]");if(!a)return;var u;try{u=new URL(a.href,location.href)}catch(x){return}if(u.pathname!==location.pathname||!u.hash)return;var el=tgt(u.hash);if(!el)return;e.preventDefault();e.stopImmediatePropagation();go(el,true);try{history.replaceState(null,"",u.hash)}catch(x){}},true);function onLoad(){var el=tgt(location.hash);if(el)setTimeout(function(){go(el,false)},60)}if(document.readyState==="complete")onLoad();else window.addEventListener("load",onLoad)})();</script>
+<?php
 }, 99 );
 
 /* ═══ Solid Sound — 17.10.2026: iPhone/iPad — the YouTube popup starts muted (Safari blocks autoplay with sound); a big "Tap for sound" button unmutes it ═══ */
@@ -5151,9 +5159,10 @@ html body.ssb-live .ssb{display:none!important}
 .ssb-f input:-webkit-autofill,.ssb-f input:-webkit-autofill:hover,.ssb-f input:-webkit-autofill:focus,.ssb-f input:autofill{-webkit-box-shadow:0 0 0 60px #0d0d0d inset!important;box-shadow:0 0 0 60px #0d0d0d inset!important;-webkit-text-fill-color:#fff!important;caret-color:#fff;background-color:#0d0d0d!important;transition:background-color 9999s}
 .ssb-f textarea{min-height:64px!important}
 </style>
+<?php echo '<script>window.SS_SSB=' . wp_json_encode( $D ) . ';</script>'; ?>
 <script id="ssb-js">
 (function(){if(window.__ssb)return;window.__ssb=1;
-var D=<?php echo wp_json_encode( $D ); ?>,T=D.t,root=document.getElementById('ssb');if(!root)return;
+var D=window.SS_SSB;if(!D)return;var T=D.t,root=document.getElementById('ssb');if(!root)return;
 var fab=root.querySelector('.ssb-fab'),panel=root.querySelector('.ssb-panel'),log=root.querySelector('.ssb-log'),form=root.querySelector('.ssb-in'),inp=form.querySelector('textarea,input'),hist=[],started=false,t0=0;
 function ss(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}

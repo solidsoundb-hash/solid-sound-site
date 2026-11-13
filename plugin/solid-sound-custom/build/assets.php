@@ -16,8 +16,13 @@ return array(
   't' => 'css',
   'id' => 'ss-2610'
  ),
- 'css-l1429' => array(
-  'f' => 'css-l1429.176968f765.css',
+ 'ss-foot-js' => array(
+  'f' => 'ss-foot-js.4f48c742d2.js',
+  't' => 'js',
+  'id' => 'ss-foot-js'
+ ),
+ 'css-l1431' => array(
+  'f' => 'css-l1431.176968f765.css',
   't' => 'css',
   'id' => null
  ),
@@ -31,8 +36,8 @@ return array(
   't' => 'css',
   'id' => 'ss-wcfm-skin'
  ),
- 'js-l2070' => array(
-  'f' => 'js-l2070.a89f73cd1a.js',
+ 'js-l2072' => array(
+  'f' => 'js-l2072.a89f73cd1a.js',
   't' => 'js',
   'id' => null
  ),
@@ -51,15 +56,40 @@ return array(
   't' => 'css',
   'id' => 'ss-yt'
  ),
+ 'ss-pd-css' => array(
+  'f' => 'ss-pd-css.db98139894.css',
+  't' => 'css',
+  'id' => 'ss-pd-css'
+ ),
  'ss-pd2-css' => array(
   'f' => 'ss-pd2-css.448b78a850.css',
   't' => 'css',
   'id' => 'ss-pd2-css'
  ),
+ 'ss-sbar-js' => array(
+  'f' => 'ss-sbar-js.b22513e4b2.js',
+  't' => 'js',
+  'id' => 'ss-sbar-js'
+ ),
+ 'ss-pd3-css' => array(
+  'f' => 'ss-pd3-css.36129902ff.css',
+  't' => 'css',
+  'id' => 'ss-pd3-css'
+ ),
  'ss-pd3-compact' => array(
   'f' => 'ss-pd3-compact.63aff8845a.css',
   't' => 'css',
   'id' => 'ss-pd3-compact'
+ ),
+ 'ss-hero-wide' => array(
+  'f' => 'ss-hero-wide.92fd8fd841.css',
+  't' => 'css',
+  'id' => 'ss-hero-wide'
+ ),
+ 'ss-goto-js' => array(
+  'f' => 'ss-goto-js.a15f61046a.js',
+  't' => 'js',
+  'id' => 'ss-goto-js'
  ),
  'ss-snd-js' => array(
   'f' => 'ss-snd-js.f8664eb0fa.js',
@@ -76,8 +106,8 @@ return array(
   't' => 'css',
   'id' => 'ss-free-css'
  ),
- 'js-l4531' => array(
-  'f' => 'js-l4531.5790d159cd.js',
+ 'js-l4539' => array(
+  'f' => 'js-l4539.5790d159cd.js',
   't' => 'js',
   'id' => null
  ),
@@ -96,13 +126,18 @@ return array(
   't' => 'css',
   'id' => 'ssb-css'
  ),
- 'css-l5577' => array(
-  'f' => 'css-l5577.6846b70d1f.css',
+ 'ssb-js' => array(
+  'f' => 'ssb-js.e35f0dad8c.js',
+  't' => 'js',
+  'id' => 'ssb-js'
+ ),
+ 'css-l5586' => array(
+  'f' => 'css-l5586.6846b70d1f.css',
   't' => 'css',
   'id' => null
  ),
- 'css-l6190' => array(
-  'f' => 'css-l6190.555a2d388e.css',
+ 'css-l6199' => array(
+  'f' => 'css-l6199.555a2d388e.css',
   't' => 'css',
   'id' => null
  ),
