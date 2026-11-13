@@ -264,6 +264,29 @@ function cartCount(){
     .catch(function(){ cartBusy=false; });
 }
 if(window.jQuery) window.jQuery(document.body).on('added_to_cart removed_from_cart wc_fragments_refreshed wc_fragments_loaded',function(){ cartBusy=false; cartCount(); });
+/* (13.11.2026, QA bot) accessibility & SEO polish on every theme page */
+function ssA11y(){
+  /* inputs without an accessible name borrow their placeholder (so the label doesn't vanish when typing) */
+  try{ D.querySelectorAll('input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]),textarea,select').forEach(function(i){
+    if(i.getAttribute('aria-label')||i.getAttribute('aria-labelledby')||i.title) return;
+    if(i.id && D.querySelector('label[for="'+(window.CSS&&CSS.escape?CSS.escape(i.id):i.id)+'"]')) return;
+    if(i.closest('label')) return;
+    var ph=i.getAttribute('placeholder'); if(ph) i.setAttribute('aria-label',ph);
+  }); }catch(e){}
+}
+/* H1 fallback runs LATE (after the theme has rendered its own title) and never duplicates one */
+function ssH1(){
+  try{ if(D.querySelector('h1')||D.querySelector('.ss-h1x')) return;
+    if(D.querySelector('.page-title,.entry-title,.w-post-elm.post_title,.post-title')) return; /* a real title exists, just not as <h1> */
+    var t=(D.title||'').split('|')[0].split('–')[0].trim(); if(!t) return;
+    var main=D.getElementById('page-content')||D.querySelector('.l-main')||B; var h=D.createElement('h1'); h.className='ss-h1x'; h.textContent=t;
+    h.style.cssText='position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap'; main.insertBefore(h,main.firstChild);
+  }catch(e){}
+}
+if(D.readyState==='complete') setTimeout(ssH1,600); else window.addEventListener('load',function(){ setTimeout(ssH1,600); });
+D.addEventListener('ssp:navigated',function(){ setTimeout(ssH1,700); });
+(window.ssOnDom||function(f){f();})(ssA11y);
+D.addEventListener('ssp:navigated',function(){ setTimeout(ssA11y,120); });
 D.addEventListener('ssp:navigated',function(){ setTimeout(cartCount,150); });
 
 function mount(){
