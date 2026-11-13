@@ -9,7 +9,10 @@ const { OUT, metrics } = require('./lib');
 const ALL = { analytics: require('./analytics'), seo: require('./seo'), products: require('./products'), competitors: require('./competitors'), promos: require('./promos'), security: require('./security') };
 
 (async () => {
-  const pick = (process.env.BOTS || Object.keys(ALL).join(',')).split(',').filter(k => ALL[k]);
+  // Google/sales numbers already come to the owner's Claude "content factory" through Supermetrics (GA4, Search
+  // Console, Instagram) — these two bots run only if their own keys were added (docs/bots.md), otherwise no nagging
+  const has = { seo: !!process.env.GOOGLE_SA_JSON, analytics: !!(process.env.WC_KEY || process.env.GA4_PROPERTY_ID) };
+  const pick = (process.env.BOTS || Object.keys(ALL).filter(k => has[k] !== false).join(',')).split(',').filter(k => ALL[k]);
   const date = new Date().toISOString().slice(0, 10);
   const parts = [`# Еженедельный отчёт ботов — ${date}`, '',
     'Что делать: ⚠️ и 💡 — задачи; ⏸ — бот ждёт доступа (см. `docs/bots.md`). Скорость — `speed/latest.md`, баги — `qa/latest/report.md`.', ''];

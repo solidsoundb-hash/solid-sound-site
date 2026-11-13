@@ -12,28 +12,27 @@ module.exports = async function products() {
     if (r.status !== 200) { L.push(`⚠️ Список товаров не загрузился: ${r.error || 'HTTP ' + r.status}`); return L.join('\n') + '\n'; }
     const j = r.json(); all.push(...j); if (j.length < 100) break;
   }
-  const strip = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  const issues = [];
-  for (const p of all) {
+  const strip = (h) => String(h || '').replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  // the Store API on this site can return empty descriptions/categories (page builder + languages) — so the
+  // product PAGE is the source of truth for description, sound preview and Google markup
+  const allNoCat = all.length && all.every(p => !(p.categories || []).length);
+  const issues = []; const noSchema = [];
+  for (const p of all.slice(0, 40)) {
     const pr = p.prices || {}; const price = +(pr.price || 0) / Math.pow(10, pr.currency_minor_unit || 2);
-    const desc = strip(p.description), short = strip(p.short_description);
+    const pg = await get(p.permalink); const html = pg.status === 200 ? pg.text : '';
+    const tab = (html.match(/id="tab-description"[\s\S]*?<\/div>\s*<\/div>/) || [])[0] || '';
+    const desc = strip(tab) || strip(p.description);
     const prob = [];
-    if (!price && !/free/i.test(p.name + ' ' + (p.categories || []).map(c => c.name).join(' '))) prob.push('цена 0');
+    if (!price && !/free/i.test(p.name)) prob.push('цена 0');
     if (!(p.images || []).length) prob.push('нет картинки');
-    if (desc.length < 300) prob.push(`короткое описание (${desc.length} знаков, нужно от 300 — Google и покупателю мало)`);
-    if (!short) prob.push('нет краткого описания');
-    if (!(p.categories || []).length) prob.push('нет категории');
+    if (html && desc.length < 300) prob.push(`короткое описание на странице (${desc.length} знаков, нужно от 300 — Google и покупателю мало)`);
+    if (!allNoCat && !(p.categories || []).length) prob.push('нет категории');
     if (p.name.length > 70) prob.push('слишком длинное название для Google (>70)');
-    if (!/\.mp3|\.wav|audio|waveform|ssw|soundcloud|youtube/i.test(p.description || '') && !(p.extensions && JSON.stringify(p.extensions).match(/mp3|audio/i))) prob.push('нет звукового превью в описании (проверить плеер на странице)');
-    if (pr.sale_price && pr.regular_price && +pr.sale_price < +pr.regular_price && !p.on_sale) prob.push('скидка указана, но не активна');
+    if (html && !/\.mp3|\.wav|<audio|ssw|wp-audio|waveform/i.test(html)) prob.push('на странице нет звукового превью');
+    if (html && !/"@type"\s*:\s*"Product"/.test(html)) noSchema.push(p.name);
     if (!p.is_purchasable || !p.is_in_stock) prob.push('нельзя купить (не в наличии / не покупаемый)');
+    if (!html) prob.push('страница товара не открылась для проверки');
     if (prob.length) issues.push({ name: p.name, url: p.permalink, prob });
-  }
-  // schema on a few product pages (price + availability for Google rich results)
-  const sample = all.slice(0, 5); const noSchema = [];
-  for (const p of sample) {
-    const r = await get(p.permalink);
-    if (r.status === 200 && !/"@type"\s*:\s*"Product"/.test(r.text)) noSchema.push(p.name);
   }
   Object.assign(metrics, { products: all.length, products_with_issues: issues.length });
   L.push(`Товаров в магазине: **${all.length}**. С замечаниями: **${issues.length}**.`, '');
