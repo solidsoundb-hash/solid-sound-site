@@ -1,4 +1,4 @@
-# Site check 2026-11-13T09:41:17.932Z
+# Site check 2026-11-13T11:09:08.110Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 187 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -52,15 +52,6 @@
 - /en/store-manager/ss-settings/ → HTTP 200 · inline 304 KB · player files · [admin_phone_en_store_manager_ss_settings.jpg](admin_phone_en_store_manager_ss_settings.jpg)
 - /en/store-manager/ss-help/ → HTTP 200 · inline 304 KB · player files · [admin_phone_en_store_manager_ss_help.jpg](admin_phone_en_store_manager_ss_help.jpg)
 ## admin · desktop
-- logged in: true
-- /en/my-account/ → HTTP 200 · inline 193 KB · player files · [admin_desktop_en_my_account.jpg](admin_desktop_en_my_account.jpg)
-- /en/store-manager/ → HTTP 200 · inline 313 KB · player files · [admin_desktop_en_store_manager.jpg](admin_desktop_en_store_manager.jpg)
-- /en/store-manager/ss-products/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_products.jpg](admin_desktop_en_store_manager_ss_products.jpg)
-- /add-product/ → HTTP 200 · inline 330 KB · player files · [admin_desktop_add_product.jpg](admin_desktop_add_product.jpg)
-- /en/store-manager/ss-earnings/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_earnings.jpg](admin_desktop_en_store_manager_ss_earnings.jpg)
-- /en/store-manager/ss-payouts/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_payouts.jpg](admin_desktop_en_store_manager_ss_payouts.jpg)
-- /en/store-manager/ss-reviews/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_reviews.jpg](admin_desktop_en_store_manager_ss_reviews.jpg)
-- /en/store-manager/ss-settings/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_settings.jpg](admin_desktop_en_store_manager_ss_settings.jpg)
-- /en/store-manager/ss-help/ → HTTP 200 · inline 304 KB · player files · [admin_desktop_en_store_manager_ss_help.jpg](admin_desktop_en_store_manager_ss_help.jpg)
+- logged in: false
 
 ## vendor: no credentials, skipped
