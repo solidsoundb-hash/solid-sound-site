@@ -1,4 +1,4 @@
-# Site check 2026-11-13T09:24:09.766Z
+# Site check 2026-11-13T09:41:17.932Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 187 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
@@ -20,7 +20,7 @@
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
     - console: [GSI_LOGGER]: The given origin is not allowed for the given client ID.
-- /product/infinity/ → HTTP 200 · inline 200 KB · player files · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
+- /product/infinity/ → HTTP 200 · inline 201 KB · player files · [guest_desktop_product_infinity.jpg](guest_desktop_product_infinity.jpg)
 - /en/all-products/ → HTTP 200 · inline 188 KB · player files · [guest_desktop_en_all_products.jpg](guest_desktop_en_all_products.jpg)
 - /en/vendor-register/ → HTTP 200 · inline 229 KB · player files · [guest_desktop_en_vendor_register.jpg](guest_desktop_en_vendor_register.jpg)
 - /sell/ → HTTP 200 · inline 179 KB · player files · [guest_desktop_sell.jpg](guest_desktop_sell.jpg)
