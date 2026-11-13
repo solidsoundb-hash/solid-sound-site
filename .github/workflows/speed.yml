@@ -1,16 +1,12 @@
 # Speed bot: Google PageSpeed (Lighthouse) for key pages, phone + computer; warns when the site got slower.
-#  - after a deploy (at most once every 2 hours, to save free GitHub minutes)
-#  - every night
+#  - once a week, Monday night (owner 13.11.2026: weekly, to save free GitHub minutes)
 #  - on demand: a line in .github/speed.txt
 # Result: speed/latest.md (+ latest.json, history.csv).
 name: Speed bot
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Deploy plugin"]
-    types: [completed]
   schedule:
-    - cron: "41 2 * * *"   # every night 04:41 Kyiv
+    - cron: "41 2 * * 1"   # Monday 04:41 Kyiv
   push:
     branches: [main]
     paths: [".github/speed.txt"]

@@ -1,20 +1,15 @@
 # QA bot ("автотестировщик"): walks the site like a person and writes a bug list.
-#  - short check after a deploy (smoke, ~5–8 min, at most once every 2 hours) -> qa/smoke/
-#  - daily check every night (key pages, all languages, buttons, links, logins) -> qa/latest/
-#  - full check every Monday night (all pages, all languages, every button)    -> qa/latest/
-#  - on demand: a line in .github/qa.txt ("full" / "smoke" in the line, otherwise daily)
+#  - full check once a week, Monday night (all pages, all languages, every button) -> qa/latest/
+#  - on demand only otherwise (owner 13.11.2026: "раз в неделю, если что-то нужно — напишу сам"):
+#    a line in .github/qa.txt ("full" / "smoke" in the line, otherwise the daily-size check)
 # Free GitHub minutes are limited (2000/month for a private repo) — that is why checks after deploys are short.
 name: QA bot
 on:
   workflow_dispatch:
     inputs:
       mode: { description: "smoke, quick or full", default: "quick" }
-  workflow_run:
-    workflows: ["Deploy plugin"]
-    types: [completed]
   schedule:
     - cron: "17 0 * * 1"         # full: Monday 02:17 Kyiv
-    - cron: "23 1 * * 0,2-6"     # daily: other nights 03:23 Kyiv
   push:
     branches: [main]
     paths: [".github/qa.txt"]
