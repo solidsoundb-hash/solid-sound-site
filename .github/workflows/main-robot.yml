@@ -1,4 +1,4 @@
-# MAIN ROBOT — once a week (Monday night, Kyiv) starts every bot one after another (one at a time, so the hosting
+# MAIN ROBOT — once a week (Thursday→Friday night, Kyiv) starts every bot one after another (one at a time, so the hosting
 # does not block us), then checks them, keeps week-by-week statistics and writes the development plan:
 #   1. QA bot, full check        -> qa/latest/report.md
 #   2. Speed bot                 -> speed/latest.md
@@ -10,7 +10,7 @@ name: Main robot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 23 * * 0"   # Monday 01:17 Kyiv
+    - cron: "17 23 * * 4"   # Friday 01:17 Kyiv (data ready before the Saturday content factory)
   push:
     branches: [main]
     paths: [".github/main-robot.txt"]
