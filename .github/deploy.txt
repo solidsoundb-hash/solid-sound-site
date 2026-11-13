@@ -44,3 +44,4 @@
 40 2026-11-13 09:18:59 fixes from the QA bot report: search, es/it products, menus per language, play/pause icons, cookie banner, labels, contrast (owner ok: Делай все потом выложишь)
 41 2026-11-13 09:25:19 cookie banner above the chat button, search page title (owner ok: Делай все потом выложишь)
 42 2026-11-13 11:03:13 wiki articles: icons, contents as cards, rules at a glance, checklist ticks, FAQ +/-, bad before/after audio removed (owner ok: И выкладывай сразу все что готово)
+43 2026-11-13 11:11:27 rule: every checklist on the site with orange check icons (owner ok: выкладывай сразу все что готово)

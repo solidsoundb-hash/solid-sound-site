@@ -44,6 +44,8 @@ const RULES = [
   { id: 'shop-old-year', sev: 'minor', area: 'Магазин', title: 'Старый год в подвале (©) или в тексте акции',
     why: 'Сайт выглядит заброшенным — меньше доверия.', fix: 'Год подставлять автоматически.' },
 
+  { id: 'style-checklist', sev: 'minor', area: 'Стиль сайта', title: 'Чек-лист без оранжевых галочек (правило владельца)',
+    why: 'Правило владельца (13.11.2026): все чек-листы на сайте — с иконками-галочками, как в статье про вокал. Так читается сразу.', fix: 'Список под заголовком «Checklist» — класс check (ss-global ставит его сам), или ul.check.' },
   // ---------- accessibility / clarity
   { id: 'a11y-img-alt', sev: 'minor', area: 'Доступность', title: 'Картинки без подписи (alt)',
     why: 'Google Картинки не понимают картинку; незрячий покупатель слышит «изображение».', fix: 'alt с названием товара/смыслом.' },
@@ -211,6 +213,7 @@ function collect() {
   f.httpOwn = abs.filter(a => /^http:\/\/(www\.)?solid-sound\.net/.test(a.href)).slice(0, 5).map(a => a.href);
   f.mixed = [...document.querySelectorAll('img[src^="http:"], script[src^="http:"], link[rel=stylesheet][href^="http:"], iframe[src^="http:"], audio[src^="http:"], source[src^="http:"], video[src^="http:"]')].slice(0, 5).map(e => e.src || e.href);
   f.blocking = [...document.head.querySelectorAll('script[src]')].filter(s => !s.defer && !s.async && s.type !== 'module').map(s => s.src.replace(/\?.*/, '')).slice(0, 8);
+  f.badChecklists = [...document.querySelectorAll('h2,h3,h4')].filter(h => /check ?-?list|чек-?лист/i.test(h.textContent)).map(h => { let n = h.nextElementSibling; while (n && n.tagName === 'P' && !n.textContent.trim()) n = n.nextElementSibling; return n && /^(UL|OL)$/.test(n.tagName) && getComputedStyle(n.querySelector('li') || n, '::before').content === 'none' && !n.classList.contains('check') ? h.textContent.trim().slice(0, 50) : null; }).filter(Boolean);
   f.dom = document.getElementsByTagName('*').length;
   const res = performance.getEntriesByType('resource');
   f.weight = res.reduce((a, r) => a + (r.transferSize || 0), 0) + ((performance.getEntriesByType('navigation')[0] || {}).transferSize || 0);
@@ -269,6 +272,7 @@ function check(f, ctx) {
   }
   list('mob-covered', f.covered, '', 'covered|' + p);
   list('mob-input-type', f.inputs.filter(i => (/mail/.test(i.nm) && i.type !== 'email') || (/phone|tel/.test(i.nm) && i.type !== 'tel')).map(i => i.d), '', 'itype|' + p);
+  list('style-checklist', f.badChecklists, '');
   // speed
   list('perf-img-heavy', f.heavyImg, '', 'heavy|' + p);
   list('perf-img-oversize', f.imgs.filter(i => i.w > 20 && i.nw > i.w * 3 && i.nw > 600).slice(0, 5).map(i => `${i.src.split('/').pop().slice(0, 50)} ${i.nw}px → ${Math.round(i.w)}px`), '', 'oversize|' + p);

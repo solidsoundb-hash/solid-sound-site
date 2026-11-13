@@ -45,6 +45,9 @@ var I={
   globe:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z'
 };
 var S='https://solid-sound.net', L=S+'/en';
+/* (13.11.2026 owner RULE) a list right after a heading with "checklist" gets the check icons too */
+function ssChecklists(){ D.querySelectorAll('h2,h3,h4').forEach(function(h){ if(!/check ?-?list|чек-?лист|контрольн/i.test(h.textContent)) return; var n=h.nextElementSibling; while(n && n.tagName==='P' && !n.textContent.trim()) n=n.nextElementSibling; if(n && (n.tagName==='UL'||n.tagName==='OL') && !n.classList.contains('check')) n.classList.add('check'); }); }
+(window.ssOnDom||function(f){f();})(ssChecklists); D.addEventListener('ssp:navigated',ssChecklists);
 /* (13.11.2026) menu in the visitor's language: translated pages (map printed by Polylang code in custom.php) and the
    shop pages that work under a language prefix (/de/product/…, /de/cart/ …); everything else stays English */
 var LG=(location.pathname.match(/^[/](ua|de|fr|pt|es|it)(?=[/]|$)/)||[])[1]||'';
@@ -91,6 +94,9 @@ var css=[
 '#ssg *{box-sizing:border-box}',
 '.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
 '.l-main{overflow-x:clip}',
+/* (13.11.2026 owner RULE) every checklist on the site = orange check icons (like the vocal article) */
+'ul.check{list-style:none!important;padding-left:0!important}ul.check li{position:relative;list-style:none!important;padding:8px 0 8px 36px;border-bottom:1px solid rgba(255,255,255,.06)}',
+'ul.check li::before{content:"";position:absolute;left:0;top:8px;width:24px;height:24px;border-radius:7px;background:#e09900 url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23111%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M5 12l5 5 9-10%27/%3E%3C/svg%3E") center/16px no-repeat}',
 /* (13.11.2026, QA bot) iPhone zooms the page into any field with text under 16px — keep fields at 16px on phones */
 '@media(max-width:600px){input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=submit]):not([type=button]),select,textarea{font-size:16px!important}}',
 /* (13.11.2026, QA bot) readable SALE badge (was 2.4:1 contrast) */
