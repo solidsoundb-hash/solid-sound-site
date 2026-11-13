@@ -53,7 +53,7 @@ add_action( 'template_redirect', function () {
 		foreach ( preg_split( '/\s+/u', $lq ) as $w ) { if ( mb_strlen( $w ) > 1 && false !== mb_strpos( mb_strtolower( $s[0] . ' ' . $s[1] ), $w ) ) return true; }
 		return false;
 	} );
-	add_filter( 'pre_get_document_title', function () use ( $q ) { return ( '' === $q ? 'Search' : 'Search: ' . $q ) . ' | Solid Sound'; } );
+	add_filter( 'pre_get_document_title', function () use ( $q ) { return ( '' === $q ? 'Search' : 'Search: ' . $q ) . ' | Solid Sound'; }, 99999 );
 	add_filter( 'wp_robots', function ( $r ) { $r['noindex'] = true; $r['follow'] = true; return $r; } );
 	add_action( 'wp_head', function () {
 		echo '<style id="ss-srch">.ss-srch{max-width:1200px;margin:0 auto;padding:24px 16px 40px;color:#E5E7EB}.ss-srch h1{font-size:28px;margin:0 0 6px;color:#fff}.ss-srch .sub{color:#94A3B8;margin:0 0 18px}'

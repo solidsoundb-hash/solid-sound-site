@@ -992,7 +992,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 body.ssp-open .ss-cc{bottom:88px}
 .ss-cc-open{cursor:pointer;color:inherit!important;opacity:.7;text-decoration:underline;font-size:.9em}
 /* (13.11.2026, QA bot: the banner covered BUY on phones) compact on phones, above the bottom menu bar */
-@media(max-width:600px){.ss-cc{left:8px;right:8px;bottom:76px;padding:10px 12px;font-size:12.5px;line-height:1.4;border-radius:12px}.ss-cc b{display:none}.ss-cc p{margin:0 0 8px}.ss-cc-row{flex-wrap:nowrap;gap:8px}.ss-cc button{flex:1 1 0;padding:8px 10px;font-size:13px}body.ssp-open .ss-cc{bottom:140px}}</style>
+.ss-cc{z-index:2147483646}@media(max-width:600px){.ss-cc{left:8px;right:8px;bottom:76px;padding:10px 12px;font-size:12.5px;line-height:1.4;border-radius:12px}.ss-cc b{display:none}.ss-cc p{margin:0 0 8px}.ss-cc-row{flex-wrap:nowrap;gap:8px}.ss-cc button{flex:1 1 0;padding:8px 10px;font-size:13px}body.ssp-open .ss-cc{bottom:140px}}</style>
 		<?php
 	}
 	add_action( 'wp_head', 'ss_consent_head', -1000 );
