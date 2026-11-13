@@ -45,6 +45,13 @@ var I={
   globe:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z'
 };
 var S='https://solid-sound.net', L=S+'/en';
+/* (13.11.2026) menu in the visitor's language: translated pages (map printed by Polylang code in custom.php) and the
+   shop pages that work under a language prefix (/de/product/…, /de/cart/ …); everything else stays English */
+var LG=(location.pathname.match(/^[/](ua|de|fr|pt|es|it)(?=[/]|$)/)||[])[1]||'';
+function tr(h){ if(!LG||!h) return h; var M=window.ssTrMap||{}; var k=h.split('#')[0].replace(/[/]$/,''), hs=h.indexOf('#')>-1 ? h.slice(h.indexOf('#')) : '';
+  if(M[k]) return M[k]+hs; if(M[S+k.replace(/^https?:[/][/][^/]+/,'')]) return M[S+k.replace(/^https?:[/][/][^/]+/,'')]+hs;
+  var p=k.replace(/^https?:[/][/][^/]+/,''); if(/^[/](en[/])?(product|product-category|shop|cart|checkout|my-account)([/]|$)/.test(p)) return S+'/'+LG+p.replace(/^[/]en/,'')+'/'+hs;
+  if(p===''||p==='/en'||p==='/') return S+'/'+LG+'/'+hs; return h; }
 var NAV=[
   {t:'Home',i:'home',h:L+'/'},
   {t:'Products',i:'grid',h:L+'/all-products/',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
@@ -54,6 +61,7 @@ var NAV=[
   {t:'Free',i:'free',h:L+'/free/'},
   {t:'Sell',i:'sell',h:L+'/vendor-register/'}
 ];
+if(LG) NAV.forEach(function(n){ if(n.h) n.h=tr(n.h); if(n.sub) n.sub.forEach(function(x){ x[2]=tr(x[2]); }); });
 var logged=B.classList.contains('logged-in');
 /* Accounts: client -> My account (the client dashboard), vendor -> Producer space (WCFM), admin -> both */
 var MYA=L+'/my-account/', VND=L+'/store-manager/', ROLE=window.ssRole||'', VENDOR=ROLE==='vendor';
@@ -61,14 +69,14 @@ var DSH=MYA;
 /* Sign in = WooCommerce account page with the 3 tabs (Log in / Create account / Become a vendor).
    The client dashboard is separate: shown as its own item only when logged in. */
 var ACC=logged ? {t:'My account',i:'user',h:MYA} : {t:'Sign in',i:'user',h:MYA};
-var CART={t:'Cart',i:'cart',h:L+'/cart/'};
+var CART={t:'Cart',i:'cart',h:tr(L+'/cart/')};
 var FAV={t:'Favorites',i:'fav',h:logged ? MYA+'#favourites' : MYA};
 /* current page: the language prefix (/en/, /de/ ...) and case are ignored, so /en/templates/ = /templates */
 function normP(p){ p=(p||'/').toLowerCase().replace(/[/]+$/,'')||'/'; return p.replace(/^[/](en|de|fr|es|it|pt|ua|uk|pl|ru)(?=[/]|$)/,'')||'/'; }
 var path=normP(location.pathname);
 function isHome(h){ try{ return normP(new URL(h,location.href).pathname)==='/'; }catch(e){ return false; } }
 function go(h){ if(!(window.sspGo && window.sspGo(h))) location.href=h; }
-function isCur(h){ try{ return normP(new URL(h,location.href).pathname)===path; }catch(e){ return false; } }
+function isCur(h){ try{ var u=new URL(h,location.href); if(u.hash && u.hash.length>1) return false; return normP(u.pathname)===path; }catch(e){ return false; } }
 /* a whole section lights up its menu item (product pages -> Products, calculators -> Services ...) */
 var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator|studio-calculator)([/]|$)/,FAQ:/^[/](faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/};
 function inSec(t){ return !!(SEC[t] && SEC[t].test(path)); }
@@ -83,6 +91,12 @@ var css=[
 '#ssg *{box-sizing:border-box}',
 '.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
 '.l-main{overflow-x:clip}',
+/* (13.11.2026, QA bot) iPhone zooms the page into any field with text under 16px — keep fields at 16px on phones */
+'@media(max-width:600px){input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=submit]):not([type=button]),select,textarea{font-size:16px!important}}',
+/* (13.11.2026, QA bot) readable SALE badge (was 2.4:1 contrast) */
+'.onsale{background:#F59E0B!important;color:#111!important;font-weight:800!important}',
+/* (13.11.2026, QA bot) scrolling to a button or section leaves room for the sticky header, toolbar and bottom bar */
+'html{scroll-padding-top:calc(var(--ssg-h,72px) + 70px);scroll-padding-bottom:96px}',
 'body.ss-newhome #ssg,body.ss-newhome #ssg-bar,body.ss-newhome #ssg-promo,body.ss-newhome #ssg-sheet{display:none!important}',
 /* closed player must not peek out above the phone bottom bar (it was sliding down only its own height) */
 '#ssp:not(.is-open){visibility:hidden!important;pointer-events:none!important}',
@@ -211,6 +225,7 @@ function sheetHtml(){
   return h+LT+'/div'+GT;
 }
 var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
+if(LG) BAR.forEach(function(b){ b[2]=tr(b[2]); });
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
 function mount(){
@@ -351,7 +366,7 @@ function ssgAI(){
   }
   function esc(s){ return String(s).replace(/[<>"]/g,''); }
   function close(){ if(panel){ panel.remove(); panel=null; } if(aud){ aud.pause(); } }
-  function plain(q){ var w=words(q)[0]||q; location.href='https://solid-sound.net/?post_type=product'+String.fromCharCode(38)+'s='+encodeURIComponent(w); }
+  function plain(q){ var w=words(q)[0]||q; location.href='https://solid-sound.net/?s='+encodeURIComponent(w); }
   function show(q,html){
     close();
     var f=document.querySelector('#ssg form'), r=f ? f.getBoundingClientRect() : {bottom:120,left:12,width:360};

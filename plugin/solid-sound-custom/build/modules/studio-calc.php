@@ -105,8 +105,8 @@ function ss_sc_html() {
 		. '<div class="g5050">✓ 50/50 guarantee — the second half only after you approve.<br>✓ Notes on any second of every version in your dashboard.<br>✓ WAV 24-bit + MP3 320.</div>'
 		. '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="ss_studio_request"><input type="hidden" name="quote" id="sc-quote"><input type="hidden" name="service" id="sc-service">'
 		. '<input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">'
-		. '<input type="text" name="name" placeholder="Your name" required><input type="email" name="email" placeholder="Email" required>'
-		. '<input type="text" name="links" placeholder="Link to files (Google Drive, Dropbox, WeTransfer…)"><textarea name="message" rows="3" placeholder="References, deadline, anything we should know"></textarea>'
+		. '<input type="text" name="name" placeholder="Your name" aria-label="Your name" autocomplete="name" required><input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required>'
+		. '<input type="text" name="links" placeholder="Link to files (Google Drive, Dropbox, WeTransfer…)" aria-label="Link to files (Google Drive, Dropbox, WeTransfer…)"><textarea name="message" rows="3" placeholder="References, deadline, anything we should know" aria-label="References, deadline, anything we should know"></textarea>'
 		. '<button class="go" type="submit">Send request — get a reply in 24 h</button><p class="muted">No payment now. We confirm the price and the date first. By sending you agree to our <a href="' . esc_url( home_url( '/privacy-policy/' ) ) . '">Privacy Policy</a>.</p></form></div></div></div>'
 		. '<script>window.SS_SC=' . wp_json_encode( ss_sc_prices() ) . ';</script><script>' . ss_sc_js() . '</script>';
 }

@@ -356,3 +356,18 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
   if(Date.now()>new Date('2026-11-30T23:59:59+01:00').getTime()) return;
   document.querySelectorAll('#ss-app .ssx [data-bm]').forEach(function(b){ if(b.textContent===b.getAttribute('data-bm')) return; b.textContent=b.getAttribute('data-bm'); var o=b.parentNode.querySelector('[data-bms]'); if(o) o.hidden=false; });
 });
+
+/* (13.11.2026, QA bot) Best products cover ▶ shows ⏸ while its track plays in the site player */
+(function(){
+  function upd(){
+    var st=window.SSP&&SSP.state&&SSP.state.cur, on=!!(st && document.querySelector('#ssp.is-playing'));
+    document.querySelectorAll('#ss-app article').forEach(function(card){
+      var w=card.querySelector('.ss-pw .ssw'), b=card.querySelector('button[aria-label^="Play "],button[aria-label^="Pause "]'); if(!w||!b) return;
+      var me=on && w.classList.contains('is-playing'); if(b.classList.contains('ss-on')===me) return;
+      b.classList.toggle('ss-on',me); b.setAttribute('aria-pressed',me?'true':'false');
+      b.setAttribute('aria-label',b.getAttribute('aria-label').replace(/^(Play|Pause) /,me?'Pause ':'Play '));
+    });
+  }
+  document.addEventListener('ssp:state',function(){ setTimeout(upd,30); });
+  (window.ssOnDom||function(f){f();})(upd);
+})();

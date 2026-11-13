@@ -112,8 +112,8 @@ add_action( 'woocommerce_single_product_summary', function () {
 		. '<input type="hidden" name="action" value="ss_excl_request"><input type="hidden" name="pid" value="' . (int) $product->get_id() . '">'
 		. '<input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">'
 		. '<p style="margin:0">Exclusive = full rights, the product is removed from sale after your purchase. We reply with the price within 24 h.</p>'
-		. '<input type="email" name="email" required placeholder="Your email" style="background:#0B1220;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px">'
-		. '<textarea name="message" rows="2" placeholder="Artist name, label / release plans (optional)" style="background:#0B1220;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px;font-family:inherit"></textarea>'
+		. '<input type="email" name="email" required placeholder="Your email" aria-label="Your email" style="background:#0B1220;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px">'
+		. '<textarea name="message" rows="2" placeholder="Artist name, label / release plans (optional)" aria-label="Artist name, label / release plans (optional)" style="background:#0B1220;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px;font-family:inherit"></textarea>'
 		. '<button type="submit" style="justify-self:start;border:0;border-radius:10px;background:#F59E0B;color:#111;font-weight:800;padding:10px 16px;cursor:pointer">Request exclusive license</button></form></details>';
 }, 34 );
 add_action( 'admin_post_nopriv_ss_excl_request', 'ss_excl_request' );

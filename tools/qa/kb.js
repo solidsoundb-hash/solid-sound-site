@@ -125,7 +125,7 @@ const PROMOS = [{ re: /black month|−50%|-50%/i, end: '2026-11-30T23:59:59+01:0
 function collect() {
   const vw = innerWidth, vh = innerHeight;
   const vis = (e) => { const r = e.getBoundingClientRect(); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity !== 0; };
-  const name = (e) => (e.getAttribute('aria-label') || e.getAttribute('title') || (e.innerText || '').trim() || (e.querySelector('img[alt]') || {}).alt || (e.querySelector('svg title') || {}).textContent || (e.getAttribute('aria-labelledby') && (document.getElementById(e.getAttribute('aria-labelledby')) || {}).textContent) || '').replace(/\s+/g, ' ').trim();
+  const name = (e) => (e.getAttribute('aria-label') || e.getAttribute('title') || (e.innerText || '').trim() || (e.textContent || '').trim() || (e.querySelector('img[alt]') || {}).alt || (e.querySelector('svg title') || {}).textContent || (e.getAttribute('aria-labelledby') && (document.getElementById(e.getAttribute('aria-labelledby')) || {}).textContent) || '').replace(/\s+/g, ' ').trim();
   const desc = (e) => { const t = e.tagName.toLowerCase(); const c = typeof e.className === 'string' ? e.className.trim().split(/\s+/).slice(0, 2).join('.') : ''; const n = name(e).slice(0, 40); return t + (e.id ? '#' + e.id : '') + (c ? '.' + c : '') + (n ? ' «' + n + '»' : ''); };
   const meta = (n) => { const m = document.querySelector(`meta[name="${n}"], meta[property="${n}"]`); return m ? (m.getAttribute('content') || '') : null; };
   const f = { vw, vh, path: location.pathname, title: document.title || '', desc: meta('description'), robots: (meta('robots') || '') + ' ' + (meta('googlebot') || ''),

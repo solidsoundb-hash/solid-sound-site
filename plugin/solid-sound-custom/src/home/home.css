@@ -99,3 +99,6 @@ body.ss-newhome .l-header,body.ss-newhome .ssf,body.ss-newhome #ssg,body.ss-newh
 #ss-app .ss-ab,#ss-app article>iframe{margin-top:auto}
 #ss-app .ss-pw .ssw{margin:4px 0 0}#ss-app .ss-pw audio{display:none}
 #ss-app .ss-pw .ssw-add,#ss-app .ss-pw .ssw-cur{display:none}
+#ss-app button.ss-on>svg{display:none}#ss-app button.ss-on::after{content:'';width:4px;height:16px;background:currentColor;box-shadow:7px 0 0 currentColor;margin-right:7px}
+html{scroll-padding-top:96px;scroll-padding-bottom:96px}
+@media(max-width:600px){#ss-app input:not([type=checkbox]):not([type=radio]):not([type=range]),#ss-app select,#ss-app textarea{font-size:16px!important}}

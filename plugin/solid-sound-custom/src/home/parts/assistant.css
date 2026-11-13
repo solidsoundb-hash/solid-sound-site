@@ -6,7 +6,7 @@
 .ssx .sub{margin:4px 0 16px;color:var(--mut)}
 .ssx .tasks{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -4px 18px;padding:0 4px}
 .ssx .tasks::-webkit-scrollbar{display:none}
-.ssx .tasks button{flex:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:#CBD5E1;font:700 14px "Exo 2",sans-serif;cursor:pointer;transition:.2s}
+.ssx .tasks button{flex:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:#CBD5E1;font:700 14px "Exo 2",sans-serif;cursor:pointer;transition:.2s}
 .ssx .tasks button:hover{color:#fff;border-color:rgba(255,255,255,.2)}
 .ssx .tasks button.on{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.55);color:var(--or)}
 .ssx .tasks button i{font-style:normal;display:inline-flex;color:var(--or)}.ssx .tasks button i svg{display:block}
@@ -30,7 +30,7 @@
 .ssx .cta.g{background:#1A2540;color:#E5E7EB;border:1px solid var(--line)}
 .ssx .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 .ssx .inp{height:48px;flex:1 1 220px;border-radius:12px;border:1px solid var(--line);background:#0B1220;color:#fff;padding:0 14px;font:500 15px "Exo 2",sans-serif}
-.ssx .gbtn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#fff;color:#1f1f1f;font:700 14px system-ui,sans-serif;border:0}
+.ssx .gbtn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:10px;background:#fff;color:#1f1f1f;font:700 14px system-ui,sans-serif;border:0}
 .ssx .gbtn svg{width:18px;height:18px}
 .ssx .offer{position:relative;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;min-height:300px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(7,10,18,.15),rgba(7,10,18,.92)),var(--img,#1b1b1b) center/cover;overflow:hidden}
 .ssx .offer .tag{position:absolute;top:14px;left:14px;padding:4px 10px;border-radius:8px;background:var(--or);color:#111;font-size:11px;font-weight:800;letter-spacing:.08em}
@@ -62,7 +62,8 @@
 .ssx .acts .cta{flex:1 1 auto}
 .ssx .rng input{width:130px}
 }
-.ssx{max-width:1200px;margin:0 auto 8px;font-family:'Exo 2',system-ui,sans-serif;color:#E5E7EB}.ssx .chips a{display:inline-flex;align-items:center;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:#131B2E;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}.ssx .chips a:hover{border-color:#F59E0B;color:#F59E0B}.ssx a.cta,.ssx a.gbtn{text-decoration:none}
+.ssx{max-width:1200px;margin:0 auto 8px;font-family:'Exo 2',system-ui,sans-serif;color:#E5E7EB}.ssx .chips a{display:inline-flex;align-items:center;height:38px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:#131B2E;color:#E5E7EB;font-weight:600;font-size:14px;text-decoration:none}.ssx .chips a:hover{border-color:#F59E0B;color:#F59E0B}.ssx a.cta,.ssx a.gbtn{text-decoration:none}
 @media (max-width:760px){.ssx{margin:0 12px 8px}}
 .ssx .chips.fixed span{cursor:default}
 .ssx .rng .bpm{display:inline-flex;align-items:center;gap:6px;color:#CBD5E1;font-weight:700}.ssx .rng .bpm input{width:64px;height:34px;padding:0 8px;border-radius:10px;border:1px solid var(--line);background:#131B2E;color:#fff;font:inherit;font-weight:700;text-align:center;-moz-appearance:textfield}.ssx .rng .bpm input::-webkit-inner-spin-button{opacity:.6}
+.ssx h1.ssx-t{line-height:1.2}

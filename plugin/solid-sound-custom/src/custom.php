@@ -990,7 +990,9 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 .ss-cc .ss-cc-yes{background:#f5a400;color:#111}
 .ss-cc .ss-cc-no{background:transparent;color:#f5a400}
 body.ssp-open .ss-cc{bottom:88px}
-.ss-cc-open{cursor:pointer;color:inherit!important;opacity:.7;text-decoration:underline;font-size:.9em}</style>
+.ss-cc-open{cursor:pointer;color:inherit!important;opacity:.7;text-decoration:underline;font-size:.9em}
+/* (13.11.2026, QA bot: the banner covered BUY on phones) compact on phones, above the bottom menu bar */
+@media(max-width:600px){.ss-cc{left:8px;right:8px;bottom:76px;padding:10px 12px;font-size:12.5px;line-height:1.4;border-radius:12px}.ss-cc b{display:none}.ss-cc p{margin:0 0 8px}.ss-cc-row{flex-wrap:nowrap;gap:8px}.ss-cc button{flex:1 1 0;padding:8px 10px;font-size:13px}body.ssp-open .ss-cc{bottom:140px}}</style>
 		<?php
 	}
 	add_action( 'wp_head', 'ss_consent_head', -1000 );
@@ -2565,7 +2567,7 @@ if ( ! function_exists( 'ss_i18n_dict' ) ) {
 .ss-flags{gap:0;margin:0 8px}.ss-flags a:not(.on){display:none}.ss-flags a.on{padding-right:14px;position:relative;width:auto;min-width:30px}.ss-flags a.on:after{content:'';position:absolute;right:5px;top:50%;margin-top:-2px;border:4px solid transparent;border-top-color:#f5a400}.ss-flags.open{position:relative}.ss-flags.open .ss-fl-list{display:flex}.ss-fl-list{display:none;position:absolute;top:calc(100% + 6px);right:0;background:#16141f;border:1px solid rgba(255,255,255,.12);padding:6px;border-radius:8px;flex-direction:column;gap:4px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.5)}.ss-fl-list a{display:inline-flex!important}
 </style>
 <script data-ssp-rerun=".l-header .ss-flags">
-(function(){var L=<?php echo wp_json_encode( $items ); ?>,M=<?php echo wp_json_encode( $map ); ?>;
+(function(){var L=<?php echo wp_json_encode( $items ); ?>,M=<?php echo wp_json_encode( $map ); ?>;window.ssTrMap=M;
 function box(){var w=document.createElement('span');w.className='ss-flags';L.forEach(function(l){var a=document.createElement('a');a.href=l.u;a.title=l.n;a.setAttribute('hreflang',l.s);a.setAttribute('aria-label',l.n);if(l.c)a.className='on';var im=document.createElement('img');im.src=l.f;im.alt=l.n;im.width=20;a.appendChild(im);w.appendChild(a)});var lst=document.createElement('span');lst.className='ss-fl-list';[].slice.call(w.querySelectorAll('a:not(.on)')).forEach(function(x){lst.appendChild(x)});w.appendChild(lst);w.addEventListener('click',function(e){if(e.target.closest('a.on')){e.preventDefault();w.classList.toggle('open')}});document.addEventListener('click',function(e){if(!w.contains(e.target))w.classList.remove('open')});return w}
 [].forEach.call(document.querySelectorAll('.l-header .w-socials, .l-header .w-cart'),function(anchor,i){if(i>0||document.querySelector('.l-header .ss-flags'))return;var cart=document.querySelector('.l-header .w-cart');var tgt=cart||anchor;tgt.parentNode.insertBefore(box(),tgt)});
 if(Object.keys(M).length){[].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.href.split('#')[0].replace(/\/$/,'');if(M[h]&&!a.closest('.ss-flags')&&!a.hasAttribute('hreflang'))a.href=M[h]})}
@@ -2812,7 +2814,7 @@ add_action( 'admin_init', function () {
 if ( ! function_exists( 'ss_lang_url' ) ) {
 	$GLOBALS['ss_forced_lang'] = '';
 	$GLOBALS['ss_req_path']    = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '/';
-	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#^/(ua|de|fr|pt)(/(?:product|product-category|product-tag|shop|cart|checkout|my-account)(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) {
+	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#^/(ua|de|fr|pt|es|it)(/(?:product|product-category|product-tag|shop|cart|checkout|my-account)(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) {
 		$GLOBALS['ss_forced_lang'] = $ssm[1];
 		$GLOBALS['ss_req_path']    = $ssm[2];
 		$_SERVER['REQUEST_URI']    = $ssm[2];
@@ -2826,7 +2828,7 @@ if ( ! function_exists( 'ss_lang_url' ) ) {
 		$l = function_exists( 'pll_current_language' ) ? pll_current_language() : '';
 		if ( ! $l || 'en' === $l ) return $url;
 		$home = untrailingslashit( get_option( 'home' ) );
-		if ( 0 !== strpos( $url, $home . '/' ) || preg_match( '#^/(ua|de|fr|pt)/#', substr( $url, strlen( $home ) ) ) ) return $url;
+		if ( 0 !== strpos( $url, $home . '/' ) || preg_match( '#^/(ua|de|fr|pt|es|it)/#', substr( $url, strlen( $home ) ) ) ) return $url;
 		return $home . '/' . $l . substr( $url, strlen( $home ) );
 	}
 	add_filter( 'post_type_link', function ( $url, $post ) { return 'product' === $post->post_type ? ss_add_prefix( $url ) : $url; }, 99, 2 );
@@ -2962,8 +2964,8 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 		if ( ! function_exists( 'is_product' ) || ! is_product() || ! function_exists( 'pll_languages_list' ) ) return;
 		$home = untrailingslashit( get_option( 'home' ) );
 		$path = wp_parse_url( get_post_permalink( get_queried_object_id() ), PHP_URL_PATH );
-		$path = preg_replace( '#^/(ua|de|fr|pt)/#', '/', $path );
-		$loc  = array( 'en' => 'en', 'ua' => 'uk', 'de' => 'de', 'fr' => 'fr', 'pt' => 'pt' );
+		$path = preg_replace( '#^/(ua|de|fr|pt|es|it)/#', '/', $path );
+		$loc  = array( 'en' => 'en', 'ua' => 'uk', 'de' => 'de', 'fr' => 'fr', 'pt' => 'pt', 'es' => 'es', 'it' => 'it' );
 		foreach ( pll_languages_list() as $s ) {
 			$u = $home . ( 'en' === $s ? '' : '/' . $s ) . $path;
 			echo '<link rel="alternate" hreflang="' . esc_attr( isset( $loc[ $s ] ) ? $loc[ $s ] : $s ) . '" href="' . esc_url( $u ) . "\" />\n";
@@ -3502,7 +3504,7 @@ if ( ! function_exists( 'ss_pd_t' ) ) {
 		foreach ( $qs as $n ) {
 			$a = ss_pd_t( 'a' . $n );
 			if ( 1 === $n ) $a .= ' <a href="' . esc_url( home_url( '/license/' ) ) . '">→</a>';
-			if ( 5 === $n ) $a .= ' <a href="' . esc_url( home_url( '/refund_returns/' ) ) . '">→</a>';
+			if ( 5 === $n ) $a .= ' <a href="' . esc_url( home_url( '/refund_returns/' ) ) . '" aria-label="Refund policy">→</a>';
 			echo '<details><summary>' . esc_html( ss_pd_t( 'q' . $n ) ) . '</summary><p>' . wp_kses_post( $a ) . '</p></details>';
 		}
 		echo '</section>';
@@ -3551,18 +3553,19 @@ if ( ! function_exists( 'ss_cat_url' ) ) {
 	function ss_cat_url( $t ) {
 		$home = function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' );
 		$pages = array( 'templates' => 1115, 'reconstructed-templates' => 1115, 'presets' => 1121, 'music' => 1547 );
-		if ( 'product_cat' === $t->taxonomy ) return $home;
+		/* (13.11.2026, QA bot: genre/plugin links landed on the home page) categories → All products, other filters → search results for that word */
+		if ( 'product_cat' === $t->taxonomy ) return home_url( '/en/all-products/' );
 		if ( 'product-format' === $t->taxonomy && isset( $pages[ $t->slug ] ) ) {
 			$pid = $pages[ $t->slug ];
 			if ( function_exists( 'pll_get_post' ) && function_exists( 'pll_current_language' ) ) { $tr = pll_get_post( $pid, pll_current_language() ); if ( $tr ) $pid = $tr; }
 			$u = get_permalink( $pid );
 			return 'reconstructed-templates' === $t->slug ? add_query_arg( 'filter_product-format', $t->slug, $u ) : $u;
 		}
-		return add_query_arg( 'filter_' . $t->taxonomy, $t->slug, $home );
+		return add_query_arg( 's', rawurlencode( $t->name ), home_url( '/' ) );
 	}
 	add_action( 'template_redirect', function () {
 		if ( is_admin() || wp_doing_ajax() ) return;
-		if ( function_exists( 'is_shop' ) && is_shop() ) { wp_safe_redirect( function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' ), 301 ); exit; }
+		if ( function_exists( 'is_shop' ) && is_shop() ) { wp_safe_redirect( home_url( '/en/all-products/' ), 301 ); exit; } /* shop = the catalog page (13.11.2026) */
 		if ( ! is_tax() && ! ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() ) ) return;
 		$t = get_queried_object();
 		if ( ! $t || empty( $t->taxonomy ) || ! is_object_in_taxonomy( 'product', $t->taxonomy ) ) return;
@@ -3890,7 +3893,7 @@ if ( ! defined( 'SS_PD3' ) ) {
 		foreach ( $qs as $i => $n ) {
 			$a = ss_pd_t( 'a' . $n );
 			if ( 6 === $n ) $a .= ' <a href="' . esc_url( home_url( '/license/' ) ) . '">' . esc_html( ss_pd3_t( 'license' ) ) . ' →</a>';
-			if ( 5 === $n ) $a .= ' <a href="' . esc_url( home_url( '/refund_returns/' ) ) . '">→</a>';
+			if ( 5 === $n ) $a .= ' <a href="' . esc_url( home_url( '/refund_returns/' ) ) . '" aria-label="Refund policy">→</a>';
 			echo '<details><summary><b>' . sprintf( '%02d', $i + 1 ) . '</b>' . esc_html( ss_pd_t( 'q' . $n ) ) . '<i></i></summary><p>' . wp_kses_post( $a ) . '</p></details>';
 		}
 		echo '</div></section>';
@@ -4542,7 +4545,7 @@ document.addEventListener('click',go,true);
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&(e.target.classList.contains('ssh-play')||e.target.classList.contains('ssh-add')||e.target.classList.contains('ssh-yt')))go(e)},true);
 function playing(){var s=window.SSP&&SSP.state&&SSP.state.cur;var b=document.querySelector('.ssp.is-playing');return s&&b?String(s.src):''}
 function upd(){var p=playing();var cs=document.querySelectorAll('.ssh-card[data-src]');for(var i=0;i<cs.length;i++){cs[i].classList.toggle('is-pl',!!p&&cs[i].getAttribute('data-src')===p)}}
-window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
+window.ssOnDom?ssOnDom(upd):setInterval(upd,600);document.addEventListener('ssp:state',upd);
 })();</script>
 <style id="ssh-css">
 .l-main .l-section:has(.type_carousel):has(a[href="#templates"]):not(.ssh){display:none!important}
@@ -4673,7 +4676,7 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 .ssh .ssh-sp svg{display:none!important}
 .ssh .ssh-svc a{padding:9px 7px 9px 9px!important}.ssh .ssh-from{font-size:9px;opacity:.75}
 .ssh .ssh-col-free .ssh-h2{display:none!important}
-.ssh-row .ssh-tag{margin-left:auto!important;font-size:8px!important;padding:2px 5px!important;line-height:12px!important}
+.ssh-row .ssh-tag{margin-left:auto!important;font-size:10px!important;padding:3px 6px!important;line-height:13px!important}
 }
 .ssh-tr-x{margin-left:.3em}
 @media(max-width:374px){.ssh-sub{font-size:10.5px!important;gap:2px 7px!important}}
@@ -4701,7 +4704,7 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 .ssh-meta{flex-direction:column!important;align-items:flex-start!important;gap:0!important;margin-top:4px!important}
 .ssh-tt{font-size:12px!important;line-height:16px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .ssh-pr{font-size:12px!important;line-height:16px!important}
-.ssh-tag{font-size:9px!important;letter-spacing:1px!important;padding:3px 6px!important;margin-top:4px!important;line-height:12px!important}
+.ssh-tag{font-size:10px!important;letter-spacing:1px!important;padding:3px 6px!important;margin-top:4px!important;line-height:12px!important}
 .ssh-a{width:26px!important;height:30px!important}
 .ssh-btn{height:38px!important;min-height:0!important;margin-top:8px!important;font-size:14px!important}
 .ssh-svc{gap:5px!important}
@@ -4729,7 +4732,7 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);
 .ssh .ssh-cov img{transition:transform .5s ease}.ssh .ssh-card:hover .ssh-cov img{transform:scale(1.05)}
 .ssh .ssh-rk{position:absolute;left:8px;top:8px;z-index:1;min-width:30px;height:26px;padding:0 7px;border-radius:8px;background:rgba(0,0,0,.72);color:#E09900;font:800 13px/26px Roboto,sans-serif;font-style:normal;text-align:center;backdrop-filter:blur(4px)}
 .ssh .ssh-tier{position:absolute;right:8px;top:8px;z-index:1;padding:4px 8px;border-radius:999px;font:800 10.5px/1.2 Roboto,sans-serif;font-style:normal;letter-spacing:.04em;text-transform:uppercase}
-.ssh .ssh-tier-best{background:#E09900;color:#111}.ssh .ssh-tier-trending{background:rgba(52,211,153,.9);color:#062}
+.ssh .ssh-tier-best{background:#E09900;color:#111}.ssh .ssh-tier-trending{background:#34D399;color:#04261a}
 .ssh .ssh-a{width:46px;height:46px;border-radius:50%!important;background:rgba(20,20,20,.85)!important;border:1px solid rgba(255,255,255,.18)!important;z-index:3;box-shadow:0 6px 18px rgba(0,0,0,.5)}
 .ssh .ssh-a:hover{border-color:#E09900!important}
 .ssh .ssh-btn{align-self:center;width:auto!important;display:inline-flex!important;padding:0 28px!important;border-radius:999px!important;margin-top:6px!important}
@@ -6670,3 +6673,4 @@ require_once __DIR__ . '/modules/studio-calc.php';
 require_once __DIR__ . '/modules/perf.php';
 require_once __DIR__ . '/modules/cleanup.php';
 require_once __DIR__ . '/modules/sale.php';
+require_once __DIR__ . '/modules/search.php';

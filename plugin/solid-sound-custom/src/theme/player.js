@@ -124,6 +124,8 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    PLAYER ENGINE
    ============================================================ */
 var audio=new Audio();audio.preload='none';
+/* (13.11.2026) tell the page when the site player starts / stops, so every ▶ on the page can switch to ⏸ */
+['play','playing','pause','ended','emptied'].forEach(function(n){audio.addEventListener(n,function(){setTimeout(function(){try{document.dispatchEvent(new CustomEvent('ssp:state',{detail:{playing:!audio.paused,src:audio.currentSrc||audio.src}}))}catch(x){}},0)})});
 var P={queue:[],idx:-1,cur:null,pendingSeek:null};
 var vol=parseFloat(ls('ssp_vol'));if(!(vol>=0&&vol<=1))vol=0.9;audio.volume=vol;
 var muted=ls('ssp_mute')==='1';audio.muted=muted;
@@ -216,7 +218,7 @@ var Bar={el:null,wave:null,
     if(this.el)return;
     var b=el('div','ssp');b.id='ssp';b.setAttribute('role','region');b.setAttribute('aria-label','Audio player');
     b.innerHTML='<div class="ssp-mprog"><i></i></div>'+
-      '<a class="ssp-cover" href="#"><img alt="" width="52" height="52"></a>'+
+      '<a class="ssp-cover" href="#" aria-label="Open the product page"><img alt="" width="52" height="52"></a>'+
       '<div class="ssp-meta"><a class="ssp-title" href="#"></a><span class="ssp-author"></span></div>'+
       '<span class="ssp-like-slot"></span>'+
       '<div class="ssp-wv"><span class="ssp-cur">0:00</span><div class="ssp-wave"></div><span class="ssp-dur">0:00</span></div>'+
@@ -245,7 +247,7 @@ var Bar={el:null,wave:null,
   render:function(){
     if(!this.el||!P.cur)return;var t=P.cur,b=this.el;
     var img=b.querySelector('.ssp-cover img');if(t.i){img.src=t.i;img.style.visibility=''}else{img.removeAttribute('src');img.style.visibility='hidden'}
-    b.querySelector('.ssp-cover').href=t.u||'#';
+    var cv=b.querySelector('.ssp-cover');if(t.u){cv.href=t.u;cv.removeAttribute('aria-disabled');cv.setAttribute('aria-label','Open '+(t.t||'the product')+' page')}else{cv.removeAttribute('href');cv.setAttribute('aria-disabled','true')}
     var ti=b.querySelector('.ssp-title');ti.textContent=t.t;ti.href=t.u||'#';ti.title=t.t;
     b.querySelector('.ssp-author').textContent=t.a||'';
     var slot=b.querySelector('.ssp-like-slot');slot.innerHTML='';if(t.pid&&RT.p[t.pid])slot.appendChild(likeBtn(t.pid));
@@ -460,6 +462,8 @@ function canAjax(a,e){
   var href=a.getAttribute('href')||'';if(!href||href.charAt(0)==='#'||/^(javascript|mailto|tel):/i.test(href))return false;
   var u;try{u=new URL(a.href,location.href)}catch(x){return false}
   if(u.origin!==location.origin)return false;
+  /* (13.11.2026) switching language = full page load: <html lang>, translations, hreflang and menus all follow */
+  var lp=function(p){var m=p.match(/^\/(ua|de|fr|pt|es|it)(\/|$)/);return m?m[1]:'en'};if(lp(u.pathname)!==lp(location.pathname))return false;
   if(NO_AJAX.test(u.pathname)||/add-to-cart|add_to_wishlist|wc-ajax|action=|customize|preview=/i.test(u.search))return false;
   if(/\.(mp3|wav|zip|rar|pdf|jpe?g|png|gif|webp|svg|xml|txt|als)$/i.test(u.pathname))return false;
   if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return false;
@@ -468,7 +472,7 @@ function canAjax(a,e){
 }
 var loadedSrc={};document.querySelectorAll('script[src]').forEach(function(s){loadedSrc[s.src]=1});
 function loadScript(src){return new Promise(function(res){if(loadedSrc[src])return res();var s=document.createElement('script');s.src=src;s.async=false;s.onload=s.onerror=function(){res()};loadedSrc[src]=1;document.body.appendChild(s)})}
-function runInline(code){try{var s=document.createElement('script');s.text=code;document.body.appendChild(s);s.parentNode.removeChild(s)}catch(e){}}
+function runInline(code){/* (13.11.2026) mod_pagespeed: `eval(mod_pagespeed_X)` runs a piece of a combined file — only if that file is loaded */var pm=/^\s*eval\((mod_pagespeed_\w+)\);?\s*$/.exec(code);if(pm&&typeof window[pm[1]]==='undefined')return;if(/pagespeed\.(CriticalImages|addInstrumentationInit)/.test(code))return;try{var s=document.createElement('script');s.text=code;document.body.appendChild(s);s.parentNode.removeChild(s)}catch(e){}}
 function syncHead(doc){
   doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(function(l){
     var href=l.getAttribute('href');if(!href)return;
@@ -490,6 +494,7 @@ function newScriptsFrom(doc,main){
   doc.querySelectorAll('script').forEach(function(s){
     if(main.contains(s))return;
     var src=s.getAttribute('src');
+    if(!src&&/^\s*eval\(mod_pagespeed_\w+\);?\s*$/.test(s.textContent)){var pv=s.previousElementSibling;if(pv&&pv.tagName==='SCRIPT'&&pv.getAttribute('src')){var pa=new URL(pv.getAttribute('src'),location.href).href;for(var q=list.length-1;q>=0;q--){if(list[q].src===pa){list[q].after+=';'+s.textContent;break}}}return}
     if(src){var abs=new URL(src,location.href).href;if(!loadedSrc[abs]){var h=(s.id||'').replace(/-js$/,'');list.push({src:abs,before:h?(doc.getElementById(h+'-js-extra')||{}).textContent||'':'' ,b2:h?(doc.getElementById(h+'-js-before')||{}).textContent||'':'',after:h?(doc.getElementById(h+'-js-after')||{}).textContent||'':''})}}
     else if(/window\.SS_RT=/.test(s.textContent)){try{var m=s.textContent.match(/window\.SS_RT=(\{[\s\S]*\});/);if(m){var nr=JSON.parse(m[1]);for(var k in nr.p)RT.p[k]=nr.p[k];if(nr.n)RT.n=nr.n}}catch(e){}}
   });
