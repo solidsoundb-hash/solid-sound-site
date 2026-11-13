@@ -582,7 +582,7 @@ async function sitemapPages(ctx) {
 }
 
 /* ---------------------------------------------------------------- report */
-function writeReport() {
+function writeReport(final = true) {
   // (13.11.2026 owner: "не затирать") the memory of the last run belongs to qa/latest only; a run into another folder
   // (QA_OUT=qa/kb-scan etc.) keeps its own memory next to it and never touches the main one
   const mainOut = path.resolve(OUT) === path.resolve('qa/latest');
@@ -595,7 +595,7 @@ function writeReport() {
   const cnt = (s) => list.filter(b => b.sev === s).length;
   const mins = Math.round((Date.now() - T0) / 60000);
   const L = [];
-  L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : 'быстрая проверка'})`, '');
+  L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : 'быстрая проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
   L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, ссылок ${stats.links}. Время: ${mins} мин.`);
   L.push(`Найдено: ${SEV.critical} ${cnt('critical')} · ${SEV.major} ${cnt('major')} · ${SEV.minor} ${cnt('minor')} · ${SEV.check} ${cnt('check')}` + (prevSigs ? ` · новых ${list.filter(b => b.isNew).length} · исправлено с прошлого раза ${fixed.length}` : ''), '');
   L.push('Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.', '');
@@ -619,9 +619,9 @@ function writeReport() {
   fs.writeFileSync(path.join(OUT, 'report.md'), L.join('\n') + '\n');
   const json = { mode: MODE, date: new Date().toISOString(), stats, bugs: list, notChecked };
   fs.writeFileSync(path.join(OUT, 'bugs.json'), JSON.stringify(json, null, 1));
-  fs.writeFileSync(prevFile, JSON.stringify(json));
+  if (final) fs.writeFileSync(prevFile, JSON.stringify(json));
   // every report is also kept forever in qa/history/<date time mode>/ (report + bug list; screenshots stay only in the latest)
-  try {
+  if (final) try {
     const H = path.join(path.dirname(path.resolve(OUT)), 'history', json.date.slice(0, 16).replace(/[T:]/g, '-') + '-' + MODE + (mainOut ? '' : '-' + path.basename(OUT)));
     fs.mkdirSync(H, { recursive: true });
     fs.writeFileSync(path.join(H, 'report.md'), (L.join('\n') + '\n').replace(/\]\(shots\//g, '](../../' + path.basename(OUT) + '/shots/'));
@@ -637,6 +637,11 @@ function writeReport() {
   const browser = await chromium.launch({ ...(PROXY ? { proxy: { server: PROXY } } : {}), ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}), args: ['--autoplay-policy=no-user-gesture-required'] });
   const save = () => { try { writeReport(); } catch (e) { console.error('report', e); } };
   process.on('SIGTERM', () => { save(); process.exit(0); });
+  // a stray error inside a page handler must not kill the run silently: note it and go on
+  process.on('unhandledRejection', (e) => { notChecked.push('Внутренняя ошибка бота: ' + String((e && e.message) || e).split('\n')[0].slice(0, 160)); });
+  process.on('uncaughtException', (e) => { notChecked.push('Внутренняя ошибка бота: ' + String((e && e.message) || e).split('\n')[0].slice(0, 160)); });
+  // partial report every 2 minutes, so a crash or a time-out never leaves an old report behind
+  const draft = setInterval(() => { try { writeReport(false); } catch (e) {} }, 120000);
   try {
     const desk = await newContext(browser, 'desktop'); const dp = await newPage(desk);
     const phone = await newContext(browser, 'phone'); const pp = await newPage(phone);
@@ -704,6 +709,6 @@ function writeReport() {
     notChecked.push('Бот остановился с ошибкой: ' + (e.stack || e.message).split('\n').slice(0, 3).join(' '));
     console.error(e);
   }
-  save();
+  clearInterval(draft); save();
   await browser.close().catch(() => {});
 })();
