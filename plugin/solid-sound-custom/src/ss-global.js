@@ -46,7 +46,13 @@ var I={
 };
 var S='https://solid-sound.net', L=S+'/en';
 /* (13.11.2026 owner RULE) a list right after a heading with "checklist" gets the check icons too */
-function ssChecklists(){ D.querySelectorAll('h2,h3,h4').forEach(function(h){ if(!/check ?-?list|чек-?лист|контрольн/i.test(h.textContent)) return; var n=h.nextElementSibling; while(n && n.tagName==='P' && !n.textContent.trim()) n=n.nextElementSibling; if(n && (n.tagName==='UL'||n.tagName==='OL') && !n.classList.contains('check')) n.classList.add('check'); }); }
+function ssChecklists(){ D.querySelectorAll('h2,h3,h4').forEach(function(h){ if(!/check ?-?list|чек-?лист|контрольн/i.test(h.textContent)) return; var n=h.nextElementSibling; while(n && n.tagName==='P' && !n.textContent.trim()) n=n.nextElementSibling; if(n && (n.tagName==='UL'||n.tagName==='OL') && !n.classList.contains('check')) n.classList.add('check'); }); 
+  /* each item gets an icon by meaning (owner: icons, not identical ticks) */
+  var CI={sliders:'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6',angle:'M4 20h16M4 20L16 6M9 20a6 6 0 0 0-1.6-4.1',ruler:'M3 17L17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2',mic:'M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8',lock:'M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4M12 15v2',home:'M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6',wave:'M2 12h2M6 8v8M10 5v14M14 8v8M18 10v4M22 12h-2',bolt:'M13 2L4 14h7l-1 8 9-12h-7z',file:'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6',cart:'M3 4h2l2.4 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 8H6.2',check:'M4 4h16v16H4zM8 12l3 3 5-6'};
+  var CW=[[/same position|every take|spot|floor|shock mount|tight/i,'lock'],[/°|turn|angle|beside|lip level/i,'angle'],[/back of the mic|pop filter/i,'mic'],[/gain|peak|dbfs|level|eq\b|compress|loud/i,'sliders'],[/\bcm\b|distance|close/i,'ruler'],[/pop filter|back of the mic|\bmic|microphone|vocal/i,'mic'],[/spot|floor|same position|every take|shock mount|tight/i,'lock'],[/room|soft|behind you|noise|blanket/i,'home'],[/headphone|listen|monitor|reference|stems?\b|wav|mp3/i,'wave'],[/export|save|backup|bounce|render/i,'bolt'],[/file|name|folder|label|license|pdf/i,'file'],[/order|cart|pay|price|buy/i,'cart']];
+  D.querySelectorAll('ul.check:not(.check-ic) > li').forEach(function(li){ if(li.querySelector(':scope > .ssg-ci')) return; var t=li.textContent, k='check'; for(var i=0;i<CW.length;i++){ if(CW[i][0].test(t)){ k=CW[i][1]; break; } }
+    var sp=D.createElement('span'); sp.className='ssg-ci'; sp.setAttribute('aria-hidden','true'); sp.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="'+CI[k]+'"/></svg>'; var ct=D.createElement('span'); ct.className='ct'; while(li.firstChild) ct.appendChild(li.firstChild); li.appendChild(sp); li.appendChild(ct); });
+}
 (window.ssOnDom||function(f){f();})(ssChecklists); D.addEventListener('ssp:navigated',ssChecklists);
 /* (13.11.2026) menu in the visitor's language: translated pages (map printed by Polylang code in custom.php) and the
    shop pages that work under a language prefix (/de/product/…, /de/cart/ …); everything else stays English */
@@ -95,8 +101,8 @@ var css=[
 '.sstb{top:var(--ssg-h,72px)!important}.sstb>.w-search{display:none!important}',
 '.l-main{overflow-x:clip}',
 /* (13.11.2026 owner RULE) every checklist on the site = orange check icons (like the vocal article) */
-'ul.check{list-style:none!important;padding-left:0!important}ul.check li{position:relative;list-style:none!important;padding:8px 0 8px 36px;border-bottom:1px solid rgba(255,255,255,.06)}',
-'ul.check li::before{content:"";position:absolute;left:0;top:8px;width:24px;height:24px;border-radius:7px;background:#e09900 url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23111%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M5 12l5 5 9-10%27/%3E%3C/svg%3E") center/16px no-repeat}',
+'ul.check{list-style:none!important;padding-left:0!important}ul.check li{display:flex;align-items:center;gap:12px;list-style:none!important;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}ul.check li::before{display:none!important;content:none!important}',
+'.ssg-ci{flex:none;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(224,153,0,.12);border:1px solid rgba(224,153,0,.3);color:#e09900}.ssg-ci svg{width:20px;height:20px}',
 /* (13.11.2026, QA bot) iPhone zooms the page into any field with text under 16px — keep fields at 16px on phones */
 '@media(max-width:600px){input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=submit]):not([type=button]),select,textarea{font-size:16px!important}}',
 /* (13.11.2026, QA bot) readable SALE badge (was 2.4:1 contrast) */

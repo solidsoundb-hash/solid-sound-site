@@ -42,6 +42,21 @@ function ss_wiki_pick( $id, $text ) {
 	return 'dot';
 }
 
+/* icon for one checklist item: by meaning (owner 13.11.2026: icons, not identical ticks) */
+function ss_wiki_item_icon( $text ) {
+	$t = mb_strtolower( wp_strip_all_tags( $text ) );
+	$map = array( 'same position' => 'lock', 'every take' => 'lock', 'spot' => 'lock', 'floor' => 'lock', 'shock mount' => 'lock', 'tight' => 'lock',
+		'°' => 'angle', 'turn' => 'angle', 'angle' => 'angle', 'beside' => 'angle', 'lip level' => 'angle',
+		'back of the mic' => 'mic', 'pop filter' => 'mic',
+		'gain' => 'sliders', 'peak' => 'sliders', 'dbfs' => 'sliders', 'level' => 'sliders', 'eq' => 'sliders', 'compress' => 'sliders',
+		'cm' => 'ruler', 'distance' => 'ruler', 'close' => 'ruler',
+		'room' => 'home', 'soft' => 'home', 'behind you' => 'home', 'noise' => 'home', 'blanket' => 'home',
+		'mic' => 'mic', 'microphone' => 'mic',
+		'headphone' => 'wave', 'listen' => 'wave', 'monitor' => 'wave', 'reference' => 'wave', 'export' => 'bolt', 'save' => 'bolt', 'backup' => 'bolt' );
+	foreach ( $map as $w => $ic ) if ( false !== mb_strpos( $t, $w ) ) return $ic;
+	return 'check';
+}
+
 function ss_wiki_transform( $html ) {
 	/* 1. the simulated before/after audio (sounded bad) — whole block with its note */
 	$html = preg_replace( '#<h3>\s*Hear the difference\s*</h3>\s*<div class="ab">.*?</div>\s*</div>\s*(<p class="ab-note">.*?</p>)?#s', '', $html );
@@ -52,6 +67,12 @@ function ss_wiki_transform( $html ) {
 		if ( preg_match( '#^\s*Rule\s+(\d+):\s*(.+?)\s+[—–-]\s+(.+)$#u', wp_strip_all_tags( $text ), $r ) ) $rules[] = array( $r[1], $r[2], $r[3], $id, ss_wiki_pick( $id, $text ) );
 		$ic = ss_wiki_pick( $id, $text );
 		return '<h2' . $m[1] . $m[3] . ' class="wh"><span class="wi">' . ss_wiki_icon( $ic ) . '</span><span class="wt">' . $text . '</span></h2>';
+	}, $html );
+	/* 2b. checklist: a meaningful icon on every item */
+	$html = preg_replace_callback( '#<ul class="check">(.*?)</ul>#s', function ( $m ) {
+		return '<ul class="check check-ic">' . preg_replace_callback( '#<li>(.*?)</li>#s', function ( $l ) {
+			return '<li><span class="wi">' . ss_wiki_icon( ss_wiki_item_icon( $l[1] ) ) . '</span><span class="ct">' . $l[1] . '</span></li>';
+		}, $m[1] ) . '</ul>';
 	}, $html );
 	/* 3. contents: icon cards */
 	$html = preg_replace_callback( '#<nav class="toc">(.*?)</nav>#s', function ( $m ) {
@@ -84,8 +105,7 @@ function ss_wiki_css() {
 		. '.ssa .rules-glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 22px}'
 		. '.ssa .rg{display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:14px;background:#1c1a18;border:1px solid rgba(224,153,0,.28);text-decoration:none;color:#e6e2dc}'
 		. '.ssa .rg:hover{border-color:#e09900}.ssa .rg .wi{margin-bottom:6px}.ssa .rg .rn{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#e09900;font-weight:700}.ssa .rg b{color:#fff;font-size:17px}.ssa .rg .rs{font-size:14px;color:#bdb8b1;line-height:1.35}'
-		. '.ssa ul.check{list-style:none;padding:0}.ssa ul.check li{position:relative;padding:8px 0 8px 36px;border-bottom:1px solid rgba(255,255,255,.06)}'
-		. '.ssa ul.check li::before{content:"";position:absolute;left:0;top:8px;width:24px;height:24px;border-radius:7px;background:#e09900 url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23111%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M5 12l5 5 9-10%27/%3E%3C/svg%3E") center/16px no-repeat}'
+		. '.ssa ul.check-ic{list-style:none;padding:0}.ssa ul.check-ic li{display:flex;align-items:center;gap:12px;padding:10px 12px;margin-left:0;border-bottom:1px solid rgba(255,255,255,.06)}.ssa ul.check-ic li::before{display:none!important;content:none!important}.ssa ul.check-ic .wi{width:34px;height:34px}'
 		. '.ssa details summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}.ssa details summary::-webkit-details-marker{display:none}'
 		. '.ssa details summary::after{content:"+";flex:none;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(224,153,0,.14);color:#e09900;font-size:20px;line-height:1}'
 		. '.ssa details[open] summary::after{content:"−"}'
