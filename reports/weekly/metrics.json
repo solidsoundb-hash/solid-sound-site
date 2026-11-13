@@ -1,0 +1,15 @@
+{
+ "date": "2026-11-13",
+ "ran": [
+  "products",
+  "competitors",
+  "promos",
+  "security"
+ ],
+ "metrics": {
+  "products": 8,
+  "products_with_issues": 8,
+  "plugins_outdated": 18,
+  "plugins_vulnerable": 0
+ }
+}
