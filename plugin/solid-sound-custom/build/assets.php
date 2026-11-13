@@ -167,12 +167,12 @@ return array(
   'id' => null
  ),
  'theme-player-css' => array(
-  'f' => 'theme-player-css.549c5e16a6.css',
+  'f' => 'theme-player-css.03d5187359.css',
   't' => 'css',
   'id' => null
  ),
  'theme-player-js' => array(
-  'f' => 'theme-player-js.2596b5000d.js',
+  'f' => 'theme-player-js.febc78d31c.js',
   't' => 'js',
   'id' => null
  ),

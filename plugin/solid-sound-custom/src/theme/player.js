@@ -437,7 +437,10 @@ function cardUI(root){
       /* (13.11.2026 owner) price on the cart button, not a bare icon */
       try{ var pe=it.querySelector('.product_field.price ins .amount, .price ins .amount') || it.querySelector('.product_field.price .amount, .price .amount'); /* sale price first, then regular */
         var pt=pe?pe.textContent.replace(/\s+/g,'').replace(/[.,]00$/,''):'';
-        if(pt && !cart.querySelector('.ss-cbp')){ var sp=document.createElement('span'); sp.className='ss-cbp'; sp.textContent=pt; cart.appendChild(sp); cart.classList.add('has-p'); } }catch(e){} }
+        if(pt && !cart.querySelector('.ss-cbp')){ var sp=document.createElement('span'); sp.className='ss-cbp'; sp.textContent=pt; cart.appendChild(sp); cart.classList.add('has-p');
+          /* price is now on the button -> hide the duplicate price at the top of the card (owner 13.11.2026) */
+          var tp=it.querySelector('.w-grid-item-h .woocommerce-Price-amount, .w-grid-item-h .price, .w-grid-item-h [class*="price"] .amount');
+          if(tp){ var box=tp.closest('.w-post-elm')||tp.closest('[class*="price"]')||tp; box.classList.add('ss-price-hidden'); } } }catch(e){} }
   });
 }
 
