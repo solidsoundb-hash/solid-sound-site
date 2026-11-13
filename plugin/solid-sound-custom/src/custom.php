@@ -2830,8 +2830,11 @@ if ( ! function_exists( 'ss_lang_url' ) ) {
 		$l = function_exists( 'pll_current_language' ) ? pll_current_language() : '';
 		if ( ! $l || 'en' === $l ) return $url;
 		$home = untrailingslashit( get_option( 'home' ) );
-		if ( 0 !== strpos( $url, $home . '/' ) || preg_match( '#^/(ua|de|fr|pt|es|it)/#', substr( $url, strlen( $home ) ) ) ) return $url;
-		return $home . '/' . $l . substr( $url, strlen( $home ) );
+		if ( 0 !== strpos( $url, $home . '/' ) ) return $url;
+		$path = substr( $url, strlen( $home ) );
+		if ( preg_match( '#^/(ua|de|fr|pt|es|it)/#', $path ) ) return $url;   /* already has a language prefix */
+		$path = preg_replace( '#^/en(?=/)#', '', $path );                     /* a leading /en/ is the default language — replace it, don't stack /ua/en/ (13.11.2026) */
+		return $home . '/' . $l . $path;
 	}
 	add_filter( 'post_type_link', function ( $url, $post ) { return 'product' === $post->post_type ? ss_add_prefix( $url ) : $url; }, 99, 2 );
 	add_filter( 'term_link', function ( $url, $term, $tax ) { return in_array( $tax, array( 'product_cat', 'product_tag' ), true ) || 0 === strpos( $tax, 'pa_' ) ? ss_add_prefix( $url ) : $url; }, 99, 3 );

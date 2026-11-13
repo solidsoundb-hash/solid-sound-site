@@ -193,6 +193,7 @@ function tick(force){
 }
 function syncAll(){
   var playing=P.cur&&!audio.paused;
+  var sp=document.querySelector('.sstb-play'); if(sp){ sp.setAttribute('aria-label', playing && P.cur ? 'Pause' : 'Play all tracks'); sp.classList.toggle('is-playing', !!(playing && P.cur)); }
   document.querySelectorAll('.ssw').forEach(function(b){var on=isCur(b.dataset.src);b.classList.toggle('is-current',!!on);b.classList.toggle('is-playing',!!(on&&playing));if(on)b.classList.add('was-played');else if(b._wave&&b._wave.p){b._wave.setProgress(0);var c=b.querySelector('.ssw-cur');if(c)c.textContent='0:00'}var bt=b.querySelector('.ssw-btn');if(bt)bt.setAttribute('aria-label',on&&playing?'Pause':'Play')});
   document.querySelectorAll('.ss-top-i').forEach(function(li){li.classList.toggle('is-playing',!!(playing&&isCur(li.dataset.src||'')))});
   Bar.state();
@@ -392,7 +393,7 @@ function initToolbar(root){
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.contains(mf))closeAll(null)});
     }
 
-    lead.querySelector('.sstb-play').addEventListener('click',function(){var q=pageQueue();if(q.length)playTrack(q[0],q)});
+    lead.querySelector('.sstb-play').addEventListener('click',function(){ if(P.cur && !audio.paused){ audio.pause(); return; } if(P.cur && audio.paused && document.querySelector('.ssw.is-current')){ var pr=audio.play(); if(pr&&pr.catch)pr.catch(function(){}); return; } var q=pageQueue();if(q.length)playTrack(q[0],q)});
     var cnt=lead.querySelector('.sstb-count'),chips=act.querySelector('.sstb-chips');
     function upd(){
       if(!document.body.contains(hw))return;

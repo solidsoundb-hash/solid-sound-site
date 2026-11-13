@@ -297,7 +297,7 @@ document.addEventListener('click',function(e){
     w.setAttribute('data-k',b.getAttribute('data-src'));
     [['b','pb'],['a','pa']].forEach(function(k){ var p=b.getAttribute('data-'+k[1])||''; var l=w.querySelectorAll('i.'+k[0]); if(l[0]) l[0].style.backgroundImage=svg(p,'#3A4766'); if(l[1]) l[1].style.backgroundImage=svg(p,'#F59E0B'); }); }); }
   (window.ssOnDom||function(f){f();})(paint);
-  function ui(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ b.classList.toggle('on', !!(au && !au.paused && au.getAttribute('src')===b.getAttribute('data-src'))); }); }
+  function ui(){ document.querySelectorAll('#ss-app .ss-ab').forEach(function(b){ var on=!!(au && !au.paused && au.getAttribute('src')===b.getAttribute('data-src')); b.classList.toggle('on', on); var btn=b.querySelector('.ss-abb'); if(btn){ var t=b.getAttribute('data-title')||'this example'; btn.setAttribute('aria-label',(on?'Pause ':'Play ')+t); btn.setAttribute('aria-pressed',on?'true':'false'); } }); }
   function tick(){ if(!cur||!cur.isConnected||cur.getAttribute('data-src')!==au.getAttribute('src')){ if(au&&!au.paused) au.pause(); return; } var t=au.currentTime, d=au.duration||CUT*2, a=aft(cur);
     if(a){ if(t<CUT-0.05) au.currentTime=t=CUT; else if(t>=d-0.25) au.currentTime=t=CUT; }
     else if(t>=CUT-0.1) au.currentTime=t=0;
