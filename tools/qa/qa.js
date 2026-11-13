@@ -181,7 +181,24 @@ async function facts(page) {
     };
     const links = [...document.querySelectorAll('a[href]')].filter(a => a.href.startsWith(location.origin)).map(a => ({ h: a.href.split('#')[0], t: txt(a).slice(0, 40) }));
     const anchors = [...document.querySelectorAll('a[href^="#"]')].filter(vis).map(a => a.getAttribute('href')).filter(h => h.length > 1 && !/^#(\/|!|top$|0$)/.test(h)).filter(h => { try { return !document.getElementById(decodeURIComponent(h.slice(1))) && !document.querySelector('[name="' + h.slice(1).replace(/"/g, '') + '"]'); } catch (e) { return false; } });
+    // button shapes: the house style is a rounded rectangle (corner radius 8–12px), not a "pill" or a circle
+    const shapes = [];
+    document.querySelectorAll('button, a.button, .w-btn, input[type=submit], a[class*="btn"], [role=button]').forEach(e => {
+      const rc = e.getBoundingClientRect(); if (rc.width < 24 || rc.height < 24 || !vis(e)) return;
+      const st = getComputedStyle(e);
+      const filled = !/rgba\(0, 0, 0, 0\)|transparent/.test(st.backgroundColor) || (st.backgroundImage && st.backgroundImage !== 'none');
+      const bordered = parseFloat(st.borderTopWidth) > 0 && st.borderTopStyle !== 'none';
+      if (!filled && !bordered) return;
+      const r = parseFloat(st.borderTopLeftRadius) || 0;
+      const label = (e.innerText || e.getAttribute('aria-label') || e.title || '').trim().replace(/\s+/g, ' ').slice(0, 40);
+      const icon = !(e.innerText || '').trim() || rc.width < rc.height * 1.3;
+      let kind = '';
+      if (r >= rc.height / 2 - 1) kind = icon ? 'circle' : 'pill';
+      else if (r < 6 || r > 14) kind = 'odd';
+      if (kind) { e.setAttribute('data-qa-shape', kind + '|' + label); shapes.push({ kind, label, r: Math.round(r), h: Math.round(rc.height) }); }
+    });
     return {
+      shapes,
       url: location.href, title: document.title, h1: ((document.querySelector('h1') || {}).innerText || '').trim().slice(0, 80), lang: document.documentElement.lang || '',
       over, brokenImg, leaks, fp: [...new Set(fp)], hreflang, menu, links, anchors: [...new Set(anchors)].slice(0, 5), words: text.split(/\s+/).length,
       textSample: text.slice(0, 4000), hasMenu: !!document.querySelector('#ssg, #ss-app header'), logged: document.body.classList.contains('logged-in'),
@@ -232,6 +249,13 @@ async function checkPage(page, url, dev, opts = {}) {
     if (en > 0.07 || (L === 'ua' && cyr < 0.35)) await bug({ ...here, sev: 'minor', type: 'untranslated', sig: 'untr|' + rel(url), title: `Страница на ${LANG_SHORT[L]} в основном не переведена (много английского текста)`, steps: [`Открыть ${BASE}${rel(url)}`], expected: `Текст на языке ${LANG_SHORT[L]}`, actual: `Доля английских слов ${(en * 100).toFixed(0)}%${L === 'ua' ? `, кириллицы ${(cyr * 100).toFixed(0)}%` : ''}` }, page);
   }
 
+  for (const x of f.shapes || []) {
+    const lab = x.label || 'без текста';
+    const el = await page.$(`[data-qa-shape="${(x.kind + '|' + x.label).replace(/["\\]/g, '\\$&')}"]`);
+    if (x.kind === 'pill') await bug({ ...here, sev: 'minor', type: 'style-pill', sig: 'pill|' + lab, title: `Кнопка «${lab}» круглая («таблетка»), а не в стиле сайта`, steps: [`Открыть ${BASE}${rel(url)}`, `Найти кнопку «${lab}»`], expected: 'Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта', actual: `Углы скруглены полностью (радиус ${x.r}px при высоте ${x.h}px)` }, page, el);
+    else if (x.kind === 'circle') await bug({ ...here, sev: 'check', type: 'style-circle', sig: 'circle|' + lab, title: `Круглая кнопка-значок «${lab}» — нужна ли квадратная со скруглёнными углами?`, steps: [`Открыть ${BASE}${rel(url)}`], expected: 'Квадратная кнопка со скруглёнными углами 8–12px', actual: `Круг (радиус ${x.r}px, размер ${x.h}px)` }, page, el);
+    else await bug({ ...here, sev: 'check', type: 'style-odd', sig: 'odd|' + lab, title: `Кнопка «${lab}» скруглена не так, как остальные`, steps: [`Открыть ${BASE}${rel(url)}`], expected: 'Скругление углов 8–12px', actual: `Радиус ${x.r}px` }, page, el);
+  }
   await checkMenu(page, f, url, dev, L);
   if (dev === 'desktop') await checkLangOptions(page, f, url);
   f.links.forEach(l => { const k = l.h; if (!linkSources.has(k)) linkSources.set(k, new Set()); linkSources.get(k).add(rel(url)); });
