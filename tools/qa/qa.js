@@ -257,7 +257,7 @@ async function checkPage(page, url, dev, opts = {}) {
     else if (x.kind === 'circle') await bug({ ...here, sev: 'check', type: 'style-circle', sig: 'circle|' + lab, title: `Круглая кнопка-значок «${lab}» — нужна ли квадратная со скруглёнными углами?`, steps: [`Открыть ${BASE}${rel(url)}`], expected: 'Квадратная кнопка со скруглёнными углами 8–12px', actual: `Круг (радиус ${x.r}px, размер ${x.h}px)` }, page, el);
     else await bug({ ...here, sev: 'check', type: 'style-odd', sig: 'odd|' + lab, title: `Кнопка «${lab}» скруглена не так, как остальные`, steps: [`Открыть ${BASE}${rel(url)}`], expected: 'Скругление углов 8–12px', actual: `Радиус ${x.r}px` }, page, el);
   }
-  if (KB) { try { for (const b of await KB.run(page, { url, dev, devName })) await bug({ page: url, device: devName, ...b }, page); } catch (e) {} }
+  if (KB) { try { for (const b of await KB.run(page, { url, dev, devName })) await bug({ page: url, device: devName, ...b, sig: 'kb|' + (b.type || '') + '|' + b.title }, page); } catch (e) {} }
   await checkMenu(page, f, url, dev, L);
   if (dev === 'desktop') await checkLangOptions(page, f, url);
   f.links.forEach(l => { const k = l.h; if (!linkSources.has(k)) linkSources.set(k, new Set()); linkSources.get(k).add(rel(url)); });

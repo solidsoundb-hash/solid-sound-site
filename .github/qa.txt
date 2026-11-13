@@ -1,2 +1,3 @@
 # Запуск автотестировщика: добавь строку (со словом full — полная проверка, иначе быстрая)
 2026-11-13T06:50:20Z quick — after fixes + knowledge base
+2026-11-13T09:54:37Z quick — check after crash fix
