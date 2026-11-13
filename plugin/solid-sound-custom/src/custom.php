@@ -4586,6 +4586,9 @@ if(e.type==='click'){var cd=e.target.closest&&e.target.closest('.ssh-card');
   if(!e.target.closest('.ssh-yt,.ssh-add,.ssh-play')){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();e.stopPropagation();var h=cd.href;if(!(window.sspGo&&window.sspGo(h)))location.href=h;return}}}
 if(act(e))return;var b=e.target.closest&&e.target.closest('.ssh-play');if(!b)return;e.preventDefault();e.stopPropagation();var a=b.closest('.ssh-card');if(!a||!window.SSP)return;var all=[].slice.call(document.querySelectorAll('.ssh-card[data-src]'));var q=all.map(tr);var t=tr(a);var k=all.indexOf(a);try{SSP.play(q[k]||t,q,null)}catch(x){}setTimeout(upd,120)}
 document.addEventListener('click',go,true);
+/* the theme treats a link with a picture as an image for its lightbox (magnificPopup) — not for product cards */
+function unlb(){[].forEach.call(document.querySelectorAll('.ssh-card[ref],.ssh-card.inited'),function(a){if(window.jQuery)jQuery(a).off('click.magnificPopup');a.removeAttribute('ref')})}
+unlb();window.addEventListener('load',function(){unlb();setTimeout(unlb,1500)});if(window.ssOnDom)ssOnDom(unlb);
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&(e.target.classList.contains('ssh-play')||e.target.classList.contains('ssh-add')||e.target.classList.contains('ssh-yt')))go(e)},true);
 function playing(){var s=window.SSP&&SSP.state&&SSP.state.cur;var b=document.querySelector('.ssp.is-playing');return s&&b?String(s.src):''}
 function upd(){var p=playing();var cs=document.querySelectorAll('.ssh-card[data-src]');for(var i=0;i<cs.length;i++){cs[i].classList.toggle('is-pl',!!p&&cs[i].getAttribute('data-src')===p)}}
