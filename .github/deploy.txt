@@ -41,3 +41,4 @@
 37 2026-11-12 21:43:09 home: pause on examples no longer starts a product track, aligned example cards, clear video titles, type BPM (owner ok: выкладывай все)
 38 2026-11-12 21:46:00 home: before/after switch knob moves and stays (owner ok: выложи все)
 39 2026-11-13 06:20:39 Black Month -50% on own templates and presets until 30.11, waveform players in the home product carousel (owner ok: включи скидку ... и все выложи / волну и выложи)
+40 2026-11-13 09:18:59 fixes from the QA bot report: search, es/it products, menus per language, play/pause icons, cookie banner, labels, contrast (owner ok: Делай все потом выложишь)
