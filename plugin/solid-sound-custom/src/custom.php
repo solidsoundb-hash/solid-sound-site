@@ -4499,6 +4499,16 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 		return isset( $T[ $k ][ $l ] ) ? $T[ $k ][ $l ] : ( isset( $T[ $k ]['en'] ) ? $T[ $k ]['en'] : $k );
 	}
 
+	/* price for the "Best products" cards: "old struck  new" on sale, plain otherwise — never the screen-reader text
+	   ("Original price was: … Current price is: …") that WooCommerce adds for blind users */
+	if ( ! function_exists( 'ss_h3_price' ) ) {
+		function ss_h3_price( $p ) {
+			$h = preg_replace( '#<span class="screen-reader-text">.*?</span>#s', '', (string) $p->get_price_html() );
+			$t = function ( $x ) { return esc_html( trim( html_entity_decode( wp_strip_all_tags( $x ), ENT_QUOTES, 'UTF-8' ) ) ); };
+			if ( preg_match( '#<del[^>]*>(.*?)</del>#s', $h, $d ) && preg_match( '#<ins[^>]*>(.*?)</ins>#s', $h, $i ) ) return '<del>' . $t( $d[1] ) . '</del> <ins>' . $t( $i[1] ) . '</ins>';
+			return $t( $h );
+		}
+	}
 	function ss_h3_render() {
 		$sp = get_permalink( 1947 ); if ( ! $sp ) $sp = home_url( '/services-prices/' );
 		$fb = get_permalink( 1709 ); if ( ! $fb ) $fb = home_url( '/free-demo-feedback/' );
@@ -4531,9 +4541,10 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 						$fmts = wp_get_post_terms( $pid, 'product-format', array( 'fields' => 'slugs' ) ); $fmt = '';
 						if ( ! is_wp_error( $fmts ) ) foreach ( array( 'templates', 'presets', 'music' ) as $f ) if ( in_array( $f, $fmts, true ) ) { $fmt = $f; break; } ?>
 						<?php $smp3 = ''; $stxt = get_post_field( 'post_excerpt', $pid ) . ' ' . get_post_field( 'post_content', $pid ); if ( preg_match( '#https?://[^\s"\'\]]+?\.mp3#i', $stxt, $smm ) ) $smp3 = $smm[0]; ?>
-						<a class="ssh-card" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" data-pid="<?php echo (int) $pid; ?>"<?php if ( $smp3 ) : ?> data-src="<?php echo esc_url( $smp3 ); ?>" data-t="<?php echo esc_attr( get_the_title() ); ?>" data-i="<?php echo esc_url( get_the_post_thumbnail_url( $pid, 'thumbnail' ) ); ?>"<?php endif; ?>>
+						<a class="ssh-card direct-link post-<?php echo (int) $pid; ?>" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" data-pid="<?php echo (int) $pid; ?>"<?php if ( $smp3 ) : ?> data-src="<?php echo esc_url( $smp3 ); ?>" data-t="<?php echo esc_attr( get_the_title() ); ?>" data-i="<?php echo esc_url( get_the_post_thumbnail_url( $pid, 'thumbnail' ) ); ?>"<?php endif; ?>>
 							<span class="ssh-cov"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" <?php $ssh_i = isset( $ssh_i ) ? $ssh_i + 1 : 0; echo $ssh_i < 2 ? 'loading="eager"' . ( 0 === $ssh_i ? ' fetchpriority="high"' : '' ) : 'loading="lazy"'; ?> decoding="async" width="560" height="560"><?php $ssh_rank++; $ssh_tier = (string) get_post_meta( $pid, '_ss_tier', true ); ?><em class="ssh-rk">#<?php echo (int) $ssh_rank; ?></em><?php if ( 'best' === $ssh_tier || 'trending' === $ssh_tier ) : ?><em class="ssh-tier ssh-tier-<?php echo esc_attr( $ssh_tier ); ?>"><?php echo 'best' === $ssh_tier ? 'Best seller' : 'Trending'; ?></em><?php endif; ?></span>
-							<span class="ssh-meta"><span class="ssh-tt"><?php the_title(); ?></span><?php $price = wp_strip_all_tags( $p->get_price_html() ); if ( $price ) : ?><span class="ssh-pr"><?php echo esc_html( html_entity_decode( $price ) ); ?></span><?php endif; ?></span>
+							<span class="ssh-meta"><span class="ssh-tt"><?php the_title(); ?></span><?php $price = ss_h3_price( $p ); if ( $price ) : ?><span class="ssh-pr"><?php echo $price; /* escaped in ss_h3_price */ ?></span><?php endif; ?></span>
+							<?php if ( $smp3 ) : ?><span class="ssh-wv"><audio class="wp-audio-shortcode" preload="none" src="<?php echo esc_url( $smp3 ); ?>"></audio></span><?php endif; ?>
 							<span class="ssh-row"><?php if ( $fmt ) : ?><span class="ssh-tag ssh-tag-<?php echo esc_attr( $fmt ); ?>"><?php echo esc_html( ss_h3_t( $fmt ) ); ?></span><?php endif; ?><span class="ssh-acts"><?php $syt = function_exists( 'ss_yt_map' ) ? ss_yt_map() : array(); if ( ! empty( $syt[ $pid ] ) ) : ?><span class="ssh-yt" role="button" tabindex="0" aria-label="Video" title="Video" data-yt="<?php echo esc_attr( $syt[ $pid ] ); ?>"><i></i></span><?php endif; if ( $smp3 ) : ?><span class="ssh-add" role="button" tabindex="0" aria-label="Add to queue" title="Add to queue"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ssh-i-plus" d="M12 6v12M6 12h12"/><path class="ssh-i-ok" d="M6 12.5l4 4L18 8"/></svg></span><?php endif; ?><?php if ( $smp3 ) : ?><span class="ssh-play" role="button" tabindex="0" aria-label="Play"><svg class="ssh-i-pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ssh-i-pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span><?php endif; ?></span></span>
 						</a>
 					<?php endwhile; wp_reset_postdata(); ?>
@@ -4551,7 +4562,11 @@ function act(e){var y=e.target.closest&&e.target.closest('.ssh-yt,.ssh-add');if(
 var src=a.getAttribute('data-src'),ok=false;var w=[].slice.call(document.querySelectorAll('.ssw[data-src]'));for(var i=0;i<w.length;i++){if(w[i].getAttribute('data-src')===src){var ab=w[i].querySelector('.ssw-add');if(ab){ab.click();ok=true;break}}}
 if(!ok&&window.SSP){var st=SSP.state;if(st&&st.cur&&st.queue){st.queue.push(tr(a))}else{try{SSP.play(tr(a),[tr(a)],null)}catch(x){}}}
 y.classList.add('is-ok');setTimeout(function(){y.classList.remove('is-ok')},1400);return true}
-function go(e){if(act(e))return;var b=e.target.closest&&e.target.closest('.ssh-play');if(!b)return;e.preventDefault();e.stopPropagation();var a=b.closest('.ssh-card');if(!a||!window.SSP)return;var all=[].slice.call(document.querySelectorAll('.ssh-card[data-src]'));var q=all.map(tr);var t=tr(a);var k=all.indexOf(a);try{SSP.play(q[k]||t,q,null)}catch(x){}setTimeout(upd,120)}
+function go(e){
+if(e.type==='click'){var cd=e.target.closest&&e.target.closest('.ssh-card');
+ if(cd){if(e.target.closest('.ssw')){e.preventDefault();return}
+  if(!e.target.closest('.ssh-yt,.ssh-add,.ssh-play')){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();e.stopPropagation();var h=cd.href;if(!(window.sspGo&&window.sspGo(h)))location.href=h;return}}}
+if(act(e))return;var b=e.target.closest&&e.target.closest('.ssh-play');if(!b)return;e.preventDefault();e.stopPropagation();var a=b.closest('.ssh-card');if(!a||!window.SSP)return;var all=[].slice.call(document.querySelectorAll('.ssh-card[data-src]'));var q=all.map(tr);var t=tr(a);var k=all.indexOf(a);try{SSP.play(q[k]||t,q,null)}catch(x){}setTimeout(upd,120)}
 document.addEventListener('click',go,true);
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&(e.target.classList.contains('ssh-play')||e.target.classList.contains('ssh-add')||e.target.classList.contains('ssh-yt')))go(e)},true);
 function playing(){var s=window.SSP&&SSP.state&&SSP.state.cur;var b=document.querySelector('.ssp.is-playing');return s&&b?String(s.src):''}
@@ -4751,6 +4766,11 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);document.addEventListener('ssp:
 .ssh .ssh-cov{margin:0!important}.ssh .ssh-meta{margin-top:2px!important}.ssh .ssh-row{margin-top:2px!important}
 @media(max-width:1180px){.ssh .ssh-card{flex:0 0 calc(33.333% - 12px)!important}}
 @media(max-width:699px){.ssh .ssh-card{flex:0 0 62%!important}.ssh .ssh-h2{font-size:22px!important}.ssh .ssh-a{display:none}}
+/* Best products: sale price, waveform player like the product grid (owner 13.11.2026) */
+.ssh .ssh-pr del{opacity:.55;font-weight:500;margin-right:3px;color:inherit}.ssh .ssh-pr ins{text-decoration:none}
+.ssh .ssh-card>br{display:none}
+.ssh .ssh-wv{display:block;width:100%;margin:2px 0 0}.ssh .ssh-wv .ssw{margin:0!important;width:100%}
+.ssh .ssh-card:has(.ssh-wv .ssw) .ssh-play,.ssh .ssh-card:has(.ssh-wv .ssw) .ssh-add{display:none!important}
 </style>
 <script id="ssh-js">
 (function(){var root=document.querySelector('.ssh');if(!root||root.dataset.on)return;root.dataset.on=1;

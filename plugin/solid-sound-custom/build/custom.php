@@ -3740,6 +3740,16 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 		return isset( $T[ $k ][ $l ] ) ? $T[ $k ][ $l ] : ( isset( $T[ $k ]['en'] ) ? $T[ $k ]['en'] : $k );
 	}
 
+	/* price for the "Best products" cards: "old struck  new" on sale, plain otherwise — never the screen-reader text
+	   ("Original price was: … Current price is: …") that WooCommerce adds for blind users */
+	if ( ! function_exists( 'ss_h3_price' ) ) {
+		function ss_h3_price( $p ) {
+			$h = preg_replace( '#<span class="screen-reader-text">.*?</span>#s', '', (string) $p->get_price_html() );
+			$t = function ( $x ) { return esc_html( trim( html_entity_decode( wp_strip_all_tags( $x ), ENT_QUOTES, 'UTF-8' ) ) ); };
+			if ( preg_match( '#<del[^>]*>(.*?)</del>#s', $h, $d ) && preg_match( '#<ins[^>]*>(.*?)</ins>#s', $h, $i ) ) return '<del>' . $t( $d[1] ) . '</del> <ins>' . $t( $i[1] ) . '</ins>';
+			return $t( $h );
+		}
+	}
 	function ss_h3_render() {
 		$sp = get_permalink( 1947 ); if ( ! $sp ) $sp = home_url( '/services-prices/' );
 		$fb = get_permalink( 1709 ); if ( ! $fb ) $fb = home_url( '/free-demo-feedback/' );
@@ -3772,9 +3782,10 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 						$fmts = wp_get_post_terms( $pid, 'product-format', array( 'fields' => 'slugs' ) ); $fmt = '';
 						if ( ! is_wp_error( $fmts ) ) foreach ( array( 'templates', 'presets', 'music' ) as $f ) if ( in_array( $f, $fmts, true ) ) { $fmt = $f; break; } ?>
 						<?php $smp3 = ''; $stxt = get_post_field( 'post_excerpt', $pid ) . ' ' . get_post_field( 'post_content', $pid ); if ( preg_match( '#https?://[^\s"\'\]]+?\.mp3#i', $stxt, $smm ) ) $smp3 = $smm[0]; ?>
-						<a class="ssh-card" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" data-pid="<?php echo (int) $pid; ?>"<?php if ( $smp3 ) : ?> data-src="<?php echo esc_url( $smp3 ); ?>" data-t="<?php echo esc_attr( get_the_title() ); ?>" data-i="<?php echo esc_url( get_the_post_thumbnail_url( $pid, 'thumbnail' ) ); ?>"<?php endif; ?>>
+						<a class="ssh-card direct-link post-<?php echo (int) $pid; ?>" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" data-pid="<?php echo (int) $pid; ?>"<?php if ( $smp3 ) : ?> data-src="<?php echo esc_url( $smp3 ); ?>" data-t="<?php echo esc_attr( get_the_title() ); ?>" data-i="<?php echo esc_url( get_the_post_thumbnail_url( $pid, 'thumbnail' ) ); ?>"<?php endif; ?>>
 							<span class="ssh-cov"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" <?php $ssh_i = isset( $ssh_i ) ? $ssh_i + 1 : 0; echo $ssh_i < 2 ? 'loading="eager"' . ( 0 === $ssh_i ? ' fetchpriority="high"' : '' ) : 'loading="lazy"'; ?> decoding="async" width="560" height="560"><?php $ssh_rank++; $ssh_tier = (string) get_post_meta( $pid, '_ss_tier', true ); ?><em class="ssh-rk">#<?php echo (int) $ssh_rank; ?></em><?php if ( 'best' === $ssh_tier || 'trending' === $ssh_tier ) : ?><em class="ssh-tier ssh-tier-<?php echo esc_attr( $ssh_tier ); ?>"><?php echo 'best' === $ssh_tier ? 'Best seller' : 'Trending'; ?></em><?php endif; ?></span>
-							<span class="ssh-meta"><span class="ssh-tt"><?php the_title(); ?></span><?php $price = wp_strip_all_tags( $p->get_price_html() ); if ( $price ) : ?><span class="ssh-pr"><?php echo esc_html( html_entity_decode( $price ) ); ?></span><?php endif; ?></span>
+							<span class="ssh-meta"><span class="ssh-tt"><?php the_title(); ?></span><?php $price = ss_h3_price( $p ); if ( $price ) : ?><span class="ssh-pr"><?php echo $price; /* escaped in ss_h3_price */ ?></span><?php endif; ?></span>
+							<?php if ( $smp3 ) : ?><span class="ssh-wv"><audio class="wp-audio-shortcode" preload="none" src="<?php echo esc_url( $smp3 ); ?>"></audio></span><?php endif; ?>
 							<span class="ssh-row"><?php if ( $fmt ) : ?><span class="ssh-tag ssh-tag-<?php echo esc_attr( $fmt ); ?>"><?php echo esc_html( ss_h3_t( $fmt ) ); ?></span><?php endif; ?><span class="ssh-acts"><?php $syt = function_exists( 'ss_yt_map' ) ? ss_yt_map() : array(); if ( ! empty( $syt[ $pid ] ) ) : ?><span class="ssh-yt" role="button" tabindex="0" aria-label="Video" title="Video" data-yt="<?php echo esc_attr( $syt[ $pid ] ); ?>"><i></i></span><?php endif; if ( $smp3 ) : ?><span class="ssh-add" role="button" tabindex="0" aria-label="Add to queue" title="Add to queue"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ssh-i-plus" d="M12 6v12M6 12h12"/><path class="ssh-i-ok" d="M6 12.5l4 4L18 8"/></svg></span><?php endif; ?><?php if ( $smp3 ) : ?><span class="ssh-play" role="button" tabindex="0" aria-label="Play"><svg class="ssh-i-pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ssh-i-pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span><?php endif; ?></span></span>
 						</a>
 					<?php endwhile; wp_reset_postdata(); ?>
@@ -3786,7 +3797,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4542'); ?>
+<?php ss_asset('js-l4553'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4467,7 +4478,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5589'); ?>
+<?php ss_asset('css-l5609'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5046,7 +5057,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6202'); ?>
+<?php ss_asset('css-l6222'); ?>
 		<?php
 		return ob_get_clean();
 	}
