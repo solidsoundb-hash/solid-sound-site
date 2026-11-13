@@ -583,7 +583,10 @@ async function sitemapPages(ctx) {
 
 /* ---------------------------------------------------------------- report */
 function writeReport() {
-  const prevFile = path.join(OUT, '..', 'previous-bugs.json');
+  // (13.11.2026 owner: "не затирать") the memory of the last run belongs to qa/latest only; a run into another folder
+  // (QA_OUT=qa/kb-scan etc.) keeps its own memory next to it and never touches the main one
+  const mainOut = path.resolve(OUT) === path.resolve('qa/latest');
+  const prevFile = mainOut ? path.join(OUT, '..', 'previous-bugs.json') : path.join(OUT, 'previous-bugs.json');
   let prev = null; try { prev = JSON.parse(fs.readFileSync(prevFile, 'utf8')); } catch (e) {}
   const list = [...bugs.values()].sort((a, b) => SEV_ORDER.indexOf(a.sev) - SEV_ORDER.indexOf(b.sev) || b.where.length - a.where.length);
   const prevSigs = prev && prev.mode === MODE ? new Set(prev.bugs.map(b => b.sig)) : null;
@@ -617,6 +620,13 @@ function writeReport() {
   const json = { mode: MODE, date: new Date().toISOString(), stats, bugs: list, notChecked };
   fs.writeFileSync(path.join(OUT, 'bugs.json'), JSON.stringify(json, null, 1));
   fs.writeFileSync(prevFile, JSON.stringify(json));
+  // every report is also kept forever in qa/history/<date time mode>/ (report + bug list; screenshots stay only in the latest)
+  try {
+    const H = path.join(path.dirname(path.resolve(OUT)), 'history', json.date.slice(0, 16).replace(/[T:]/g, '-') + '-' + MODE + (mainOut ? '' : '-' + path.basename(OUT)));
+    fs.mkdirSync(H, { recursive: true });
+    fs.writeFileSync(path.join(H, 'report.md'), (L.join('\n') + '\n').replace(/\]\(shots\//g, '](../../' + path.basename(OUT) + '/shots/'));
+    fs.writeFileSync(path.join(H, 'bugs.json'), JSON.stringify(json, null, 1));
+  } catch (e) { console.error('history', e.message); }
   console.log(L.slice(0, 4).join('\n'));
 }
 
