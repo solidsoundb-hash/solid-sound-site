@@ -169,6 +169,7 @@ var css=[
 ' #ssg-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9500;background:#1E2630;border-top:1px solid rgba(255,255,255,.08);padding:4px 2px env(safe-area-inset-bottom);font-family:"Exo 2",system-ui,sans-serif}',
 ' #ssg-bar a,#ssg-bar button{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border:0;background:transparent;color:#CBD5E1!important;font-weight:600;font-size:11px;line-height:1.1;font-family:inherit;text-decoration:none!important}',
 ' #ssg-bar .cur{color:#F59E0B!important}#ssg-bar .gfree{color:#34D399!important}',
+' #ssg-bar a{position:relative}#ssg-bar .g-barcnt{position:absolute;top:2px;left:50%;margin-left:4px;min-width:15px;height:15px;padding:0 3px;box-sizing:border-box;border-radius:8px;background:#F59E0B;color:#111;font-size:10px;font-weight:800;line-height:15px;text-align:center}',
 ' body.ssg-bar-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}',
 ' body.ssg-bar-on #ssp{bottom:calc(63px + env(safe-area-inset-bottom))!important}',
 ' body.ssg-bar-on #ssb{bottom:calc(80px + env(safe-area-inset-bottom))!important;right:16px!important}',
@@ -240,6 +241,30 @@ var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','ser
 if(LG) BAR.forEach(function(b){ b[2]=tr(b[2]); });
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
+/* (13.11.2026) keep the cart badge (header + bottom bar) in sync when WooCommerce updates the mini-cart via AJAX */
+function cartPaint(n){
+  var hd=D.getElementById('ssg'); if(hd){ var c=hd.querySelector('.g-right .g-cnt'), a=[].slice.call(hd.querySelectorAll('.g-right .g-r-it')).filter(function(x){return /cart/i.test((x.querySelector('.g-l')||{}).textContent||'');})[0];
+    if(!c && n>0 && a){ c=D.createElement('span'); c.className='g-cnt'; a.querySelector('.g-a').appendChild(c); }
+    if(c){ if(n>0){ c.textContent=String(n); c.style.display=''; } else c.style.display='none'; } }
+  var bl=[].slice.call(D.querySelectorAll('#ssg-bar a')).filter(function(x){return /cart/i.test(x.textContent);})[0];
+  if(bl){ var bc=bl.querySelector('.g-barcnt'); if(!bc && n>0){ bc=D.createElement('span'); bc.className='g-barcnt'; bl.appendChild(bc); } if(bc){ bc.textContent=n>0?String(n):''; bc.style.display=n>0?'':'none'; } }
+  try{ localStorage.setItem('ss_cart_n', String(n)); }catch(e){}
+}
+var cartBusy=false;
+function cartCount(){
+  /* if WooCommerce prints a count somewhere, use it; otherwise ask the cart (Store API) — the theme has no cart badge of its own */
+  var q=D.querySelector('.l-header .w-cart-quantity, .cart-contents-count, .widget_shopping_cart_content .count');
+  if(q){ var m=(q.textContent||'').match(/\d+/); cartPaint(m?+m[0]:0); return; }
+  try{ var cached=localStorage.getItem('ss_cart_n'); if(cached!=null) cartPaint(+cached||0); }catch(e){}
+  if(cartBusy || !window.fetch) return; cartBusy=true;
+  fetch(S+'/wp-json/wc/store/v1/cart',{credentials:'include',headers:{'Accept':'application/json'}})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){ cartBusy=false; if(j && typeof j.items_count==='number') cartPaint(j.items_count); })
+    .catch(function(){ cartBusy=false; });
+}
+if(window.jQuery) window.jQuery(document.body).on('added_to_cart removed_from_cart wc_fragments_refreshed wc_fragments_loaded',function(){ cartBusy=false; cartCount(); });
+D.addEventListener('ssp:navigated',function(){ setTimeout(cartCount,150); });
+
 function mount(){
   if(D.getElementById('ss-app') ? true : D.getElementById('ssg')) return;
   if(!D.getElementById('ssg-font')){ var lk=D.createElement('link'); lk.id='ssg-font'; lk.rel='stylesheet'; lk.href='https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&display=swap'; D.head.appendChild(lk); }
@@ -250,7 +275,7 @@ function mount(){
   var bar=D.createElement('nav'); bar.id='ssg-bar'; bar.setAttribute('aria-label','Quick menu'); bar.innerHTML=barHtml; B.appendChild(bar); B.classList.add('ssg-bar-on');
   var sh=D.createElement('div'); sh.id='ssg-sheet'; sh.innerHTML=sheetHtml(); B.appendChild(sh);
   D.documentElement.classList.add('ssg-on');
-  wire(hd,sh); ssgAI(); playIcons();
+  wire(hd,sh); ssgAI(); playIcons(); cartCount();
   /* catalog filters bar sticks right under this header (owner 11.11.2026): its top = header's sticky top + height */
   var hset=function(){ var t=parseFloat(getComputedStyle(hd).top)||0; D.documentElement.style.setProperty('--ssg-h',Math.round(t+hd.offsetHeight)+'px'); };
   hset(); if(window.ResizeObserver) new ResizeObserver(hset).observe(hd); window.addEventListener('resize',hset,{passive:true});

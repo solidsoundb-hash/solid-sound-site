@@ -43,8 +43,15 @@ add_filter( 'us_page_block_the_content', 'ss_cleanup_old_footer_scripts', 1 );
 
 /* 3. Forum hidden for now (owner 12.11.2026): no links in menus/footers (removed there), not indexed by search engines.
    The forum and its data stay; to bring it back remove this block and add the links again. */
+define( 'SS_HIDDEN_PATHS', '#^/([a-z]{2}/)?(forum|community|forum-experimental|experimental)(/|$)#' );
 add_filter( 'wp_robots', function ( $r ) {
 	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
-	if ( preg_match( '#^/([a-z]{2}/)?(forum|community)(/|$)#', $p ) ) { $r['noindex'] = true; $r['nofollow'] = true; }
+	if ( preg_match( SS_HIDDEN_PATHS, $p ) ) { $r['noindex'] = true; $r['nofollow'] = true; }
 	return $r;
 } );
+/* (13.11.2026) a visitor who lands on a hidden/experimental page goes to the home page (admins still see it) */
+add_action( 'template_redirect', function () {
+	if ( is_admin() || current_user_can( 'manage_options' ) ) return;
+	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+	if ( preg_match( '#^/([a-z]{2}/)?(forum-experimental|experimental)(/|$)#', $p ) ) { wp_safe_redirect( home_url( '/en/' ), 302 ); exit; }
+}, 1 );

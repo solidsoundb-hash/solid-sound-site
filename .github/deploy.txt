@@ -49,3 +49,4 @@
 45 2026-11-13 11:37:01 wiki home: icons, summaries, reading time, start-here path; meaningful section icons in all articles (owner ok: выкладывай сразу все что готово)
 46 2026-11-13 12:31:47 speed: our inline code to cached files (owner ok: Берись)
 47 2026-11-13 13:10:04 full-scan fixes: no /ua/en/ double language prefix (404), Play all and example buttons show pause (owner ok: Делай все потом выложишь)
+48 2026-11-13 15:23:38 cart count badge in header and bottom bar (from Store API), hide experimental forum page; cart/checkout verified working (owner ok: Исправляй все баги особенно корзину)
