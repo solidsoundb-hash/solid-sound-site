@@ -1,0 +1,30 @@
+{
+ "date": "2026-11-13T12:44:34.166Z",
+ "results": {
+  "/en/|mobile": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/en/|desktop": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/en/all-products/|mobile": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/en/all-products/|desktop": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/product/infinity/|mobile": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/product/infinity/|desktop": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/en/wiki/|mobile": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  },
+  "/en/wiki/|desktop": {
+   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+  }
+ },
+ "warn": []
+}
