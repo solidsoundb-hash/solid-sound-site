@@ -184,7 +184,7 @@ async function facts(page) {
     return {
       url: location.href, title: document.title, h1: ((document.querySelector('h1') || {}).innerText || '').trim().slice(0, 80), lang: document.documentElement.lang || '',
       over, brokenImg, leaks, fp: [...new Set(fp)], hreflang, menu, links, anchors: [...new Set(anchors)].slice(0, 5), words: text.split(/\s+/).length,
-      textSample: text.slice(0, 4000), hasMenu: !!document.querySelector('#ssg'), logged: document.body.classList.contains('logged-in'),
+      textSample: text.slice(0, 4000), hasMenu: !!document.querySelector('#ssg, #ss-app header'), logged: document.body.classList.contains('logged-in'),
     };
   });
 }
@@ -192,6 +192,7 @@ async function facts(page) {
 const urlLang = (u) => { const m = new URL(u, BASE).pathname.match(/^\/(en|ua|de|fr|pt|es|it)(\/|$)/); return m ? m[1] : ''; };
 const normPath = (u) => { try { return new URL(u, BASE).pathname.replace(/^\/(en|ua|de|fr|pt|es|it)(?=\/|$)/, '').replace(/\/+$/, '').toLowerCase() || '/'; } catch (e) { return u; } };
 const jaccard = (a, b) => { const A = new Set(a), B = new Set(b); let i = 0; A.forEach(x => { if (B.has(x)) i++; }); return A.size + B.size ? i / (A.size + B.size - i) : 1; };
+const langLookTitle = (p) => p === '/' ? 'Главная на других языках — другая (старая) страница, а не переведённая новая' : `Страница ${p} на других языках выглядит иначе, чем английская (другая страница)`;
 const errKey = (s) => s.replace(/https?:\/\/\S+/g, 'URL').replace(/\d+/g, 'N').slice(0, 120);
 
 /* ---------------------------------------------------------------- per-page checks */
@@ -246,12 +247,10 @@ async function checkMenu(page, f, url, dev, L) {
   if (barCur.length > 1) await bug({ ...here, sev: 'major', type: 'menucur', sig: 'barcur|' + L + '|' + barCur.join('+'), title: `В нижней панели подсвечены сразу несколько пунктов: ${barCur.join(' и ')}`, steps: [`Открыть ${BASE}${rel(url)} на телефоне`], expected: 'Подсвечен один пункт', actual: `Подсвечены: ${barCur.join(', ')}` }, page, await page.$('#ssg-bar'));
 
   const all = [...m.top.flatMap(x => [x, ...x.sub]), ...m.bar, ...m.right].filter(x => x.href && x.href.startsWith(BASE));
-  for (const x of all) {
-    const xl = urlLang(x.href);
-    if (xl && xl !== L) await bug({ ...here, sev: 'major', type: 'menulang', sig: 'menulang|' + L + '|' + x.label + '|' + normPath(x.href), title: `Меню на ${LANG_SHORT[L]}: пункт «${x.label}» ведёт на страницу на другом языке (${LANG_SHORT[xl]})`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать в меню «${x.label}»`], expected: `Страница на ${LANG_SHORT[L]}`, actual: `Открывается ${rel(x.href)}` });
-  }
+  const wrongLang = [...new Map(all.filter(x => { const xl = urlLang(x.href); return xl && xl !== L; }).map(x => [x.label + rel(x.href), `«${x.label}» → ${rel(x.href)}`])).values()];
+  if (wrongLang.length) await bug({ ...here, sev: 'major', type: 'menulang', sig: 'menulang|' + L, title: `Меню на ${LANG_SHORT[L]} ведёт на страницы на другом языке`, steps: [`Открыть ${BASE}${rel(url)}`, 'Нажать любой из пунктов ниже'], expected: `Каждый пункт открывает страницу на ${LANG_SHORT[L]}`, actual: `${wrongLang.length} пунктов: ` + wrongLang.slice(0, 12).join(', ') + (wrongLang.length > 12 ? ' …' : '') });
   // same menu in every language: compare with English (position by position)
-  if (L === 'en' && !refMenu[dev] && normPath(url) === '/') refMenu[dev] = m;
+  if (L === 'en' && !refMenu[dev] && (dev === 'phone' ? m.bar.length : m.top.length)) refMenu[dev] = m;
   const ref = refMenu[dev];
   if (ref && L !== 'en' && normPath(url) === '/') {
     const a = dev === 'phone' ? ref.bar : ref.top, b = dev === 'phone' ? m.bar : m.top;
@@ -270,13 +269,14 @@ async function checkMenu(page, f, url, dev, L) {
 }
 
 async function checkLangOptions(page, f, url) {
-  const here = { page: url, device: 'компьютер' };
+  const here = { page: url, device: 'компьютер' }; const missing = [];
   for (const o of f.menu.langs) {
     const L = Object.keys(HREFLANG).find(k => HREFLANG[k] === o.k) || o.k;
     const alt = f.hreflang[o.k];
     if (alt && rel(o.href) !== rel(alt)) await bug({ ...here, sev: 'major', type: 'langsw', sig: 'langsw|' + rel(url) + '|' + o.k, title: `Переключатель языка: «${o.label}» ведёт не на ту страницу`, steps: [`Открыть ${BASE}${rel(url)}`, 'Нажать на язык вверху справа', `Выбрать «${o.label}»`], expected: `Эта же страница на языке ${LANG_SHORT[L] || o.k}: ${rel(alt)}`, actual: `Открывается ${rel(o.href)}` });
-    if (!alt && normPath(o.href) === '/' && normPath(url) !== '/') await bug({ ...here, sev: 'minor', type: 'langmiss', sig: 'langmiss|' + rel(url) + '|' + o.k, title: `Нет перевода страницы на ${LANG_SHORT[L] || o.k} — переключатель языка выкидывает на главную`, steps: [`Открыть ${BASE}${rel(url)}`, 'Нажать на язык', `Выбрать «${o.label}»`], expected: 'Эта же страница на выбранном языке', actual: `Открывается главная ${rel(o.href)}` });
+    if (!alt && normPath(o.href) === '/' && normPath(url) !== '/') missing.push(LANG_SHORT[L] || o.k);
   }
+  if (missing.length) await bug({ ...here, sev: 'minor', type: 'langmiss', sig: 'langmiss|' + normPath(url), title: `Страница ${normPath(url)} не переведена — переключатель языка выкидывает на главную`, steps: [`Открыть ${BASE}${rel(url)}`, 'Нажать на язык', 'Выбрать другой язык'], expected: 'Эта же страница на выбранном языке', actual: `Нет перевода на: ${missing.join(', ')} — открывается главная` });
 }
 
 /* ---------------------------------------------------------------- sound */
@@ -310,9 +310,11 @@ async function testSound(page, url, dev, max) {
     const quiet = await audibleNow(page);
     if (quiet.length) await bug({ ...here, sev: 'critical', type: 'sound-self', sig: 'sndself|' + rel(url), title: 'Звук играет сам, когда ничего не нажато', steps: [`Открыть ${BASE}${rel(url)}`, 'Остановить всё и подождать'], expected: 'Тишина', actual: 'Играет: ' + quiet.join(', ') }, page);
     try { await h.click({ timeout: 5000 }); } catch (e) { await bug({ ...here, sev: 'major', type: 'sound-click', sig: 'sndclick|' + rel(url) + '|' + label, title: `Кнопку ▶ «${label}» невозможно нажать (её что-то закрывает)`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Кнопка нажимается', actual: e.message.split('\n')[0].slice(0, 150) }, page, h); continue; }
-    const playing = await waitAudible(page, 8000);
+    const playing = await waitAudible(page, 12000);
     const s1 = await btnState(h);
-    if (!playing.length) { await bug({ ...here, sev: 'major', type: 'sound-none', sig: 'sndnone|' + rel(url) + '|' + label, title: `Кнопка ▶ «${label}» не запускает звук`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`, 'Подождать 8 секунд'], expected: 'Играет трек', actual: s1 !== s0 ? 'Кнопка показывает «играет», но звука нет' : 'Ничего не происходит' }, page, h); continue; }
+    const loading = !playing.length && (await page.evaluate(() => window.__qaAudible().length).catch(() => 0)) > 0;
+    if (loading) { await bug({ ...here, sev: 'check', type: 'sound-slow', sig: 'sndslow|' + rel(url), title: 'Трек долго не начинает играть (больше 12 секунд)', steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Звук через 1–3 секунды', actual: 'Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)' }, page, h); await page.evaluate(() => window.__qaStopAll()).catch(() => {}); continue; }
+    if (!playing.length) { await bug({ ...here, sev: 'major', type: 'sound-none', sig: 'sndnone|' + rel(url) + '|' + label, title: `Кнопка ▶ «${label}» не запускает звук`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`, 'Подождать 12 секунд'], expected: 'Играет трек', actual: s1 !== s0 ? 'Кнопка показывает «играет», но звука нет' : 'Ничего не происходит' }, page, h); continue; }
     if (playing.length > 1) await bug({ ...here, sev: 'critical', type: 'sound-many', sig: 'sndmany|' + rel(url) + '|' + label, title: 'Играют сразу несколько треков', steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Играет один трек', actual: 'Одновременно: ' + playing.join(' + ') }, page, h);
     if (s1 === s0) await bug({ ...here, sev: 'major', type: 'sound-icon', sig: 'sndicon|' + label.replace(/[^a-z]+/gi, '').slice(0, 20) + '|' + rel(url), title: `Кнопка «${label}» не превращается в ⏸ (паузу), когда трек играет`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Значок меняется на ⏸', actual: 'Трек играет, а на кнопке всё ещё ▶' }, page, h);
     // pause with the same button
@@ -378,8 +380,8 @@ async function pressEverything(page, url, dev, max) {
     if (!(await h.isVisible().catch(() => false))) continue;
     const label = (await btnLabel(h)) || `кнопка №${i + 1}`;
     stats.clicks++;
-    const m0 = await page.evaluate(() => window.__qaMut).catch(() => 0); await page.waitForTimeout(500);
-    const m1 = await page.evaluate(() => window.__qaMut).catch(() => 0); const base = m1 - m0;
+    const snap = () => h.evaluate(e => { const p = e.parentElement || e; const t = document.body.innerText || ''; let x = 0; for (let i = 0; i < t.length; i += 7) x = (x * 31 + t.charCodeAt(i)) | 0; return (p.outerHTML || '').slice(0, 4000) + '|' + x + '|' + document.querySelectorAll('[role="dialog"]:not([hidden]), .w-popup-wrap.active, .is-open, .open, [aria-expanded="true"]').length; }).catch(() => 'gone');
+    const before = await snap();
     const e0 = page.qaErrs.length; const y0 = await page.evaluate(() => scrollY).catch(() => 0);
     let clicked = true;
     try { await h.click({ timeout: 3000 }); } catch (e) { clicked = false; }
@@ -388,12 +390,14 @@ async function pressEverything(page, url, dev, max) {
       if (cov) await bug({ ...here, sev: 'major', type: 'covered', sig: 'covered|' + rel(url) + '|' + label, title: `«${label}» нельзя нажать — сверху лежит другой элемент`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать «${label}»`], expected: 'Кнопка нажимается', actual: `Клик попадает в ${cov}` }, page, h);
       continue;
     }
-    await page.waitForTimeout(800);
+    await page.waitForNavigation({ timeout: 2500 }).catch(() => {});
+    await page.waitForTimeout(500);
     const now = page.url();
-    const m2 = await page.evaluate(() => window.__qaMut).catch(() => 0); const y1 = await page.evaluate(() => scrollY).catch(() => 0);
+    const y1 = await page.evaluate(() => scrollY).catch(() => 0);
+    const after = now === startUrl ? await snap() : 'nav';
     const newErr = page.qaErrs.slice(e0);
     if (newErr.length) await bug({ ...here, sev: 'major', type: 'clickerr', sig: 'clickerr|' + errKey(newErr[0]), title: `После нажатия «${label}» — ошибка в коде`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать «${label}»`], expected: 'Без ошибок', actual: newErr[0] }, page, h);
-    const changed = now !== startUrl || Math.abs(y1 - y0) > 5 || (m2 - m1) > base * 1.5 + 2;
+    const changed = now !== startUrl || Math.abs(y1 - y0) > 5 || after !== before;
     if (!changed && !newErr.length) await bug({ ...here, sev: 'check', type: 'dead', sig: 'dead|' + rel(url) + '|' + label, title: `Кнопка «${label}» ничего не делает`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать «${label}»`], expected: 'Что-то открывается/меняется', actual: 'Ничего не происходит' }, page, h);
     await page.keyboard.press('Escape').catch(() => {});
     if (now.split('#')[0] !== startUrl.split('#')[0]) { await open(page, startUrl); await tag(); }
@@ -408,10 +412,10 @@ async function scLanguageSwitch(page, dev) {
     if (timeLeft() < 0) return;
     await open(page, '/en/');
     const enFp = (await facts(page)).fp;
-    const btn = dev === 'phone' ? page.locator('#ssg-bar .g-sheet-open, #ssg .g-burger').first() : page.locator('#ssg .g-lang').first();
+    const btn = dev === 'phone' ? page.locator('#ssg-bar .g-sheet-open:visible, #ssg .g-burger:visible, button[aria-label="Main menu"]:visible').first() : page.locator('#ssg .g-lang:visible, button[aria-label^="Language"]:visible').first();
     try { await btn.click({ timeout: 5000 }); } catch (e) { await bug({ page: '/en/', device: devName, sev: 'major', type: 'langbtn', sig: 'langbtn|' + dev, title: `Не нажимается кнопка выбора языка (${devName})`, steps: ['Открыть главную', dev === 'phone' ? 'Нажать «Menu»' : 'Нажать «EN» вверху справа'], expected: 'Открывается список языков', actual: e.message.split('\n')[0].slice(0, 120) }, page); return; }
     await page.waitForTimeout(800);
-    const opt = page.locator(`${dev === 'phone' ? '#ssg-sheet' : '#ssg .g-right'} a[hreflang="${HREFLANG[L]}"]:visible`).first();
+    const opt = page.locator(`a[hreflang="${HREFLANG[L]}"]:visible, a[href="${BASE}/${L}/"]:visible, a[href="/${L}/"]:visible`).first();
     if (!(await opt.count())) { await bug({ page: '/en/', device: devName, sev: 'major', type: 'langopt', sig: 'langopt|' + dev + '|' + L, title: `В списке языков нет ${LANG_SHORT[L]} (${devName})`, steps: ['Открыть главную', 'Открыть список языков'], expected: `Есть ${LANG_SHORT[L]}`, actual: 'Нет' }, page); continue; }
     const label = (await opt.innerText().catch(() => L)).replace(/\s+/g, ' ').trim();
     await Promise.all([page.waitForNavigation({ timeout: 90000 }).catch(() => {}), opt.click({ timeout: 5000 }).catch(() => {})]);
@@ -421,7 +425,7 @@ async function scLanguageSwitch(page, dev) {
     if (normPath(landed) !== '/' || urlLang(landed) !== L) await bug({ page: '/en/', device: devName, sev: 'critical', type: 'langhome', sig: 'langhome|' + L + '|' + dev, title: `Выбор языка ${LANG_SHORT[L]} на главной открывает не ту страницу`, steps, expected: `Главная на ${LANG_SHORT[L]}: ${BASE}/${L}/`, actual: `Открылось ${landed}` }, page);
     else if (lf) {
       const sim = jaccard(enFp, lf.fp);
-      if (sim < 0.45) await bug({ page: `/${L}/`, device: devName, sev: 'critical', type: 'langlook', sig: 'langlook|' + L, title: `Главная на ${LANG_SHORT[L]} — это другая (старая) страница, не такая как английская`, steps, expected: 'Та же главная, что на английском, только переведённая', actual: `Открывается другая страница: оформление и блоки совпадают с английской только на ${Math.round(sim * 100)}%` }, page);
+      if (sim < 0.45) { const g = await bug({ page: `/${L}/`, device: devName, sev: 'critical', type: 'langlook', sig: 'langlook|/', title: langLookTitle('/'), steps, expected: 'Та же главная, что на английском, только переведённая', actual: '' }, page); if (!g.actual.includes(LANG_SHORT[L] + ':')) g.actual = (g.actual ? g.actual + '; ' : '') + `${LANG_SHORT[L]}: совпадает с английской на ${Math.round(sim * 100)}%`; }
       if (lf.lang && !lf.lang.toLowerCase().startsWith(HREFLANG[L])) await bug({ page: `/${L}/`, device: devName, sev: 'major', type: 'htmllang', sig: 'htmllang|/' + L + '/', title: `Главная ${LANG_SHORT[L]} помечена как язык «${lf.lang}»`, steps, expected: HREFLANG[L], actual: lf.lang });
     }
   }
@@ -455,12 +459,14 @@ async function scCart(page) {
   if (!add) { notChecked.push('Корзина — на «Все товары» нет кнопки «в корзину»'); return; }
   const steps = ['Открыть «Все товары»', 'Нажать значок корзины у товара'];
   await Promise.all([page.waitForResponse(r => /wc-ajax=add_to_cart|add-to-cart/.test(r.url()), { timeout: 30000 }).catch(() => {}), add.click({ timeout: 5000 }).catch(() => {})]);
-  await page.waitForTimeout(2500);
-  let c1 = await cnt();
-  if (c1 <= c0) {
-    await open(page, '/en/all-products/'); const c2 = await cnt();
-    if (c2 > c0) await bug({ ...here, sev: 'minor', type: 'cartcount', sig: 'cartcount', title: 'Счётчик корзины в меню не обновляется сразу после добавления товара', steps, expected: 'Цифра у корзины увеличивается сразу', actual: 'Меняется только после перезагрузки страницы' }, page);
-    else await bug({ ...here, sev: 'critical', type: 'cartadd', sig: 'cartadd', title: 'Товар не добавляется в корзину', steps, expected: 'Цифра у корзины увеличивается', actual: `Было ${c0}, стало ${c2}` }, page);
+  await page.waitForLoadState('load').catch(() => {}); await page.waitForTimeout(3000);
+  // the shop may open the cart by itself after adding (WooCommerce setting) — that is fine
+  if (!/\/cart\//.test(page.url())) {
+    const c1 = await cnt();
+    if (c1 <= c0) {
+      await open(page, '/en/all-products/'); const c2 = await cnt();
+      if (c2 > c0) await bug({ ...here, sev: 'minor', type: 'cartcount', sig: 'cartcount', title: 'Счётчик корзины в меню не обновляется сразу после добавления товара', steps, expected: 'Цифра у корзины увеличивается сразу', actual: 'Меняется только после перезагрузки страницы' }, page);
+    }
   }
   await open(page, '/en/cart/');
   const rows = await page.$$eval('.cart_item, .woocommerce-cart-form__cart-item, .wc-block-cart-items__row', x => x.length).catch(() => 0);
@@ -509,6 +515,7 @@ async function checkLinks(ctx, limit) {
       break;
     }
     stats.links++;
+    if (st === 429 || st === -1 || isBlockPage(body)) { notChecked.push(`Ссылка ${rel(u)} — сервер не ответил (защита от частых запросов)`); continue; }
     await sleep(700);
     const src = [...(linkSources.get(u) || [])];
     if (st >= 400) await bug({ page: src[0], sev: 'major', type: 'link404', sig: 'link|' + rel(u), title: `Битая ссылка: ${rel(u)} (код ${st})`, steps: [`Открыть ${BASE}${src[0]}`, `Нажать ссылку на ${rel(u)}`], expected: 'Страница открывается', actual: `Ошибка ${st}. Ссылка есть на страницах: ${src.slice(0, 5).join(', ')}${src.length > 5 ? ` и ещё ${src.length - 5}` : ''}` });
@@ -622,7 +629,7 @@ function writeReport() {
         const alt = f.hreflang[HREFLANG[L]]; if (!alt) continue;
         const t = visited.get(rel(alt) + '|desktop'); if (!t) continue;
         const sim = jaccard(f.fp, t.fp);
-        if (sim < 0.45) await bug({ page: rel(alt), device: 'компьютер', sev: normPath(alt) === '/' ? 'critical' : 'major', type: 'langlook', sig: 'langlook|' + rel(alt), title: `${LANG_RU[L][0].toUpperCase() + LANG_RU[L].slice(1)} версия ${normPath(alt)} — другая страница, не похожая на английскую`, steps: [`Открыть ${BASE}${rel(f.url)}`, `Открыть ${BASE}${rel(alt)}`, 'Сравнить'], expected: 'Та же страница, только переведённая', actual: `Блоки и оформление совпадают только на ${Math.round(sim * 100)}%` });
+        if (sim < 0.45) { const g = await bug({ page: rel(alt), device: 'компьютер', sev: normPath(alt) === '/' ? 'critical' : 'major', type: 'langlook', sig: 'langlook|' + normPath(alt), title: langLookTitle(normPath(alt)), steps: [`Открыть ${BASE}${rel(f.url)}`, `Открыть ${BASE}${rel(alt)}`, 'Сравнить'], expected: 'Та же страница, только переведённая', actual: '' }); g.actual = (g.actual ? g.actual + '; ' : '') + `${LANG_SHORT[L]}: совпадает с английской на ${Math.round(sim * 100)}%`; }
       }
     }
     // 4) scenarios a person would do
