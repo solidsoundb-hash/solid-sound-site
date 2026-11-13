@@ -58,3 +58,4 @@
 54 2026-11-13 16:40:55 carousel: no theme lightbox on product cards (owner ok: Как сделаешь все выложи)
 55 2026-11-13 16:49:23 catalog cart buttons show the price on the icon button (sale price), e.g. cart + $13 (owner ok: замени кнопки на корзину с ценниками, касается всего)
 56 2026-11-13 17:01:33 catalog: remove the duplicate top price (it is now on the cart button) (owner ok: только сверху ценник тогда убери)
+57 2026-11-13 17:11:50 phone: cart moved to the top-right header (with count badge), removed from the bottom bar — shop/product/catalog pages (owner ok: Хочу корзину видеть в меню справа а не внизу про телефон)

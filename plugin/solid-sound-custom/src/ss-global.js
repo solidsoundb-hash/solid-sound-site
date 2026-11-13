@@ -160,6 +160,8 @@ var css=[
 ' #ssg .g-in{min-height:60px;padding:8px 10px;gap:8px}',
 ' #ssg .g-logo{width:44px;margin:0}',
 ' #ssg .g-right .g-r-it{display:none}',
+' #ssg .g-right .g-r-cart{display:flex;position:relative}#ssg .g-right .g-r-cart .g-a{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#131B2E;color:#fff;display:flex;align-items:center;justify-content:center;padding:0}#ssg .g-right .g-r-cart .g-l{display:none}#ssg .g-right .g-r-cart svg{width:22px;height:22px}',
+' #ssg .g-right .g-r-cart .g-cnt{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#F59E0B;color:#111;font-size:11px;font-weight:800;line-height:17px;text-align:center}',
 ' #ssg form{height:44px;margin:0;gap:3px;padding:0 4px 0 10px}#ssg form > svg{display:none}',
 ' #ssg input{font-size:16px!important}',
 ' #ssg .g-b{width:32px;height:32px}#ssg .g-find{display:none}',
@@ -211,7 +213,7 @@ function accItem(){
     .map(function(s){ return tag('a',{href:s[2],role:'menuitem'},ico(I[s[1]],18)+s[0]); }).join('');
   return tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a'+(isCur(DSH) ? ' cur' : ''),'aria-haspopup':'true','aria-expanded':'false'},ico(I.user)+tag('span',{'class':'g-l'},'My account'+ico(I.down,10)))+tag('div',{'class':'g-dd',role:'menu',style:'left:auto;right:0;min-width:210px'},dd));
 }
-function rItem(o,extra){ return tag('div',{'class':'g-it g-r-it'},tag('a',{'class':'g-a'+((o!==FAV ? isCur(o.h) : false) ? ' cur' : ''),href:o.h},ico(I[o.i])+tag('span',{'class':'g-l'},o.t))+(extra||'')); }
+function rItem(o,extra,cls){ return tag('div',{'class':'g-it g-r-it'+(cls?' '+cls:'')},tag('a',{'class':'g-a'+((o!==FAV ? isCur(o.h) : false) ? ' cur' : ''),href:o.h,'aria-label':o.t},ico(I[o.i])+tag('span',{'class':'g-l'},o.t))+(extra||'')); }
 /* languages: text labels (no flags), taken from the page's hreflang alternates printed by Polylang,
    falling back to the old theme header switcher. Same list and look as on the home page. */
 var LN={en:'English',uk:'Українська',de:'Deutsch',fr:'Français',es:'Español',it:'Italiano',pt:'Português',pl:'Polski',ru:'Русский'};
@@ -228,7 +230,7 @@ var head=tag('div',{'class':'g-in'},
   tag('a',{'class':'g-logo',href:L+'/','aria-label':'Solid Sound home'},tag('svg',{viewBox:'0 0 341 230',role:'img','aria-hidden':'true'},tag('path',{fill:'#F59E0B','fill-rule':'evenodd',d:LOGO})))+
   tag('nav',{'class':'g-nav','aria-label':'Main'},navHtml())+
   tag('form',{role:'search',onsubmit:'return false'},ico(I.search,18)+tag('label',{'for':'top-q',style:'position:absolute;left:-9999px'},'Search')+tag('input',{id:'top-q',type:'search',enterkeyhint:'search',autocomplete:'off',placeholder:'Search'})+tag('span',{'class':'ss-ai',role:'button',tabindex:'0','aria-label':'AI search'},'AI')+tag('button',{type:'button','class':'g-b ss-mic','aria-label':'Voice search'},ico(I.mic,20))+tag('button',{type:'button','class':'g-b g-ref','aria-label':'Match by reference track',title:'Match by reference track'},ico(I.wave,20))+tag('button',{type:'button','class':'g-find'},'Find'))+
-  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
+  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
 );
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
@@ -237,7 +239,7 @@ function sheetHtml(){
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k},tag('b',{'class':'g-lc'},l.t)+l.n); }).join('');
   return h+LT+'/div'+GT;
 }
-var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h],['Cart','cart',L+'/cart/']];
+var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/vendor-register/'],['Saved','fav',FAV.h]];
 if(LG) BAR.forEach(function(b){ b[2]=tr(b[2]); });
 var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
 
