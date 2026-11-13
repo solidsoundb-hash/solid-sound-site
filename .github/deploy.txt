@@ -54,3 +54,4 @@
 50 2026-11-13 15:44:29 polish: meta description fallback, field labels from placeholder, H1 where missing, 16px inputs on phones (owner ok: Добивай выкладывай)
 51 2026-11-13 15:53:00 seo: strip page-builder shortcodes from the auto meta description (owner ok: Добивай выкладывай)
 52 2026-11-13 16:32:21 carousel price/card link/waveform + theme inline CSS to cached files (owner ok: Как сделаешь все выложи)
+53 2026-11-13 16:37:23 price on every buy button: product page and catalog show 'Buy · $13' / 'Add to cart · $13' (sale included) (owner ok: замени кнопки на корзину с ценниками, касается всего)

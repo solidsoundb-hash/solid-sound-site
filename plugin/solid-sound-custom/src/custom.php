@@ -38,11 +38,29 @@ add_filter( 'add_to_cart_text', 'woo_custom_single_add_to_cart_text' );         
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text' );  // 2.1 +
   
   
-function woo_custom_single_add_to_cart_text() {
-  
-    return __( 'BUY', 'woocommerce' );
-  
+/* (13.11.2026 owner: price on every buy button) label = "Add to cart · <price>", sale price included */
+function ss_cart_price_txt( $product ) {
+	if ( ! $product && isset( $GLOBALS['product'] ) ) $product = $GLOBALS['product'];
+	if ( ! is_object( $product ) || ! method_exists( $product, 'get_price' ) ) return '';
+	$p = wc_get_price_to_display( $product );
+	if ( $p <= 0 ) return '';
+	return trim( html_entity_decode( wp_strip_all_tags( wc_price( $p, array( 'decimals' => 0 ) ) ), ENT_QUOTES, 'UTF-8' ) );
 }
+function ss_cart_btn_label( $base, $product = null ) {
+	$pr = ss_cart_price_txt( $product );
+	return $pr ? $base . ' · ' . $pr : $base;
+}
+function woo_custom_single_add_to_cart_text() {
+	$word = function_exists( 'ss_pd2_t' ) ? ss_pd2_t( 'buy' ) : __( 'Buy', 'woocommerce' );
+	return ss_cart_btn_label( $word );
+}
+/* catalog / shop loop buttons: same "Add to cart · price" (only for products that add straight to the cart) */
+add_filter( 'woocommerce_product_add_to_cart_text', function ( $text, $product ) {
+	if ( is_object( $product ) && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() ) {
+		return ss_cart_btn_label( __( 'Add to cart', 'woocommerce' ), $product );
+	}
+	return $text;
+}, 20, 2 );
 
 
 //Calc Mixing

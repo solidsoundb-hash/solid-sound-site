@@ -38,11 +38,29 @@ add_filter( 'add_to_cart_text', 'woo_custom_single_add_to_cart_text' );         
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text' );  // 2.1 +
   
   
-function woo_custom_single_add_to_cart_text() {
-  
-    return __( 'BUY', 'woocommerce' );
-  
+/* (13.11.2026 owner: price on every buy button) label = "Add to cart · <price>", sale price included */
+function ss_cart_price_txt( $product ) {
+	if ( ! $product && isset( $GLOBALS['product'] ) ) $product = $GLOBALS['product'];
+	if ( ! is_object( $product ) || ! method_exists( $product, 'get_price' ) ) return '';
+	$p = wc_get_price_to_display( $product );
+	if ( $p <= 0 ) return '';
+	return trim( html_entity_decode( wp_strip_all_tags( wc_price( $p, array( 'decimals' => 0 ) ) ), ENT_QUOTES, 'UTF-8' ) );
 }
+function ss_cart_btn_label( $base, $product = null ) {
+	$pr = ss_cart_price_txt( $product );
+	return $pr ? $base . ' · ' . $pr : $base;
+}
+function woo_custom_single_add_to_cart_text() {
+	$word = function_exists( 'ss_pd2_t' ) ? ss_pd2_t( 'buy' ) : __( 'Buy', 'woocommerce' );
+	return ss_cart_btn_label( $word );
+}
+/* catalog / shop loop buttons: same "Add to cart · price" (only for products that add straight to the cart) */
+add_filter( 'woocommerce_product_add_to_cart_text', function ( $text, $product ) {
+	if ( is_object( $product ) && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() ) {
+		return ss_cart_btn_label( __( 'Add to cart', 'woocommerce' ), $product );
+	}
+	return $text;
+}, 20, 2 );
 
 
 //Calc Mixing
@@ -979,7 +997,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 (function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c!=='yes')fbq('consent','revoke');})();
 </script>
-<?php ss_asset('css-l977'); ?>
+<?php ss_asset('css-l995'); ?>
 		<?php
 	}
 	add_action( 'wp_head', 'ss_consent_head', -1000 );
@@ -993,7 +1011,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 <p>We use essential cookies to run this site (cart, login, checkout). With your permission we also use marketing cookies (Meta Pixel) to measure and improve our ads.<?php if ( $pp ) : ?> <a href="<?php echo esc_url( $pp ); ?>">Privacy Policy</a><?php endif; ?></p>
 <div class="ss-cc-row"><button type="button" class="ss-cc-no">Reject non-essential</button><button type="button" class="ss-cc-yes">Accept all</button></div>
 </div>
-<?php ss_asset('js-l1006'); ?>
+<?php ss_asset('js-l1024'); ?>
 		<?php
 	}
 	add_action( 'wp_footer', 'ss_consent_footer', 5 );
@@ -1253,7 +1271,7 @@ function ss_sell_page() {
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1431'); ?>
+<?php ss_asset('css-l1449'); ?>
 
 <section class="sssell-hero">
 	<div>
@@ -1688,7 +1706,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2072'); ?>
+<?php ss_asset('js-l2090'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3797,7 +3815,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4553'); ?>
+<?php ss_asset('js-l4571'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4478,7 +4496,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5609'); ?>
+<?php ss_asset('css-l5627'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5057,7 +5075,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6222'); ?>
+<?php ss_asset('css-l6240'); ?>
 		<?php
 		return ob_get_clean();
 	}
