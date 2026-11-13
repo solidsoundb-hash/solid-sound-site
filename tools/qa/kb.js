@@ -226,11 +226,12 @@ function check(f, ctx) {
   const add = (id, actual, items, key) => {
     const r = RULE[id]; items = (items || []).filter(x => !ignored(id, x));
     out.push({ ...here, sev: r.sev, type: 'kb-' + id, sig: 'kb|' + id + '|' + (key || f.path),
-      title: r.title + (items && items.length ? ` — ${items.length}` : ''),
+      title: r.title,
       steps: [`Открыть https://solid-sound.net${f.path}` + (ctx.devName ? ` (${ctx.devName})` : '')].concat(items && items.length ? ['Где: ' + items.slice(0, 5).join('; ')] : []),
       expected: r.fix, actual: (actual || '') + (r.why ? (actual ? ' ' : '') + 'Почему важно: ' + r.why : ''), area: r.area, kb: id });
   };
-  const list = (id, items, actual, key) => { items = (items || []).filter(x => !ignored(id, x)); if (items.length) add(id, actual || '', items, key); };
+  // same elements on many pages = one bug with a list of pages (the QA bot groups by sig)
+  const list = (id, items, actual) => { items = (items || []).filter(x => !ignored(id, x)); if (items.length) add(id, actual || '', items, 'el|' + items.slice(0, 3).map(x => x.replace(/ \d+(\.\d+)?(px|:1)| \d+×\d+/g, '')).join(',').slice(0, 200)); };
   const p = f.path;
   const admin = /^\/(wp-admin|wp-login|.*store-manager)/.test(p);
   if (admin) return out;
