@@ -4788,7 +4788,7 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);document.addEventListener('ssp:
 @media(max-width:1180px){.ssh .ssh-card{flex:0 0 calc(33.333% - 12px)!important}}
 @media(max-width:699px){.ssh .ssh-card{flex:0 0 62%!important}.ssh .ssh-h2{font-size:22px!important}.ssh .ssh-a{display:none}}
 /* Best products: sale price, waveform player like the product grid (owner 13.11.2026) */
-.ssh .ssh-pr del{opacity:.55;font-weight:500;margin-right:3px;color:inherit}.ssh .ssh-pr ins{text-decoration:none}
+.ssh .ssh-pr del{opacity:.55;font-weight:500;margin-right:3px;color:inherit;position:relative;text-decoration:line-through}.ssh .ssh-pr del::before,.ssh .ssh-pr del::after{display:none!important}.ssh .ssh-pr ins{text-decoration:none}
 .ssh .ssh-card>br{display:none}
 .ssh .ssh-wv{display:block;width:100%;margin:2px 0 0}.ssh .ssh-wv .ssw{margin:0!important;width:100%}
 .ssh .ssh-card:has(.ssh-wv .ssw) .ssh-play,.ssh .ssh-card:has(.ssh-wv .ssw) .ssh-add{display:none!important}
