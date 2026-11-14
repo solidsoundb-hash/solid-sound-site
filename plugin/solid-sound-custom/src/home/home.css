@@ -105,3 +105,23 @@ html{scroll-padding-top:96px;scroll-padding-bottom:96px}
 /* 14.11.2026 owner: home buttons more angular (6px) */
 #ss-app button[aria-label="Previous examples"],#ss-app button[aria-label="Next examples"],#ss-app .ss-harr,#ss-app .ss-abb{border-radius:6px!important}
 #ss-app .ss-abs{border-radius:6px!important}#ss-app .ss-abs i{border-radius:4px!important}
+/* 14.11.2026 owner (phone home): menu as a list, search behind a button on the right, equal header buttons,
+   buttons rectangular with slightly rounded corners, no second play triangle on product covers */
+#ss-app button[aria-label^="Play "][aria-label$=" preview"]{display:none!important}
+#ss-app a[style*="border-radius"]:not([style*="50%"]):not([style*="999"]):not([style*="99px"]),
+#ss-app button[style*="border-radius"]:not([style*="50%"]):not([style*="999"]):not([style*="99px"]){border-radius:6px!important}
+@media (max-width:759px){
+#ss-app nav[aria-label="All sections"]{border-radius:10px 10px 0 0!important}
+#ss-app nav[aria-label="All sections"] > div{display:flex!important;flex-direction:column;gap:4px!important;margin-bottom:10px!important}
+#ss-app nav[aria-label="All sections"] > div > a{flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;gap:12px!important;min-height:46px!important;padding:0 14px!important;border-radius:6px!important;text-align:left!important;font-size:15px!important}
+#ss-app nav[aria-label="All sections"] > div > a svg{flex:none;width:20px!important;height:20px!important}
+#ss-app nav[aria-label="All sections"] > div > a br{display:none}
+#ss-app nav[aria-label="All sections"] > p{margin:10px 2px 6px!important}
+/* header: logo left, everything else the same size on the right */
+#ss-app header .ss-msrch-wrap{display:none!important}
+html.ss-msearch #ss-app header .ss-msrch-wrap{display:flex!important;position:fixed;left:10px;right:10px;top:var(--ss-msrch-top,64px);z-index:100;max-width:none!important;width:auto!important;box-shadow:0 12px 30px rgba(0,0,0,.6)}
+#ss-app header .ss-mh-btn,#ss-app header .ss-mh-cart,#ss-app header a[aria-label="Account"],#ss-app header a[aria-label="Sign in"],#ss-app header a[aria-label="My account"],#ss-app header button[aria-label="Main menu"]{flex:none!important;width:42px!important;height:42px!important;min-width:42px!important;padding:0!important;border-radius:6px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important}
+#ss-app header .ss-mh-btn{order:2;margin-left:auto!important;border:1px solid rgba(255,255,255,.12);background:#131B2E;color:#fff;cursor:pointer}
+#ss-app header .ss-mh-btn[aria-expanded="true"]{border-color:#F59E0B;color:#F59E0B}
+}
+@media (max-width:759px){#ss-app nav[aria-label="App"]{background:#1D1A17!important;backdrop-filter:none!important}}

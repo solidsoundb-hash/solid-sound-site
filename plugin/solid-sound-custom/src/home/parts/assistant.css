@@ -76,3 +76,26 @@
 .ssx .tasks button,.ssx .chips span,.ssx .dots i{-webkit-tap-highlight-color:transparent}
 .ssx .dots i{width:10px;height:10px;cursor:pointer}.ssx .dots i.on{width:26px}
 @media (max-width:420px){.ssx .tasks button{height:40px;padding:0 12px;font-size:13px}.ssx .cta{height:46px;padding:0 16px}}
+/* 14.11.2026 owner: no duplicates — the right-hand "offer" boxes repeated the same action (and a product that is in
+   Best products below); cards without an offer are one column. The whole assistant fits one phone screen. */
+.ssx .card:not(:has(.offer)){grid-template-columns:minmax(0,1fr)}
+@media (max-width:760px){
+.ssx{padding:12px 12px 10px}
+.ssx .ssx-t{font-size:20px}
+.ssx .sub{display:none}
+.ssx .tasks{margin:8px -4px 10px}
+.ssx .tasks button{height:38px;padding:0 11px;font-size:13px;gap:6px}
+.ssx .left{padding:12px}
+.ssx .left h2{font-size:18px;margin:0 0 2px}
+.ssx .left p.d{font-size:13px;margin:0 0 8px;line-height:1.35}
+.ssx .f{margin:0 0 8px}
+.ssx .f b{font-size:11px;margin-bottom:5px}
+.ssx .chips{gap:6px}
+.ssx .chips span,.ssx .chips a{height:32px;padding:0 10px;font-size:13px}
+.ssx .rng .bpm input{height:32px}
+.ssx .chk{font-size:14px}
+.ssx .cta,.ssx .gbtn,.ssx .inp{height:42px;font-size:14px}
+.ssx .acts{gap:8px;margin-top:4px}
+.ssx .offer{padding:12px;padding-top:40px}.ssx .offer h3{font-size:17px}.ssx .offer p{font-size:13px;margin-bottom:8px}
+.ssx .dots{margin-top:8px}
+}

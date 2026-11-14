@@ -431,3 +431,41 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
   /* refresh the count from the real cart once */
   try{ if(window.fetch){ fetch('https://solid-sound.net/wp-json/wc/store/v1/cart',{credentials:'include'}).then(function(r){return r.json();}).then(function(j){ if(j&&j.items_count!=null){ try{localStorage.setItem('ss_cart_n',String(j.items_count));}catch(e){} sync(); } }).catch(function(){}); } }catch(e){}
 })();
+
+/* (14.11.2026 owner: "search as a button, main things on the right, like Rozetka") phone header on the home app:
+   the search field hides behind a search button next to cart / account / menu; tapping it opens the full search
+   panel under the header (AI, voice, reference — everything as before), the field gets focus; ✕ / Esc / outside tap closes. */
+(function(){
+  var ICON='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
+  var CLOSE='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  function parts(){
+    var h=document.querySelector('#ss-app header'); if(!h) return null;
+    var inp=h.querySelector('input[placeholder^="Ask"], input[type="search"], input[placeholder^="Search"]'); if(!inp) return null;
+    var w=inp, v=h.querySelector('button[aria-label="Voice search"]');
+    while(w.parentElement && w.parentElement!==h && !(v && w.contains(v))) w=w.parentElement;
+    /* the search group = the child of the header row that holds the field */
+    while(w.parentElement && w.parentElement!==h && w.parentElement.children.length<3) w=w.parentElement;
+    return { h:h, w:w, inp:inp };
+  }
+  function setOpen(on){
+    var p=parts(); if(!p) return; document.documentElement.classList.toggle('ss-msearch',on);
+    var b=p.h.querySelector('.ss-mh-btn'); if(b){ b.setAttribute('aria-expanded',on?'true':'false'); b.innerHTML=on?CLOSE:ICON; b.setAttribute('aria-label',on?'Close search':'Search'); }
+    if(on){ var r=p.h.getBoundingClientRect(); document.documentElement.style.setProperty('--ss-msrch-top',Math.max(8,Math.round(r.bottom)+6)+'px'); setTimeout(function(){ try{ p.inp.focus(); }catch(e){} },30); }
+  }
+  function sync(){
+    var p=parts(); if(!p) return;
+    if(innerWidth>=760){ p.w.classList.remove('ss-msrch-wrap'); var ob=p.h.querySelector('.ss-mh-btn'); if(ob) ob.remove(); document.documentElement.classList.remove('ss-msearch'); return; }
+    if(!p.w.classList.contains('ss-msrch-wrap')) p.w.classList.add('ss-msrch-wrap');
+    if(!p.h.querySelector('.ss-mh-btn')){
+      var anchor=p.h.querySelector('.ss-mh-cart, a[aria-label="Account"], a[aria-label="Sign in"], a[aria-label="My account"], button[aria-label="Main menu"]');
+      if(!anchor) return;
+      var b=document.createElement('button'); b.type='button'; b.className='ss-mh-btn'; b.setAttribute('aria-label','Search'); b.setAttribute('aria-expanded','false'); b.innerHTML=ICON;
+      b.addEventListener('click',function(e){ e.preventDefault(); setOpen(!document.documentElement.classList.contains('ss-msearch')); });
+      anchor.parentNode.insertBefore(b,anchor);
+    }
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && document.documentElement.classList.contains('ss-msearch')) setOpen(false); });
+  document.addEventListener('click',function(e){ if(!document.documentElement.classList.contains('ss-msearch')) return; var p=parts(); if(!p) return; if(p.w.contains(e.target) || e.target.closest('.ss-mh-btn')) return; setOpen(false); },true);
+  (window.ssOnDom||function(f){f();})(sync);
+  addEventListener('resize',sync,{passive:true});
+})();
