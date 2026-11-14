@@ -99,3 +99,10 @@
 .ssx .offer{padding:12px;padding-top:40px}.ssx .offer h3{font-size:17px}.ssx .offer p{font-size:13px;margin-bottom:8px}
 .ssx .dots{margin-top:8px}
 }
+/* 14.11.2026 owner: buttons inside the slider keep side margins like the blocks below */
+@media (max-width:760px){
+.ssx .tasks{margin:6px 0 10px;padding:0}
+.ssx .f .chips{margin:0;padding:0}
+.ssx .left{margin:0 2px}
+.ssx .acts{padding:0 2px}
+}

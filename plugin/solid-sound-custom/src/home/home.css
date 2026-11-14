@@ -125,3 +125,9 @@ html.ss-msearch #ss-app header .ss-msrch-wrap{display:flex!important;position:fi
 #ss-app header .ss-mh-btn[aria-expanded="true"]{border-color:#F59E0B;color:#F59E0B}
 }
 @media (max-width:759px){#ss-app nav[aria-label="App"]{background:#1D1A17!important;backdrop-filter:none!important}}
+/* 14.11.2026 owner: no Menu in the bottom bar (it is in the header) — the other icons share the full width */
+@media (max-width:759px){
+#ss-app nav[aria-label="App"]{display:flex!important;justify-content:space-between!important;padding-left:4px!important;padding-right:4px!important}
+#ss-app nav[aria-label="App"] > *{flex:1 1 0!important;min-width:0!important}
+#ss-app nav[aria-label="App"] > button[aria-expanded]{display:none!important}
+}
