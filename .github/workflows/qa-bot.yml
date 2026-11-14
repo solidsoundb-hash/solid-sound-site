@@ -34,7 +34,7 @@ jobs:
             push) L=$(tail -1 .github/qa.txt); echo "$L" | grep -qi full && M=full; echo "$L" | grep -qi smoke && M=smoke ;;
           esac
           OUT=qa/latest; [ "$M" = smoke ] && OUT=qa/smoke
-          B=40; [ "$M" = full ] && B=140; [ "$M" = smoke ] && B=8
+          B=40; [ "$M" = full ] && B=105; [ "$M" = smoke ] && B=8
           echo "mode=$M" >> $GITHUB_OUTPUT; echo "out=$OUT" >> $GITHUB_OUTPUT; echo "budget=$B" >> $GITHUB_OUTPUT
           # after deploys: at most once every 2 hours (the nightly check covers the rest)
           if [ "$M" = smoke ] && [ "${{ github.event_name }}" = workflow_run ] && [ -f qa/smoke/bugs.json ]; then
