@@ -63,3 +63,4 @@
 59 2026-11-13 20:11:30 carousel: remove red line (owner ok: Выкладывай)
 60 2026-11-14 05:17:54 home slider A31/iPhone + angular buttons (owner ok: Выкладывай все по завершению)
 61 2026-11-14 05:46:49 phone home: one-screen assistant, no duplicates, list menu, search button, equal buttons (owner ok: Как завершишь выкладывай)
+62 2026-11-14 05:55:59 phone home: bottom bar without Menu, slider side margins (owner ok: Как сделаешь выкладывай)
