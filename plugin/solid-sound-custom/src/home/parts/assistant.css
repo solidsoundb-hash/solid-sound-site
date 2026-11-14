@@ -106,3 +106,32 @@
 .ssx .left{margin:0 2px}
 .ssx .acts{padding:0 2px}
 }
+/* 14.11.2026 owner (Samsung A31, bigger system font): the assistant must fit the screen above the bottom bar.
+   home.js measures it and adds fit levels until it fits: 1 = no description, labels beside the buttons;
+   2 = smaller card title, tighter rows; 3 = no card title (the selected task above already says it). */
+@media (max-width:760px){
+.ssx.fit1 .left p.d{display:none}
+.ssx.fit1 .f{display:flex;align-items:center;gap:8px;margin:0 0 7px}
+.ssx.fit1 .f>b{flex:0 0 58px;margin:0;font-size:10px;line-height:1.1}
+.ssx.fit1 .f .chips,.ssx.fit1 .f .row,.ssx.fit1 .f .rng{flex:1 1 auto;min-width:0}
+.ssx.fit2 .left h2{font-size:16px;line-height:1.2}
+.ssx.fit2 .tasks{margin:4px 0 8px}.ssx.fit2 .tasks button{height:36px}
+.ssx.fit2 .chips span,.ssx.fit2 .chips a{height:30px;padding:0 9px}
+.ssx.fit2 .cta,.ssx.fit2 .gbtn,.ssx.fit2 .inp{height:40px}
+.ssx.fit2 .left{padding:10px}
+.ssx.fit3 .left h2{display:none}
+.ssx.fit3 .ssx-t{font-size:18px}
+}
+@media (max-width:760px){
+.ssx.fit2 .offer ul{display:none}.ssx.fit2 .offer{padding-top:34px}
+.ssx.fit3 .offer p{display:none}.ssx.fit3 .offer .tag{top:10px;left:10px}
+.ssx.fit3 .chips a{height:30px;padding:0 9px;font-size:13px}
+}
+@media (max-width:760px){
+.ssx.fit4 .offer .price{margin-bottom:6px}.ssx.fit4 .offer .price b{font-size:20px}
+.ssx.fit4 .tasks button{height:34px;font-size:12.5px}
+.ssx.fit4 .chips span,.ssx.fit4 .chips a{height:28px;font-size:12.5px}
+.ssx.fit4 .f{margin:0 0 5px}
+.ssx.fit4 .ssx-t{font-size:17px}
+}
+@media (max-width:760px){.ssx.fit4 .offer{padding-top:12px}.ssx.fit4 .offer .tag{display:none}}

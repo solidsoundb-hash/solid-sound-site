@@ -469,3 +469,25 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
   (window.ssOnDom||function(f){f();})(sync);
   addEventListener('resize',sync,{passive:true});
 })();
+
+/* (14.11.2026 owner, Samsung A31 with a bigger system font) the shopping assistant must fit the phone screen above the
+   bottom bar — for the tallest card. Real phones differ (browser bars, font size), so measure and tighten step by step. */
+(function(){
+  var LV=['fit1','fit2','fit3','fit4'];
+  function fit(){
+    var r=document.querySelector('#ss-app .ssx'); if(!r) return;
+    LV.forEach(function(c){ r.classList.remove(c); });
+    if(innerWidth>=760) return;
+    var nav=document.querySelector('#ss-app nav[aria-label="App"]'), navH=nav ? nav.getBoundingClientRect().height : 64;
+    var avail=innerHeight-navH-10;
+    function need(){ var vp=r.querySelector('.vp'), cards=r.querySelectorAll('.card'); if(!vp||!cards.length) return 0; var max=0; cards.forEach(function(c){ max=Math.max(max,c.offsetHeight); });
+      var top=r.getBoundingClientRect().top+scrollY; return top+r.offsetHeight-vp.offsetHeight+max; }
+    for(var i=0;i<LV.length && need()>avail;i++) r.classList.add(LV[i]);
+    /* keep the open card's height right after the change */
+    var cur=+(r.getAttribute('data-cur')||0), c=r.querySelectorAll('.card')[cur], vp=r.querySelector('.vp'); if(c&&vp) vp.style.height=c.offsetHeight+'px';
+  }
+  var last=null; (window.ssOnDom||function(f){f();})(function(){ var r=document.querySelector('#ss-app .ssx'); if(r && r!==last){ last=r; fit(); setTimeout(fit,600); } });
+  var lw=innerWidth, lh=innerHeight; addEventListener('resize',function(){ if(innerWidth!==lw || Math.abs(innerHeight-lh)>120){ lw=innerWidth; lh=innerHeight; fit(); } },{passive:true});
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  addEventListener('load',fit);
+})();
