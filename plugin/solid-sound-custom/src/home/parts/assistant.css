@@ -67,3 +67,12 @@
 .ssx .chips.fixed span{cursor:default}
 .ssx .rng .bpm{display:inline-flex;align-items:center;gap:6px;color:#CBD5E1;font-weight:700}.ssx .rng .bpm input{width:64px;height:34px;padding:0 8px;border-radius:10px;border:1px solid var(--line);background:#131B2E;color:#fff;font:inherit;font-weight:700;text-align:center;-moz-appearance:textfield}.ssx .rng .bpm input::-webkit-inner-spin-button{opacity:.6}
 .ssx h1.ssx-t{line-height:1.2}
+/* 14.11.2026 owner: buttons more angular (6px), smooth on Samsung A31 / iPhone */
+.ssx .tasks button,.ssx .chips span,.ssx .chips a,.ssx .cta,.ssx .gbtn,.ssx .inp,.ssx .rng .bpm input{border-radius:6px}
+.ssx .offer .tag{border-radius:4px}
+.ssx .vp{touch-action:pan-y;transition:height .3s ease}
+.ssx .track{will-change:transform;transition-duration:.45s}
+.ssx .tasks{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.ssx .tasks button,.ssx .chips span,.ssx .dots i{-webkit-tap-highlight-color:transparent}
+.ssx .dots i{width:10px;height:10px;cursor:pointer}.ssx .dots i.on{width:26px}
+@media (max-width:420px){.ssx .tasks button{height:40px;padding:0 12px;font-size:13px}.ssx .cta{height:46px;padding:0 16px}}

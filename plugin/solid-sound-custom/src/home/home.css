@@ -102,3 +102,6 @@ body.ss-newhome .l-header,body.ss-newhome .ssf,body.ss-newhome #ssg,body.ss-newh
 #ss-app button.ss-on>svg{display:none}#ss-app button.ss-on::after{content:'';width:4px;height:16px;background:currentColor;box-shadow:7px 0 0 currentColor;margin-right:7px}
 html{scroll-padding-top:96px;scroll-padding-bottom:96px}
 @media(max-width:600px){#ss-app input:not([type=checkbox]):not([type=radio]):not([type=range]),#ss-app select,#ss-app textarea{font-size:16px!important}}
+/* 14.11.2026 owner: home buttons more angular (6px) */
+#ss-app button[aria-label="Previous examples"],#ss-app button[aria-label="Next examples"],#ss-app .ss-harr,#ss-app .ss-abb{border-radius:6px!important}
+#ss-app .ss-abs{border-radius:6px!important}#ss-app .ss-abs i{border-radius:4px!important}

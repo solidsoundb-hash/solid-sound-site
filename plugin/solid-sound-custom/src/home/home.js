@@ -259,7 +259,7 @@ document.addEventListener('click',function(e){
     tabs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
     dots.forEach(function(d,k){ d.classList.toggle('on',k===i); });
     r.setAttribute('data-cur',i);
-    if(!quiet){ try{ localStorage.setItem('ss_task',i); }catch(e){} if(tabs[i]) tabs[i].scrollIntoView({inline:'nearest',block:'nearest',behavior:'smooth'});
+    if(!quiet){ try{ localStorage.setItem('ss_task',i); }catch(e){} var tl=r.querySelector('.tasks'); if(tabs[i] && tl){ var L=tabs[i].offsetLeft-tl.offsetLeft, R=L+tabs[i].offsetWidth; if(L<tl.scrollLeft || R>tl.scrollLeft+tl.clientWidth) tl.scrollTo({left:Math.max(0,L-12),behavior:'smooth'}); }
       try{ if(window.gtag) gtag('event','select_task',{task:(tabs[i]||{}).textContent}); }catch(x){} }
   }
   document.addEventListener('click',function(e){
@@ -274,12 +274,19 @@ document.addEventListener('click',function(e){
     var ti=k.querySelector('[data-ti]'), pr=k.querySelector('[data-pr]');
     if(ti) ti.textContent=c.getAttribute('data-t'); if(pr) pr.textContent=c.getAttribute('data-p');
   });
-  var x0=null;
-  document.addEventListener('touchstart',function(e){ var r=el(); if(r && e.target.closest && e.target.closest('#ss-app .ssx .track') && !e.target.closest('.chips,input')) x0=e.touches[0].clientX; },{passive:true});
-  document.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null; var r=el(); if(r && Math.abs(dx)>50) go(+(r.getAttribute('data-cur')||0)+(dx<0?1:-1)); });
+  /* swipe (14.11.2026, Samsung A31 / iPhone): only a clearly sideways swipe changes the card — scrolling the page with a
+     slightly diagonal finger used to flip it. Direction is decided on the first ~10 px of movement and then locked. */
+  var x0=null, y0=0, dir='';
+  document.addEventListener('touchstart',function(e){ var r=el(); x0=null; if(r && e.touches.length===1 && e.target.closest && e.target.closest('#ss-app .ssx .track') && !e.target.closest('.chips,input,select,textarea')){ x0=e.touches[0].clientX; y0=e.touches[0].clientY; dir=''; } },{passive:true});
+  document.addEventListener('touchmove',function(e){ if(x0===null || dir) return; var dx=Math.abs(e.touches[0].clientX-x0), dy=Math.abs(e.touches[0].clientY-y0); if(dx<10 && dy<10) return; dir = dx>dy*1.5 ? 'x' : 'y'; },{passive:true});
+  document.addEventListener('touchend',function(e){ if(x0===null) return; var t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0; x0=null; var r=el();
+    if(r && dir==='x' && Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)*1.5) go(+(r.getAttribute('data-cur')||0)+(dx<0?1:-1)); },{passive:true});
+  document.addEventListener('touchcancel',function(){ x0=null; },{passive:true});
   var done=null;
   (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
-  addEventListener('resize',function(){ var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
+  var lastW=innerWidth; addEventListener('resize',function(){ if(innerWidth===lastW) return; lastW=innerWidth; var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
+  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var i=+(r.getAttribute('data-cur')||0), c=r.querySelectorAll('.card')[i], vp=r.querySelector('.vp'); if(c && vp && Math.abs(vp.offsetHeight-c.offsetHeight)>2) vp.style.height=c.offsetHeight+'px'; });
+    (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && !r.__ro){ r.__ro=1; r.querySelectorAll('.card').forEach(function(c){ ro.observe(c); }); } }); }
 })();
 
 /* (12.11.2026) mixing examples: one audio file = BEFORE (0–7.5 s) + AFTER (7.5–15 s), drawn as a waveform.
