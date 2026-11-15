@@ -70,3 +70,4 @@
 66 2026-11-15 17:05:50 sell page polish: no inner frame, form title left, phone steps (owner ok: страница регистрации должна быть компактная минималистичная)
 67 2026-11-15 17:17:09 sell page back to previous layout, keep horizontal form rows (owner ok: откати страницу до предыдущего варианта просто сделай форму горизонтально как у вимейка)
 68 2026-11-15 17:30:17 Sell menu/footer/home links open the top of /sell/ (owner ok: sell должно вести тоже на начало страницы)
+69 2026-11-15 17:41:37 all creator sign-up links (login popup, Google vendor login) open the top of /sell/ (owner ok: сделай так что бы все было с начало страницы)
