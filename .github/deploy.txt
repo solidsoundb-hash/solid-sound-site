@@ -79,3 +79,4 @@
 75 2026-11-15 18:52:44 free product e-mail: branded design + Brevo Free Pack list for opt-ins (owner ok: оформи красиво или через брево)
 76 2026-11-15 19:11:53 compact Add mixing +$65 with info icon, no Try it free on cards (owner ok: мой вариант и убери с карточек трай фор фри, иконку I заметней)
 77 2026-11-15 19:20:18 add-product form in the site's dark look, orange buttons, aligned fields (owner ok: ss-add-product нужно довести до ума)
+78 2026-11-15 19:30:31 creator dashboard fixes: Get Started step 2, orange steps/progress, phone layout, menu labels, stat labels, no empty chart, settings fields, no SEO card (owner ok: хорошо — пункты 1-7 и 9)
