@@ -1317,7 +1317,7 @@ function ss_auth_close() {
 			<li><i>&#9889;</i><span><b>Approved in 24 h</b> &middot; no fees &middot; non-exclusive</span></li>
 		</ul>
 		<?php if ( ! is_user_logged_in() && function_exists( 'ss_google_button' ) ) ss_google_button( 'vendor' ); ?>
-		<a class="ssam-btn" href="<?php echo esc_url( $sell . '#apply' ); ?>">Become a vendor &rarr;</a>
+		<a class="ssam-btn" href="<?php echo esc_url( $sell ); ?>">Become a vendor &rarr;</a>
 		<div class="ssam-foot"><a href="<?php echo esc_url( $sell ); ?>">See all benefits</a><a href="#" data-go="login">Already a vendor? Log in</a></div>
 	</div>
 	</div></div>

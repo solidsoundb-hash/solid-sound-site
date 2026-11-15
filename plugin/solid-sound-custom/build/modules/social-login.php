@@ -61,7 +61,7 @@ function ss_google_signin( WP_REST_Request $r ) {
 
 	$back = esc_url_raw( (string) $r->get_param( 'back' ) );
 	$to = wc_get_page_permalink( 'myaccount' ); /* one account, two roles: My account first */
-	if ( 'vendor' === $r->get_param( 'as' ) && ! ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $user->ID ) ) ) $to = home_url( '/sell/#apply' );
+	if ( 'vendor' === $r->get_param( 'as' ) && ! ( function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $user->ID ) ) ) $to = home_url( '/sell/' );
 	elseif ( $back && false !== strpos( $back, 'checkout' ) && 0 === strpos( $back, home_url() ) ) $to = $back;
 	return array( 'ok' => true, 'new' => $new, 'redirect' => $to );
 }
