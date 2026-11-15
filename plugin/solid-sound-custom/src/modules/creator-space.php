@@ -11,8 +11,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ss_cs_on() {
-	if ( isset( $_GET['ss_cs'] ) ) return '1' === $_GET['ss_cs'];
-	return false; /* (15.11.2026) owner: "кабинет криетора упал" — old dashboard by default until the new one is verified; preview with ?ss_cs=1 */
+	if ( isset( $_GET['ss_cs'] ) ) return '0' !== $_GET['ss_cs'];
+	return ! get_option( 'ss_cs_off' ); /* owner 15.11: keep the new one (not the old) */
 }
 function ss_cs_ok() { return ss_cs_on() && function_exists( 'is_wcfm_page' ) && is_wcfm_page() && function_exists( 'ss_cp_can' ) && ss_cp_can(); }
 function ss_cs_is_root() {
