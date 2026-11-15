@@ -25,17 +25,19 @@ add_action( 'wp_footer', function () {
 .ssh .ssh-mix{border-top:1px solid rgba(255,255,255,.08);padding-top:10px!important}
 .ssh .ssh-mix i{flex:none;width:18px;height:18px;border-radius:4px;border:1.5px solid rgba(255,255,255,.5);background:#fff;display:flex;align-items:center;justify-content:center}
 .ssh .ssh-mix.on i{background:#f59e0b;border-color:#f59e0b}.ssh .ssh-mix.on i:after{content:'';width:5px;height:9px;border:solid #111;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.ss-cic{display:inline-block;width:20px;height:20px;margin:-3px 8px 0 0;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .ssh .ssh-buy{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:10px;background:#f59e0b;color:#111;font:700 15px/1.2 Roboto,sans-serif;cursor:pointer;font-variant-numeric:tabular-nums}
 .ssh .ssh-buy:hover{background:#fbbf24}.ssh .ssh-buy.in{background:#e09900}
 .single-product .ss-mixup{width:100%;margin:0 0 12px!important;padding:10px 0 0!important}
 </style>
 <script>(function(){
 var MIX=65,CALC=<?php echo wp_json_encode( home_url( '/studio-calculator/?s=mixing' ) ); ?>,API=<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,TPL=<?php echo $tpl ? 'true' : 'false'; ?>;
-var nonce=null,busy=false;
+var nonce=null,busy=false,CIC='<svg class="ss-cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>';function bt(b,t){b.innerHTML=CIC;b.appendChild(document.createTextNode(t))}
 function lab(){var l=document.createElement('label');l.className='ss-mixup';l.innerHTML='<input type="checkbox"><span>Add custom mixing by our engineer <b>(+$'+MIX+')</b></span>';return l}
 function price(el,on){ /* "$13" / "Buy · $13" -> +$65 while ticked */
-  if(!el)return;if(el.dataset.mx0==null)el.dataset.mx0=el.textContent;var t=el.dataset.mx0;
-  el.textContent=on?t.replace(/\$\s?(\d+(?:[.,]\d+)?)/,function(m,n){var v=parseFloat(n.replace(',','.'))+MIX;return '$'+(v%1?v.toFixed(2):v)}):t;
+  if(!el)return;var tn=[].filter.call(el.childNodes,function(n){return n.nodeType===3&&/\$/.test(n.nodeValue)}).pop();if(!tn)return;
+  if(el.dataset.mx0==null)el.dataset.mx0=tn.nodeValue;var t=el.dataset.mx0;
+  tn.nodeValue=on?t.replace(/\$\s?(\d+(?:[.,]\d+)?)/,function(m,n){var v=parseFloat(n.replace(',','.'))+MIX;return '$'+(v%1?v.toFixed(2):v)}):t;
 }
 function getNonce(){return fetch(API,{credentials:'include',headers:{Accept:'application/json'}}).then(function(r){nonce=r.headers.get('Nonce')||r.headers.get('X-WC-Store-API-Nonce')||nonce;return r.json()})}
 function add(pid){return fetch(API+'/add-item',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json',Accept:'application/json',Nonce:nonce||''},body:JSON.stringify({id:+pid,quantity:1})}).then(function(r){return r.json()})}
@@ -70,7 +72,7 @@ function cards(){
     var tag=c.querySelector('.ssh-tag'),ok=tag&&/ssh-tag-templates/.test(tag.className);
     var pr=c.querySelector('.ssh-pr ins')||c.querySelector('.ssh-pr');var base=pr?parseFloat((pr.textContent.match(/(\d+(?:[.,]\d+)?)/)||[0,0])[1]):0;
     var box=document.createElement('span');box.className='ssh-buyb';
-    box.innerHTML=(ok?'<span class="ss-mixup ssh-mix" role="checkbox" aria-checked="false" tabindex="0"><i></i><span>Add custom mixing by our engineer (+$'+MIX+')</span></span>':'')+'<span class="ssh-buy" role="button" tabindex="0" data-b="'+base+'">Add to cart · $'+base+'</span>';
+    box.innerHTML=(ok?'<span class="ss-mixup ssh-mix" role="checkbox" aria-checked="false" tabindex="0"><i></i><span>Add custom mixing by our engineer (+$'+MIX+')</span></span>':'')+'<span class="ssh-buy" role="button" tabindex="0" data-b="'+base+'">'+CIC+'Add to cart · $'+base+'</span>';
     c.appendChild(box);
   });
 }
@@ -80,15 +82,15 @@ function cardAct(e){
   if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
   e.preventDefault();e.stopPropagation();
   var c=t.closest('.ssh-card'),buy=c.querySelector('.ssh-buy'),mix=c.querySelector('.ssh-mix');
-  if(t===mix){var on=mix.getAttribute('aria-checked')!=='true';mix.setAttribute('aria-checked',on?'true':'false');mix.classList.toggle('on',on);if(!buy.classList.contains('in'))buy.textContent='Add to cart · $'+fmt(+buy.getAttribute('data-b')+(on?MIX:0));return}
+  if(t===mix){var on=mix.getAttribute('aria-checked')!=='true';mix.setAttribute('aria-checked',on?'true':'false');mix.classList.toggle('on',on);if(!buy.classList.contains('in'))bt(buy,'Add to cart · $'+fmt(+buy.getAttribute('data-b')+(on?MIX:0)));return}
   if(buy.classList.contains('in')){location.href=<?php echo wp_json_encode( wc_get_cart_url() ); ?>;return}
   var pid=c.getAttribute('data-pid');
   if(mix&&mix.getAttribute('aria-checked')==='true'){buyWithMix(pid,buy);return}
-  if(busy)return;busy=true;buy.textContent='Adding…';
+  if(busy)return;busy=true;bt(buy,'Adding…');
   (nonce?Promise.resolve():getNonce()).then(function(){return add(pid)}).then(function(j){if(j&&j.code&&!/already/i.test(j.message||''))return getNonce().then(function(){return add(pid)});return j}).then(function(j){
     busy=false;try{if(j&&typeof j.items_count==='number'){localStorage.setItem('ss_cart_n',String(j.items_count));if(window.ssCartPaint)ssCartPaint(j.items_count)}}catch(x){}
-    buy.classList.add('in');buy.textContent='✓ In cart — checkout';
-  }).catch(function(){busy=false;buy.textContent='Add to cart · $'+buy.getAttribute('data-b')});
+    buy.classList.add('in');bt(buy,'In cart — checkout');
+  }).catch(function(){busy=false;bt(buy,'Add to cart · $'+buy.getAttribute('data-b'))});
 }
 window.addEventListener('click',cardAct,true);window.addEventListener('keydown',cardAct,true);
 /* the template's own page */
