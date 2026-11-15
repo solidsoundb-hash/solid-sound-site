@@ -18,7 +18,7 @@ add_action( 'wp_footer', function () {
 <style>
 .ss-mixup{display:flex!important;align-items:center;gap:8px;margin:0!important;padding:8px 0 0!important;border-top:1px solid rgba(255,255,255,.08);font:400 13.5px/1.35 Roboto,sans-serif!important;color:#cbd5e1!important;cursor:pointer;user-select:none}
 .ss-mixup input{accent-color:#f59e0b;width:18px!important;height:18px!important;margin:0!important;flex:none}
-.ss-mixup b{color:#f59e0b;font-weight:700}
+.ss-mixup b{color:#f59e0b;font-weight:700}.ss-mixup b.w{color:#fff}.ss-mixup-p{margin-left:auto;padding-left:10px;color:#f59e0b;font-size:13px;font-weight:600;white-space:nowrap;text-decoration:underline;cursor:pointer}
 .w-grid.layout_195 .w-grid-item-h>.ss-mixup{grid-column:2/-1}
 @media(max-width:767px){.w-grid.layout_195 .w-grid-item-h>.ss-mixup{grid-column:1/-1}}
 .ssh .ssh-card .ssh-buyb{display:flex;flex-direction:column;gap:10px;margin-top:auto;padding-top:2px}
@@ -31,9 +31,9 @@ add_action( 'wp_footer', function () {
 .single-product .ss-mixup{width:100%;margin:0 0 12px!important;padding:10px 0 0!important}
 </style>
 <script>(function(){
-var MIX=65,CALC=<?php echo wp_json_encode( home_url( '/studio-calculator/?s=mixing' ) ); ?>,API=<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,TPL=<?php echo $tpl ? 'true' : 'false'; ?>;
+var PRICES=<?php echo wp_json_encode( home_url( '/en/services-prices/' ) ); ?>,MIX=65,CALC=<?php echo wp_json_encode( home_url( '/studio-calculator/?s=mixing' ) ); ?>,API=<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,TPL=<?php echo $tpl ? 'true' : 'false'; ?>;
 var nonce=null,busy=false,CIC='<svg class="ss-cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>';function bt(b,t){b.innerHTML=CIC;b.appendChild(document.createTextNode(t))}
-function lab(){var l=document.createElement('label');l.className='ss-mixup';l.innerHTML='<input type="checkbox"><span>Add custom mixing by our engineer <b>(+$'+MIX+')</b></span>';return l}
+function lab(){var l=document.createElement('label');l.className='ss-mixup';l.innerHTML='<input type="checkbox"><span>Add our <b class="w">Standard Mixing</b> service <b>(+$'+MIX+')</b></span><span class="ss-mixup-p" role="link" tabindex="0">Prices ›</span>';return l}
 function price(el,on){ /* "$13" / "Buy · $13" -> +$65 while ticked */
   if(!el)return;var tn=[].filter.call(el.childNodes,function(n){return n.nodeType===3&&/\$/.test(n.nodeValue)}).pop();if(!tn)return;
   if(el.dataset.mx0==null)el.dataset.mx0=tn.nodeValue;var t=el.dataset.mx0;
@@ -72,12 +72,13 @@ function cards(){
     var tag=c.querySelector('.ssh-tag'),ok=tag&&/ssh-tag-templates/.test(tag.className);
     var pr=c.querySelector('.ssh-pr ins')||c.querySelector('.ssh-pr');var base=pr?parseFloat((pr.textContent.match(/(\d+(?:[.,]\d+)?)/)||[0,0])[1]):0;
     var box=document.createElement('span');box.className='ssh-buyb';
-    box.innerHTML=(ok?'<span class="ss-mixup ssh-mix" role="checkbox" aria-checked="false" tabindex="0"><i></i><span>Add custom mixing by our engineer (+$'+MIX+')</span></span>':'')+'<span class="ssh-buy" role="button" tabindex="0" data-b="'+base+'">'+CIC+'Add to cart · $'+base+'</span>';
+    box.innerHTML=(ok?'<span class="ss-mixup ssh-mix" role="checkbox" aria-checked="false" tabindex="0"><i></i><span>Add our Standard Mixing service (+$'+MIX+')</span><span class="ss-mixup-p" role="link" tabindex="0">Prices ›</span></span>':'')+'<span class="ssh-buy" role="button" tabindex="0" data-b="'+base+'">'+CIC+'Add to cart · $'+base+'</span>';
     c.appendChild(box);
   });
 }
 function fmt(v){return v%1?v.toFixed(2):String(v)}
 function cardAct(e){
+  var pl=e.target.closest&&e.target.closest('.ss-mixup-p');if(pl){if(e.type==='keydown'&&e.key!=='Enter')return;e.preventDefault();e.stopPropagation();location.href=PRICES;return}
   var t=e.target.closest&&e.target.closest('.ssh-card .ssh-mix,.ssh-card .ssh-buy');if(!t)return;
   if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
   e.preventDefault();e.stopPropagation();

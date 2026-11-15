@@ -5567,4 +5567,5 @@ require_once __DIR__ . '/modules/seo.php';
 require_once __DIR__ . '/modules/creator-apply.php';
 require_once __DIR__ . '/modules/mix-upsell.php';
 require_once __DIR__ . '/modules/sticky-buy.php';
+require_once __DIR__ . '/modules/free-demo.php';
 require_once __DIR__ . '/modules/css-files.php';
