@@ -1243,7 +1243,13 @@ function initWcfm(){
   function title(inp){var t=inp.previousElementSibling;while(t&&!(t.classList&&t.classList.contains('wcfm_title')))t=t.previousElementSibling;return t}
   [['first_name','First name','given-name'],['last_name','Last name','family-name']].forEach(function(a){var i=f.querySelector('[name="'+a[0]+'"]');if(!i)return;i.setAttribute('data-required','1');i.setAttribute('data-required_message',a[1]+': This field is required.');i.setAttribute('autocomplete',a[2]);var t=title(i);if(t)t.innerHTML='<strong>'+a[1]+'</strong><span class="required">*</span>'});
   var sn=f.querySelector('[name="store_name"]');if(sn){var st=title(sn),s=st&&st.querySelector('strong');if(s&&s.firstChild&&s.firstChild.nodeType===3)s.firstChild.nodeValue='Artist / store name';else if(st)st.insertAdjacentHTML('afterbegin','');var p1=f.querySelector('[name=passoword]'),p2=f.querySelector('[name=confirm_pwd]');if(p2){var ct=title(p2),cs=ct&&ct.querySelector('strong');if(cs&&cs.firstChild&&cs.firstChild.nodeType===3)cs.firstChild.nodeValue='Confirm password'}if(p1)p1.setAttribute('placeholder','8+ characters');if(p2)p2.setAttribute('placeholder','Repeat password');f.querySelectorAll('input[type=password]').forEach(ssEye);ssMatch(p1,p2);var sb=f.querySelector('input[type=submit]');if(sb)sb.value='Send application';var vb=f.querySelector('[name=wcfm_email_verified_button]');if(vb&&/re-?send/i.test(vb.value))vb.value='Send code';sn.setAttribute('placeholder','e.g. Grenør')}
-  var ph={'country':'e.g. Ukraine','link-to-your-work':'SoundCloud, YouTube, Spotify, Beatport, Gumroad…','second-link-optional':'https://'};
+  var ph={'link-to-your-work':'SoundCloud, YouTube, Spotify, Beatport, your site…','second-link-optional':'Another link (optional)','anything-we-should-know':'What you produce, who it’s for, what you want to sell first.'};
+  /* (15.11.2026, like WeMake) one "Links to your work" block, optional, up to two links */
+  (function(){var l1=f.querySelector('[name="wcfmvm_custom_infos[link-to-your-work]"]'),l2=f.querySelector('[name="wcfmvm_custom_infos[second-link-optional]"]');
+    if(l1){var t1=title(l1);if(t1)t1.innerHTML='<strong>Links to your work</strong> <small style="font-weight:400;color:#94A3B8">optional · SoundCloud, YouTube, Spotify, your site — up to two</small>';}
+    if(l2){var t2=title(l2);if(t2)t2.style.setProperty('display','none','important');l2.style.marginTop='8px';}
+    var nt=f.querySelector('[name="wcfmvm_custom_infos[anything-we-should-know]"]');if(nt){nt.rows=3;var t3=title(nt);if(t3)t3.innerHTML='<strong>Anything we should know?</strong> <small style="font-weight:400;color:#94A3B8">optional</small>';}
+  })();
   Object.keys(ph).forEach(function(k){var i=f.querySelector('[name="wcfmvm_custom_infos['+k+']"]');if(i)i.setAttribute('placeholder',ph[k])});
   f.querySelectorAll('.wcfm_title .img_tip').forEach(function(tip){var t=tip.closest('.wcfm_title'),txt=tip.getAttribute('data-tip')||'';tip.parentNode.removeChild(tip);if(t&&txt&&t.classList.contains('checkbox-title'))t.setAttribute('data-sub',txt)});
   f.querySelectorAll('input[type=checkbox].wcfm-checkbox').forEach(function(c){
@@ -1254,7 +1260,7 @@ function initWcfm(){
       c.parentNode.insertBefore(lab,c);lab.appendChild(c);
       lab.insertAdjacentHTML('beforeend','<span>I agree to the <a href="'+esc(TERMS)+'" target="_blank">Creator Terms</a> and <a href="'+esc(PRIV)+'" target="_blank" rel="noopener">Privacy Policy</a>&nbsp;<span class="required">*</span></span>');
     }else{
-      var t=title(c),text=t?t.textContent.trim():'',sub=t&&t.getAttribute('data-sub');if(t)t.style.display='none';
+      var t=title(c),text=t?t.textContent.trim():'',sub=t&&t.getAttribute('data-sub');if(t)t.style.setProperty('display','none','important'); /* theme CSS forces .wcfm_title visible -> it showed twice */
       c.parentNode.insertBefore(lab,c);lab.appendChild(c);
       lab.insertAdjacentHTML('beforeend','<span>'+esc(text)+(sub?'<small>'+esc(sub)+'</small>':'')+'</span>');
     }
@@ -6729,4 +6735,5 @@ require_once __DIR__ . '/modules/sale.php';
 require_once __DIR__ . '/modules/search.php';
 require_once __DIR__ . '/modules/wiki.php';
 require_once __DIR__ . '/modules/seo.php';
+require_once __DIR__ . '/modules/creator-apply.php';
 require_once __DIR__ . '/modules/css-files.php';
