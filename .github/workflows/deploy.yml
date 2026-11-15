@@ -25,9 +25,19 @@ jobs:
       SITE: https://solid-sound.net/en/
     steps:
       - uses: actions/checkout@v4
+      # Outdated run? (a newer deploy line is already on main) -> do nothing, the newer run uploads everything. Owner 15.11.2026.
+      - name: Skip if a newer deploy is already queued
+        run: |
+          git fetch -q --depth=1 origin main
+          if [ "$(git rev-parse origin/main:.github/deploy.txt)" != "$(git rev-parse HEAD:.github/deploy.txt)" ]; then
+            echo "::notice::A newer deploy line is on main ($(git show origin/main:.github/deploy.txt | tail -1 | cut -c1-60)) — skipping this outdated run."
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          fi
       - uses: actions/setup-node@v4
+        if: env.SKIP != '1'
         with: { node-version: 22 }
       - name: Rebuild and verify the committed build is current
+        if: env.SKIP != '1'
         run: |
           npm i --no-save esbuild@0.24.2
           node tools/build.mjs
@@ -35,12 +45,15 @@ jobs:
           [ ! -s /tmp/dirty ] || { echo "::error::build/ is out of date: run node tools/build.mjs and commit"; exit 1; }
           find plugin -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: Back up the server copy
+        if: env.SKIP != '1'
         run: |
           python3 tools/ftp_sync.py download "$REMOTE" server-backup
           test -f server-backup/solid-sound-custom.php
       - uses: actions/upload-artifact@v4
+        if: env.SKIP != '1'
         with: { name: "server-backup-${{ github.run_number }}", path: server-backup, retention-days: 90 }
       - name: Upload (build first, loader last)
+        if: env.SKIP != '1'
         run: |
           P=plugin/solid-sound-custom
           python3 tools/ftp_sync.py upload $P/build "$REMOTE/build"
@@ -48,8 +61,10 @@ jobs:
           python3 tools/ftp_sync.py upload $P/backup "$REMOTE/backup"
           python3 tools/ftp_sync.py upload $P/solid-sound-custom.php "$REMOTE/solid-sound-custom.php"
       - name: Clear the page cache (WP Super Cache) so visitors get the new version
+        if: env.SKIP != '1'
         run: python3 tools/ftp_sync.py purge solid-sound.net/www/wp-content/cache/supercache || echo "no page cache to clear"
       - name: Health check (auto-rollback on PHP fatal error)
+        if: env.SKIP != '1'
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"
           mkdir -p deploy-log; LOG=deploy-log/last.txt
@@ -72,7 +87,7 @@ jobs:
           fi
           echo $bad > /tmp/bad
       - name: Save the deploy log in the repo
-        if: always()
+        if: env.SKIP != '1' && (always())
         run: |
           git config user.name "deploy-bot"; git config user.email "actions@users.noreply.github.com"
           git add deploy-log && git commit -m "deploy log: run ${{ github.run_number }}" && git pull --rebase -q origin main && git push || true
