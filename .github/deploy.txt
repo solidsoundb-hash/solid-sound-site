@@ -66,3 +66,4 @@
 62 2026-11-14 05:55:59 phone home: bottom bar without Menu, slider side margins (owner ok: Как сделаешь выкладывай)
 63 2026-11-14 06:32:06 phone home: assistant auto-fits the real screen (owner screenshot A31; standing ok: выкладывай как сделаешь)
 64 2026-11-15 16:36:15 creator application like WeMake: no email code, no country/how-many, links optional, + 'Anything we should know?', fixed double title (owner ok: глянь как у вимейк и сделаем)
+65 2026-11-15 16:55:54 creator sign-up compact: one /sell/ page, form above the fold, First|Last|Email in a row, vendor-register redirects to it (owner ok: страница регистрации должна быть компактная минималистичная; сделай этот блок горизонтально как у вимейка)
