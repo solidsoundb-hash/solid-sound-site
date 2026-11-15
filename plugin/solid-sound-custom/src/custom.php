@@ -1857,6 +1857,51 @@ if ( ! function_exists( 'ss_ap_keys' ) ) {
 #solid-sound-upload-form .acf-checkbox-list>li:has(input:checked),#solid-sound-upload-form .acf-radio-list>li:has(input:checked){border-color:#1f6feb;background:#eef4ff;color:#1d2130}
 #solid-sound-upload-form .acf-checkbox-list>li>label,#solid-sound-upload-form .acf-radio-list>li>label{border:0!important;padding:0!important;min-height:0!important;background:transparent!important;width:100%}
 #solid-sound-upload-form .ss-wm-top h2{font-style:normal!important}
+
+/* 15.11.2026 owner: one dark look with the rest of the site (was a light WeMake copy mixed with dark theme bits) */
+body #solid-sound-upload-form{background:#131b2e!important;color:#e2e8f0!important;border:1px solid rgba(255,255,255,.08);font-family:Roboto,system-ui,sans-serif}
+body #solid-sound-upload-form .ss-wm-top{background:#0f1626!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+body #solid-sound-upload-form .ss-wm-top h2{color:#fff!important;font-weight:700!important}
+body #solid-sound-upload-form .ss-wm-top button.pri,body #solid-sound-upload-form .ss-wm-submit button{background:#f59e0b!important;color:#111!important;border-radius:10px!important;font-weight:800!important;text-transform:none!important;letter-spacing:.01em}
+body #solid-sound-upload-form .ss-wm-top button.pri:hover,body #solid-sound-upload-form .ss-wm-submit button:hover{background:#fbbf24!important}
+body #solid-sound-upload-form .acf-label label,body #solid-sound-upload-form .ss-wm-l{color:#fff!important}
+body #solid-sound-upload-form .ss-wm-max,body #solid-sound-upload-form .acf-label .description,body #solid-sound-upload-form .acf-input>.description,body #solid-sound-upload-form p.description{color:#94a3b8!important;font-style:normal!important}
+body #solid-sound-upload-form .ss-wm-cnt{background:rgba(255,255,255,.06)!important;color:#94a3b8!important}body #solid-sound-upload-form .ss-wm-cnt b{color:#f59e0b!important}
+body #solid-sound-upload-form .acf-required,body #solid-sound-upload-form .ss-req{color:#f59e0b!important}
+body #solid-sound-upload-form .acf-checkbox-list,body #solid-sound-upload-form .acf-radio-list{background:rgba(255,255,255,.02)!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:10px!important}
+body #solid-sound-upload-form .acf-checkbox-list>li,body #solid-sound-upload-form .acf-radio-list>li,body #solid-sound-upload-form .acf-checkbox-list label,body #solid-sound-upload-form .acf-radio-list label{background:#0b1220!important;border-color:rgba(255,255,255,.12)!important;color:#e2e8f0!important;border-radius:8px!important}
+body #solid-sound-upload-form .acf-checkbox-list>li>label,body #solid-sound-upload-form .acf-radio-list>li>label{background:transparent!important}
+body #solid-sound-upload-form .acf-checkbox-list>li:has(input:checked),body #solid-sound-upload-form .acf-radio-list>li:has(input:checked),body #solid-sound-upload-form .acf-checkbox-list label:has(input:checked),body #solid-sound-upload-form .acf-radio-list label:has(input:checked){border-color:#f59e0b!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
+body #solid-sound-upload-form .acf-checkbox-list input,body #solid-sound-upload-form .acf-radio-list input{accent-color:#f59e0b}
+body #solid-sound-upload-form input[type=text],body #solid-sound-upload-form input[type=number],body #solid-sound-upload-form input[type=url],body #solid-sound-upload-form textarea,body #solid-sound-upload-form select,body #solid-sound-upload-form .select2-selection{background:#0b1220!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:9px!important;color:#fff!important;min-height:46px!important;box-shadow:none!important;font-size:15px!important}
+body #solid-sound-upload-form input::placeholder,body #solid-sound-upload-form textarea::placeholder{color:#64748b!important}
+body #solid-sound-upload-form input:focus,body #solid-sound-upload-form textarea:focus,body #solid-sound-upload-form .select2-container--focus .select2-selection,body #solid-sound-upload-form .select2-container--open .select2-selection{border-color:#f59e0b!important;outline:none!important;box-shadow:0 0 0 3px rgba(245,158,11,.15)!important}
+body #solid-sound-upload-form .select2-container{width:100%!important}
+body #solid-sound-upload-form .select2-selection__rendered,body #solid-sound-upload-form .select2-selection__placeholder{color:#94a3b8!important;line-height:44px!important}
+body #solid-sound-upload-form .select2-selection--single .select2-selection__rendered{color:#fff!important}
+body #solid-sound-upload-form .select2-selection__arrow{height:44px!important}body #solid-sound-upload-form .select2-selection__arrow b{border-color:#f59e0b transparent transparent!important}
+body #solid-sound-upload-form .select2-selection__choice{background:rgba(245,158,11,.15)!important;color:#fff!important;border:1px solid rgba(245,158,11,.4)!important;border-radius:6px!important}
+body #solid-sound-upload-form .select2-search__field{color:#fff!important}
+body:has(#solid-sound-upload-form) .select2-dropdown{background:#0f1626!important;border-color:rgba(255,255,255,.14)!important;color:#e2e8f0!important}
+body:has(#solid-sound-upload-form) .select2-results__option{color:#e2e8f0!important}
+body:has(#solid-sound-upload-form) .select2-results__option--highlighted{background:#f59e0b!important;color:#111!important}
+body:has(#solid-sound-upload-form) .select2-search--dropdown .select2-search__field{background:#0b1220!important;color:#fff!important;border:1px solid rgba(255,255,255,.14)!important}
+body #solid-sound-upload-form .ss-wm-row{align-items:end!important}
+body #solid-sound-upload-form .ss-wm-row .acf-field{display:flex;flex-direction:column}
+body #solid-sound-upload-form .ss-wm-row .acf-input{display:flex;align-items:center;gap:6px}
+body #solid-sound-upload-form .ss-wm-row .acf-input>*:not(.acf-actions):not(a){flex:1 1 auto;min-width:0}
+body #solid-sound-upload-form a[data-name=add],body #solid-sound-upload-form .acf-icon[data-name=add]{color:#f59e0b!important}
+body #solid-sound-upload-form .ss-wm-ai{background:#0f1626!important;border:1px solid rgba(255,255,255,.08)}body #solid-sound-upload-form .ss-wm-ai .in{background:transparent!important}
+body #solid-sound-upload-form .ss-wm-ai .bar{background:rgba(255,255,255,.08)!important}body #solid-sound-upload-form .ss-wm-ai .bar i{background:#f59e0b!important}
+body #solid-sound-upload-form .ss-wm-ai .chips span{background:rgba(255,255,255,.05)!important;color:#94a3b8!important}body #solid-sound-upload-form .ss-wm-ai .chips span.ok{background:rgba(52,211,153,.15)!important;color:#34d399!important}
+body #solid-sound-upload-form .ss-wm-drop{background:#0b1220!important;border:2px dashed rgba(245,158,11,.55)!important}
+body #solid-sound-upload-form .ss-wm-drop:hover,body #solid-sound-upload-form .ss-wm-drop.over{background:rgba(245,158,11,.06)!important;border-color:#f59e0b!important}
+body #solid-sound-upload-form .ss-wm-drop b{color:#fff!important}body #solid-sound-upload-form .ss-wm-drop small{color:#94a3b8!important}
+body #solid-sound-upload-form .ss-wm-chips span{background:rgba(255,255,255,.04)!important}
+body #solid-sound-upload-form .ss-wm-chips .c{color:#d8b4fe!important;border-color:#a855f7!important}body #solid-sound-upload-form .ss-wm-chips .z{color:#fcd34d!important;border-color:#f59e0b!important}body #solid-sound-upload-form .ss-wm-chips .m{color:#86efac!important;border-color:#22c55e!important}
+body #solid-sound-upload-form .ss-wm-chips span.ok{color:#111!important}body #solid-sound-upload-form .ss-wm-chips .c.ok{background:#c084fc!important}body #solid-sound-upload-form .ss-wm-chips .z.ok{background:#f59e0b!important}body #solid-sound-upload-form .ss-wm-chips .m.ok{background:#4ade80!important}
+body #solid-sound-upload-form .ss-wm-files{color:#cbd5e1!important}
+body #solid-sound-upload-form .ss-wm-alt{color:#f59e0b!important}body #solid-sound-upload-form .ss-wm-note{color:#94a3b8!important}
 </style>
 <script>
 (function(){
