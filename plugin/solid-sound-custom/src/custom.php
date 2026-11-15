@@ -1242,7 +1242,7 @@ function initWcfm(){
   var TERMS=(window.SS_FT||{}).terms,PRIV=(window.SS_FT||{}).priv;
   function title(inp){var t=(inp.closest('.ss-pw')||inp).previousElementSibling;while(t&&!(t.classList&&t.classList.contains('wcfm_title')))t=t.previousElementSibling;return t}
   [['first_name','First name','given-name'],['last_name','Last name','family-name']].forEach(function(a){var i=f.querySelector('[name="'+a[0]+'"]');if(!i)return;i.setAttribute('data-required','1');i.setAttribute('data-required_message',a[1]+': This field is required.');i.setAttribute('autocomplete',a[2]);var t=title(i);if(t)t.innerHTML='<strong>'+a[1]+'</strong><span class="required">*</span>'});
-  var sn=f.querySelector('[name="store_name"]');if(sn){var st=title(sn),s=st&&st.querySelector('strong');if(s&&s.firstChild&&s.firstChild.nodeType===3)s.firstChild.nodeValue='Artist / store name';else if(st)st.insertAdjacentHTML('afterbegin','');var p1=f.querySelector('[name=passoword]'),p2=f.querySelector('[name=confirm_pwd]');if(p2){var ct=title(p2),cs=ct&&ct.querySelector('strong');if(cs&&cs.firstChild&&cs.firstChild.nodeType===3)cs.firstChild.nodeValue='Confirm password'}if(p1)p1.setAttribute('placeholder','8+ characters');if(p2)p2.setAttribute('placeholder','Repeat password');f.querySelectorAll('input[type=password]').forEach(ssEye);ssMatch(p1,p2);var sb=f.querySelector('input[type=submit]');if(sb)sb.value='Send application';var vb=f.querySelector('[name=wcfm_email_verified_button]');if(vb&&/re-?send/i.test(vb.value))vb.value='Send code';sn.setAttribute('placeholder','e.g. Grenør')}
+  var sn=f.querySelector('[name="store_name"]');if(sn){var st=title(sn),s=st&&st.querySelector('strong');if(s&&s.firstChild&&s.firstChild.nodeType===3)s.firstChild.nodeValue='Artist name';else if(st)st.insertAdjacentHTML('afterbegin','');var p1=f.querySelector('[name=passoword]'),p2=f.querySelector('[name=confirm_pwd]');if(p2){var ct=title(p2),cs=ct&&ct.querySelector('strong');if(cs&&cs.firstChild&&cs.firstChild.nodeType===3)cs.firstChild.nodeValue='Confirm password'}if(p1)p1.setAttribute('placeholder','8+ characters');if(p2)p2.setAttribute('placeholder','Repeat password');f.querySelectorAll('input[type=password]').forEach(ssEye);ssMatch(p1,p2);var sb=f.querySelector('input[type=submit]');if(sb)sb.value='Send application';var vb=f.querySelector('[name=wcfm_email_verified_button]');if(vb&&/re-?send/i.test(vb.value))vb.value='Send code';sn.setAttribute('placeholder','e.g. Grenør')}
   var ph={'link-to-your-work':'SoundCloud, YouTube, Spotify, Beatport, your site…','second-link-optional':'Another link (optional)','anything-we-should-know':'What you produce, who it’s for, what you want to sell first.'};
   /* (15.11.2026, like WeMake) one "Links to your work" block, optional, up to two links */
   (function(){var l1=f.querySelector('[name="wcfmvm_custom_infos[link-to-your-work]"]'),l2=f.querySelector('[name="wcfmvm_custom_infos[second-link-optional]"]');
@@ -2036,7 +2036,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 <?php } ?></div>
 <?php }
 		if ( $store ) { ?>
-<div class="ssw-card ssw-share"><div><b>Your store link</b><p>Every sale from your link counts. Post it in your bio, under videos, in Discord.</p></div><input readonly value="<?php echo esc_attr( $store ); ?>" onclick="this.select()"><button type="button" class="ssw-btn" onclick="var i=this.previousElementSibling;i.select();try{navigator.clipboard.writeText(i.value)}catch(e){document.execCommand('copy')}this.textContent='Copied ✓'">Copy link</button><a class="ssw-btn ghost" href="<?php echo esc_url( $store ); ?>" target="_blank">View store</a></div>
+<div class="ssw-card ssw-share"><div><b>Your profile page</b><p>Share it in your bio, under videos, in Discord — fans see only your products. Every sale from it counts.</p></div><input readonly value="<?php echo esc_attr( $store ); ?>" onclick="this.select()"><button type="button" class="ssw-btn" onclick="var i=this.previousElementSibling;i.select();try{navigator.clipboard.writeText(i.value)}catch(e){document.execCommand('copy')}this.textContent='Copied ✓'">Copy link</button><a class="ssw-btn ghost" href="<?php echo esc_url( $store ); ?>" target="_blank">View my profile</a></div>
 <?php }
 		$top = get_posts( array( 'post_type' => 'product', 'author' => $id, 'post_status' => 'publish', 'posts_per_page' => 3, 'meta_key' => 'total_sales', 'orderby' => 'meta_value_num', 'order' => 'DESC' ) );
 		if ( $top ) { ?>
@@ -2046,7 +2046,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 <?php } ?></div></div>
 <?php }
 		?>
-<div class="ssw-card"><div class="ssw-h"><b>Manage Your Store</b></div><div class="ssw-tiles">
+<div class="ssw-card"><div class="ssw-h"><b>Quick links</b></div><div class="ssw-tiles">
 <a class="ssw-tile" href="<?php echo esc_url( trailingslashit( $url ) . 'ss-products/' ); ?>"><i>🎵</i><div><b>Products</b><span>Manage your catalog</span></div></a>
 <a class="ssw-tile" href="<?php echo esc_url( trailingslashit( $url ) . 'ss-payouts/' ); ?>"><i>💳</i><div><b>Payouts</b><span>Get paid for your sales</span></div></a>
 <a class="ssw-tile" href="<?php echo esc_url( trailingslashit( $url ) . 'ss-settings/' ); ?>"><i>👤</i><div><b>Profile</b><span>Edit your profile</span></div></a>
@@ -2151,13 +2151,14 @@ a.ssw-btn.ghost{background:#131B2E!important;color:#D97706!important;border:1.5p
 /* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
-<script>(function(){function go(){var st=document.querySelector('.wcfm_dashboard_stats');if(!st)return false;
-var map=[[/commission in last 7 days/i,'Your earnings · last 7 days'],[/gross sales in last 7 days/i,'Sales · last 7 days'],[/sold in last 7 days/i,'Items sold · last 7 days'],[/received in last 7 days/i,'Orders · last 7 days']];
-st.querySelectorAll('*').forEach(function(e){if(e.children.length)return;map.forEach(function(m){if(m[0].test(e.textContent))e.textContent=m[1]})});
-var zero=!/[1-9]/.test((st.textContent.match(/\$[\d.,]+/g)||[]).join('')+(st.textContent.match(/\d+\s*orders?/i)||[''])[0]);
-if(zero){var c=document.querySelector('.wcfm_dashboard_wc_reports_sales, #wcfm_dashboard_wc_reports_sales');if(!c){var cv=document.querySelector('#wcfm-main-contentainer canvas');c=cv&&(cv.closest('.wcfm-container')||cv.parentNode)}if(c)c.style.display='none'}
-return true}
-if(!go()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(go())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},8000)}})();</script>
+<script>(function(){var lab=false,chart=false,zero=null;
+function go(){var st=document.querySelector('.wcfm_dashboard_stats');if(!st)return false;
+ if(!lab){var map=[[/commission in last 7 days/i,'Your earnings · last 7 days'],[/gross sales in last 7 days/i,'Sales · last 7 days'],[/sold in last 7 days/i,'items sold · last 7 days'],[/received in last 7 days/i,'orders · last 7 days']];
+  var w=document.createTreeWalker(st,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){map.forEach(function(m){if(m[0].test(n.nodeValue))n.nodeValue=n.nodeValue.replace(m[0],m[1])})}lab=true}
+ if(zero===null){var t=st.textContent;zero=!/[1-9]/.test((t.match(/\$\s?[\d.,]+/g)||[]).join(''))&&!/\b[1-9]\d*\s*orders?/i.test(t)}
+ if(zero&&!chart){var cv=document.querySelector('#wcfm-main-contentainer canvas');if(cv){var c=cv.closest('.wcfm_dashboard_wc_reports_sales')||cv.closest('.wcfm-container')||cv.parentNode;c.style.display='none';var h=c.previousElementSibling;if(h&&/collapsible|wcfm_dashboard_wc_reports_sales_heading/.test(h.className))h.style.display='none';chart=true}}
+ return lab&&(!zero||chart)}
+if(!go()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(go())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},12000)}})();</script>
 <?php }, 40 );
 
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */

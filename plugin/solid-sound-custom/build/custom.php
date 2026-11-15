@@ -1639,7 +1639,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 <?php } ?></div>
 <?php }
 		if ( $store ) { ?>
-<div class="ssw-card ssw-share"><div><b>Your store link</b><p>Every sale from your link counts. Post it in your bio, under videos, in Discord.</p></div><input readonly value="<?php echo esc_attr( $store ); ?>" onclick="this.select()"><button type="button" class="ssw-btn" onclick="var i=this.previousElementSibling;i.select();try{navigator.clipboard.writeText(i.value)}catch(e){document.execCommand('copy')}this.textContent='Copied ✓'">Copy link</button><a class="ssw-btn ghost" href="<?php echo esc_url( $store ); ?>" target="_blank">View store</a></div>
+<div class="ssw-card ssw-share"><div><b>Your profile page</b><p>Share it in your bio, under videos, in Discord — fans see only your products. Every sale from it counts.</p></div><input readonly value="<?php echo esc_attr( $store ); ?>" onclick="this.select()"><button type="button" class="ssw-btn" onclick="var i=this.previousElementSibling;i.select();try{navigator.clipboard.writeText(i.value)}catch(e){document.execCommand('copy')}this.textContent='Copied ✓'">Copy link</button><a class="ssw-btn ghost" href="<?php echo esc_url( $store ); ?>" target="_blank">View my profile</a></div>
 <?php }
 		$top = get_posts( array( 'post_type' => 'product', 'author' => $id, 'post_status' => 'publish', 'posts_per_page' => 3, 'meta_key' => 'total_sales', 'orderby' => 'meta_value_num', 'order' => 'DESC' ) );
 		if ( $top ) { ?>
@@ -1649,7 +1649,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 <?php } ?></div></div>
 <?php }
 		?>
-<div class="ssw-card"><div class="ssw-h"><b>Manage Your Store</b></div><div class="ssw-tiles">
+<div class="ssw-card"><div class="ssw-h"><b>Quick links</b></div><div class="ssw-tiles">
 <a class="ssw-tile" href="<?php echo esc_url( trailingslashit( $url ) . 'ss-products/' ); ?>"><i>🎵</i><div><b>Products</b><span>Manage your catalog</span></div></a>
 <a class="ssw-tile" href="<?php echo esc_url( trailingslashit( $url ) . 'ss-payouts/' ); ?>"><i>💳</i><div><b>Payouts</b><span>Get paid for your sales</span></div></a>
 <a class="ssw-tile" href="<?php echo esc_url( trailingslashit( $url ) . 'ss-settings/' ); ?>"><i>👤</i><div><b>Profile</b><span>Edit your profile</span></div></a>
@@ -1712,7 +1712,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2190'); ?>
+<?php ss_asset('js-l2191'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3822,7 +3822,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4672'); ?>
+<?php ss_asset('js-l4673'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4503,7 +4503,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5747'); ?>
+<?php ss_asset('css-l5748'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5082,7 +5082,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6360'); ?>
+<?php ss_asset('css-l6361'); ?>
 		<?php
 		return ob_get_clean();
 	}
