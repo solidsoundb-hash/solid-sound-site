@@ -202,12 +202,13 @@ add_action( 'wp_head', function () { if ( ss_cs_ok() && function_exists( 'ss_ass
 add_action( 'wp_footer', function () {
 	if ( ! ss_cs_ok() ) return;
 	$root = ss_cs_is_root(); ?>
-<template id="ss-cs-tpl"><div id="ss-cs-wrap"><?php echo ss_cs_nav(); if ( $root ) echo ss_cs_render(); /* escaped inside */ ?></div></template>
+<?php try { $ss_cs_html = ss_cs_nav() . ( $root ? ss_cs_render() : '' ); } catch ( \Throwable $e ) { error_log( 'creator space: ' . $e->getMessage() ); return; } ?>
+<template id="ss-cs-tpl"><div id="ss-cs-wrap"><?php echo $ss_cs_html; /* escaped inside */ ?></div></template>
 <style id="ss-cs-css">
-body.ss-cs #wcfm_menu{display:none!important}
+body.ss-cs-mounted #wcfm_menu{display:none!important}
 body.ss-cs #wcfm-content{width:100%!important;max-width:none!important;margin:0!important;float:none!important;background:transparent!important}
 body.ss-cs #wcfm-main-contentainer{background:transparent!important;max-width:1220px;margin-left:auto!important;margin-right:auto!important}
-body.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){display:none!important}
+body.ss-cs-mounted.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){display:none!important}
 #ss-cs-wrap{font-family:"Exo 2",system-ui,sans-serif;padding:0 0 10px}
 #ss-cs-wrap .ssa-nav{margin:6px 0 18px}
 #ss-cs-wrap #ssd{padding:4px 0 40px}
@@ -229,7 +230,7 @@ body.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){display:none!important}
 @media(max-width:700px){#ss-cs-wrap .ssa-nav a span{display:inline}.ss-cs-d .chart{height:180px}}
 </style>
 <script>(function(){
-function mount(){var t=document.getElementById('ss-cs-tpl'),c=document.getElementById('wcfm-content');if(!t||!c)return false;if(document.getElementById('ss-cs-wrap'))return true;c.insertBefore(t.content.cloneNode(true),c.firstChild);init();return true}
+function mount(){var t=document.getElementById('ss-cs-tpl'),c=document.getElementById('wcfm-content');if(!t||!c)return false;if(document.getElementById('ss-cs-wrap'))return true;c.insertBefore(t.content.cloneNode(true),c.firstChild);try{init()}catch(e){}document.body.classList.add('ss-cs-mounted');return true}
 function spark(svg){var v=(svg.getAttribute('data-v')||'').split(',').map(Number),w=120,hh=28,m=Math.max.apply(0,v)||1;svg.setAttribute('viewBox','0 0 '+w+' '+hh);svg.setAttribute('preserveAspectRatio','none');if(!v.length)return;var pts=v.map(function(x,i){return (i*w/Math.max(1,v.length-1)).toFixed(1)+','+(hh-2-(x/m)*(hh-6)).toFixed(1)});svg.innerHTML='<polyline points="0,'+hh+' '+pts.join(' ')+' '+w+','+hh+'" fill="rgba(245,158,11,.15)"/><polyline points="'+pts.join(' ')+'" fill="none" stroke="#F59E0B" stroke-width="1.8" vector-effect="non-scaling-stroke"/>'}
 function chart(ch){var S=JSON.parse(ch.getAttribute('data-series')),svg=ch.querySelector('svg'),tip=ch.querySelector('.tip'),cur='e',W=700,H=220,L=44,B=24,T=10,n=S.d.length;
  var fmt={e:function(x){return '$'+(+x).toFixed(2)},s:function(x){return x+' sale'+(x==1?'':'s')},p:function(x){return x+' play'+(x==1?'':'s')}};
