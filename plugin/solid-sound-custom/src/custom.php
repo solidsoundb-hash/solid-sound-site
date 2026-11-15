@@ -2014,7 +2014,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 		$prof = (array) get_user_meta( $id, 'wcfmmp_profile_settings', true );
 		$pay  = isset( $prof['payment'] ) ? (array) $prof['payment'] : array();
 		$s1 = ! empty( $prof['gravatar'] ) && ( ! empty( $prof['shop_description'] ) || ! empty( $prof['banner'] ) );
-		$s2 = count_user_posts( $id, 'product' ) > 0;
+		$s2 = (bool) get_posts( array( 'post_type' => 'product', 'author' => $id, 'post_status' => array( 'publish', 'pending', 'draft', 'private' ), 'posts_per_page' => 1, 'fields' => 'ids' ) ); /* same list as Products (was count_user_posts: said Done with an empty list) */
 		$s3 = ! empty( $pay['method'] ) && ( ! empty( $pay['paypal']['email'] ) || ! empty( $pay['bank']['iban'] ) || ! empty( $pay['bank']['ac_number'] ) || 'paypal' !== $pay['method'] );
 		$t  = $wpdb->prefix . 'wcfm_marketplace_orders';
 		$s4 = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE vendor_id = %d AND is_trashed = 0", $id ) ) > 0;
@@ -2116,6 +2116,26 @@ a.ssw-btn.ghost{background:#131B2E!important;color:#D97706!important;border:1.5p
 .ssw-tile{display:flex;align-items:center;gap:14px;background:#0F1626;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;text-decoration:none!important}
 .ssw-tile i{font-size:28px;font-style:normal}.ssw-tile b{display:block;color:#E5E7EB;font-size:16px}.ssw-tile span{color:#94A3B8;font-size:13px}
 @media(max-width:700px){#wcfm_menu{width:76px!important;min-width:76px!important}.ssw-step{flex-wrap:wrap}.ssw-step .ssw-btn{width:100%;text-align:center}.ssw-start{padding:18px!important}}
+/* 15.11.2026 owner review */
+#wcfm_menu .wcfm_menu_items a.wcfm_menu_item span.text{color:rgba(255,255,255,.62)!important}
+.ssw-start{background:#131B2E!important;border:1px solid rgba(245,158,11,.35)!important}
+.ssw-start .ssw-h span{color:#f59e0b!important}
+.ssw-bar{background:rgba(255,255,255,.08)!important}.ssw-bar i{background:#f59e0b!important;min-width:8px}
+.ssw-step{background:rgba(255,255,255,.04)!important;border:1px solid rgba(255,255,255,.06)}
+.ssw-step>div,.ssw-step>div *{background:transparent!important}
+.ssw-ic{background:rgba(245,158,11,.15)!important;color:#f59e0b!important}
+.ssw-step.done .ssw-ic{background:#16a34a!important;color:#fff!important}
+.ssw-start a.ssw-btn{background:#f59e0b!important;color:#111!important}
+#wcfm-main-contentainer a.ssw-btn,#wcfm-main-contentainer button.ssw-btn,a.ssw-btn,button.ssw-btn{background:#f59e0b!important;color:#111!important}
+@media(max-width:700px){.ssw-step{flex-wrap:wrap!important;padding:14px!important;gap:12px!important}.ssw-step>div{flex:1 1 calc(100% - 60px)!important}#wcfm-main-contentainer .ssw-step a.ssw-btn,.ssw-step .ssw-done{flex:1 1 100%!important;width:100%!important;text-align:center}.ssw-start .ssw-h b{font-size:21px!important}}
+#wcfm-main-contentainer{margin-top:8px!important}
+.l-main:has(#wcfm-main-contentainer)>.l-section:first-child,.l-main:has(#wcfm-main-contentainer) .l-section.height_auto:first-child{padding-top:12px!important}
+#wcfm-main-contentainer .sscp-set label{display:block!important;width:100%!important;max-width:none!important;float:none!important}
+#wcfm-main-contentainer .sscp-set textarea{width:100%!important;max-width:none!important;min-height:120px}
+#wcfm-main-contentainer .sscp-set input:not([type=file]),#wcfm-main-contentainer .sscp-set select{width:100%!important;max-width:none!important;min-height:44px;border-radius:8px!important}
+#wcfm-main-contentainer .sscp-up .cv.ph{display:flex!important;align-items:center;justify-content:center;border:1.5px dashed rgba(255,255,255,.2);color:#64748b;font-size:12px;font-weight:600}
+#wcfm-main-contentainer .sscp-up .btnf{color:#e2e8f0!important;background:rgba(255,255,255,.04)}
+#wcfm-main-contentainer .sscp-up .btnf:hover{border-color:#f59e0b!important;color:#fff!important}
 </style>
 	<?php } );
 
@@ -2127,6 +2147,18 @@ a.ssw-btn.ghost{background:#131B2E!important;color:#D97706!important;border:1.5p
 <script>(function(){var t=document.getElementById('ssw-tpl'),w=document.querySelector('.wcfm_welcomebox_header'),st=document.querySelector('.wcfm_dashboard_stats');if(!t||!w||document.querySelector('.ssw'))return;var f=t.content.cloneNode(true),box=f.querySelector('.ssw');w.parentNode.insertBefore(f,w.nextSibling);box=document.querySelector('.ssw');var start=box.querySelector('.ssw-start');if(st){var after=document.createElement('div');after.className='ssw';[].slice.call(box.children).forEach(function(c){if(c!==start)after.appendChild(c)});st.parentNode.insertBefore(after,st.nextSibling)}var h=document.querySelector('.wcfm-page-heading-text');if(h&&/dashboard/i.test(h.textContent))h.textContent='Marketplace Dashboard'})();</script>
 	<?php }, 30 );
 }
+
+/* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
+add_action( 'wp_footer', function () {
+	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
+<script>(function(){function go(){var st=document.querySelector('.wcfm_dashboard_stats');if(!st)return false;
+var map=[[/commission in last 7 days/i,'Your earnings · last 7 days'],[/gross sales in last 7 days/i,'Sales · last 7 days'],[/sold in last 7 days/i,'Items sold · last 7 days'],[/received in last 7 days/i,'Orders · last 7 days']];
+st.querySelectorAll('*').forEach(function(e){if(e.children.length)return;map.forEach(function(m){if(m[0].test(e.textContent))e.textContent=m[1]})});
+var zero=!/[1-9]/.test((st.textContent.match(/\$[\d.,]+/g)||[]).join('')+(st.textContent.match(/\d+\s*orders?/i)||[''])[0]);
+if(zero){var c=document.querySelector('.wcfm_dashboard_wc_reports_sales, #wcfm_dashboard_wc_reports_sales');if(!c){var cv=document.querySelector('#wcfm-main-contentainer canvas');c=cv&&(cv.closest('.wcfm-container')||cv.parentNode)}if(c)c.style.display='none'}
+return true}
+if(!go()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(go())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},8000)}})();</script>
+<?php }, 40 );
 
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */
 if ( ! function_exists( 'ss_ep_url' ) ) {
@@ -2402,13 +2434,13 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 				. '<div class="ssw-card"><div class="ssw-h"><b>👤 Profile &amp; Branding</b><button class="ssw-btn">💾 Save</button></div>'
 				. '<label>Artist / Producer Name<input name="store_name" value="' . esc_attr( $name ) . '"><small>This is how you’ll appear across the marketplace</small></label>'
 				. '<div class="sscp-up"><img src="' . esc_url( $av ) . '" class="av" alt=""><label class="btnf">⬆ Upload New Photo<input type="file" name="avatar_file" accept="image/*"></label><small>Recommended: square image, at least 400×400px</small></div>'
-				. '<div class="sscp-up">' . ( $cv ? '<img src="' . esc_url( $cv ) . '" class="cv" alt="">' : '<span class="cv ph"></span>' ) . '<label class="btnf">⬆ Upload Cover Image<input type="file" name="cover_file" accept="image/*"></label><small>Recommended: 1200×400px for best results</small></div>'
+				. '<div class="sscp-up">' . ( $cv ? '<img src="' . esc_url( $cv ) . '" class="cv" alt="">' : '<span class="cv ph">No cover yet</span>' ) . '<label class="btnf">⬆ Upload Cover Image<input type="file" name="cover_file" accept="image/*"></label><small>Recommended: 1200×400px for best results</small></div>'
 				. '<label>Bio<textarea name="bio" rows="5">' . esc_textarea( $p['shop_description'] ?? '' ) . '</textarea></label></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>📍 Location (Optional)</b></div><label>Country<select name="country">' . $opt . '</select></label></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>🔗 Social Media</b></div><div class="sscp-g2">' . $f( 'instagram', 'Instagram', 'https://instagram.com/…' ) . $f( 'youtube', 'YouTube', 'https://youtube.com/…' ) . $f( 'soundcloud', 'SoundCloud', 'https://soundcloud.com/…' ) . $f( 'spotify', 'Spotify', 'https://open.spotify.com/…' ) . $f( 'tiktok', 'TikTok', 'https://tiktok.com/@…' ) . $f( 'fb', 'Facebook', 'https://facebook.com/…' ) . '</div></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>☎ Contact Information</b></div><label>Contact Number (Optional)<input name="phone" value="' . esc_attr( $p['phone'] ?? '' ) . '"></label><label>Email Address<input value="' . esc_attr( $u->user_email ) . '" disabled></label></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>💳 Payment Information</b></div><p class="sscp-sub">' . ( ss_cp_payout_set( $id ) ? 'Your payout method is set. ' : 'No payout method yet. ' ) . '<a href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">Manage payouts →</a></p></div>'
-				. '<div class="ssw-card"><div class="ssw-h"><b>🔍 SEO Settings (Advanced)</b></div><label>Meta Keywords<input name="meta_keys" value="' . esc_attr( $seo['wcfmmp-seo-meta-keywords'] ?? '' ) . '"></label><label>Meta Description<textarea name="meta_desc" rows="2">' . esc_textarea( $seo['wcfmmp-seo-meta-desc'] ?? '' ) . '</textarea></label></div>'
+				/* SEO keywords card removed (owner 15.11: nothing extra for producers) */
 				. '<p><button class="ssw-btn">💾 Save</button></p></form>';
 		}
 		if ( 'ss-help' === $s ) {

@@ -1617,7 +1617,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 		$prof = (array) get_user_meta( $id, 'wcfmmp_profile_settings', true );
 		$pay  = isset( $prof['payment'] ) ? (array) $prof['payment'] : array();
 		$s1 = ! empty( $prof['gravatar'] ) && ( ! empty( $prof['shop_description'] ) || ! empty( $prof['banner'] ) );
-		$s2 = count_user_posts( $id, 'product' ) > 0;
+		$s2 = (bool) get_posts( array( 'post_type' => 'product', 'author' => $id, 'post_status' => array( 'publish', 'pending', 'draft', 'private' ), 'posts_per_page' => 1, 'fields' => 'ids' ) ); /* same list as Products (was count_user_posts: said Done with an empty list) */
 		$s3 = ! empty( $pay['method'] ) && ( ! empty( $pay['paypal']['email'] ) || ! empty( $pay['bank']['iban'] ) || ! empty( $pay['bank']['ac_number'] ) || 'paypal' !== $pay['method'] );
 		$t  = $wpdb->prefix . 'wcfm_marketplace_orders';
 		$s4 = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE vendor_id = %d AND is_trashed = 0", $id ) ) > 0;
@@ -1672,6 +1672,12 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 	<?php }, 30 );
 }
 
+/* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
+add_action( 'wp_footer', function () {
+	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
+<?php ss_asset('js-l2154'); ?>
+<?php }, 40 );
+
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */
 if ( ! function_exists( 'ss_ep_url' ) ) {
 	function ss_ep_url() { return function_exists( 'get_wcfm_url' ) ? trailingslashit( get_wcfm_url() ) . 'ss-add-product/' : home_url( '/add-product/' ); }
@@ -1706,7 +1712,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2158'); ?>
+<?php ss_asset('js-l2190'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -1932,13 +1938,13 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 				. '<div class="ssw-card"><div class="ssw-h"><b>👤 Profile &amp; Branding</b><button class="ssw-btn">💾 Save</button></div>'
 				. '<label>Artist / Producer Name<input name="store_name" value="' . esc_attr( $name ) . '"><small>This is how you’ll appear across the marketplace</small></label>'
 				. '<div class="sscp-up"><img src="' . esc_url( $av ) . '" class="av" alt=""><label class="btnf">⬆ Upload New Photo<input type="file" name="avatar_file" accept="image/*"></label><small>Recommended: square image, at least 400×400px</small></div>'
-				. '<div class="sscp-up">' . ( $cv ? '<img src="' . esc_url( $cv ) . '" class="cv" alt="">' : '<span class="cv ph"></span>' ) . '<label class="btnf">⬆ Upload Cover Image<input type="file" name="cover_file" accept="image/*"></label><small>Recommended: 1200×400px for best results</small></div>'
+				. '<div class="sscp-up">' . ( $cv ? '<img src="' . esc_url( $cv ) . '" class="cv" alt="">' : '<span class="cv ph">No cover yet</span>' ) . '<label class="btnf">⬆ Upload Cover Image<input type="file" name="cover_file" accept="image/*"></label><small>Recommended: 1200×400px for best results</small></div>'
 				. '<label>Bio<textarea name="bio" rows="5">' . esc_textarea( $p['shop_description'] ?? '' ) . '</textarea></label></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>📍 Location (Optional)</b></div><label>Country<select name="country">' . $opt . '</select></label></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>🔗 Social Media</b></div><div class="sscp-g2">' . $f( 'instagram', 'Instagram', 'https://instagram.com/…' ) . $f( 'youtube', 'YouTube', 'https://youtube.com/…' ) . $f( 'soundcloud', 'SoundCloud', 'https://soundcloud.com/…' ) . $f( 'spotify', 'Spotify', 'https://open.spotify.com/…' ) . $f( 'tiktok', 'TikTok', 'https://tiktok.com/@…' ) . $f( 'fb', 'Facebook', 'https://facebook.com/…' ) . '</div></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>☎ Contact Information</b></div><label>Contact Number (Optional)<input name="phone" value="' . esc_attr( $p['phone'] ?? '' ) . '"></label><label>Email Address<input value="' . esc_attr( $u->user_email ) . '" disabled></label></div>'
 				. '<div class="ssw-card"><div class="ssw-h"><b>💳 Payment Information</b></div><p class="sscp-sub">' . ( ss_cp_payout_set( $id ) ? 'Your payout method is set. ' : 'No payout method yet. ' ) . '<a href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">Manage payouts →</a></p></div>'
-				. '<div class="ssw-card"><div class="ssw-h"><b>🔍 SEO Settings (Advanced)</b></div><label>Meta Keywords<input name="meta_keys" value="' . esc_attr( $seo['wcfmmp-seo-meta-keywords'] ?? '' ) . '"></label><label>Meta Description<textarea name="meta_desc" rows="2">' . esc_textarea( $seo['wcfmmp-seo-meta-desc'] ?? '' ) . '</textarea></label></div>'
+				/* SEO keywords card removed (owner 15.11: nothing extra for producers) */
 				. '<p><button class="ssw-btn">💾 Save</button></p></form>';
 		}
 		if ( 'ss-help' === $s ) {
@@ -3816,7 +3822,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4640'); ?>
+<?php ss_asset('js-l4672'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4497,7 +4503,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5699'); ?>
+<?php ss_asset('css-l5731'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5076,7 +5082,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6312'); ?>
+<?php ss_asset('css-l6344'); ?>
 		<?php
 		return ob_get_clean();
 	}
