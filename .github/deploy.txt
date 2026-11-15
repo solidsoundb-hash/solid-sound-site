@@ -91,3 +91,4 @@
 87 2026-11-15 20:21:21 creator space stays default (owner ok: не возвращай старый)
 88 2026-11-15 20:25:59 creator space safe mode (owner ok: быстро почини)
 89 2026-11-15 20:36:58 creator space cached numbers (owner ok: чини, выложишь сразу)
+90 2026-11-15 20:59:53 URGENT store manager Out of Memory: no chart hiding (owner: со старым то же самое)
