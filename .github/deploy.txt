@@ -88,3 +88,4 @@
 84 2026-11-15 20:14:53 AI description + AI cover buttons in Add Product (owner ok: работает; выложи как сделаешь все)
 85 2026-11-15 20:18:07 same as 84 (AI tools) with the safe upload order (owner: так и должно быть? — нет, окно при заливке; исправлено)
 86 2026-11-15 20:20:21 HOTFIX old creator dashboard by default (owner: у меня кабинет криетора упал)
+87 2026-11-15 20:21:21 creator space stays default (owner ok: не возвращай старый)
