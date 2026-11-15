@@ -1466,7 +1466,7 @@ function ss_sell_page() {
 	?>
 <div class="sssell">
 <style>
-.sssell{--or:#e09900;--or2:#f5ad12;--mut:#9b9690;--line:rgba(255,255,255,.09);--panel:#1c1a18;color:#ececec;font-size:15px;line-height:1.55}
+.sssell{--or:#e09900;--or2:#f5ad12;--mut:#9b9690;--line:rgba(255,255,255,.09);--panel:#131b2e;color:#ececec;font-size:15px;line-height:1.55}
 .sssell *{box-sizing:border-box}
 .sssell a{color:var(--or)}
 .sssell .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:0;border-radius:10px;background:var(--or);color:#111!important;font:800 15px/1.2 Roboto,sans-serif;letter-spacing:.03em;text-transform:uppercase;text-decoration:none!important;cursor:pointer;transition:background .15s}
@@ -1526,6 +1526,9 @@ function ss_sell_page() {
 .sssell-form{padding:24px}
 .sssell-row{display:grid;gap:10px;align-items:start}.sssell-r3{grid-template-columns:1fr 1fr 1.3fr}.sssell-r2{grid-template-columns:1fr 1fr}.sssell-end{align-items:end}
 .sssell-cell{min-width:0}
+.sssell .sssell-form .wcfm-membership-wrapper,.sssell .sssell-form .wcfm-container,.sssell .sssell-form #wcfm-content{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+.sssell .sssell-form h2.sssell-fh{text-align:left!important}
+@media (max-width:560px){.sssell-steps{gap:8px!important}.sssell-step{display:block!important;padding:12px!important}.sssell-step:before{margin:0 0 6px!important}.sssell-pitch h1{margin-top:8px!important}.sssell-sub{display:none}.sssell-pts{gap:6px}}
 .sssell-form input:-webkit-autofill,.sssell-form input:-webkit-autofill:hover,.sssell-form input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 60px #151311 inset!important;-webkit-text-fill-color:#fff!important;caret-color:#fff;transition:background-color 9999s}
 .sssell-form #password_strength:empty{display:none}
 .sssell-form .wcfm_title,.sssell-form p.wcfm_title{margin:10px 0 5px!important}
