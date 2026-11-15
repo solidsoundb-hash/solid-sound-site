@@ -23,7 +23,7 @@ add_action( 'wp_footer', function () {
 .ss-sb-b{flex:none;display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;border:0;border-radius:10px;background:#f59e0b;color:#111;font:800 15px/1 Roboto,sans-serif;letter-spacing:.02em;cursor:pointer;white-space:nowrap}
 .ss-sb-b:hover{background:#fbbf24}
 @media(min-width:768px){.ss-sb{top:var(--ss-sb-top,72px);border-bottom-width:1px;transform:translateY(-110%)}}
-@media(max-width:767px){.ss-sb{bottom:var(--ss-sb-bot,0px);padding:8px 12px;border-top-width:1px;box-shadow:0 -8px 24px rgba(0,0,0,.35);transform:translateY(110%)}.ss-sb img{width:40px;height:40px}.ss-sb-b{padding:0 16px}}
+#ssb{transition:transform .22s ease}@media(max-width:767px){body.ss-sb-on #ssb{transform:translateY(-62px)}.ss-sb{bottom:var(--ss-sb-bot,0px);padding:8px 12px;border-top-width:1px;box-shadow:0 -8px 24px rgba(0,0,0,.35);transform:translateY(110%)}.ss-sb img{width:40px;height:40px}.ss-sb-b{padding:0 16px}}
 </style>
 <script>(function(){
 var CART='<svg class="ss-cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>';
@@ -50,7 +50,7 @@ function init(){
     bar.style.setProperty('--ss-sb-bot',Math.max(0,Math.round(innerHeight-top))+'px');
   }
   var shown=false,q=0;
-  function show(on){if(on===shown)return;shown=on;if(on)place();bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');bb.tabIndex=on?0:-1}
+  function show(on){if(on===shown)return;shown=on;if(on)place();bar.classList.toggle('on',on);document.body.classList.toggle('ss-sb-on',on);bar.setAttribute('aria-hidden',on?'false':'true');bb.tabIndex=on?0:-1}
   /* show only after the real button has been scrolled past (not before the visitor reaches it) */
   new IntersectionObserver(function(es){es.forEach(function(e){show(!e.isIntersecting&&e.boundingClientRect.top<0)})},{rootMargin:'-80px 0px 0px 0px'}).observe(btn);
   addEventListener('resize',function(){if(shown&&!q)q=requestAnimationFrame(function(){q=0;place()})},{passive:true});
