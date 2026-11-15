@@ -1265,60 +1265,87 @@ function ss_sell_page() {
 		array( 'What is a Founding Creator?', 'The first 20 approved producers get 85% per sale for 12 months, a Founding Creator badge and priority promotion on the homepage and our socials. After 12 months the standard 70% applies.' ),
 		array( 'Do I get a discount on mixing and mastering?', 'Yes. Every approved creator gets 20% off our mixing and mastering services.' ),
 		array( 'Can I use third-party samples?', 'Only royalty-free samples you are allowed to redistribute inside a project. No copyrighted loops or vocals.' ),
-		array( 'What do you look for?', 'Full projects or packs you made yourself, with the plugins listed (native-only is a plus), cleared samples only and a short MP3 preview.' ),
 		array( 'What if a buyer doesn\'t have my plugins?', 'You list the plugins used; they appear on the product page and as a filter, so buyers know before they purchase.' ),
 	);
 	$ic = function ( $d ) { return '<div class="sssell-ic"><svg viewBox="0 0 24 24" aria-hidden="true">' . $d . '</svg></div>'; };
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1467'); ?>
+<?php ss_asset('css-l1466'); ?>
 
-<section class="sssell-top" id="apply">
-	<div class="sssell-pitch">
+<section class="sssell-hero">
+	<div>
 		<span class="sssell-kick">For producers &amp; sound designers</span>
-		<h1>Sell your sounds.<br><em>Keep up to 85%.</em></h1>
-		<p class="sssell-sub">Ableton templates, presets, sample packs, MIDI and music. You set the price.</p>
-		<ul class="sssell-pts">
-			<li><?php echo $ic( '<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M19 5L5 19"/>' ); ?><span><b>85%</b> for the first 20 creators &middot; 70% standard</span></li>
-			<li><?php echo $ic( '<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>' ); ?><span><b>$0 fees</b> &middot; non-exclusive &middot; sell anywhere else too</span></li>
-			<li><?php echo $ic( '<polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9"/>' ); ?><span><b>Featured</b> on the homepage &amp; our socials</span></li>
-			<li><?php echo $ic( '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' ); ?><span><b>Reviewed in 24 h</b> &middot; paid monthly from $25</span></li>
-			<li><?php echo $ic( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/>' ); ?><span><b>5+ products?</b> We upload them for you, free</span></li>
+		<h1>Sell your Ableton templates.<br><em>Keep up to 85%.</em></h1>
+		<p>A marketplace made for producers and DJs: waveform previews, BPM &amp; key filters, a player that lets buyers compare tracks. No fees, non-exclusive, you set the price.</p>
+		<div class="sssell-ctas"><a class="btn" href="#apply">Apply now &mdash; takes 2 minutes</a><a class="btn ghost" href="#how">How it works</a></div>
+	</div>
+	<div class="sssell-big"><div class="n">85%</div><div class="l">to you for every sale</div><div class="s">Founding Creator rate &middot; first 20 producers &middot; locked for 12 months<br>Standard rate: 70%</div></div>
+</section>
+<div class="sssell-stats">
+	<div class="sssell-stat"><b>$0</b><span>listing fees</span></div>
+	<div class="sssell-stat"><b>24 h</b><span>application review</span></div>
+	<div class="sssell-stat"><b>$25</b><span>minimum payout</span></div>
+	<div class="sssell-stat"><b>Non-exclusive</b><span>sell anywhere else too</span></div>
+</div>
+
+<h2>Why sell <em>here</em></h2>
+<p class="sssell-lead">Big marketplaces list thousands of products &mdash; new creators get buried. We put your work in front of buyers from day one.</p>
+<div class="sssell-g3">
+	<div class="sssell-card"><?php echo $ic( '<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>' ); ?><h3>Higher share</h3><p>Up to 85% for Founding Creators, 70% standard. Most marketplaces start at 50%.</p></div>
+	<div class="sssell-card"><?php echo $ic( '<polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9"/>' ); ?><h3>Featured, not buried</h3><p>New releases go to the homepage, Best Products and our Instagram, TikTok and YouTube &mdash; with your name.</p></div>
+	<div class="sssell-card"><?php echo $ic( '<path d="M2 12h3l3-8 4 16 3-8h7"/>' ); ?><h3>Waveform previews</h3><p>Buyers hear your track instantly, add it to a queue and compare &mdash; built for DJs and producers.</p></div>
+	<div class="sssell-card"><?php echo $ic( '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>' ); ?><h3>Found by BPM &amp; key</h3><p>Genre, BPM, key, Ableton version and plugins as filters &mdash; the right buyer finds your template in seconds.</p></div>
+	<div class="sssell-card"><?php echo $ic( '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/>' ); ?><h3>We upload for you</h3><p>Have 5+ products? Send the files &mdash; we create the listings, covers and descriptions for free.</p></div>
+	<div class="sssell-card"><?php echo $ic( '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.9-.9L3 21l2-5a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.4-8.4 8.4 8.4 0 0 1 8.5 7.7z"/>' ); ?><h3>Talk to a human</h3><p>Direct contact with the founder, not a ticket queue. Plus 20% off our mixing &amp; mastering.</p></div>
+</div>
+
+<h2 id="terms" style="scroll-margin-top:90px">The <em>terms</em>, in one table</h2>
+<p class="sssell-lead">No small print.</p>
+<table class="sssell-table">
+	<tr><th>Your share per sale</th><td><b>85%</b> Founding Creators (first 20, 12 months) &middot; <b>70%</b> standard</td></tr>
+	<tr><th>Listing / membership fee</th><td>None</td></tr>
+	<tr><th>Exclusivity</th><td>Non-exclusive &mdash; keep selling anywhere</td></tr>
+	<tr><th>Who sets the price</th><td>You</td></tr>
+	<tr><th>Payouts</th><td>Monthly, from $25 &middot; PayPal or bank transfer</td></tr>
+	<tr><th>Application review</th><td>Within 24 hours</td></tr>
+	<tr><th>Creator perk</th><td>20% off mixing &amp; mastering</td></tr>
+	<tr><th>What you can sell</th><td>Ableton / DAW templates, synth presets, sample packs, MIDI, stems, royalty-free music</td></tr>
+</table>
+
+<h2 id="how">How it <em>works</em></h2>
+<div class="sssell-steps">
+	<div class="sssell-step"><b>Apply</b><span>2-minute form with links to your work.</span></div>
+	<div class="sssell-step"><b>Get approved</b><span>We reply within 24 h.</span></div>
+	<div class="sssell-step"><b>Upload</b><span>Add products in your dashboard &mdash; or let us do it.</span></div>
+	<div class="sssell-step"><b>Get paid</b><span>Monthly payouts, live sales stats.</span></div>
+</div>
+
+<h2 id="apply" style="scroll-margin-top:90px">Apply as a <em>creator</em></h2>
+<p class="sssell-lead">Takes 2 minutes. You can upload products right after approval.</p>
+<div class="sssell-apply">
+	<div class="sssell-card">
+		<h3 style="margin-top:0!important">What we look for</h3>
+		<ul class="sssell-perks">
+			<li><i>&#10003;</i><span>Full projects or packs you made yourself</span></li>
+			<li><i>&#10003;</i><span>Plugins listed (native-only is a plus)</span></li>
+			<li><i>&#10003;</i><span>Cleared samples &mdash; no copyrighted material</span></li>
+			<li><i>&#10003;</i><span>A short audio preview (MP3)</span></li>
 		</ul>
-		<p class="sssell-help">Questions? <a href="<?php echo esc_url( $contact ); ?>">Message us</a> &middot; <a href="#terms">Terms</a> &middot; <a href="#faq">FAQ</a></p>
+		<p style="color:var(--mut);font-size:13.5px">Questions first? <a href="<?php echo esc_url( $contact ); ?>">Message us</a> &mdash; we answer personally. Full <a href="<?php echo esc_url( $terms ); ?>">Creator Terms</a>.</p>
 	</div>
 	<div class="sssell-card sssell-form">
 		<?php
 		if ( is_user_logged_in() && function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor() ) {
 			echo '<h3 style="margin-top:0!important">You are already a creator</h3><p>Go to your <a href="' . esc_url( home_url( '/store-manager/' ) ) . '">dashboard</a> to add products.</p>';
 		} else {
-			echo '<h2 class="sssell-fh">Apply in 2 minutes</h2><p class="sssell-fs">We reply within 24 hours.</p>';
 			echo do_shortcode( '[wcfm_vendor_registration]' );
 		}
 		?>
 	</div>
-</section>
-
-<div class="sssell-steps" id="how">
-	<div class="sssell-step"><b>Apply</b><span>This form.</span></div>
-	<div class="sssell-step"><b>Get approved</b><span>Within 24 h.</span></div>
-	<div class="sssell-step"><b>Upload</b><span>Or we do it for you.</span></div>
-	<div class="sssell-step"><b>Get paid</b><span>Monthly, live stats.</span></div>
 </div>
 
-<h2 id="terms" style="scroll-margin-top:90px">The <em>terms</em></h2>
-<table class="sssell-table">
-	<tr><th>Your share per sale</th><td><b>85%</b> Founding Creators (first 20, 12 months) &middot; <b>70%</b> standard</td></tr>
-	<tr><th>Fees</th><td>None</td></tr>
-	<tr><th>Exclusivity</th><td>Non-exclusive &mdash; keep selling anywhere</td></tr>
-	<tr><th>Price</th><td>You set it</td></tr>
-	<tr><th>Payouts</th><td>Monthly, from $25 &middot; PayPal or bank transfer</td></tr>
-	<tr><th>Creator perk</th><td>20% off mixing &amp; mastering</td></tr>
-	<tr><th>What you can sell</th><td>Ableton / DAW templates, synth presets, sample packs, MIDI, stems, royalty-free music</td></tr>
-</table>
-
-<h2 id="faq" style="scroll-margin-top:90px">Questions</h2>
+<h2>Questions</h2>
 <div class="sssell-faq">
 	<?php foreach ( $faq as $q ) echo '<details><summary>' . esc_html( $q[0] ) . '</summary><p>' . esc_html( $q[1] ) . '</p></details>'; ?>
 </div>
@@ -1679,7 +1706,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2107'); ?>
+<?php ss_asset('js-l2113'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3788,7 +3815,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4588'); ?>
+<?php ss_asset('js-l4594'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4469,7 +4496,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5647'); ?>
+<?php ss_asset('css-l5653'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5048,7 +5075,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6260'); ?>
+<?php ss_asset('css-l6266'); ?>
 		<?php
 		return ob_get_clean();
 	}
