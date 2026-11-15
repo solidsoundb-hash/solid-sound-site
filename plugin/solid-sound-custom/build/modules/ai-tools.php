@@ -62,6 +62,6 @@ function ss_ai_admin_page() {
 	<tr><th><label for="ss_cf_token">API token</label></th><td><input id="ss_cf_token" name="ss_cf_token" type="password" class="regular-text" value="" autocomplete="new-password" placeholder="<?php echo $tok ? esc_attr( 'saved •••• ' . substr( $tok, -4 ) . ' — paste a new one to replace' ) : 'paste the token here'; ?>">
 	<?php if ( $tok ) : ?><p><label><input type="checkbox" name="ss_cf_forget" value="1"> Remove the saved token</label></p><?php endif; ?></td></tr></table>
 	<p><button class="button button-primary" name="ss_ai_save" value="1">Save</button> <button class="button" name="ss_ai_test" value="1" <?php disabled( ! $acc || ! $tok ); ?>>Test connection</button></p>
-	</form></div>
+	</form><?php do_action( 'ss_ai_admin_page_after' ); ?></div>
 	<?php
 }

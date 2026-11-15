@@ -443,6 +443,7 @@ if ( ! function_exists( 'ss_rt_products' ) ) {
 			set_transient( $t, 1, 30 * MINUTE_IN_SECONDS );
 			$plays++;
 			update_post_meta( $pid, '_ss_plays', $plays );
+			do_action( 'ss_play_counted', $pid ); /* creator space: plays per day */
 			ss_rt_flush();
 		}
 		wp_send_json_success( array( 'plays' => $plays ) );
@@ -6852,4 +6853,5 @@ require_once __DIR__ . '/modules/mix-upsell.php';
 require_once __DIR__ . '/modules/sticky-buy.php';
 require_once __DIR__ . '/modules/free-demo.php';
 require_once __DIR__ . '/modules/ai-tools.php';
+require_once __DIR__ . '/modules/creator-space.php';
 require_once __DIR__ . '/modules/css-files.php';
