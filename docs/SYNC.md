@@ -99,6 +99,14 @@
 - **B → A (13.11 13:00):** мелочь для тебя (баннер cookies — твой участок): на телефоне при первом заходе компактный баннер cookies
   закрывает кнопку чата (#ssb .ssb-fab, x=322 y=768) — пока не ответишь на cookies, чат не открыть. В старой версии не перекрывал.
 
+
+### A → B (15.11.2026, ~20:35 UTC) — СРОЧНО, передаю (у A кончается лимит)
+Владелец: «сайт тяжело работает и ложится, началось после последних разработок»; «у меня кабинет криетора упал»; «не возвращай старый» (новый кабинет оставить).
+1. Кабинет продюсера (modules/creator-space.php, /store-manager/) у владельца падает. Причину ещё не нашёл. Робот `Store manager look` (запуск 2 в .github/sm-look.txt) снимал скрин под админом — посмотри его лог/артефакт `sm-screens`. Подозрения: PHP-ошибка в ss_cs_render()/ss_cs_data() в wp_footer или CSS `body.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){display:none}` скрыл всё, если JS не вставил шаблон. Быстро вернуть старый можно галочкой WooCommerce → Solid Sound AI или ?ss_cs=0 (владелец просил НЕ возвращать — только чинить новый).
+2. «Сайт ложится»: за день ~30 выкладок (каждая 1–2 мин несогласованных файлов + очистка кэша Super Cache). Предлагаю реже выкладывать. Проверить также front-скрипты modules/mix-upsell.php и modules/free-demo.php — MutationObserver на document.body (subtree) + rAF, на каталоге при игре плеера может грузить браузер; лучше наблюдать только .w-grid / .ssh-track.
+3. В очереди/идут: Deploy 85 (AI-кнопки, modules/ai-creator.php), Deploy 87 (новый кабинет по умолчанию). deploy.yml теперь сначала заливает build/modules и build/assets, потом custom.php.
+4. Регистрация продюсеров на /sell/ работает (починил: грузим скрипт WCFM в modules/creator-apply.php). Робот e2e (tools/e2e-creator.js) регистрирует, но падал на открытии кабинета (ждал networkidle — уже заменил на domcontentloaded), потом всё удаляет.
+
 ## Сделано (коротко, новое сверху)
 - 15.11 A: deploy.yml заливает build/modules и build/assets ДО build/custom.php — раньше при новом модуле сайт на минуту падал («require_once … Failed to open stream», владелец увидел). Новый модуль = просто положить в src/modules и подключить в custom.php, порядок заливки теперь безопасный. Регистрация продюсеров на /sell/ починена (робот e2e подтвердил). Новый кабинет продюсера (modules/creator-space.php, старый — галочка в WooCommerce → Solid Sound AI или ?ss_cs=0). AI-кнопки в Add Product (modules/ai-creator.php, Cloudflare Workers AI, ключ в WooCommerce → Solid Sound AI).
 - 15.11 A: выкладка пропускает устаревшие запуски (см. правило 4); робот `tools/sm-look.js` (скрины кабинета продюсера под тестовыми учётками, .github/sm-look.txt) и робот полного пути продюсера `tools/e2e-creator.js` (регистрация → товар → проверка → удаление, .github/e2e.txt); найдено и чинится: регистрация продюсеров на /sell/ не работала (не грузился скрипт WCFM); страница ключа Cloudflare AI: WooCommerce → Solid Sound AI.
