@@ -169,15 +169,7 @@ function send(){
 function link(tag){var a=document.createElement(tag||'button');if(!tag||tag==='button')a.type='button';else{a.setAttribute('role','button');a.tabIndex=0}a.className='ss-fd-l';a.textContent='✦ Try it free for your email';return a}
 function typeOf(cls){return /templates/.test(cls)?'templates':(/presets/.test(cls)?'presets':'music')}
 function run(){
-  document.querySelectorAll('.w-grid.layout_195 .w-grid-item:not([data-fd])').forEach(function(it){
-    it.setAttribute('data-fd','1');var h=it.querySelector('.w-grid-item-h');if(!h)return;
-    var t=(it.querySelector('.usg_post_title_1, .post_title')||{}).textContent||'',a=it.querySelector('.usg_post_title_1 a, a.w-grid-item-anchor');
-    var l=link();l.dataset.n=t.trim();l.dataset.t=typeOf(it.className);l.dataset.u=a?a.href:'';l.dataset.p=(it.className.match(/\bpost-(\d+)\b/)||[])[1]||'';h.appendChild(l);
-  });
-  document.querySelectorAll('.ssh-card:not([data-fd])').forEach(function(c){
-    var box=c.querySelector('.ssh-buyb');if(!box)return;c.setAttribute('data-fd','1');
-    var l=link('span');l.dataset.n=(c.getAttribute('title')||'').trim();var tg=c.querySelector('.ssh-tag');l.dataset.t=typeOf(tg?tg.className:'');l.dataset.u=c.href;l.dataset.p=c.getAttribute('data-pid')||'';box.appendChild(l);
-  });
+  /* (owner 15.11) not on catalog / carousel cards any more — only on the product page and the home cards */
   if(SINGLE){var f=document.querySelector('form.cart');var row=f&&(f.closest('.ss-buyrow')||f);if(row&&!document.querySelector('.single-product .ss-fd-l')){var l=link();l.dataset.n=((document.querySelector('.product_title,h1')||{}).textContent||'').trim();l.dataset.t=SINGLE;l.dataset.u=location.href.split('#')[0];l.dataset.p=PID;row.parentNode.insertBefore(l,row.nextSibling)}}
 }
 function act(e){

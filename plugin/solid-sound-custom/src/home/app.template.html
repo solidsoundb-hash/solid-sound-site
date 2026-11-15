@@ -275,7 +275,7 @@ input[type=checkbox]{accent-color:#F59E0B;width:20px;height:20px;flex:none}
               <sc-if value="{{p.upsellD}}" hint-placeholder-val="{{ true }}"><label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #CBD5E1; padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.08)">
                 <input type="checkbox" checked="{{p.mix}}" onChange="{{p.toggleMix}}">
                 <span>{{mixLabel}}</span>
-                <a href="https://solid-sound.net/en/services-prices/" style="margin-left: auto; color: #F59E0B; font-size: 12px; font-weight: 600; white-space: nowrap">Prices ›</a>
+                <a href="https://solid-sound.net/en/services-prices/" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices" style="margin-left: auto; flex: none; width: 20px; height: 20px; border-radius: 50%; background: #F59E0B; color: #111; font: italic 700 13px/20px Georgia, serif; text-align: center; text-decoration: none">i</a>
               </label></sc-if>
               <sc-if value="{{p.notInCart}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{p.add}}" style="width: 100%; min-height: 44px; border-radius: 10px; border: 1px solid rgba(245,158,11,0.6); background: {{p.buyBg}}; color: {{p.buyFg}}; font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums">{{p.buyLabel}}</button></sc-if>
               <sc-if value="{{p.inCart}}" hint-placeholder-val="{{ false }}"><a href="https://solid-sound.net/en/cart/" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border-radius: 10px; background: #F59E0B; color: #111; font-weight: 700; font-size: 14px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>In cart — checkout</a></sc-if>
@@ -1055,7 +1055,7 @@ class Component extends DCLogic {
       searchPhNow: s.mic ? 'Listening… say what you need' : (isM ? 'Search sounds, services…' : 'Search or describe: “dark techno template, 130 BPM, like Anyma + mastering”'),
       trustItems: (function () { var all = [slide.kind === 'lead' ? ['M20 6L9 17l-5-5', 'No payment'] : ['M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4', 'Secure checkout'], ['M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z', 'Royalty-free'], ['M12 3v12M7 10l5 5 5-5M4 21h16', 'Instant download'], ['M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM8.5 14L7 22l5-3 5 3-1.5-8', '13+ years in sound']]; return (isM ? all.slice(1) : all).map(function (x) { return { i: x[0], l: x[1] }; }); })(),
       trustLine: isM ? 'Royalty-free · Instant download · 13+ years' : 'No payment, just your email · Royalty-free · Instant download · 13+ years in sound',
-      mixUsd: 65, mixLabel: 'Add our Standard Mixing service (+$65)',
+      mixUsd: 65, mixLabel: 'Add mixing +$65',
       cSvcTabs: cSvcTabs, cPkgs: cPkgs, cPkgCols: isM ? 1 : 3, cExCols: isM ? 1 : 2, cExtras: cExtras, cLines: cLines,
       cExTitle: (cDef.qty ? '3' : '2') + ' · EXTRAS',
       cHasStems: !!cDef.stems, cStems: cSt, cStemsMin: cDef.stems ? cDef.stems.min : 0, cStemsTitle: cDef.stems ? cDef.stems.title : '',
