@@ -47,7 +47,7 @@ async function api(p, method, path, body) {
     const vctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, userAgent: UA });
     await vctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
     const v = await vctx.newPage(); const verr = []; v.on('pageerror', e => verr.push(e.message));
-    await v.goto(BASE + '/en/sell/', { waitUntil: 'networkidle', timeout: 90000 }); await sleep(2000);
+    await v.goto(BASE + '/en/sell/', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(2000);
     const f = v.locator('#wcfm_membership_registration_form');
     await f.locator('[name=first_name]').fill('Zz'); await f.locator('[name=last_name]').fill('E2e');
     await f.locator('[name=user_email]').fill(email); await f.locator('[name=store_name]').fill(store);
@@ -79,15 +79,15 @@ async function api(p, method, path, body) {
       await v.fill('#user_login', email); await v.fill('#user_pass', pass);
       await Promise.all([v.waitForNavigation({ timeout: 90000 }).catch(() => {}), v.click('#wp-submit')]); await sleep(2000);
     }
-    await v.goto(BASE + '/en/store-manager/', { waitUntil: 'networkidle', timeout: 90000 }); await sleep(2000);
+    await v.goto(BASE + '/en/store-manager/', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(2000);
     const menu = await v.evaluate(() => [...document.querySelectorAll('#wcfm_menu a.wcfm_menu_item')].map(a => a.innerText.replace(/\s+/g, ' ').trim()).filter(Boolean));
     L(`3 creator dashboard → ${v.url()} | menu: ${JSON.stringify(menu)}`);
     await shot(v, 'creator_dashboard');
     for (const pg of ['ss-products', 'ss-earnings', 'ss-payouts', 'ss-reviews', 'ss-settings', 'ss-help']) {
-      await v.goto(BASE + '/en/store-manager/' + pg + '/', { waitUntil: 'networkidle', timeout: 90000 }).catch(() => {}); await sleep(1200);
+      await v.goto(BASE + '/en/store-manager/' + pg + '/', { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(() => {}); await sleep(1200);
       await shot(v, 'creator_' + pg);
     }
-    await v.goto(BASE + '/en/store-manager/ss-add-product/', { waitUntil: 'networkidle', timeout: 90000 }); await sleep(3000);
+    await v.goto(BASE + '/en/store-manager/ss-add-product/', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(3000);
     await shot(v, 'add_empty');
     // fill every visible required field with the first sensible value
     await v.evaluate(({ pname }) => {
@@ -118,7 +118,7 @@ async function api(p, method, path, body) {
     const errs = await v.evaluate(() => [...document.querySelectorAll('.ss-ap-err')].map(e => e.textContent));
     L(`3 sent → ${v.url()} | form errors: ${JSON.stringify(errs)} | page: ${(await v.evaluate(() => (document.querySelector('.wcfm-message, .woocommerce-message, .ss-notice, .sscp-notice, h1, h2') || {}).innerText || '')).replace(/\s+/g, ' ').slice(0, 160)}`);
     await shot(v, 'add_sent');
-    await v.goto(BASE + '/en/store-manager/ss-products/', { waitUntil: 'networkidle', timeout: 90000 }); await sleep(1500);
+    await v.goto(BASE + '/en/store-manager/ss-products/', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(1500);
     const listed = await v.evaluate(n => [...document.querySelectorAll('tr')].filter(r => r.innerText.includes(n)).map(r => r.innerText.replace(/\s+/g, ' ')), pname.slice(0, 20));
     L(`4 creator Products: ${JSON.stringify(listed)}`);
     await shot(v, 'creator_products_after');

@@ -6854,4 +6854,5 @@ require_once __DIR__ . '/modules/sticky-buy.php';
 require_once __DIR__ . '/modules/free-demo.php';
 require_once __DIR__ . '/modules/ai-tools.php';
 require_once __DIR__ . '/modules/creator-space.php';
+require_once __DIR__ . '/modules/ai-creator.php';
 require_once __DIR__ . '/modules/css-files.php';
