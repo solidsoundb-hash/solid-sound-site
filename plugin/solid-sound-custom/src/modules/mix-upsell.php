@@ -22,7 +22,7 @@ add_action( 'wp_footer', function () {
 .w-grid.layout_195 .w-grid-item-h>.ss-mixup{grid-column:2/-1;justify-self:end;border-top:0!important;padding:2px 0 0!important}
 @media(max-width:767px){.w-grid.layout_195 .w-grid-item-h>.ss-mixup{grid-column:1/-1}}
 .ssh .ssh-card .ssh-buyb{display:flex;flex-direction:column;gap:10px;margin-top:auto;padding-top:2px}
-.ssh .ssh-mix{border-top:1px solid rgba(255,255,255,.08);padding-top:10px!important}
+.ssh .ssh-mix{border:0!important;padding:0!important;margin:0 auto 0 0!important;font-size:13px!important;gap:6px!important;white-space:nowrap}.ssh .ssh-row .ssh-mix{margin:0 6px!important}.ssh .ssh-card{container-type:inline-size}@container (max-width:300px){.ssh-mx-add{display:none}}
 .ssh .ssh-mix i{flex:none;width:18px;height:18px;border-radius:4px;border:1.5px solid rgba(255,255,255,.5);background:#fff;display:flex;align-items:center;justify-content:center}
 .ssh .ssh-mix.on i{background:#f59e0b;border-color:#f59e0b}.ssh .ssh-mix.on i:after{content:'';width:5px;height:9px;border:solid #111;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
 .ss-cic{display:inline-block;width:20px;height:20px;margin:-3px 8px 0 0;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -72,8 +72,12 @@ function cards(){
     var tag=c.querySelector('.ssh-tag'),ok=tag&&/ssh-tag-templates/.test(tag.className);
     var pr=c.querySelector('.ssh-pr ins')||c.querySelector('.ssh-pr');var base=pr?parseFloat((pr.textContent.match(/(\d+(?:[.,]\d+)?)/)||[0,0])[1]):0;
     var box=document.createElement('span');box.className='ssh-buyb';
-    box.innerHTML=(ok?'<span class="ss-mixup ssh-mix" role="checkbox" aria-checked="false" tabindex="0"><i></i><span>Add mixing <b>+$'+MIX+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span></span>':'')+'<span class="ssh-buy" role="button" tabindex="0" data-b="'+base+'">'+CIC+'Add to cart · $'+base+'</span>';
+    box.innerHTML='<span class="ssh-buy" role="button" tabindex="0" data-b="'+base+'">'+CIC+'Add to cart · $'+base+'</span>';
     c.appendChild(box);
+    /* (owner 15.11) "Add mixing" sits in the tag row, between TEMPLATE and YouTube -> every card has the same height */
+    if(ok){var row=c.querySelector('.ssh-row'),acts=row&&row.querySelector('.ssh-acts');var mx=document.createElement('span');mx.className='ss-mixup ssh-mix';mx.setAttribute('role','checkbox');mx.setAttribute('aria-checked','false');mx.tabIndex=0;
+      mx.innerHTML='<i></i><span><span class="ssh-mx-add">Add </span>mixing <b>+$'+MIX+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';
+      if(row&&acts)row.insertBefore(mx,acts);else box.insertBefore(mx,box.firstChild)}
   });
 }
 function fmt(v){return v%1?v.toFixed(2):String(v)}
