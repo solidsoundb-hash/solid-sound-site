@@ -56,6 +56,10 @@ jobs:
         if: env.SKIP != '1'
         run: |
           P=plugin/solid-sound-custom
+          # new files first (modules, assets), then the files that point to them — otherwise custom.php can be live
+          # for a minute while a new module it requires is not uploaded yet (owner saw this 15.11.2026)
+          [ -d $P/build/modules ] && python3 tools/ftp_sync.py upload $P/build/modules "$REMOTE/build/modules"
+          [ -d $P/build/assets ] && python3 tools/ftp_sync.py upload $P/build/assets "$REMOTE/build/assets"
           python3 tools/ftp_sync.py upload $P/build "$REMOTE/build"
           python3 tools/ftp_sync.py upload $P/includes "$REMOTE/includes"
           python3 tools/ftp_sync.py upload $P/backup "$REMOTE/backup"
