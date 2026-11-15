@@ -39,3 +39,33 @@ add_filter( 'option_wcfmvm_registration_custom_fields', function ( $fields ) {
 	}
 	return $out;
 }, 20 );
+
+/* (15.11.2026, found by the end-to-end robot) The plugin loads its registration script only on ITS registration page
+   (is_wcfm_registration_page: the page set in WCFM or a page whose content has [wcfm_vendor_registration]).
+   Our /sell/ page prints the form from inside [ss_sell], so the script was missing: "Send application" just reloaded
+   the page with the answers in the address bar and no account was created. Load it here exactly like the plugin does. */
+add_action( 'wp_enqueue_scripts', function () {
+	global $WCFM, $WCFMvm;
+	if ( ! is_singular() || empty( $WCFMvm ) || empty( $WCFM ) ) return;
+	if ( ! has_shortcode( (string) get_post_field( 'post_content', get_queried_object_id() ), 'ss_sell' ) ) return;
+	if ( wp_script_is( 'wcfm_membership_registration_js', 'enqueued' ) ) return;
+	if ( isset( $WCFM->library ) && method_exists( $WCFM->library, 'load_select2_lib' ) ) $WCFM->library->load_select2_lib();
+	wp_enqueue_script( 'wc-country-select' );
+	wp_enqueue_script( 'wcfm_membership_registration_js', $WCFMvm->library->js_lib_url_min . 'wcfmvm-script-membership-registration.js', array( 'jquery' ), $WCFMvm->version, true );
+	wp_localize_script( 'wcfm_membership_registration_js', 'wcfm_registration_params', array(
+		'your_store'        => __( 'your_store', 'wc-multivendor-membership' ),
+		'is_strength_check' => apply_filters( 'wcfm_is_allow_password_strength_check', true ),
+		'short'             => __( 'Too short', 'wc-frontend-manager' ),
+		'weak'              => __( 'Weak', 'wc-frontend-manager' ),
+		'good'              => __( 'Good', 'wc-frontend-manager' ),
+		'strong'            => __( 'Strong', 'wc-frontend-manager' ),
+		'password_failed'   => __( 'Password strength should be atleast "Good".', 'wc-frontend-manager' ),
+		'choose_select2'    => __( 'Choose ', 'wc-frontend-manager' ),
+	) );
+}, 30 );
+
+/* the form must never fall back to a plain GET (it would put the password in the address bar) */
+add_action( 'wp_footer', function () {
+	if ( ! is_singular() || ! has_shortcode( (string) get_post_field( 'post_content', get_queried_object_id() ), 'ss_sell' ) ) return;
+	echo '<script>(function(){var f=document.getElementById("wcfm_membership_registration_form");if(!f)return;f.setAttribute("method","post");f.setAttribute("action","#apply");f.addEventListener("submit",function(e){e.preventDefault()})})();</script>';
+}, 99 );
