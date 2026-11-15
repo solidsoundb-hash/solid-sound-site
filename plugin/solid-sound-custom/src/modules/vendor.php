@@ -137,6 +137,6 @@ add_action( 'template_redirect', function () {
 	if ( ! empty( $_GET ) ) return;
 	$p = strtolower( trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ) );
 	if ( ! preg_match( '#^([a-z]{2}/)?(vendor-register|vendor-membership)$#', $p ) ) return;
-	wp_safe_redirect( home_url( '/sell/' ) . '#apply', 302 );
+	wp_safe_redirect( home_url( '/sell/' ), 302 );
 	exit;
 }, 3 );
