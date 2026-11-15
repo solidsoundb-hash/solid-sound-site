@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action( 'wp_footer', function () {
 	if ( is_admin() ) return;
+	if ( function_exists( 'is_wcfm_page' ) && is_wcfm_page() ) return; /* 15.11: not in the creator area (browser Out of Memory) */
 	$tpl = false;
 	if ( function_exists( 'is_product' ) && is_product() ) {
 		$tpl = has_term( array( 'templates', 'reconstructed-templates' ), 'product-format', get_queried_object_id() );

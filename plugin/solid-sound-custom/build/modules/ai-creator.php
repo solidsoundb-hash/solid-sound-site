@@ -72,6 +72,7 @@ add_action( 'wp_ajax_ss_aic_cover', function () {
 add_action( 'wp_footer', function () {
 	if ( ! is_user_logged_in() || ! function_exists( 'ss_cp_can' ) || ! ss_cp_can() ) return;
 	if ( ! get_option( 'ss_cf_token' ) ) return;
+	global $wp; if ( function_exists( 'is_wcfm_page' ) && is_wcfm_page() && ! array_key_exists( 'wcfm-ss-add-product', (array) $wp->query_vars ) ) return; /* only on Add Product */
 	$u = wp_get_current_user();
 	$artist = function_exists( 'ss_cp_prof' ) ? ( ss_cp_prof( $u->ID )['store_name'] ?? '' ) : '';
 	if ( ! $artist ) $artist = $u->display_name;

@@ -102,6 +102,7 @@ add_action( 'wp_ajax_nopriv_ss_fd_dl', 'ss_fd_dl' );
 
 add_action( 'wp_footer', function () {
 	if ( is_admin() || ( function_exists( 'is_checkout' ) && is_checkout() ) || ( function_exists( 'is_cart' ) && is_cart() ) ) return;
+	if ( function_exists( 'is_wcfm_page' ) && is_wcfm_page() ) return; /* 15.11: not in the creator area (browser Out of Memory) */
 	$single = '';
 	if ( function_exists( 'is_product' ) && is_product() ) {
 		$id = get_queried_object_id();
