@@ -1,0 +1,34 @@
+# Read-only screenshots of our creator area (store manager) as the test vendor and the test admin.
+# Run: add a line to .github/sm-look.txt. Needs secrets TEST_VENDOR_USER/PASS (and TEST_ADMIN_USER/PASS).
+# Result: private artifact "sm-screens" (7 days). Nothing is committed, nothing is changed on the site.
+name: Store manager look
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/sm-look.txt"]
+permissions:
+  contents: read
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Look (read-only)
+        env:
+          PW_CHANNEL: chrome
+          TEST_VENDOR_USER: ${{ secrets.TEST_VENDOR_USER }}
+          TEST_VENDOR_PASS: ${{ secrets.TEST_VENDOR_PASS }}
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/sm-look.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sm-screens
+          path: sm-out/
+          retention-days: 7
