@@ -69,3 +69,4 @@
 65 2026-11-15 16:55:54 creator sign-up compact: one /sell/ page, form above the fold, First|Last|Email in a row, vendor-register redirects to it (owner ok: страница регистрации должна быть компактная минималистичная; сделай этот блок горизонтально как у вимейка)
 66 2026-11-15 17:05:50 sell page polish: no inner frame, form title left, phone steps (owner ok: страница регистрации должна быть компактная минималистичная)
 67 2026-11-15 17:17:09 sell page back to previous layout, keep horizontal form rows (owner ok: откати страницу до предыдущего варианта просто сделай форму горизонтально как у вимейка)
+68 2026-11-15 17:30:17 Sell menu/footer/home links open the top of /sell/ (owner ok: sell должно вести тоже на начало страницы)
