@@ -1123,7 +1123,7 @@ function ss_auth_close() {
 			<li><i>&#9733;</i><span><b>Featured from day one</b> &mdash; homepage &amp; our socials</span></li>
 			<li><i>&#9889;</i><span><b>Approved in 24 h</b> &middot; no fees &middot; non-exclusive</span></li>
 		</ul>
-		<?php if ( ! is_user_logged_in() && function_exists( 'ss_google_button' ) ) ss_google_button( 'vendor' ); ?>
+		<?php /* (owner 15.11) no Google sign-up for creators: we need store name, links and the creator terms from the form */ ?>
 		<a class="ssam-btn" href="<?php echo esc_url( $sell ); ?>">Become a vendor &rarr;</a>
 		<div class="ssam-foot"><a href="<?php echo esc_url( $sell ); ?>">See all benefits</a><a href="#" data-go="login">Already a vendor? Log in</a></div>
 	</div>
