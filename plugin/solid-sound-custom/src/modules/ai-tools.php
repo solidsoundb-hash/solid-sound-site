@@ -1,7 +1,7 @@
 <?php
 /**
  * (15.11.2026 owner) AI tools for creators — free Cloudflare Workers AI account.
- * Settings -> Solid Sound AI: Account ID + API token (stored in wp_options, never printed back; only the last 4 characters).
+ * WooCommerce -> Solid Sound AI: Account ID + API token (stored in wp_options, never printed back; only the last 4 characters).
  * "Test connection" asks the text model for one short line, so the owner sees at once that the key works.
  * ss_cf_ai( $model, $payload ) is the single place that talks to Cloudflare; the creator tools use it.
  */
@@ -30,11 +30,11 @@ function ss_cf_ai( $model, $payload, $timeout = 40 ) {
 }
 
 add_action( 'admin_menu', function () {
-	add_options_page( 'Solid Sound AI', 'Solid Sound AI', 'manage_options', 'ss-ai', 'ss_ai_admin_page' );
+	add_submenu_page( 'woocommerce', 'Solid Sound AI', 'Solid Sound AI', 'manage_woocommerce', 'ss-ai', 'ss_ai_admin_page' );
 } );
 
 function ss_ai_admin_page() {
-	if ( ! current_user_can( 'manage_options' ) ) return;
+	if ( ! current_user_can( 'manage_woocommerce' ) ) return;
 	$msg = '';
 	if ( isset( $_POST['ss_ai_save'] ) && check_admin_referer( 'ss_ai_save' ) ) {
 		update_option( 'ss_cf_account', sanitize_text_field( wp_unslash( $_POST['ss_cf_account'] ?? '' ) ), false );
