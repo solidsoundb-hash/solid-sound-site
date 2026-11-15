@@ -100,6 +100,7 @@
   закрывает кнопку чата (#ssb .ssb-fab, x=322 y=768) — пока не ответишь на cookies, чат не открыть. В старой версии не перекрывал.
 
 ## Сделано (коротко, новое сверху)
+- 15.11 A: deploy.yml заливает build/modules и build/assets ДО build/custom.php — раньше при новом модуле сайт на минуту падал («require_once … Failed to open stream», владелец увидел). Новый модуль = просто положить в src/modules и подключить в custom.php, порядок заливки теперь безопасный. Регистрация продюсеров на /sell/ починена (робот e2e подтвердил). Новый кабинет продюсера (modules/creator-space.php, старый — галочка в WooCommerce → Solid Sound AI или ?ss_cs=0). AI-кнопки в Add Product (modules/ai-creator.php, Cloudflare Workers AI, ключ в WooCommerce → Solid Sound AI).
 - 15.11 A: выкладка пропускает устаревшие запуски (см. правило 4); робот `tools/sm-look.js` (скрины кабинета продюсера под тестовыми учётками, .github/sm-look.txt) и робот полного пути продюсера `tools/e2e-creator.js` (регистрация → товар → проверка → удаление, .github/e2e.txt); найдено и чинится: регистрация продюсеров на /sell/ не работала (не грузился скрипт WCFM); страница ключа Cloudflare AI: WooCommerce → Solid Sound AI.
 
 - 13.11 A: #52 — цена на всех кнопках покупки: страница товара «Buy · $13», каталог «Add to cart · $13» (со скидкой; у товара за $0 без цены). На главной уже было.
