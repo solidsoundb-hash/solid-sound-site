@@ -84,3 +84,4 @@
 80 2026-11-15 19:48:13 URGENT creator sign-up fix (WCFM registration script on /sell/), profile wording, stat labels/chart fix (owner ok: выкладывай как будет готово; регистрация продюсеров)
 81 2026-11-15 19:50:08 admin page Settings -> Solid Sound AI for the Cloudflare key (owner ok: я про Cloudflare Workers AI)
 82 2026-11-15 19:52:59 Solid Sound AI page under WooCommerce menu (owner ok: нету доступа я под клодом)
+83 2026-11-15 20:09:39 creator space dashboard (advanced, client-account look), old one kept behind a switch (owner ok: да должен быть продвинутый очень кабинет; сохрани старую версию)
