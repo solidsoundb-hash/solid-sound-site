@@ -73,3 +73,4 @@
 69 2026-11-15 17:41:37 all creator sign-up links (login popup, Google vendor login) open the top of /sell/ (owner ok: сделай так что бы все было с начало страницы)
 70 2026-11-15 17:58:54 all-products: What's new carousel, Best products sidebar, old-style toolbar without search (owner ok: на алл продуктс в слайдере wats new, дальше бест продуктс как на скрине 2; как доделаешь выкладывай)
 71 2026-11-15 18:11:03 mixing checkbox on templates everywhere with live price, Services chip in catalog, carousel 3 per view with Add to cart, Best products on phones (owner ok: везде добавь эту галочку как на главной; на шаблонах только миксинг; добавь услуги; слайдер 3 товара; как доделаешь выкладывай)
+72 2026-11-15 18:21:19 product page sticky buy bar + cart icon on buy buttons (owner ok: корзина должна быть везде; сделай плавающее меню что бы кнопка купить была на виду)
