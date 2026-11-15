@@ -87,3 +87,4 @@
 83 2026-11-15 20:09:39 creator space dashboard (advanced, client-account look), old one kept behind a switch (owner ok: да должен быть продвинутый очень кабинет; сохрани старую версию)
 84 2026-11-15 20:14:53 AI description + AI cover buttons in Add Product (owner ok: работает; выложи как сделаешь все)
 85 2026-11-15 20:18:07 same as 84 (AI tools) with the safe upload order (owner: так и должно быть? — нет, окно при заливке; исправлено)
+86 2026-11-15 20:20:21 HOTFIX old creator dashboard by default (owner: у меня кабинет криетора упал)
