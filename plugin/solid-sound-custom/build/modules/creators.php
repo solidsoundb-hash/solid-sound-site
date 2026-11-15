@@ -69,7 +69,7 @@ add_action( 'template_redirect', function () {
 	add_filter( 'pre_get_document_title', function () { return 'Creator Guidelines – Sell on Solid Sound'; } );
 	add_action( 'wp_head', function () { echo '<meta name="description" content="Rules for selling Ableton templates, presets and sounds on Solid Sound: what we accept and how products go live."><style>' . ss_cr_css() . '.ss-cr-wrap{max-width:860px;margin:30px auto 60px;padding:0 16px}</style>'; } );
 	get_header();
-	echo '<main id="page-content" class="l-main"><section class="l-section"><div class="l-section-h ss-cr-wrap">' . ss_cr_guidelines_html() . '<p><a class="ss-cr-btn" style="display:inline-block;background:#F59E0B;color:#111;font-weight:800;padding:12px 20px;border-radius:10px;text-decoration:none" href="' . esc_url( home_url( '/en/vendor-register/' ) ) . '">Become a creator</a></p></div></section></main>';
+	echo '<main id="page-content" class="l-main"><section class="l-section"><div class="l-section-h ss-cr-wrap">' . ss_cr_guidelines_html() . '<p><a class="ss-cr-btn" style="display:inline-block;background:#F59E0B;color:#111;font-weight:800;padding:12px 20px;border-radius:10px;text-decoration:none" href="' . esc_url( home_url( '/sell/' ) . '#apply' ) . '">Become a creator</a></p></div></section></main>';
 	get_footer();
 	exit;
 }, 1 );

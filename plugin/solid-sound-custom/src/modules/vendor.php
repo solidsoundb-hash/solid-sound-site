@@ -129,3 +129,14 @@ add_action( 'template_redirect', function () {
 	wp_safe_redirect( function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/en/store-manager/' ) );
 	exit;
 }, 2 );
+
+/* (15.11.2026) one creator sign-up page: the old /vendor-register/ and /vendor-membership/ (menu "Sell", footer, home)
+   showed the bare WCFM form -> send them to the compact /sell/ page. WCFM's own steps (?vmstep=…, any query) stay as they are. */
+add_action( 'template_redirect', function () {
+	if ( is_admin() || wp_doing_ajax() || 'GET' !== ( isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : 'GET' ) ) return;
+	if ( ! empty( $_GET ) ) return;
+	$p = strtolower( trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ) );
+	if ( ! preg_match( '#^([a-z]{2}/)?(vendor-register|vendor-membership)$#', $p ) ) return;
+	wp_safe_redirect( home_url( '/sell/' ) . '#apply', 302 );
+	exit;
+}, 3 );
