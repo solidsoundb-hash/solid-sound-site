@@ -1,12 +1,74 @@
 <?php
 /**
  * (15.11.2026 owner) "✦ Try it free for your email" on every product, like the home page cards:
- * catalog rows, the all-products carousel and the product page. One small dialog asks for the email;
- * the request goes to the same place as the chat questions (WP admin -> Chat questions + e-mail to the owner,
- * via the existing ss_bot_lead handler), and the owner sends the free demo.
+ * catalog rows, the all-products carousel and the product page. The visitor gets THAT product, free, for the email
+ * (owner): an e-mail with a signed download link (7 days) is sent at once; the person becomes a customer + subscriber.
  * The home page's "Download demo" button (it did nothing before) is wired to the same handler.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+/* ---------- server: email -> signed download link for that product (7 days) ---------- */
+function ss_fd_sig( $email, $pid, $exp ) { return hash_hmac( 'sha256', strtolower( $email ) . '|' . (int) $pid . '|' . (int) $exp, wp_salt( 'auth' ) . 'ss_fd' ); }
+
+function ss_fd_get() {
+	if ( ! empty( $_POST['website'] ) ) wp_send_json_success(); /* honeypot */
+	if ( (int) ( $_POST['el'] ?? 99 ) < 2 ) wp_send_json_success(); /* faster than a human */
+	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+	$rk = 'ss_fd_rl_' . md5( $ip ); $n = (int) get_transient( $rk );
+	if ( $n >= 6 ) wp_send_json_error( array( 'm' => 'rate' ), 429 );
+	$email = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
+	$pid   = absint( $_POST['pid'] ?? 0 );
+	$p     = $pid ? wc_get_product( $pid ) : null;
+	if ( ! is_email( $email ) || empty( $_POST['consent'] ) ) wp_send_json_error( array( 'm' => 'invalid' ), 400 );
+	if ( ! $p || 'publish' !== get_post_status( $pid ) || ! $p->get_downloads() ) wp_send_json_error( array( 'm' => 'nofile' ), 404 );
+	set_transient( $rk, $n + 1, HOUR_IN_SECONDS );
+	/* the person becomes a customer + subscriber, like the Free page */
+	$uid = email_exists( $email );
+	if ( ! $uid ) {
+		$login = sanitize_user( current( explode( '@', $email ) ), true );
+		if ( '' === $login || username_exists( $login ) ) $login .= wp_rand( 100, 9999 );
+		$uid = wp_insert_user( array( 'user_login' => $login, 'user_email' => $email, 'user_pass' => wp_generate_password( 20 ), 'role' => get_role( 'customer' ) ? 'customer' : 'subscriber' ) );
+		if ( is_wp_error( $uid ) ) wp_send_json_error( array( 'm' => 'user' ), 500 );
+		update_user_meta( $uid, 'ss_signup_source', 'try_free' );
+	}
+	update_user_meta( $uid, 'ss_free_optin', current_time( 'mysql' ) );
+	$got = (array) get_user_meta( $uid, 'ss_fd_got', true ); $got[ $pid ] = current_time( 'mysql' ); update_user_meta( $uid, 'ss_fd_got', $got );
+	update_post_meta( $pid, 'ss_fd_requests', (int) get_post_meta( $pid, 'ss_fd_requests', true ) + 1 );
+	$exp  = time() + 7 * DAY_IN_SECONDS;
+	$base = add_query_arg( array( 'action' => 'ss_fd_dl', 'pid' => $pid, 'e' => rawurlencode( base64_encode( strtolower( $email ) ) ), 'x' => $exp, 's' => ss_fd_sig( $email, $pid, $exp ) ), admin_url( 'admin-ajax.php' ) );
+	$name = $p->get_name(); $links = '';
+	$i = 0;
+	foreach ( $p->get_downloads() as $f ) {
+		$links .= '<p style="margin:0 0 10px"><a href="' . esc_url( add_query_arg( 'f', $i, $base ) ) . '" style="display:inline-block;padding:12px 20px;border-radius:8px;background:#F59E0B;color:#111;font-weight:700;text-decoration:none">Download ' . esc_html( $f->get_name() ? $f->get_name() : $name ) . '</a></p>';
+		$i++;
+	}
+	$body = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">'
+		. '<p>Hi! Here is your free copy of <b>' . esc_html( $name ) . '</b> from Solid Sound.</p>' . $links
+		. '<p style="color:#555;font-size:13px">The link works for 7 days. Royalty-free for your own releases.</p>'
+		. '<p>Want more? <a href="' . esc_url( home_url( '/en/all-products/' ) ) . '">All templates &amp; presets</a> · <a href="' . esc_url( home_url( '/en/services-prices/' ) ) . '">Mixing &amp; mastering</a></p>'
+		. '<p style="color:#888;font-size:12px">You get this email because you asked for a free product on solid-sound.net. We send at most 2 emails a month; reply "unsubscribe" to stop.</p></div>';
+	$ok = wp_mail( $email, 'Your free ' . $name . ' — Solid Sound', $body, array( 'Content-Type: text/html; charset=UTF-8' ) );
+	if ( ! $ok ) wp_send_json_error( array( 'm' => 'mail' ), 500 );
+	do_action( 'ss_fd_requested', $uid, $pid, $email );
+	wp_send_json_success();
+}
+add_action( 'wp_ajax_ss_fd_get', 'ss_fd_get' );
+add_action( 'wp_ajax_nopriv_ss_fd_get', 'ss_fd_get' );
+
+function ss_fd_dl() {
+	$pid = absint( $_GET['pid'] ?? 0 ); $exp = (int) ( $_GET['x'] ?? 0 ); $f = (int) ( $_GET['f'] ?? 0 );
+	$email = base64_decode( (string) wp_unslash( $_GET['e'] ?? '' ) );
+	$sig = (string) ( $_GET['s'] ?? '' );
+	if ( ! $pid || ! is_email( $email ) || ! hash_equals( ss_fd_sig( $email, $pid, $exp ), $sig ) ) wp_die( 'This link is not valid.', '', array( 'response' => 403 ) );
+	if ( $exp < time() ) wp_die( 'This link has expired. Ask for the free product again on solid-sound.net.', '', array( 'response' => 410 ) );
+	$p = wc_get_product( $pid ); $files = $p ? array_values( $p->get_downloads() ) : array();
+	if ( empty( $files[ $f ] ) ) wp_die( 'File not found.', '', array( 'response' => 404 ) );
+	update_post_meta( $pid, 'ss_fd_downloads', (int) get_post_meta( $pid, 'ss_fd_downloads', true ) + 1 );
+	if ( class_exists( 'WC_Download_Handler' ) ) { WC_Download_Handler::download( $files[ $f ]->get_file(), $pid ); exit; }
+	wp_redirect( $files[ $f ]->get_file() ); exit;
+}
+add_action( 'wp_ajax_ss_fd_dl', 'ss_fd_dl' );
+add_action( 'wp_ajax_nopriv_ss_fd_dl', 'ss_fd_dl' );
 
 add_action( 'wp_footer', function () {
 	if ( is_admin() || ( function_exists( 'is_checkout' ) && is_checkout() ) || ( function_exists( 'is_cart' ) && is_cart() ) ) return;
@@ -37,39 +99,41 @@ add_action( 'wp_footer', function () {
 .ss-fd-s:disabled{opacity:.6}
 .ss-fd-x{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:8px;background:none;color:#94a3b8;font-size:22px;line-height:1;cursor:pointer}
 .ss-fd-m{min-height:18px;font-size:13px}.ss-fd-m.ok{color:#34d399}.ss-fd-m.bad{color:#f87171}
+.ss-fd-c{display:flex!important;gap:9px;align-items:flex-start;font-size:12.5px!important;line-height:1.45;color:#94a3b8!important;cursor:pointer}.ss-fd-c input{accent-color:#34d399;width:16px;height:16px;margin:1px 0 0;flex:none}
 .ss-fd-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
 </style>
 <script>(function(){
-var AJAX=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,SINGLE=<?php echo wp_json_encode( $single ); ?>;
-var TXT={templates:['lite demo','We’ll email you a lite demo of %s. Test-drive the project structure before you buy.'],presets:['free presets','We’ll email you a few presets from %s. Load them in Serum and hear them in your own track.'],music:['free preview','We’ll email you a preview of %s to try in your video before you license it.']};
+var AJAX=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,SINGLE=<?php echo wp_json_encode( $single ); ?>,PID=<?php echo (int) ( $single ? get_queried_object_id() : 0 ); ?>;
+var TXT={templates:['free template','Get the full Ableton project %s free. Enter your email — we’ll send the download link right away.'],presets:['free presets','Get %s free. Enter your email — we’ll send the download link right away.'],music:['free track','Get %s free. Enter your email — we’ll send the download link right away.']};
 var dlg,cur={},opened=0;
 function build(){
   dlg=document.createElement('div');dlg.className='ss-fd';dlg.hidden=true;
-  dlg.innerHTML='<div class="ss-fd-b" role="dialog" aria-modal="true" aria-labelledby="ss-fd-t"><button type="button" class="ss-fd-x" aria-label="Close">×</button><span class="ss-fd-k">FREE TEST-DRIVE</span><b id="ss-fd-t"></b><p></p><label for="ss-fd-e">Email</label><input id="ss-fd-e" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required><input class="ss-fd-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="button" class="ss-fd-s">Send me the demo</button><span class="ss-fd-m" aria-live="polite"></span></div>';
+  dlg.innerHTML='<div class="ss-fd-b" role="dialog" aria-modal="true" aria-labelledby="ss-fd-t"><button type="button" class="ss-fd-x" aria-label="Close">×</button><span class="ss-fd-k">FREE FOR YOUR EMAIL</span><b id="ss-fd-t"></b><p></p><label for="ss-fd-e">Email</label><input id="ss-fd-e" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required><label class="ss-fd-c"><input type="checkbox" checked><span>Send me new releases and offers too (max 2 emails a month, unsubscribe anytime).</span></label><input class="ss-fd-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="button" class="ss-fd-s">Send me the download link</button><span class="ss-fd-m" aria-live="polite"></span></div>';
   document.body.appendChild(dlg);
   dlg.addEventListener('click',function(e){if(e.target===dlg||e.target.closest('.ss-fd-x'))close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dlg.hidden)close()});
   dlg.querySelector('.ss-fd-s').addEventListener('click',send);
   dlg.querySelector('#ss-fd-e').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
 }
-function open(name,type,url){
-  if(!dlg)build();cur={name:name,type:TXT[type]?type:'music',url:url||location.href};opened=Date.now();
-  var t=TXT[cur.type];dlg.querySelector('b').textContent=name+' — '+t[0];dlg.querySelector('p').textContent=t[1].replace('%s',name);
+function open(name,type,url,pid){
+  if(!dlg)build();cur={name:name,type:TXT[type]?type:'music',url:url||location.href,pid:pid};opened=Date.now();
+  var t=TXT[cur.type];dlg.querySelector('b').textContent=name+' — free';dlg.querySelector('p').textContent=t[1].replace('%s',name);
   var m=dlg.querySelector('.ss-fd-m');m.textContent='';m.className='ss-fd-m';var s=dlg.querySelector('.ss-fd-s');s.disabled=false;s.hidden=false;
   dlg.hidden=false;document.documentElement.style.overflow='hidden';setTimeout(function(){dlg.querySelector('#ss-fd-e').focus()},30);
 }
 function close(){dlg.hidden=true;document.documentElement.style.overflow=''}
-function post(email,name,type,url,el,hp){
-  var f=new FormData();f.append('action','ss_bot_lead');f.append('email',email);f.append('msg','Free demo request ('+type+'): '+name+' — '+url);f.append('page',url);f.append('el',String(el));f.append('website',hp||'');f.append('lang',(document.documentElement.lang||'en').slice(0,2));
+function post(email,pid,consent,el,hp){
+  var f=new FormData();f.append('action','ss_fd_get');f.append('email',email);f.append('pid',String(pid||''));f.append('consent',consent?'1':'');f.append('el',String(el));f.append('website',hp||'');
   return fetch(AJAX,{method:'POST',credentials:'same-origin',body:f}).then(function(r){return r.json().catch(function(){return {success:r.ok}})});
 }
+function errTxt(j){var m=j&&j.data&&j.data.m;return m==='rate'?'Too many requests — please try again later.':(m==='invalid'?'Please enter a valid email.':(m==='nofile'?'This product can’t be sent automatically — please message us.':'Something went wrong — please try again.'))}
 function send(){
   var e=dlg.querySelector('#ss-fd-e'),m=dlg.querySelector('.ss-fd-m'),s=dlg.querySelector('.ss-fd-s');
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim())){m.textContent='Please enter a valid email.';m.className='ss-fd-m bad';e.focus();return}
   s.disabled=true;m.textContent='Sending…';m.className='ss-fd-m';
-  post(e.value.trim(),cur.name,cur.type,cur.url,Math.round((Date.now()-opened)/1000),dlg.querySelector('.ss-fd-hp').value).then(function(j){
-    if(j&&j.success){m.textContent='✓ Thanks! We’ll email you the '+TXT[cur.type][0]+' within 24 hours.';m.className='ss-fd-m ok';s.hidden=true}
-    else{s.disabled=false;m.textContent=(j&&j.data&&j.data.m==='rate')?'Too many requests — please try again later.':'Something went wrong — please try again.';m.className='ss-fd-m bad'}
+  post(e.value.trim(),cur.pid,true,Math.round((Date.now()-opened)/1000),dlg.querySelector('.ss-fd-hp').value).then(function(j){
+    if(j&&j.success){m.textContent='✓ Done! Check your inbox — the download link for '+cur.name+' is on its way (look in Spam too).';m.className='ss-fd-m ok';s.hidden=true}
+    else{s.disabled=false;m.textContent=errTxt(j);m.className='ss-fd-m bad'}
   }).catch(function(){s.disabled=false;m.textContent='Something went wrong — please try again.';m.className='ss-fd-m bad'});
 }
 function link(tag){var a=document.createElement(tag||'button');if(!tag||tag==='button')a.type='button';else{a.setAttribute('role','button');a.tabIndex=0}a.className='ss-fd-l';a.textContent='✦ Try it free for your email';return a}
@@ -78,29 +142,29 @@ function run(){
   document.querySelectorAll('.w-grid.layout_195 .w-grid-item:not([data-fd])').forEach(function(it){
     it.setAttribute('data-fd','1');var h=it.querySelector('.w-grid-item-h');if(!h)return;
     var t=(it.querySelector('.usg_post_title_1, .post_title')||{}).textContent||'',a=it.querySelector('.usg_post_title_1 a, a.w-grid-item-anchor');
-    var l=link();l.dataset.n=t.trim();l.dataset.t=typeOf(it.className);l.dataset.u=a?a.href:'';h.appendChild(l);
+    var l=link();l.dataset.n=t.trim();l.dataset.t=typeOf(it.className);l.dataset.u=a?a.href:'';l.dataset.p=(it.className.match(/\bpost-(\d+)\b/)||[])[1]||'';h.appendChild(l);
   });
   document.querySelectorAll('.ssh-card:not([data-fd])').forEach(function(c){
     var box=c.querySelector('.ssh-buyb');if(!box)return;c.setAttribute('data-fd','1');
-    var l=link('span');l.dataset.n=(c.getAttribute('title')||'').trim();var tg=c.querySelector('.ssh-tag');l.dataset.t=typeOf(tg?tg.className:'');l.dataset.u=c.href;box.appendChild(l);
+    var l=link('span');l.dataset.n=(c.getAttribute('title')||'').trim();var tg=c.querySelector('.ssh-tag');l.dataset.t=typeOf(tg?tg.className:'');l.dataset.u=c.href;l.dataset.p=c.getAttribute('data-pid')||'';box.appendChild(l);
   });
-  if(SINGLE){var f=document.querySelector('form.cart');var row=f&&(f.closest('.ss-buyrow')||f);if(row&&!document.querySelector('.single-product .ss-fd-l')){var l=link();l.dataset.n=((document.querySelector('.product_title,h1')||{}).textContent||'').trim();l.dataset.t=SINGLE;l.dataset.u=location.href.split('#')[0];row.parentNode.insertBefore(l,row.nextSibling)}}
+  if(SINGLE){var f=document.querySelector('form.cart');var row=f&&(f.closest('.ss-buyrow')||f);if(row&&!document.querySelector('.single-product .ss-fd-l')){var l=link();l.dataset.n=((document.querySelector('.product_title,h1')||{}).textContent||'').trim();l.dataset.t=SINGLE;l.dataset.u=location.href.split('#')[0];l.dataset.p=PID;row.parentNode.insertBefore(l,row.nextSibling)}}
 }
 function act(e){
   var l=e.target.closest&&e.target.closest('.ss-fd-l');if(!l)return;
   if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
-  e.preventDefault();e.stopPropagation();open(l.dataset.n||'this product',l.dataset.t,l.dataset.u);
+  e.preventDefault();e.stopPropagation();open(l.dataset.n||'this product',l.dataset.t,l.dataset.u,l.dataset.p);
 }
 window.addEventListener('click',act,true);window.addEventListener('keydown',act,true);
 /* home page cards: "Download demo" on the back side */
 window.addEventListener('click',function(e){
-  var b=e.target.closest&&e.target.closest('#ss-app button');if(!b||!/^\s*Download demo\s*$/.test(b.textContent))return;
+  var b=e.target.closest&&e.target.closest('#ss-app button');if(!b||!/^\s*(Download demo|Send me the download link)\s*$/.test(b.textContent))return;
   var box=b.parentNode,inp=box.querySelector('input[type=email]'),hd=box.querySelector('b');if(!inp)return;
   var name=hd?hd.textContent.split(' — ')[0].trim():'product',typ=/presets/i.test(hd?hd.textContent:'')?'presets':(/lite demo/i.test(hd?hd.textContent:'')?'templates':'music');
   var msg=box.querySelector('.ss-fd-m');if(!msg){msg=document.createElement('span');msg.className='ss-fd-m';msg.setAttribute('aria-live','polite');b.parentNode.insertBefore(msg,b.nextSibling)}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((inp.value||'').trim())){msg.textContent='Please enter a valid email.';msg.className='ss-fd-m bad';inp.focus();return}
   b.disabled=true;msg.textContent='Sending…';msg.className='ss-fd-m';
-  post(inp.value.trim(),name,typ,location.href.split('#')[0],10,'').then(function(j){if(j&&j.success){msg.textContent='✓ Thanks! Check your inbox within 24 hours.';msg.className='ss-fd-m ok';b.hidden=true}else{b.disabled=false;msg.textContent='Something went wrong — please try again.';msg.className='ss-fd-m bad'}}).catch(function(){b.disabled=false;msg.textContent='Something went wrong — please try again.';msg.className='ss-fd-m bad'});
+  var art=b.closest('article');post(inp.value.trim(),art&&art.getAttribute('data-pid'),true,10,'').then(function(j){if(j&&j.success){msg.textContent='✓ Done! Check your inbox — the download link is on its way.';msg.className='ss-fd-m ok';b.hidden=true}else{b.disabled=false;msg.textContent=errTxt(j);msg.className='ss-fd-m bad'}}).catch(function(){b.disabled=false;msg.textContent='Something went wrong — please try again.';msg.className='ss-fd-m bad'});
 },true);
 run();var q=0;new MutationObserver(function(){if(q)return;q=requestAnimationFrame(function(){q=0;run()})}).observe(document.body,{childList:true,subtree:true});
 })();</script>
