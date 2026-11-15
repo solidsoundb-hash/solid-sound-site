@@ -19,7 +19,8 @@ function ss_fd_get() {
 	$email = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
 	$pid   = absint( $_POST['pid'] ?? 0 );
 	$p     = $pid ? wc_get_product( $pid ) : null;
-	if ( ! is_email( $email ) || empty( $_POST['consent'] ) ) wp_send_json_error( array( 'm' => 'invalid' ), 400 );
+	$consent = ! empty( $_POST['consent'] );
+	if ( ! is_email( $email ) ) wp_send_json_error( array( 'm' => 'invalid' ), 400 );
 	if ( ! $p || 'publish' !== get_post_status( $pid ) || ! $p->get_downloads() ) wp_send_json_error( array( 'm' => 'nofile' ), 404 );
 	set_transient( $rk, $n + 1, HOUR_IN_SECONDS );
 	/* the person becomes a customer + subscriber, like the Free page */
@@ -31,23 +32,52 @@ function ss_fd_get() {
 		if ( is_wp_error( $uid ) ) wp_send_json_error( array( 'm' => 'user' ), 500 );
 		update_user_meta( $uid, 'ss_signup_source', 'try_free' );
 	}
-	update_user_meta( $uid, 'ss_free_optin', current_time( 'mysql' ) );
+	/* subscribers: Brevo list "Free Pack" + welcome series (custom.php, triggered by ss_free_optin);
+	   its first e-mail ("free downloads unlocked") is skipped — this person gets the product e-mail below instead */
+	if ( $consent && ! get_user_meta( $uid, 'ss_unsub', true ) ) {
+		if ( ! get_user_meta( $uid, 'ss_drip_1', true ) ) update_user_meta( $uid, 'ss_drip_1', 'skipped: try_free' );
+		if ( ! get_user_meta( $uid, 'ss_free_optin', true ) ) update_user_meta( $uid, 'ss_free_optin', current_time( 'mysql' ) );
+	}
 	$got = (array) get_user_meta( $uid, 'ss_fd_got', true ); $got[ $pid ] = current_time( 'mysql' ); update_user_meta( $uid, 'ss_fd_got', $got );
 	update_post_meta( $pid, 'ss_fd_requests', (int) get_post_meta( $pid, 'ss_fd_requests', true ) + 1 );
 	$exp  = time() + 7 * DAY_IN_SECONDS;
 	$base = add_query_arg( array( 'action' => 'ss_fd_dl', 'pid' => $pid, 'e' => rawurlencode( base64_encode( strtolower( $email ) ) ), 'x' => $exp, 's' => ss_fd_sig( $email, $pid, $exp ) ), admin_url( 'admin-ajax.php' ) );
-	$name = $p->get_name(); $links = '';
-	$i = 0;
-	foreach ( $p->get_downloads() as $f ) {
-		$links .= '<p style="margin:0 0 10px"><a href="' . esc_url( add_query_arg( 'f', $i, $base ) ) . '" style="display:inline-block;padding:12px 20px;border-radius:8px;background:#F59E0B;color:#111;font-weight:700;text-decoration:none">Download ' . esc_html( $f->get_name() ? $f->get_name() : $name ) . '</a></p>';
+	$name = $p->get_name(); $btns = ''; $i = 0;
+	$img  = get_the_post_thumbnail_url( $pid, 'woocommerce_single' );
+	$fmt  = wp_get_post_terms( $pid, 'product-format', array( 'fields' => 'slugs' ) );
+	$tpl  = ! is_wp_error( $fmt ) && array_intersect( array( 'templates', 'reconstructed-templates' ), $fmt );
+	$files = $p->get_downloads();
+	foreach ( $files as $f ) {
+		$lbl = count( $files ) > 1 ? 'Download ' . ( $f->get_name() ? $f->get_name() : $name ) : 'Download ' . $name;
+		$btns .= '<tr><td style="padding:0 0 10px"><a href="' . esc_url( add_query_arg( 'f', $i, $base ) ) . '" style="display:block;background:#F59E0B;color:#111111;text-decoration:none;font-weight:700;font-size:16px;padding:15px 20px;border-radius:10px;text-align:center">&#8681;&nbsp; ' . esc_html( $lbl ) . '</a></td></tr>';
 		$i++;
 	}
-	$body = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">'
-		. '<p>Hi! Here is your free copy of <b>' . esc_html( $name ) . '</b> from Solid Sound.</p>' . $links
-		. '<p style="color:#555;font-size:13px">The link works for 7 days. Royalty-free for your own releases.</p>'
-		. '<p>Want more? <a href="' . esc_url( home_url( '/en/all-products/' ) ) . '">All templates &amp; presets</a> · <a href="' . esc_url( home_url( '/en/services-prices/' ) ) . '">Mixing &amp; mastering</a></p>'
-		. '<p style="color:#888;font-size:12px">You get this email because you asked for a free product on solid-sound.net. We send at most 2 emails a month; reply "unsubscribe" to stop.</p></div>';
-	$ok = wp_mail( $email, 'Your free ' . $name . ' — Solid Sound', $body, array( 'Content-Type: text/html; charset=UTF-8' ) );
+	$tips = $tpl
+		? array( 'Unzip and open the <b>.als</b> file in Ableton Live.', 'Solo channels to hear how each part is built.', 'Royalty-free: use it in your own releases.' )
+		: array( 'Unzip and load the files in your DAW or synth.', 'Try them in your own track right away.', 'Royalty-free: use them in your own releases.' );
+	$tl = ''; foreach ( $tips as $n => $t ) $tl .= '<tr><td style="width:26px;vertical-align:top;padding:0 0 8px"><span style="display:inline-block;width:20px;height:20px;border-radius:10px;background:#2a2116;color:#F59E0B;font-size:12px;font-weight:700;text-align:center;line-height:20px">' . ( $n + 1 ) . '</span></td><td style="font-size:14px;line-height:20px;color:#cbd5e1;padding:0 0 8px">' . $t . '</td></tr>';
+	$unsub = ( $consent && function_exists( 'ss_unsub_link' ) ) ? ' · <a style="color:#94a3b8" href="' . esc_url( ss_unsub_link( $uid ) ) . '">Unsubscribe</a>' : '';
+	$body = '<!doctype html><html><body style="margin:0;padding:0;background:#0b0f19">'
+		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#0b0f19;padding:28px 12px;font-family:Arial,Helvetica,sans-serif"><tr><td align="center">'
+		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px">'
+		. '<tr><td style="padding:0 0 18px" align="center"><a href="' . esc_url( home_url( '/en/' ) ) . '"><img src="' . esc_url( home_url( '/wp-content/uploads/logo.png' ) ) . '" width="120" alt="Solid Sound" style="display:block;border:0;width:120px;height:auto"></a></td></tr>'
+		. '<tr><td style="background:#131b2e;border:1px solid #243049;border-radius:16px;padding:28px">'
+		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0">'
+		. '<tr><td style="font-size:12px;font-weight:700;letter-spacing:2px;color:#34D399;padding:0 0 10px">YOUR FREE DOWNLOAD</td></tr>'
+		. '<tr><td style="font-size:24px;line-height:30px;font-weight:700;color:#ffffff;padding:0 0 18px">' . esc_html( $name ) . ' is yours</td></tr>'
+		. ( $img ? '<tr><td style="padding:0 0 20px"><img src="' . esc_url( $img ) . '" width="504" alt="' . esc_attr( $name ) . '" style="display:block;width:100%;max-width:504px;height:auto;border-radius:12px;border:0"></td></tr>' : '' )
+		. $btns
+		. '<tr><td style="font-size:12px;color:#94a3b8;padding:2px 0 22px;text-align:center">The link works for 7 days.</td></tr>'
+		. '<tr><td style="border-top:1px solid #243049;padding:20px 0 6px;font-size:13px;font-weight:700;letter-spacing:1px;color:#ffffff">HOW TO START</td></tr>'
+		. '<tr><td><table role="presentation" width="100%" cellspacing="0" cellpadding="0">' . $tl . '</table></td></tr>'
+		. '<tr><td style="border-top:1px solid #243049;padding:18px 0 0;font-size:14px;line-height:21px;color:#cbd5e1">Want the track to sound finished? Our engineers mix and master it for you — <a href="' . esc_url( home_url( '/en/services-prices/' ) ) . '" style="color:#F59E0B;font-weight:700">see prices</a>. More templates and presets: <a href="' . esc_url( home_url( '/en/all-products/' ) ) . '" style="color:#F59E0B;font-weight:700">all products</a>.</td></tr>'
+		. '</table></td></tr>'
+		. '<tr><td style="padding:16px 8px 0;text-align:center;font-size:12px;line-height:18px;color:#64748b">You get this e-mail because you asked for a free product on solid-sound.net.<br><a style="color:#94a3b8" href="' . esc_url( home_url( '/en/' ) ) . '">solid-sound.net</a>' . $unsub . '</td></tr>'
+		. '</table></td></tr></table></body></html>';
+	$h = array( 'Content-Type: text/html; charset=UTF-8' );
+	if ( $unsub ) $h[] = 'List-Unsubscribe: <' . ss_unsub_link( $uid ) . '>';
+	if ( function_exists( 'ss_reply_email' ) ) $h[] = 'Reply-To: Solid Sound <' . ss_reply_email() . '>';
+	$ok = wp_mail( $email, 'Your free ' . $name . ' — download inside', $body, $h );
 	if ( ! $ok ) wp_send_json_error( array( 'm' => 'mail' ), 500 );
 	do_action( 'ss_fd_requested', $uid, $pid, $email );
 	wp_send_json_success();
@@ -131,7 +161,7 @@ function send(){
   var e=dlg.querySelector('#ss-fd-e'),m=dlg.querySelector('.ss-fd-m'),s=dlg.querySelector('.ss-fd-s');
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim())){m.textContent='Please enter a valid email.';m.className='ss-fd-m bad';e.focus();return}
   s.disabled=true;m.textContent='Sending…';m.className='ss-fd-m';
-  post(e.value.trim(),cur.pid,true,Math.round((Date.now()-opened)/1000),dlg.querySelector('.ss-fd-hp').value).then(function(j){
+  post(e.value.trim(),cur.pid,dlg.querySelector('.ss-fd-c input').checked,Math.round((Date.now()-opened)/1000),dlg.querySelector('.ss-fd-hp').value).then(function(j){
     if(j&&j.success){m.textContent='✓ Done! Check your inbox — the download link for '+cur.name+' is on its way (look in Spam too).';m.className='ss-fd-m ok';s.hidden=true}
     else{s.disabled=false;m.textContent=errTxt(j);m.className='ss-fd-m bad'}
   }).catch(function(){s.disabled=false;m.textContent='Something went wrong — please try again.';m.className='ss-fd-m bad'});
