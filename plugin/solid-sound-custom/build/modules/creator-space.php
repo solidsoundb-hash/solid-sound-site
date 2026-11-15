@@ -49,7 +49,7 @@ function ss_cs_ic( $k, $s = 18 ) {
 function ss_cs_data( $id ) {
 	global $wpdb;
 	$d = array( 'rows' => array(), 'live' => 0, 'review' => 0 );
-	$ids = get_posts( array( 'post_type' => 'product', 'author' => $id, 'post_status' => array( 'publish', 'pending', 'draft', 'private' ), 'posts_per_page' => 200, 'fields' => 'ids', 'orderby' => 'date', 'order' => 'DESC' ) );
+	$ids = get_posts( array( 'post_type' => 'product', 'author' => $id, 'post_status' => array( 'publish', 'pending', 'draft', 'private' ), 'posts_per_page' => 60, 'fields' => 'ids', 'orderby' => 'date', 'order' => 'DESC' ) );
 	$today = current_time( 'Y-m-d' );
 	$days = array(); for ( $i = 29; $i >= 0; $i-- ) $days[ gmdate( 'Y-m-d', strtotime( $today . " -$i days" ) ) ] = array( 's' => 0, 'e' => 0.0, 'p' => 0 );
 	foreach ( $ids as $pid ) {
@@ -122,7 +122,9 @@ function ss_cs_nav() {
 }
 
 function ss_cs_render() {
-	$u = wp_get_current_user(); $id = $u->ID; $d = ss_cs_data( $id );
+	$u = wp_get_current_user(); $id = $u->ID;
+	$ck = 'ss_cs_d_' . $id; $d = get_transient( $ck ); /* heavy numbers: once per 10 min (owner: кабинет тормозит/падает) */
+	if ( ! is_array( $d ) ) { $d = ss_cs_data( $id ); set_transient( $ck, $d, 10 * MINUTE_IN_SECONDS ); }
 	$name = $u->first_name ? $u->first_name : $u->display_name;
 	$head = function ( $t, $i, $x = '' ) { return '<h2><span class="t">' . ss_cs_ic( $i ) . '</span>' . $t . $x . '</h2>'; };
 	$money = function ( $v ) { return '$' . number_format( (float) $v, 2 ); };
