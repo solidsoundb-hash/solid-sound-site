@@ -81,3 +81,4 @@
 77 2026-11-15 19:20:18 add-product form in the site's dark look, orange buttons, aligned fields (owner ok: ss-add-product нужно довести до ума)
 78 2026-11-15 19:30:31 creator dashboard fixes: Get Started step 2, orange steps/progress, phone layout, menu labels, stat labels, no empty chart, settings fields, no SEO card (owner ok: хорошо — пункты 1-7 и 9)
 79 2026-11-15 19:41:33 all-products carousel fits one screen, Browse centred, equal cards, YouTube logo buttons; no Google sign-up for creators (owner ok: уменьшить карточки, брауз по середине, эд миксинг между темплейт и ютубом, кнопка ютуба как на ютубе; регистрация продюсера не через гугл)
+80 2026-11-15 19:48:13 URGENT creator sign-up fix (WCFM registration script on /sell/), profile wording, stat labels/chart fix (owner ok: выкладывай как будет готово; регистрация продюсеров)
