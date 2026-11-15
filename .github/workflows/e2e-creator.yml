@@ -1,0 +1,39 @@
+# End-to-end creator journey: sign up -> approve -> add product -> send for review -> check -> DELETE everything again.
+# Run: add a line to .github/e2e.txt. Needs secrets TEST_ADMIN_USER / TEST_ADMIN_PASS. Result: private artifact "e2e" (7 days).
+name: E2E creator
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/e2e.txt"]
+permissions:
+  contents: read
+concurrency: { group: e2e-creator, cancel-in-progress: false }
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Test files (cover 1200x1200 JPG, ZIP, 4 s MP3)
+        run: |
+          mkdir -p assets-e2e && cd assets-e2e
+          ffmpeg -loglevel error -f lavfi -i color=c=0xe09900:s=1200x1200 -frames:v 1 cover.jpg
+          echo "end-to-end test file" > readme.txt && zip -q project.zip readme.txt
+          ffmpeg -loglevel error -f lavfi -i "sine=frequency=440:duration=4" -b:a 96k demo.mp3
+          ls -la
+      - name: Run (creates a test creator + product and deletes them again)
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/e2e-creator.js assets-e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e
+          path: e2e-out/
+          retention-days: 7
