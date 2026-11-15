@@ -10,5 +10,5 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_filter( 'the_content', function ( $c ) {
 	if ( false === strpos( $c, 'ssHero1' ) || ! function_exists( 'ss_h3_render' ) ) return $c;
 	$c = preg_replace( '#<script>\(function\(\)\{var K=\'ssHero1\'.*?</script>#s', '', $c );
-	return '<div id="ss-old-hero">' . ss_h3_render() . '</div>' . $c;
+	return '<div id="ss-old-hero">' . ss_h3_render( 'new' ) . '</div>' . $c;
 }, 0 );
