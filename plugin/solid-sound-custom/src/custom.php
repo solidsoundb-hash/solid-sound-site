@@ -4797,7 +4797,7 @@ window.ssOnDom?ssOnDom(upd):setInterval(upd,600);document.addEventListener('ssp:
 .ssh .ssh-h2{font-size:28px!important;line-height:36px!important;height:auto;color:#F4EFE8!important}
 .ssh .ssh-car{padding:4px 2px}
 .ssh .ssh-track{gap:18px!important;padding:6px 4px 10px}
-.ssh .ssh-card{flex:0 0 calc(20% - 15px)!important;width:auto!important;padding:10px 10px 12px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);transition:transform .25s ease,border-color .25s,box-shadow .25s}
+.ssh .ssh-card{flex:0 0 calc(33.333% - 12px)!important;width:auto!important;padding:10px 10px 12px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);transition:transform .25s ease,border-color .25s,box-shadow .25s}
 .ssh .ssh-card:hover{transform:translateY(-4px);border-color:rgba(224,153,0,.55);box-shadow:0 14px 34px rgba(0,0,0,.55),0 0 0 1px rgba(224,153,0,.25),0 0 28px rgba(224,153,0,.18)}
 .ssh .ssh-cov{border-radius:12px}
 .ssh .ssh-cov img{transition:transform .5s ease}.ssh .ssh-card:hover .ssh-cov img{transform:scale(1.05)}
