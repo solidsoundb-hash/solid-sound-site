@@ -2157,8 +2157,8 @@ function go(){var st=document.querySelector('.wcfm_dashboard_stats');if(!st)retu
  if(!lab){var map=[[/commission in last 7 days/i,'Your earnings · last 7 days'],[/gross sales in last 7 days/i,'Sales · last 7 days'],[/sold in last 7 days/i,'items sold · last 7 days'],[/received in last 7 days/i,'orders · last 7 days']];
   var w=document.createTreeWalker(st,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){map.forEach(function(m){if(m[0].test(n.nodeValue))n.nodeValue=n.nodeValue.replace(m[0],m[1])})}lab=true}
  if(zero===null){var t=st.textContent;zero=!/[1-9]/.test((t.match(/\$\s?[\d.,]+/g)||[]).join(''))&&!/\b[1-9]\d*\s*orders?/i.test(t)}
- if(zero&&!chart){var cv=document.querySelector('#wcfm-main-contentainer canvas');if(cv){var c=cv.closest('.wcfm_dashboard_wc_reports_sales')||cv.closest('.wcfm-container')||cv.parentNode;c.style.display='none';var h=c.previousElementSibling;if(h&&/collapsible|wcfm_dashboard_wc_reports_sales_heading/.test(h.className))h.style.display='none';chart=true}}
- return lab&&(!zero||chart)}
+ if(false){/* 15.11 removed: hiding the WCFM Chart.js chart made browsers run Out of Memory */var cv=document.querySelector('#wcfm-main-contentainer canvas');if(cv){var c=cv.closest('.wcfm_dashboard_wc_reports_sales')||cv.closest('.wcfm-container')||cv.parentNode;c.style.display='none';var h=c.previousElementSibling;if(h&&/collapsible|wcfm_dashboard_wc_reports_sales_heading/.test(h.className))h.style.display='none';chart=true}}
+ return lab}
 if(!go()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(go())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},12000)}})();</script>
 <?php }, 40 );
 
