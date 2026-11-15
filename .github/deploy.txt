@@ -77,3 +77,4 @@
 73 2026-11-15 18:36:10 toolbar 2 rows, no Services chip, Standard Mixing checkbox + Prices link (home too), Try it free for your email on all products (owner ok: убрать кнопку услуги, 2 ряда; эдд кастом миксинг переписать на стандартное сведение; бесплатно за имейл как на главной; любые продукты)
 74 2026-11-15 18:45:35 Try it free = that product for the email (download link e-mailed, 7 days); home texts; mixing checkbox only on templates on home (owner ok: если человек нажал хочу бесплатно конкретный продукт то он это получает за имейл)
 75 2026-11-15 18:52:44 free product e-mail: branded design + Brevo Free Pack list for opt-ins (owner ok: оформи красиво или через брево)
+76 2026-11-15 19:11:53 compact Add mixing +$65 with info icon, no Try it free on cards (owner ok: мой вариант и убери с карточек трай фор фри, иконку I заметней)
