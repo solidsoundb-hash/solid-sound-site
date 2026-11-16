@@ -1,0 +1,25 @@
+# Read-only diagnosis of browser hangs / Out of Memory in the creator area (store manager), as the test admin.
+# Run: add a line to .github/sm-diag.txt. Output: the workflow log.
+name: Store manager diagnosis
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/sm-diag.txt"]
+permissions:
+  contents: read
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Diagnose
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/sm-diag.js
