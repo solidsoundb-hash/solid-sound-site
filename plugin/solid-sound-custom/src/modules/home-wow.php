@@ -88,11 +88,12 @@ body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!impor
 }
 /* owner 16.11: previous card look, only the template picker (genre / BPM / key / Ableton) a touch bigger on phones */
 @media(max-width:600px){
- body.ss-wow .ssx .card .chips span{height:34px!important;padding:0 11px!important;font-size:14.5px!important}
+ body.ss-wow .ssx .card .chips span{height:34px!important;padding:0 16px!important;font-size:14.5px!important}
+ body.ss-wow .ssx .tasks button,body.ss-wow #top .ssx [role=tablist] button,#top .ssx [role=tablist] button{padding:0 16px!important}body.ss-wow .ssx .cta,body.ss-wow .ssx .gbtn{padding:0 20px!important} /* owner 16.11: air on the sides of button text */
  body.ss-wow .ssx .card .f b{font-size:12px!important}
  body.ss-wow .ssx .rng .bpm input{height:35px!important;font-size:16px!important}
- body.ss-wow .ssx .chk{font-size:14px!important;white-space:nowrap;gap:6px!important}
- body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:10px!important}body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 10px!important}
+ body.ss-wow .ssx .chk{font-size:13.5px!important;white-space:nowrap;gap:5px!important}
+ body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:8px!important}body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 12px!important}body.ss-wow .ssx .f.row:has(.chk) .chips{gap:5px!important}
 }
 @media(max-width:380px){.ssw-hero .slg{font-size:34px!important}}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
