@@ -69,3 +69,21 @@ add_action( 'wp_footer', function () {
 	if ( ! is_singular() || ! has_shortcode( (string) get_post_field( 'post_content', get_queried_object_id() ), 'ss_sell' ) ) return;
 	echo '<script>(function(){var f=document.getElementById("wcfm_membership_registration_form");if(!f)return;f.setAttribute("method","post");f.setAttribute("action","#apply");f.addEventListener("submit",function(e){e.preventDefault()})})();</script>';
 }, 99 );
+
+/* (16.11.2026 owner: «сразу в кабинет») No manual approval of creator ACCOUNTS: during the sign-up request only, WCFM
+   Membership sees required_approval = no, so it runs its own full register_vendor() (store, role, membership) and logs
+   the creator in. Every PRODUCT is still reviewed before it is published. The settings page itself is not changed. */
+add_filter( 'option_wcfm_membership_options', function ( $o ) {
+	if ( ! wp_doing_ajax() || ! ss_apply_ctx() || ! is_array( $o ) ) return $o;
+	if ( ! isset( $o['membership_reject_rules'] ) || ! is_array( $o['membership_reject_rules'] ) ) $o['membership_reject_rules'] = array();
+	$o['membership_reject_rules']['required_approval'] = 'no';
+	return $o;
+}, 20 );
+add_filter( 'get_post_metadata', function ( $v, $id, $key ) {
+	return ( 'required_approval' === $key && wp_doing_ajax() && ss_apply_ctx() ) ? array( 'no' ) : $v;
+}, 20, 3 );
+/* after sign-up: straight to the creator dashboard instead of the "thank you, wait for approval" step */
+add_filter( 'wcfm_registration_thankyou_url', function ( $u ) {
+	if ( ! wp_doing_ajax() || ! ss_apply_ctx() ) return $u;
+	return function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/store-manager/' );
+}, 99 );

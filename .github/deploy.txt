@@ -100,3 +100,4 @@
 96 2026-11-16 09:02:37 Add Product AI with choice: 5 name ideas, 3 description versions, 3 cover backgrounds, price hint from similar products — nothing applied until the creator taps, all editable (owner: так сделаем, но чтобы … возможность принимать выбор)
 97 2026-11-16 09:06:36 Add Product: Preview button (product page + catalog card) and bigger, high-contrast form text (owner: кнопку которая покажет как это будет выглядеть … текст должен хорошо читаться)
 98 2026-11-16 09:24:40 Add Product: visible labelled '+ Add your own' buttons; 3D format kept but hidden from creators for now (owner: плюсики были на виду … 3д про запас)
+99 2026-11-16 11:15:29 Creator sign-up: no manual account approval, straight into the dashboard (products still reviewed) (owner: 1 — сразу в кабинет)
