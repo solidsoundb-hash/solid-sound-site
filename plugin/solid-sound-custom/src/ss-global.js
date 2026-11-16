@@ -376,19 +376,22 @@ function ssgAI(){
   function paint(force){
     var inp=document.getElementById('top-q'), chip=document.querySelector('#ssg .ss-ai'), mic=document.querySelector('#ssg .ss-mic');
     if(inp){ var p=phText(); if(inp.placeholder!==p) inp.placeholder=p; }
+    /* 16.11: write only on real change — rewriting the same value fed ssOnDom ~8×/s on every page */
     if(chip){
-      chip.textContent=aiOn ? 'AI' : 'AI off';
-      chip.setAttribute('aria-pressed', aiOn ? 'true' : 'false');
-      chip.title=aiOn ? 'AI search is on (tap to turn off)' : 'AI search is off (tap to turn on)';
+      sTx(chip, aiOn ? 'AI' : 'AI off');
+      sA(chip,'aria-pressed', aiOn ? 'true' : 'false');
+      sA(chip,'title', aiOn ? 'AI search is on (tap to turn off)' : 'AI search is off (tap to turn on)');
       setSt(chip,'background', aiOn ? '#F59E0B' : 'transparent'); setSt(chip,'color', aiOn ? '#111111' : '#94A3B8');
       setSt(chip,'border', aiOn ? '1px solid #F59E0B' : '1px solid rgba(148,163,184,0.45)');
     }
     if(mic){
-      mic.setAttribute('aria-pressed', micOn ? 'true' : 'false'); mic.setAttribute('aria-label', micOn ? 'Voice search on, tap to turn off' : 'Voice search');
+      sA(mic,'aria-pressed', micOn ? 'true' : 'false'); sA(mic,'aria-label', micOn ? 'Voice search on, tap to turn off' : 'Voice search');
       setSt(mic,'background', micOn ? '#F59E0B' : 'transparent'); setSt(mic,'color', micOn ? '#111111' : '#CBD5E1');
-      if(micOn) mic.classList.add('ss-live'); else mic.classList.remove('ss-live');
+      if(mic.classList.contains('ss-live')!==micOn) mic.classList.toggle('ss-live', micOn);
     }
   }
+  function sA(el,k,v){ if(el.getAttribute(k)!==v) el.setAttribute(k,v); }
+  function sTx(el,v){ if(el.textContent!==v) el.textContent=v; }
   window.ssMic=function(on,msg){ micOn=!!on; micMsg=on ? '' : (msg||micMsg); paint(true); if(micMsg){ setTimeout(function(){ if(!micOn){ micMsg=''; paint(true); } },4000); } };
   window.ssOnDom ? ssOnDom(paint) : setInterval(paint,700); window.addEventListener('resize',function(){ paint(true); },{passive:true});
 

@@ -194,7 +194,7 @@ function tick(force){
 function syncAll(){
   var playing=P.cur&&!audio.paused;
   var sp=document.querySelector('.sstb-play'); if(sp){ sp.setAttribute('aria-label', playing && P.cur ? 'Pause' : 'Play all tracks'); sp.classList.toggle('is-playing', !!(playing && P.cur)); }
-  document.querySelectorAll('.ssw').forEach(function(b){var on=isCur(b.dataset.src);b.classList.toggle('is-current',!!on);b.classList.toggle('is-playing',!!(on&&playing));if(on)b.classList.add('was-played');else if(b._wave&&b._wave.p){b._wave.setProgress(0);var c=b.querySelector('.ssw-cur');if(c)c.textContent='0:00'}var bt=b.querySelector('.ssw-btn');if(bt)bt.setAttribute('aria-label',on&&playing?'Pause':'Play')});
+  document.querySelectorAll('.ssw').forEach(function(b){var on=isCur(b.dataset.src);b.classList.toggle('is-current',!!on);b.classList.toggle('is-playing',!!(on&&playing));if(on)b.classList.add('was-played');else if(b._wave&&b._wave.p){b._wave.setProgress(0);var c=b.querySelector('.ssw-cur');if(c)c.textContent='0:00'}var bt=b.querySelector('.ssw-btn'),bl=on&&playing?'Pause':'Play';if(bt&&bt.getAttribute('aria-label')!==bl)bt.setAttribute('aria-label',bl)});
   document.querySelectorAll('.ss-top-i').forEach(function(li){li.classList.toggle('is-playing',!!(playing&&isCur(li.dataset.src||'')))});
   Bar.state();
 }
@@ -296,15 +296,17 @@ function tidy(root){(root||document).querySelectorAll('[data-likes]').forEach(fu
   root.querySelectorAll('.w-grid-item .w-hwrapper').forEach(function(row){
     var kids=[].slice.call(row.children),vws=kids.filter(function(c){return c.classList.contains('w-vwrapper')&&c.querySelector('.w-text-value')});
     if(!vws.length)return;
-    vws.forEach(function(v){var l=v.querySelector('.w-text-value');var rest=v.textContent.replace(l.textContent,'').trim();v.classList.toggle('ssw-empty',!rest)});
-    var seen=false,pending=null;
+    /* 16.11: change classes only when the result differs (was add+remove on every scan → constant restyles) */
+    vws.forEach(function(v){var l=v.querySelector('.w-text-value');var rest=v.textContent.replace(l.textContent,'').trim();if(v.classList.contains('ssw-empty')!==!rest)v.classList.toggle('ssw-empty',!rest)});
+    var seen=false,pending=null,off=[];
     kids.forEach(function(c){
-      if(c.classList.contains('w-image')&&!c.querySelector('a')){c.classList.add('ssw-div-off');if(seen&&!pending)pending=c}
-      else if(c.classList.contains('w-vwrapper')&&!c.classList.contains('ssw-empty')){if(pending){pending.classList.remove('ssw-div-off');pending=null}seen=true}
+      if(c.classList.contains('w-image')&&!c.querySelector('a')){off.push([c,true]);if(seen&&!pending)pending=off[off.length-1]}
+      else if(c.classList.contains('w-vwrapper')&&!c.classList.contains('ssw-empty')){if(pending){pending[1]=false;pending=null}seen=true}
     });
+    off.forEach(function(x){if(x[0].classList.contains('ssw-div-off')!==x[1])x[0].classList.toggle('ssw-div-off',x[1])});
   });
   /* broken custom fields ('Unsupported format') shown on phones */
-  root.querySelectorAll('.w-grid-item .w-post-elm.post_custom_field').forEach(function(f){if(/^\s*unsupported format\s*$/i.test(f.textContent))f.classList.add('ssw-empty')});
+  root.querySelectorAll('.w-grid-item .w-post-elm.post_custom_field').forEach(function(f){if(!f.classList.contains('ssw-empty')&&/^\s*unsupported format\s*$/i.test(f.textContent))f.classList.add('ssw-empty')});
   root.querySelectorAll('.w-grid-item').forEach(function(card){
     var pid=pidOfCard(card);if(!pid)return;
     card.querySelectorAll('.star-rating').forEach(function(st){
