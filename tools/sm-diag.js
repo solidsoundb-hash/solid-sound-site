@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const to = (pr, ms, d) => Promise.race([pr, sleep(ms).then(() => d)]);
 const BASE = 'https://solid-sound.net';
-const PAGES = (process.env.PAGES || '/en/store-manager/,/en/store-manager/?ss_cs=0,/en/store-manager/ss-products/,/en/my-account/').split(',');
+const PAGES = (process.env.PAGES || '/en/store-manager/,/en/store-manager/?ss_cs=0,/en/store-manager/ss-products/,/en/my-account/,/en/,/en/all-products/').split(',');
 const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined, args: ['--js-flags=--max-old-space-size=1024'] });
@@ -34,6 +34,14 @@ const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
       const g = k => (m.metrics.find(x => x.name === k) || {}).value;
       console.log(`${i}s heap=${Math.round(g('JSHeapUsedSize') / 1048576)}MB nodes=${g('Nodes')} listeners=${g('JSEventListeners')} layouts=${g('LayoutCount')} scriptMs=${Math.round(g('ScriptDuration') * 1000)}`);
     }
+    // Which DOM changes keep repeating after load (self-feeding observer loops)?
+    const muts = await to(p.evaluate(() => new Promise(res => {
+      const d = el => el && el.nodeType === 1 ? (el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (typeof el.className === 'string' && el.className ? '.' + el.className.trim().split(/\s+/).slice(0, 3).join('.') : '')) : (el && el.nodeType === 3 ? '#text' : String(el && el.nodeName));
+      const c = {}; const mo = new MutationObserver(ms => ms.forEach(m => { const k = `${m.type} on ${d(m.target)} <- ${d(m.target.parentNode)}` + (m.addedNodes[0] ? ` +${d(m.addedNodes[0])}` : '') + (m.removedNodes[0] ? ` -${d(m.removedNodes[0])}` : '') + (m.attributeName ? ` @${m.attributeName}` : ''); c[k] = (c[k] || 0) + 1; }));
+      mo.observe(document.documentElement, { childList: true, subtree: true, attributes: true, characterData: true });
+      setTimeout(() => { mo.disconnect(); res(Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k, n]) => `${n}× ${k}`)); }, 3000);
+    })), 6000, ['(no answer)']);
+    console.log('--- DOM mutations in 3 s after load ---\n' + muts.join('\n'));
     // Take 3 snapshots of where JS is running right now.
     for (let k = 0; k < 3; k++) {
       paused = null;
