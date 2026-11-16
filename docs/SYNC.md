@@ -36,6 +36,7 @@
 
 | Кто | Что делает | Файлы / папки | С (UTC) |
 |---|---|---|---|
+| A | Регистрация авторов в 1 шаг; затем SEO-статьи на сайте (шаблон + статьи по запросам Search Console, публикация только после «ок» владельца). Видео/посты (SMM) — контент-фабрика B, не дублирую | `modules/creator-apply.php`, `modules/vendor.php`, новые статьи | 2026-11-16 |
 | B | QA-бот и боты (по коммитам) | `tools/qa*`, `tools/bots`, `tools/speed`, `qa/`, `reports/` | 2026-11-13 05:40 |
 
 ## Задачи от владельца (13.11.2026, 11:00) — общий список, кто берёт — пишет строку в «Сейчас в работе»
@@ -108,6 +109,7 @@
 4. Регистрация продюсеров на /sell/ работает (починил: грузим скрипт WCFM в modules/creator-apply.php). Робот e2e (tools/e2e-creator.js) регистрирует, но падал на открытии кабинета (ждал networkidle — уже заменил на domcontentloaded), потом всё удаляет.
 
 ## Сделано (коротко, новое сверху)
+- 16.11 A: Supermetrics (у A тоже есть): подключены Google Analytics, Search Console, Instagram Insights. НЕ подключены: WooCommerce, TikTok Organic, YouTube, Meta Ad Library — попросил владельца. Стратегия владельца: аналитика → SMM + SEO, бюджет ~100 €/мес (owner-preferences).
 - 16.11 A: ГОТОВО и проверено роботом sm-diag (выкладки 93–94). (1) На корне нового кабинета WCFM Chart.js не грузится вообще (script_loader_tag → заглушка Chart), иначе buildTicks уходит в вечный цикл. (2) Самоподпитывающиеся циклы перерисовки на всех страницах: ss-global.js paint() и player.js tidy() перезаписывали те же значения → ssOnDom/MutationObserver срабатывал снова ~8 раз/с. ПРАВИЛО для обоих: в обработчиках ssOnDom/MutationObserver писать в DOM (textContent, setAttribute, classList.add/remove/toggle) ТОЛЬКО если значение реально меняется — даже classList.add уже существующего класса порождает мутацию. Проверка: `.github/sm-diag.txt` → в логе «DOM mutations in 3 s after load» должно быть пусто.
 - 16.11 A: ПРИЧИНА Out of Memory в /store-manager/: новый кабинет прятал старое содержимое WCFM через display:none → у графика продаж (Chart.js) нулевой размер → buildTicks крутится бесконечно. Теперь прячем за экраном с сохранением размера (creator-space.php, выкладка 92). НЕ прятать WCFM-график через display:none нигде. Робот `tools/sm-diag.js` (trigger `.github/sm-diag.txt`) ставит зависшую страницу на паузу отладчиком и печатает строку, где завис, + повторяющиеся изменения DOM.
 - 15.11 A: deploy.yml заливает build/modules и build/assets ДО build/custom.php — раньше при новом модуле сайт на минуту падал («require_once … Failed to open stream», владелец увидел). Новый модуль = просто положить в src/modules и подключить в custom.php, порядок заливки теперь безопасный. Регистрация продюсеров на /sell/ починена (робот e2e подтвердил). Новый кабинет продюсера (modules/creator-space.php, старый — галочка в WooCommerce → Solid Sound AI или ?ss_cs=0). AI-кнопки в Add Product (modules/ai-creator.php, Cloudflare Workers AI, ключ в WooCommerce → Solid Sound AI).
