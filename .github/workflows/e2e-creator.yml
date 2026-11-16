@@ -33,7 +33,7 @@ jobs:
           TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
         run: node tools/e2e-creator.js assets-e2e
       - uses: actions/upload-artifact@v4
-        if: ${{ github.event.repository.private && (always()) }}  # public repo: screenshots may show admin data
+        if: always()
         with:
           name: e2e
           path: e2e-out/

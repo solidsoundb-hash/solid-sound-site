@@ -27,7 +27,7 @@ jobs:
           TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
         run: node tools/sm-look.js
       - uses: actions/upload-artifact@v4
-        if: ${{ github.event.repository.private && (always()) }}  # public repo: screenshots may show admin data
+        if: always()
         with:
           name: sm-screens
           path: sm-out/
