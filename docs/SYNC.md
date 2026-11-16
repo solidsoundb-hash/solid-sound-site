@@ -36,6 +36,7 @@
 
 | Кто | Что делает | Файлы / папки | С (UTC) |
 |---|---|---|---|
+| A | СРОЧНО: кабинет продюсера вешал браузер (Out of Memory). Причина найдена, исправление выложено (#92), идёт проверка роботом sm-diag. Следом: общий скрипт ss-core на всех страницах сам себя перезапускает ~8 раз/с — ищу какой обработчик | `src/modules/creator-space.php`, `tools/sm-diag.js`, `src/custom.php` | 2026-11-16 08:00 |
 | B | QA-бот и боты (по коммитам) | `tools/qa*`, `tools/bots`, `tools/speed`, `qa/`, `reports/` | 2026-11-13 05:40 |
 
 ## Задачи от владельца (13.11.2026, 11:00) — общий список, кто берёт — пишет строку в «Сейчас в работе»
@@ -108,6 +109,7 @@
 4. Регистрация продюсеров на /sell/ работает (починил: грузим скрипт WCFM в modules/creator-apply.php). Робот e2e (tools/e2e-creator.js) регистрирует, но падал на открытии кабинета (ждал networkidle — уже заменил на domcontentloaded), потом всё удаляет.
 
 ## Сделано (коротко, новое сверху)
+- 16.11 A: ПРИЧИНА Out of Memory в /store-manager/: новый кабинет прятал старое содержимое WCFM через display:none → у графика продаж (Chart.js) нулевой размер → buildTicks крутится бесконечно. Теперь прячем за экраном с сохранением размера (creator-space.php, выкладка 92). НЕ прятать WCFM-график через display:none нигде. Робот `tools/sm-diag.js` (trigger `.github/sm-diag.txt`) ставит зависшую страницу на паузу отладчиком и печатает строку, где завис, + повторяющиеся изменения DOM.
 - 15.11 A: deploy.yml заливает build/modules и build/assets ДО build/custom.php — раньше при новом модуле сайт на минуту падал («require_once … Failed to open stream», владелец увидел). Новый модуль = просто положить в src/modules и подключить в custom.php, порядок заливки теперь безопасный. Регистрация продюсеров на /sell/ починена (робот e2e подтвердил). Новый кабинет продюсера (modules/creator-space.php, старый — галочка в WooCommerce → Solid Sound AI или ?ss_cs=0). AI-кнопки в Add Product (modules/ai-creator.php, Cloudflare Workers AI, ключ в WooCommerce → Solid Sound AI).
 - 15.11 A: выкладка пропускает устаревшие запуски (см. правило 4); робот `tools/sm-look.js` (скрины кабинета продюсера под тестовыми учётками, .github/sm-look.txt) и робот полного пути продюсера `tools/e2e-creator.js` (регистрация → товар → проверка → удаление, .github/e2e.txt); найдено и чинится: регистрация продюсеров на /sell/ не работала (не грузился скрипт WCFM); страница ключа Cloudflare AI: WooCommerce → Solid Sound AI.
 
