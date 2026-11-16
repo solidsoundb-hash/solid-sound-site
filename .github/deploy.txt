@@ -97,3 +97,4 @@
 93 2026-11-16 07:59:30 URGENT store manager OOM: don't load WCFM Chart.js on new dashboard root (no-op stub) (owner: Так давай исправляй косяк)
 94 2026-11-16 08:15:25 site-wide speed: header AI/mic buttons and player card tidy rewrote the same values -> endless re-render loop on every page; write only on change (owner: сайт в целом очень тяжело работает)
 95 2026-11-16 09:00:12 Add Product: autofill suggestions from the project ZIP (name, Live version, BPM, key, plugins, contents) — creator taps to choose, all editable; completeness bar no re-render loop (owner: так сделаем, но чтобы … возможность принимать выбор)
+96 2026-11-16 09:02:37 Add Product AI with choice: 5 name ideas, 3 description versions, 3 cover backgrounds, price hint from similar products — nothing applied until the creator taps, all editable (owner: так сделаем, но чтобы … возможность принимать выбор)
