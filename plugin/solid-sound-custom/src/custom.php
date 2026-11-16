@@ -1968,7 +1968,7 @@ if(img)img.required=false;if(file)file.required=false;
 /* completeness */
 function mp3Val(){var w=q('.ss-ap-mp3 textarea');if(!w)return '';if(window.tinymce&&tinymce.get(w.id))return tinymce.get(w.id).getContent();return w.value}
 function has(n){var w=F(n);if(!w)return true;if(n==='mp3')return /\.mp3/i.test(mp3Val());var s=w.querySelector('select');if(s)return [].some.call(s.options,function(o){return o.selected&&o.value});return qa('input:not([type=hidden])',w).some(function(i){return i.checked||(i.type!='checkbox'&&i.type!='radio'&&i.value)})}
-function ss(){var items=[['Name',!!(name&&name.value.trim())],['Format',!!fmtKey()],['Genre',has('genre')],['BPM',has('bpm')],['Key',has('key')],['Description',!!(desc&&desc.value.trim().length>20)],['Price',!!(price&&price.value)],['Cover',!!(img&&img.files.length)],['ZIP',!!(file&&file.files.length)],['MP3',has('mp3')]];var ok=items.filter(function(x){return x[1]}).length,p=Math.round(ok/items.length*100);ai.querySelector('.pc').textContent=p+'%';ai.querySelector('.bar i').style.width=p+'%';ai.querySelector('.chips').innerHTML=items.map(function(x){return '<span'+(x[1]?' class="ok"':'')+'>'+x[0]+'</span>'}).join('')}
+function ss(){var items=[['Name',!!(name&&name.value.trim())],['Format',!!fmtKey()],['Genre',has('genre')],['BPM',has('bpm')],['Key',has('key')],['Description',!!(desc&&desc.value.trim().length>20)],['Price',!!(price&&price.value)],['Cover',!!(img&&img.files.length)],['ZIP',!!(file&&file.files.length)],['MP3',has('mp3')]];var ok=items.filter(function(x){return x[1]}).length,p=Math.round(ok/items.length*100);var hh=items.map(function(x){return '<span'+(x[1]?' class="ok"':'')+'>'+x[0]+'</span>'}).join('');if(ai._h===hh)return;ai._h=hh;/* 16.11: only on change (was an endless re-render via ssOnDom) */ai.querySelector('.pc').textContent=p+'%';ai.querySelector('.bar i').style.width=p+'%';ai.querySelector('.chips').innerHTML=hh}
 form.addEventListener('click',function(e){var li=e.target.closest&&e.target.closest('.acf-checkbox-list>li,.acf-radio-list>li');if(!li||e.target.tagName==='INPUT'||e.target.closest('label'))return;var i=li.querySelector('input');if(i&&!i.disabled)i.click()});form.addEventListener('input',ss);form.addEventListener('change',ss);window.ssOnDom?ssOnDom(ss):setInterval(ss,1500);apply();
 /* checks before sending */
 form.addEventListener('submit',function(e){
@@ -6855,4 +6855,5 @@ require_once __DIR__ . '/modules/free-demo.php';
 require_once __DIR__ . '/modules/ai-tools.php';
 require_once __DIR__ . '/modules/creator-space.php';
 require_once __DIR__ . '/modules/ai-creator.php';
+require_once __DIR__ . '/modules/creator-autofill.php';
 require_once __DIR__ . '/modules/css-files.php';
