@@ -113,3 +113,4 @@
 109 2026-11-16 16:30:21 Home phones: slightly bigger Learn · Create · Release pill (owner: Лерн криейт релиз чутка тоже больше)
 110 2026-11-16 16:31:31 Home: 'What are you working on?' a bit bigger and white (owner: Вот аре ю воркинг он тоже чутка больше или цвет белее)
 111 2026-11-16 16:35:46 Home phones: whole top block a touch bigger (owner: Блок вот этот в общем тоже чуточку больше)
+112 2026-11-16 16:37:50 Home phones: assistant card a touch bigger, same layout; headline untouched (owner: Не трогай заголовок … блок ниже чуточку крупнее всё в нём)
