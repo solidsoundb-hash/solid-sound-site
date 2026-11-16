@@ -43,7 +43,8 @@ add_filter( 'us_page_block_the_content', 'ss_cleanup_old_footer_scripts', 1 );
 
 /* 3. Forum hidden for now (owner 12.11.2026): no links in menus/footers (removed there), not indexed by search engines.
    The forum and its data stay; to bring it back remove this block and add the links again. */
-define( 'SS_HIDDEN_PATHS', '#^/([a-z]{2}/)?(forum|community|forum-experimental|experimental)(/|$)#' );
+/* 16.11.2026 owner: forum is OPEN again (community) — only the experimental pages stay hidden */
+define( 'SS_HIDDEN_PATHS', '#^/([a-z]{2}/)?(forum-experimental|experimental)(/|$)#' );
 add_filter( 'wp_robots', function ( $r ) {
 	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
 	if ( preg_match( SS_HIDDEN_PATHS, $p ) ) { $r['noindex'] = true; $r['nofollow'] = true; }
