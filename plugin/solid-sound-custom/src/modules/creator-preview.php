@@ -27,6 +27,16 @@ body #solid-sound-upload-form .ss-wm-max,body #solid-sound-upload-form .acf-labe
 body #solid-sound-upload-form .select2-selection__rendered,body #solid-sound-upload-form .select2-selection__placeholder{color:#c2cddb!important}
 body .ss-aic-card .t{font-size:14.5px!important;line-height:1.55!important;color:#f1f5f9!important}
 body .ss-aic-c,body #ss-zf .c{font-size:14px!important}
+/* "+ Add your own" visible and labelled (owner 16.11: so the creator doesn't guess whether adding is allowed) */
+body #solid-sound-upload-form .acf-field:not(.ss-wm-row .acf-field)>.acf-input{display:flex!important;flex-direction:column!important}
+body #solid-sound-upload-form .acf-field:not(.ss-wm-row .acf-field)>.acf-input>.acf-actions{order:5}
+body #solid-sound-upload-form .acf-actions{position:static!important;display:block!important;opacity:1!important;visibility:visible!important;margin:10px 0 0!important;padding:0!important;text-align:left!important;transform:none!important}
+body #solid-sound-upload-form .ss-wm-row .acf-actions{margin:0!important;flex:none!important}
+body #solid-sound-upload-form a.acf-icon[data-name=add]{position:static!important;display:inline-flex!important;align-items:center!important;gap:6px;width:auto!important;height:38px!important;padding:0 16px!important;margin:0!important;border:1.5px dashed #f59e0b!important;border-radius:999px!important;background:rgba(245,158,11,.1)!important;color:#fbbf24!important;font:700 14.5px/1 Roboto,sans-serif!important;text-decoration:none!important;box-shadow:none!important;transform:none!important;white-space:nowrap}
+body #solid-sound-upload-form a.acf-icon[data-name=add]:hover{background:rgba(245,158,11,.2)!important;color:#fff!important}
+body #solid-sound-upload-form a.acf-icon[data-name=add]::before{content:"+"!important;position:static!important;display:inline!important;width:auto!important;height:auto!important;margin:0!important;background:none!important;-webkit-mask:none!important;mask:none!important;font:800 20px/1 Roboto,sans-serif!important;color:inherit!important;transform:none!important}
+body #solid-sound-upload-form a.acf-icon[data-name=add]::after{content:"Add your own";position:static!important;display:inline!important;background:none!important;-webkit-mask:none!important;mask:none!important;width:auto!important;height:auto!important;color:inherit!important;transform:none!important}
+body #solid-sound-upload-form .ss-wm-row a.acf-icon[data-name=add]::after{content:"Add"}
 /* preview */
 .ss-pv-b{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;margin-right:8px;border:1px solid rgba(255,255,255,.25);border-radius:10px;background:transparent;color:#fff;font:700 15px Roboto,sans-serif;cursor:pointer}.ss-pv-b:hover{border-color:#f59e0b}
 #ss-pv{position:fixed;inset:0;z-index:100000;display:none;background:rgba(2,6,15,.97);overflow:auto;padding:24px 16px}#ss-pv.on{display:block}
@@ -73,6 +83,9 @@ function open(f){if(!M){M=document.createElement('div');M.id='ss-pv';M.setAttrib
  render(f);M.classList.add('on');document.documentElement.style.overflow='hidden';M.querySelector('.x').focus()}
 function close(){M.classList.remove('on');document.documentElement.style.overflow='';var a=M.querySelector('audio');if(a)a.pause()}
 function init(){var f=document.getElementById('solid-sound-upload-form'),top=f&&f.querySelector('.ss-wm-top .pri');if(!top||f.dataset.pv)return !!top;f.dataset.pv=1;
+ /* 3D format: kept for the future (owner 16.11), hidden from creators until it gets its own fields */
+ f.querySelectorAll('.ss-ap-format input[type=radio]').forEach(function(r){var l=r.closest('li')||r.closest('label');if(l&&/\b3\s?d\b/i.test(l.textContent)&&!r.checked)l.style.display='none'});
+ f.querySelectorAll('.ss-ap-format option').forEach(function(o){if(/\b3\s?d\b/i.test(o.textContent)&&!o.selected)o.hidden=o.disabled=true});
  [top,f.querySelector('.ss-wm-submit button')].forEach(function(t){if(!t)return;var b=document.createElement('button');b.type='button';b.className='ss-pv-b';b.textContent='👁 Preview';b.addEventListener('click',function(){open(f)});t.parentNode.insertBefore(b,t)});return true}
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},12000)}
 })();</script>
