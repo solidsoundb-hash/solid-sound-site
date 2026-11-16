@@ -76,6 +76,17 @@ body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!impor
 .ssw-match{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 10px;border-radius:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.28);cursor:pointer;text-align:left}
 .ssw-match .cv{display:flex;flex:none}.ssw-match .cv img{width:38px;height:38px;border-radius:8px;object-fit:cover;border:2px solid #0b1020;margin-left:-10px}.ssw-match .cv img:first-child{margin-left:0}
 .ssw-match b{display:block;color:#fff;font:700 14.5px "Exo 2",sans-serif}.ssw-match small{color:#a3b1c6;font:400 12.5px Roboto,sans-serif}
+/* owner 16.11 «Адаптируй нормально»: phones — compact hero so the assistant and its button stay on the first screen */
+@media(max-width:600px){
+ .ssw-hero{padding:14px 8px 10px}
+ .ssw-hero .slg{font-size:26px!important;line-height:1.08;margin:0 auto 8px}
+ .ssw-hero .k{font-size:9.5px;letter-spacing:.12em;padding:3px 9px;gap:5px}.ssw-hero .k i{width:6px;height:6px;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+ .ssw-row a{width:96px;height:96px;border-radius:12px}.ssw-row{gap:8px;margin-bottom:8px}
+ body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font-size:13px!important;margin:0 0 8px!important}
+ .ssw-match{gap:8px;padding:7px 9px;margin-top:10px}.ssw-match .cv img{width:30px;height:30px;margin-left:-8px}
+ .ssw-match b{font-size:13.5px}.ssw-match small{font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 200px)}.ssw-match>span:last-child{min-width:0;flex:1}
+}
+@media(max-width:380px){.ssw-hero .slg{font-size:23px!important}}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
 @media(prefers-reduced-motion:reduce){.ssw-row{animation:none}}
 </style>
