@@ -103,3 +103,4 @@
 99 2026-11-16 11:15:29 Creator sign-up: no manual account approval, straight into the dashboard (products still reviewed) (owner: 1 — сразу в кабинет)
 100 2026-11-16 11:29:34 URGENT creators could not upload products (form posted to /wp-admin/ which WCFM blocks for creators) -> post to the page; sign-up makes the account a creator right away (owner: 1 — сразу в кабинет)
 101 2026-11-16 11:36:56 retry 100 (backup step hit a network error): creators' product upload + sign-up makes a creator (owner: 1 — сразу в кабинет)
+102 2026-11-16 12:02:41 Creators: products go to review (pending, owner email) not draft; after upload -> My products; no WCFM store wizard after sign-up (owner: 1 — сразу в кабинет)

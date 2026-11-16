@@ -831,7 +831,7 @@ function solid_sound_handle_product_upload(){
     $p->set_description($desc);
     $p->set_regular_price($price);
     $p->set_catalog_visibility('visible');
-    $p->set_status( current_user_can('manage_woocommerce') ? 'draft' : 'pending' );
+    $p->set_status( current_user_can('manage_options') ? 'draft' : 'pending' ); /* 16.11: WCFM creators also have manage_woocommerce — only real admins get a draft */
     if ($img_id) $p->set_image_id($img_id);
     if ($dl_url){
         $p->set_downloadable(true); $p->set_virtual(true);
@@ -852,7 +852,9 @@ function solid_sound_handle_product_upload(){
         ss_sync_pa_attributes($pid);
     }
 
-    wp_safe_redirect( add_query_arg('product_uploaded','1', wp_get_referer() ?: home_url('/') ) );
+    /* 16.11: creators go to their product list (wp_get_referer() is empty when the form posts to its own page) */
+    $back = ( ! current_user_can('manage_options') && function_exists('get_wcfm_url') ) ? trailingslashit( get_wcfm_url() ) . 'ss-products/' : ( wp_get_referer() ?: home_url('/') );
+    wp_safe_redirect( add_query_arg('product_uploaded','1', $back ) );
     exit;
 }
 
@@ -1710,7 +1712,7 @@ if ( ! function_exists( 'ss_ap_keys' ) ) {
 
 	/* Creators can add new terms only where it makes sense, in a clean form */
 	add_filter( 'pre_insert_term', function ( $term, $tax ) {
-		if ( is_wp_error( $term ) || current_user_can( 'manage_woocommerce' ) ) return $term;
+		if ( is_wp_error( $term ) || current_user_can( 'manage_options' ) ) return $term;
 		$watched = array( 'product_cat', 'product-format', 'daw', 'product-version', 'pa_root-key', 'pa_bpm', 'pa_length', 'product-genre', 'pa_mood', 'external-plugin', 'pa_download-include', 'product_tag' );
 		if ( ! in_array( $tax, $watched, true ) ) return $term;
 		$t = trim( preg_replace( '/\s+/u', ' ', (string) $term ) );
@@ -1748,7 +1750,7 @@ if ( ! function_exists( 'ss_ap_keys' ) ) {
 		$acf  = ( isset( $_POST['acf'] ) && is_array( $_POST['acf'] ) ) ? $_POST['acf'] : array();
 		$val  = function ( $k ) use ( $acf, $keys ) { return isset( $acf[ $keys[ $k ] ] ) ? $acf[ $keys[ $k ] ] : ''; };
 		if ( empty( $acf[ $keys['cat'] ] ) ) $_POST['acf'][ $keys['cat'] ] = 115;
-		if ( current_user_can( 'manage_woocommerce' ) ) {
+		if ( current_user_can( 'manage_options' ) ) { /* 16.11: creators have manage_woocommerce too */
 			/* admins: keep the old behaviour, only add the protected folder */
 		} else {
 			if ( '' === trim( (string) ( isset( $_POST['product_name'] ) ? $_POST['product_name'] : '' ) ) ) ss_ap_fail( 'Please add a product name.' );
@@ -1777,7 +1779,7 @@ if ( ! function_exists( 'ss_ap_keys' ) ) {
 
 	/* Creators who click "Add product" in the dashboard get our form with the filter fields */
 	add_action( 'template_redirect', function () {
-		if ( ! is_user_logged_in() || current_user_can( 'manage_woocommerce' ) ) return;
+		if ( ! is_user_logged_in() || current_user_can( 'manage_options' ) ) return;
 		global $wp;
 		if ( isset( $wp->query_vars['wcfm-products-manage'] ) && '' === (string) $wp->query_vars['wcfm-products-manage'] ) {
 			wp_safe_redirect( function_exists( 'ss_ep_url' ) ? ss_ep_url() : home_url( '/add-product/' ) );

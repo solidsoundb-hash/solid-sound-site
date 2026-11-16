@@ -93,6 +93,7 @@ add_filter( 'wcfm_registration_thankyou_url', function ( $u ) {
 add_action( 'wcfm_membership_registration', function ( $member_id ) {
 	if ( ! wp_doing_ajax() || ! ss_apply_ctx() || ! $member_id ) return;
 	$is_v = function () use ( $member_id ) { $u = get_userdata( $member_id ); return $u && in_array( 'wcfm_vendor', (array) $u->roles, true ); };
+	update_user_meta( $member_id, '_store_setup', 'yes' ); /* skip WCFM's first-login store wizard (/?store-setup=yes, broken here); our dashboard has its own Get started */
 	if ( $is_v() ) return;
 	if ( ! get_user_meta( $member_id, 'temp_wcfm_membership', true ) ) update_user_meta( $member_id, 'temp_wcfm_membership', '-1' );
 	global $WCFMvm;
