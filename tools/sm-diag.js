@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const to = (pr, ms, d) => Promise.race([pr, sleep(ms).then(() => d)]);
 const BASE = 'https://solid-sound.net';
-const PAGES = (process.env.PAGES || '/en/store-manager/,/en/store-manager/?ss_cs=0,/en/store-manager/ss-products/,/en/my-account/,/en/,/en/all-products/').split(',');
+const PAGES = (process.env.PAGES || '/en/store-manager/,/en/store-manager/ss-add-product/,/en/store-manager/ss-products/,/en/my-account/,/en/,/en/all-products/').split(',');
 const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined, args: ['--js-flags=--max-old-space-size=1024'] });
@@ -43,6 +43,19 @@ const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
       setTimeout(() => { mo.disconnect(); res(Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k, n]) => `${n}× ${k}`)); }, 3000);
     })), 6000, ['(no answer)']);
     console.log('--- DOM mutations in 3 s after load ---\n' + muts.join('\n'));
+    if (/ss-add-product/.test(path)) { // live check of the AI helpers (read-only: nothing is submitted)
+      try {
+        await p.fill('[name=product_name]', 'Dark Techno Night');
+        await p.click('text=✨ Name ideas', { timeout: 5000 }); await p.waitForSelector('.ss-aic-nm .ss-aic-c', { timeout: 40000 });
+        console.log('AI names:', (await p.$$eval('.ss-aic-nm .ss-aic-c', b => b.map(x => x.textContent))).join(' | '));
+        await p.click('text=✨ Write with AI (3 versions)', { timeout: 5000 }); await p.waitForFunction(() => document.querySelectorAll('.ss-aic-card .use:not([disabled]),.ss-aic-card.bad').length === 3, null, { timeout: 60000 });
+        console.log('AI descriptions:\n' + (await p.$$eval('.ss-aic-card', c => c.map(x => '  [' + x.querySelector('b').textContent + '] ' + x.querySelector('.t').textContent.replace(/\s+/g, ' ').slice(0, 160)))).join('\n'));
+        console.log('description field still empty (nothing applied without a tap):', (await p.inputValue('[name=product_description]')) === '');
+        await p.focus('[name=product_price]'); await p.waitForTimeout(3000);
+        console.log('price hint:', await p.$eval('.ss-aic-pr', e => e.textContent).catch(() => '(none)'));
+        console.log('autofill panel present:', !!(await p.$('#ss-zf')));
+      } catch (e) { console.log('AI check failed:', e.message.slice(0, 160)); }
+    }
     // Take 3 snapshots of where JS is running right now.
     for (let k = 0; k < 3; k++) {
       paused = null;
