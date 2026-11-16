@@ -55,6 +55,17 @@ add_action( 'wp_loaded', function () {
 	} catch ( \Throwable $e ) { error_log( 'ss forum setup v2: ' . $e->getMessage() ); }
 }, 31 );
 
+/* v3: the old default forum gets a clear name (it holds the Ideas & Suggestions topic) */
+add_action( 'wp_loaded', function () {
+	if ( ! ss_fr_ok() || ! get_option( 'ss_forum_setup_v2' ) || get_option( 'ss_forum_setup_v3' ) ) return;
+	try {
+		$t = WPF()->tables->forums;
+		WPF()->db->query( "UPDATE {$t} SET `title` = 'Ideas & feedback', `description` = 'What should Solid Sound add or improve? New products, features, anything — we read everything.', `icon` = 'fas fa-lightbulb' WHERE `is_cat` = 0 AND `title` = 'Main Forum'" );
+		if ( function_exists( 'wpforo_clean_cache' ) ) wpforo_clean_cache();
+		update_option( 'ss_forum_setup_v3', 1, false );
+	} catch ( \Throwable $e ) { error_log( 'ss forum setup v3: ' . $e->getMessage() ); }
+}, 32 );
+
 /* ---------- 3. hide e-mails and phone numbers (nicknames stay) ---------- */
 function ss_fr_mask( $s ) {
 	if ( ! is_string( $s ) || '' === $s ) return $s;
@@ -142,6 +153,7 @@ add_action( 'wp_head', function () {
 #wpforo #wpforo-wrap #wpforo-menu,#wpforo #wpforo-wrap #wpforo-stat-header,#wpforo #wpforo-wrap #wpforo-stat-body,#wpforo #wpforo-wrap #wpforo-poweredby{background:#0f1626!important;color:#e2e8f0!important;border-color:rgba(255,255,255,.08)!important}
 #wpforo #wpforo-wrap #wpforo-stat-header{border-radius:14px 14px 0 0}#wpforo #wpforo-wrap #wpforo-stat-body{border-radius:0 0 14px 14px}
 #wpforo #wpforo-wrap #wpforo-stat-body *{color:#cbd5e1!important}#wpforo #wpforo-wrap #wpforo-stat-body a{color:#fbbf24!important}#wpforo #wpforo-wrap #wpforo-menu a,#wpforo #wpforo-wrap #wpforo-menu *{color:#e2e8f0!important}
+#wpforo #wpforo-wrap .wpforo-forum{background:#111a2e!important;border-bottom:1px solid rgba(255,255,255,.08)!important;color:#e2e8f0!important}#wpforo #wpforo-wrap .wpforo-forum:hover{background:#15203a!important}#wpforo #wpforo-wrap .wpforo-forum *{color:inherit}#wpforo #wpforo-wrap .wpforo-forum .wpforo-forum-title a,#wpforo #wpforo-wrap .wpforo-forum h3 a{color:#fbbf24!important;font:700 18px "Exo 2",sans-serif}#wpforo #wpforo-wrap .wpforo-forum-description{color:#a3b1c6!important}#wpforo #wpforo-wrap .wpforo-forum .wpforo-forum-icon i,#wpforo #wpforo-wrap .wpforo-forum i.fas{color:#f59e0b!important}
 #wpforo #wpforo-wrap .cat-title{color:#fff!important;font:800 18px "Exo 2",sans-serif!important}
 #wpforo #wpforo-wrap .wpforo-post-content,#wpforo #wpforo-wrap .wpforo-post-content *{color:var(--ftx)!important;font-size:16px;line-height:1.6}
 #wpforo #wpforo-wrap .wpf-breadcrumb .wpf-item-element,#wpforo #wpforo-wrap .wpf-breadcrumb a{background:var(--fcard2)!important;color:var(--ftx)!important;border-color:var(--fline)!important}
