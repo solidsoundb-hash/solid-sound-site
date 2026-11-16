@@ -25,6 +25,7 @@ jobs:
       SITE: https://solid-sound.net/en/
     steps:
       - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }   # full history: the fast deploy compares the live commit with this one
       # Outdated run? (a newer deploy line is already on main) -> do nothing, the newer run uploads everything. Owner 15.11.2026.
       - name: Skip if a newer deploy is already queued
         run: |
@@ -44,19 +45,36 @@ jobs:
           git status --porcelain plugin/ | tee /tmp/dirty
           [ ! -s /tmp/dirty ] || { echo "::error::build/ is out of date: run node tools/build.mjs and commit"; exit 1; }
           find plugin -name '*.php' -print0 | xargs -0 -n1 php -l
+      # 16.11 owner «чтобы за минуты выкладывалось»: the server keeps .deployed (the live commit); only the files changed
+      # since then are backed up and uploaded. No marker / unknown commit -> the old full deploy (safe fallback).
+      - name: Plan (fast = only changed files)
+        if: env.SKIP != '1'
+        run: |
+          python3 tools/ftp_sync.py get "$REMOTE/.deployed" .deployed >/dev/null 2>&1 || true
+          BASE=$(head -1 .deployed 2>/dev/null | tr -d '[:space:]')
+          if python3 tools/deploy_plan.py "$BASE" plan; then echo "FAST=1" >> "$GITHUB_ENV"; else echo "::notice::full deploy (no live marker yet)"; fi
       - name: Back up the server copy
         if: env.SKIP != '1'
         run: |
-          # 16.11: build/assets (hashed files, never overwritten) grew big and made the backup take 20+ min
-          SS_FTP_SKIP_DIRS=build/assets python3 tools/ftp_sync.py download "$REMOTE" server-backup
-          test -f server-backup/solid-sound-custom.php
+          if [ "$FAST" = 1 ]; then
+            mkdir -p server-backup; cp -r plan server-backup/_plan
+            if [ -s plan/backup.txt ]; then python3 tools/ftp_sync.py getlist "$REMOTE" server-backup plan/backup.txt; fi
+          else
+            # 16.11: build/assets (hashed files, never overwritten) grew big and made the backup take 20+ min
+            SS_FTP_SKIP_DIRS=build/assets python3 tools/ftp_sync.py download "$REMOTE" server-backup
+            test -f server-backup/solid-sound-custom.php
+          fi
       - uses: actions/upload-artifact@v4
         if: env.SKIP != '1'
-        with: { name: "server-backup-${{ github.run_number }}", path: server-backup, retention-days: 90 }
+        with: { name: "server-backup-${{ github.run_number }}", path: server-backup, retention-days: 90, if-no-files-found: ignore }
       - name: Upload (build first, loader last)
         if: env.SKIP != '1'
         run: |
           P=plugin/solid-sound-custom
+          if [ "$FAST" = 1 ]; then
+            if [ -s plan/upload.txt ]; then python3 tools/ftp_sync.py putlist $P "$REMOTE" plan/upload.txt; else echo "nothing changed in the plugin"; fi
+            exit 0
+          fi
           # new files first (modules, assets), then the files that point to them — otherwise custom.php can be live
           # for a minute while a new module it requires is not uploaded yet (owner saw this 15.11.2026)
           [ -d $P/build/modules ] && python3 tools/ftp_sync.py upload $P/build/modules "$REMOTE/build/modules"
@@ -86,9 +104,15 @@ jobs:
           done
           if [ $bad = 1 ]; then
             echo "ROLLED BACK" | tee -a $LOG
-            SS_FTP_SKIP_DIRS=build/assets python3 tools/ftp_sync.py restore server-backup "$REMOTE"
+            if [ "$FAST" = 1 ]; then
+              if [ -s plan/backup.txt ]; then python3 tools/ftp_sync.py putlist server-backup "$REMOTE" plan/backup.txt; fi
+              if [ -s plan/added.txt ]; then python3 tools/ftp_sync.py dellist "$REMOTE" plan/added.txt; fi
+            else
+              SS_FTP_SKIP_DIRS=build/assets python3 tools/ftp_sync.py restore server-backup "$REMOTE"
+            fi
           else
             echo "OK" | tee -a $LOG
+            echo "${{ github.sha }}" > .deployed && python3 tools/ftp_sync.py upload .deployed "$REMOTE/.deployed"   # live commit for the next fast deploy
           fi
           echo $bad > /tmp/bad
       - name: Save the deploy log in the repo

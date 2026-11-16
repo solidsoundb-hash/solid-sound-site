@@ -6,6 +6,9 @@
   ftp_sync.py restore  <local_dir>  <remote_dir>    upload a folder and delete server files that are not in it
   ftp_sync.py get      <remote_file> <local_file>   download one file
   ftp_sync.py purge    <remote_dir>                 delete everything inside a server folder (page cache)
+  ftp_sync.py putlist  <local_root> <remote_root> <list>  upload the files named in <list> (relative paths, in order)
+  ftp_sync.py getlist  <remote_root> <local_root> <list>  download those files if they exist (backup for a fast deploy)
+  ftp_sync.py dellist  <remote_root> <list>              delete those files (undo files a failed deploy added)
 
 Credentials: env FTP_HOST, FTP_USER, FTP_PASS. Uses FTPS when the server offers it, plain FTP otherwise.
 Every network operation has a timeout and is retried.
@@ -148,6 +151,44 @@ def prune(c, local, remote):
             c.run(lambda f, p: f.rmd(p), posixpath.join(remote, d))
 
 
+def read_list(path):
+    with open(path) as fh:
+        return [l.strip() for l in fh if l.strip() and not l.startswith('#')]
+
+
+def putlist(c, root, remote, lst):
+    made = set()
+    for rel in read_list(lst):
+        d = posixpath.dirname(posixpath.join(remote, rel))
+        if d not in made:
+            mkdirs(c, d); made.add(d)
+        put(c, os.path.join(root, rel), posixpath.join(remote, rel))
+        print('  put', rel, flush=True)
+
+
+def getlist(c, remote, root, lst):
+    got = 0
+    for rel in read_list(lst):
+        dst = os.path.join(root, rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        try:
+            with open(dst, 'wb') as out:
+                c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), posixpath.join(remote, rel))
+            got += 1
+        except ftplib.error_perm:
+            os.remove(dst)  # not on the server yet
+    print('  backed up', got, 'files', flush=True)
+
+
+def dellist(c, remote, lst):
+    for rel in read_list(lst):
+        try:
+            c.run(lambda f, p: f.delete(p), posixpath.join(remote, rel))
+            print('  deleted', rel, flush=True)
+        except ftplib.error_perm:
+            pass
+
+
 def main():
     cmd, a = sys.argv[1], sys.argv[2]
     b = sys.argv[3] if len(sys.argv) > 3 else ''
@@ -163,6 +204,12 @@ def main():
         os.makedirs(os.path.dirname(b) or '.', exist_ok=True)
         with open(b, 'wb') as out:
             c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), a)
+    elif cmd == 'putlist':
+        putlist(c, a, b, sys.argv[4])
+    elif cmd == 'getlist':
+        getlist(c, a, b, sys.argv[4])
+    elif cmd == 'dellist':
+        dellist(c, a, b)
     elif cmd == 'restore':
         upload(c, a, b)
         prune(c, a, b)
