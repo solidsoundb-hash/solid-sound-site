@@ -94,3 +94,4 @@
 90 2026-11-15 20:59:53 URGENT store manager Out of Memory: no chart hiding (owner: со старым то же самое)
 91 2026-11-15 21:27:11 URGENT store manager OOM: front scripts off there (owner: нифига)
 92 2026-11-16 07:41:43 URGENT store manager OOM root cause: WCFM chart hidden with display:none -> Chart.js buildTicks endless loop; keep it sized off-screen (owner: Так давай исправляй косяк)
+93 2026-11-16 07:59:30 URGENT store manager OOM: don't load WCFM Chart.js on new dashboard root (no-op stub) (owner: Так давай исправляй косяк)

@@ -20,6 +20,12 @@ function ss_cs_is_root() {
 	foreach ( array_keys( (array) $wp->query_vars ) as $k ) if ( 0 === strpos( $k, 'wcfm-' ) && 'wcfm-dashboard' !== $k ) return false;
 	return true;
 }
+/* 16.11: the new dashboard has its own charts. WCFM's Chart.js (hidden under it) loops forever in buildTicks
+   → browser Out of Memory. On the dashboard root we don't load WCFM Chart.js; a no-op stub keeps WCFM code error-free. */
+add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) {
+	if ( false === strpos( (string) $src, '/libs/chart-js/chart' ) || ! ss_cs_ok() || ! ss_cs_is_root() ) return $tag;
+	return '<script id="ss-cs-nochart">(function(){var s;s=new Proxy(function(){},{get:function(t,k){return k===Symbol.toPrimitive?function(){return ""}:s},set:function(){return true},apply:function(){return s},construct:function(){return s}});window.Chart=s})();</script>' . "\n";
+}, 99, 3 );
 
 /* plays per day (kept 62 days) */
 add_action( 'ss_play_counted', function ( $pid ) {
