@@ -105,3 +105,4 @@
 101 2026-11-16 11:36:56 retry 100 (backup step hit a network error): creators' product upload + sign-up makes a creator (owner: 1 — сразу в кабинет)
 102 2026-11-16 12:02:41 Creators: products go to review (pending, owner email) not draft; after upload -> My products; no WCFM store wizard after sign-up (owner: 1 — сразу в кабинет)
 103 2026-11-16 12:53:23 Home: wall of real covers behind the assistant (variant B), slogan, tap cover = demo, 'N templates match'; previous home kept (?ss_wow=0, toggle in Solid Sound AI, commit 56560d4) (owner: Выкладывай, только предыдущую версию где-то сохрани)
+104 2026-11-16 12:55:58 Home slogan: Solid Sound in brand orange (owner: Солид саунд оранжевым нужно)

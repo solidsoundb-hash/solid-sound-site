@@ -56,7 +56,7 @@ add_action( 'wp_footer', function () {
 .ssw-hero .k{position:relative;z-index:2;display:inline-flex;gap:7px;align-items:center;font:700 11.5px Roboto,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fbbf24;padding:5px 11px;border-radius:999px;background:rgba(11,16,32,.7);border:1px solid rgba(245,158,11,.35)}
 .ssw-hero .k i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2)}
 .ssw-hero .slg{position:relative;z-index:2;margin:10px auto 0;max-width:820px;font:800 clamp(30px,6.4vw,52px)/1.06 "Exo 2",sans-serif;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.8),0 6px 40px rgba(0,0,0,.9)}
-.ssw-hero .slg span{background:linear-gradient(90deg,#f59e0b,#f472b6,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ssw-hero .slg span{color:#f59e0b} /* owner 16.11: Solid Sound always brand orange */
 .ssw-wall{position:absolute;left:-12px;right:-12px;top:0;z-index:0;overflow:hidden;border-radius:24px;pointer-events:none;opacity:0;transition:opacity 1.2s}
 .ssw-wall.on{opacity:1}
 .ssw-wall .in{position:absolute;inset:-80px -60px;transform:perspective(900px) rotateX(16deg) rotateZ(-7deg)}
