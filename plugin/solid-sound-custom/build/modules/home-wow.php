@@ -80,7 +80,7 @@ body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!impor
 @media(max-width:600px){
  .ssw-hero{padding:14px 8px 10px}
  .ssw-hero .slg{font-size:33px!important;line-height:1.04;margin:0 auto 8px;letter-spacing:-.3px}
- .ssw-hero .k{font-size:9.5px;letter-spacing:.12em;padding:3px 9px;gap:5px}.ssw-hero .k i{width:6px;height:6px;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+ .ssw-hero .k{font-size:11.5px;letter-spacing:.13em;padding:5px 12px;gap:6px}.ssw-hero .k i{width:6px;height:6px;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
  .ssw-row a{width:96px;height:96px;border-radius:12px}.ssw-row{gap:8px;margin-bottom:8px}
  body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font-size:13px!important;margin:0 0 8px!important}
  .ssw-match{gap:8px;padding:7px 9px;margin-top:10px}.ssw-match .cv img{width:30px;height:30px;margin-left:-8px}
