@@ -69,6 +69,9 @@ add_action( 'wp_footer', function () {
 .ssw-wall:after{content:"";position:absolute;inset:0;background:radial-gradient(60% 120px at 50% 120px,rgba(11,16,32,.75),transparent 100%),linear-gradient(180deg,rgba(11,16,32,.5),rgba(11,16,32,.62) 40%,rgba(11,16,32,.9))}
 .ssw-wall.paused .ssw-row{animation-play-state:paused}
 @keyframes sswmq{to{transform:translateX(-50%)}}
+/* owner 16.11: «2 заголовка конфликтуют» — the slogan is the headline; the assistant title becomes a small card label */
+body.ss-wow .ssx h1.ssx-t,body.ss-wow #top .ssx h1.ssx-t,#top body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font:700 15px/1.3 "Exo 2",sans-serif!important;letter-spacing:.06em;text-transform:uppercase;color:#cbd5e1!important;margin:0 0 10px!important}
+body.ss-wow .ssx .sub{display:none}
 body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!important;-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);box-shadow:0 30px 80px rgba(0,0,0,.55)}
 .ssw-match{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 10px;border-radius:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.28);cursor:pointer;text-align:left}
 .ssw-match .cv{display:flex;flex:none}.ssw-match .cv img{width:38px;height:38px;border-radius:8px;object-fit:cover;border:2px solid #0b1020;margin-left:-10px}.ssw-match .cv img:first-child{margin-left:0}
