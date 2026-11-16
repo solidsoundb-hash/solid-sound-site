@@ -122,3 +122,4 @@
 118 2026-11-16 19:23:43 rerun 117 (repo is public now — Actions minutes free): fast deploy setup, full upload this time (owner: все публичный уже)
 120 2026-11-16 19:33:17 COMMUNITY: forum open (was hidden), sections Rate my track / Ableton help / Sound design & presets / Collabs & vocals / Releasing & promo / Lounge, AI translation to the reader's language + Show original, e-mails/phones hidden, dark look, Forum link in footer (owner: выкладывай форум)
 119 2026-11-16 19:37:56 fast deploy check: one comment line (owner: Сделай так что бы за минуты выкладывалось)
+121 2026-11-16 19:44:19 Forum: home lists the sections (category layout), named Solid Sound Community, dark menu/stats bars (owner: выкладывай форум)

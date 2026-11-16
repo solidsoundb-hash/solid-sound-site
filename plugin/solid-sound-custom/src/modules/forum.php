@@ -40,6 +40,21 @@ add_action( 'wp_loaded', function () {
 	} catch ( \Throwable $e ) { error_log( 'ss forum setup: ' . $e->getMessage() ); }
 }, 30 );
 
+/* v2: the category shows its sections (layout 1 = extended forum list, it was 4 = recent threads only) and gets a real name */
+add_action( 'wp_loaded', function () {
+	if ( ! ss_fr_ok() || ! get_option( 'ss_forum_setup_v1' ) || get_option( 'ss_forum_setup_v2' ) ) return;
+	try {
+		$t   = WPF()->tables->forums;
+		$cat = (int) WPF()->db->get_var( "SELECT `forumid` FROM {$t} WHERE `is_cat` = 1 ORDER BY `forumid` LIMIT 1" );
+		if ( $cat ) {
+			WPF()->db->update( $t, array( 'layout' => 1, 'title' => 'Solid Sound Community', 'description' => 'Producers, DJs and creators from all over the world — write in your language, read in yours.' ), array( 'forumid' => $cat ) );
+			WPF()->db->query( "UPDATE {$t} SET `layout` = 1 WHERE `parentid` = {$cat}" );
+			if ( function_exists( 'wpforo_clean_cache' ) ) wpforo_clean_cache();
+		}
+		update_option( 'ss_forum_setup_v2', 1, false );
+	} catch ( \Throwable $e ) { error_log( 'ss forum setup v2: ' . $e->getMessage() ); }
+}, 31 );
+
 /* ---------- 3. hide e-mails and phone numbers (nicknames stay) ---------- */
 function ss_fr_mask( $s ) {
 	if ( ! is_string( $s ) || '' === $s ) return $s;
@@ -124,6 +139,10 @@ add_action( 'wp_head', function () {
 #wpforo #wpforo-wrap .wpf-button,#wpforo #wpforo-wrap .wpf-button-primary,#wpforo #wpforo-wrap input[type=submit],#wpforo #wpforo-wrap button.wpf-button{background:var(--for)!important;color:#111!important;border:0!important;border-radius:10px!important;font-weight:800!important;box-shadow:none!important}
 #wpforo #wpforo-wrap input[type=text],#wpforo #wpforo-wrap input[type=search],#wpforo #wpforo-wrap textarea,#wpforo #wpforo-wrap select{background:#0b1220!important;color:#f8fafc!important;border:1px solid var(--fline)!important;border-radius:10px!important;font-size:16px!important}
 #wpforo #wpforo-wrap .wpf-stat-value,#wpforo #wpforo-wrap .wpf-stat-item i{color:#fff!important}
+#wpforo #wpforo-wrap #wpforo-menu,#wpforo #wpforo-wrap #wpforo-stat-header,#wpforo #wpforo-wrap #wpforo-stat-body,#wpforo #wpforo-wrap #wpforo-poweredby{background:#0f1626!important;color:#e2e8f0!important;border-color:rgba(255,255,255,.08)!important}
+#wpforo #wpforo-wrap #wpforo-stat-header{border-radius:14px 14px 0 0}#wpforo #wpforo-wrap #wpforo-stat-body{border-radius:0 0 14px 14px}
+#wpforo #wpforo-wrap #wpforo-stat-body *{color:#cbd5e1!important}#wpforo #wpforo-wrap #wpforo-stat-body a{color:#fbbf24!important}#wpforo #wpforo-wrap #wpforo-menu a,#wpforo #wpforo-wrap #wpforo-menu *{color:#e2e8f0!important}
+#wpforo #wpforo-wrap .cat-title{color:#fff!important;font:800 18px "Exo 2",sans-serif!important}
 #wpforo #wpforo-wrap .wpforo-post-content,#wpforo #wpforo-wrap .wpforo-post-content *{color:var(--ftx)!important;font-size:16px;line-height:1.6}
 #wpforo #wpforo-wrap .wpf-breadcrumb .wpf-item-element,#wpforo #wpforo-wrap .wpf-breadcrumb a{background:var(--fcard2)!important;color:var(--ftx)!important;border-color:var(--fline)!important}
 #wpforo #wpforo-wrap .wpf-breadcrumb .wpf-item-element:after,#wpforo #wpforo-wrap .wpf-breadcrumb .wpf-item-element:before{display:none!important}
