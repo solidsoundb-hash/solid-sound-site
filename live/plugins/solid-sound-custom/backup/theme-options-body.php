@@ -558,9 +558,9 @@ function restore(){
 /* ---------- start ---------- */
 function start(){
   Bar.build();scan(document);restore();
-  var t;new MutationObserver(function(muts){
+  var t,t0=0;new MutationObserver(function(muts){
     var rel=false;for(var i=0;i<muts.length&&!rel;i++){var m=muts[i];var tg=m.target;if(tg&&tg.closest&&(tg.closest('.ssp')||tg.closest('.ssw')||tg===document.body&&[].every.call(m.addedNodes,function(n){return n.classList&&(n.classList.contains('ssp')||n.classList.contains('ssp-loadbar'))})))continue;rel=true}
-    if(rel){clearTimeout(t);t=setTimeout(function(){scan(document)},150)}
+    if(rel){var nw=Date.now();if(!t0)t0=nw;clearTimeout(t);if(nw-t0>400){t0=0;scan(document)}else{t=setTimeout(function(){t0=0;scan(document)},150)}}
   }).observe(document.body,{childList:true,subtree:true});
   window.addEventListener('pagehide',save);
 }

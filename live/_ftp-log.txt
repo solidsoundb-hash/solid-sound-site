@@ -1,4 +1,6 @@
-pull 2026-11-11T22:27:30Z
+pull 2026-11-16T11:05:29Z
+  retry after EOFError()
+  retry after EOFError()
 ok  solid-sound.net/www/wp-content/plugins/solid-sound-custom
 ok  solid-sound.net/www/wp-content/themes/Impreza/functions.php
 ok  solid-sound.net/www/wp-content/wp-cache-config.php
@@ -34,27 +36,45 @@ Traceback (most recent call last):
 ftplib.error_perm: 550 solid-sound.net/www/wp-content/advanced-cache.php: No such file or directory
 --  solid-sound.net/www/wp-content/advanced-cache.php (missing)
 ok  solid-sound.net/www/.htaccess
+  retry after EOFError()
+ok  solid-sound.net/www/wp-content/plugins/wc-multivendor-membership/controllers
+ok  solid-sound.net/www/wp-content/plugins/wc-multivendor-membership/core
+  live/_ftp-log.txt
   live/root/.htaccess
   live/wp-content/wp-cache-config.php
-  live/themes/Impreza/functions.php
-  live/themes/Impreza/common/functions/menu.php
-  live/themes/Impreza/common/functions/helpers.php
-  live/themes/Impreza/common/functions/comments.php
-  live/_ftp-log.txt
-  live/plugins/solid-sound-custom/exports/post-52.php
-  live/plugins/solid-sound-custom/exports/meta.php
-  live/plugins/solid-sound-custom/exports/theme-custom_html_head.php
-  live/plugins/solid-sound-custom/exports/post-2.php
-  live/plugins/solid-sound-custom/exports/theme-custom_html.php
-  live/plugins/solid-sound-custom/exports/theme-custom_css.php
-  live/plugins/solid-sound-custom/exports/post-2433.php
-  live/plugins/solid-sound-custom/exports/post-2561.php
-  live/plugins/solid-sound-custom/solid-sound-custom.php
-  live/plugins/solid-sound-custom/includes/custom.php
-  live/plugins/solid-sound-custom/includes/index.php
+  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-registration.php
+  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-payment.php
+  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-manage.php
+  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships.php
+  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-settings.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-non-ajax.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-emails.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-frontend.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-library.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-shortcode.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-ajax.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-capability.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-template.php
+  live/plugins/wc-multivendor-membership/core/class-wcfmvm-pay-for-product.php
+  live/plugins/solid-sound-custom/backup/README.php
   live/plugins/solid-sound-custom/backup/theme-functions-header.php
-  live/plugins/solid-sound-custom/backup/theme-options-head.php
+  live/plugins/solid-sound-custom/backup/theme-options-body.php
   live/plugins/solid-sound-custom/backup/index.php
   live/plugins/solid-sound-custom/backup/theme-options-css.php
-  live/plugins/solid-sound-custom/backup/README.php
-  live/plugins/solid-sound-custom/backup/theme-options-body.php
+  live/plugins/solid-sound-custom/backup/theme-options-head.php
+  live/plugins/solid-sound-custom/exports/post-52.php
+  live/plugins/solid-sound-custom/exports/theme-custom_html.php
+  live/plugins/solid-sound-custom/exports/theme-custom_html_head.php
+  live/plugins/solid-sound-custom/exports/post-2433.php
+  live/plugins/solid-sound-custom/exports/theme-custom_css.php
+  live/plugins/solid-sound-custom/exports/post-2.php
+  live/plugins/solid-sound-custom/exports/meta.php
+  live/plugins/solid-sound-custom/exports/post-2561.php
+  live/plugins/solid-sound-custom/includes/index.php
+  live/plugins/solid-sound-custom/includes/custom.php
+  live/plugins/solid-sound-custom/solid-sound-custom.php
+  live/themes/Impreza/functions.php
+  live/themes/Impreza/common/functions/comments.php
+  live/themes/Impreza/common/functions/menu.php
+  live/themes/Impreza/common/functions/helpers.php
