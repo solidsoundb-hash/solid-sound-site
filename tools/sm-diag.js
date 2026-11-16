@@ -23,7 +23,8 @@ const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
     const req = {}; const errs = []; const scripts = {};
     p.on('request', r => { const u = short(r.url().split('?')[0]); req[u] = (req[u] || 0) + 1; });
     p.on('crash', () => console.log('!! renderer crashed')); p.on('pageerror', e => errs.push(e.message.slice(0, 160)));
-    cdp.on('Debugger.scriptParsed', s => { scripts[s.scriptId] = s.url; });
+    const sp = {}; cdp.on('Debugger.scriptParsed', s => { scripts[s.scriptId] = s.url; sp[s.scriptId] = s; });
+    const snip = async (l) => { const src = await to(cdp.send('Debugger.getScriptSource', { scriptId: l.scriptId }), 3000, null); if (!src) return '(no source)'; const s0 = sp[l.scriptId] || { startLine: 0, startColumn: 0 }; const ln = l.lineNumber - (s0.startLine || 0); const c = l.columnNumber - (ln === 0 ? (s0.startColumn || 0) : 0); const line = src.scriptSource.split('\n')[ln] || ''; return line.slice(Math.max(0, c - 350), c + 250).replace(/\s+/g, ' '); };
     let paused = null; cdp.on('Debugger.paused', e => { paused = e; });
     await to(cdp.send('Debugger.enable'), 5000); await to(cdp.send('Performance.enable'), 5000);
     p.goto(BASE + path, { waitUntil: 'commit', timeout: 90000 }).catch(e => console.log('goto', e.message.slice(0, 80)));
@@ -52,13 +53,7 @@ const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
       for (const f of paused.callFrames.slice(0, 8)) {
         const l = f.location; console.log(`  ${f.functionName || '(anon)'} @ ${short(scripts[l.scriptId] || f.url || 'inline')}:${l.lineNumber + 1}:${l.columnNumber + 1}`);
       }
-      if (k === 0) {
-        const l = paused.callFrames[0].location;
-        const src = await to(cdp.send('Debugger.getScriptSource', { scriptId: l.scriptId }), 3000, null);
-        if (src) { const line = src.scriptSource.split('\n')[l.lineNumber] || ''; const c = l.columnNumber; console.log('  code: …' + line.slice(Math.max(0, c - 300), c + 300).replace(/\s+/g, ' ') + '…'); }
-        const f2 = paused.callFrames[1];
-        if (f2) { const src2 = await to(cdp.send('Debugger.getScriptSource', { scriptId: f2.location.scriptId }), 3000, null); if (src2) { const ln = src2.scriptSource.split('\n')[f2.location.lineNumber] || ''; const c = f2.location.columnNumber; console.log('  caller code: …' + ln.slice(Math.max(0, c - 300), c + 300).replace(/\s+/g, ' ') + '…'); } }
-      }
+      if (k < 2) { console.log('  code: …' + await snip(paused.callFrames[0].location) + '…'); if (paused.callFrames[1]) console.log('  caller: …' + await snip(paused.callFrames[1].location) + '…'); }
       await to(cdp.send('Debugger.resume'), 3000); await sleep(700);
     }
     const reqTop = Object.entries(req).sort((a, c) => c[1] - a[1]).slice(0, 8).map(([u, n]) => `${n}× ${u}`);
