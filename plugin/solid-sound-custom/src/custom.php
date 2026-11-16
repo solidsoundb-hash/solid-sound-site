@@ -713,7 +713,7 @@ function solid_sound_add_product_form_callback() {
 
     ob_start(); ?>
     <form id="solid-sound-upload-form" method="post" enctype="multipart/form-data"
-          action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" style="max-width:1200px">
+          action="" style="max-width:1200px"><?php /* 16.11: post to this page — WCFM sends creators away from /wp-admin/ (admin-post.php), so their products were never created */ ?>
         <?php wp_nonce_field('solid_sound_add_product_nonce','solid_sound_nonce'); ?>
         <input type="hidden" name="action" value="solid_sound_add_product">
 
@@ -784,6 +784,12 @@ function solid_sound_render_front_acf_group_fields($group_key){
    🟦 ХЕНДЛЕР САБМІТУ ФОРМИ
    ────────────────────────────────────────────────────────────── */
 add_action('admin_post_solid_sound_add_product', 'solid_sound_handle_product_upload');
+/* 16.11: the form now posts to the page itself (front end) — run the same admin_post handlers there */
+add_action( 'init', function () {
+    if ( is_admin() || 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) || ( $_POST['action'] ?? '' ) !== 'solid_sound_add_product' || empty( $_POST['solid_sound_nonce'] ) ) return;
+    do_action( 'admin_post_solid_sound_add_product' );
+    exit;
+}, 99 );
 add_action('admin_post_nopriv_solid_sound_add_product', 'solid_sound_handle_product_upload');
 
 function solid_sound_handle_product_upload(){

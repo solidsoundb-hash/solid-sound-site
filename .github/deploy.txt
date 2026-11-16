@@ -101,3 +101,4 @@
 97 2026-11-16 09:06:36 Add Product: Preview button (product page + catalog card) and bigger, high-contrast form text (owner: кнопку которая покажет как это будет выглядеть … текст должен хорошо читаться)
 98 2026-11-16 09:24:40 Add Product: visible labelled '+ Add your own' buttons; 3D format kept but hidden from creators for now (owner: плюсики были на виду … 3д про запас)
 99 2026-11-16 11:15:29 Creator sign-up: no manual account approval, straight into the dashboard (products still reviewed) (owner: 1 — сразу в кабинет)
+100 2026-11-16 11:29:34 URGENT creators could not upload products (form posted to /wp-admin/ which WCFM blocks for creators) -> post to the page; sign-up makes the account a creator right away (owner: 1 — сразу в кабинет)

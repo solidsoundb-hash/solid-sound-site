@@ -87,3 +87,15 @@ add_filter( 'wcfm_registration_thankyou_url', function ( $u ) {
 	if ( ! wp_doing_ajax() || ! ss_apply_ctx() ) return $u;
 	return function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/store-manager/' );
 }, 99 );
+/* WCFM only makes the account a vendor when a membership plan is stored for the user (temp_wcfm_membership); our
+   site has no free plan, so the account stayed "subscriber". Finish it here with WCFM's own register_vendor();
+   if that still leaves no vendor role, give the role directly (what approving in the admin does). */
+add_action( 'wcfm_membership_registration', function ( $member_id ) {
+	if ( ! wp_doing_ajax() || ! ss_apply_ctx() || ! $member_id ) return;
+	$is_v = function () use ( $member_id ) { $u = get_userdata( $member_id ); return $u && in_array( 'wcfm_vendor', (array) $u->roles, true ); };
+	if ( $is_v() ) return;
+	if ( ! get_user_meta( $member_id, 'temp_wcfm_membership', true ) ) update_user_meta( $member_id, 'temp_wcfm_membership', '-1' );
+	global $WCFMvm;
+	if ( $WCFMvm && method_exists( $WCFMvm, 'register_vendor' ) ) { ob_start(); try { $WCFMvm->register_vendor( $member_id ); } catch ( \Throwable $e ) { error_log( 'ss auto-approve: ' . $e->getMessage() ); } ob_end_clean(); }
+	if ( ! $is_v() ) { $u = new WP_User( $member_id ); $u->set_role( 'wcfm_vendor' ); }
+}, 20 );
