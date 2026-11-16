@@ -6856,4 +6856,5 @@ require_once __DIR__ . '/modules/ai-tools.php';
 require_once __DIR__ . '/modules/creator-space.php';
 require_once __DIR__ . '/modules/ai-creator.php';
 require_once __DIR__ . '/modules/creator-autofill.php';
+require_once __DIR__ . '/modules/creator-preview.php';
 require_once __DIR__ . '/modules/css-files.php';
