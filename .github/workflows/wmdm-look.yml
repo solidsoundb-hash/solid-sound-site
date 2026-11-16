@@ -25,7 +25,7 @@ jobs:
           WMDM_PASS: ${{ secrets.WMDM_PASS }}
         run: node tools/wmdm-look.js
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ github.event.repository.private && (always()) }}  # public repo: screenshots may show admin data
         with:
           name: wmdm-screens
           path: wmdm-out/
