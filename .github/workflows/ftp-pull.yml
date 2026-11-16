@@ -36,6 +36,7 @@ jobs:
           getf solid-sound.net/www/.htaccess live/root/.htaccess
           get  $WPC/plugins/wc-multivendor-membership/controllers live/plugins/wc-multivendor-membership/controllers
           get  $WPC/plugins/wc-multivendor-membership/core live/plugins/wc-multivendor-membership/core
+          get  $WPC/plugins/wc-multivendor-marketplace/core live/plugins/wc-multivendor-marketplace/core
           find live -name 'wp-config*.php' -delete
           find live -type f | sed 's/^/  /' >> $LOG
       - name: Commit
