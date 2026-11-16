@@ -70,7 +70,7 @@ add_action( 'wp_footer', function () {
 .ssw-wall.paused .ssw-row{animation-play-state:paused}
 @keyframes sswmq{to{transform:translateX(-50%)}}
 /* owner 16.11: «2 заголовка конфликтуют» — the slogan is the headline; the assistant title becomes a small card label */
-body.ss-wow .ssx h1.ssx-t,body.ss-wow #top .ssx h1.ssx-t,#top body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font:700 15px/1.3 "Exo 2",sans-serif!important;letter-spacing:.06em;text-transform:uppercase;color:#cbd5e1!important;margin:0 0 10px!important}
+body.ss-wow .ssx h1.ssx-t,body.ss-wow #top .ssx h1.ssx-t,#top body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font:800 17px/1.3 "Exo 2",sans-serif!important;letter-spacing:.06em;text-transform:uppercase;color:#fff!important;margin:0 0 10px!important}
 body.ss-wow .ssx .sub{display:none}
 body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!important;-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);box-shadow:0 30px 80px rgba(0,0,0,.55)}
 .ssw-match{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 10px;border-radius:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.28);cursor:pointer;text-align:left}
@@ -82,7 +82,7 @@ body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!impor
  .ssw-hero .slg{font-size:33px!important;line-height:1.04;margin:0 auto 8px;letter-spacing:-.3px}
  .ssw-hero .k{font-size:11.5px;letter-spacing:.13em;padding:5px 12px;gap:6px}.ssw-hero .k i{width:6px;height:6px;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
  .ssw-row a{width:96px;height:96px;border-radius:12px}.ssw-row{gap:8px;margin-bottom:8px}
- body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font-size:13px!important;margin:0 0 8px!important}
+ body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font-size:15.5px!important;margin:0 0 8px!important}
  .ssw-match{gap:8px;padding:7px 9px;margin-top:10px}.ssw-match .cv img{width:30px;height:30px;margin-left:-8px}
  .ssw-match b{font-size:13.5px}.ssw-match small{font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 200px)}.ssw-match>span:last-child{min-width:0;flex:1}
 }
