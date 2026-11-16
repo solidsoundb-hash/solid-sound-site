@@ -86,15 +86,13 @@ body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!impor
  .ssw-match{gap:8px;padding:7px 9px;margin-top:10px}.ssw-match .cv img{width:30px;height:30px;margin-left:-8px}
  .ssw-match b{font-size:13.5px}.ssw-match small{font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 200px)}.ssw-match>span:last-child{min-width:0;flex:1}
 }
-/* owner 16.11: «блок ниже … чуточку крупнее всё в нём» — the assistant card a touch bigger on phones (the headline stays) */
+/* owner 16.11: previous card look, only the template picker (genre / BPM / key / Ableton) a touch bigger on phones */
 @media(max-width:600px){
- body.ss-wow .ssx .tasks button{height:40px!important;padding:0 12px!important;font-size:14px!important;gap:6px!important}
- body.ss-wow .ssx .f b{font-size:12px!important;margin-bottom:6px!important}
- body.ss-wow .ssx .chips span,body.ss-wow .ssx .chips a{height:34px!important;padding:0 11px!important;font-size:14.5px!important}
- body.ss-wow .ssx .rng .bpm{font-size:15px!important}body.ss-wow .ssx .rng .bpm input{height:36px!important;font-size:16px!important}
- body.ss-wow .ssx .chk{font-size:14px!important;white-space:nowrap;gap:6px!important}body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:10px!important}body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 10px!important}
- body.ss-wow .ssx .cta,body.ss-wow .ssx .gbtn{height:46px!important;font-size:15px!important}
- body.ss-wow .ssx .card h2{font-size:19px!important}body.ss-wow .ssx .card .d{font-size:14px!important}
+ body.ss-wow .ssx .card .chips span{height:34px!important;padding:0 11px!important;font-size:14.5px!important}
+ body.ss-wow .ssx .card .f b{font-size:12px!important}
+ body.ss-wow .ssx .rng .bpm input{height:35px!important;font-size:16px!important}
+ body.ss-wow .ssx .chk{font-size:14px!important;white-space:nowrap;gap:6px!important}
+ body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:10px!important}body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 10px!important}
 }
 @media(max-width:380px){.ssw-hero .slg{font-size:34px!important}}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
