@@ -116,3 +116,4 @@
 112 2026-11-16 16:37:50 Home phones: assistant card a touch bigger, same layout; headline untouched (owner: Не трогай заголовок … блок ниже чуточку крупнее всё в нём)
 113 2026-11-16 16:42:52 Home phones: previous card look back; only the template picker a touch bigger (owner: Не предыдущий вариант лучше но подбор шаблонов может чуточку больше)
 114 2026-11-16 16:45:03 Home phones: side padding on button text (tabs, chips, buttons) (owner: Сделай, чтобы у текста на кнопках были отступы по бокам)
+115 2026-11-16 17:07:43 retry 114 (upload hit the 20 min limit — slow FTP): home phones button padding + all recent home tweaks (owner: Выкладывай)
