@@ -5,3 +5,4 @@ pull 15:05:15 cache settings after owner enabled cache
 pull 22:27:18 theme functions
 pull 11:05:05 WCFM membership code (auto-approve creators, owner 16.11)
 pull 11:53:03 WCFM marketplace core (store setup wizard redirect)
+pull 18:42:59 wpForo code (forum translation + community, owner 16.11)

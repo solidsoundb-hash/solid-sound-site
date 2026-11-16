@@ -37,6 +37,9 @@ jobs:
           get  $WPC/plugins/wc-multivendor-membership/controllers live/plugins/wc-multivendor-membership/controllers
           get  $WPC/plugins/wc-multivendor-membership/core live/plugins/wc-multivendor-membership/core
           get  $WPC/plugins/wc-multivendor-marketplace/core live/plugins/wc-multivendor-marketplace/core
+          get  $WPC/plugins/wpforo/classes live/plugins/wpforo/classes
+          getf $WPC/plugins/wpforo/wpforo.php live/plugins/wpforo/wpforo.php
+          get  $WPC/plugins/wpforo/includes live/plugins/wpforo/includes
           find live -name 'wp-config*.php' -delete
           find live -type f | sed 's/^/  /' >> $LOG
       - name: Commit
