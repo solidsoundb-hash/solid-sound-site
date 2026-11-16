@@ -109,3 +109,4 @@
 105 2026-11-16 13:18:16 Home: one headline — slogan big, 'What are you working on?' becomes a small card label (owner: 2 заголовка конфликтуют)
 106 2026-11-16 15:49:34 Home: slogan above the Learn · Create · Release pill (owner: Поменяй местами заголовок с лерн криейт релиз)
 107 2026-11-16 16:25:52 Home on phones: compact slogan/pill/covers so the assistant and its button fit the first screen (owner: Адаптируй нормально)
+108 2026-11-16 16:30:03 Home phones: bigger slogan (owner: Заголовок больше нужно)
