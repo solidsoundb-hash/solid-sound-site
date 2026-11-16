@@ -119,3 +119,4 @@
 115 2026-11-16 17:07:43 retry 114 (upload hit the 20 min limit — slow FTP): home phones button padding + all recent home tweaks (owner: Выкладывай)
 116 2026-11-16 17:29:32 deploy fix: backup skips build/assets (hashed files) which made it 20+ min; timeout 35 min; + all recent home tweaks (owner: Выкладывай)
 117 2026-11-16 18:56:22 fast deploy: server remembers the live commit (.deployed); next deploys back up and upload only changed files; full deploy stays as the fallback (owner: Сделай так что бы за минуты выкладывалось)
+118 2026-11-16 19:23:43 rerun 117 (repo is public now — Actions minutes free): fast deploy setup, full upload this time (owner: все публичный уже)
