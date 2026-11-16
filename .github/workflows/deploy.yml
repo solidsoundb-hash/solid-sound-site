@@ -16,7 +16,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       FTP_HOST: ${{ secrets.FTP_HOST }}
       FTP_USER: ${{ secrets.FTP_USER }}
@@ -47,7 +47,8 @@ jobs:
       - name: Back up the server copy
         if: env.SKIP != '1'
         run: |
-          python3 tools/ftp_sync.py download "$REMOTE" server-backup
+          # 16.11: build/assets (hashed files, never overwritten) grew big and made the backup take 20+ min
+          SS_FTP_SKIP_DIRS=build/assets python3 tools/ftp_sync.py download "$REMOTE" server-backup
           test -f server-backup/solid-sound-custom.php
       - uses: actions/upload-artifact@v4
         if: env.SKIP != '1'
@@ -85,7 +86,7 @@ jobs:
           done
           if [ $bad = 1 ]; then
             echo "ROLLED BACK" | tee -a $LOG
-            python3 tools/ftp_sync.py restore server-backup "$REMOTE"
+            SS_FTP_SKIP_DIRS=build/assets python3 tools/ftp_sync.py restore server-backup "$REMOTE"
           else
             echo "OK" | tee -a $LOG
           fi

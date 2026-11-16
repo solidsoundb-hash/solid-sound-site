@@ -80,7 +80,12 @@ def listing(f, path):
     return dirs, files
 
 
+SKIP = [x.strip().strip('/') for x in os.environ.get('SS_FTP_SKIP_DIRS', '').split(',') if x.strip()]
+
+
 def download(c, remote, local):
+    if any(remote.rstrip('/').endswith('/' + s) for s in SKIP):
+        return  # e.g. build/assets: content-hashed files, never overwritten, not needed for a rollback
     os.makedirs(local, exist_ok=True)
     dirs, files = c.run(listing, remote)
     for n in files:
@@ -125,12 +130,16 @@ def upload(c, local, remote):
 
 
 def prune(c, local, remote):
+    if any(remote.rstrip('/').endswith('/' + s) for s in SKIP):
+        return  # never delete a folder that the backup skipped on purpose (build/assets)
     dirs, files = c.run(listing, remote)
     for n in files:
         if not os.path.isfile(os.path.join(local, n)):
             c.run(lambda f, p: f.delete(p), posixpath.join(remote, n))
             print('  deleted', posixpath.join(remote, n), flush=True)
     for d in dirs:
+        if any(posixpath.join(remote, d).rstrip('/').endswith('/' + s) for s in SKIP):
+            continue  # skipped folder (build/assets): leave it on the server untouched
         ld = os.path.join(local, d)
         if os.path.isdir(ld):
             prune(c, ld, posixpath.join(remote, d))
