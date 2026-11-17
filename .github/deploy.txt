@@ -134,3 +134,4 @@
 130 2026-11-17 11:13:44 forum interface translation (owner: на форуме не работает перевод)
 131 2026-11-17 11:15:47 menu dropdown click fix (tester: FAQ ничего не делает)
 132 2026-11-17 11:50:39 forum without Russian (owner)
+133 2026-11-17 12:02:43 слайдер главной легко листается (владелец: туго)
