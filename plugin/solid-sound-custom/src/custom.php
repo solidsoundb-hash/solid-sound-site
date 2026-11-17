@@ -3645,7 +3645,8 @@ if ( ! function_exists( 'ss_pd_t' ) ) {
 	add_filter( 'woocommerce_product_tabs', function ( $tabs ) { unset( $tabs['description'], $tabs['additional_information'] ); return $tabs; }, 98 );
 	add_action( 'wp_head', function () {
 		if ( ! function_exists( 'is_product' ) || ! is_product() ) return;
-		echo '<style>.single-product .wcpay-express-checkout-wrapper:before{content:"' . esc_js( ss_pd_t( 'orpay' ) ) . '"}</style>'; ?>
+		/* (17.11 eyes check) the label only when the express buttons really rendered (Stripe draws them in an iframe) — no lonely "or pay with" */
+		echo '<style>.single-product .wcpay-express-checkout-wrapper:before{content:"' . esc_js( ss_pd_t( 'orpay' ) ) . '"}.single-product .wcpay-express-checkout-wrapper:not(:has(iframe)):before{content:none;display:none}</style>'; ?>
 <style id="ss-pd-css">
 .single-product .ss-chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
 .single-product .ss-chip{display:inline-block;padding:4px 10px;border:1px solid #423c36;border-radius:999px;font-size:13px;line-height:1.3;color:#ccc4bc;text-decoration:none}

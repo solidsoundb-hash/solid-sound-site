@@ -290,11 +290,15 @@ document.addEventListener('click',function(e){
     tr.style.transition='none'; tr.style.transform='translateX(calc('+(-100*cur)+'% + '+d+'px))'; }
   function move(x,y){ if(x0===null) return false; var dx=x-x0, dy=y-y0;
     if(!dir){ if(Math.abs(dx)<8 && Math.abs(dy)<8) return false; dir = Math.abs(dx)>Math.abs(dy)*1.15 ? 'x' : 'y'; }
-    if(dir!=='x') return false; dxNow=dx; if(!raf) raf=requestAnimationFrame(paint); return true; }
+    if(dir!=='x') return false; if(!dxNow) document.documentElement.classList.add('ss-xdrag'); try{ var sel=getSelection(); if(sel && sel.rangeCount) sel.removeAllRanges(); }catch(e){} dxNow=dx; if(!raf) raf=requestAnimationFrame(paint); return true; }
   function end(x){ if(x0===null) return; var r=drag, dx=x-x0, dt=Math.max(1,Date.now()-t0), was=dir; x0=null; drag=null; if(!r) return;
     var tr=r.querySelector('.track'); tr.style.transition=''; if(raf){ cancelAnimationFrame(raf); raf=0; }
-    var cur=+(r.getAttribute('data-cur')||0), w=r.querySelector('.vp').offsetWidth||360;
-    if(was==='x' && (Math.abs(dx)>w*0.15 || (Math.abs(dx)>20 && Math.abs(dx)/dt>0.25))) go(cur+(dx<0?1:-1)); else go(cur,true); }
+    var cur=+(r.getAttribute('data-cur')||0), w=r.querySelector('.vp').offsetWidth||360, n=r.querySelectorAll('.card').length;
+    document.documentElement.classList.remove('ss-xdrag');
+    /* (17.11 eyes check: «тугой», 20–50 px did nothing) 10% of the width or a quick 15 px flick turns the page */
+    var to=cur; if(was==='x' && (Math.abs(dx)>w*0.10 || (Math.abs(dx)>15 && Math.abs(dx)/dt>0.2))) to=Math.max(0,Math.min(n-1,cur+(dx<0?1:-1)));
+    tr.style.transform='translateX('+(-100*to)+'%)'; /* no leftover offset after a short drag */
+    if(to!==cur) go(to); else go(cur,true); }
   document.addEventListener('touchstart',function(e){ if(e.touches.length===1) start(e.touches[0].clientX,e.touches[0].clientY,e.target); },{passive:true});
   document.addEventListener('touchmove',function(e){ if(x0!==null) move(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
   document.addEventListener('touchend',function(e){ end(e.changedTouches[0].clientX); },{passive:true});

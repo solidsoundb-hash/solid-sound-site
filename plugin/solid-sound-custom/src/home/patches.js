@@ -44,6 +44,8 @@ module.exports = function (a, window) {
       .split("[Track name] — client project").join('Client track');
     a[0]=a[0].split("products: [{ label: 'Templates', icon: ic.layers, href: 'https://solid-sound.net/templates' }").join("products: [{ label: 'All products', icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', href: 'https://solid-sound.net/en/all-products/' }, { label: 'Templates', icon: ic.layers, href: 'https://solid-sound.net/templates' }")
       .split("label: 'All products', href: 'https://solid-sound.net/en/'").join("label: 'All products', href: 'https://solid-sound.net/en/all-products/'")
+      /* (17.11, eyes check) "All products" is now first in menus.products, so the phone menu indexes shift by one */
+      .split("T('Templates', ic.layers, menus.products[0].href), T('Presets', ic.knob, menus.products[1].href), T('Music', ic.note, menus.products[2].href)").join("T('Templates', ic.layers, menus.products[1].href), T('Presets', ic.knob, menus.products[2].href), T('Music', ic.note, menus.products[3].href)")
       .split('Template + mix bundle −40%').join('Template + mix · €69').split('Bundle −40%').join('Bundle €69');
     /* (12.11.2026) one calculator for the whole site: the old in-app calculator buttons open /studio-calculator/ (same service keys) */
     var OC="    var openCalcPage = function (svcKey) {\n      return function (e) {\n        if (e && e.preventDefault) e.preventDefault();\n";
