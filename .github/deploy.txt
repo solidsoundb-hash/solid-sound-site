@@ -126,3 +126,4 @@
 122 2026-11-16 19:47:28 Forum: dark section rows; old 'Main Forum' renamed to Ideas & feedback (owner: выкладывай форум)
 123 2026-11-17 05:50:44 forum frame + menu bar, spam cleanup page (owner ok: Делай и выкладывай)
 124 2026-11-17 06:17:54 phone fixes from tester eyes: My account icon, BUY/Browse 6px (owner: автономность, выкладывай готовое)
+125 2026-11-17 06:20:57 home covers 400x400 (Kratos/Protos), match covers fill (owner: автономность)
