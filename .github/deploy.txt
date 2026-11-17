@@ -133,3 +133,4 @@
 129 2026-11-17 07:04:25 new home on all languages for everyone (owner: Все выкладывай)
 130 2026-11-17 11:13:44 forum interface translation (owner: на форуме не работает перевод)
 131 2026-11-17 11:15:47 menu dropdown click fix (tester: FAQ ничего не делает)
+132 2026-11-17 11:50:39 forum without Russian (owner)
