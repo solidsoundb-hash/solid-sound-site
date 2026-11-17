@@ -294,7 +294,7 @@ document.addEventListener('click',function(e){
   function end(x){ if(x0===null) return; var r=drag, dx=x-x0, dt=Math.max(1,Date.now()-t0), was=dir; x0=null; drag=null; if(!r) return;
     var tr=r.querySelector('.track'); tr.style.transition=''; if(raf){ cancelAnimationFrame(raf); raf=0; }
     var cur=+(r.getAttribute('data-cur')||0), w=r.querySelector('.vp').offsetWidth||360;
-    if(was==='x' && (Math.abs(dx)>w*0.15 || (Math.abs(dx)>20 && Math.abs(dx)/dt>0.35))) go(cur+(dx<0?1:-1)); else go(cur,true); }
+    if(was==='x' && (Math.abs(dx)>w*0.15 || (Math.abs(dx)>20 && Math.abs(dx)/dt>0.25))) go(cur+(dx<0?1:-1)); else go(cur,true); }
   document.addEventListener('touchstart',function(e){ if(e.touches.length===1) start(e.touches[0].clientX,e.touches[0].clientY,e.target); },{passive:true});
   document.addEventListener('touchmove',function(e){ if(x0!==null) move(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
   document.addEventListener('touchend',function(e){ end(e.changedTouches[0].clientX); },{passive:true});
