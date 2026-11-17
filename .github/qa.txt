@@ -4,3 +4,4 @@
 2026-11-13T11:09:12Z full — owner: check every page with the updated knowledge base (A)
 2026-11-13T11:20:40Z smoke — first short check
 2026-11-17 06:55:44 full — owner: запускай тестировщика (after l10n deploy)
+2026-11-17 11:52:20 full — владелец: «поставь его работать» (после исправлений тестировщика)
