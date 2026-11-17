@@ -14,6 +14,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
+let EARS = null; try { EARS = require('./ears'); } catch (e) {}   // listens to every sound preview (ffmpeg)
 let KB = null; try { KB = require('./kb'); } catch (e) {}   // common-bug knowledge base (SEO, prices, phone, accessibility…), see docs/qa-knowledge.md
 
 const BASE = 'https://solid-sound.net';
@@ -35,6 +36,8 @@ const UA_PHONE = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (K
 const DEVICES = {
   desktop: { name: 'компьютер', viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false, userAgent: UA_DESK },
   phone: { name: 'телефон', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, userAgent: UA_PHONE },
+  /* owner's phone: Samsung Galaxy A31 in Chrome — the browser bars leave ~780 px of height */
+  a31: { name: 'Samsung A31', viewport: { width: 412, height: 780 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' },
 };
 
 // requests that change data on the site: answered by the bot, never sent
@@ -199,7 +202,12 @@ async function facts(page) {
       else if (r < 6 || r > 14) kind = 'odd';
       if (kind) { e.setAttribute('data-qa-shape', kind + '|' + label); shapes.push({ kind, label, r: Math.round(r), h: Math.round(rc.height) }); }
     });
+    const au = new Set();
+    const isA = (x) => typeof x === 'string' && /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(x);
+    document.querySelectorAll('[data-src],audio[src],source[src]').forEach(e => { const v = e.getAttribute('data-src') || e.getAttribute('src'); if (isA(v)) au.add(new URL(v, location.href).href); });
+    try { Object.values((window.SS_RT || {}).p || {}).forEach(t => { if (t && isA(t.s)) au.add(t.s); }); } catch (e) {}
     return {
+      audio: [...au],
       shapes,
       url: location.href, title: document.title, h1: ((document.querySelector('h1') || {}).innerText || '').trim().slice(0, 80), lang: document.documentElement.lang || '',
       over, brokenImg, leaks, fp: [...new Set(fp)], hreflang, menu, links, anchors: [...new Set(anchors)].slice(0, 5), words: text.split(/\s+/).length,
@@ -217,6 +225,7 @@ const errKey = (s) => s.replace(/https?:\/\/\S+/g, 'URL').replace(/\d+/g, 'N').s
 /* ---------------------------------------------------------------- per-page checks */
 const visited = new Map();   // url -> facts (+status, device)
 const linkSources = new Map(); // url -> Set(source page)
+const audioUrls = new Map();   // sound preview url -> Set(page)
 let refMenu = { desktop: null, phone: null };
 
 async function checkPage(page, url, dev, opts = {}) {
@@ -261,6 +270,7 @@ async function checkPage(page, url, dev, opts = {}) {
   if (KB) { try { for (const b of await KB.run(page, { url, dev, devName })) { const g = await bug({ page: url, device: devName, ...b, sig: 'kb|' + String(b.type || '').split('|')[0] + '|' + b.title }, page); const extra = String(b.actual || '').slice(0, 120); if (extra && !g.actual.includes(extra) && (g.more = (g.more || 0) + 1) <= 4) g.actual += ' · ' + extra; } } catch (e) {} }
   await checkMenu(page, f, url, dev, L);
   if (dev === 'desktop') await checkLangOptions(page, f, url);
+  (f.audio || []).forEach(u => { if (!audioUrls.has(u)) audioUrls.set(u, new Set()); audioUrls.get(u).add(rel(url)); });
   f.links.forEach(l => { const k = l.h; if (!linkSources.has(k)) linkSources.set(k, new Set()); linkSources.get(k).add(rel(url)); });
   return f;
 }
@@ -343,6 +353,10 @@ async function testSound(page, url, dev, max) {
     if (loading) { await bug({ ...here, sev: 'check', type: 'sound-slow', sig: 'sndslow|' + rel(url), title: 'Трек долго не начинает играть (больше 12 секунд)', steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Звук через 1–3 секунды', actual: 'Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)' }, page, h); await page.evaluate(() => window.__qaStopAll()).catch(() => {}); continue; }
     if (!playing.length) { await bug({ ...here, sev: 'major', type: 'sound-none', sig: 'sndnone|' + rel(url) + '|' + label, title: `Кнопка ▶ «${label}» не запускает звук`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`, 'Подождать 12 секунд'], expected: 'Играет трек', actual: s1 !== s0 ? 'Кнопка показывает «играет», но звука нет' : 'Ничего не происходит' }, page, h); continue; }
     if (playing.length > 1) await bug({ ...here, sev: 'critical', type: 'sound-many', sig: 'sndmany|' + rel(url) + '|' + label, title: 'Играют сразу несколько треков', steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Играет один трек', actual: 'Одновременно: ' + playing.join(' + ') }, page, h);
+    /* ears: the button must play ITS track (not the neighbour's or the last one) */
+    const exp = await h.evaluate(e => { let c = e; for (let k = 0; k < 8 && c; k++, c = c.parentElement) { const d = c.getAttribute && c.getAttribute('data-src'); if (d && /\.(mp3|wav|ogg|m4a)/i.test(d)) return d; const a = c.querySelector && c.querySelector('audio[src],source[src]'); if (a) return a.getAttribute('src'); } return ''; }).catch(() => '');
+    const fn = (x) => decodeURIComponent(String(x).split('?')[0].split('/').pop()).toLowerCase();
+    if (exp && playing.length === 1 && fn(playing[0]) !== fn(exp)) await bug({ ...here, sev: 'major', type: 'sound-wrong', sig: 'sndwrong|' + rel(url) + '|' + label, title: `Кнопка ▶ «${label}» включает другой трек`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: `Играет «${fn(exp)}»`, actual: `Играет «${fn(playing[0])}»` }, page, h);
     if (s1 === s0) await bug({ ...here, sev: 'major', type: 'sound-icon', sig: 'sndicon|' + label.replace(/[^a-z]+/gi, '').slice(0, 20) + '|' + rel(url), title: `Кнопка «${label}» не превращается в ⏸ (паузу), когда трек играет`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Значок меняется на ⏸', actual: 'Трек играет, а на кнопке всё ещё ▶' }, page, h);
     // pause with the same button
     let paused = false;
@@ -597,7 +611,7 @@ function writeReport(final = true) {
   const mins = Math.round((Date.now() - T0) / 60000);
   const L = [];
   L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : SMOKE ? 'короткая проверка после выкладки' : 'ежедневная проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
-  L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, ссылок ${stats.links}. Время: ${mins} мин.`);
+  L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, файлов звука ${stats.audioFiles || 0}, ссылок ${stats.links}. Время: ${mins} мин.`);
   L.push(`Найдено: ${SEV.critical} ${cnt('critical')} · ${SEV.major} ${cnt('major')} · ${SEV.minor} ${cnt('minor')} · ${SEV.check} ${cnt('check')}` + (prevSigs ? ` · новых ${list.filter(b => b.isNew).length} · исправлено с прошлого раза ${fixed.length}` : ''), '');
   L.push('Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.', '');
   let n = 0;
@@ -631,10 +645,35 @@ function writeReport(final = true) {
   console.log(L.slice(0, 4).join('\n'));
 }
 
+/* ---------------------------------------------------------------- eyes + fit */
+// full-page pictures of the key pages for "Claude's eyes" (weekly review): qa/latest/eyes/<device>_<page>.jpg
+async function eyesShot(page, url, dev) {
+  try {
+    const h = await page.evaluate(() => Math.min(document.documentElement.scrollHeight, 6000));
+    const w = DEVICES[dev].viewport.width;
+    const f = path.join(OUT, 'eyes', `${dev}_${rel(url).replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '') || 'home'}.jpg`);
+    await page.screenshot({ path: f, type: 'jpeg', quality: 45, fullPage: true, clip: { x: 0, y: 0, width: w, height: h }, timeout: 30000 });
+  } catch (e) {}
+}
+// home on a phone: the whole "What are you working on?" block must be above the bottom bar for every card
+async function fitCheck(page, dev) {
+  const res = await page.evaluate(async () => {
+    const r = document.querySelector('#ss-app .ssx'), nav = document.querySelector('#ss-app nav[aria-label="App"]');
+    if (!r || !nav) return null; const out = [];
+    const dots = r.querySelectorAll('.dots i');
+    for (let i = 0; i < dots.length; i++) { dots[i].click(); await new Promise(z => setTimeout(z, 700)); out.push(Math.round(nav.getBoundingClientRect().top - r.getBoundingClientRect().bottom)); }
+    return out;
+  }).catch(() => null);
+  if (!res || !res.length) return;
+  const bad = res.map((v, i) => [i + 1, v]).filter(([, v]) => v < 0);
+  if (bad.length) await bug({ page: '/en/', device: DEVICES[dev].name, sev: 'major', type: 'fit', sig: 'fit|' + dev, title: `Слайдер на главной не помещается на экране (${DEVICES[dev].name})`, steps: ['Открыть главную на телефоне', 'Пролистать карточки слайдера точками'], expected: 'Весь блок «What are you working on?» виден над нижней панелью', actual: 'Уходит под нижнюю панель: ' + bad.map(([i, v]) => `карточка ${i} на ${-v}px`).join(', ') }, page);
+}
+
 /* ---------------------------------------------------------------- main */
 (async () => {
   fs.rmSync(path.join(OUT, 'shots'), { recursive: true, force: true });
   fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true });
+  fs.rmSync(path.join(OUT, 'eyes'), { recursive: true, force: true }); fs.mkdirSync(path.join(OUT, 'eyes'), { recursive: true });
   const browser = await chromium.launch({ ...(PROXY ? { proxy: { server: PROXY } } : {}), ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}), args: ['--autoplay-policy=no-user-gesture-required'] });
   const save = () => { try { writeReport(); } catch (e) { console.error('report', e); } };
   process.on('SIGTERM', () => { save(); process.exit(0); });
@@ -662,13 +701,22 @@ function writeReport(final = true) {
     // 1) English + product pages: computer and phone, with sound and "hands"
     for (const p of ['/en/', ...en.filter(x => x !== '/en/')]) {
       const deep = FULL || KEY.includes(p) || process.env.QA_PAGES;
-      if (await checkPage(dp, p, 'desktop')) { if (deep) { await testSound(dp, p, 'desktop', FULL ? 10 : SMOKE ? 3 : 5); if (!SMOKE) { await open(dp, p); await pressEverything(dp, p, 'desktop', FULL ? 40 : 20); } } }
+      const eye = KEY.includes(p) || process.env.QA_PAGES;
+      if (await checkPage(dp, p, 'desktop')) { if (eye) await eyesShot(dp, p, 'desktop'); if (deep) { await testSound(dp, p, 'desktop', FULL ? 10 : SMOKE ? 3 : 5); if (!SMOKE) { await open(dp, p); await pressEverything(dp, p, 'desktop', FULL ? 40 : 20); } } }
       if (SMOKE) { await checkPage(pp, p, 'phone'); continue; }
-      if (await checkPage(pp, p, 'phone')) { if (deep && (FULL || p === '/en/' || p === '/en/all-products/')) { await testSound(pp, p, 'phone', 3); await open(pp, p); await pressEverything(pp, p, 'phone', FULL ? 25 : 12); } }
+      if (await checkPage(pp, p, 'phone')) { if (eye) await eyesShot(pp, p, 'phone'); if (p === '/en/') await fitCheck(pp, 'phone'); if (deep && (FULL || p === '/en/' || p === '/en/all-products/')) { await testSound(pp, p, 'phone', 3); await open(pp, p); await pressEverything(pp, p, 'phone', FULL ? 25 : 12); } }
+    }
+    // 1b) the owner's phone (Samsung A31): key pages, the home slider must fit, pictures for the eyes
+    if (!SMOKE) {
+      const a31 = await newContext(browser, 'a31'); const ap = await newPage(a31);
+      for (const p of ['/en/', '/en/all-products/', '/product/infinity/', '/forum/']) {
+        if (await checkPage(ap, p, 'a31')) { await eyesShot(ap, p, 'a31'); if (p === '/en/') await fitCheck(ap, 'a31'); }
+      }
+      await a31.close();
     }
     // 2) other languages: their home always (menu vs English), all pages in full mode
     for (const p of [...(SMOKE ? ['/ua/'] : homeAll.filter(h => h !== '/en/')), ...(FULL ? other.filter(x => !homeAll.includes(x)) : [])]) {
-      await checkPage(dp, p, 'desktop');
+      if (await checkPage(dp, p, 'desktop') && homeAll.includes(p)) await eyesShot(dp, p, 'desktop');
       if (homeAll.includes(p)) await checkPage(pp, p, 'phone');
     }
     // 3) translated pages must look like the English one
@@ -708,6 +756,12 @@ function writeReport(final = true) {
     const lc = await newContext(browser, 'desktop');
     const titles = await checkLinks(lc, FULL ? 600 : SMOKE ? 25 : 150);
     await menuVsTarget(titles);
+    if (EARS && !SMOKE) {
+      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await lc.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
+      stats.audioFiles = r.checked;
+      if (r.skipped) notChecked.push('Звук файлов не проверен: ' + r.skipped);
+      for (const b of r.bugs) await bug(b);
+    }
     await lc.close();
   } catch (e) {
     notChecked.push('Бот остановился с ошибкой: ' + (e.stack || e.message).split('\n').slice(0, 3).join(' '));
