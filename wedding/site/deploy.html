@@ -1,0 +1,355 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Same Day Story</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Wedding photos and vertical reels shot on iPhone, with a teaser delivered the same night. France.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the page follows a wedding day — hero, what you get, the day hour by hour, vertical 9:16 portfolio frames, packages, booking. */
+:root{
+  --bg:#F7F5F3; --surface:#FFFFFF; --ink:#1F1A24; --muted:#6B6470; --line:#E3DEE2;
+  --accent:#2F6B5C; --accent-ink:#FFFFFF; --rec:#D23A3A; --frame:#2A2430;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --wrap:1120px; --r:6px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141216; --surface:#1D1A20; --ink:#EEEAF0; --muted:#A49CA8; --line:#2E2A33;
+  --accent:#7CC2AE; --accent-ink:#0F1B17; --rec:#FF5A5A; --frame:#0B0A0C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141216; --surface:#1D1A20; --ink:#EEEAF0; --muted:#A49CA8; --line:#2E2A33;
+  --accent:#7CC2AE; --accent-ink:#0F1B17; --rec:#FF5A5A; --frame:#0B0A0C; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,4.4vw,46px)}
+h3{font-size:22px}
+p{margin:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);max-width:60ch}
+section{padding-block:clamp(56px,9vw,104px);border-top:1px solid var(--line)}
+.head{display:grid;gap:14px;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:var(--r);border:1px solid var(--ink);background:var(--ink);color:var(--bg);font:600 15px var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+.bar{display:flex;align-items:center;gap:16px;height:60px}
+.logo{font-family:var(--display);font-size:22px;text-decoration:none;white-space:nowrap}
+.logo i{color:var(--accent)}
+nav.links{display:flex;gap:22px;margin-left:auto;font-size:14px}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.lang button{background:none;border:0;padding:6px 10px;font:500 12px var(--mono);color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.bar .btn{padding:9px 14px;font-size:14px}
+@media (max-width:820px){nav.links{display:none}.lang{margin-left:auto}}
+@media (max-width:420px){.bar .btn{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,80px);align-items:center;padding-block:clamp(40px,7vw,88px)}
+.hero h1{font-size:clamp(42px,7vw,84px);letter-spacing:-.01em}
+.hero h1 em{color:var(--accent)}
+.hero .lead{font-size:18px;margin-top:22px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font:13px var(--mono);color:var(--muted)}
+.facts span::before{content:"— ";color:var(--accent)}
+.phone{justify-self:center;width:min(100%,320px);aspect-ratio:9/19.5;max-width:100%;border-radius:38px;background:var(--frame);padding:10px;box-shadow:0 30px 60px -30px rgba(20,10,30,.45)}
+.screen{position:relative;height:100%;border-radius:30px;overflow:hidden;background:
+  radial-gradient(120% 70% at 30% 20%,#E9C9B8 0%,transparent 60%),
+  radial-gradient(90% 60% at 80% 90%,#5E7F73 0%,transparent 70%),
+  linear-gradient(180deg,#C9A894,#3B4A47);color:#fff}
+.rec{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;font:500 12px var(--mono);text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.rec b{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.rec b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rec)}
+@media (prefers-reduced-motion:no-preference){.rec b::before{animation:blink 1.4s steps(2,start) infinite}}
+@keyframes blink{to{visibility:hidden}}
+.screen .cap{position:absolute;left:18px;right:18px;bottom:22px;display:grid;gap:6px}
+.screen .cap strong{font:400 26px/1.1 var(--display)}
+.screen .cap small{font:12px var(--mono);opacity:.85}
+.note{position:absolute;right:-10px;top:42%;transform:translateX(30%);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;font:12px/1.4 var(--mono);box-shadow:0 10px 30px -15px rgba(0,0,0,.3);white-space:nowrap}
+.note b{color:var(--accent);font-weight:500}
+.phone-wrap{position:relative;justify-self:center;width:min(100%,320px)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.phone-wrap{width:min(78%,300px)}.note{transform:none;right:-8px}}
+
+/* offer */
+.offer{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.offer div{background:var(--surface);padding:28px;display:grid;gap:10px;align-content:start}
+.offer .k{font:13px var(--mono);color:var(--accent)}
+.offer p{color:var(--muted)}
+@media (max-width:820px){.offer{grid-template-columns:1fr}}
+
+/* day */
+.day{display:grid;gap:0;max-width:820px}
+.day li{display:grid;grid-template-columns:88px 1fr;gap:20px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.day li:last-child{border-bottom:0}
+.day time{font:500 15px var(--mono);color:var(--accent);padding-top:2px}
+.day strong{display:block;font-weight:700}
+.day span{color:var(--muted)}
+.day li.hl{background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:var(--r);padding-inline:14px;margin-inline:-14px;border-bottom-color:transparent}
+ol.day{list-style:none;margin:0;padding:0}
+
+/* portfolio */
+.reels{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.reel{aspect-ratio:9/16;max-width:100%;border-radius:var(--r);border:1px dashed var(--line);background:repeating-linear-gradient(135deg,transparent 0 12px,color-mix(in srgb,var(--line) 50%,transparent) 12px 13px),var(--surface);display:flex;flex-direction:column;justify-content:space-between;padding:12px;font:12px var(--mono);color:var(--muted)}
+.reel b{font-weight:500;color:var(--ink)}
+@media (max-width:820px){.reels{grid-template-columns:repeat(2,1fr)}}
+
+/* packages */
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:18px}
+.card.main{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card .tag{align-self:flex-start;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:5px 8px;border-radius:4px}
+.card .tag.empty{visibility:hidden}
+.price{font:400 44px/1 var(--display);font-variant-numeric:tabular-nums}
+.price small{font:13px var(--mono);color:var(--muted);margin-left:6px}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.card li{padding-left:20px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--accent)}
+.card .btn{margin-top:auto;justify-content:center}
+.dur{font:13px var(--mono);color:var(--muted)}
+.extras{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.extras div{background:var(--surface);padding:16px 18px;display:grid;gap:2px}
+.extras b{font-weight:500}
+.extras span{font:13px var(--mono);color:var(--accent)}
+@media (max-width:900px){.pk{grid-template-columns:1fr}.extras{grid-template-columns:repeat(2,1fr)}.card .tag.empty{display:none}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;counter-reset:s;list-style:none;margin:0;padding:0}
+.steps li{display:grid;gap:8px;align-content:start;counter-increment:s}
+.steps li::before{content:counter(s);font:400 34px/1 var(--display);color:var(--accent)}
+.steps span{color:var(--muted);font-size:15px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:820px;display:grid}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";font:400 22px/1 var(--display);color:var(--accent)}
+.faq details[open] summary::after{content:"−"}
+.faq p{color:var(--muted);margin-top:10px;max-width:65ch}
+
+/* form */
+.book{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,72px)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form .full{grid-column:1/-1}
+label{display:grid;gap:6px;font-size:13px;font-weight:500;min-width:0}
+input,select,textarea{width:100%;font:15px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+textarea{min-height:110px;resize:vertical}
+.ok{grid-column:1/-1;padding:14px;border-radius:var(--r);background:color-mix(in srgb,var(--accent) 12%,transparent);font-size:14px}
+@media (max-width:820px){.book{grid-template-columns:1fr}}
+@media (max-width:480px){form{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+</style>
+</head><body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top">Same Day <i>Story</i></a>
+    <nav class="links" aria-label="Main">
+      <a href="#offer" data-i="nav1">What you get</a>
+      <a href="#day" data-i="nav2">The day</a>
+      <a href="#work" data-i="nav3">Work</a>
+      <a href="#packages" data-i="nav4">Packages</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="l-en" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" id="l-fr" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+    <a class="btn" href="#book" data-i="cta1">Check your date</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow" data-i="h_eye">Wedding photo &amp; video · France</p>
+      <h1 style="margin-top:18px" data-i="h1" data-html>Your wedding, ready to post <em>the same night.</em></h1>
+      <p class="lead" data-i="h_lead">Photos and vertical reels shot on iPhone, from the first look to the first dance. A teaser lands in your inbox before the party ends, so friends see your day while it's still happening.</p>
+      <div class="cta">
+        <a class="btn" href="#book" data-i="cta1">Check your date</a>
+        <a class="btn ghost" href="#packages" data-i="cta2">See packages</a>
+      </div>
+      <p class="facts"><span data-i="f1">Teaser the same night</span><span data-i="f2">Vows recorded on lav mics</span><span data-i="f3">Works alongside your photographer</span></p>
+    </div>
+    <div class="phone-wrap" aria-hidden="true">
+      <div class="phone"><div class="screen">
+        <div class="rec"><b>REC</b><span>00:00:47 · 4K</span></div>
+        <div class="cap"><strong data-i="ph_t">“I do.”</strong><small data-i="ph_s">Ceremony · 15:42</small></div>
+      </div></div>
+      <div class="note"><b>●</b> <span data-i="note">Teaser sent · 23:40</span></div>
+    </div>
+  </div>
+
+  <section id="offer"><div class="wrap">
+    <div class="head"><p class="eyebrow" data-i="o_eye">What you get</p><h2 data-i="o_h">Made for the way you'll share it</h2></div>
+    <div class="offer">
+      <div><span class="k">9:16</span><h3 data-i="o1h">Vertical reels</h3><p data-i="o1p">Short films cut for Instagram and TikTok, with music and your real voices. No horizontal footage to crop later.</p></div>
+      <div><span class="k">48 MP · RAW</span><h3 data-i="o2h">Photos</h3><p data-i="o2p">Candid moments, portraits of the two of you, details and guests. Edited in one consistent colour style.</p></div>
+      <div><span class="k">2 × lav mic</span><h3 data-i="o3h">Your words, clearly</h3><p data-i="o3p">Small microphones on the groom and the officiant record vows and speeches cleanly, even outdoors.</p></div>
+    </div>
+  </div></section>
+
+  <section id="day"><div class="wrap">
+    <div class="head"><p class="eyebrow" data-i="d_eye">A Full Day wedding</p><h2 data-i="d_h">Your day, hour by hour</h2><p class="lead" data-i="d_lead">An example timeline. We plan the real one together two weeks before.</p></div>
+    <ol class="day">
+      <li><time>13:00</time><div><strong data-i="t1">Getting ready</strong><span data-i="t1s">Dress, suit, rings, the people helping you. Calm, natural shots.</span></div></li>
+      <li><time>14:30</time><div><strong data-i="t2">First look</strong><span data-i="t2s">The moment you see each other. Filmed close, with sound.</span></div></li>
+      <li><time>15:30</time><div><strong data-i="t3">Ceremony</strong><span data-i="t3s">A fixed wide camera on a tripod records everything, while I film close-ups by hand.</span></div></li>
+      <li><time>16:30</time><div><strong data-i="t4">Couple portraits</strong><span data-i="t4s">20–30 minutes away from the crowd, ideally in soft afternoon light.</span></div></li>
+      <li><time>18:00</time><div><strong data-i="t5">Cocktail &amp; guests</strong><span data-i="t5s">Hugs, laughter, family groups, the details you chose.</span></div></li>
+      <li><time>20:00</time><div><strong data-i="t6">Dinner &amp; speeches</strong><span data-i="t6s">Speeches recorded on a lav mic, reactions caught from the side.</span></div></li>
+      <li><time>22:00</time><div><strong data-i="t7">First dance</strong><span data-i="t7s">Filmed with a stabilizer for smooth, close movement.</span></div></li>
+      <li class="hl"><time>23:40</time><div><strong data-i="t8">Teaser in your inbox</strong><span data-i="t8s">A 30–45 second reel of your day, ready to post tonight.</span></div></li>
+    </ol>
+  </div></section>
+
+  <section id="work"><div class="wrap">
+    <div class="head"><p class="eyebrow" data-i="w_eye">Work</p><h2 data-i="w_h">Recent stories</h2><p class="lead" data-i="w_lead">New reels and galleries are being added. Ask for a full example gallery when you write.</p></div>
+    <div class="reels">
+      <div class="reel"><b>Reel 01</b><span>9:16 · 0:45</span></div>
+      <div class="reel"><b>Reel 02</b><span>9:16 · 0:30</span></div>
+      <div class="reel"><b>Reel 03</b><span>9:16 · 0:60</span></div>
+      <div class="reel"><b>Reel 04</b><span>9:16 · 0:40</span></div>
+    </div>
+  </div></section>
+
+  <section id="packages"><div class="wrap">
+    <div class="head"><p class="eyebrow" data-i="p_eye">Packages · 2026–2027</p><h2 data-i="p_h">Choose how much of the day</h2><p class="lead" data-i="p_lead">Prices include editing and online delivery. A 30% deposit holds your date.</p></div>
+    <div class="pk">
+      <article class="card">
+        <span class="tag empty">—</span>
+        <div><h3>Ceremony</h3><p class="dur" data-i="k1d">2 hours</p></div>
+        <p class="price">390 €</p>
+        <ul><li data-i="k1a">1 reel, up to 60 seconds</li><li data-i="k1b">80+ edited photos</li><li data-i="k1c">Vows recorded on lav mics</li><li data-i="k1e">Delivered in 48 hours</li></ul>
+        <a class="btn ghost" href="#book" data-pk="Ceremony" data-i="pick">Choose</a>
+      </article>
+      <article class="card main">
+        <span class="tag" data-i="pop">Most booked</span>
+        <div><h3>Essential</h3><p class="dur" data-i="k2d">5 hours</p></div>
+        <p class="price">690 €</p>
+        <ul><li data-i="k2a">Teaser the same night</li><li data-i="k2b">2 reels</li><li data-i="k2c">200+ edited photos</li><li data-i="k2e">Vows and speeches on lav mics</li><li data-i="k2f">Everything else in 48 hours</li></ul>
+        <a class="btn" href="#book" data-pk="Essential" data-i="pick">Choose</a>
+      </article>
+      <article class="card">
+        <span class="tag empty">—</span>
+        <div><h3>Full Day</h3><p class="dur" data-i="k3d">9 hours, getting ready to first dance</p></div>
+        <p class="price">1 190 €</p>
+        <ul><li data-i="k3a">Teaser the same night</li><li data-i="k3b">4 reels</li><li data-i="k3c">400+ edited photos</li><li data-i="k3e">All raw clips included</li><li data-i="k3f">Delivered in 72 hours</li></ul>
+        <a class="btn ghost" href="#book" data-pk="Full Day" data-i="pick">Choose</a>
+      </article>
+    </div>
+    <div class="extras">
+      <div><b data-i="x1">Love story shoot, 1.5 h</b><span>+190 €</span></div>
+      <div><b data-i="x2">Extra hour</b><span>+90 €</span></div>
+      <div><b data-i="x3">All raw clips</b><span>+90 €</span></div>
+      <div><b data-i="x4">Travel over 50 km</b><span>0,40 €/km</span></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="head"><p class="eyebrow" data-i="s_eye">Booking</p><h2 data-i="s_h">How it works</h2></div>
+    <ol class="steps">
+      <li><strong data-i="s1">Check your date</strong><span data-i="s1s">Send the form. I reply within 24 hours.</span></li>
+      <li><strong data-i="s2">Short call</strong><span data-i="s2s">15 minutes to hear your plans and pick a package.</span></li>
+      <li><strong data-i="s3">Hold the date</strong><span data-i="s3s">Simple agreement and a 30% deposit.</span></li>
+      <li><strong data-i="s4">Plan together</strong><span data-i="s4s">Timeline and must-have shots, two weeks before.</span></li>
+      <li><strong data-i="s5">Your story</strong><span data-i="s5s">Teaser the same night, everything else on time.</span></li>
+    </ol>
+  </div></section>
+
+  <section id="faq"><div class="wrap">
+    <div class="head"><p class="eyebrow">FAQ</p><h2 data-i="q_h">Questions couples ask</h2></div>
+    <div class="faq">
+      <details><summary data-i="q1">Why an iPhone and not a big camera?</summary><p data-i="a1">It records 4K video and 48 MP photos, and it's made for vertical content. Guests behave naturally around a phone, so moments stay real. And it lets me edit and send your teaser the same night.</p></details>
+      <details><summary data-i="q2">We already have a photographer. Can you work together?</summary><p data-i="a2">Yes, that's a common setup. Your photographer takes the classic photos, I focus on reels and behind-the-scenes. I agree the plan with them before the day.</p></details>
+      <details><summary data-i="q3">What happens if the weather is bad or something breaks?</summary><p data-i="a3">I bring backup batteries, a second phone and extra storage, and copy footage during the day. For rain we plan indoor spots in advance.</p></details>
+      <details><summary data-i="q4">How do we receive everything?</summary><p data-i="a4">Through a private online gallery you can download from and share with family. Reels come in full quality, ready to post.</p></details>
+      <details><summary data-i="q5">Can you travel?</summary><p data-i="a5">Yes, anywhere in France and abroad. Up to 50 km is included, beyond that it's 0,40 € per km, plus accommodation for destination weddings.</p></details>
+    </div>
+  </div></section>
+
+  <section id="book"><div class="wrap book">
+    <div class="head" style="margin:0;align-content:start"><p class="eyebrow" data-i="b_eye">Check your date</p><h2 data-i="b_h">Tell me about your day</h2><p class="lead" data-i="b_lead">I take a limited number of weddings each season. Send your date and I'll reply within 24 hours.</p></div>
+    <form id="f" novalidate>
+      <label><span data-i="fn">Your names</span><input id="f-names" name="names" autocomplete="name" required></label>
+      <label><span data-i="fe">Email</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
+      <label><span data-i="fd">Wedding date</span><input id="f-date" name="date" type="date" required></label>
+      <label><span data-i="fv">Venue or town</span><input id="f-venue" name="venue"></label>
+      <label class="full"><span data-i="fp">Package</span>
+        <select id="f-pk" name="package"><option>Essential</option><option>Ceremony</option><option>Full Day</option><option value="Not sure" data-i="fns">Not sure yet</option></select></label>
+      <label class="full"><span data-i="fm">Anything we should know</span><textarea id="f-msg" name="message"></textarea></label>
+      <button class="btn full" type="submit" data-i="fs">Send</button>
+      <p class="ok" id="f-ok" hidden></p>
+    </form>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Same Day Story</span><span data-i="foot">Wedding photo &amp; vertical video · France</span></div></footer>
+
+<script>
+(()=>{
+/* Paste a form endpoint here (e.g. Formspree) to receive requests by email. Empty = preview mode. */
+const FORM_ENDPOINT='';
+const FR={nav1:"Ce qui est inclus",nav2:"La journée",nav3:"Réalisations",nav4:"Formules",cta1:"Vérifier ma date",cta2:"Voir les formules",
+h_eye:"Photo & vidéo de mariage · France",h1:"Votre mariage, prêt à partager <em>le soir même.</em>",
+h_lead:"Photos et reels verticaux filmés à l'iPhone, des préparatifs à l'ouverture du bal. Un teaser arrive dans votre boîte mail avant la fin de la soirée : vos proches voient votre journée pendant qu'elle se déroule.",
+f1:"Teaser le soir même",f2:"Vœux enregistrés au micro-cravate",f3:"Travaille avec votre photographe",ph_t:"« Oui. »",ph_s:"Cérémonie · 15:42",note:"Teaser envoyé · 23:40",
+o_eye:"Ce qui est inclus",o_h:"Pensé pour être partagé",o1h:"Reels verticaux",o1p:"Des films courts montés pour Instagram et TikTok, avec musique et vos vraies voix. Aucun recadrage à faire.",
+o2h:"Photos",o2p:"Moments spontanés, portraits de vous deux, détails et invités. Retouchés dans un style de couleur cohérent.",
+o3h:"Vos mots, bien clairs",o3p:"De petits micros sur le marié et l'officiant enregistrent vœux et discours proprement, même en extérieur.",
+d_eye:"Un mariage Full Day",d_h:"Votre journée, heure par heure",d_lead:"Un exemple de déroulé. Nous préparons le vrai ensemble deux semaines avant.",
+t1:"Préparatifs",t1s:"Robe, costume, alliances, vos proches. Des images calmes et naturelles.",t2:"First look",t2s:"Le moment où vous vous découvrez. Filmé de près, avec le son.",
+t3:"Cérémonie",t3s:"Une caméra fixe sur trépied filme tout en plan large, pendant que je filme les gros plans à la main.",t4:"Portraits de couple",t4s:"20–30 minutes à l'écart, idéalement dans la douce lumière de l'après-midi.",
+t5:"Cocktail & invités",t5s:"Embrassades, rires, photos de famille, les détails que vous avez choisis.",t6:"Dîner & discours",t6s:"Discours enregistrés au micro-cravate, réactions captées sur le côté.",
+t7:"Ouverture du bal",t7s:"Filmée au stabilisateur pour des mouvements fluides et proches.",t8:"Teaser dans votre boîte mail",t8s:"Un reel de 30–45 secondes de votre journée, prêt à publier le soir même.",
+w_eye:"Réalisations",w_h:"Histoires récentes",w_lead:"De nouveaux reels et galeries arrivent. Demandez une galerie complète en m'écrivant.",
+p_eye:"Formules · 2026–2027",p_h:"Choisissez la part de la journée",p_lead:"Montage et livraison en ligne inclus. Un acompte de 30 % bloque votre date.",
+k1d:"2 heures",k1a:"1 reel, jusqu'à 60 secondes",k1b:"80+ photos retouchées",k1c:"Vœux enregistrés au micro-cravate",k1e:"Livraison en 48 heures",
+pop:"Le plus choisi",k2d:"5 heures",k2a:"Teaser le soir même",k2b:"2 reels",k2c:"200+ photos retouchées",k2e:"Vœux et discours au micro-cravate",k2f:"Le reste en 48 heures",
+k3d:"9 heures, des préparatifs au bal",k3a:"Teaser le soir même",k3b:"4 reels",k3c:"400+ photos retouchées",k3e:"Tous les rushs inclus",k3f:"Livraison en 72 heures",pick:"Choisir",
+x1:"Séance love story, 1 h 30",x2:"Heure supplémentaire",x3:"Tous les rushs",x4:"Déplacement au-delà de 50 km",
+s_eye:"Réservation",s_h:"Comment ça se passe",s1:"Vérifiez votre date",s1s:"Envoyez le formulaire. Je réponds sous 24 heures.",s2:"Court appel",s2s:"15 minutes pour parler de vos projets et choisir une formule.",
+s3:"Bloquez la date",s3s:"Un contrat simple et un acompte de 30 %.",s4:"Préparation",s4s:"Déroulé et images incontournables, deux semaines avant.",s5:"Votre histoire",s5s:"Teaser le soir même, le reste dans les délais.",
+q_h:"Les questions des couples",q1:"Pourquoi un iPhone et pas un gros appareil ?",a1:"Il filme en 4K et photographie en 48 Mpx, et il est fait pour le format vertical. Les invités restent naturels devant un téléphone, les moments restent vrais. Et je peux monter et envoyer votre teaser le soir même.",
+q2:"Nous avons déjà un photographe. Pouvez-vous travailler ensemble ?",a2:"Oui, c'est très courant. Votre photographe réalise les photos classiques, je me concentre sur les reels et les coulisses. Je cale le plan avec lui avant le jour J.",
+q3:"Et s'il pleut ou si quelque chose tombe en panne ?",a3:"J'apporte batteries de secours, un second téléphone et du stockage, et je sauvegarde les images pendant la journée. Pour la pluie, nous prévoyons des lieux en intérieur.",
+q4:"Comment recevons-nous tout ?",a4:"Via une galerie en ligne privée, à télécharger et partager avec la famille. Les reels arrivent en pleine qualité, prêts à publier.",
+q5:"Vous déplacez-vous ?",a5:"Oui, partout en France et à l'étranger. Jusqu'à 50 km inclus, au-delà 0,40 € par km, plus l'hébergement pour les mariages à destination.",
+b_eye:"Vérifiez votre date",b_h:"Parlez-moi de votre journée",b_lead:"Je prends un nombre limité de mariages par saison. Envoyez votre date, je réponds sous 24 heures.",
+fn:"Vos prénoms",fe:"E-mail",fd:"Date du mariage",fv:"Lieu ou ville",fp:"Formule",fns:"Pas encore sûr",fm:"Ce que je dois savoir",fs:"Envoyer",foot:"Photo de mariage & vidéo verticale · France"};
+const MSG={en:{ok:"Thank you! I'll reply within 24 hours.",prev:"Thanks! This is a preview, so the request wasn't sent. Once the site is live, it goes straight to my inbox.",err:"Please add your names, a valid email and the wedding date.",fail:"Sending failed. Please try again in a minute."},
+fr:{ok:"Merci ! Je vous réponds sous 24 heures.",prev:"Merci ! Ceci est un aperçu, la demande n'a pas été envoyée. Une fois le site en ligne, elle arrive directement dans ma boîte mail.",err:"Merci d'indiquer vos prénoms, un e-mail valide et la date du mariage.",fail:"L'envoi a échoué. Réessayez dans une minute."}};
+const els=[...document.querySelectorAll('[data-i]')];
+els.forEach(e=>e.dataset.en=e.hasAttribute('data-html')?e.innerHTML:e.textContent);
+let lang='en';
+function setLang(l){lang=l;document.documentElement.lang=l;
+  els.forEach(e=>{const v=l==='fr'?FR[e.dataset.i]:e.dataset.en;if(v==null)return;e.hasAttribute('data-html')?e.innerHTML=v:e.textContent=v});
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+  try{localStorage.setItem('sds-lang',l)}catch(e){}}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+let saved=null;try{saved=localStorage.getItem('sds-lang')}catch(e){}
+setLang(saved||((navigator.language||'').startsWith('fr')?'fr':'en'));
+document.querySelectorAll('[data-pk]').forEach(a=>a.addEventListener('click',()=>{document.getElementById('f-pk').value=a.dataset.pk}));
+const f=document.getElementById('f'),ok=document.getElementById('f-ok');
+f.addEventListener('submit',async ev=>{ev.preventDefault();const m=MSG[lang];
+  const d=Object.fromEntries(new FormData(f));
+  if(!d.names||!/^\S+@\S+\.\S+$/.test(d.email||'')||!d.date){ok.textContent=m.err;ok.hidden=false;return}
+  if(!FORM_ENDPOINT){ok.textContent=m.prev;ok.hidden=false;return}
+  try{const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)});
+    ok.textContent=r.ok?m.ok:m.fail;if(r.ok)f.reset()}catch(e){ok.textContent=m.fail}
+  ok.hidden=false});
+})();
+</script>
+</body></html>
