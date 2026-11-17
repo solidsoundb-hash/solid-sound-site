@@ -2,7 +2,7 @@
    Input: a[0] = template HTML, a[1] = runtime. Also defines window.SS_* data used by the patched template. */
 module.exports = function (a, window) {
     var U='https://solid-sound.net/wp-content/uploads/', G='linear-gradient(180deg, rgba(7,10,18,0) 70%, rgba(7,10,18,0.55) 100%), ';
-    window.SS_COV={infinity:'Infinity_Logo_JPG-400x400.jpg',mutualism:'Mutualism_Logo_JPG-400x400.jpg',mtp:'0621-Обложка-e1755551043214-400x433.jpg',protos:'Protos_Logo_JPG.jpg',pitch:'Pitch_Title_PSD-400x400.jpg',intricate:'Intricate_Logo_JPG-400x400.jpg',kratos:'Kratos_Logo_JPG.jpg',tgf:'619e28af-c8e8-4029-a58d-54ac6f895007-400x400.png'};
+    window.SS_COV={infinity:'Infinity_Logo_JPG-400x400.jpg',mutualism:'Mutualism_Logo_JPG-400x400.jpg',mtp:'0621-Обложка-e1755551043214-400x433.jpg',protos:'Protos_Logo_JPG-400x400.jpg',pitch:'Pitch_Title_PSD-400x400.jpg',intricate:'Intricate_Logo_JPG-400x400.jpg',kratos:'Kratos_Logo_JPG-400x400.jpg',tgf:'619e28af-c8e8-4029-a58d-54ac6f895007-400x400.png'};
     for(var k in window.SS_COV){window.SS_COV[k]=G+'url(\''+U+window.SS_COV[k]+'\') center / cover no-repeat #1b1b1b';}
     a[0]=a[0].split(U+'logo.png').join(U+'Монтажная-область-0_3.png').split('bg: c.bg, href: c.href').join('bg: (window.SS_COV ? (window.SS_COV[c.id] || c.bg) : c.bg), href: c.href');
     var P='https://solid-sound.net/product/';
@@ -75,7 +75,7 @@ module.exports = function (a, window) {
     window.SS_ART=[
       {b:'FREE',c:[CU+'Mutualism_Logo_JPG-400x400.jpg',CU+'0621-Обложка-e1755551043214-400x433.jpg',CU+'Infinity_Logo_JPG-400x400.jpg']},
       {b:'€69',c:[CU+'Mutualism_Logo_JPG-400x400.jpg',CU+'Infinity_Logo_JPG-400x400.jpg',CU+'Intricate_Logo_JPG-400x400.jpg']},
-      {b:'−50%',c:[CU+'Pitch_Title_PSD-400x400.jpg',CU+'Kratos_Logo_JPG.jpg',CU+'Protos_Logo_JPG.jpg']}
+      {b:'−50%',c:[CU+'Pitch_Title_PSD-400x400.jpg',CU+'Kratos_Logo_JPG-400x400.jpg',CU+'Protos_Logo_JPG-400x400.jpg']}
     ];
     a[0]=a[0].split('titleParts: titleOf(x), trustItems: trustOf(x) });').join('titleParts: titleOf(x), trustItems: trustOf(x), artBadge: (window.SS_ART[i] || {}).b || \'\', art: ((window.SS_ART[i] || {}).c || []).map(function (u, k) { return { st: \'background-image: url(\' + u + \')\', k: \'ss-art-i ss-art-\' + k }; }) });')
       .split('style="grid-area: 1 / 1; display: flex; flex-wrap: wrap; align-items: center; gap: {{heroGap}}; {{sl.vis}}">').join('style="grid-area: 1 / 1; display: flex; flex-wrap: wrap; align-items: center; gap: {{heroGap}}; {{sl.vis}}"><div class="ss-art" aria-hidden="true"><sc-for list="{{sl.art}}" as="im" hint-placeholder-count="3"><span class="{{im.k}}" style="{{im.st}}"></span></sc-for><b class="ss-art-b">{{sl.artBadge}}</b></div>');
