@@ -581,7 +581,7 @@ async function checkLinks(ctx, limit) {
     await sleep(700);
     const src = [...(linkSources.get(u) || [])];
     if (st >= 400) await bug({ page: src[0], sev: 'major', type: 'link404', sig: 'link|' + rel(u), title: `Битая ссылка: ${rel(u)} (код ${st})`, steps: [`Открыть ${BASE}${src[0]}`, `Нажать ссылку на ${rel(u)}`], expected: 'Страница открывается', actual: `Ошибка ${st}. Ссылка есть на страницах: ${src.slice(0, 5).join(', ')}${src.length > 5 ? ` и ещё ${src.length - 5}` : ''}` });
-    else if (st > 0 && r && normPath(r.url()) === '/' && normPath(u) !== '/') await bug({ page: src[0], sev: 'minor', type: 'link2home', sig: 'link2home|' + rel(u), title: `Ссылка ${rel(u)} выкидывает на главную`, steps: [`Нажать ссылку на ${rel(u)}`], expected: 'Нужная страница', actual: `Перенаправляет на ${rel(r.url())}` });
+    else if (st > 0 && r && normPath(r.url()) === '/' && normPath(u) !== '/' && !/[?&](s|post_type)=/.test(r.url()))  /* /?s=… is the search page (genre/tag links on purpose), not the home */ await bug({ page: src[0], sev: 'minor', type: 'link2home', sig: 'link2home|' + rel(u), title: `Ссылка ${rel(u)} выкидывает на главную`, steps: [`Нажать ссылку на ${rel(u)}`], expected: 'Нужная страница', actual: `Перенаправляет на ${rel(r.url())}` });
     if (st > 0 && st < 400) titles.set(rel(u), ((body.match(/<title[^>]*>([^<]*)/i) || [])[1] || '') + ' ' + ((body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || '').replace(/<[^>]+>/g, ' '));
   }
   return titles;
