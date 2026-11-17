@@ -125,10 +125,9 @@ module.exports = function (a, window) {
     var AP_OLD = '<a href="https://solid-sound.net/templates" style="display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border-radius: 10px; border: 1px solid #F59E0B; color: #F59E0B; font-weight: 700; font-size: 15px; text-decoration: none; box-sizing: border-box; width: {{moreW}}">All products →</a>';
     if (a[0].split(AP_OLD).length !== 2) throw new Error('home: All products button not found');
     a[0]=a[0].split(AP_OLD).join(AP_OLD.replace('https://solid-sound.net/templates','https://solid-sound.net/en/all-products/'));
-    /* (12.11.2026 owner) forum hidden for now: no links from the home app */
-    var FO1 = '<a href="https://solid-sound.net/forum/" style="color: #94A3B8; text-decoration: none">Forum</a>';
-    var FO2 = ", T('Forum', ic.chat, 'https://solid-sound.net/forum/')";
-    if (a[0].split(FO1).length !== 2 || a[0].split(FO2).length !== 2) throw new Error('home: forum links not found');
-    a[0]=a[0].split(FO1).join('').split(FO2).join('');
+    /* (17.11.2026 owner «Форум выведи в меню») forum is live: footer + menu sheet links stay, and Forum goes into the top menu after Wiki */
+    var FO3 = "mk('Wiki', ic.book, 'https://solid-sound.net/en/wiki/'),";
+    if (a[0].split(FO3).length !== 2) throw new Error('home: Wiki menu item not found');
+    a[0]=a[0].split(FO3).join(FO3 + " mk('Forum', ic.chat, 'https://solid-sound.net/forum/'),");
   return a;
 };
