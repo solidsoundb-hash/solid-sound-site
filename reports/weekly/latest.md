@@ -1,4 +1,4 @@
-# Еженедельный отчёт ботов — 2026-11-13
+# Еженедельный отчёт ботов — 2026-11-17
 
 Что делать: ⚠️ и 💡 — задачи; ⏸ — бот ждёт доступа (см. `docs/bots.md`). Скорость — `speed/latest.md`, баги — `qa/latest/report.md`.
 
@@ -21,20 +21,21 @@
 ## 🕵️ Конкуренты: что изменилось за неделю
 
 - **Scraps Audio (Ableton templates)**: товаров 57, цены 2–30 (медиана 15), со скидкой 0
-  - первый замер — изменения покажу со следующей недели
+  - без изменений
 - **Production Music Live**: товаров 250, цены 24.9–997 (медиана 57), со скидкой 17
-  - первый замер — изменения покажу со следующей недели
-- **Cymatics**: товаров 250, цены 1–297 (медиана 25), со скидкой 20
-  - первый замер — изменения покажу со следующей недели
+  - без изменений
+- **Cymatics**: товаров 250, цены 1–297 (медиана 25), со скидкой 16
+  - 🆕 новые: [Seasons - Hip Hop Guitars](https://cymatics.fm/products/seasons-hip-hop-guitars-free) (0), [Hydra: Drum Kit](https://cymatics.fm/products/hydra-drum-kit-free) (0), [Syndicate: Drum Loops](https://cymatics.fm/products/syndicate-drum-loops-free) (0), [Saturn: Essential Trap Drum Kit](https://cymatics.fm/products/saturn-essential-trap-drum-kit-free) (0), [Aurora: Essential EDM Drum Kit](https://cymatics.fm/products/aurora-essential-edm-drum-kit-free) (0), [Gems Vol. 12 - Trap Melodies](https://cymatics.fm/products/gems-vol-12-trap-melodies) (0), [Gems Vol. 11 - Lofi Melodies](https://cymatics.fm/products/gems-vol-11-lofi-melodies) (0), [Gems Vol. 10 - RnB Melodies](https://cymatics.fm/products/gems-vol-10-rnb-melodies) (0) и ещё 5
+  - убрали: 13
 
 _Для решения: если конкуренты массово снижают цены или запускают акцию — подумать о своей акции или бандле._
 
 ## 📅 Акции и поводы на ближайшие 5 недель
 
-- **27.11** — Black Friday — главная распродажа года (готовить за 2 недели: баннер, письма, соцсети) (через 14 дн.)
-- **30.11** — Cyber Monday (через 17 дн.)
-- **01.12** — Старт «Black Month» / Cyber Monday (через 18 дн.)
-- **15.12** — Подарки к Рождеству — сертификаты, бандлы (через 32 дн.)
+- **27.11** — Black Friday — главная распродажа года (готовить за 2 недели: баннер, письма, соцсети) (через 10 дн.)
+- **30.11** — Cyber Monday (через 13 дн.)
+- **01.12** — Старт «Black Month» / Cyber Monday (через 14 дн.)
+- **15.12** — Подарки к Рождеству — сертификаты, бандлы (через 28 дн.)
 
 Сейчас на сайте акция: «SALE».
 
@@ -53,7 +54,7 @@ _Для решения: если конкуренты массово снижа�
 | Category Order and Taxonomy Terms Order | 2.0 | 2.1 |
 | FileBird | 4.9.3 | 6.5.9 |
 | FluentSMTP | 2.4.1 | 2.4.5 |
-| Google for WooCommerce | 3.9.6 | 3.10.0 |
+| Google for WooCommerce | 3.9.6 | 3.10.1 |
 | Jetpack CRM | 6.8.5 | 6.8.6 |
 | Polylang | 3.8.11 | 3.9.2 |
 | TikTok | 1.4.2 | 1.4.3 |
@@ -63,7 +64,7 @@ _Для решения: если конкуренты массово снижа�
 | WooCommerce | 11.2.1 | 11.3.0 |
 | WooCommerce PayPal Payments | 4.1.3 | 4.2.2 |
 | WooPayments | 11.2.1 | 11.3.0 |
-| wpForo | 3.2.2 | 3.2.4 |
+| wpForo | 3.2.2 | 3.2.5 |
 
 _Обновлять по одному, после бэкапа; после обновления — короткая проверка ботом._
 

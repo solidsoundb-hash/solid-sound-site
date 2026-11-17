@@ -1539,6 +1539,71 @@
   }
  },
  "Cymatics": {
+  "seasons-hip-hop-guitars-free": {
+   "t": "Seasons - Hip Hop Guitars",
+   "p": 0,
+   "cmp": 0
+  },
+  "hydra-drum-kit-free": {
+   "t": "Hydra: Drum Kit",
+   "p": 0,
+   "cmp": 0
+  },
+  "syndicate-drum-loops-free": {
+   "t": "Syndicate: Drum Loops",
+   "p": 0,
+   "cmp": 0
+  },
+  "saturn-essential-trap-drum-kit-free": {
+   "t": "Saturn: Essential Trap Drum Kit",
+   "p": 0,
+   "cmp": 0
+  },
+  "aurora-essential-edm-drum-kit-free": {
+   "t": "Aurora: Essential EDM Drum Kit",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-12-trap-melodies": {
+   "t": "Gems Vol. 12 - Trap Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-11-lofi-melodies": {
+   "t": "Gems Vol. 11 - Lofi Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-10-rnb-melodies": {
+   "t": "Gems Vol. 10 - RnB Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-9-classic-melodies": {
+   "t": "Gems Vol. 9 - Classic Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-8-ethnic-melodies": {
+   "t": "Gems Vol. 8 - Ethnic Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-7-drill-melodies-free": {
+   "t": "Gems Vol. 7 - Drill Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "gems-vol-6-future-rnb-melodies-free": {
+   "t": "Gems Vol. 6 - Future RnB Melodies",
+   "p": 0,
+   "cmp": 0
+  },
+  "slyde-early-access-bundle": {
+   "t": "SLYDE - Early Access Bundle",
+   "p": 47,
+   "cmp": 0
+  },
   "slyce-early-access-bundle": {
    "t": "SLYCE - Early Access Bundle",
    "p": 37,
@@ -2721,71 +2786,6 @@
   },
   "halo": {
    "t": "HALO",
-   "p": 0,
-   "cmp": 0
-  },
-  "shifter": {
-   "t": "SHIFTER",
-   "p": 0,
-   "cmp": 0
-  },
-  "pinch": {
-   "t": "PINCH",
-   "p": 0,
-   "cmp": 0
-  },
-  "trilogy-launch-edition-ls": {
-   "t": "Trilogy - Launch Edition (LS)",
-   "p": 0,
-   "cmp": 585
-  },
-  "vibes-premium-collection": {
-   "t": "VIBES: Premium Collection",
-   "p": 0,
-   "cmp": 0
-  },
-  "hooklab-preset-expansions": {
-   "t": "HOOKLAB - Preset Expansions",
-   "p": 0,
-   "cmp": 0
-  },
-  "titan-production-suite-offer": {
-   "t": "TITAN Production Suite - Offer",
-   "p": 147,
-   "cmp": 2093
-  },
-  "apex-drums": {
-   "t": "APEX Drums",
-   "p": 147,
-   "cmp": 887
-  },
-  "trap-gods-vol-3": {
-   "t": "Trap Gods Vol 3",
-   "p": 67,
-   "cmp": 0
-  },
-  "vintage-soul-melody-suite-1": {
-   "t": "Vintage Soul - Melody Suite",
-   "p": 17,
-   "cmp": 487
-  },
-  "hooklab-gold-collection": {
-   "t": "HOOKLAB - Gold Collection",
-   "p": 25,
-   "cmp": 0
-  },
-  "invader-max-retro-synthesizer": {
-   "t": "INVADER Max - Retro Synthesizer",
-   "p": 25,
-   "cmp": 0
-  },
-  "trap-city-sample-pack": {
-   "t": "Trap City - Sample Pack",
-   "p": 0,
-   "cmp": 0
-  },
-  "mercury-midi-collection": {
-   "t": "Mercury - MIDI Collection",
    "p": 0,
    "cmp": 0
   }
