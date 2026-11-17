@@ -25,8 +25,7 @@
 - **Production Music Live**: товаров 250, цены 24.9–997 (медиана 57), со скидкой 17
   - без изменений
 - **Cymatics**: товаров 250, цены 1–297 (медиана 25), со скидкой 16
-  - 🆕 новые: [Seasons - Hip Hop Guitars](https://cymatics.fm/products/seasons-hip-hop-guitars-free) (0), [Hydra: Drum Kit](https://cymatics.fm/products/hydra-drum-kit-free) (0), [Syndicate: Drum Loops](https://cymatics.fm/products/syndicate-drum-loops-free) (0), [Saturn: Essential Trap Drum Kit](https://cymatics.fm/products/saturn-essential-trap-drum-kit-free) (0), [Aurora: Essential EDM Drum Kit](https://cymatics.fm/products/aurora-essential-edm-drum-kit-free) (0), [Gems Vol. 12 - Trap Melodies](https://cymatics.fm/products/gems-vol-12-trap-melodies) (0), [Gems Vol. 11 - Lofi Melodies](https://cymatics.fm/products/gems-vol-11-lofi-melodies) (0), [Gems Vol. 10 - RnB Melodies](https://cymatics.fm/products/gems-vol-10-rnb-melodies) (0) и ещё 5
-  - убрали: 13
+  - без изменений
 
 _Для решения: если конкуренты массово снижают цены или запускают акцию — подумать о своей акции или бандле._
 
