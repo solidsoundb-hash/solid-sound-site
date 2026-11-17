@@ -1,12 +1,12 @@
 {
  "mode": "smoke",
- "date": "2026-11-17T06:07:46.328Z",
+ "date": "2026-11-17T06:40:40.290Z",
  "stats": {
   "pages": 8,
   "clicks": 0,
   "sounds": 7,
   "links": 0,
-  "blockedRequests": 16
+  "blockedRequests": 14
  },
  "bugs": [
   {
@@ -27,7 +27,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/028.jpg",
+   "shot": "shots/025.jpg",
    "isNew": false
   },
   {
@@ -47,7 +47,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/014.jpg",
+   "shot": "shots/013.jpg",
    "isNew": false
   },
   {
@@ -89,7 +89,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/029.jpg",
+   "shot": "shots/026.jpg",
    "isNew": false
   },
   {
@@ -181,7 +181,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/017.jpg",
+   "shot": "shots/016.jpg",
    "isNew": false
   },
   {
@@ -203,7 +203,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/013.jpg",
+   "shot": "shots/012.jpg",
    "isNew": false
   },
   {
@@ -224,7 +224,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/016.jpg",
+   "shot": "shots/015.jpg",
    "isNew": false
   },
   {
@@ -245,7 +245,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/018.jpg",
+   "shot": "shots/017.jpg",
    "isNew": false
   },
   {
@@ -271,27 +271,6 @@
   },
   {
    "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «Browse products» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Найти кнопку «Browse products»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 999px при высоте 44px)",
-   "sig": "pill|Browse products",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/011.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
    "type": "langmiss",
    "title": "Страница /all-products не переведена — переключатель языка выкидывает на главную",
    "steps": [
@@ -313,27 +292,6 @@
   },
   {
    "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «BUY · $13» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/product/infinity/",
-    "Найти кнопку «BUY · $13»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 999px при высоте 54px)",
-   "sig": "pill|BUY · $13",
-   "where": [
-    "/product/infinity/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/019.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
    "type": "kb-perf-img-dims",
    "title": "Картинки без размеров — страница «прыгает» при загрузке",
    "steps": [
@@ -349,28 +307,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/020.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «Дивитися товари» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/ua/",
-    "Найти кнопку «Дивитися товари»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 999px при высоте 44px)",
-   "sig": "pill|Дивитися товари",
-   "where": [
-    "/ua/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/023.jpg",
+   "shot": "shots/018.jpg",
    "isNew": false
   },
   {
@@ -389,7 +326,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/025.jpg",
+   "shot": "shots/022.jpg",
    "isNew": false
   },
   {
@@ -408,7 +345,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/026.jpg",
+   "shot": "shots/023.jpg",
    "isNew": false
   },
   {
@@ -427,7 +364,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/027.jpg",
+   "shot": "shots/024.jpg",
    "isNew": false
   },
   {
@@ -513,7 +450,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/012.jpg",
+   "shot": "shots/011.jpg",
    "isNew": false
   },
   {
@@ -534,7 +471,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/015.jpg",
+   "shot": "shots/014.jpg",
    "more": 3,
    "isNew": false
   },
@@ -612,7 +549,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/021.jpg",
+   "shot": "shots/019.jpg",
    "isNew": false
   },
   {
@@ -631,7 +568,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/022.jpg",
+   "shot": "shots/020.jpg",
    "isNew": false
   },
   {
@@ -651,11 +588,12 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/024.jpg",
+   "shot": "shots/021.jpg",
    "isNew": false
   }
  ],
  "notChecked": [
-  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation"
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
+  "Проверка остановлена по времени — часть ссылок/входов не проверена"
  ]
 }
