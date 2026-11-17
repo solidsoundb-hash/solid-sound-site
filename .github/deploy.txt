@@ -129,3 +129,4 @@
 125 2026-11-17 06:20:57 home covers 400x400 (Kratos/Protos), match covers fill (owner: автономность)
 126 2026-11-17 06:42:15 home in other languages behind ?ss_newl=1 (UA test), nobody sees it yet
 127 2026-11-17 06:53:26 home in UA/DE/FR/ES/IT/PT behind ?ss_newl=1 (still hidden), PHP texts
+128 2026-11-17 06:58:14 forum in menu (owner: Форум выведи в меню; Все выкладывай)
