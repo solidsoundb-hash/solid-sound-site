@@ -1,2 +1,3 @@
 # Запуск главного робота вручную: добавь строку
 2026-11-17T05:59:30Z rerun after 16.11 (minutes ran out; QA hard stop added)
+2026-11-17T06:08:36Z full run with ears + eyes + A31 (owner: Все включил, запускай тестировщика)
