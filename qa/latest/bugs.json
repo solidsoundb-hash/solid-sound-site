@@ -1,34 +1,14 @@
 {
  "mode": "full",
- "date": "2026-11-17T13:27:28.725Z",
+ "date": "2026-11-17T17:32:06.014Z",
  "stats": {
-  "pages": 173,
-  "clicks": 704,
+  "pages": 163,
+  "clicks": 681,
   "sounds": 71,
-  "links": 336,
-  "blockedRequests": 57,
-  "audioFiles": 0
+  "links": 0,
+  "blockedRequests": 57
  },
  "bugs": [
-  {
-   "sev": "critical",
-   "type": "http",
-   "title": "Страница /en/wiki/balanced-vs-unbalanced-cables/ не открывается (код 503)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Сервер ответил ошибкой 503",
-   "sig": "http|/en/wiki/balanced-vs-unbalanced-cables/",
-   "where": [
-    "/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/097.jpg",
-   "isNew": true
-  },
   {
    "sev": "major",
    "type": "kb-seo-title",
@@ -58,9 +38,9 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/129.jpg",
-   "isNew": false,
-   "more": 13
+   "shot": "shots/091.jpg",
+   "more": 13,
+   "isNew": false
   },
   {
    "sev": "major",
@@ -80,16 +60,14 @@
     "/en/mastering-album-calculator/",
     "/en/forum-experimental/",
     "/en/client-dashboard/",
-    "/forum/",
-    "/en/my-account/orders/",
-    "/en/my-account/edit-account/"
+    "/forum/"
    ],
    "devices": [
     "компьютер",
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/025.jpg",
+   "shot": "shots/022.jpg",
    "isNew": false,
    "more": 5
   },
@@ -116,27 +94,6 @@
   },
   {
    "sev": "major",
-   "type": "clickerr",
-   "title": "После нажатия «Video» — ошибка в коде",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Video»"
-   ],
-   "expected": "Без ошибок",
-   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "where": [
-    "/en/all-products/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/017.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
    "type": "kb-a11y-btn-name",
    "title": "Кнопка или ссылка без названия (только значок)",
    "steps": [
@@ -155,7 +112,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/062.jpg",
+   "shot": "shots/042.jpg",
    "isNew": false
   },
   {
@@ -215,47 +172,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/022.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/all-products/|Questions? Ask here",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/023.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/privacy-policy/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/privacy-policy/|Questions? Ask here",
-   "where": [
-    "/en/privacy-policy/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/024.jpg",
+   "shot": "shots/021.jpg",
    "isNew": false
   },
   {
@@ -275,7 +192,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/026.jpg",
+   "shot": "shots/023.jpg",
    "isNew": false
   },
   {
@@ -295,247 +212,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/028.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/shop/|Questions? Ask here",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/029.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/cart/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/cart/|Questions? Ask here",
-   "where": [
-    "/en/cart/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/030.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/my-account/|Questions? Ask here",
-   "where": [
-    "/en/my-account/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/033.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/refund_returns/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/refund_returns/|Questions? Ask here",
-   "where": [
-    "/en/refund_returns/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/034.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/license/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/license/|Questions? Ask here",
-   "where": [
-    "/en/license/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/035.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/contacts/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/contacts/|Questions? Ask here",
-   "where": [
-    "/en/contacts/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/036.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/faq/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/faq/|Questions? Ask here",
-   "where": [
-    "/en/faq/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/037.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/store-manager/|Questions? Ask here",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/038.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/vendor-membership/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/vendor-membership/|Questions? Ask here",
-   "where": [
-    "/en/vendor-membership/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/039.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/vendor-register/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/vendor-register/|Questions? Ask here",
-   "where": [
-    "/en/vendor-register/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/040.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/add-product/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/add-product/|Questions? Ask here",
-   "where": [
-    "/en/add-product/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/041.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/links/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/links/|Questions? Ask here",
-   "where": [
-    "/en/links/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/042.jpg",
+   "shot": "shots/025.jpg",
    "isNew": false
   },
   {
@@ -556,7 +233,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/044.jpg",
+   "shot": "shots/029.jpg",
    "isNew": false
   },
   {
@@ -576,27 +253,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/045.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/templates/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/templates/|Questions? Ask here",
-   "where": [
-    "/en/templates/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/046.jpg",
+   "shot": "shots/030.jpg",
    "isNew": false
   },
   {
@@ -617,67 +274,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/047.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/presets/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/presets/|Questions? Ask here",
-   "where": [
-    "/en/presets/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/048.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/services-calculator/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/services-calculator/|Questions? Ask here",
-   "where": [
-    "/en/services-calculator/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/058.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/mastering-album-calculator/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/mastering-album-calculator/|Questions? Ask here",
-   "where": [
-    "/en/mastering-album-calculator/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/059.jpg",
+   "shot": "shots/031.jpg",
    "isNew": false
   },
   {
@@ -698,67 +295,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/060.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/music/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/music/|Questions? Ask here",
-   "where": [
-    "/en/music/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/061.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forum/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/forum/|Questions? Ask here",
-   "where": [
-    "/en/forum/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/064.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/free-demo-feedback/|Questions? Ask here",
-   "where": [
-    "/en/free-demo-feedback/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/074.jpg",
+   "shot": "shots/041.jpg",
    "isNew": false
   },
   {
@@ -778,7 +315,27 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/075.jpg",
+   "shot": "shots/053.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "clickerr",
+   "title": "После нажатия «Previous examples» — ошибка в коде",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum-experimental/",
+    "Нажать «Previous examples»"
+   ],
+   "expected": "Без ошибок",
+   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "where": [
+    "/en/forum-experimental/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/054.jpg",
    "isNew": false
   },
   {
@@ -798,7 +355,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/078.jpg",
+   "shot": "shots/057.jpg",
    "isNew": false
   },
   {
@@ -818,28 +375,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/079.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Звинуватити! карта відкриється — хтось отримає Оману» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Звинуватити! карта відкриється — хтось отримає Оману»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в div#dockGrid",
-   "sig": "covered|/en/forest-spirits/|Звинуватити! карта відкриється — хтось отримає Оману",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/080.jpg",
+   "shot": "shots/058.jpg",
    "isNew": false
   },
   {
@@ -851,7 +387,7 @@
     "Нажать «Зрозуміло»"
    ],
    "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в img.cimg",
+   "actual": "Клик попадает в div#revealOverlay.overlay",
    "sig": "covered|/en/forest-spirits/|Зрозуміло",
    "where": [
     "/en/forest-spirits/"
@@ -860,7 +396,28 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/081.jpg",
+   "shot": "shots/059.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «Cookie settings»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#revealCap.peekcap",
+   "sig": "covered|/en/forest-spirits/|Cookie settings",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/060.jpg",
    "isNew": false
   },
   {
@@ -880,7 +437,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/082.jpg",
+   "shot": "shots/061.jpg",
    "isNew": false
   },
   {
@@ -900,27 +457,27 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/083.jpg",
+   "shot": "shots/062.jpg",
    "isNew": false
   },
   {
    "sev": "major",
    "type": "covered",
-   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
+   "title": "«Звинуватити! карта відкриється — хтось отримає Оману» нельзя нажать — сверху лежит другой элемент",
    "steps": [
     "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Cookie settings»"
+    "Нажать «Звинуватити! карта відкриється — хтось отримає Оману»"
    ],
    "expected": "Кнопка нажимается",
    "actual": "Клик попадает в p",
-   "sig": "covered|/en/forest-spirits/|Cookie settings",
+   "sig": "covered|/en/forest-spirits/|Звинуватити! карта відкриється — хтось отримає Оману",
    "where": [
     "/en/forest-spirits/"
    ],
    "devices": [
     "телефон"
    ],
-   "shot": "shots/084.jpg",
+   "shot": "shots/063.jpg",
    "isNew": false
   },
   {
@@ -947,86 +504,6 @@
   {
    "sev": "major",
    "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/prices/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/prices/|Questions? Ask here",
-   "where": [
-    "/en/prices/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/086.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/services-prices/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/services-prices/|Questions? Ask here",
-   "where": [
-    "/en/services-prices/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/087.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/sell/|Questions? Ask here",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/088.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/creator-terms/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/creator-terms/|Questions? Ask here",
-   "where": [
-    "/en/creator-terms/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/089.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
    "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
    "steps": [
     "Открыть https://solid-sound.net/en/free/",
@@ -1041,226 +518,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/091.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/data-deletion/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/data-deletion/|Questions? Ask here",
-   "where": [
-    "/en/data-deletion/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/092.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/wiki/|Questions? Ask here",
-   "where": [
-    "/en/wiki/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/093.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/record-clean-vocals-at-home/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/wiki/record-clean-vocals-at-home/|Questions? Ask here",
-   "where": [
-    "/en/wiki/record-clean-vocals-at-home/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/094.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/terms/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/terms/|Questions? Ask here",
-   "where": [
-    "/en/terms/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/095.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/legal-notice/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/legal-notice/|Questions? Ask here",
-   "where": [
-    "/en/legal-notice/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/096.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "res",
-   "title": "Не загружается файл или ресурс на странице",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "expected": "Все файлы загружаются",
-   "actual": "503 /en/wiki/balanced-vs-unbalanced-cables/",
-   "sig": "res|503 /en/wiki/balanced-vs-unbalanced-cables/",
-   "where": [
-    "/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/wiki/balanced-vs-unbalanced-cables/|Questions? Ask here",
-   "where": [
-    "/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/100.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/audio-interface-for-vocals/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/wiki/audio-interface-for-vocals/|Questions? Ask here",
-   "where": [
-    "/en/wiki/audio-interface-for-vocals/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/101.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/closed-back-headphones-for-recording/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/wiki/closed-back-headphones-for-recording/|Questions? Ask here",
-   "where": [
-    "/en/wiki/closed-back-headphones-for-recording/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/102.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sitemap/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/sitemap/|Questions? Ask here",
-   "where": [
-    "/en/sitemap/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/103.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/client-dashboard/",
-    "Нажать «Questions? Ask here»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в button.ss-cc-yes",
-   "sig": "covered|/en/client-dashboard/|Questions? Ask here",
-   "where": [
-    "/en/client-dashboard/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/104.jpg",
+   "shot": "shots/066.jpg",
    "isNew": false
   },
   {
@@ -1280,7 +538,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/107.jpg",
+   "shot": "shots/069.jpg",
    "isNew": false
   },
   {
@@ -1300,7 +558,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/108.jpg",
+   "shot": "shots/070.jpg",
    "isNew": false
   },
   {
@@ -1320,7 +578,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/111.jpg",
+   "shot": "shots/073.jpg",
    "isNew": false
   },
   {
@@ -1340,7 +598,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/112.jpg",
+   "shot": "shots/074.jpg",
    "isNew": false
   },
   {
@@ -1360,7 +618,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/115.jpg",
+   "shot": "shots/077.jpg",
    "isNew": false
   },
   {
@@ -1380,7 +638,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/116.jpg",
+   "shot": "shots/078.jpg",
    "isNew": false
   },
   {
@@ -1400,7 +658,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/119.jpg",
+   "shot": "shots/081.jpg",
    "isNew": false
   },
   {
@@ -1420,7 +678,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/120.jpg",
+   "shot": "shots/082.jpg",
    "isNew": false
   },
   {
@@ -1440,7 +698,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/123.jpg",
+   "shot": "shots/085.jpg",
    "isNew": false
   },
   {
@@ -1460,7 +718,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/124.jpg",
+   "shot": "shots/086.jpg",
    "isNew": false
   },
   {
@@ -1480,7 +738,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/127.jpg",
+   "shot": "shots/089.jpg",
    "isNew": false
   },
   {
@@ -1500,7 +758,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/128.jpg",
+   "shot": "shots/090.jpg",
    "isNew": false
   },
   {
@@ -1521,340 +779,8 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/130.jpg",
+   "shot": "shots/092.jpg",
    "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "kb-shop-zero-price",
-   "title": "Товар за $0 / €0 виден покупателям (не бесплатный пакет)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/ (компьютер)"
-   ],
-   "expected": "Скрыть из каталога.",
-   "actual": "Текст: «Bonus balance: $0.00». Почему важно: Обычно это технический товар — выглядит как ошибка магазина.",
-   "sig": "kb|kb-shop-zero-price|Товар за $0 / €0 виден покупателям (не бесплатный пакет)",
-   "where": [
-    "/en/my-account/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/132.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "js",
-   "title": "Ошибка в коде страницы (JavaScript)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Посмотреть консоль браузера"
-   ],
-   "expected": "Без ошибок",
-   "actual": "color is not defined",
-   "sig": "js|color is not defined",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "js",
-   "title": "Ошибка в коде страницы (JavaScript)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Посмотреть консоль браузера"
-   ],
-   "expected": "Без ошибок",
-   "actual": "Cannot read properties of undefined (reading 'green')",
-   "sig": "js|Cannot read properties of undefined (reading 'green')",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /ua/en/my-account/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/orders/",
-    "Нажать ссылку на /ua/en/my-account/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/orders/",
-   "sig": "link|/ua/en/my-account/orders/",
-   "where": [
-    "/en/my-account/orders/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /de/en/my-account/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/orders/",
-    "Нажать ссылку на /de/en/my-account/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/orders/",
-   "sig": "link|/de/en/my-account/orders/",
-   "where": [
-    "/en/my-account/orders/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /fr/en/my-account/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/orders/",
-    "Нажать ссылку на /fr/en/my-account/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/orders/",
-   "sig": "link|/fr/en/my-account/orders/",
-   "where": [
-    "/en/my-account/orders/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /pt/en/my-account/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/orders/",
-    "Нажать ссылку на /pt/en/my-account/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/orders/",
-   "sig": "link|/pt/en/my-account/orders/",
-   "where": [
-    "/en/my-account/orders/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /es/en/my-account/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/orders/",
-    "Нажать ссылку на /es/en/my-account/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/orders/",
-   "sig": "link|/es/en/my-account/orders/",
-   "where": [
-    "/en/my-account/orders/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /it/en/my-account/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/orders/",
-    "Нажать ссылку на /it/en/my-account/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/orders/",
-   "sig": "link|/it/en/my-account/orders/",
-   "where": [
-    "/en/my-account/orders/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /ua/en/my-account/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/",
-    "Нажать ссылку на /ua/en/my-account/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/edit-account/",
-   "sig": "link|/ua/en/my-account/edit-account/",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /de/en/my-account/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/",
-    "Нажать ссылку на /de/en/my-account/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/edit-account/",
-   "sig": "link|/de/en/my-account/edit-account/",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /fr/en/my-account/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/",
-    "Нажать ссылку на /fr/en/my-account/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/edit-account/",
-   "sig": "link|/fr/en/my-account/edit-account/",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /pt/en/my-account/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/",
-    "Нажать ссылку на /pt/en/my-account/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/edit-account/",
-   "sig": "link|/pt/en/my-account/edit-account/",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /es/en/my-account/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/",
-    "Нажать ссылку на /es/en/my-account/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/edit-account/",
-   "sig": "link|/es/en/my-account/edit-account/",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /it/en/my-account/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/",
-    "Нажать ссылку на /it/en/my-account/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/my-account/edit-account/",
-   "sig": "link|/it/en/my-account/edit-account/",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /en/store-manager/orders/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать ссылку на /en/store-manager/orders/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/store-manager/",
-   "sig": "link|/en/store-manager/orders/",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /en/store-manager/edit-address/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать ссылку на /en/store-manager/edit-address/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/store-manager/",
-   "sig": "link|/en/store-manager/edit-address/",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /en/store-manager/edit-account/ (код 404)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать ссылку на /en/store-manager/edit-account/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 404. Ссылка есть на страницах: /en/store-manager/",
-   "sig": "link|/en/store-manager/edit-account/",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
   },
   {
    "sev": "minor",
@@ -1981,9 +907,7 @@
     "/it/product/mutualism/",
     "/it/product/pitch/",
     "/it/product/melodic-techno-presets/",
-    "/it/product/time-goes-fast-documentary-piano/",
-    "/en/my-account/orders/",
-    "/en/my-account/edit-account/"
+    "/it/product/time-goes-fast-documentary-piano/"
    ],
    "devices": [
     "компьютер",
@@ -2037,20 +961,19 @@
     "/en/wiki/record-clean-vocals-at-home/",
     "/en/terms/",
     "/en/legal-notice/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/wiki/audio-interface-for-vocals/",
     "/en/wiki/closed-back-headphones-for-recording/",
     "/en/sitemap/",
     "/en/client-dashboard/",
     "/product/infinity/",
-    "/forum/",
-    "/en/my-account/orders/",
-    "/en/my-account/edit-account/"
+    "/forum/"
    ],
    "devices": [
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/020.jpg",
+   "shot": "shots/019.jpg",
    "isNew": false
   },
   {
@@ -2100,8 +1023,7 @@
     "/es/music-es/",
     "/it/templates-it/",
     "/it/presets-it/",
-    "/it/music-it/",
-    "/en/my-account/edit-account/"
+    "/it/music-it/"
    ],
    "devices": [
     "компьютер",
@@ -2197,6 +1119,7 @@
     "/en/sell/",
     "/en/creator-terms/",
     "/en/wiki/record-clean-vocals-at-home/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/wiki/closed-back-headphones-for-recording/",
     "/en/sitemap/",
     "/en/client-dashboard/",
@@ -2242,7 +1165,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/073.jpg",
+   "shot": "shots/052.jpg",
    "isNew": false
   },
   {
@@ -2271,7 +1194,7 @@
     "компьютер",
     "Samsung A31"
    ],
-   "shot": "shots/019.jpg",
+   "shot": "shots/018.jpg",
    "isNew": false
   },
   {
@@ -2323,7 +1246,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/021.jpg",
+   "shot": "shots/020.jpg",
    "isNew": false
   },
   {
@@ -2345,7 +1268,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/031.jpg",
+   "shot": "shots/026.jpg",
    "isNew": false
   },
   {
@@ -2368,7 +1291,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/072.jpg",
+   "shot": "shots/051.jpg",
    "isNew": false
   },
   {
@@ -2390,7 +1313,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/049.jpg",
+   "shot": "shots/032.jpg",
    "isNew": false
   },
   {
@@ -2412,7 +1335,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/050.jpg",
+   "shot": "shots/033.jpg",
    "isNew": false
   },
   {
@@ -2434,7 +1357,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/051.jpg",
+   "shot": "shots/034.jpg",
    "isNew": false
   },
   {
@@ -2456,7 +1379,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/052.jpg",
+   "shot": "shots/035.jpg",
    "isNew": false
   },
   {
@@ -2478,7 +1401,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/053.jpg",
+   "shot": "shots/036.jpg",
    "isNew": false
   },
   {
@@ -2500,7 +1423,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/054.jpg",
+   "shot": "shots/037.jpg",
    "isNew": false
   },
   {
@@ -2522,7 +1445,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/055.jpg",
+   "shot": "shots/038.jpg",
    "isNew": false
   },
   {
@@ -2544,7 +1467,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/056.jpg",
+   "shot": "shots/039.jpg",
    "isNew": false
   },
   {
@@ -2567,7 +1490,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/063.jpg",
+   "shot": "shots/043.jpg",
    "isNew": false
   },
   {
@@ -2588,7 +1511,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/066.jpg",
+   "shot": "shots/045.jpg",
    "isNew": false
   },
   {
@@ -2609,7 +1532,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/067.jpg",
+   "shot": "shots/046.jpg",
    "isNew": false
   },
   {
@@ -2630,7 +1553,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/068.jpg",
+   "shot": "shots/047.jpg",
    "isNew": false
   },
   {
@@ -2651,1142 +1574,8 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/071.jpg",
+   "shot": "shots/050.jpg",
    "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-seo-desc",
-   "title": "Нет описания страницы (meta description)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/ (телефон)"
-   ],
-   "expected": "Описание 70–160 символов.",
-   "actual": "Описания нет. Почему важно: Google сам вырезает кусок текста — часто неудачный.",
-   "sig": "kb|kb-seo-desc|Нет описания страницы (meta description)",
-   "where": [
-    "/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/098.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "kb-seo-og",
-   "title": "Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/ (телефон)"
-   ],
-   "expected": "og:title + og:image 1200×630.",
-   "actual": "og:title: нет, og:image: нет. Почему важно: Ссылка в Telegram/Facebook/Instagram без картинки — по ней почти не кликают.",
-   "sig": "kb|kb-seo-og|Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
-   "where": [
-    "/en/wiki/balanced-vs-unbalanced-cables/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/099.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "anchor",
-   "title": "Ссылка «#chat» ведёт в никуда (нет такого раздела на странице)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/",
-    "Нажать ссылку #chat"
-   ],
-   "expected": "Прокрутка к разделу",
-   "actual": "Раздела с таким id нет",
-   "sig": "anchor|/en/my-account/#chat",
-   "where": [
-    "/en/my-account/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/131.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "anchor",
-   "title": "Ссылка «#chat» ведёт в никуда (нет такого раздела на странице)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать ссылку #chat"
-   ],
-   "expected": "Прокрутка к разделу",
-   "actual": "Раздела с таким id нет",
-   "sig": "anchor|/en/store-manager/#chat",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/133.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /product-genre/cinematic/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /product-genre/cinematic/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=Cinematic",
-   "sig": "link2home|/product-genre/cinematic/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /product-genre/melodic-techno/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /product-genre/melodic-techno/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=Melodic%20Techno",
-   "sig": "link2home|/product-genre/melodic-techno/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /external-plugin/serum/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /external-plugin/serum/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=Serum",
-   "sig": "link2home|/external-plugin/serum/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /product-genre/techno/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /product-genre/techno/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=Techno",
-   "sig": "link2home|/product-genre/techno/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /product-version/ableton-live-11/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /product-version/ableton-live-11/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=Ableton%20Live%2011",
-   "sig": "link2home|/product-version/ableton-live-11/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /external-plugin/no-external-plugins/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /external-plugin/no-external-plugins/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=No%20External%20Plugins",
-   "sig": "link2home|/external-plugin/no-external-plugins/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /product-version/ableton-live-10/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /product-version/ableton-live-10/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=Ableton%20Live%2010",
-   "sig": "link2home|/product-version/ableton-live-10/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/pitch/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/pitch/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=%23Pitch",
-   "sig": "link2home|/it/product-tag/pitch/",
-   "where": [
-    "/it/product/pitch/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/techno/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/techno/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=%23Techno",
-   "sig": "link2home|/it/product-tag/techno/",
-   "where": [
-    "/it/product/melodic-techno-presets/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/presets/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/presets/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=%23Presets",
-   "sig": "link2home|/it/product-tag/presets/",
-   "where": [
-    "/it/product/melodic-techno-presets/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/melodic-techno/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/melodic-techno/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=%23Melodic%20Techno",
-   "sig": "link2home|/it/product-tag/melodic-techno/",
-   "where": [
-    "/it/product/melodic-techno-presets/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/optimism/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/optimism/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=optimism",
-   "sig": "link2home|/it/product-tag/optimism/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/cozy/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/cozy/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=cozy",
-   "sig": "link2home|/it/product-tag/cozy/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/delicate/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/delicate/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=delicate",
-   "sig": "link2home|/it/product-tag/delicate/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/dreamy/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/dreamy/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=dreamy",
-   "sig": "link2home|/it/product-tag/dreamy/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/serene/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/serene/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=serene",
-   "sig": "link2home|/it/product-tag/serene/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/ambient/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/ambient/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=ambient",
-   "sig": "link2home|/it/product-tag/ambient/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/storytelling/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/storytelling/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=storytelling",
-   "sig": "link2home|/it/product-tag/storytelling/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/melody/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/melody/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=melody",
-   "sig": "link2home|/it/product-tag/melody/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/harmony/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/harmony/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=harmony",
-   "sig": "link2home|/it/product-tag/harmony/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/inspiring/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/inspiring/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=inspiring",
-   "sig": "link2home|/it/product-tag/inspiring/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/soothing/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/soothing/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=soothing",
-   "sig": "link2home|/it/product-tag/soothing/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/tranquil/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/tranquil/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=tranquil",
-   "sig": "link2home|/it/product-tag/tranquil/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/success/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/success/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=success",
-   "sig": "link2home|/it/product-tag/success/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/thoughtful/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/thoughtful/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=thoughtful",
-   "sig": "link2home|/it/product-tag/thoughtful/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/mindful/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/mindful/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=mindful",
-   "sig": "link2home|/it/product-tag/mindful/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/smooth/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/smooth/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=smooth",
-   "sig": "link2home|/it/product-tag/smooth/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/refreshing/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/refreshing/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=refreshing",
-   "sig": "link2home|/it/product-tag/refreshing/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/meditation/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/meditation/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=meditation",
-   "sig": "link2home|/it/product-tag/meditation/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/calmness/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/calmness/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=calmness",
-   "sig": "link2home|/it/product-tag/calmness/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/tender/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/tender/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=tender",
-   "sig": "link2home|/it/product-tag/tender/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/classical/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/classical/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=classical",
-   "sig": "link2home|/it/product-tag/classical/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/creative/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/creative/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=creative",
-   "sig": "link2home|/it/product-tag/creative/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/comfort/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/comfort/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=comfort",
-   "sig": "link2home|/it/product-tag/comfort/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/atmospheric/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/atmospheric/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=atmospheric",
-   "sig": "link2home|/it/product-tag/atmospheric/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/balance/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/balance/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=balance",
-   "sig": "link2home|/it/product-tag/balance/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/energy/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/energy/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=energy",
-   "sig": "link2home|/it/product-tag/energy/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/flow/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/flow/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=flow",
-   "sig": "link2home|/it/product-tag/flow/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/spirit/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/spirit/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=spirit",
-   "sig": "link2home|/it/product-tag/spirit/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/elegant/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/elegant/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=elegant",
-   "sig": "link2home|/it/product-tag/elegant/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/piano/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/piano/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=piano",
-   "sig": "link2home|/it/product-tag/piano/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/inspirational/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/inspirational/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=inspirational",
-   "sig": "link2home|/it/product-tag/inspirational/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/uplifting/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/uplifting/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=uplifting",
-   "sig": "link2home|/it/product-tag/uplifting/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/morning/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/morning/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=morning",
-   "sig": "link2home|/it/product-tag/morning/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/motivation/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/motivation/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=motivation",
-   "sig": "link2home|/it/product-tag/motivation/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/calm/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/calm/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=calm",
-   "sig": "link2home|/it/product-tag/calm/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/relaxing/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/relaxing/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=relaxing",
-   "sig": "link2home|/it/product-tag/relaxing/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/positive/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/positive/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=positive",
-   "sig": "link2home|/it/product-tag/positive/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/warm/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/warm/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=warm",
-   "sig": "link2home|/it/product-tag/warm/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/emotional/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/emotional/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=emotional",
-   "sig": "link2home|/it/product-tag/emotional/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/gentle/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/gentle/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=gentle",
-   "sig": "link2home|/it/product-tag/gentle/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/background/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/background/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=background",
-   "sig": "link2home|/it/product-tag/background/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/cinematic/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/cinematic/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=cinematic",
-   "sig": "link2home|/it/product-tag/cinematic/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/peaceful/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/peaceful/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=peaceful",
-   "sig": "link2home|/it/product-tag/peaceful/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/hopeful/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/hopeful/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=hopeful",
-   "sig": "link2home|/it/product-tag/hopeful/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/soft/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/soft/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=soft",
-   "sig": "link2home|/it/product-tag/soft/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/bright/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/bright/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=bright",
-   "sig": "link2home|/it/product-tag/bright/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/fresh/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/fresh/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=fresh",
-   "sig": "link2home|/it/product-tag/fresh/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/happiness/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/happiness/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=happiness",
-   "sig": "link2home|/it/product-tag/happiness/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/joyful/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/joyful/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=joyful",
-   "sig": "link2home|/it/product-tag/joyful/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/light/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/light/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=light",
-   "sig": "link2home|/it/product-tag/light/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /it/product-tag/reflective/ выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /it/product-tag/reflective/"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /?s=reflective",
-   "sig": "link2home|/it/product-tag/reflective/",
-   "where": [
-    "/it/product/time-goes-fast-documentary-piano/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
   },
   {
    "sev": "check",
@@ -3839,9 +1628,7 @@
     "/en/sitemap/",
     "/en/client-dashboard/",
     "/product/infinity/",
-    "/forum/",
-    "/en/my-account/orders/",
-    "/en/my-account/edit-account/"
+    "/forum/"
    ],
    "devices": [
     "компьютер",
@@ -3941,7 +1728,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/126.jpg",
+   "shot": "shots/088.jpg",
    "isNew": false
   },
   {
@@ -3977,7 +1764,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/043.jpg",
+   "shot": "shots/028.jpg",
    "isNew": false
   },
   {
@@ -4011,7 +1798,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/106.jpg",
+   "shot": "shots/068.jpg",
    "isNew": false
   },
   {
@@ -4040,7 +1827,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/110.jpg",
+   "shot": "shots/072.jpg",
    "isNew": false
   },
   {
@@ -4069,7 +1856,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/114.jpg",
+   "shot": "shots/076.jpg",
    "isNew": false
   },
   {
@@ -4098,7 +1885,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/118.jpg",
+   "shot": "shots/080.jpg",
    "isNew": false
   },
   {
@@ -4127,7 +1914,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/122.jpg",
+   "shot": "shots/084.jpg",
    "isNew": false
   },
   {
@@ -4151,29 +1938,6 @@
     "Samsung A31"
    ],
    "shot": "shots/015.jpg",
-   "isNew": false,
-   "more": 3
-  },
-  {
-   "sev": "check",
-   "type": "kb-perf-weight",
-   "title": "Страница весит больше 3 МБ",
-   "steps": [
-    "Открыть https://solid-sound.net/en/checkout/ (компьютер)"
-   ],
-   "expected": "Смотреть, что самое тяжёлое.",
-   "actual": "Скачано 3.2 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.1 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.5 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.7 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
-   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
-   "where": [
-    "/en/checkout/",
-    "/en/free-demo-feedback/",
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/032.jpg",
    "isNew": false,
    "more": 3
   },
@@ -4285,6 +2049,28 @@
   },
   {
    "sev": "check",
+   "type": "kb-perf-weight",
+   "title": "Страница весит больше 3 МБ",
+   "steps": [
+    "Открыть https://solid-sound.net/en/checkout/ (компьютер)"
+   ],
+   "expected": "Смотреть, что самое тяжёлое.",
+   "actual": "Скачано 3.2 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.7 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
+   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
+   "where": [
+    "/en/checkout/",
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/027.jpg",
+   "isNew": false,
+   "more": 1
+  },
+  {
+   "sev": "check",
    "type": "style-odd",
    "title": "Кнопка «SEND REQUEST — GET A REPLY IN 24 H» скруглена не так, как остальные",
    "steps": [
@@ -4301,7 +2087,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/057.jpg",
+   "shot": "shots/040.jpg",
    "isNew": false
   },
   {
@@ -4322,7 +2108,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/065.jpg",
+   "shot": "shots/044.jpg",
    "isNew": false
   },
   {
@@ -4343,8 +2129,8 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/018.jpg",
-   "isNew": true
+   "shot": "shots/017.jpg",
+   "isNew": false
   },
   {
    "sev": "check",
@@ -4361,10 +2147,11 @@
     "/en/shop/"
    ],
    "devices": [
+    "компьютер",
     "телефон"
    ],
-   "shot": "shots/027.jpg",
-   "isNew": true
+   "shot": "shots/024.jpg",
+   "isNew": false
   },
   {
    "sev": "check",
@@ -4382,7 +2169,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/069.jpg",
+   "shot": "shots/048.jpg",
    "isNew": false
   },
   {
@@ -4401,7 +2188,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/070.jpg",
+   "shot": "shots/049.jpg",
    "isNew": false
   },
   {
@@ -4421,7 +2208,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/076.jpg",
+   "shot": "shots/055.jpg",
    "isNew": false
   },
   {
@@ -4441,7 +2228,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/077.jpg",
+   "shot": "shots/056.jpg",
    "isNew": false
   },
   {
@@ -4460,7 +2247,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/085.jpg",
+   "shot": "shots/064.jpg",
    "isNew": false
   },
   {
@@ -4480,7 +2267,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/090.jpg",
+   "shot": "shots/065.jpg",
    "isNew": false
   },
   {
@@ -4500,7 +2287,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/105.jpg",
+   "shot": "shots/067.jpg",
    "isNew": false
   },
   {
@@ -4520,7 +2307,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/109.jpg",
+   "shot": "shots/071.jpg",
    "isNew": false
   },
   {
@@ -4540,7 +2327,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/113.jpg",
+   "shot": "shots/075.jpg",
    "isNew": false
   },
   {
@@ -4560,7 +2347,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/117.jpg",
+   "shot": "shots/079.jpg",
    "isNew": false
   },
   {
@@ -4580,7 +2367,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/121.jpg",
+   "shot": "shots/083.jpg",
    "isNew": false
   },
   {
@@ -4600,30 +2387,12 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/125.jpg",
+   "shot": "shots/087.jpg",
    "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "style-circle",
-   "title": "Круглая кнопка-значок «без текста» — нужна ли квадратная со скруглёнными углами?",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/"
-   ],
-   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
-   "actual": "Круг (радиус 50px, размер 56px)",
-   "sig": "circle|без текста",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/134.jpg",
-   "isNew": true
   }
  ],
  "notChecked": [
-  "Звук файлов не проверен: ffmpeg не установлен"
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
+  "Проверка остановлена по времени — часть ссылок/входов не проверена"
  ]
 }
