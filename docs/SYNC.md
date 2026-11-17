@@ -52,7 +52,6 @@
 |---|---|---|---|
 | A | Регистрация авторов в 1 шаг; затем SEO-статьи на сайте (шаблон + статьи по запросам Search Console, публикация только после «ок» владельца). Видео/посты (SMM) — контент-фабрика B, не дублирую | `modules/creator-apply.php`, `modules/vendor.php`, новые статьи | 2026-11-16 |
 | B | QA-бот и боты (по коммитам) | `tools/qa*`, `tools/bots`, `tools/speed`, `qa/`, `reports/` | 2026-11-13 05:40 |
-| B | Форум (владелец 17.11: «делай и выкладывай»): проверка телефон/ПК, пустая полоса сверху, спам-аккаунты (список → удаление только после «ок»), защита регистрации от ботов | `modules/forum.php`, новый `modules/antispam.php` | 2026-11-17 |
 
 ## Задачи от владельца (13.11.2026, 11:00) — общий список, кто берёт — пишет строку в «Сейчас в работе»
 
@@ -124,6 +123,8 @@
 4. Регистрация продюсеров на /sell/ работает (починил: грузим скрипт WCFM в modules/creator-apply.php). Робот e2e (tools/e2e-creator.js) регистрирует, но падал на открытии кабинета (ждал networkidle — уже заменил на domcontentloaded), потом всё удаляет.
 
 ## Сделано (коротко, новое сверху)
+
+- 17.11 B: #123 — форум: без пустого отступа сверху, поля по бокам, панель меню (Forums, New posts, Sign in, Join the community + «Search the forum») — `modules/forum.php` раздел 5. Users → Spam cleanup (`modules/antispam.php`): число/примеры/новые за 7 дней, удаление только по кнопке владельца (Google, try-free, покупатели, персонал, авторы не трогаются). Защита регистрации от ботов уже была (custom.php 15.10: ловушка + JS-метка).
 - 16.11 A: Supermetrics (у A тоже есть): подключены Google Analytics, Search Console, Instagram Insights. НЕ подключены: WooCommerce, TikTok Organic, YouTube, Meta Ad Library — попросил владельца. Стратегия владельца: аналитика → SMM + SEO, бюджет ~100 €/мес (owner-preferences).
 - 16.11 A: ГОТОВО и проверено роботом sm-diag (выкладки 93–94). (1) На корне нового кабинета WCFM Chart.js не грузится вообще (script_loader_tag → заглушка Chart), иначе buildTicks уходит в вечный цикл. (2) Самоподпитывающиеся циклы перерисовки на всех страницах: ss-global.js paint() и player.js tidy() перезаписывали те же значения → ssOnDom/MutationObserver срабатывал снова ~8 раз/с. ПРАВИЛО для обоих: в обработчиках ssOnDom/MutationObserver писать в DOM (textContent, setAttribute, classList.add/remove/toggle) ТОЛЬКО если значение реально меняется — даже classList.add уже существующего класса порождает мутацию. Проверка: `.github/sm-diag.txt` → в логе «DOM mutations in 3 s after load» должно быть пусто.
 - 16.11 A: ПРИЧИНА Out of Memory в /store-manager/: новый кабинет прятал старое содержимое WCFM через display:none → у графика продаж (Chart.js) нулевой размер → buildTicks крутится бесконечно. Теперь прячем за экраном с сохранением размера (creator-space.php, выкладка 92). НЕ прятать WCFM-график через display:none нигде. Робот `tools/sm-diag.js` (trigger `.github/sm-diag.txt`) ставит зависшую страницу на паузу отладчиком и печатает строку, где завис, + повторяющиеся изменения DOM.
