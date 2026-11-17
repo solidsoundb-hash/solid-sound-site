@@ -1,0 +1,1006 @@
+{
+ "mode": "full",
+ "date": "2026-11-17T19:17:36.600Z",
+ "stats": {
+  "pages": 33,
+  "clicks": 20,
+  "sounds": 0,
+  "links": 0,
+  "blockedRequests": 0,
+  "eyesTiles": 0,
+  "eyesPages": 0,
+  "audioFiles": 0,
+  "robots": 20
+ },
+ "bugs": [
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/10_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/all-products/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/all-products/",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "Samsung A31"
+   ],
+   "shot": "shots/10_004.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/shop/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/shop/",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/12_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/vendor-membership/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-membership/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/vendor-membership/",
+   "where": [
+    "/en/vendor-membership/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/13_004.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/checkout/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/checkout/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/checkout/",
+   "where": [
+    "/en/checkout/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/14_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/my-account/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/my-account/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/my-account/",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/15_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/refund_returns/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/refund_returns/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/refund_returns/",
+   "where": [
+    "/en/refund_returns/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/16_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/links/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/links/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/links/",
+   "where": [
+    "/en/links/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/16_007.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/license/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/license/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/license/",
+   "where": [
+    "/en/license/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/17_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /forum/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/forum/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/forum/",
+   "where": [
+    "/forum/"
+   ],
+   "devices": [
+    "Samsung A31"
+   ],
+   "shot": "shots/18_012.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /ua/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/ua/",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_013.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /fr/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/fr/",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/18_016.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /pt/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/pt/",
+   "where": [
+    "/pt/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_019.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /es/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/es/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/es/",
+   "where": [
+    "/es/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_020.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /it/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/it/",
+   "where": [
+    "/it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_021.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "login",
+   "title": "Не получается войти тестовым клиентом",
+   "steps": [
+    "Открыть /en/my-account/",
+    "Ввести логин и пароль",
+    "Нажать Log in"
+   ],
+   "expected": "Вход выполнен",
+   "actual": "Остаётся на странице входа",
+   "sig": "login|user",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/19_001.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "login",
+   "title": "Не получается войти тестовым админом",
+   "steps": [
+    "Открыть /en/my-account/",
+    "Ввести логин и пароль",
+    "Нажать Log in"
+   ],
+   "expected": "Вход выполнен",
+   "actual": "Остаётся на странице входа",
+   "sig": "login|admin",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/19_002.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/",
+   "sig": "res|503 /en/",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/all-products/",
+   "sig": "res|503 /en/all-products/",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "Samsung A31"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/shop/",
+   "sig": "res|503 /en/shop/",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-membership/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/vendor-membership/",
+   "sig": "res|503 /en/vendor-membership/",
+   "where": [
+    "/en/vendor-membership/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/checkout/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/checkout/",
+   "sig": "res|503 /en/checkout/",
+   "where": [
+    "/en/checkout/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/my-account/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/my-account/",
+   "sig": "res|503 /en/my-account/",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/refund_returns/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/refund_returns/",
+   "sig": "res|503 /en/refund_returns/",
+   "where": [
+    "/en/refund_returns/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/links/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/links/",
+   "sig": "res|503 /en/links/",
+   "where": [
+    "/en/links/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/license/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/license/",
+   "sig": "res|503 /en/license/",
+   "where": [
+    "/en/license/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/forum/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /forum/",
+   "sig": "res|503 /forum/",
+   "where": [
+    "/forum/"
+   ],
+   "devices": [
+    "Samsung A31"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /ua/",
+   "sig": "res|503 /ua/",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /fr/",
+   "sig": "res|503 /fr/",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /pt/",
+   "sig": "res|503 /pt/",
+   "where": [
+    "/pt/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/es/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /es/",
+   "sig": "res|503 /es/",
+   "where": [
+    "/es/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/it/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /it/",
+   "sig": "res|503 /it/",
+   "where": [
+    "/it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "kb-seo-desc",
+   "title": "Нет описания страницы (meta description)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)"
+   ],
+   "expected": "Описание 70–160 символов.",
+   "actual": "Описания нет. Почему важно: Google сам вырезает кусок текста — часто неудачный.",
+   "sig": "kb|kb-seo-desc|Нет описания страницы (meta description)",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/vendor-membership/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/refund_returns/",
+    "/en/links/",
+    "/en/license/",
+    "/forum/",
+    "/ua/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/10_002.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "kb-seo-og",
+   "title": "Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)"
+   ],
+   "expected": "og:title + og:image 1200×630.",
+   "actual": "og:title: нет, og:image: нет. Почему важно: Ссылка в Telegram/Facebook/Instagram без картинки — по ней почти не кликают.",
+   "sig": "kb|kb-seo-og|Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/vendor-membership/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/refund_returns/",
+    "/en/links/",
+    "/en/license/",
+    "/forum/",
+    "/ua/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/10_003.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-blocking-js",
+   "title": "Скрипты в <head> без defer/async — тормозят показ страницы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/cart/ (компьютер)",
+    "Где: https://solid-sound.net/wp-includes/js/zxcvbn-async.min.js; https://solid-sound.net/wp-includes/js/dist/hooks.min.js; https://solid-sound.net/wp-includes/js/dist/i18n.min.js; https://solid-sound.net/wp-admin/js/password-strength-meter.min.js; https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js"
+   ],
+   "expected": "defer (правило проекта в CLAUDE.md).",
+   "actual": "Почему важно: Браузер ждёт скачивания скрипта, страница белая.",
+   "sig": "kb|kb-perf-blocking-js|Скрипты в <head> без defer/async — тормозят показ страницы",
+   "where": [
+    "/en/cart/",
+    "/en/links/",
+    "/en/",
+    "/product/infinity/",
+    "/de/",
+    "/fr/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/13_002.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-tap",
+   "title": "Кнопки/ссылки слишком маленькие для пальца",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (Samsung A31)",
+    "Где: input 18×18; button «Page 1» 24×8; button «Page 2» 8×8; button «Page 3» 8×8; button «Page 4» 8×8"
+   ],
+   "expected": "Увеличить зону нажатия (padding).",
+   "actual": "Почему важно: Промахиваются и жмут соседнюю кнопку. Норма — 44×44 px (Apple), 48 px (Google).",
+   "sig": "kb|kb-mob-tap|Кнопки/ссылки слишком маленькие для пальца",
+   "where": [
+    "/en/",
+    "/product/infinity/",
+    "/de/",
+    "/fr/"
+   ],
+   "devices": [
+    "Samsung A31",
+    "телефон"
+   ],
+   "shot": "shots/18_004.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-input-label",
+   "title": "Поле ввода без подписи",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (Samsung A31)",
+    "Где: input.inp [Your best email]"
+   ],
+   "expected": "<label> или aria-label.",
+   "actual": "Почему важно: Когда человек начал печатать, подсказка-placeholder исчезает — непонятно, что вводить.",
+   "sig": "kb|kb-a11y-input-label|Поле ввода без подписи",
+   "where": [
+    "/en/",
+    "/de/",
+    "/fr/"
+   ],
+   "devices": [
+    "Samsung A31",
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_003.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-link-empty",
+   "title": "Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (Samsung A31)",
+    "Где: a.ssp-cover «Open the product page»"
+   ],
+   "expected": "Настоящий адрес или кнопка с действием.",
+   "actual": "Почему важно: Человек нажимает — и ничего.",
+   "sig": "kb|kb-link-empty|Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "where": [
+    "/en/",
+    "/de/",
+    "/fr/"
+   ],
+   "devices": [
+    "Samsung A31",
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_006.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-font",
+   "title": "Слишком мелкий текст на телефоне (меньше 12 px)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/cart/ (телефон)",
+    "Где: span.ss-ai «AI search» 10px"
+   ],
+   "expected": "Минимум 12–13 px для подписей, 15–16 для текста.",
+   "actual": "Почему важно: Нечитаемо без увеличения.",
+   "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
+   "where": [
+    "/en/cart/",
+    "/product/infinity/"
+   ],
+   "devices": [
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/13_003.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-dup-id",
+   "title": "Одинаковые id у разных элементов",
+   "steps": [
+    "Открыть https://solid-sound.net/en/links/ (компьютер)",
+    "Где: templates"
+   ],
+   "expected": "Уникальные id.",
+   "actual": "Почему важно: Кнопки, якоря и подписи полей начинают работать не с тем элементом.",
+   "sig": "kb|kb-a11y-dup-id|Одинаковые id у разных элементов",
+   "where": [
+    "/en/links/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/16_005.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Questions? Ask here» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/cart/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Questions? Ask here",
+   "where": [
+    "/en/cart/",
+    "/en/links/",
+    "/en/",
+    "/product/infinity/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/13_001.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Get the free pack →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 4px",
+   "sig": "odd|Get the free pack →",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Samsung A31"
+   ],
+   "shot": "shots/18_001.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «+» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/product/infinity/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 30px)",
+   "sig": "circle|+",
+   "where": [
+    "/product/infinity/"
+   ],
+   "devices": [
+    "Samsung A31"
+   ],
+   "shot": "shots/18_010.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Gratis-Paket holen →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/de/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Gratis-Paket holen →",
+   "where": [
+    "/de/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_014.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Fragen? Hier fragen» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/de/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Fragen? Hier fragen",
+   "where": [
+    "/de/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_015.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Obtenir le pack gratuit →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 4px",
+   "sig": "odd|Obtenir le pack gratuit →",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/18_017.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Une question ? Demande ici» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 52px)",
+   "sig": "circle|Une question ? Demande ici",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/18_018.jpg",
+   "isNew": false
+  }
+ ],
+ "notChecked": [
+  "Звук файлов не проверен: ffmpeg не установлен"
+ ],
+ "l10nSkipped": 0
+}
