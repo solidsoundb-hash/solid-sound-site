@@ -5594,3 +5594,4 @@ require_once __DIR__ . '/modules/css-files.php';
 require_once __DIR__ . '/modules/antispam.php';
 require_once __DIR__ . '/modules/family.php';
 require_once __DIR__ . '/modules/prices.php';
+require_once __DIR__ . '/modules/ajax-cart.php';

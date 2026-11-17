@@ -131,7 +131,7 @@ jobs:
 
   merge:
     needs: [go, pages, extras, eyes]
-    if: always() && needs.go.outputs.run == '1'
+    if: "!cancelled() && needs.go.outputs.run == '1'"   # a stopped run must not overwrite the last good report
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
