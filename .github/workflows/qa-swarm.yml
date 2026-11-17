@@ -146,4 +146,5 @@ jobs:
           mkdir -p qa/latest && QA_MERGE="$D" node tools/qa/qa.js
           rm -rf qa/sw
       - name: Save the report in the repo
-        run: BOT_NAME=qa-swarm bash .github/save.sh "QA swarm: $(date -u +%FT%TZ)" qa
+        run: |
+          BOT_NAME=qa-swarm bash .github/save.sh "QA swarm: $(date -u +%FT%TZ)" qa
