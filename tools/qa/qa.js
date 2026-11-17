@@ -643,6 +643,8 @@ function writeReport(final = true) {
   process.on('uncaughtException', (e) => { notChecked.push('Внутренняя ошибка бота: ' + String((e && e.message) || e).split('\n')[0].slice(0, 160)); });
   // partial report every 2 minutes, so a crash or a time-out never leaves an old report behind
   const draft = setInterval(() => { try { writeReport(false); } catch (e) {} }, 120000);
+  // hard stop: whatever is still running, finish 12 min after the budget with a complete report (GitHub kills the job at 160 min)
+  setTimeout(() => { notChecked.push('Проверка остановлена по времени — часть ссылок/входов не проверена'); try { writeReport(true); } catch (e) {} process.exit(0); }, BUDGET_MS + 12 * 60000).unref();
   try {
     const desk = await newContext(browser, 'desktop'); const dp = await newPage(desk);
     const phone = await newContext(browser, 'phone'); const pp = await newPage(phone);
