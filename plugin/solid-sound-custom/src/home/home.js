@@ -279,12 +279,31 @@ document.addEventListener('click',function(e){
   });
   /* swipe (14.11.2026, Samsung A31 / iPhone): only a clearly sideways swipe changes the card — scrolling the page with a
      slightly diagonal finger used to flip it. Direction is decided on the first ~10 px of movement and then locked. */
-  var x0=null, y0=0, dir='';
-  document.addEventListener('touchstart',function(e){ var r=el(); x0=null; if(r && e.touches.length===1 && e.target.closest && e.target.closest('#ss-app .ssx .track') && !e.target.closest('.chips,input,select,textarea')){ x0=e.touches[0].clientX; y0=e.touches[0].clientY; dir=''; } },{passive:true});
-  document.addEventListener('touchmove',function(e){ if(x0===null || dir) return; var dx=Math.abs(e.touches[0].clientX-x0), dy=Math.abs(e.touches[0].clientY-y0); if(dx<10 && dy<10) return; dir = dx>dy*1.5 ? 'x' : 'y'; },{passive:true});
-  document.addEventListener('touchend',function(e){ if(x0===null) return; var t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0; x0=null; var r=el();
-    if(r && dir==='x' && Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)*1.5) go(+(r.getAttribute('data-cur')||0)+(dx<0?1:-1)); },{passive:true});
-  document.addEventListener('touchcancel',function(){ x0=null; },{passive:true});
+  /* (17.11.2026 owner: «слайдер туго листается») the card follows the finger / mouse while dragging; a short quick
+     flick or a drag of 15% of the width turns the page; the edges spring back. Vertical scrolling stays free. */
+  var x0=null, y0=0, t0=0, dir='', dxNow=0, raf=0, drag=null, mouse=false;
+  function start(x,y,target){ var r=el(); x0=null; if(!r || !target.closest || !target.closest('#ss-app .ssx .track') || target.closest('input,select,textarea')) return false;
+    var ch=target.closest('.chips'); if(ch && ch.scrollWidth>ch.clientWidth+2) return false; /* a chip row that scrolls sideways keeps its own swipe */
+    x0=x; y0=y; t0=Date.now(); dir=''; dxNow=0; drag=r; return true; }
+  function paint(){ raf=0; if(!drag) return; var tr=drag.querySelector('.track'), n=drag.querySelectorAll('.card').length, cur=+(drag.getAttribute('data-cur')||0);
+    var d=dxNow; if((cur===0 && d>0) || (cur===n-1 && d<0)) d=d/3; /* springy edges */
+    tr.style.transition='none'; tr.style.transform='translateX(calc('+(-100*cur)+'% + '+d+'px))'; }
+  function move(x,y){ if(x0===null) return false; var dx=x-x0, dy=y-y0;
+    if(!dir){ if(Math.abs(dx)<8 && Math.abs(dy)<8) return false; dir = Math.abs(dx)>Math.abs(dy)*1.15 ? 'x' : 'y'; }
+    if(dir!=='x') return false; dxNow=dx; if(!raf) raf=requestAnimationFrame(paint); return true; }
+  function end(x){ if(x0===null) return; var r=drag, dx=x-x0, dt=Math.max(1,Date.now()-t0), was=dir; x0=null; drag=null; if(!r) return;
+    var tr=r.querySelector('.track'); tr.style.transition=''; if(raf){ cancelAnimationFrame(raf); raf=0; }
+    var cur=+(r.getAttribute('data-cur')||0), w=r.querySelector('.vp').offsetWidth||360;
+    if(was==='x' && (Math.abs(dx)>w*0.15 || (Math.abs(dx)>20 && Math.abs(dx)/dt>0.35))) go(cur+(dx<0?1:-1)); else go(cur,true); }
+  document.addEventListener('touchstart',function(e){ if(e.touches.length===1) start(e.touches[0].clientX,e.touches[0].clientY,e.target); },{passive:true});
+  document.addEventListener('touchmove',function(e){ if(x0!==null) move(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
+  document.addEventListener('touchend',function(e){ end(e.changedTouches[0].clientX); },{passive:true});
+  document.addEventListener('touchcancel',function(){ if(x0!==null) end(x0); },{passive:true});
+  /* mouse on a computer: drag the card the same way (a click without dragging still works as before) */
+  document.addEventListener('mousedown',function(e){ if(e.button===0 && start(e.clientX,e.clientY,e.target)){ mouse=true; } });
+  document.addEventListener('mousemove',function(e){ if(mouse && x0!==null && move(e.clientX,e.clientY)) e.preventDefault(); });
+  document.addEventListener('mouseup',function(e){ if(!mouse) return; mouse=false; var moved=dir==='x'; end(e.clientX);
+    if(moved){ var stop=function(ev){ ev.stopPropagation(); ev.preventDefault(); document.removeEventListener('click',stop,true); }; document.addEventListener('click',stop,true); setTimeout(function(){ document.removeEventListener('click',stop,true); },0); } });
   var done=null;
   (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
   var lastW=innerWidth; addEventListener('resize',function(){ if(innerWidth===lastW) return; lastW=innerWidth; var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
