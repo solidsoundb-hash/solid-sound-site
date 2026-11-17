@@ -1,0 +1,55 @@
+# Content combine on GitHub robots (owner 17.11.2026). Every day 6 robots with a local model (Ollama, free) write drafts
+# from real site data: reels, Instagram captions, YouTube, an email, forum topics, hooks.
+# Result: docs/content-auto/<date>.md — Claude (cloud or on HOME-PC) picks the best and polishes it.
+# Start by hand: Actions → Content bot → Run, or a line in .github/content.txt.
+name: Content bot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+  push:
+    branches: [main]
+    paths: [".github/content.txt"]
+permissions:
+  contents: write
+concurrency: content-bot
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        task: [reels, captions, youtube, email, community, hooks]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Local model (Ollama)
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &) ; sleep 5
+          ollama pull qwen2.5:7b
+      - name: Write ${{ matrix.task }}
+        timeout-minutes: 100
+        run: mkdir -p out && node tools/content/llm-content.mjs ${{ matrix.task }} out/${{ matrix.task }}.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "c-${{ matrix.task }}", path: out, retention-days: 7 }
+
+  save:
+    needs: write
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/download-artifact@v4
+        with: { path: parts }
+      - name: One file for the day
+        run: |
+          D=$(date -u +%F); mkdir -p docs/content-auto; F=docs/content-auto/$D.md
+          { echo "# Контент-комбайн — черновики на $D"; echo; echo "Написала локальная нейросеть на роботах GitHub по реальным данным сайта (товары, цены, акция)."; echo "Следующий шаг — Claude выбирает лучшее и доводит. Ничего не публикуется без «ок» владельца."; } > $F
+          for t in reels captions youtube email community hooks; do cat parts/c-$t/$t.md >> $F 2>/dev/null || echo -e "\n## $t\n\n(робот не справился)" >> $F; done
+      - run: |
+          BOT_NAME=content-bot bash .github/save.sh "Контент-комбайн: черновики $(date -u +%F)" docs/content-auto
