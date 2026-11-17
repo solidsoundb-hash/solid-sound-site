@@ -127,3 +127,4 @@
 123 2026-11-17 05:50:44 forum frame + menu bar, spam cleanup page (owner ok: Делай и выкладывай)
 124 2026-11-17 06:17:54 phone fixes from tester eyes: My account icon, BUY/Browse 6px (owner: автономность, выкладывай готовое)
 125 2026-11-17 06:20:57 home covers 400x400 (Kratos/Protos), match covers fill (owner: автономность)
+126 2026-11-17 06:42:15 home in other languages behind ?ss_newl=1 (UA test), nobody sees it yet
