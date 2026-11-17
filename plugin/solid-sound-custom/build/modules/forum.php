@@ -185,3 +185,35 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();</script>
 	<?php
 }, 40 );
+
+/* ---------- 5. (17.11.2026, owner: "делай") page frame + a real menu bar ----------
+   - no big empty gap above the forum, side margins like the rest of the site (it touched the screen edge);
+   - the wpForo menu bar was empty (no menu assigned) with an almost invisible search: now it has
+     Forums · New posts · Sign in / Join (site account) and a clear "Search the forum" field. */
+add_action( 'wp_head', function () {
+	if ( ! ss_fr_ok() || ! ss_fr_is_page() ) return;
+	echo '<style id="ss-forum-frame">'
+		. 'html.is_wpforo_page-1 .l-main>.l-section:first-child{padding-top:14px!important}'
+		. '#wpforo{max-width:1180px;margin:0 auto!important;padding:0 16px!important;box-sizing:border-box}'
+		. '#wpforo #wpforo-wrap #wpforo-menu{display:flex!important;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 10px!important;border-radius:6px!important}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .wpf-left{display:flex!important;gap:6px;flex-wrap:wrap;flex:1 1 auto}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .ss-fm{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:#131b2e;color:#e2e8f0!important;font:700 14px "Exo 2",Roboto,sans-serif;text-decoration:none}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .ss-fm:hover,#wpforo #wpforo-wrap #wpforo-menu .ss-fm.on{border-color:#f59e0b;color:#f59e0b!important}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .ss-fm.pri{background:#f59e0b;border-color:#f59e0b;color:#111!important}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .wpf-search{flex:0 1 260px;display:flex!important}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .wpf-search-form,#wpforo #wpforo-wrap #wpforo-menu .wpf-search-form form{width:100%;position:relative;display:block}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .wpf-search-field{width:100%!important;height:36px!important;margin:0!important;padding:0 10px 0 34px!important;border-radius:6px!important}'
+		. '#wpforo #wpforo-wrap #wpforo-menu .wpf-search-form i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#94a3b8!important;z-index:1}'
+		. '.ss-fr-lang{margin:4px 0 8px!important}'
+		. '@media(max-width:600px){#wpforo{padding:0 10px!important}#wpforo #wpforo-wrap #wpforo-menu .wpf-search{flex:1 1 100%}}'
+		. '</style>';
+}, 31 );
+add_action( 'wp_footer', function () {
+	if ( ! ss_fr_ok() || ! ss_fr_is_page() ) return;
+	$base = function_exists( 'wpforo_home_url' ) ? wpforo_home_url() : home_url( '/community/' );
+	$acc  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : home_url( '/my-account/' );
+	$items = array( array( 'Forums', $base, '' ), array( 'New posts', trailingslashit( $base ) . 'recent/', '' ) );
+	if ( is_user_logged_in() ) $items[] = array( 'My account', $acc, '' );
+	else { $items[] = array( 'Sign in', add_query_arg( 'ss_tab', 'login', $acc ), '' ); $items[] = array( 'Join the community', add_query_arg( 'ss_tab', 'reg', $acc ), 'pri' ); }
+	echo '<script>(function(){var I=' . wp_json_encode( $items ) . ';function go(){var m=document.querySelector("#wpforo #wpforo-menu"),l=m&&m.querySelector(".wpf-left");if(!l||l.querySelector(".ss-fm"))return;var here=location.href.split(/[?#]/)[0].replace(/\/$/,"");I.forEach(function(x){var a=document.createElement("a");a.className="ss-fm"+(x[2]?" "+x[2]:"")+(x[1].split(/[?#]/)[0].replace(/\/$/,"")===here?" on":"");a.href=x[1];a.textContent=x[0];l.appendChild(a)});var s=m.querySelector(".wpf-search-field");if(s&&!s.placeholder)s.placeholder="Search the forum";}if(document.readyState!=="loading")go();else document.addEventListener("DOMContentLoaded",go);})();</script>';
+}, 40 );
