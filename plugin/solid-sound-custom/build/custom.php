@@ -5592,3 +5592,4 @@ require_once __DIR__ . '/modules/home-wow.php';
 require_once __DIR__ . '/modules/forum.php';
 require_once __DIR__ . '/modules/css-files.php';
 require_once __DIR__ . '/modules/antispam.php';
+require_once __DIR__ . '/modules/family.php';
