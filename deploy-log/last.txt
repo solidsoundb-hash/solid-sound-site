@@ -1,6 +1,6 @@
-run 139 2026-11-17T12:40:54Z commit 336e178481c1307f88266b24b6a975c5e7c0585a
-https://solid-sound.net/en/?ss_v2=0 -> HTTP 200 
-https://solid-sound.net/en/?ss_v2=1 -> HTTP 200 
-https://solid-sound.net/product/infinity/?ss_v2=1 -> HTTP 200 
+run 140 2026-11-17T12:52:42Z commit 78734f35b2382541d98f516b4cd29887e2382610
+https://solid-sound.net/en/?ss_v2=0 -> HTTP 503 
+https://solid-sound.net/en/?ss_v2=1 -> HTTP 503 
+https://solid-sound.net/product/infinity/?ss_v2=1 -> HTTP 503 
 https://solid-sound.net/en/my-account/?ss_v2=1 -> HTTP 200 
-OK
+ROLLED BACK
