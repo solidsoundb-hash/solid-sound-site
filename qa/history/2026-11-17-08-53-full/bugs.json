@@ -1,0 +1,5304 @@
+{
+ "mode": "full",
+ "date": "2026-11-17T08:53:12.363Z",
+ "stats": {
+  "pages": 163,
+  "clicks": 716,
+  "sounds": 71,
+  "links": 0,
+  "blockedRequests": 57
+ },
+ "bugs": [
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на IT ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/it/templates-it/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на IT",
+   "actual": "14 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Services» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Forum» → /en/forum/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/sell/, «Shop» → /en/all-products/ …",
+   "sig": "menulang|it",
+   "where": [
+    "/it/templates-it/",
+    "/it/presets-it/",
+    "/it/music-it/",
+    "/it/contacts-it/",
+    "/it/wiki-it/",
+    "/it/wiki-it/come-registrare-voci-pulite-a-casa-3-regole-per-il-microfono-che/",
+    "/it/wiki-it/cavi-bilanciati-sbilanciati-it/",
+    "/it/wiki-it/cuffie-chiuse-per-registrare-la-voce-it/",
+    "/it/wiki-it/interfaccia-audio-per-registrare-la-voce-it/",
+    "/it/product/protos/",
+    "/it/product/kratos/",
+    "/it/product/infinity/",
+    "/it/product/intricate/",
+    "/it/product/mutualism/",
+    "/it/product/pitch/",
+    "/it/product/melodic-techno-presets/",
+    "/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на UA ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/shablony/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на UA",
+   "actual": "14 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Послуги» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Forum» → /en/forum/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/sell/, «Shop» → /en/all-products/ …",
+   "sig": "menulang|ua",
+   "where": [
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/muzyka/",
+    "/ua/kontakty/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/ua/music-uk/",
+    "/ua/contacts-uk/",
+    "/ua/wiki-ua/",
+    "/ua/wiki-ua/iak-zapysaty-chystyi-vokal-udoma-3-pravyla-mikrofona/",
+    "/ua/wiki-ua/audiointerfeis-dlia-zapysu-vokalu-ua/",
+    "/ua/wiki-ua/zakryti-navushnyky-dlia-zapysu-vokalu-ua/",
+    "/ua/wiki-ua/balansni-nebalansni-kabeli-ua/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "kb-seo-title",
+   "title": "Нет заголовка страницы (title) или он слишком длинный/короткий",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/wiki-ua/iak-zapysaty-chystyi-vokal-udoma-3-pravyla-mikrofona/ (компьютер)"
+   ],
+   "expected": "title 15–65 символов, свой у каждой страницы.",
+   "actual": "Сейчас: «Техніка роботи з мікрофоном: 3 правила чистого вокалу вдома – Solid Sound» (73 симв.). Почему важно: Заголовок — первая строка в выдаче Google. Пустой/обрезанный = меньше кликов. · Сейчас: «Закриті навушники для запису вокалу: позбудься витоку звуку – Solid Sound» (73 симв.). Почему важно: Заголовок  · Сейчас: «Mikrofontechnik für Gesang: 3 Regeln für saubere Vocals zu Hause – Solid Sound» (78 симв.). Почему важно: Загол · Сейчас: «Symmetrische vs. unsymmetrische Kabel: XLR, TRS und TS erklärt – Solid Sound» (76 симв.). Почему важно: Заголов · Сейчас: «Geschlossene Kopfhörer für Gesangsaufnahmen: Bleed stoppen – Solid Sound» (72 симв.). Почему важно: Заголовок —",
+   "sig": "kb|kb-seo-title|Нет заголовка страницы (title) или он слишком длинный/короткий",
+   "where": [
+    "/ua/wiki-ua/iak-zapysaty-chystyi-vokal-udoma-3-pravyla-mikrofona/",
+    "/ua/wiki-ua/zakryti-navushnyky-dlia-zapysu-vokalu-ua/",
+    "/de/wiki-de/so-machst-du-saubere-vocals-zu-hause-3-mikrofon-regeln-die-einen/",
+    "/de/wiki-de/symmetrische-unsymmetrische-kabel-de/",
+    "/de/wiki-de/geschlossene-kopfhoerer-gesangsaufnahmen-de/",
+    "/fr/wiki-fr/comment-enregistrer-des-voix-propres-a-la-maison-3-regles-de-micro/",
+    "/fr/wiki-fr/cables-symetriques-asymetriques-fr/",
+    "/pt/wiki-pt/como-gravar-vocais-limpos-em-casa-3-regras-de-microfone-que-superam/",
+    "/pt/wiki-pt/interface-de-audio-para-gravar-voz-pt/",
+    "/es/wiki-es/como-grabar-voces-limpias-en-casa-3-reglas-de-microfono-que-superan/",
+    "/es/wiki-es/interfaz-de-audio-para-grabar-voz-es/",
+    "/it/wiki-it/come-registrare-voci-pulite-a-casa-3-regole-per-il-microfono-che/",
+    "/it/wiki-it/interfaccia-audio-per-registrare-la-voce-it/",
+    "/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "more": 13,
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на DE ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/de/vorlagen/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на DE",
+   "actual": "14 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Leistungen» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Forum» → /en/forum/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/sell/, «Shop» → /en/all-products/ …",
+   "sig": "menulang|de",
+   "where": [
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/de/musik/",
+    "/de/kontakt/",
+    "/de/wiki-de/",
+    "/de/wiki-de/so-machst-du-saubere-vocals-zu-hause-3-mikrofon-regeln-die-einen/",
+    "/de/wiki-de/symmetrische-unsymmetrische-kabel-de/",
+    "/de/wiki-de/audio-interface-fuer-gesangsaufnahmen-de/",
+    "/de/wiki-de/geschlossene-kopfhoerer-gesangsaufnahmen-de/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на FR ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/modeles/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на FR",
+   "actual": "14 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Services» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Forum» → /en/forum/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/sell/, «Shop» → /en/all-products/ …",
+   "sig": "menulang|fr",
+   "where": [
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/fr/musique/",
+    "/fr/contact/",
+    "/fr/wiki-fr/",
+    "/fr/wiki-fr/comment-enregistrer-des-voix-propres-a-la-maison-3-regles-de-micro/",
+    "/fr/wiki-fr/cables-symetriques-asymetriques-fr/",
+    "/fr/wiki-fr/casque-ferme-pour-enregistrer-la-voix-fr/",
+    "/fr/wiki-fr/interface-audio-pour-enregistrer-la-voix-fr/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на PT ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/modelos/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на PT",
+   "actual": "14 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Serviços» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Forum» → /en/forum/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/sell/, «Shop» → /en/all-products/ …",
+   "sig": "menulang|pt",
+   "where": [
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/pt/musica/",
+    "/pt/contactos/",
+    "/pt/wiki-pt/",
+    "/pt/wiki-pt/como-gravar-vocais-limpos-em-casa-3-regras-de-microfone-que-superam/",
+    "/pt/wiki-pt/auscultadores-fechados-para-gravar-voz-pt/",
+    "/pt/wiki-pt/interface-de-audio-para-gravar-voz-pt/",
+    "/pt/wiki-pt/cabos-balanceados-nao-balanceados-pt/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menulang",
+   "title": "Меню на ES ведёт на страницы на другом языке",
+   "steps": [
+    "Открыть https://solid-sound.net/es/templates-es/",
+    "Нажать любой из пунктов ниже"
+   ],
+   "expected": "Каждый пункт открывает страницу на ES",
+   "actual": "14 пунктов: «Products» → /en/all-products/, «All products» → /en/all-products/, «Services» → /en/services-prices/, «Services and Prices» → /en/services-prices/, «Wiki» → /en/wiki/, «Forum» → /en/forum/, «Common Questions» → /en/faq/, «Terms of Sale» → /en/terms/, «Legal Notice» → /en/legal-notice/, «Free» → /en/free/, «Sell» → /en/sell/, «Shop» → /en/all-products/ …",
+   "sig": "menulang|es",
+   "where": [
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/es/music-es/",
+    "/es/contacts-es/",
+    "/es/wiki-es/",
+    "/es/wiki-es/como-grabar-voces-limpias-en-casa-3-reglas-de-microfono-que-superan/",
+    "/es/wiki-es/cables-balanceados-no-balanceados-es/",
+    "/es/wiki-es/auriculares-cerrados-para-grabar-voz-es/",
+    "/es/wiki-es/interfaz-de-audio-para-grabar-voz-es/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "kb-seo-canonical",
+   "title": "Canonical указывает на другую страницу или на http",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/ (компьютер)"
+   ],
+   "expected": "canonical = адрес самой страницы, https.",
+   "actual": "Указано: https://solid-sound.net/en/all-products/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую). · Указано: https://solid-sound.net/en/sell/ Почему важно: Google решит, что это копия, и покажет другую страницу (или ника · Указано: https://solid-sound.net/studio-calculator/ Почему важно: Google решит, что это копия, и покажет другую страницу · Указано: https://solid-sound.net/en/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую). · Указано: https://solid-sound.net/en/my-account/ Почему важно: Google решит, что это копия, и покажет другую страницу (ил",
+   "sig": "kb|kb-seo-canonical|Canonical указывает на другую страницу или на http",
+   "where": [
+    "/en/shop/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/",
+    "/en/forum-experimental/",
+    "/en/client-dashboard/",
+    "/forum/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/036.jpg",
+   "isNew": false,
+   "more": 5
+  },
+  {
+   "sev": "major",
+   "type": "kb-mob-covered",
+   "title": "Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)",
+    "Где: a.button.product_type_simple «Add to cart: “Time Goes Fast Documentary» ← закрывает div#templates.w-hwrapper.align_left «Play All 8 items Newest Top Sellers Popu»"
+   ],
+   "expected": "Сдвинуть плавающие элементы или добавить отступ снизу.",
+   "actual": "Почему важно: Нажимается не кнопка, а то, что её закрывает.",
+   "sig": "kb|kb-mob-covered|Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
+   "where": [
+    "/en/all-products/",
+    "/en/templates/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/017.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "kb-a11y-btn-name",
+   "title": "Кнопка или ссылка без названия (только значок)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum/ (компьютер)",
+    "Где: a.wpf-sb-button.wpf-sb-icon; a.wpf-sb-button.wpf-sb-icon; a.wpf-sb-button.wpf-sb-icon"
+   ],
+   "expected": "aria-label=\"Play\", \"Add to cart\" и т.п.",
+   "actual": "Почему важно: Экранный диктор читает «кнопка» — непонятно, что она делает; Google тоже снижает оценку.",
+   "sig": "kb|kb-a11y-btn-name|Кнопка или ссылка без названия (только значок)",
+   "where": [
+    "/en/forum/",
+    "/forum/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/098.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-stale",
+   "title": "После запуска другого трека прежняя кнопка всё ещё показывает ⏸",
+   "steps": [
+    "Нажать ▶ «Play Space Echo — client track»",
+    "Нажать ▶ «Play Feeling Good — client track»"
+   ],
+   "expected": "«Play Space Echo — client track» снова показывает ▶",
+   "actual": "Показывает ⏸, хотя этот трек не играет",
+   "sig": "sndstale|/en/",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/006.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶",
+   "sig": "sndicon|Play|/en/all-products/",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/019.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Video» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Video»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|Video",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/023.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Browse products» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Browse products»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в iframe",
+   "sig": "covered|/en/all-products/|Browse products",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/024.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«All» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «All»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|All",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/025.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Templates» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Templates»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|Templates",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/026.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Music» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Music»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|Music",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/027.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Cookie settings»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|Cookie settings",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/028.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|Questions? Ask here",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/029.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Menu» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Menu»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/all-products/|Menu",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/033.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/privacy-policy/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/privacy-policy/|Questions? Ask here",
+   "where": [
+    "/en/privacy-policy/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/035.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶",
+   "sig": "sndicon|Play|/en/shop/",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/037.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Video» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Video»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|Video",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/041.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Browse products» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Browse products»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в iframe",
+   "sig": "covered|/en/shop/|Browse products",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/042.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«All» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «All»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|All",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/043.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Templates» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Templates»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|Templates",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/044.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Music» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Music»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|Music",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/045.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Cookie settings»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|Cookie settings",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/046.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|Questions? Ask here",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/047.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Menu» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Menu»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ss-ytm.open",
+   "sig": "covered|/en/shop/|Menu",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/048.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/cart/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/cart/|Questions? Ask here",
+   "where": [
+    "/en/cart/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/050.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/my-account/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/my-account/|Questions? Ask here",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/055.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/refund_returns/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/refund_returns/|Questions? Ask here",
+   "where": [
+    "/en/refund_returns/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/057.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/license/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/license/|Questions? Ask here",
+   "where": [
+    "/en/license/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/059.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/contacts/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/contacts/|Questions? Ask here",
+   "where": [
+    "/en/contacts/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/061.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/faq/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/faq/|Questions? Ask here",
+   "where": [
+    "/en/faq/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/063.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/store-manager/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/store-manager/|Questions? Ask here",
+   "where": [
+    "/en/store-manager/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/065.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-membership/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/vendor-membership/|Questions? Ask here",
+   "where": [
+    "/en/vendor-membership/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/067.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-register/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/vendor-register/|Questions? Ask here",
+   "where": [
+    "/en/vendor-register/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/069.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/add-product/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/add-product/|Questions? Ask here",
+   "where": [
+    "/en/add-product/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/071.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/links/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/links/|Questions? Ask here",
+   "where": [
+    "/en/links/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/073.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/templates/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶",
+   "sig": "sndicon|Play|/en/templates/",
+   "where": [
+    "/en/templates/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/075.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-wrong",
+   "title": "Кнопка ▶ «Play all tracks» включает другой трек",
+   "steps": [
+    "Открыть https://solid-sound.net/en/templates/",
+    "Нажать ▶ «Play all tracks»"
+   ],
+   "expected": "Играет «pitch_128_kbps.mp3»",
+   "actual": "Играет «kratos_dark_techno_128kbps.mp3»",
+   "sig": "sndwrong|/en/templates/|Play all tracks",
+   "where": [
+    "/en/templates/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/076.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/templates/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/templates/|Questions? Ask here",
+   "where": [
+    "/en/templates/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/078.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/presets/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶",
+   "sig": "sndicon|Play|/en/presets/",
+   "where": [
+    "/en/presets/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/079.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/presets/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/presets/|Questions? Ask here",
+   "where": [
+    "/en/presets/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/081.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/services-calculator/|Questions? Ask here",
+   "where": [
+    "/en/services-calculator/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/092.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/mastering-album-calculator/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/mastering-album-calculator/|Questions? Ask here",
+   "where": [
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/094.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/music/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶",
+   "sig": "sndicon|Play|/en/music/",
+   "where": [
+    "/en/music/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/095.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/music/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/music/|Questions? Ask here",
+   "where": [
+    "/en/music/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/097.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/forum/|Questions? Ask here",
+   "where": [
+    "/en/forum/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/101.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/free-demo-feedback/|Questions? Ask here",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/112.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "sound-stale",
+   "title": "После запуска другого трека прежняя кнопка всё ещё показывает ⏸",
+   "steps": [
+    "Нажать ▶ «Play Space Echo — client track»",
+    "Нажать ▶ «Play Feeling Good — client track»"
+   ],
+   "expected": "«Play Space Echo — client track» снова показывает ▶",
+   "actual": "Показывает ⏸, хотя этот трек не играет",
+   "sig": "sndstale|/en/forum-experimental/",
+   "where": [
+    "/en/forum-experimental/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/113.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«⚙️ Налаштування» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «⚙️ Налаштування»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в a",
+   "sig": "covered|/en/forest-spirits/|⚙️ Налаштування",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/120.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«📜 Правила» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «📜 Правила»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#banner.pulse",
+   "sig": "covered|/en/forest-spirits/|📜 Правила",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/121.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Звинуватити! карта відкриється — хтось отримає Оману» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «Звинуватити! карта відкриється — хтось отримає Оману»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#dockGrid",
+   "sig": "covered|/en/forest-spirits/|Звинуватити! карта відкриється — хтось отримає Оману",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/122.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Зрозуміло» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «Зрозуміло»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в img.cimg",
+   "sig": "covered|/en/forest-spirits/|Зрозуміло",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/123.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«🌿 Нова гра» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «🌿 Нова гра»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div.mtitle",
+   "sig": "covered|/en/forest-spirits/|🌿 Нова гра",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/124.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Повірити вміння заявленого духа спрацює» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «Повірити вміння заявленого духа спрацює»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в i",
+   "sig": "covered|/en/forest-spirits/|Повірити вміння заявленого духа спрацює",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/125.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «Cookie settings»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в p",
+   "sig": "covered|/en/forest-spirits/|Cookie settings",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/126.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "js",
+   "title": "Ошибка в коде страницы (JavaScript)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/prices/",
+    "Посмотреть консоль браузера"
+   ],
+   "expected": "Без ошибок",
+   "actual": "tailwind is not defined",
+   "sig": "js|tailwind is not defined",
+   "where": [
+    "/en/prices/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/prices/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/prices/|Questions? Ask here",
+   "where": [
+    "/en/prices/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/129.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/services-prices/|Questions? Ask here",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/132.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/sell/|Questions? Ask here",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/134.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/creator-terms/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/creator-terms/|Questions? Ask here",
+   "where": [
+    "/en/creator-terms/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/136.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free/",
+    "Нажать «Cookie settings»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в div#ssp.ssp",
+   "sig": "covered|/en/free/|Cookie settings",
+   "where": [
+    "/en/free/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/139.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/data-deletion/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/data-deletion/|Questions? Ask here",
+   "where": [
+    "/en/data-deletion/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/141.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/wiki/|Questions? Ask here",
+   "where": [
+    "/en/wiki/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/143.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/record-clean-vocals-at-home/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/wiki/record-clean-vocals-at-home/|Questions? Ask here",
+   "where": [
+    "/en/wiki/record-clean-vocals-at-home/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/145.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/terms/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/terms/|Questions? Ask here",
+   "where": [
+    "/en/terms/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/147.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/legal-notice/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/legal-notice/|Questions? Ask here",
+   "where": [
+    "/en/legal-notice/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/149.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/wiki/balanced-vs-unbalanced-cables/|Questions? Ask here",
+   "where": [
+    "/en/wiki/balanced-vs-unbalanced-cables/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/151.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/audio-interface-for-vocals/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/wiki/audio-interface-for-vocals/|Questions? Ask here",
+   "where": [
+    "/en/wiki/audio-interface-for-vocals/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/153.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/closed-back-headphones-for-recording/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/wiki/closed-back-headphones-for-recording/|Questions? Ask here",
+   "where": [
+    "/en/wiki/closed-back-headphones-for-recording/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/155.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sitemap/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/sitemap/|Questions? Ask here",
+   "where": [
+    "/en/sitemap/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/157.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Questions? Ask here» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/client-dashboard/",
+    "Нажать «Questions? Ask here»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в button.ss-cc-yes",
+   "sig": "covered|/en/client-dashboard/|Questions? Ask here",
+   "where": [
+    "/en/client-dashboard/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/159.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на UA (компьютер) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Products»; пункт №3: нет пункта «Services»; пункт №4: нет пункта «Wiki»; пункт №5: нет пункта «Forum»; пункт №6: нет пункта «FAQ»; пункт №7: нет пункта «Free»; пункт №8: нет пункта «Sell»",
+   "sig": "menudiff|desktop|ua",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на UA (телефон) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Shop»; пункт №3: нет пункта «Studio»; пункт №4: нет пункта «Free»; пункт №5: нет пункта «Sell»; пункт №6: нет пункта «Saved»",
+   "sig": "menudiff|phone|ua",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на DE (компьютер) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/de/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Products»; пункт №3: нет пункта «Services»; пункт №4: нет пункта «Wiki»; пункт №5: нет пункта «Forum»; пункт №6: нет пункта «FAQ»; пункт №7: нет пункта «Free»; пункт №8: нет пункта «Sell»",
+   "sig": "menudiff|desktop|de",
+   "where": [
+    "/de/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на DE (телефон) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/de/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Shop»; пункт №3: нет пункта «Studio»; пункт №4: нет пункта «Free»; пункт №5: нет пункта «Sell»; пункт №6: нет пункта «Saved»",
+   "sig": "menudiff|phone|de",
+   "where": [
+    "/de/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на FR (компьютер) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Products»; пункт №3: нет пункта «Services»; пункт №4: нет пункта «Wiki»; пункт №5: нет пункта «Forum»; пункт №6: нет пункта «FAQ»; пункт №7: нет пункта «Free»; пункт №8: нет пункта «Sell»",
+   "sig": "menudiff|desktop|fr",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на FR (телефон) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Shop»; пункт №3: нет пункта «Studio»; пункт №4: нет пункта «Free»; пункт №5: нет пункта «Sell»; пункт №6: нет пункта «Saved»",
+   "sig": "menudiff|phone|fr",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на PT (компьютер) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Products»; пункт №3: нет пункта «Services»; пункт №4: нет пункта «Wiki»; пункт №5: нет пункта «Forum»; пункт №6: нет пункта «FAQ»; пункт №7: нет пункта «Free»; пункт №8: нет пункта «Sell»",
+   "sig": "menudiff|desktop|pt",
+   "where": [
+    "/pt/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на PT (телефон) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Shop»; пункт №3: нет пункта «Studio»; пункт №4: нет пункта «Free»; пункт №5: нет пункта «Sell»; пункт №6: нет пункта «Saved»",
+   "sig": "menudiff|phone|pt",
+   "where": [
+    "/pt/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на ES (компьютер) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/es/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Products»; пункт №3: нет пункта «Services»; пункт №4: нет пункта «Wiki»; пункт №5: нет пункта «Forum»; пункт №6: нет пункта «FAQ»; пункт №7: нет пункта «Free»; пункт №8: нет пункта «Sell»",
+   "sig": "menudiff|desktop|es",
+   "where": [
+    "/es/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на ES (телефон) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/es/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Shop»; пункт №3: нет пункта «Studio»; пункт №4: нет пункта «Free»; пункт №5: нет пункта «Sell»; пункт №6: нет пункта «Saved»",
+   "sig": "menudiff|phone|es",
+   "where": [
+    "/es/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на IT (компьютер) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/it/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Products»; пункт №3: нет пункта «Services»; пункт №4: нет пункта «Wiki»; пункт №5: нет пункта «Forum»; пункт №6: нет пункта «FAQ»; пункт №7: нет пункта «Free»; пункт №8: нет пункта «Sell»",
+   "sig": "menudiff|desktop|it",
+   "where": [
+    "/it/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "menudiff",
+   "title": "Меню на IT (телефон) отличается от английского: пункты ведут не туда",
+   "steps": [
+    "Открыть https://solid-sound.net/it/ и https://solid-sound.net/en/",
+    "Сравнить пункты меню"
+   ],
+   "expected": "Те же пункты меню, ведут на те же страницы (на своём языке)",
+   "actual": "пункт №1: нет пункта «Home»; пункт №2: нет пункта «Shop»; пункт №3: нет пункта «Studio»; пункт №4: нет пункта «Free»; пункт №5: нет пункта «Sell»; пункт №6: нет пункта «Saved»",
+   "sig": "menudiff|phone|it",
+   "where": [
+    "/it/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "search",
+   "title": "Поиск по слову «techno» ничего не находит",
+   "steps": [
+    "Открыть главную",
+    "Ввести «techno» в поиск",
+    "Нажать Enter"
+   ],
+   "expected": "Список товаров",
+   "actual": "Открылось https://solid-sound.net/?post_type=product&s=techno, товаров: 0",
+   "sig": "search",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-blocking-js",
+   "title": "Скрипты в <head> без defer/async — тормозят показ страницы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"
+   ],
+   "expected": "defer (правило проекта в CLAUDE.md).",
+   "actual": "Почему важно: Браузер ждёт скачивания скрипта, страница белая.",
+   "sig": "kb|kb-perf-blocking-js|Скрипты в <head> без defer/async — тормозят показ страницы",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/privacy-policy/",
+    "/en/shop/",
+    "/en/cart/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/refund_returns/",
+    "/en/license/",
+    "/en/contacts/",
+    "/en/faq/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/add-product/",
+    "/en/links/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/",
+    "/en/music/",
+    "/en/forum/",
+    "/en/free-demo-feedback/",
+    "/en/forum-experimental/",
+    "/en/forest-spirits/",
+    "/en/prices/",
+    "/en/services-prices/",
+    "/en/sell/",
+    "/en/creator-terms/",
+    "/en/free/",
+    "/en/data-deletion/",
+    "/en/wiki/",
+    "/en/wiki/record-clean-vocals-at-home/",
+    "/en/terms/",
+    "/en/legal-notice/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/wiki/closed-back-headphones-for-recording/",
+    "/en/sitemap/",
+    "/en/client-dashboard/",
+    "/product/infinity/",
+    "/forum/",
+    "/ua/",
+    "/de/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/",
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/muzyka/",
+    "/ua/kontakty/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/ua/music-uk/",
+    "/ua/contacts-uk/",
+    "/ua/wiki-ua/",
+    "/ua/wiki-ua/iak-zapysaty-chystyi-vokal-udoma-3-pravyla-mikrofona/",
+    "/ua/wiki-ua/audiointerfeis-dlia-zapysu-vokalu-ua/",
+    "/ua/wiki-ua/zakryti-navushnyky-dlia-zapysu-vokalu-ua/",
+    "/ua/wiki-ua/balansni-nebalansni-kabeli-ua/",
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/de/musik/",
+    "/de/kontakt/",
+    "/de/wiki-de/",
+    "/de/wiki-de/so-machst-du-saubere-vocals-zu-hause-3-mikrofon-regeln-die-einen/",
+    "/de/wiki-de/symmetrische-unsymmetrische-kabel-de/",
+    "/de/wiki-de/audio-interface-fuer-gesangsaufnahmen-de/",
+    "/de/wiki-de/geschlossene-kopfhoerer-gesangsaufnahmen-de/",
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/fr/musique/",
+    "/fr/contact/",
+    "/fr/wiki-fr/",
+    "/fr/wiki-fr/comment-enregistrer-des-voix-propres-a-la-maison-3-regles-de-micro/",
+    "/fr/wiki-fr/cables-symetriques-asymetriques-fr/",
+    "/fr/wiki-fr/casque-ferme-pour-enregistrer-la-voix-fr/",
+    "/fr/wiki-fr/interface-audio-pour-enregistrer-la-voix-fr/",
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/pt/musica/",
+    "/pt/contactos/",
+    "/pt/wiki-pt/",
+    "/pt/wiki-pt/como-gravar-vocais-limpos-em-casa-3-regras-de-microfone-que-superam/",
+    "/pt/wiki-pt/auscultadores-fechados-para-gravar-voz-pt/",
+    "/pt/wiki-pt/interface-de-audio-para-gravar-voz-pt/",
+    "/pt/wiki-pt/cabos-balanceados-nao-balanceados-pt/",
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/es/music-es/",
+    "/es/contacts-es/",
+    "/es/wiki-es/",
+    "/es/wiki-es/como-grabar-voces-limpias-en-casa-3-reglas-de-microfono-que-superan/",
+    "/es/wiki-es/cables-balanceados-no-balanceados-es/",
+    "/es/wiki-es/auriculares-cerrados-para-grabar-voz-es/",
+    "/es/wiki-es/interfaz-de-audio-para-grabar-voz-es/",
+    "/it/templates-it/",
+    "/it/presets-it/",
+    "/it/music-it/",
+    "/it/contacts-it/",
+    "/it/wiki-it/",
+    "/it/wiki-it/come-registrare-voci-pulite-a-casa-3-regole-per-il-microfono-che/",
+    "/it/wiki-it/cavi-bilanciati-sbilanciati-it/",
+    "/it/wiki-it/cuffie-chiuse-per-registrare-la-voce-it/",
+    "/it/wiki-it/interfaccia-audio-per-registrare-la-voce-it/",
+    "/it/product/protos/",
+    "/it/product/kratos/",
+    "/it/product/infinity/",
+    "/it/product/intricate/",
+    "/it/product/mutualism/",
+    "/it/product/pitch/",
+    "/it/product/melodic-techno-presets/",
+    "/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/004.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-font",
+   "title": "Слишком мелкий текст на телефоне (меньше 12 px)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: span.ss-ai «AI search» 10px"
+   ],
+   "expected": "Минимум 12–13 px для подписей, 15–16 для текста.",
+   "actual": "Почему важно: Нечитаемо без увеличения.",
+   "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
+   "where": [
+    "/en/all-products/",
+    "/en/privacy-policy/",
+    "/en/shop/",
+    "/en/cart/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/refund_returns/",
+    "/en/license/",
+    "/en/contacts/",
+    "/en/faq/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/add-product/",
+    "/en/links/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/",
+    "/en/music/",
+    "/en/forum/",
+    "/en/free-demo-feedback/",
+    "/en/forest-spirits/",
+    "/en/prices/",
+    "/en/services-prices/",
+    "/en/sell/",
+    "/en/creator-terms/",
+    "/en/free/",
+    "/en/data-deletion/",
+    "/en/wiki/",
+    "/en/wiki/record-clean-vocals-at-home/",
+    "/en/terms/",
+    "/en/legal-notice/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/wiki/closed-back-headphones-for-recording/",
+    "/en/sitemap/",
+    "/en/client-dashboard/",
+    "/product/infinity/",
+    "/forum/"
+   ],
+   "devices": [
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/031.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-dup-id",
+   "title": "Одинаковые id у разных элементов",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)",
+    "Где: templates"
+   ],
+   "expected": "Уникальные id.",
+   "actual": "Почему важно: Кнопки, якоря и подписи полей начинают работать не с тем элементом.",
+   "sig": "kb|kb-a11y-dup-id|Одинаковые id у разных элементов",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/links/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/music/",
+    "/en/free-demo-feedback/",
+    "/en/forest-spirits/",
+    "/en/sell/",
+    "/en/client-dashboard/",
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/muzyka/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/ua/music-uk/",
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/de/musik/",
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/fr/musique/",
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/pt/musica/",
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/es/music-es/",
+    "/it/templates-it/",
+    "/it/presets-it/",
+    "/it/music-it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/016.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-input-label",
+   "title": "Поле ввода без подписи",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: input.inp [Your best email]"
+   ],
+   "expected": "<label> или aria-label.",
+   "actual": "Почему важно: Когда человек начал печатать, подсказка-placeholder исчезает — непонятно, что вводить.",
+   "sig": "kb|kb-a11y-input-label|Поле ввода без подписи",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/music/",
+    "/en/forum-experimental/",
+    "/ua/",
+    "/de/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/",
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/muzyka/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/ua/music-uk/",
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/de/musik/",
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/fr/musique/",
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/pt/musica/",
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/es/music-es/",
+    "/it/templates-it/",
+    "/it/presets-it/",
+    "/it/music-it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/003.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-tap",
+   "title": "Кнопки/ссылки слишком маленькие для пальца",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (телефон)",
+    "Где: input 18×18; button «Page 1» 24×8; button «Page 2» 8×8; button «Page 3» 8×8; button «Page 4» 8×8"
+   ],
+   "expected": "Увеличить зону нажатия (padding).",
+   "actual": "Почему важно: Промахиваются и жмут соседнюю кнопку. Норма — 44×44 px (Apple), 48 px (Google).",
+   "sig": "kb|kb-mob-tap|Кнопки/ссылки слишком маленькие для пальца",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/cart/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/contacts/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/templates/",
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/",
+    "/en/forum/",
+    "/en/free-demo-feedback/",
+    "/en/forum-experimental/",
+    "/en/sell/",
+    "/en/creator-terms/",
+    "/en/wiki/record-clean-vocals-at-home/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/wiki/closed-back-headphones-for-recording/",
+    "/en/sitemap/",
+    "/en/client-dashboard/",
+    "/product/infinity/",
+    "/forum/",
+    "/ua/",
+    "/de/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/"
+   ],
+   "devices": [
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/010.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-img-dims",
+   "title": "Картинки без размеров — страница «прыгает» при загрузке",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
+    "Где: P1_1.jpg; P1_2.jpg; P1_3.jpg; P1_4.jpg; P1_5.jpg"
+   ],
+   "expected": "width/height или aspect-ratio.",
+   "actual": "Почему важно: Пока грузится картинка, текст и кнопки съезжают — промахи, плохая оценка Google (CLS).",
+   "sig": "kb|kb-perf-img-dims|Картинки без размеров — страница «прыгает» при загрузке",
+   "where": [
+    "/en/free-demo-feedback/",
+    "/en/forest-spirits/",
+    "/it/product/protos/",
+    "/it/product/kratos/",
+    "/it/product/infinity/",
+    "/it/product/intricate/",
+    "/it/product/mutualism/",
+    "/it/product/pitch/",
+    "/it/product/melodic-techno-presets/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/110.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-a11y-contrast",
+   "title": "Текст плохо читается: слишком бледный на фоне",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: span.w-text-value «GENRE:» 4.3:1; span.w-text-value «LENGTH:» 4.3:1; span.w-text-value «DAW:» 4.3:1; span.w-text-value «BPM:» 4.3:1"
+   ],
+   "expected": "Контраст не ниже 4.5:1 (мелкий текст).",
+   "actual": "Почему важно: На телефоне на улице такой текст не видно.",
+   "sig": "kb|kb-a11y-contrast|Текст плохо читается: слишком бледный на фоне",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/checkout/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/music/",
+    "/en/free-demo-feedback/",
+    "/en/prices/"
+   ],
+   "devices": [
+    "телефон",
+    "компьютер",
+    "Samsung A31"
+   ],
+   "shot": "shots/030.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-link-empty",
+   "title": "Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: a.ssp-cover «Open the product page»"
+   ],
+   "expected": "Настоящий адрес или кнопка с действием.",
+   "actual": "Почему важно: Человек нажимает — и ничего.",
+   "sig": "kb|kb-link-empty|Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "where": [
+    "/en/",
+    "/en/checkout/",
+    "/en/my-account/",
+    "/en/forum/",
+    "/en/client-dashboard/",
+    "/forum/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/005.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-input-zoom",
+   "title": "Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: select#us_grid_order_1 «Newest Top Sellers Popular Highest Price» 14px"
+   ],
+   "expected": "font-size: 16px у полей ввода на телефоне.",
+   "actual": "Почему важно: При нажатии на поле страница «прыгает» и съезжает — раздражает на оформлении заказа.",
+   "sig": "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/music/"
+   ],
+   "devices": [
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/032.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-seo-h1",
+   "title": "Нет главного заголовка H1 или их несколько",
+   "steps": [
+    "Открыть https://solid-sound.net/en/checkout/ (компьютер)"
+   ],
+   "expected": "Ровно один видимый H1.",
+   "actual": "Видимых H1: 0. Почему важно: Google и экранные дикторы по H1 понимают, о чём страница.",
+   "sig": "kb|kb-seo-h1|Нет главного заголовка H1 или их несколько",
+   "where": [
+    "/en/checkout/",
+    "/en/add-product/",
+    "/en/links/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/051.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-img-oversize",
+   "title": "Картинка загружается намного больше, чем показывается",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
+    "Где: P1_3.jpg 1080px → 218px; P1_4.jpg 880px → 218px"
+   ],
+   "expected": "srcset / миниатюра нужного размера.",
+   "actual": "Почему важно: Лишние мегабайты на каждой загрузке.",
+   "sig": "kb|kb-perf-img-oversize|Картинка загружается намного больше, чем показывается",
+   "where": [
+    "/en/free-demo-feedback/",
+    "/en/forest-spirits/",
+    "/en/wiki/record-clean-vocals-at-home/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/109.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Mixing» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Mixing»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Mixing",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/082.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Release Ready» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Release Ready»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Release Ready",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/083.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Mastering» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Mastering»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Mastering",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/084.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Remix» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Remix»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Remix",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/085.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Remake» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Remake»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Remake",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/086.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Ghost producing» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Ghost producing»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Ghost producing",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/087.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Co-producing» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Co-producing»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Co-producing",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/088.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «Post production» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Найти кнопку «Post production»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 999px при высоте 48px)",
+   "sig": "pill|Post production",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/089.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-sec-blank",
+   "title": "Внешняя ссылка в новой вкладке без rel=\"noopener\"",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum/ (компьютер)",
+    "Где: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsolid-sound.net%2Fcom; https://web.whatsapp.com/send?text=Solid+Sound+Forum%20URL:%20https%3A%2F%2Fsoli"
+   ],
+   "expected": "rel=\"noopener noreferrer\".",
+   "actual": "Почему важно: Чужой сайт может подменить нашу вкладку (фишинг).",
+   "sig": "kb|kb-sec-blank|Внешняя ссылка в новой вкладке без rel=\"noopener\"",
+   "where": [
+    "/en/forum/",
+    "/forum/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/099.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /all-products не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/all-products",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /privacy-policy не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/privacy-policy/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/privacy-policy",
+   "where": [
+    "/en/privacy-policy/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /shop не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/shop",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /refund_returns не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/refund_returns/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/refund_returns",
+   "where": [
+    "/en/refund_returns/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /license не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/license/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/license",
+   "where": [
+    "/en/license/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /faq не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/faq/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/faq",
+   "where": [
+    "/en/faq/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /vendor-membership не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-membership/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/vendor-membership",
+   "where": [
+    "/en/vendor-membership/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /vendor-register не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-register/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/vendor-register",
+   "where": [
+    "/en/vendor-register/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /add-product не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/add-product/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/add-product",
+   "where": [
+    "/en/add-product/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /services-calculator не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/services-calculator",
+   "where": [
+    "/en/services-calculator/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /mastering-album-calculator не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/mastering-album-calculator/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/mastering-album-calculator",
+   "where": [
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /forum не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/forum",
+   "where": [
+    "/en/forum/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «GET A FREE DEMO FEEDBACK» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/",
+    "Найти кнопку «GET A FREE DEMO FEEDBACK»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 50px при высоте 60px)",
+   "sig": "pill|GET A FREE DEMO FEEDBACK",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/103.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «WRITE US NOW!» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/",
+    "Найти кнопку «WRITE US NOW!»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 50px при высоте 60px)",
+   "sig": "pill|WRITE US NOW!",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/104.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «SEE MORE CLIENT STORIES» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/",
+    "Найти кнопку «SEE MORE CLIENT STORIES»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 50px при высоте 52px)",
+   "sig": "pill|SEE MORE CLIENT STORIES",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/105.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "style-pill",
+   "title": "Кнопка «MESSAGE US NOW!» круглая («таблетка»), а не в стиле сайта",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/",
+    "Найти кнопку «MESSAGE US NOW!»"
+   ],
+   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
+   "actual": "Углы скруглены полностью (радиус 50px при высоте 62px)",
+   "sig": "pill|MESSAGE US NOW!",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/108.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /forest-spirits не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/forest-spirits",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /prices не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/prices/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/prices",
+   "where": [
+    "/en/prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /services-prices не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/services-prices",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /sell не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/sell",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /creator-terms не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/creator-terms/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/creator-terms",
+   "where": [
+    "/en/creator-terms/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /free не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/free",
+   "where": [
+    "/en/free/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /data-deletion не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/data-deletion/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/data-deletion",
+   "where": [
+    "/en/data-deletion/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /terms не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/terms/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/terms",
+   "where": [
+    "/en/terms/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /legal-notice не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/legal-notice/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/legal-notice",
+   "where": [
+    "/en/legal-notice/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /sitemap не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sitemap/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/sitemap",
+   "where": [
+    "/en/sitemap/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на UA в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/kontakty/"
+   ],
+   "expected": "Текст на языке UA",
+   "actual": "Доля английских слов 22%, кириллицы 40%",
+   "sig": "untr|/ua/kontakty/",
+   "where": [
+    "/ua/kontakty/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /sample-page-uk не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/sample-page-uk/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/sample-page-uk",
+   "where": [
+    "/ua/sample-page-uk/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /templates-uk не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/templates-uk/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/templates-uk",
+   "where": [
+    "/ua/templates-uk/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /presets-uk не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/presets-uk/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/presets-uk",
+   "where": [
+    "/ua/presets-uk/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /music-uk не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/music-uk/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/music-uk",
+   "where": [
+    "/ua/music-uk/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на UA в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/contacts-uk/"
+   ],
+   "expected": "Текст на языке UA",
+   "actual": "Доля английских слов 22%, кириллицы 40%",
+   "sig": "untr|/ua/contacts-uk/",
+   "where": [
+    "/ua/contacts-uk/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "langmiss",
+   "title": "Страница /contacts-uk не переведена — переключатель языка выкидывает на главную",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/contacts-uk/",
+    "Нажать на язык",
+    "Выбрать другой язык"
+   ],
+   "expected": "Эта же страница на выбранном языке",
+   "actual": "Нет перевода на: EN, DE, FR, PT, ES, IT — открывается главная",
+   "sig": "langmiss|/contacts-uk",
+   "where": [
+    "/ua/contacts-uk/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на DE в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/de/kontakt/"
+   ],
+   "expected": "Текст на языке DE",
+   "actual": "Доля английских слов 14%",
+   "sig": "untr|/de/kontakt/",
+   "where": [
+    "/de/kontakt/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на FR в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/contact/"
+   ],
+   "expected": "Текст на языке FR",
+   "actual": "Доля английских слов 13%",
+   "sig": "untr|/fr/contact/",
+   "where": [
+    "/fr/contact/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на PT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/contactos/"
+   ],
+   "expected": "Текст на языке PT",
+   "actual": "Доля английских слов 22%",
+   "sig": "untr|/pt/contactos/",
+   "where": [
+    "/pt/contactos/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на ES в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/es/contacts-es/"
+   ],
+   "expected": "Текст на языке ES",
+   "actual": "Доля английских слов 14%",
+   "sig": "untr|/es/contacts-es/",
+   "where": [
+    "/es/contacts-es/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/contacts-it/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 16%",
+   "sig": "untr|/it/contacts-it/",
+   "where": [
+    "/it/contacts-it/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/protos/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 22%",
+   "sig": "untr|/it/product/protos/",
+   "where": [
+    "/it/product/protos/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/kratos/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 23%",
+   "sig": "untr|/it/product/kratos/",
+   "where": [
+    "/it/product/kratos/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/infinity/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 24%",
+   "sig": "untr|/it/product/infinity/",
+   "where": [
+    "/it/product/infinity/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/intricate/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 23%",
+   "sig": "untr|/it/product/intricate/",
+   "where": [
+    "/it/product/intricate/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/mutualism/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 23%",
+   "sig": "untr|/it/product/mutualism/",
+   "where": [
+    "/it/product/mutualism/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/pitch/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 24%",
+   "sig": "untr|/it/product/pitch/",
+   "where": [
+    "/it/product/pitch/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/melodic-techno-presets/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 22%",
+   "sig": "untr|/it/product/melodic-techno-presets/",
+   "where": [
+    "/it/product/melodic-techno-presets/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "untranslated",
+   "title": "Страница на IT в основном не переведена (много английского текста)",
+   "steps": [
+    "Открыть https://solid-sound.net/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "expected": "Текст на языке IT",
+   "actual": "Доля английских слов 22%",
+   "sig": "untr|/it/product/time-goes-fast-documentary-piano/",
+   "where": [
+    "/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Questions? Ask here» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Questions? Ask here",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/privacy-policy/",
+    "/en/shop/",
+    "/en/cart/",
+    "/en/my-account/",
+    "/en/refund_returns/",
+    "/en/license/",
+    "/en/contacts/",
+    "/en/faq/",
+    "/en/store-manager/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/add-product/",
+    "/en/links/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/",
+    "/en/music/",
+    "/en/forum/",
+    "/en/free-demo-feedback/",
+    "/en/forum-experimental/",
+    "/en/forest-spirits/",
+    "/en/prices/",
+    "/en/services-prices/",
+    "/en/sell/",
+    "/en/creator-terms/",
+    "/en/free/",
+    "/en/data-deletion/",
+    "/en/wiki/",
+    "/en/wiki/record-clean-vocals-at-home/",
+    "/en/terms/",
+    "/en/legal-notice/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/wiki/closed-back-headphones-for-recording/",
+    "/en/sitemap/",
+    "/en/client-dashboard/",
+    "/product/infinity/",
+    "/forum/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/002.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «+» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 30px)",
+   "sig": "circle|+",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/",
+    "/en/templates/",
+    "/en/presets/",
+    "/en/music/",
+    "/product/infinity/",
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/muzyka/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/ua/music-uk/",
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/de/musik/",
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/fr/musique/",
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/pt/musica/",
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/es/music-es/",
+    "/it/templates-it/",
+    "/it/presets-it/",
+    "/it/music-it/",
+    "/it/product/protos/",
+    "/it/product/kratos/",
+    "/it/product/infinity/",
+    "/it/product/intricate/",
+    "/it/product/mutualism/",
+    "/it/product/pitch/",
+    "/it/product/melodic-techno-presets/",
+    "/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/013.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Domande? Chiedi qui» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/it/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Domande? Chiedi qui",
+   "where": [
+    "/it/",
+    "/it/templates-it/",
+    "/it/presets-it/",
+    "/it/music-it/",
+    "/it/contacts-it/",
+    "/it/wiki-it/",
+    "/it/wiki-it/come-registrare-voci-pulite-a-casa-3-regole-per-il-microfono-che/",
+    "/it/wiki-it/cavi-bilanciati-sbilanciati-it/",
+    "/it/wiki-it/cuffie-chiuse-per-registrare-la-voce-it/",
+    "/it/wiki-it/interfaccia-audio-per-registrare-la-voce-it/",
+    "/it/product/protos/",
+    "/it/product/kratos/",
+    "/it/product/infinity/",
+    "/it/product/intricate/",
+    "/it/product/mutualism/",
+    "/it/product/pitch/",
+    "/it/product/melodic-techno-presets/",
+    "/it/product/time-goes-fast-documentary-piano/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Watch video» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/templates/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 30px)",
+   "sig": "circle|Watch video",
+   "where": [
+    "/en/templates/",
+    "/en/presets/",
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/it/templates-it/",
+    "/it/presets-it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/074.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Є питання? Пишіть» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Є питання? Пишіть",
+   "where": [
+    "/ua/",
+    "/ua/shablony/",
+    "/ua/presety/",
+    "/ua/muzyka/",
+    "/ua/kontakty/",
+    "/ua/sample-page-uk/",
+    "/ua/templates-uk/",
+    "/ua/presets-uk/",
+    "/ua/music-uk/",
+    "/ua/contacts-uk/",
+    "/ua/wiki-ua/",
+    "/ua/wiki-ua/iak-zapysaty-chystyi-vokal-udoma-3-pravyla-mikrofona/",
+    "/ua/wiki-ua/audiointerfeis-dlia-zapysu-vokalu-ua/",
+    "/ua/wiki-ua/zakryti-navushnyky-dlia-zapysu-vokalu-ua/",
+    "/ua/wiki-ua/balansni-nebalansni-kabeli-ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Fragen? Hier fragen» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/de/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Fragen? Hier fragen",
+   "where": [
+    "/de/",
+    "/de/vorlagen/",
+    "/de/voreinstellungen/",
+    "/de/musik/",
+    "/de/kontakt/",
+    "/de/wiki-de/",
+    "/de/wiki-de/so-machst-du-saubere-vocals-zu-hause-3-mikrofon-regeln-die-einen/",
+    "/de/wiki-de/symmetrische-unsymmetrische-kabel-de/",
+    "/de/wiki-de/audio-interface-fuer-gesangsaufnahmen-de/",
+    "/de/wiki-de/geschlossene-kopfhoerer-gesangsaufnahmen-de/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Une question ? Demande ici» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Une question ? Demande ici",
+   "where": [
+    "/fr/",
+    "/fr/modeles/",
+    "/fr/prereglages/",
+    "/fr/musique/",
+    "/fr/contact/",
+    "/fr/wiki-fr/",
+    "/fr/wiki-fr/comment-enregistrer-des-voix-propres-a-la-maison-3-regles-de-micro/",
+    "/fr/wiki-fr/cables-symetriques-asymetriques-fr/",
+    "/fr/wiki-fr/casque-ferme-pour-enregistrer-la-voix-fr/",
+    "/fr/wiki-fr/interface-audio-pour-enregistrer-la-voix-fr/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Dúvidas? Pergunte aqui» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|Dúvidas? Pergunte aqui",
+   "where": [
+    "/pt/",
+    "/pt/modelos/",
+    "/pt/predefinicoes/",
+    "/pt/musica/",
+    "/pt/contactos/",
+    "/pt/wiki-pt/",
+    "/pt/wiki-pt/como-gravar-vocais-limpos-em-casa-3-regras-de-microfone-que-superam/",
+    "/pt/wiki-pt/auscultadores-fechados-para-gravar-voz-pt/",
+    "/pt/wiki-pt/interface-de-audio-para-gravar-voz-pt/",
+    "/pt/wiki-pt/cabos-balanceados-nao-balanceados-pt/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «¿Dudas? Pregunta aquí» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/es/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 56px)",
+   "sig": "circle|¿Dudas? Pregunta aquí",
+   "where": [
+    "/es/",
+    "/es/templates-es/",
+    "/es/presets-es/",
+    "/es/music-es/",
+    "/es/contacts-es/",
+    "/es/wiki-es/",
+    "/es/wiki-es/como-grabar-voces-limpias-en-casa-3-reglas-de-microfono-que-superan/",
+    "/es/wiki-es/cables-balanceados-no-balanceados-es/",
+    "/es/wiki-es/auriculares-cerrados-para-grabar-voz-es/",
+    "/es/wiki-es/interfaz-de-audio-para-grabar-voz-es/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "kb-perf-dom",
+   "title": "Слишком много элементов на странице (>3000)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
+   ],
+   "expected": "Меньше вложенности, подгружать по частям.",
+   "actual": "Элементов: 3564. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3563. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3542. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3078. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/",
+    "/ua/sample-page-uk/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/018.jpg",
+   "isNew": false,
+   "more": 3
+  },
+  {
+   "sev": "check",
+   "type": "kb-perf-weight",
+   "title": "Страница весит больше 3 МБ",
+   "steps": [
+    "Открыть https://solid-sound.net/en/checkout/ (компьютер)"
+   ],
+   "expected": "Смотреть, что самое тяжёлое.",
+   "actual": "Скачано 3.2 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.5 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.7 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
+   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
+   "where": [
+    "/en/checkout/",
+    "/en/free-demo-feedback/",
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/052.jpg",
+   "isNew": false,
+   "more": 2
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Get the free pack →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Get the free pack →",
+   "where": [
+    "/en/",
+    "/en/forum-experimental/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/001.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Previous» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Previous",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/011.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Next» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Next",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/012.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Video» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 0px",
+   "sig": "odd|Video",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/014.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Watch video» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 0px",
+   "sig": "odd|Watch video",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/015.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «SEND REQUEST — GET A REPLY IN 24 H» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|SEND REQUEST — GET A REPLY IN 24 H",
+   "where": [
+    "/en/services-calculator/",
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/090.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Get free feedback» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Get free feedback",
+   "where": [
+    "/en/free-demo-feedback/",
+    "/en/free/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/102.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «For you» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Нажать «For you»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/|For you",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/007.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «All» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Нажать «All»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/|All",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/008.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Page 1» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Нажать «Page 1»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/|Page 1",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/009.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/all-products/|FAQ",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/020.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Previous» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Previous»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/all-products/|Previous",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/021.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Next» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Next»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/all-products/|Next",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/022.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/privacy-policy/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/privacy-policy/|FAQ",
+   "where": [
+    "/en/privacy-policy/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/034.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/shop/|FAQ",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/038.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Previous» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Previous»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/shop/|Previous",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/039.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Next» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Next»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/shop/|Next",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/040.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/cart/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/cart/|FAQ",
+   "where": [
+    "/en/cart/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/049.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/checkout/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/checkout/|FAQ",
+   "where": [
+    "/en/checkout/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/053.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/my-account/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/my-account/|FAQ",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/054.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/refund_returns/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/refund_returns/|FAQ",
+   "where": [
+    "/en/refund_returns/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/056.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/license/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/license/|FAQ",
+   "where": [
+    "/en/license/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/058.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/contacts/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/contacts/|FAQ",
+   "where": [
+    "/en/contacts/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/060.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/faq/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/faq/|FAQ",
+   "where": [
+    "/en/faq/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/062.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/store-manager/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/store-manager/|FAQ",
+   "where": [
+    "/en/store-manager/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/064.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-membership/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/vendor-membership/|FAQ",
+   "where": [
+    "/en/vendor-membership/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/066.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-register/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/vendor-register/|FAQ",
+   "where": [
+    "/en/vendor-register/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/068.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/add-product/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/add-product/|FAQ",
+   "where": [
+    "/en/add-product/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/070.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/links/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/links/|FAQ",
+   "where": [
+    "/en/links/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/072.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/templates/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/templates/|FAQ",
+   "where": [
+    "/en/templates/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/077.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/presets/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/presets/|FAQ",
+   "where": [
+    "/en/presets/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/080.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-calculator/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/services-calculator/|FAQ",
+   "where": [
+    "/en/services-calculator/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/091.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/mastering-album-calculator/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/mastering-album-calculator/|FAQ",
+   "where": [
+    "/en/mastering-album-calculator/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/093.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/music/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/music/|FAQ",
+   "where": [
+    "/en/music/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/096.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/forum/|FAQ",
+   "where": [
+    "/en/forum/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/100.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «❮» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 50px)",
+   "sig": "circle|❮",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/106.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «❯» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 50px)",
+   "sig": "circle|❯",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/107.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/free-demo-feedback/|FAQ",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/111.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «For you» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum-experimental/",
+    "Нажать «For you»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/forum-experimental/|For you",
+   "where": [
+    "/en/forum-experimental/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/114.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «All» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum-experimental/",
+    "Нажать «All»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/forum-experimental/|All",
+   "where": [
+    "/en/forum-experimental/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/115.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Page 1» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum-experimental/",
+    "Нажать «Page 1»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/forum-experimental/|Page 1",
+   "where": [
+    "/en/forum-experimental/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/116.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Повірити вміння заявленого духа спрацює» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 18px",
+   "sig": "odd|Повірити вміння заявленого духа спрацює",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/117.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Звинуватити! карта відкриється — хтось о» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 18px",
+   "sig": "odd|Звинуватити! карта відкриється — хтось о",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/118.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/forest-spirits/|FAQ",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/119.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Expand All Details» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/prices/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 0px",
+   "sig": "odd|Expand All Details",
+   "where": [
+    "/en/prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/127.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/prices/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/prices/|FAQ",
+   "where": [
+    "/en/prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/128.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Services» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать «Services»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/services-prices/|Services",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/130.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/services-prices/|FAQ",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/131.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/sell/|FAQ",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/133.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/creator-terms/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/creator-terms/|FAQ",
+   "where": [
+    "/en/creator-terms/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/135.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «UNLOCK FREE DOWNLOADS» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|UNLOCK FREE DOWNLOADS",
+   "where": [
+    "/en/free/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/137.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/free/|FAQ",
+   "where": [
+    "/en/free/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/138.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/data-deletion/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/data-deletion/|FAQ",
+   "where": [
+    "/en/data-deletion/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/140.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/wiki/|FAQ",
+   "where": [
+    "/en/wiki/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/142.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/record-clean-vocals-at-home/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/wiki/record-clean-vocals-at-home/|FAQ",
+   "where": [
+    "/en/wiki/record-clean-vocals-at-home/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/144.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/terms/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/terms/|FAQ",
+   "where": [
+    "/en/terms/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/146.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/legal-notice/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/legal-notice/|FAQ",
+   "where": [
+    "/en/legal-notice/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/148.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/wiki/balanced-vs-unbalanced-cables/|FAQ",
+   "where": [
+    "/en/wiki/balanced-vs-unbalanced-cables/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/150.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/audio-interface-for-vocals/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/wiki/audio-interface-for-vocals/|FAQ",
+   "where": [
+    "/en/wiki/audio-interface-for-vocals/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/152.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/closed-back-headphones-for-recording/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/wiki/closed-back-headphones-for-recording/|FAQ",
+   "where": [
+    "/en/wiki/closed-back-headphones-for-recording/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/154.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sitemap/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/sitemap/|FAQ",
+   "where": [
+    "/en/sitemap/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/156.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «FAQ» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/client-dashboard/",
+    "Нажать «FAQ»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/client-dashboard/|FAQ",
+   "where": [
+    "/en/client-dashboard/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/158.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Отримати безкоштовно →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/ua/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Отримати безкоштовно →",
+   "where": [
+    "/ua/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/160.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Gratis-Paket holen →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/de/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Gratis-Paket holen →",
+   "where": [
+    "/de/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Obtenir le pack gratuit →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/fr/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Obtenir le pack gratuit →",
+   "where": [
+    "/fr/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Obter o pacote grátis →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/pt/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Obter o pacote grátis →",
+   "where": [
+    "/pt/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Obtener el pack gratis →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/es/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Obtener el pack gratis →",
+   "where": [
+    "/es/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Ottieni il pacchetto gratis →» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/it/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 5px",
+   "sig": "odd|Ottieni il pacchetto gratis →",
+   "where": [
+    "/it/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": false
+  }
+ ],
+ "notChecked": [
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
+  "Проверка остановлена по времени — часть ссылок/входов не проверена"
+ ]
+}
