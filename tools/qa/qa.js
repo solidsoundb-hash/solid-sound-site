@@ -735,6 +735,15 @@ async function fitCheck(page, dev) {
     }
     await desk.close(); await phone.close();
 
+    // 4b) ears: listen to every preview found (before logins/links — owner 17.11: must always run, it is cheap)
+    const ec = await newContext(browser, 'desktop');
+    if (EARS && !SMOKE) {
+      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
+      stats.audioFiles = r.checked;
+      if (r.skipped) notChecked.push('Звук файлов не проверен: ' + r.skipped);
+      for (const b of r.bugs) await bug(b);
+    }
+    await ec.close();
     // 5) logged in: client and admin (pages open, menu shows the account, no errors)
     const roles = [['user', process.env.TEST_USER, process.env.TEST_PASS, ['/en/my-account/', '/en/my-account/orders/', '/en/my-account/edit-account/']],
       ['admin', process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS, ['/en/my-account/', '/en/store-manager/']]];
@@ -756,12 +765,6 @@ async function fitCheck(page, dev) {
     const lc = await newContext(browser, 'desktop');
     const titles = await checkLinks(lc, FULL ? 600 : SMOKE ? 25 : 150);
     await menuVsTarget(titles);
-    if (EARS && !SMOKE) {
-      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await lc.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
-      stats.audioFiles = r.checked;
-      if (r.skipped) notChecked.push('Звук файлов не проверен: ' + r.skipped);
-      for (const b of r.bugs) await bug(b);
-    }
     await lc.close();
   } catch (e) {
     notChecked.push('Бот остановился с ошибкой: ' + (e.stack || e.message).split('\n').slice(0, 3).join(' '));

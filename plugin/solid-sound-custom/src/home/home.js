@@ -1,3 +1,6 @@
+/* other languages: translated label -> English (window.SS_EN comes with home-app-<lang>.js), so text matchers keep working */
+window.ssT=function(s){var m=window.SS_TR||{};return m[s]||s;};
+window.ssEN=function(s){s=String(s||'').trim();var m=window.SS_EN||{};return m[s]||s;};
 (function(){
   /* arrived via the player's no-reload navigation: the theme header / site footer of the previous page are hidden by CSS
      (body.ss-newhome) instead of reloading, so the music keeps playing (owner 12.11.2026) */
@@ -10,7 +13,7 @@
   window.ssOnDom(function(){ document.querySelectorAll('path[d="M8 5v14l11-7z"],path[d="M7 4l13 8-13 8z"]').forEach(function(p){ p.setAttribute('d',window.SS_TRI); p.setAttribute('fill-rule','evenodd'); }); });
   /* account links (Sign in, Favorites, Saved, Account) → My account: login with 3 tabs for guests,
      the client dashboard for clients, the Producer space for vendors (server decides) */
-  window.ssOnDom(function(){ document.querySelectorAll('#ss-app a[href="#top"], #ss-app a[href="#shop"]').forEach(function(a){ var t=((a.textContent||'')+' '+(a.getAttribute('aria-label')||'')).trim(); if(/Sign in|Favorites|Saved/i.test(t)) a.setAttribute('href','https://solid-sound.net/en/my-account/'+(/Favorites|Saved/i.test(t)?'#favourites':'')); }); });
+  window.ssOnDom(function(){ document.querySelectorAll('#ss-app a[href="#top"], #ss-app a[href="#shop"]').forEach(function(a){ var t=(ssEN(a.textContent)+' '+(a.getAttribute('aria-label')||'')).trim(); if(/Sign in|Favorites|Saved/i.test(t)) a.setAttribute('href','https://solid-sound.net/en/my-account/'+(/Favorites|Saved/i.test(t)?'#favourites':'')); }); });
   /* open dropdowns in the header close on any click outside them */
   document.addEventListener('click',function(e){
     var t=e.target; document.querySelectorAll('#ss-app header button[aria-expanded="true"]').forEach(function(b){
@@ -46,7 +49,7 @@
   document.addEventListener('click',function(e){
     if(!e.target.closest) return;
     var f=e.target.closest('#ss-app header form button'); if(!f) return;
-    if(/^\s*Find\s*$/.test(f.textContent||'')){ e.preventDefault(); ssSearch((document.getElementById('top-q')||{}).value); return; }
+    if(/^\s*Find\s*$/.test(ssEN(f.textContent))){ e.preventDefault(); ssSearch((document.getElementById('top-q')||{}).value); return; }
     if(!f.classList.contains('ss-mic')) return;
     e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
     var inp=document.getElementById('top-q'); var SR=window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -82,7 +85,7 @@
   document.addEventListener('click',function(e){
     if(!e.target.closest) return;
     var b=e.target.closest('#ss-app button,#ss-app a'); if(!b) return;
-    var t=(b.textContent||'').trim(), form=b.closest('form'), mail=form?form.querySelector('input[type=email]'):null;
+    var t=ssEN(b.textContent), form=b.closest('form'), mail=form?form.querySelector('input[type=email]'):null;
     if(mail?/pack|coupon|starter|demo|send|download/i.test(t):false){
       e.preventDefault(); var v=(mail.value||'').trim();
       if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){mail.focus();mail.style.outline='2px solid #F59E0B';return;}
@@ -108,7 +111,7 @@
   function close(){ if(box){ box.remove(); box=null; } }
   function open(a){
     close(); box=document.createElement('div'); box.id='ss-acc'; box.className='ss-pop'; box.setAttribute('role','menu');
-    box.innerHTML=items.map(function(i){ return '<a role="menuitem" href="'+i[2]+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+P[i[1]]+'"></path></svg>'+i[0]+'</a>'; }).join('');
+    box.innerHTML=items.map(function(i){ return '<a role="menuitem" href="'+i[2]+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+P[i[1]]+'"></path></svg>'+ssT(i[0])+'</a>'; }).join('');
     document.body.appendChild(box);
     var r=a.getBoundingClientRect(), w=box.offsetWidth, h=box.offsetHeight;
     var left=Math.min(Math.max(8,r.right-w), innerWidth-w-8), top=r.bottom+6;
@@ -201,8 +204,8 @@ window.ssGoTo=ssGoTo;
   document.head.appendChild(st);
   function paint(){
     var nav=document.querySelector('#ss-app header nav[aria-label="Main"]'); if(!nav) return;
-    nav.querySelectorAll('button[aria-expanded]').forEach(function(b){ var s=b.querySelector('span'); var on=!!cur && s && s.textContent.trim()===MAP[cur]; b.classList.toggle('ss-spy',on); });
-    var home=nav.querySelector('a[href$="/en/"]'); if(home) home.classList.toggle('ss-spy-off',!!cur);
+    nav.querySelectorAll('button[aria-expanded]').forEach(function(b){ var s=b.querySelector('span'); var on=!!cur && s && ssEN(s.textContent)===MAP[cur]; b.classList.toggle('ss-spy',on); });
+    var home=nav.querySelector('a[href$="/en/"],a[href$="/ua/"],a[href$="/de/"],a[href$="/fr/"],a[href$="/es/"],a[href$="/it/"],a[href$="/pt/"]'); if(home) home.classList.toggle('ss-spy-off',!!cur);
   }
   var seen={};
   var io=new IntersectionObserver(function(es){
@@ -425,7 +428,7 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
     if(head && head.querySelector('.ss-mh-cart')){
       document.querySelectorAll('#ss-app nav a[href*="/cart/"]').forEach(function(x){
         var nav=x.closest('nav'); if(!nav) return; var r=nav.getBoundingClientRect();
-        if(r.bottom>innerHeight-90 && /cart/i.test(x.textContent)){ x.style.display='none'; }
+        if(r.bottom>innerHeight-90 && /cart/i.test(ssEN(x.textContent))){ x.style.display='none'; }
       });
     }
   }

@@ -151,6 +151,11 @@ return array(
   't' => 'js',
   'id' => null
  ),
+ 'home-app-ua' => array(
+  'f' => 'home-app-ua.0873f43004.js',
+  't' => 'js',
+  'id' => null
+ ),
  'ss-global' => array(
   'f' => 'ss-global.51f7223a32.js',
   't' => 'js',
@@ -182,7 +187,7 @@ return array(
   'id' => null
  ),
  'home-js' => array(
-  'f' => 'home-js.2a710c2644.js',
+  'f' => 'home-js.2ad374c762.js',
   't' => 'js',
   'id' => null
  ),

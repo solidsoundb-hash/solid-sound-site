@@ -55,6 +55,12 @@ function ss_asset( $name, $mode = '' ) {
 	else echo '<script' . $id . ' src="' . esc_url( $url ) . '"' . ( 'defer' === $mode ? ' defer' : '' ) . '></script>';
 }
 
+function ss_asset_has( $name ) {
+	static $map = null;
+	if ( null === $map ) $map = is_readable( __DIR__ . '/build/assets.php' ) ? (array) include __DIR__ . '/build/assets.php' : array();
+	return ! empty( $map[ $name ] );
+}
+
 /* Load after the theme's functions.php. If the old copy is still inside the theme, skip (no duplicate functions). */
 add_action( 'after_setup_theme', function () {
 	if ( function_exists( 'rating_and_sidebar' ) ) return;
