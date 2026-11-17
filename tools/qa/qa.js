@@ -755,6 +755,12 @@ async function fitCheck(page, dev) {
 
     // 4b) ears: listen to every preview found (before logins/links — owner 17.11: must always run, it is cheap)
     const ec = await newContext(browser, 'desktop');
+    if (EARS && !SMOKE && !audioUrls.size) {
+      /* fallback (17.11): the list of previews came back empty — collect them straight from the catalog page */
+      try { const pg = await newPage(ec); await pg.goto(BASE + '/en/all-products/', { waitUntil: 'load', timeout: 90000 }); await pg.waitForTimeout(4000);
+        const list = await pg.evaluate(() => [...new Set([...document.querySelectorAll('[data-src],audio[src],source[src]')].map(e => e.getAttribute('data-src') || e.getAttribute('src')).filter(v => /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(v || '')).map(v => new URL(v, location.href).href))]);
+        list.forEach(u => audioUrls.set(u, new Set(['/en/all-products/']))); await pg.close(); } catch (e) {}
+    }
     if (EARS && !SMOKE) {
       const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
       stats.audioFiles = r.checked;
