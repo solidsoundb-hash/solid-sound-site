@@ -33,6 +33,8 @@ jobs:
           # qa.txt decides only for its own push; the main robot passes mode=full (its push event must not read qa.txt)
           if [ -z "${{ inputs.mode }}" ] && [ "${{ github.event_name }}" = push ]; then
             L=$(tail -1 .github/qa.txt); echo "$L" | grep -qi full && M=full; echo "$L" | grep -qi smoke && M=smoke
+            # a «swarm» line is for qa-swarm.yml (many robots at once), not for this one
+            if echo "$L" | grep -qiE 'swarm|рой'; then echo "skip=1" >> $GITHUB_OUTPUT; fi
           fi
           OUT=qa/latest; [ "$M" = smoke ] && OUT=qa/smoke
           B=40; [ "$M" = full ] && B=105; [ "$M" = smoke ] && B=8

@@ -24,7 +24,15 @@ const SMOKE = MODE === 'smoke';   // short check after a deploy (~5–8 min): ke
 const OUT = process.env.QA_OUT || 'qa/latest';
 const PROXY = process.env.HTTPS_PROXY || process.env.https_proxy || '';
 const BUDGET_MS = (+(process.env.QA_BUDGET_MIN || (FULL ? 140 : SMOKE ? 8 : 40))) * 60000;
-const T0 = Date.now();
+const T0 = (+process.env.QA_STARTED * 1000) || Date.now();   // swarm: the merge counts time from the start of the whole run
+/* swarm (17.11.2026, owner: «гит хаб боты неограниченны — грузи по максимуму»): many robots in parallel.
+   QA_PARTS=pages,a31,ears,langs,scen,login,links (default: all) — which parts this robot does.
+   QA_SHARD=i/n — this robot takes every n-th page of the list (pages and their links).
+   QA_MERGE=dir1,dir2,... — no browsing: merge the robots' reports into QA_OUT. */
+const PARTS = new Set((process.env.QA_PARTS || 'pages,a31,ears,langs,scen,login,links').split(',').map(x => x.trim()));
+const part = (x) => PARTS.has(x);
+const SHARD = (process.env.QA_SHARD || '').match(/^(\d+)\/(\d+)$/);
+const inShard = (p, i) => !SHARD || i % +SHARD[2] === +SHARD[1];
 const timeLeft = () => BUDGET_MS - (Date.now() - T0);
 
 const LANGS = ['en', 'ua', 'de', 'fr', 'pt', 'es', 'it'];
@@ -628,7 +636,7 @@ function writeReport(final = true) {
   const mins = Math.round((Date.now() - T0) / 60000);
   const L = [];
   L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : SMOKE ? 'короткая проверка после выкладки' : 'ежедневная проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
-  L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, файлов звука ${stats.audioFiles || 0}, ссылок ${stats.links}. Время: ${mins} мин.`);
+  L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, файлов звука ${stats.audioFiles || 0}, ссылок ${stats.links}${stats.eyesTiles ? `, нейросеть-глаза: страниц ${stats.eyesPages || 0}, кусков ${stats.eyesTiles}` : ''}${stats.robots ? `, роботов ${stats.robots}` : ''}. Время: ${mins} мин.`);
   if (l10nSkipped) L.push(`Переводы не проверялись (владелец 17.11: сначала сайт на английском) — пропущено замечаний: ${l10nSkipped}.`);
   L.push(`Найдено: ${SEV.critical} ${cnt('critical')} · ${SEV.major} ${cnt('major')} · ${SEV.minor} ${cnt('minor')} · ${SEV.check} ${cnt('check')}` + (prevSigs ? ` · новых ${list.filter(b => b.isNew).length} · исправлено с прошлого раза ${fixed.length}` : ''), '');
   L.push('Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.', '');
@@ -650,11 +658,11 @@ function writeReport(final = true) {
   if (fixed.length) { L.push(`## ✅ Исправлено с прошлой проверки (${fixed.length})`, ''); fixed.slice(0, 40).forEach(b => L.push(`- ${b.title}`)); L.push(''); }
   if (notChecked.length) { L.push(`## Не удалось проверить (${notChecked.length})`, ''); [...new Set(notChecked)].slice(0, 60).forEach(x => L.push(`- ${x}`)); L.push(''); }
   fs.writeFileSync(path.join(OUT, 'report.md'), L.join('\n') + '\n');
-  const json = { mode: MODE, date: new Date().toISOString(), stats, bugs: list, notChecked };
+  const json = { mode: MODE, date: new Date().toISOString(), stats, bugs: list, notChecked, l10nSkipped };
   fs.writeFileSync(path.join(OUT, 'bugs.json'), JSON.stringify(json, null, 1));
-  if (final) fs.writeFileSync(prevFile, JSON.stringify(json));
+  if (final && process.env.QA_NOHIST !== '1') fs.writeFileSync(prevFile, JSON.stringify(json));
   // every report is also kept forever in qa/history/<date time mode>/ (report + bug list; screenshots stay only in the latest)
-  if (final) try {
+  if (final && process.env.QA_NOHIST !== '1') try {
     const H = path.join(path.dirname(path.resolve(OUT)), 'history', json.date.slice(0, 16).replace(/[T:]/g, '-') + '-' + MODE + (mainOut ? '' : '-' + path.basename(OUT)));
     fs.mkdirSync(H, { recursive: true });
     fs.writeFileSync(path.join(H, 'report.md'), (L.join('\n') + '\n').replace(/\]\(shots\//g, '](../../' + path.basename(OUT) + '/shots/'));
@@ -687,8 +695,35 @@ async function fitCheck(page, dev) {
   if (bad.length) await bug({ page: '/en/', device: DEVICES[dev].name, sev: 'major', type: 'fit', sig: 'fit|' + dev, title: `Слайдер на главной не помещается на экране (${DEVICES[dev].name})`, steps: ['Открыть главную на телефоне', 'Пролистать карточки слайдера точками'], expected: 'Весь блок «What are you working on?» виден над нижней панелью', actual: 'Уходит под нижнюю панель: ' + bad.map(([i, v]) => `карточка ${i} на ${-v}px`).join(', ') }, page);
 }
 
+/* ---------------------------------------------------------------- swarm: merge the robots' reports */
+function mergeReports(dirs) {
+  fs.rmSync(path.join(OUT, 'shots'), { recursive: true, force: true }); fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true });
+  fs.mkdirSync(path.join(OUT, 'eyes'), { recursive: true });
+  let k = 0, copied = 0;
+  const KEYEYE = /^(a31_|[a-z0-9]+_(en|home|en_all_products|product_infinity|en_wiki|en_free|en_services_prices|en_faq|en_sell|forum)\.jpg$)/;
+  for (const d of dirs) {
+    let j; try { j = JSON.parse(fs.readFileSync(path.join(d, 'bugs.json'), 'utf8')); } catch (e) { notChecked.push(`Робот ${path.basename(d)} не прислал отчёт`); continue; }
+    k++;
+    for (const [n, v] of Object.entries(j.stats || {})) stats[n] = (stats[n] || 0) + (+v || 0);
+    (j.notChecked || []).forEach(x => notChecked.push(x));
+    l10nSkipped += +(j.l10nSkipped || 0);
+    const copy = (rel0) => { if (!rel0 || ++copied > 300) return ''; const src = path.join(d, rel0); if (!fs.existsSync(src)) return ''; const dst = 'shots/' + k + '_' + path.basename(rel0); try { fs.copyFileSync(src, path.join(OUT, dst)); return dst; } catch (e) { return ''; } };
+    for (const b of j.bugs || []) {
+      const g = bugs.get(b.sig);
+      if (!g) { bugs.set(b.sig, { ...b, where: [...(b.where || [])], devices: [...(b.devices || [])], shot: copy(b.shot) }); continue; }
+      (b.where || []).forEach(w => !g.where.includes(w) && g.where.push(w));
+      (b.devices || []).forEach(w => !g.devices.includes(w) && g.devices.push(w));
+      if (!g.shot) g.shot = copy(b.shot);
+    }
+    try { for (const f of fs.readdirSync(path.join(d, 'eyes')).filter(f => KEYEYE.test(f))) fs.copyFileSync(path.join(d, 'eyes', f), path.join(OUT, 'eyes', f)); } catch (e) {}
+  }
+  stats.robots = k;
+  writeReport(true);
+}
+
 /* ---------------------------------------------------------------- main */
 (async () => {
+  if (process.env.QA_MERGE) return mergeReports(process.env.QA_MERGE.split(',').filter(Boolean));
   fs.rmSync(path.join(OUT, 'shots'), { recursive: true, force: true });
   fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true });
   fs.rmSync(path.join(OUT, 'eyes'), { recursive: true, force: true }); fs.mkdirSync(path.join(OUT, 'eyes'), { recursive: true });
@@ -711,21 +746,21 @@ async function fitCheck(page, dev) {
     if (process.env.QA_PAGES) pages = process.env.QA_PAGES.split(',');
     else if (FULL) { pages = await sitemapPages(desk); if (!pages.length) { pages = KEY; notChecked.push('Карта сайта не загрузилась — проверены только основные страницы'); } }
     else pages = SMOKE ? ['/en/', '/en/all-products/', '/product/infinity/'] : KEY;
-    const en = pages.filter(p => !urlLang(p) || urlLang(p) === 'en');
+    const en = pages.filter(p => !urlLang(p) || urlLang(p) === 'en').filter((p, i) => p === '/en/' ? !SHARD || +SHARD[1] === 0 : inShard(p, i));
     const other = pages.filter(p => urlLang(p) && urlLang(p) !== 'en');
     // home first in every language (reference menu), English pages first
     const homeAll = LANGS.map(l => `/${l}/`);
 
     // 1) English + product pages: computer and phone, with sound and "hands"
-    for (const p of ['/en/', ...en.filter(x => x !== '/en/')]) {
+    for (const p of part('pages') ? [...(en.includes('/en/') || !SHARD ? ['/en/'] : []), ...en.filter(x => x !== '/en/')] : []) {
       const deep = FULL || KEY.includes(p) || process.env.QA_PAGES;
-      const eye = KEY.includes(p) || process.env.QA_PAGES;
+      const eye = KEY.includes(p) || process.env.QA_PAGES || process.env.QA_EYES_ALL === '1';
       if (await checkPage(dp, p, 'desktop')) { if (eye) await eyesShot(dp, p, 'desktop'); if (deep) { await testSound(dp, p, 'desktop', FULL ? 10 : SMOKE ? 3 : 5); if (!SMOKE) { await open(dp, p); await pressEverything(dp, p, 'desktop', FULL ? 40 : 20); } } }
       if (SMOKE) { await checkPage(pp, p, 'phone'); continue; }
       if (await checkPage(pp, p, 'phone')) { if (eye) await eyesShot(pp, p, 'phone'); if (p === '/en/') await fitCheck(pp, 'phone'); if (deep && (FULL || p === '/en/' || p === '/en/all-products/')) { await testSound(pp, p, 'phone', 3); await open(pp, p); await pressEverything(pp, p, 'phone', FULL ? 25 : 12); } }
     }
     // 1b) the owner's phone (Samsung A31): key pages, the home slider must fit, pictures for the eyes
-    if (!SMOKE) {
+    if (!SMOKE && part('a31')) {
       const a31 = await newContext(browser, 'a31'); const ap = await newPage(a31);
       for (const p of ['/en/', '/en/all-products/', '/product/infinity/', '/forum/']) {
         if (await checkPage(ap, p, 'a31')) { await eyesShot(ap, p, 'a31'); if (p === '/en/') await fitCheck(ap, 'a31'); }
@@ -734,21 +769,21 @@ async function fitCheck(page, dev) {
     }
     // 1c) ears: listen to every preview found — right after the pages (17.11: at the end it never got time)
     const ec = await newContext(browser, 'desktop');
-    if (EARS && !SMOKE && !audioUrls.size) {
+    if (EARS && !SMOKE && part('ears') && (!audioUrls.size || process.env.QA_EARS_ALL === '1')) {
       /* fallback (17.11): the list of previews came back empty — collect them straight from the catalog page */
-      try { const pg = await newPage(ec); await pg.goto(BASE + '/en/all-products/', { waitUntil: 'load', timeout: 90000 }); await pg.waitForTimeout(4000);
+      for (const cp of (process.env.QA_EARS_ALL === '1' ? ['/en/all-products/', '/en/templates/', '/en/presets/', '/en/music/', '/en/free/', '/en/'] : ['/en/all-products/'])) try { const pg = await newPage(ec); await pg.goto(BASE + cp, { waitUntil: 'load', timeout: 90000 }); await pg.waitForTimeout(4000);
         const list = await pg.evaluate(() => [...new Set([...document.querySelectorAll('[data-src],audio[src],source[src]')].map(e => e.getAttribute('data-src') || e.getAttribute('src')).filter(v => /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(v || '')).map(v => new URL(v, location.href).href))]);
-        list.forEach(u => audioUrls.set(u, new Set(['/en/all-products/']))); await pg.close(); } catch (e) {}
+        list.forEach(u => { if (!audioUrls.has(u)) audioUrls.set(u, new Set([cp])); }); await pg.close(); } catch (e) {}
     }
-    if (EARS && !SMOKE) {
-      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
+    if (EARS && !SMOKE && part('ears')) {
+      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, +(process.env.QA_EARS_MAX || (FULL ? 80 : 30)));
       stats.audioFiles = r.checked;
       if (r.skipped) notChecked.push('Звук файлов не проверен: ' + r.skipped);
       for (const b of r.bugs) await bug(b);
     }
     await ec.close();
     // 2) other languages: their home always (menu vs English), all pages in full mode
-    for (const p of [...(SMOKE ? ['/ua/'] : homeAll.filter(h => h !== '/en/')), ...(FULL && process.env.QA_L10N === '1' ? other.filter(x => !homeAll.includes(x)) : [])]) {
+    for (const p of !part('langs') ? [] : [...(SMOKE ? ['/ua/'] : homeAll.filter(h => h !== '/en/')), ...(FULL && process.env.QA_L10N === '1' ? other.filter(x => !homeAll.includes(x)) : [])]) {
       if (await checkPage(dp, p, 'desktop') && homeAll.includes(p)) await eyesShot(dp, p, 'desktop');
       if (homeAll.includes(p)) await checkPage(pp, p, 'phone');
     }
@@ -763,7 +798,7 @@ async function fitCheck(page, dev) {
       }
     }
     // 4) scenarios a person would do
-    for (const [name, fn] of [['Выбор языка (компьютер)', () => scLanguageSwitch(dp, 'desktop')], ...(SMOKE ? [] : [['Выбор языка (телефон)', () => scLanguageSwitch(pp, 'phone')]]), ['Музыка при переходах', () => scPlayerAcrossPages(dp)], ['Поиск', () => scSearch(dp)], ['Корзина', () => scCart(dp)]]) {
+    for (const [name, fn] of !part('scen') ? [] : [['Выбор языка (компьютер)', () => scLanguageSwitch(dp, 'desktop')], ...(SMOKE ? [] : [['Выбор языка (телефон)', () => scLanguageSwitch(pp, 'phone')]]), ['Музыка при переходах', () => scPlayerAcrossPages(dp)], ['Поиск', () => scSearch(dp)], ['Корзина', () => scCart(dp)]]) {
       try { await fn(); } catch (e) { notChecked.push(`Сценарий «${name}» прервался: ${e.message.split('\n')[0].slice(0, 150)}`); }
     }
     await desk.close(); await phone.close();
@@ -771,7 +806,7 @@ async function fitCheck(page, dev) {
     // 5) logged in: client and admin (pages open, menu shows the account, no errors)
     const roles = [['user', process.env.TEST_USER, process.env.TEST_PASS, ['/en/my-account/', '/en/my-account/orders/', '/en/my-account/edit-account/']],
       ['admin', process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS, ['/en/my-account/', '/en/store-manager/']]];
-    for (const [role, u, pw, list] of SMOKE ? [] : roles) {
+    for (const [role, u, pw, list] of SMOKE || !part('login') ? [] : roles) {
       if (!u || !pw) { notChecked.push(`Вход как ${role === 'user' ? 'клиент' : 'админ'} — нет тестового логина в секретах`); continue; }
       for (const dev of ['desktop', 'phone']) {
         if (timeLeft() < 0) break;
@@ -786,10 +821,11 @@ async function fitCheck(page, dev) {
       }
     }
     // 6) every link found on the way
+    if (part('links')) {
     const lc = await newContext(browser, 'desktop');
     const titles = await checkLinks(lc, FULL ? 600 : SMOKE ? 25 : 150);
     await menuVsTarget(titles);
-    await lc.close();
+    await lc.close(); }
   } catch (e) {
     notChecked.push('Бот остановился с ошибкой: ' + (e.stack || e.message).split('\n').slice(0, 3).join(' '));
     console.error(e);
