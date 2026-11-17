@@ -1,5 +1,5 @@
-# Reels bot (owner 17.11.2026: «хочу полноценные видосы с голосом — рилсы», «пн ср пт»).
-# Mon / Wed / Fri: 3 vertical Reels 1080x1920 with a voice-over (Piper, free), captions, the product's own music,
+# Reels bot (owner 17.11.2026: «хочу полноценные видосы с голосом — рилсы», «пн ср пт», «по одному»).
+# Mon / Wed / Fri: 1 vertical Reel (owner: «не по 3 а по 1му») 1080x1920 with a voice-over (Piper, free), captions, the product's own music,
 # price and an end card. Scripts: local model (Ollama) from the real store data; prices only from the store.
 # Result: a GitHub release "reels-<date>" with the mp4 files (download on the phone) + docs/content-auto/reels-<date>.md.
 # Nothing is posted anywhere — the owner posts himself.
@@ -29,7 +29,7 @@ jobs:
           ollama pull qwen2.5:7b
       - name: Scripts for today's reels
         timeout-minutes: 70
-        run: node tools/content/reels-plan.mjs 3 reels.json
+        run: node tools/content/reels-plan.mjs 1 reels.json
       - uses: actions/upload-artifact@v4
         with: { name: plan, path: reels.json, retention-days: 7 }
 
@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        i: [0, 1, 2]
+        i: [0]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
