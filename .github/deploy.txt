@@ -124,3 +124,4 @@
 119 2026-11-16 19:37:56 fast deploy check: one comment line (owner: Сделай так что бы за минуты выкладывалось)
 121 2026-11-16 19:44:19 Forum: home lists the sections (category layout), named Solid Sound Community, dark menu/stats bars (owner: выкладывай форум)
 122 2026-11-16 19:47:28 Forum: dark section rows; old 'Main Forum' renamed to Ideas & feedback (owner: выкладывай форум)
+123 2026-11-17 05:50:44 forum frame + menu bar, spam cleanup page (owner ok: Делай и выкладывай)
