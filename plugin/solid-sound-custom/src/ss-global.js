@@ -184,6 +184,8 @@ var css=[
 ' body.ssg-bar-on.ssp-open #ssb{bottom:calc(146px + env(safe-area-inset-bottom))!important}',
 '}',
 '.ssg-tri-btn svg{display:block}',
+/* (QA 17.11) free demo feedback page: its own "pill" buttons -> the site style (slight radius) */
+'.page-id-1709 .btn,.page-id-1709 .btn-outline,.page-id-1709 .btn-purple{border-radius:6px!important}',
 'button:has(path[d^="M6.87"]),.ssh-play{background:transparent!important;border-color:transparent!important;box-shadow:none!important;color:#F59E0B!important;transform:none!important}',
 'button:has(path[d^="M6.87"]):hover{color:#FBBF24!important}',
 'button:has(path[d^="M6.87"]) svg,.ssh-play svg{width:30px!important;height:30px!important;fill:currentColor!important}'
