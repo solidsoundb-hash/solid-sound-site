@@ -229,7 +229,8 @@ const audioUrls = new Map();   // sound preview url -> Set(page)
 let refMenu = { desktop: null, phone: null };
 
 async function checkPage(page, url, dev, opts = {}) {
-  if (timeLeft() < 0) { notChecked.push(`${rel(url)} (${DEVICES[dev].name}) — не хватило времени`); return null; }
+  // pages stop 10 min early so the ears (listening to every preview) always get their turn (owner 17.11)
+  if (timeLeft() < (EARS && !SMOKE ? 10 * 60000 : 0)) { notChecked.push(`${rel(url)} (${DEVICES[dev].name}) — не хватило времени`); return null; }
   const status = await open(page, url);
   stats.pages++;
   const devName = DEVICES[dev].name;
@@ -419,6 +420,9 @@ async function pressEverything(page, url, dev, max) {
     if (timeLeft() < 0) break;
     const h = await page.$(`[data-qa-c="${i}"]`); if (!h) continue;
     if (!(await h.isVisible().catch(() => false))) continue;
+    // close popups the previous click opened (video window, dialogs) — otherwise every next button looks "covered" (17.11)
+    await page.evaluate(() => { document.querySelectorAll('#ss-ytm.open,.ss-pop,#ss-acc').forEach(m => { const x = m.querySelector('.ss-ytm-x'); if (x) x.click(); else m.remove(); }); document.documentElement.style.overflow = ''; }).catch(() => {});
+    await page.keyboard.press('Escape').catch(() => {});
     const label = (await btnLabel(h)) || `кнопка №${i + 1}`;
     stats.clicks++;
     const snap = () => h.evaluate(e => { const p = e.parentElement || e; const t = document.body.innerText || ''; let x = 0; for (let i = 0; i < t.length; i += 7) x = (x * 31 + t.charCodeAt(i)) | 0; return (p.outerHTML || '').slice(0, 4000) + '|' + x + '|' + document.querySelectorAll('[role="dialog"]:not([hidden]), .w-popup-wrap.active, .is-open, .open, [aria-expanded="true"]').length; }).catch(() => 'gone');
