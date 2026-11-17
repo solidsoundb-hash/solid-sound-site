@@ -17,7 +17,7 @@ export function apply(tpl, dict) {
   tpl = tpl.replace(TXT, (all, t) => { const v = look(t.trim()); return v ? '>' + keep(t, /&amp;/.test(t) ? v.replace(/&(?!amp;)/g, '&amp;') : v) + '<' : all; });
   tpl = tpl.replace(Q, (all, t) => { const raw = t.replace(/\\'/g, "'"); const v = look(raw.trim()); return v && /\s/.test(raw.trim()) || (v && raw !== raw.trim()) ? "'" + keep(raw, v).replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'" : all; });
   // single-word menu labels: T('Favorites', …), mk('Sell', …), label: 'Examples'
-  tpl = tpl.replace(/(\b(?:T|mk)\(|\blabel:\s*)'([^'\\\n]+)'/g, (all, pre, t) => { const v = look(t); return v ? pre + "'" + v.replace(/'/g, "\\'") + "'" : all; });
+  tpl = tpl.replace(/(\b(?:T|mk)\(|\b(?:label|name|group|desc|title|tag|kicker|cta|badge):\s*)'([^'\\\n]+)'/g, (all, pre, t) => { const v = look(t); return v ? pre + "'" + v.replace(/'/g, "\\'") + "'" : all; });
   // pairs: ['mix', 'Mixing'], ['Upload', 'done'] — only values that start with a capital letter (ids stay)
   tpl = tpl.replace(/\['([^'\\\n]+)',(\s*)'([^'\\\n]+)'\]/g, (all, x, sp, y) => { const f = (t) => (/^[A-Z]/.test(t) && look(t)) ? look(t).replace(/'/g, "\\'") : t; return "['" + f(x) + "'," + sp + "'" + f(y) + "']"; });
   return tpl;

@@ -56,7 +56,7 @@ const map = {}; let before = 0, after = 0;
     let t = I18N.apply(a[0], dict);
     t = t.replace(/(https:\/\/solid-sound\.net)?\/en\/(wiki\/)?(?=['"])/g, (x, host, w) => (host || '') + '/' + L + '/' + (w ? WIKI[L] + '/' : ''));
     const back = {}; for (const [k, v] of Object.entries(dict)) if (k.length < 40 && !/[&;]/.test(k)) back[v] = k;
-    const short = {}; for (const [k, v] of Object.entries(dict)) if (k.length < 40) short[k] = v;
+    const short = {}; for (const [k, v] of Object.entries(dict)) if (k.length < 120) short[k] = v;
     const trD = (o) => typeof o === 'string' ? (dict[o] || o) : Array.isArray(o) ? o.map(trD) : o && typeof o === 'object' ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, trD(v)])) : o;
     write('home-app-' + L, t, Object.assign(trD(data), { SS_EN: back, SS_TR: short, SS_LANG: L }));
   }

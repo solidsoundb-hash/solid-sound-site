@@ -119,7 +119,8 @@ function ss_rk_home_catalog( $limit = 12 ) {
 		$img = get_the_post_thumbnail_url( $id, 'woocommerce_thumbnail' );
 		$txt = get_post_field( 'post_excerpt', $id ) . ' ' . get_post_field( 'post_content', $id );
 		$mp3 = preg_match( '#https?://[^\s"\'\]]+?\.mp3#i', $txt, $m ) ? $m[0] : '';
-		$badge = array( 'featured' => "Editor's pick", 'best' => 'Best seller', 'trending' => 'Trending' );
+		$tr = function_exists( 'ss_home_t' ) ? 'ss_home_t' : 'strval';
+		$badge = array( 'featured' => $tr( "Editor's pick" ), 'best' => $tr( 'Best seller' ), 'trending' => $tr( 'Trending' ) );
 		$out[] = array(
 			'id' => 'p' . $id, 'pid' => $id, 'name' => $p->get_name(), 't' => $t, 'genre' => $genre ? $genre : ucfirst( $t ),
 			'sub' => $genre ? $genre : '', 'meta' => $meta ? implode( ' · ', $meta ) : ( $genre ? $genre : ucfirst( $t ) ),

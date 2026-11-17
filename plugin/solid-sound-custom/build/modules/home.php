@@ -23,6 +23,22 @@ function ss_home_lang() {
 	return $l;
 }
 
+/* small texts printed by PHP on the home (slogan pill, "N templates match", ranking badges) */
+function ss_home_t( $en ) {
+	static $T = array(
+		'Learn · Create · Release' => array( 'ua' => 'Вчись · Створюй · Випускай', 'de' => 'Lernen · Erschaffen · Veröffentlichen', 'fr' => 'Apprendre · Créer · Publier', 'es' => 'Aprende · Crea · Publica', 'it' => 'Impara · Crea · Pubblica', 'pt' => 'Aprenda · Crie · Lance' ),
+		'Closest to your choice' => array( 'ua' => 'Найближче до вашого вибору', 'de' => 'Am nächsten an deiner Auswahl', 'fr' => 'Le plus proche de votre choix', 'es' => 'Lo más cercano a tu elección', 'it' => 'Il più vicino alla tua scelta', 'pt' => 'O mais próximo da sua escolha' ),
+		' template matches' => array( 'ua' => ' шаблон підходить', 'de' => ' Vorlage passt', 'fr' => ' modèle correspond', 'es' => ' plantilla coincide', 'it' => ' template corrisponde', 'pt' => ' modelo combina' ),
+		' templates match' => array( 'ua' => ' шаблони підходять', 'de' => ' Vorlagen passen', 'fr' => ' modèles correspondent', 'es' => ' plantillas coinciden', 'it' => ' template corrispondono', 'pt' => ' modelos combinam' ),
+		' — tap to listen' => array( 'ua' => ' — натисніть, щоб послухати', 'de' => ' — zum Anhören tippen', 'fr' => ' — touchez pour écouter', 'es' => ' — toca para escuchar', 'it' => ' — tocca per ascoltare', 'pt' => ' — toque para ouvir' ),
+		"Editor's pick" => array( 'ua' => 'Вибір редакції', 'de' => 'Empfehlung', 'fr' => 'Choix de l’équipe', 'es' => 'Elección del editor', 'it' => 'Scelta della redazione', 'pt' => 'Escolha do editor' ),
+		'Best seller' => array( 'ua' => 'Хіт продажів', 'de' => 'Bestseller', 'fr' => 'Meilleure vente', 'es' => 'Más vendido', 'it' => 'Più venduto', 'pt' => 'Mais vendido' ),
+		'Trending' => array( 'ua' => 'У тренді', 'de' => 'Im Trend', 'fr' => 'Tendance', 'es' => 'Tendencia', 'it' => 'Di tendenza', 'pt' => 'Em alta' ),
+	);
+	$l = function_exists( 'ss_home_lang' ) ? ss_home_lang() : '';
+	return ( $l && isset( $T[ $en ][ $l ] ) ) ? $T[ $en ][ $l ] : $en;
+}
+
 function ss_home_is_app_page() {
 	if ( is_admin() || ! is_singular( 'page' ) ) return false;
 	if ( '' !== ss_home_lang() ) return true;

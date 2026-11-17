@@ -13,7 +13,8 @@
   var cache=null, panel=null, aud=null, micOn=false, micMsg='', aiOn=true;
   try{ aiOn=localStorage.getItem('ssAiOn')!=='0'; }catch(x){}
   window.ssAIon=function(){ return aiOn; };
-  function phText(){
+  function phText(){ return (window.ssT||String)(phText0()); }
+  function phText0(){
     var m=innerWidth<761;
     if(micOn) return m ? 'Speak now…' : 'Listening… speak now (tap the mic again to stop)';
     if(micMsg) return micMsg;

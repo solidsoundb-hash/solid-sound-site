@@ -352,5 +352,11 @@
 "Sound design for video": "Саунд-дизайн для відео",
 "Atmospheres, effects and final mix": "Атмосфери, ефекти і фінальне зведення",
 "Audio cleanup & restoration": "Очищення і реставрація звуку",
-"Cleanup, restoration and mix": "Очищення, реставрація і зведення"
+"Cleanup, restoration and mix": "Очищення, реставрація і зведення",
+"Speak now…": "Говоріть…",
+"Listening… speak now (tap the mic again to stop)": "Слухаю… говоріть (натисніть мікрофон ще раз, щоб зупинити)",
+"Ask AI…": "Запитайте AI…",
+"AI search on: describe it, e.g. “dark techno, 130 BPM, like Anyma + mastering”": "AI-пошук увімкнено: опишіть, напр. «dark techno, 130 BPM, як Anyma + мастеринг»",
+"Search…": "Пошук…",
+"Search products and services (AI off)": "Пошук товарів і послуг (AI вимкнено)"
 }
