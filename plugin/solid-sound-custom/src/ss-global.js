@@ -167,7 +167,7 @@ var css=[
 ' #ssg form{height:44px;margin:0;gap:3px;padding:0 4px 0 10px}#ssg form > svg{display:none}',
 ' #ssg input{font-size:16px!important}',
 ' #ssg .g-b{width:32px;height:32px}#ssg .g-find{display:none}',
-' #ssg .ss-ai{font-size:10px;padding:2px 5px}',
+' #ssg .ss-ai{font-size:12px;padding:3px 6px}',
 ' #ssg .g-msign{display:flex;width:44px;height:44px;border-radius:12px;background:#F59E0B;color:#111;align-items:center;justify-content:center}',
 ' #ssg .g-sbtn{display:flex;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#131B2E;color:#fff;align-items:center;justify-content:center;padding:0;cursor:pointer}',
 ' #ssg .g-in > form{display:none}',
@@ -280,6 +280,13 @@ function ssA11y(){
     if(i.id && D.querySelector('label[for="'+(window.CSS&&CSS.escape?CSS.escape(i.id):i.id)+'"]')) return;
     if(i.closest('label')) return;
     var ph=i.getAttribute('placeholder'); if(ph) i.setAttribute('aria-label',ph);
+  }); }catch(e){}
+  /* (QA 17.11) icon-only links/buttons (forum share icons etc.) get a name from their title or class */
+  try{ D.querySelectorAll('a:not([aria-label]),button:not([aria-label])').forEach(function(a){
+    if((a.textContent||'').trim()||a.getAttribute('aria-labelledby')||a.querySelector('img[alt]:not([alt=""])')) return;
+    var t=a.title||'', m=(a.className&&String(a.className).match(/(?:wpf-sb|share)[-_]?(facebook|twitter|x|telegram|whatsapp|linkedin|reddit|pinterest|vk|email|mail|link|copy)/i));
+    if(!t&&m) t='Share: '+m[1].charAt(0).toUpperCase()+m[1].slice(1); if(!t&&/wpf-sb/.test(a.className)) t='Share';
+    if(t) a.setAttribute('aria-label',t);
   }); }catch(e){}
 }
 /* H1 fallback runs LATE (after the theme has rendered its own title) and never duplicates one */

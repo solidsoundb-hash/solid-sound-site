@@ -147,42 +147,42 @@ return array(
   'id' => null
  ),
  'home-app' => array(
-  'f' => 'home-app.16ba21b360.js',
+  'f' => 'home-app.573b63ee72.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-de' => array(
-  'f' => 'home-app-de.498ab39ed9.js',
+  'f' => 'home-app-de.11e69e331f.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-es' => array(
-  'f' => 'home-app-es.884f1d042d.js',
+  'f' => 'home-app-es.28c57aa9f8.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-fr' => array(
-  'f' => 'home-app-fr.2d0830c563.js',
+  'f' => 'home-app-fr.98db3c2aaf.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-it' => array(
-  'f' => 'home-app-it.6bd9b12fbd.js',
+  'f' => 'home-app-it.c6f7e7517f.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-pt' => array(
-  'f' => 'home-app-pt.c66ae8bc47.js',
+  'f' => 'home-app-pt.773410a460.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-ua' => array(
-  'f' => 'home-app-ua.520a026903.js',
+  'f' => 'home-app-ua.5b8afeb01b.js',
   't' => 'js',
   'id' => null
  ),
  'ss-global' => array(
-  'f' => 'ss-global.fdf2c8ceb0.js',
+  'f' => 'ss-global.cc1000ecdd.js',
   't' => 'js',
   'id' => null
  ),
@@ -197,12 +197,12 @@ return array(
   'id' => null
  ),
  'home-css' => array(
-  'f' => 'home-css.00c020ee74.css',
+  'f' => 'home-css.a564a2a1b8.css',
   't' => 'css',
   'id' => null
  ),
  'theme-player-css' => array(
-  'f' => 'theme-player-css.03d5187359.css',
+  'f' => 'theme-player-css.ab66663212.css',
   't' => 'css',
   'id' => null
  ),

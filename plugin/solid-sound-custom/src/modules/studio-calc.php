@@ -80,7 +80,7 @@ function ss_sc_css() {
 		. '.ssc .g{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px;align-items:start}'
 		. '.ssc .card{background:#131B2E;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}'
 		. '.ssc label.t{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#94A3B8;margin:14px 0 8px}'
-		. '.ssc .svc{display:flex;flex-wrap:wrap;gap:8px}.ssc .svc button,.ssc .pk button{border:1px solid rgba(255,255,255,.12);background:#0F1626;color:#E5E7EB;border-radius:999px;padding:9px 14px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}'
+		. '.ssc .svc{display:flex;flex-wrap:wrap;gap:8px}.ssc .svc button,.ssc .pk button{border:1px solid rgba(255,255,255,.12);background:#0F1626;color:#E5E7EB;border-radius:6px;padding:9px 14px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}'
 		. '.ssc .svc button.on,.ssc .pk button.on{border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,.1)}'
 		. '.ssc .pk{display:flex;flex-direction:column;gap:8px}.ssc .pk button{border-radius:12px;text-align:left;display:flex;justify-content:space-between;gap:10px}'
 		. '.ssc input[type=range]{width:100%;accent-color:#F59E0B}.ssc .num{font-size:22px;font-weight:800;color:#fff}'

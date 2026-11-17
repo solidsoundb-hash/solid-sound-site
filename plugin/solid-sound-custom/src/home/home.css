@@ -131,3 +131,6 @@ html.ss-msearch #ss-app header .ss-msrch-wrap{display:flex!important;position:fi
 #ss-app nav[aria-label="App"] > *{flex:1 1 0!important;min-width:0!important}
 #ss-app nav[aria-label="App"] > button[aria-expanded]{display:none!important}
 }
+
+/* (QA 17.11) slider dots are 8 px: a finger-sized invisible hit area around each */
+#ss-app button[aria-label^="Page "]{position:relative}#ss-app button[aria-label^="Page "]::after{content:"";position:absolute;left:-6px;right:-6px;top:-18px;bottom:-18px}

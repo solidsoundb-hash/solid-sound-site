@@ -127,6 +127,11 @@ html:not(.ssw-fail) .mejs-container.wp-audio-shortcode,html:not(.ssw-fail) audio
 .ssp-mprog{display:none;position:absolute;left:0;right:0;top:-1px;height:3px;background:rgba(255,255,255,.08);cursor:pointer}
 .ssp-mprog i{display:block;height:100%;width:0;background:#e09900}
 body.ssp-open{padding-bottom:72px}
+/* (QA 17.11) phone: player above the bottom bar — the last footer links («Cookie settings») must not end up under it */
+@media(max-width:760px){body.ssg-bar-on.ssp-open{padding-bottom:calc(140px + env(safe-area-inset-bottom))!important}}
+/* (QA 17.11) phone: sort select ≥16 px (iPhone zooms the page otherwise), card labels a bit brighter */
+@media(max-width:600px){.w-order select,select[id^="us_grid_order"]{font-size:16px!important}}
+.w-grid .w-text-value{color:#AEB8C9}
 body.ssp-open #tidio-chat-iframe,body.ssp-open #tidio-chat iframe{bottom:76px!important}
 body.ssp-open .w-toplink{bottom:90px!important}
 .ssp-loadbar{position:fixed;top:0;left:0;height:2px;width:0;z-index:100000;background:#e09900;opacity:0;transition:width .4s ease,opacity .3s}
