@@ -13,7 +13,7 @@ function ss_family_css() {
 		. '.ssfam p{margin:0 0 12px;color:#CBD5E1}.ssfam .sig{color:#F59E0B;font:700 15px "Exo 2",system-ui,sans-serif;margin:4px 0 14px}'
 		. '.ssfam .row{display:flex;gap:10px;flex-wrap:wrap}.ssfam a.b{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:6px;font:700 15px "Exo 2",system-ui,sans-serif;text-decoration:none!important}'
 		. '.ssfam a.b1{background:#F59E0B;color:#111!important}.ssfam a.b2{border:1px solid rgba(255,255,255,.18);color:#fff!important;background:transparent}'
-		. '.ssfam .av{float:left;width:56px;height:56px;border-radius:50%;margin:0 14px 6px 0;background:#F59E0B;color:#111;display:flex;align-items:center;justify-content:center;font:800 24px "Exo 2",sans-serif}'
+		. '.ssfam .hd{display:flex;align-items:center;gap:14px;margin:0 0 10px}.ssfam .hd h3{margin:0}.ssfam .av{flex:none;width:52px;height:52px;border-radius:50%;background:#F59E0B;color:#111;display:flex;align-items:center;justify-content:center;font:800 24px "Exo 2",sans-serif}'
 		. '@media(max-width:600px){.ssfam{margin:16px 12px;padding:18px 16px}.ssfam h2,.ssfam h3{font-size:21px}.ssfam a.b{flex:1 1 100%}}';
 }
 
@@ -43,7 +43,7 @@ add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_home_is_app_page' ) || ! ss_home_is_app_page() ) return;
 	$forum = home_url( '/forum/' );
 	$about = 'https://solid-sound.net/en/contacts/';
-	$html = '<div class="ssfam" id="ss-family"><div class="av" aria-hidden="true">G</div><h3>Hi, I’m <span>Grenor</span> 👋</h3>'
+	$html = '<div class="ssfam" id="ss-family"><div class="hd"><div class="av" aria-hidden="true">G</div><h3>Hi, I’m <span>Grenor</span> 👋</h3></div>'
 		. '<p>Solid Sound is not a faceless shop — it’s a small independent studio and a family of producers. I’ve been making music and mixing for 13+ years, and every template here is a real project you can open, learn from and make your own.</p>'
 		. '<p>Got a question, a track you’re proud of, or just want to say hi? Write to us — a real person answers. Welcome to the family.</p>'
 		. '<p class="sig">— Grenor, founder of Solid Sound</p>'
