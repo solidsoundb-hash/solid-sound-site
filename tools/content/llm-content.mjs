@@ -52,9 +52,15 @@ Group them by type, and after each group one line in Russian: which product it f
 const sys = `${RULES}\n\nFACTS — products (popular first):\n${await products()}\n\nFACTS — offers:\n${read('docs/offers.md')}\n\nFACTS — what customers need:\n${read('docs/customer-needs.md')}\n\nFACTS — robots' summary:\n${read('docs/robots-summary.md')}`;
 
 const t0 = Date.now();
+/* streamed (17.11): on a CPU robot the 7B model needs >5 min, and a non-streamed request hit Node's 300 s header timeout */
 const r = await fetch(HOST + '/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ model: MODEL, stream: false, options: { temperature: 0.8, num_ctx: 8192 }, messages: [{ role: 'system', content: sys }, { role: 'user', content: TASKS[TASK] || TASKS.hooks }] }) });
-const j = await r.json();
-const text = (j.message && j.message.content) || '(модель не ответила)';
+  body: JSON.stringify({ model: MODEL, stream: true, options: { temperature: 0.8, num_ctx: 8192 }, messages: [{ role: 'system', content: sys }, { role: 'user', content: TASKS[TASK] || TASKS.hooks }] }) });
+let text = '', buf = '';
+const dec = new TextDecoder();
+for await (const chunk of r.body) {
+  buf += dec.decode(chunk, { stream: true }); let i;
+  while ((i = buf.indexOf('\n')) >= 0) { const line = buf.slice(0, i).trim(); buf = buf.slice(i + 1); if (!line) continue; try { const j = JSON.parse(line); if (j.message && j.message.content) text += j.message.content; } catch { /* partial line */ } }
+}
+if (!text.trim()) text = '(модель не ответила)';
 fs.writeFileSync(OUT, `\n## ${({ reels: 'Ролики (сценарии)', captions: 'Подписи для Instagram', youtube: 'YouTube', email: 'Письмо подписчикам', community: 'Темы для форума (семья)', hooks: 'Цепляющие первые фразы' })[TASK] || TASK}\n\n_Черновик локальной нейросети (${MODEL}, ${Math.round((Date.now() - t0) / 60000)} мин). Claude проверяет и доводит._\n\n${text.trim()}\n`);
 console.log('ok', TASK, text.length);

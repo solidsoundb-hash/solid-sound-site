@@ -41,9 +41,11 @@ const PROMPT = 'Ты строгий дизайнер-тестировщик. Э�
 async function ask(file) {
   const img = fs.readFileSync(file).toString('base64');
   const r = await fetch(HOST + '/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: MODEL, stream: false, format: 'json', options: { temperature: 0 }, messages: [{ role: 'user', content: PROMPT, images: [img] }] }) });
-  const j = await r.json();
-  try { return (JSON.parse(j.message.content).defects || []).filter(d => d && d.what); } catch (e) { return []; }
+    body: JSON.stringify({ model: MODEL, stream: true, format: 'json', options: { temperature: 0 }, messages: [{ role: 'user', content: PROMPT, images: [img] }] }) });
+  /* streamed: a slow CPU answer must not hit Node's 300 s header timeout */
+  let text = '', buf = ''; const dec = new TextDecoder();
+  for await (const chunk of r.body) { buf += dec.decode(chunk, { stream: true }); let i; while ((i = buf.indexOf('\n')) >= 0) { const line = buf.slice(0, i).trim(); buf = buf.slice(i + 1); if (!line) continue; try { const j = JSON.parse(line); if (j.message && j.message.content) text += j.message.content; } catch (e) {} } }
+  try { return (JSON.parse(text).defects || []).filter(d => d && d.what); } catch (e) { return []; }
 }
 
 (async () => {
