@@ -141,12 +141,13 @@ var css=[
 '#ssg .g-lang{font-weight:700;font-size:13px;font-family:inherit;color:#fff;padding:6px 8px;border-radius:8px}',
 '#ssg .g-lc,#ssg-sheet .g-lc{display:inline-block;min-width:28px;font-weight:800;color:#F59E0B}#ssg .g-dd a.cur{background:#1A2540;color:#F59E0B}.ss-flags{display:none!important}',
 '#ssg .g-cnt{position:absolute;top:0;right:10px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#F59E0B;color:#111;font-weight:800;font-size:10px;line-height:16px;font-family:inherit;text-align:center}',
-'#ssg .g-burger,#ssg .g-msign{display:none}',
+'#ssg .g-burger,#ssg .g-msign,#ssg .g-sbtn{display:none}',
 'html,body{overflow-x:clip!important}',
 '#ssg-bar{display:none}',
 '#ssg-promo{display:flex;align-items:center;justify-content:center;gap:4px 10px;white-space:nowrap;min-height:36px;padding:6px 12px;box-sizing:border-box;background:linear-gradient(180deg,#0D1527,#0B1220);border-bottom:1px solid rgba(255,255,255,.06);color:#CBD5E1!important;text-decoration:none!important;font:13px/1.45 "Exo 2",system-ui,sans-serif;text-align:center}',
 '#ssg-promo b{color:#fff;font-variant-numeric:tabular-nums}#ssg-promo .p-b{padding:2px 8px;border-radius:6px;background:#F59E0B;color:#111;font-size:11px;font-weight:800;letter-spacing:.08em}#ssg-promo .p-c{color:#F59E0B;font-weight:700}',
-'@media (max-width:760px){#ssg-promo{display:none}}',
+'#ssg-promo .p-sh{display:none}',
+'@media (max-width:760px){#ssg-promo{font-size:12.5px;gap:4px 8px;min-height:34px;padding:5px 8px}#ssg-promo .p-long{display:none}#ssg-promo .p-sh{display:inline}#ssg-promo .p-b{font-size:10.5px;padding:2px 6px}}',
 '#ssg-sheet{position:fixed;inset:0;z-index:99995;display:none}#ssg-sheet.open{display:block}',
 '#ssg-sheet .s-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}',
 '#ssg-sheet .s-p{position:absolute;right:0;top:0;bottom:0;width:min(340px,88vw);background:#131B2E;overflow:auto;padding:14px 12px calc(90px + env(safe-area-inset-bottom));box-shadow:-20px 0 50px rgba(0,0,0,.6);font-family:"Exo 2",system-ui,sans-serif}',
@@ -168,6 +169,10 @@ var css=[
 ' #ssg .g-b{width:32px;height:32px}#ssg .g-find{display:none}',
 ' #ssg .ss-ai{font-size:10px;padding:2px 5px}',
 ' #ssg .g-msign{display:flex;width:44px;height:44px;border-radius:12px;background:#F59E0B;color:#111;align-items:center;justify-content:center}',
+' #ssg .g-sbtn{display:flex;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#131B2E;color:#fff;align-items:center;justify-content:center;padding:0;cursor:pointer}',
+' #ssg .g-in > form{display:none}',
+' html.ssg-msearch #ssg .g-in > form{display:flex;position:fixed;left:10px;right:10px;top:var(--ssg-ms-top,70px);z-index:99990;height:52px;padding:0 6px 0 12px;background:#090E17;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 40px rgba(0,0,0,.6)}',
+' html.ssg-msearch #ssg .g-in > form > svg{display:block}',
 ' #ssg .g-burger{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#131B2E;color:#fff;align-items:center;justify-content:center}',
 ' #ssg-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9500;background:#1E2630;border-top:1px solid rgba(255,255,255,.08);padding:4px 2px env(safe-area-inset-bottom);font-family:"Exo 2",system-ui,sans-serif}',
 ' #ssg-bar a,#ssg-bar button{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border:0;background:transparent;color:#CBD5E1!important;font-weight:600;font-size:11px;line-height:1.1;font-family:inherit;text-decoration:none!important}',
@@ -231,7 +236,7 @@ var head=tag('div',{'class':'g-in'},
   tag('a',{'class':'g-logo',href:L+'/','aria-label':'Solid Sound home'},tag('svg',{viewBox:'0 0 341 230',role:'img','aria-hidden':'true'},tag('path',{fill:'#F59E0B','fill-rule':'evenodd',d:LOGO})))+
   tag('nav',{'class':'g-nav','aria-label':'Main'},navHtml())+
   tag('form',{role:'search',onsubmit:'return false'},ico(I.search,18)+tag('label',{'for':'top-q',style:'position:absolute;left:-9999px'},'Search')+tag('input',{id:'top-q',type:'search',enterkeyhint:'search',autocomplete:'off',placeholder:'Search'})+tag('span',{'class':'ss-ai',role:'button',tabindex:'0','aria-label':'AI search'},'AI')+tag('button',{type:'button','class':'g-b ss-mic','aria-label':'Voice search'},ico(I.mic,20))+tag('button',{type:'button','class':'g-b g-ref','aria-label':'Match by reference track',title:'Match by reference track'},ico(I.wave,20))+tag('button',{type:'button','class':'g-find'},'Find'))+
-  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
+  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+tag('button',{type:'button','class':'g-sbtn','aria-label':'Search','aria-expanded':'false'},ico(I.search,20))+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
 );
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
@@ -242,7 +247,7 @@ function sheetHtml(){
 }
 var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/sell/'],['Saved','fav',FAV.h]];
 if(LG) BAR.forEach(function(b){ b[2]=tr(b[2]); });
-var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('')+tag('button',{type:'button','class':'g-sheet-open','aria-label':'Menu'},ico(I.menu,22)+'Menu');
+var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('');
 
 /* (13.11.2026) keep the cart badge (header + bottom bar) in sync when WooCommerce updates the mini-cart via AJAX */
 window.ssCartPaint=cartPaint;
@@ -313,7 +318,7 @@ function promoLeft(){ var t=Math.max(0,PROMO_END-Date.now()), d=Math.floor(t/864
 function promo(canvas,hd){
   if(Date.now()>PROMO_END) return;
   var p=D.createElement('a'); p.id='ssg-promo'; p.href=L+'/all-products/';
-  p.innerHTML=tag('span',{'class':'p-b'},'BLACK MONTH')+tag('span',{},tag('b',{},'\u221250%')+' on all Ableton templates &amp; Serum presets \u00b7 ends in '+tag('b',{'class':'p-t'},promoLeft()))+tag('span',{'class':'p-c'},'Shop the sale \u2192');
+  p.innerHTML=tag('span',{'class':'p-b'},'BLACK MONTH')+tag('span',{},tag('b',{},'\u221250%')+tag('span',{'class':'p-long'},' on all Ableton templates &amp; Serum presets \u00b7 ends in ')+tag('span',{'class':'p-sh'},' \u00b7 ')+tag('b',{'class':'p-t'},promoLeft()))+tag('span',{'class':'p-c'},'Shop'+tag('span',{'class':'p-long'},' the sale')+' \u2192');
   canvas.insertBefore(p,hd);
   setInterval(function(){ var t=p.querySelector('.p-t'); if(t) t.textContent=promoLeft(); },60000);
 }
@@ -329,13 +334,17 @@ function wire(hd,sh){
       go(b.getAttribute('data-h')); return; }
     if(b){ /* hover already opened it: the first click keeps it open (owner/QA 17.11: «FAQ ничего не делает») */ var it=b.parentNode, on=!it.classList.contains('open')||(matchMedia('(hover:hover) and (pointer:fine)').matches&&!it.dataset.clk); it.dataset.clk=on?'1':''; hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); if(on) it.classList.add('open'); b.setAttribute('aria-expanded',on ? 'true' : 'false'); e.preventDefault(); return; }
     if(e.target.closest('.g-burger')){ openSheet(true); }
+    var sb=e.target.closest('.g-sbtn'); if(sb){ e.preventDefault(); msearch(!D.documentElement.classList.contains('ssg-msearch')); }
   });
   hd.querySelectorAll('.g-nav .g-it').forEach(function(it){ if(!it.querySelector('.g-dd')) return; var tm; it.addEventListener('mouseenter',function(){ if(matchMedia('(hover:hover)').matches){ clearTimeout(tm); hd.querySelectorAll('.g-it.open').forEach(function(x){ if(x!==it) x.classList.remove('open'); }); it.classList.add('open'); } }); it.addEventListener('mouseleave',function(){ it.dataset.clk=''; if(matchMedia('(hover:hover)').matches){ tm=setTimeout(function(){ it.classList.remove('open'); },180); } }); });
   D.addEventListener('click',function(e){ if(!e.target.closest('#ssg .g-it')) hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); });
+  function msearch(on){ D.documentElement.classList.toggle('ssg-msearch',on); var sb=hd.querySelector('.g-sbtn'); if(sb){ sb.setAttribute('aria-expanded',on?'true':'false'); sb.setAttribute('aria-label',on?'Close search':'Search'); sb.innerHTML=ico(on?I.close:I.search,20); }
+    if(on){ D.documentElement.style.setProperty('--ssg-ms-top',Math.max(8,Math.round(hd.getBoundingClientRect().bottom)+6)+'px'); var q=D.getElementById('top-q'); setTimeout(function(){ try{ q.focus(); }catch(x){} },30); } }
+  D.addEventListener('click',function(e){ if(D.documentElement.classList.contains('ssg-msearch') && !e.target.closest('#ssg form,.g-sbtn,#ss-ai-panel')) msearch(false); },true);
   function openSheet(on){ sh.classList.toggle('open',on); D.documentElement.style.overflow=on ? 'hidden' : ''; var bb=hd.querySelector('.g-burger'); if(bb) bb.setAttribute('aria-expanded',on ? 'true' : 'false'); }
   sh.addEventListener('click',function(e){ if(e.target.closest('.s-bg,.s-x')) openSheet(false); else if(e.target.closest('a')) openSheet(false); });
   D.addEventListener('click',function(e){ if(e.target.closest('#ssg-bar .g-sheet-open')) openSheet(true); });
-  D.addEventListener('keydown',function(e){ if(e.key==='Escape'){ openSheet(false); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); } });
+  D.addEventListener('keydown',function(e){ if(e.key==='Escape'){ openSheet(false); msearch(false); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); } });
   /* links in our header always do a full load (the player keeps the track) */
   /* menu links switch pages without a reload while the player is playing (music keeps going);
      only the home page (its own app) still loads fully, and the player resumes there */
