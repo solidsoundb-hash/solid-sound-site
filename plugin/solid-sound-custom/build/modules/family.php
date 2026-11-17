@@ -29,7 +29,7 @@ add_action( 'woocommerce_thankyou', function ( $oid ) {
 	echo '<div class="ssfam" role="status"><h2>Welcome to the Solid family' . ( $name ? ', <span>' . esc_html( $name ) . '</span>' : '' ) . ' 🧡</h2>'
 		. '<p>Thank you — you just supported a small independent studio, and it truly means a lot to us. Your files are ready: download them below or anytime in <b>My account → Downloads</b>.</p>'
 		. '<p>Stuck on something, or want to show us what you made with it? Write to us or post it in the community — a real person answers, not a bot. We love hearing your tracks.</p>'
-		. '<p class="sig">— Grenor &amp; the Solid Sound team</p>'
+		. '<p class="sig">— the Solid Sound team</p>'
 		. '<div class="row"><a class="b b1" href="' . esc_url( $dl ) . '">My downloads</a><a class="b b2" href="' . esc_url( $forum ) . '">Say hi in the community</a></div></div>';
 	/* a short burst of confetti, once (skipped for "reduce motion") */
 	echo '<script>(function(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;try{if(sessionStorage.getItem("ss_conf_' . (int) $oid . '"))return;sessionStorage.setItem("ss_conf_' . (int) $oid . '","1")}catch(e){}'
@@ -38,8 +38,10 @@ add_action( 'woocommerce_thankyou', function ( $oid ) {
 		. 'var t0=performance.now();function f(t){var k=(t-t0)/1000;x.clearRect(0,0,W,H);P.forEach(function(p){p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.globalAlpha=Math.max(0,1-k/2.6);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});if(k<2.6)requestAnimationFrame(f);else c.remove()}requestAnimationFrame(f)})();</script>';
 }, 5 );
 
-/* ---------- 2. home: a personal note next to the reviews ---------- */
+/* ---------- 2. home: a personal note next to the reviews ----------
+   OFF (owner 17.11.2026: «Про меня ничего не нужно пока что»). Kept for later: set SS_FAMILY_NOTE true. */
 add_action( 'wp_footer', function () {
+	if ( ! defined( 'SS_FAMILY_NOTE' ) || ! SS_FAMILY_NOTE ) return;
 	if ( ! function_exists( 'ss_home_is_app_page' ) || ! ss_home_is_app_page() ) return;
 	$forum = home_url( '/forum/' );
 	$about = 'https://solid-sound.net/en/contacts/';
