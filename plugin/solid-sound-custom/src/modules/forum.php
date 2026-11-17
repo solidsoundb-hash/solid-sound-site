@@ -180,7 +180,13 @@ function apply(map){Object.keys(map).forEach(function(id){var box=document.query
 function run(){if(off)return;var ids=[].map.call(document.querySelectorAll('.ss-fr[data-pid]:not([data-done]):not([data-asked])'),function(e){e.dataset.asked=1;return e.getAttribute('data-pid')});
  for(var i=0;i<ids.length;i+=15){var fd=new FormData();fd.append('action','ss_fr_tr');fd.append('lang',lang);fd.append('ids',ids.slice(i,i+15).join(','));fetch(AJAX,{method:'POST',body:fd,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){if(j&&j.success)apply(j.data)}).catch(function(){})}}
 function picker(){var w=document.querySelector('#wpforo #wpforo-wrap');if(!w||document.querySelector('.ss-fr-lang'))return;var d=document.createElement('div');d.className='ss-fr-lang';var opts=Object.keys(L).map(function(k){return '<option value="'+k+'"'+(k===lang?' selected':'')+'>'+L[k]+'</option>'}).join('');d.innerHTML='<span>🌐 Read the forum in</span><select aria-label="Forum language">'+opts+'<option value="off"'+(off?' selected':'')+'>Original (no translation)</option></select>';d.querySelector('select').onchange=function(){if(this.value==='off'){set('ss_fr_off','1')}else{set('ss_fr_off','0');set('ss_fr_lang',this.value)}location.reload()};w.insertBefore(d,w.firstChild)}
-function go(){picker();run()}
+var TR=<?php echo wp_json_encode( (array) include __DIR__ . '/forum-i18n.php' ); ?>;
+/* interface in the reader's language: exact texts of menus, sections, labels (owner 17.11: «На форуме не работает перевод») */
+function ui(){var d=TR[lang];if(!d||off)return;var root=document.getElementById('wpforo');if(!root)return;
+ var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n,k;while((n=w.nextNode())){k=n.nodeValue.trim();if(k&&d[k])n.nodeValue=n.nodeValue.replace(k,d[k]);}
+ root.querySelectorAll('input[placeholder]').forEach(function(i){var t=d[i.placeholder.trim()];if(t)i.placeholder=t;});}
+var uiT=0;function uiLater(){if(uiT)return;uiT=requestAnimationFrame(function(){uiT=0;ui();});}
+function go(){picker();run();ui();var r=document.getElementById('wpforo');if(r&&window.MutationObserver)new MutationObserver(uiLater).observe(r,{childList:true,subtree:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 })();</script>
 	<?php
