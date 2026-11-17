@@ -82,6 +82,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
+      - name: "ffmpeg for the ears (17.11 - the runner image has none)"
+        if: contains(matrix.parts, 'ears')
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null && ffmpeg -version | head -1
       - name: Robot ${{ matrix.name }} (${{ matrix.parts }})
         timeout-minutes: 140
         env:

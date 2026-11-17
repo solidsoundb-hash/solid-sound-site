@@ -24,6 +24,9 @@ add_action( 'wp_footer', function () {
 @media(max-width:767px){.w-grid.layout_195 .w-grid-item-h>.ss-mixup{grid-column:1/-1}}
 .ssh .ssh-card .ssh-buyb{display:flex;flex-direction:column;gap:10px;margin-top:auto;padding-top:2px}
 .ssh .ssh-mix{border:0!important;padding:0!important;margin:0 auto 0 0!important;font-size:13px!important;gap:6px!important;white-space:nowrap}.ssh .ssh-row .ssh-mix{margin:0 6px!important}.ssh .ssh-card{container-type:inline-size}@container (max-width:300px){.ssh-mx-add{display:none}}
+/* (QA 17.11) a narrow card (phone): tag + "mixing" + buttons do not fit one line and the buttons spilled onto the next card —
+   the buttons go to their own line in EVERY narrow card, so all cards keep the same height */
+@container (max-width:340px){.ssh .ssh-row{flex-wrap:wrap!important;row-gap:8px}.ssh .ssh-row .ssh-acts{flex:1 0 100%;display:flex;justify-content:flex-end;align-items:center;gap:8px}}
 .ssh .ssh-mix i{flex:none;width:18px;height:18px;border-radius:4px;border:1.5px solid rgba(255,255,255,.5);background:#fff;display:flex;align-items:center;justify-content:center}
 .ssh .ssh-mix.on i{background:#f59e0b;border-color:#f59e0b}.ssh .ssh-mix.on i:after{content:'';width:5px;height:9px;border:solid #111;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
 .ss-cic{display:inline-block;width:20px;height:20px;margin:-3px 8px 0 0;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}

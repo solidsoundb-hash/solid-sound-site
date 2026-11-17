@@ -49,6 +49,9 @@ jobs:
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
         if: steps.mode.outputs.skip != '1'
+      - name: "ffmpeg for the ears"
+        if: steps.mode.outputs.skip != '1' && steps.mode.outputs.mode != 'smoke'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
       - name: Run the QA bot
         if: steps.mode.outputs.skip != '1'
         timeout-minutes: 160

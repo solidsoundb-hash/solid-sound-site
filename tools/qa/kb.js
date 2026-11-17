@@ -253,7 +253,7 @@ function check(f, ctx) {
   const now = Date.now();
   for (const pr of PROMOS) if (now > new Date(pr.end).getTime() && pr.re.test(f.textHead)) add('shop-promo-expired', `${pr.name} закончилась ${pr.end.slice(0, 10)}, но текст на странице есть.`, [], 'promo|' + pr.name);
   if (/(ends in|осталось|залишилось)\s*0d\s*0h|00\s*:\s*00\s*:\s*00/i.test(f.textHead)) add('shop-promo-expired', 'Таймер показывает ноль.', [], 'timer0');
-  if (f.zero && !/free|безкошт|бесплат|starter|\bfree\b|gratis|kostenlos|gratuit/i.test(f.zero)) add('shop-zero-price', `Текст: «${f.zero}».`, [], 'zero|' + p);
+  if (f.zero && !/free|безкошт|бесплат|starter|\bfree\b|gratis|kostenlos|gratuit|bonus|balance|wallet|credit|баланс|бонус|discount|saved|total|subtotal/i.test(f.zero)) /* 17.11: «Bonus balance: $0.00» is the customer's bonus, not a product */ add('shop-zero-price', `Текст: «${f.zero}».`, [], 'zero|' + p);
   const yr = new Date().getFullYear(); if (f.years.length && Math.max(...f.years) < yr) add('shop-old-year', `В подвале © ${Math.max(...f.years)}.`, [], 'year');
   // accessibility
   list('a11y-img-alt', f.imgs.filter(i => (i.alt === null) && i.role !== 'presentation' && i.aria !== 'true' && i.w > 40).map(i => i.src.split('/').pop().slice(0, 60)), '', 'alt|' + p);

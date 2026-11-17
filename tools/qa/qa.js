@@ -198,7 +198,7 @@ async function facts(page) {
       account: txt(document.querySelector('#ssg .g-right .g-it > .g-a[aria-haspopup], #ssg .g-right a.g-a[href*="my-account"]') || document.createElement('i')),
     };
     const links = [...document.querySelectorAll('a[href]')].filter(a => a.href.startsWith(location.origin)).map(a => ({ h: a.href.split('#')[0], t: txt(a).slice(0, 40) }));
-    const anchors = [...document.querySelectorAll('a[href^="#"]')].filter(vis).map(a => a.getAttribute('href')).filter(h => h.length > 1 && !/^#(\/|!|top$|0$|account$)/.test(h)).filter(h => { try { return !document.getElementById(decodeURIComponent(h.slice(1))) && !document.querySelector('[name="' + h.slice(1).replace(/"/g, '') + '"]'); } catch (e) { return false; } });
+    const anchors = [...document.querySelectorAll('a[href^="#"]:not([data-chat]):not([role=button])')].filter(vis).map(a => a.getAttribute('href')).filter(h => h.length > 1 && !/^#(\/|!|top$|0$|account$)/.test(h)).filter(h => { try { return !document.getElementById(decodeURIComponent(h.slice(1))) && !document.querySelector('[name="' + h.slice(1).replace(/"/g, '') + '"]'); } catch (e) { return false; } });
     // button shapes: the house style is a rounded rectangle (corner radius 8–12px), not a "pill" or a circle
     const shapes = [];
     document.querySelectorAll('button, a.button, .w-btn, input[type=submit], a[class*="btn"], [role=button]').forEach(e => {
