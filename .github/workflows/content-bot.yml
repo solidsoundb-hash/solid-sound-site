@@ -1,4 +1,4 @@
-# Content combine on GitHub robots (owner 17.11.2026). Every day 6 robots with a local model (Ollama, free) write drafts
+# Content combine on GitHub robots (owner 17.11.2026). Mon / Wed / Fri 6 robots with a local model (Ollama, free) write drafts
 # from real site data: reels, Instagram captions, YouTube, an email, forum topics, hooks.
 # Result: docs/content-auto/<date>.md — Claude (cloud or on HOME-PC) picks the best and polishes it.
 # Start by hand: Actions → Content bot → Run, or a line in .github/content.txt.
@@ -6,7 +6,7 @@ name: Content bot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 3 * * *"
+    - cron: "17 3 * * 1,3,5"   # owner 17.11: mon, wed, fri
   push:
     branches: [main]
     paths: [".github/content.txt"]
