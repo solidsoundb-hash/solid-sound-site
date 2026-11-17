@@ -410,6 +410,9 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
     if(innerWidth>=760) return;
     var signin=document.querySelector('#ss-app a[href="#account"], #ss-app a[aria-label="Account"], #ss-app a[aria-label="Sign in"], #ss-app a[aria-label="My account"]');
     var head=signin&&signin.parentNode;
+    /* logged in: the orange "sign in" arrow becomes a person icon ("My account") */
+    if(signin && window.ssRole && window.ssRole!=='guest' && !signin.ssMe){ signin.ssMe=1; signin.setAttribute('aria-label','My account'); signin.title='My account';
+      signin.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>'; }
     if(head && !head.querySelector('.ss-mh-cart')){
       var a=document.createElement('a'); a.href=CART; a.className='ss-mh-cart'; a.setAttribute('aria-label','Cart');
       a.style.cssText='position:relative;flex:none;order:3;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:#131B2E;color:#fff;display:flex;align-items:center;justify-content:center';
