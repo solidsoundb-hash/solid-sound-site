@@ -1,0 +1,93 @@
+# Reels bot (owner 17.11.2026: «хочу полноценные видосы с голосом — рилсы», «пн ср пт»).
+# Mon / Wed / Fri: 3 vertical Reels 1080x1920 with a voice-over (Piper, free), captions, the product's own music,
+# price and an end card. Scripts: local model (Ollama) from the real store data; prices only from the store.
+# Result: a GitHub release "reels-<date>" with the mp4 files (download on the phone) + docs/content-auto/reels-<date>.md.
+# Nothing is posted anywhere — the owner posts himself.
+name: Reels bot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 4 * * 1,3,5"
+  push:
+    branches: [main]
+    paths: [".github/reels.txt"]
+permissions:
+  contents: write
+concurrency: reels-bot
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Local model (Ollama)
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &) ; sleep 5
+          ollama pull qwen2.5:7b
+      - name: Scripts for today's reels
+        timeout-minutes: 70
+        run: node tools/content/reels-plan.mjs 3 reels.json
+      - uses: actions/upload-artifact@v4
+        with: { name: plan, path: reels.json, retention-days: 7 }
+
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        i: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/download-artifact@v4
+        with: { name: plan }
+      - name: Voice (Piper) and video tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          curl -fsSL -o piper.tgz https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz && tar xzf piper.tgz
+          curl -fsSL -o voice.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/high/en_US-ryan-high.onnx"
+          curl -fsSL -o voice.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/high/en_US-ryan-high.onnx.json"
+      - name: Render reel ${{ matrix.i }}
+        env: { PIPER: piper/piper, PIPER_VOICE: voice.onnx }
+        run: mkdir -p out && node tools/content/reel-render.mjs reels.json ${{ matrix.i }} out/reel-${{ matrix.i }}.mp4
+      - uses: actions/upload-artifact@v4
+        with: { name: "reel-${{ matrix.i }}", path: out, retention-days: 7 }
+
+  publish:
+    needs: [plan, render]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/download-artifact@v4
+        with: { path: got }
+      - name: Release with the videos + a note for the owner
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          D=$(date -u +%F); TAG="reels-$D-$(date -u +%H%M)"
+          ls -R got | head -50
+          python3 - "$D" "$TAG" <<'PY'
+          import json, sys, os
+          d, tag = sys.argv[1], sys.argv[2]
+          rs = json.load(open('got/plan/reels.json'))
+          base = f"https://github.com/${{ github.repository }}/releases/download/{tag}/"
+          L = [f"# Рилсы на {d}", "", "Готовые вертикальные ролики 1080×1920 с голосом. Скачайте на телефон и выложите сами (Instagram, TikTok, YouTube Shorts).", "Цены — с сайта на момент сборки. Ничего не опубликовано автоматически.", ""]
+          for i, r in enumerate(rs):
+              f = f"got/reel-{i}/reel-{i}.mp4"
+              L += [f"## {i+1}. {r.get('title_ru') or r['name']}", ""]
+              L += [f"- **Видео:** {base}reel-{i}.mp4" if os.path.exists(f) else "- **Видео:** робот не справился"]
+              L += [f"- **Товар:** {r['name']} — {r['priceText']}" + (f" (было {r['regText']})" if r.get('regText') else '') + f" · {r['url']}", "", "**Подпись (скопировать):**", "", "```", (r.get('caption') or '').strip(), "", f"🔗 Link in bio · solid-sound.net", (r.get('hashtags') or '').strip(), "```", "", "**Голос в ролике:** " + " / ".join([r['hook'], *r['lines'], r['cta']]), ""]
+          os.makedirs('docs/content-auto', exist_ok=True)
+          open(f'docs/content-auto/reels-{d}.md', 'w').write("\n".join(L) + "\n")
+          PY
+          files=$(ls got/reel-*/reel-*.mp4 2>/dev/null || true)
+          gh release create "$TAG" $files --title "Рилсы $D" --notes-file "docs/content-auto/reels-$D.md" --latest=false
+      - run: |
+          BOT_NAME=reels-bot bash .github/save.sh "Рилсы: $(date -u +%F)" docs/content-auto
