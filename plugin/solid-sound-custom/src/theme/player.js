@@ -132,6 +132,8 @@ var muted=ls('ssp_mute')==='1';audio.muted=muted;
 
 function durOf(){var d=audio.duration;return (isFinite(d)&&d>0)?d:((P.cur&&P.cur.d)||0)}
 function isCur(src){return P.cur&&fileOf(P.cur.src)===fileOf(src)}
+/* Best-sellers row: the track may come from the product (pid) with another file than data-src */
+function isCurLi(li){return !!(P.cur&&(isCur(li.dataset.src||'')||(li.dataset.pid&&String(P.cur.pid||'')===li.dataset.pid)))}
 function load(t,queue,opts){
   opts=opts||{};
   queue=(queue&&queue.length)?queue:[t];
@@ -160,7 +162,7 @@ function playTrack(t,queue,frac){
   if(frac!=null&&!t.d)P.pendingFrac=frac;
   play();
 }
-function setLoading(on){Bar.el&&Bar.el.classList.toggle('is-loading',on);document.querySelectorAll('.ssw').forEach(function(b){b.classList.toggle('is-loading',on&&isCur(b.dataset.src))});document.querySelectorAll('.ss-top-i').forEach(function(li){li.classList.toggle('is-loading',on&&isCur(li.dataset.src||''))})}
+function setLoading(on){Bar.el&&Bar.el.classList.toggle('is-loading',on);document.querySelectorAll('.ssw').forEach(function(b){b.classList.toggle('is-loading',on&&isCur(b.dataset.src))});document.querySelectorAll('.ss-top-i').forEach(function(li){li.classList.toggle('is-loading',on&&isCurLi(li))})}
 audio.addEventListener('loadedmetadata',function(){
   if(P.pendingFrac!=null&&isFinite(audio.duration)){audio.currentTime=P.pendingFrac*audio.duration;P.pendingFrac=null}
   else if(P.pendingSeek!=null){try{audio.currentTime=P.pendingSeek}catch(e){}P.pendingSeek=null}
@@ -195,7 +197,7 @@ function syncAll(){
   var playing=P.cur&&!audio.paused;
   var sp=document.querySelector('.sstb-play'); if(sp){ sp.setAttribute('aria-label', playing && P.cur ? 'Pause' : 'Play all tracks'); sp.classList.toggle('is-playing', !!(playing && P.cur)); }
   document.querySelectorAll('.ssw').forEach(function(b){var on=isCur(b.dataset.src);b.classList.toggle('is-current',!!on);b.classList.toggle('is-playing',!!(on&&playing));if(on)b.classList.add('was-played');else if(b._wave&&b._wave.p){b._wave.setProgress(0);var c=b.querySelector('.ssw-cur');if(c)c.textContent='0:00'}var bt=b.querySelector('.ssw-btn'),bl=on&&playing?'Pause':'Play';if(bt&&bt.getAttribute('aria-label')!==bl)bt.setAttribute('aria-label',bl)});
-  document.querySelectorAll('.ss-top-i').forEach(function(li){li.classList.toggle('is-playing',!!(playing&&isCur(li.dataset.src||'')))});
+  document.querySelectorAll('.ss-top-i').forEach(function(li){li.classList.toggle('is-playing',!!(playing&&isCurLi(li)))});
   Bar.state();
 }
 function save(){

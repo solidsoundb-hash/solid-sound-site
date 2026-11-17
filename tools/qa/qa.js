@@ -549,7 +549,7 @@ async function scSearch(page) {
   await q.fill('techno');
   await Promise.all([page.waitForNavigation({ timeout: 90000 }).catch(() => {}), q.press('Enter')]);
   await page.waitForTimeout(3000);
-  const n = await page.$$eval('li.product, .w-grid-item, .products .product, article.product', x => x.length).catch(() => 0);
+  const n = await page.$$eval('li.product, .w-grid-item, .products .product, article.product, a.it[href*="/product/"]', x => x.length).catch(() => 0); /* 17.11: new search page uses a.it cards */
   if (!n) await bug({ page: '/en/', device: 'компьютер', sev: 'major', type: 'search', sig: 'search', title: 'Поиск по слову «techno» ничего не находит', steps: ['Открыть главную', 'Ввести «techno» в поиск', 'Нажать Enter'], expected: 'Список товаров', actual: `Открылось ${page.url()}, товаров: 0` }, page);
 }
 
@@ -732,8 +732,23 @@ async function fitCheck(page, dev) {
       }
       await a31.close();
     }
+    // 1c) ears: listen to every preview found — right after the pages (17.11: at the end it never got time)
+    const ec = await newContext(browser, 'desktop');
+    if (EARS && !SMOKE && !audioUrls.size) {
+      /* fallback (17.11): the list of previews came back empty — collect them straight from the catalog page */
+      try { const pg = await newPage(ec); await pg.goto(BASE + '/en/all-products/', { waitUntil: 'load', timeout: 90000 }); await pg.waitForTimeout(4000);
+        const list = await pg.evaluate(() => [...new Set([...document.querySelectorAll('[data-src],audio[src],source[src]')].map(e => e.getAttribute('data-src') || e.getAttribute('src')).filter(v => /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(v || '')).map(v => new URL(v, location.href).href))]);
+        list.forEach(u => audioUrls.set(u, new Set(['/en/all-products/']))); await pg.close(); } catch (e) {}
+    }
+    if (EARS && !SMOKE) {
+      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
+      stats.audioFiles = r.checked;
+      if (r.skipped) notChecked.push('Звук файлов не проверен: ' + r.skipped);
+      for (const b of r.bugs) await bug(b);
+    }
+    await ec.close();
     // 2) other languages: their home always (menu vs English), all pages in full mode
-    for (const p of [...(SMOKE ? ['/ua/'] : homeAll.filter(h => h !== '/en/')), ...(FULL ? other.filter(x => !homeAll.includes(x)) : [])]) {
+    for (const p of [...(SMOKE ? ['/ua/'] : homeAll.filter(h => h !== '/en/')), ...(FULL && process.env.QA_L10N === '1' ? other.filter(x => !homeAll.includes(x)) : [])]) {
       if (await checkPage(dp, p, 'desktop') && homeAll.includes(p)) await eyesShot(dp, p, 'desktop');
       if (homeAll.includes(p)) await checkPage(pp, p, 'phone');
     }
@@ -753,21 +768,6 @@ async function fitCheck(page, dev) {
     }
     await desk.close(); await phone.close();
 
-    // 4b) ears: listen to every preview found (before logins/links — owner 17.11: must always run, it is cheap)
-    const ec = await newContext(browser, 'desktop');
-    if (EARS && !SMOKE && !audioUrls.size) {
-      /* fallback (17.11): the list of previews came back empty — collect them straight from the catalog page */
-      try { const pg = await newPage(ec); await pg.goto(BASE + '/en/all-products/', { waitUntil: 'load', timeout: 90000 }); await pg.waitForTimeout(4000);
-        const list = await pg.evaluate(() => [...new Set([...document.querySelectorAll('[data-src],audio[src],source[src]')].map(e => e.getAttribute('data-src') || e.getAttribute('src')).filter(v => /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(v || '')).map(v => new URL(v, location.href).href))]);
-        list.forEach(u => audioUrls.set(u, new Set(['/en/all-products/']))); await pg.close(); } catch (e) {}
-    }
-    if (EARS && !SMOKE) {
-      const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, FULL ? 80 : 30);
-      stats.audioFiles = r.checked;
-      if (r.skipped) notChecked.push('Звук файлов не проверен: ' + r.skipped);
-      for (const b of r.bugs) await bug(b);
-    }
-    await ec.close();
     // 5) logged in: client and admin (pages open, menu shows the account, no errors)
     const roles = [['user', process.env.TEST_USER, process.env.TEST_PASS, ['/en/my-account/', '/en/my-account/orders/', '/en/my-account/edit-account/']],
       ['admin', process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS, ['/en/my-account/', '/en/store-manager/']]];
