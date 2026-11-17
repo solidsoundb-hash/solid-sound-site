@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /* Other languages (owner 17.11.2026): the home page of UA/DE/FR/ES/IT/PT shows the same new app, translated at
-   build time (src/home/i18n/<lang>.json → asset home-app-<lang>). Test first: ?ss_newl=1; then for everyone
+   build time (src/home/i18n/<lang>.json → asset home-app-<lang>). On for everyone since 17.11 (owner: «Все выкладывай»); ?ss_newl=0 shows the old page; option ss_home_l10n=0 turns it off
    with the option ss_home_l10n = 1. Returns the language slug, or '' (English / old page). */
 function ss_home_lang() {
 	static $l = null;
@@ -19,7 +19,7 @@ function ss_home_lang() {
 	if ( is_admin() || ! function_exists( 'pll_current_language' ) || ! is_front_page() ) return $l;
 	$s = (string) pll_current_language( 'slug' );
 	if ( '' === $s || 'en' === $s || ! function_exists( 'ss_asset_has' ) || ! ss_asset_has( 'home-app-' . $s ) ) return $l;
-	if ( isset( $_GET['ss_newl'] ) ? '1' === $_GET['ss_newl'] : '1' === (string) get_option( 'ss_home_l10n', '0' ) ) $l = $s;
+	if ( isset( $_GET['ss_newl'] ) ? '1' === $_GET['ss_newl'] : '1' === (string) get_option( 'ss_home_l10n', '1' ) ) $l = $s;
 	return $l;
 }
 
