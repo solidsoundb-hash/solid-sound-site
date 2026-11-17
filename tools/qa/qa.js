@@ -58,7 +58,12 @@ let shotN = 0;
 const MAX_SHOTS = FULL ? 160 : 60;
 const rel = (u) => { try { const x = new URL(u, BASE); return x.origin === BASE ? x.pathname + x.search : u; } catch (e) { return String(u); } };
 
+/* owner 17.11: translations later — the site is finished in English first. Translation findings are only counted
+   (one line in the report), not listed. QA_L10N=1 brings them back. */
+const L10N_TYPES = /^(untranslated|menulang|langsw|langmiss)$/;
+let l10nSkipped = 0;
 async function bug(b, page, el) {
+  if (process.env.QA_L10N !== '1' && L10N_TYPES.test(b.type || '')) { l10nSkipped++; return { actual: '', more: 0 }; }
   const sig = b.sig || (b.type + '|' + b.title);
   let g = bugs.get(sig);
   if (!g) { g = { sev: b.sev, type: b.type, title: b.title, steps: b.steps || [], expected: b.expected || '', actual: b.actual || '', sig, where: [], devices: [], shot: '' }; bugs.set(sig, g); }
@@ -358,7 +363,10 @@ async function testSound(page, url, dev, max) {
     const exp = await h.evaluate(e => { let c = e; for (let k = 0; k < 8 && c; k++, c = c.parentElement) { const d = c.getAttribute && c.getAttribute('data-src'); if (d && /\.(mp3|wav|ogg|m4a)/i.test(d)) return d; const a = c.querySelector && c.querySelector('audio[src],source[src]'); if (a) return a.getAttribute('src'); } return ''; }).catch(() => '');
     const fn = (x) => decodeURIComponent(String(x).split('?')[0].split('/').pop()).toLowerCase();
     if (exp && playing.length === 1 && fn(playing[0]) !== fn(exp)) await bug({ ...here, sev: 'major', type: 'sound-wrong', sig: 'sndwrong|' + rel(url) + '|' + label, title: `Кнопка ▶ «${label}» включает другой трек`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: `Играет «${fn(exp)}»`, actual: `Играет «${fn(playing[0])}»` }, page, h);
-    if (s1 === s0) await bug({ ...here, sev: 'major', type: 'sound-icon', sig: 'sndicon|' + label.replace(/[^a-z]+/gi, '').slice(0, 20) + '|' + rel(url), title: `Кнопка «${label}» не превращается в ⏸ (паузу), когда трек играет`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Значок меняется на ⏸', actual: 'Трек играет, а на кнопке всё ещё ▶' }, page, h);
+    /* the icon may switch a moment after the sound starts: look again after 1 s; say which button it is (17.11) */
+    const s1b = s1 === s0 ? (await page.waitForTimeout(1000), await btnState(h)) : s1;
+    const who = await h.evaluate(e => e.tagName.toLowerCase() + '.' + String(e.className || '').trim().split(/\s+/).slice(0, 2).join('.') + ' в ' + String((e.closest('[class]') && e.closest('[class]').parentElement || {}).className || '').trim().split(/\s+/)[0]).catch(() => '');
+    if (s1b === s0) await bug({ ...here, sev: 'major', type: 'sound-icon', sig: 'sndicon|' + label.replace(/[^a-z]+/gi, '').slice(0, 20) + '|' + rel(url), title: `Кнопка «${label}» не превращается в ⏸ (паузу), когда трек играет`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать ▶ «${label}»`], expected: 'Значок меняется на ⏸', actual: 'Трек играет, а на кнопке всё ещё ▶' + (who ? ' (кнопка: ' + who + ')' : '') }, page, h);
     // pause with the same button
     let paused = false;
     try { await h.click({ timeout: 5000 }); paused = true; } catch (e) {}
@@ -425,7 +433,10 @@ async function pressEverything(page, url, dev, max) {
     await page.keyboard.press('Escape').catch(() => {});
     const label = (await btnLabel(h)) || `кнопка №${i + 1}`;
     stats.clicks++;
-    const snap = () => h.evaluate(e => { const p = e.parentElement || e; const t = document.body.innerText || ''; let x = 0; for (let i = 0; i < t.length; i += 7) x = (x * 31 + t.charCodeAt(i)) | 0; return (p.outerHTML || '').slice(0, 4000) + '|' + x + '|' + document.querySelectorAll('[role="dialog"]:not([hidden]), .w-popup-wrap.active, .is-open, .open, [aria-expanded="true"]').length; }).catch(() => 'gone');
+    const snap = () => h.evaluate(e => { const p = e.parentElement || e; const t = document.body.innerText || ''; let x = 0; for (let i = 0; i < t.length; i += 7) x = (x * 31 + t.charCodeAt(i)) | 0; return (p.outerHTML || '').slice(0, 4000) + '|' + x + '|' + document.querySelectorAll('[role="dialog"]:not([hidden]), .w-popup-wrap.active, .is-open, .open, [aria-expanded="true"]').length
+      /* carousels: horizontal scroll and slide transforms count as a change (Previous / Next) */
+      + '|' + [...document.querySelectorAll('*')].filter(el => el.scrollWidth > el.clientWidth + 5 && el.clientWidth > 50).slice(0, 60).map(el => Math.round(el.scrollLeft)).join(',')
+      + '|' + [...document.querySelectorAll('[style*="transform"]')].slice(0, 60).map(el => el.style.transform).join(','); }).catch(() => 'gone');
     const before = await snap();
     const e0 = page.qaErrs.length; const y0 = await page.evaluate(() => scrollY).catch(() => 0);
     let clicked = true;
@@ -443,7 +454,9 @@ async function pressEverything(page, url, dev, max) {
     const newErr = page.qaErrs.slice(e0);
     if (newErr.length) await bug({ ...here, sev: 'major', type: 'clickerr', sig: 'clickerr|' + errKey(newErr[0]), title: `После нажатия «${label}» — ошибка в коде`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать «${label}»`], expected: 'Без ошибок', actual: newErr[0] }, page, h);
     const changed = now !== startUrl || Math.abs(y1 - y0) > 5 || after !== before;
-    if (!changed && !newErr.length) await bug({ ...here, sev: 'check', type: 'dead', sig: 'dead|' + rel(url) + '|' + label, title: `Кнопка «${label}» ничего не делает`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать «${label}»`], expected: 'Что-то открывается/меняется', actual: 'Ничего не происходит' }, page, h);
+    /* a tab that is already selected (All / For you) correctly does nothing — not a bug */
+    const already = await h.evaluate(e => /(^|\s)(on|active|cur|is-active|selected|current)(\s|$)/.test(String(e.className || '')) || e.getAttribute('aria-selected') === 'true' || e.getAttribute('aria-pressed') === 'true' || e.getAttribute('aria-current') === 'true' || e.disabled || e.getAttribute('aria-disabled') === 'true').catch(() => false);
+    if (!changed && !already && !newErr.length) await bug({ ...here, sev: 'check', type: 'dead', sig: 'dead|' + rel(url) + '|' + label, title: `Кнопка «${label}» ничего не делает`, steps: [`Открыть ${BASE}${rel(url)}`, `Нажать «${label}»`], expected: 'Что-то открывается/меняется', actual: 'Ничего не происходит' }, page, h);
     await page.keyboard.press('Escape').catch(() => {});
     if (now.split('#')[0] !== startUrl.split('#')[0]) { await open(page, startUrl); await tag(); }
   }
@@ -616,6 +629,7 @@ function writeReport(final = true) {
   const L = [];
   L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : SMOKE ? 'короткая проверка после выкладки' : 'ежедневная проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
   L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, файлов звука ${stats.audioFiles || 0}, ссылок ${stats.links}. Время: ${mins} мин.`);
+  if (l10nSkipped) L.push(`Переводы не проверялись (владелец 17.11: сначала сайт на английском) — пропущено замечаний: ${l10nSkipped}.`);
   L.push(`Найдено: ${SEV.critical} ${cnt('critical')} · ${SEV.major} ${cnt('major')} · ${SEV.minor} ${cnt('minor')} · ${SEV.check} ${cnt('check')}` + (prevSigs ? ` · новых ${list.filter(b => b.isNew).length} · исправлено с прошлого раза ${fixed.length}` : ''), '');
   L.push('Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.', '');
   let n = 0;

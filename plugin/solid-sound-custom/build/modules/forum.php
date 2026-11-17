@@ -89,7 +89,7 @@ add_filter( 'wpforo_content_after', function ( $content, $post = array() ) {
 }, 20, 2 );
 
 function ss_fr_lang_name( $l ) {
-	$n = array( 'en' => 'English', 'uk' => 'Ukrainian', 'ru' => 'Russian', 'de' => 'German', 'fr' => 'French', 'pt' => 'Portuguese', 'es' => 'Spanish', 'it' => 'Italian', 'pl' => 'Polish', 'nl' => 'Dutch', 'tr' => 'Turkish', 'cs' => 'Czech', 'ro' => 'Romanian', 'ja' => 'Japanese', 'zh' => 'Chinese', 'ko' => 'Korean', 'ar' => 'Arabic', 'he' => 'Hebrew', 'sv' => 'Swedish', 'fi' => 'Finnish', 'el' => 'Greek', 'hu' => 'Hungarian', 'bg' => 'Bulgarian', 'sr' => 'Serbian', 'hr' => 'Croatian', 'lt' => 'Lithuanian', 'lv' => 'Latvian', 'et' => 'Estonian', 'ka' => 'Georgian', 'kk' => 'Kazakh' );
+	$n = array( 'en' => 'English', 'uk' => 'Ukrainian', 'de' => 'German', 'fr' => 'French', 'pt' => 'Portuguese', 'es' => 'Spanish', 'it' => 'Italian', 'pl' => 'Polish', 'nl' => 'Dutch', 'tr' => 'Turkish', 'cs' => 'Czech', 'ro' => 'Romanian', 'ja' => 'Japanese', 'zh' => 'Chinese', 'ko' => 'Korean', 'ar' => 'Arabic', 'he' => 'Hebrew', 'sv' => 'Swedish', 'fi' => 'Finnish', 'el' => 'Greek', 'hu' => 'Hungarian', 'bg' => 'Bulgarian', 'sr' => 'Serbian', 'hr' => 'Croatian', 'lt' => 'Lithuanian', 'lv' => 'Latvian', 'et' => 'Estonian', 'ka' => 'Georgian', 'kk' => 'Kazakh' );
 	return $n[ $l ] ?? '';
 }
 function ss_fr_ajax() {
@@ -169,9 +169,9 @@ add_action( 'wp_head', function () {
 
 add_action( 'wp_footer', function () {
 	if ( ! ss_fr_ok() || ! ss_fr_is_page() ) return;
-	$langs = array( 'en' => 'English', 'uk' => 'Українська', 'ru' => 'Русский', 'de' => 'Deutsch', 'fr' => 'Français', 'pt' => 'Português', 'es' => 'Español', 'it' => 'Italiano', 'pl' => 'Polski', 'nl' => 'Nederlands', 'tr' => 'Türkçe' ); ?>
+	$langs = array( 'en' => 'English', 'uk' => 'Українська', 'de' => 'Deutsch', 'fr' => 'Français', 'pt' => 'Português', 'es' => 'Español', 'it' => 'Italiano', 'pl' => 'Polski', 'nl' => 'Nederlands', 'tr' => 'Türkçe' ); ?>
 <script id="ss-forum-js">(function(){
-var AJAX=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,L=<?php echo wp_json_encode( $langs ); ?>,NAMES={en:'English',uk:'Ukrainian',ru:'Russian',de:'German',fr:'French',pt:'Portuguese',es:'Spanish',it:'Italian',pl:'Polish',nl:'Dutch',tr:'Turkish'};
+var AJAX=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,L=<?php echo wp_json_encode( $langs ); ?>,NAMES={en:'English',uk:'Ukrainian',de:'German',fr:'French',pt:'Portuguese',es:'Spanish',it:'Italian',pl:'Polish',nl:'Dutch',tr:'Turkish'};
 function get(k){try{return localStorage.getItem(k)}catch(e){return null}}function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var lang=get('ss_fr_lang')||(navigator.language||'en').slice(0,2).toLowerCase();if(!L[lang])lang='en';
 var off=get('ss_fr_off')==='1';
