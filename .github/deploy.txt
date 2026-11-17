@@ -131,3 +131,4 @@
 127 2026-11-17 06:53:26 home in UA/DE/FR/ES/IT/PT behind ?ss_newl=1 (still hidden), PHP texts
 128 2026-11-17 06:58:14 forum in menu (owner: Форум выведи в меню; Все выкладывай)
 129 2026-11-17 07:04:25 new home on all languages for everyone (owner: Все выкладывай)
+130 2026-11-17 11:13:44 forum interface translation (owner: на форуме не работает перевод)
