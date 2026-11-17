@@ -77,6 +77,9 @@ jobs:
           import json, sys, os
           d, tag = sys.argv[1], sys.argv[2]
           rs = json.load(open('got/plan/reels.json'))
+          S = lambda v: ' '.join(map(str, v)) if isinstance(v, list) else str(v or '')
+          for r in rs:
+              for k in ('caption', 'hashtags', 'title_ru', 'hook'): r[k] = S(r.get(k))
           base = f"https://github.com/${{ github.repository }}/releases/download/{tag}/"
           L = [f"# Рилсы на {d}", "", "Готовые вертикальные ролики 1080×1920 с голосом. Скачайте на телефон и выложите сами (Instagram, TikTok, YouTube Shorts).", "Цены — с сайта на момент сборки. Ничего не опубликовано автоматически.", ""]
           for i, r in enumerate(rs):

@@ -60,6 +60,8 @@ Return JSON: {"hook":"first line, max 9 words, makes a producer stop scrolling",
   s.lines = s.lines.map(String).filter(l => !/[$€£]|\d+\s*%/.test(l)).slice(0, 3);
   if (/[$€£]/.test(s.hook)) s.hook = `Want a ${p.tags[0] || 'techno'} track that sounds finished?`;
   const cta = sale ? `${p.name} is ${money(p.price)} instead of ${money(p.reg)}. Link in bio, solid-sound dot net.` : `Get ${p.name} for ${money(p.price)}. Link in bio, solid-sound dot net.`;
+  const str = (v) => Array.isArray(v) ? v.join(' ') : String(v || ''); /* the model sometimes returns lists */
+  s.caption = str(s.caption); s.hashtags = str(s.hashtags); s.title_ru = str(s.title_ru); s.hook = str(s.hook);
   reels.push({ ...p, priceText: money(p.price), regText: sale ? money(p.reg) : '', hook: s.hook, lines: s.lines, cta, title_ru: s.title_ru || p.name, caption: s.caption || '', hashtags: s.hashtags || '' });
   console.log('ok', p.name);
 }
