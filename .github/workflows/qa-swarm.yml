@@ -4,11 +4,14 @@
 #   - 3 robots: owner's phone (Samsung A31) + languages + scenarios / logins / ears (every sound preview, ffmpeg);
 #   - 9 "neural eyes" robots: a local vision model (Ollama, free) looks at every screenshot;
 #   - the last robot merges everything into one report: qa/latest/report.md.
-# Limit: not GitHub but the hosting — more than ~8 robots on the site at once gives 429/503, so max-parallel 8.
+# Limit: not GitHub but the hosting — 8 robots at once made the home load 15 s (17.11), so at most 3 on the site at once
+# (+ the sound robot, which only downloads files). Neural eyes run on GitHub only and do not touch the site.
 # Start: a line with "swarm" (or «рой») in .github/qa.txt, or by hand (Actions → QA swarm → Run).
 name: QA swarm
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "7 1 * * *"     # every night (owner: грузи роботов по максимуму)
   workflow_call:
   push:
     branches: [main]
@@ -39,7 +42,7 @@ jobs:
     timeout-minutes: 150
     strategy:
       fail-fast: false
-      max-parallel: 8
+      max-parallel: 3     # 17.11: 8 robots at once made the site load 15 s for customers
       matrix:
         shard: [0, 1, 2, 3, 4, 5, 6, 7]
     steps:
@@ -63,8 +66,8 @@ jobs:
         with: { name: "p${{ matrix.shard }}", path: "qa/sw/p${{ matrix.shard }}", retention-days: 7 }
 
   extras:
-    needs: go
-    if: needs.go.outputs.run == '1'
+    needs: [go, pages]
+    if: always() && needs.go.outputs.run == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 150
     strategy:

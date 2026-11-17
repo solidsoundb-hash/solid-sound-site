@@ -770,10 +770,15 @@ function mergeReports(dirs) {
     // 1c) ears: listen to every preview found — right after the pages (17.11: at the end it never got time)
     const ec = await newContext(browser, 'desktop');
     if (EARS && !SMOKE && part('ears') && (!audioUrls.size || process.env.QA_EARS_ALL === '1')) {
-      /* fallback (17.11): the list of previews came back empty — collect them straight from the catalog page */
-      for (const cp of (process.env.QA_EARS_ALL === '1' ? ['/en/all-products/', '/en/templates/', '/en/presets/', '/en/music/', '/en/free/', '/en/'] : ['/en/all-products/'])) try { const pg = await newPage(ec); await pg.goto(BASE + cp, { waitUntil: 'load', timeout: 90000 }); await pg.waitForTimeout(4000);
-        const list = await pg.evaluate(() => [...new Set([...document.querySelectorAll('[data-src],audio[src],source[src]')].map(e => e.getAttribute('data-src') || e.getAttribute('src')).filter(v => /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(v || '')).map(v => new URL(v, location.href).href))]);
-        list.forEach(u => { if (!audioUrls.has(u)) audioUrls.set(u, new Set([cp])); }); await pg.close(); } catch (e) {}
+      /* (17.11) every audio file of the media library (public WP API) — does not depend on the anti-bot page of the hosting */
+      for (let pg = 1; pg <= 20; pg++) {
+        let arr = null;
+        for (let i = 0; i < 5 && !arr; i++) { try { const r = await ec.request.get(`${BASE}/wp-json/wp/v2/media?media_type=audio&per_page=100&page=${pg}&_fields=source_url,post`, { timeout: 60000, headers: { 'User-Agent': UA_DESK } }); if (r.status() === 200) arr = await r.json(); else if (r.status() === 400) arr = []; } catch (e) {} if (!arr) await sleep(8000 * (i + 1)); }
+        if (!arr || !arr.length) break;
+        arr.forEach(m => { const u = m.source_url; if (u && /\.(mp3|wav|ogg|m4a)$/i.test(u) && !audioUrls.has(u)) audioUrls.set(u, new Set([m.post ? `/?p=${m.post}` : '/en/all-products/'])); });
+        if (arr.length < 100) break;
+      }
+      if (!audioUrls.size) notChecked.push('Уши: список звуков не получен (медиатека сайта не ответила)');
     }
     if (EARS && !SMOKE && part('ears')) {
       const r = await EARS.run(audioUrls, async (u) => { for (let i = 0; i < 3; i++) { const x = await ec.request.get(u, { timeout: 120000, headers: { 'User-Agent': UA_DESK } }).catch(() => null); if (x && x.status() === 200) return await x.body(); await sleep(6000 * (i + 1)); } return null; }, +(process.env.QA_EARS_MAX || (FULL ? 80 : 30)));
