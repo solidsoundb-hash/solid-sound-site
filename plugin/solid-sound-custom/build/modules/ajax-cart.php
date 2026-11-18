@@ -44,3 +44,19 @@ document.addEventListener('submit',function(e){
 })();</script>
 	<?php
 }, 45 );
+
+/* Cart page: removing an item takes the server 4–7 s and showed nothing (owner 18.11: «исправь»).
+   Now the row fades at once with "Removing…", and the header count follows as soon as WooCommerce answers. */
+add_action( 'wp_footer', function () {
+	if ( ! function_exists( 'is_cart' ) || ! is_cart() ) return;
+	?>
+<style id="ss-crm-css">.woocommerce-cart-form tr.ss-removing{opacity:.45;pointer-events:none;transition:opacity .2s}
+.woocommerce-cart-form tr.ss-removing td.product-name:after{content:"Removing…";display:block;margin-top:4px;color:#F59E0B;font-weight:700;font-size:13px}
+.woocommerce-cart-form tr.ss-removing a.remove{animation:ss-crm-spin .8s linear infinite}@keyframes ss-crm-spin{to{transform:rotate(360deg)}}</style>
+<script id="ss-crm">(function(){
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.woocommerce-cart-form a.remove');if(!a)return;var tr=a.closest('tr');if(tr)tr.classList.add('ss-removing')},true);
+function sync(){fetch(<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,{credentials:'include',headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(j){if(j&&typeof j.items_count==='number'){try{localStorage.setItem('ss_cart_n',String(j.items_count))}catch(x){}if(window.ssCartPaint)ssCartPaint(j.items_count)}}).catch(function(){})}
+if(window.jQuery)jQuery(document.body).on('updated_cart_totals removed_from_cart updated_wc_div',sync);
+})();</script>
+	<?php
+}, 46 );

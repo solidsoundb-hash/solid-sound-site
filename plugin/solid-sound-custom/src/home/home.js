@@ -258,7 +258,8 @@ document.addEventListener('click',function(e){
     var tabs=r.querySelectorAll('.tasks button'), cards=r.querySelectorAll('.card'), dots=r.querySelectorAll('.dots i');
     i=Math.max(0,Math.min(cards.length-1,i));
     r.querySelector('.track').style.transform='translateX('+(-100*i)+'%)';
-    r.querySelector('.vp').style.height=cards[i].offsetHeight+'px';
+    /* (owner 18.11: «слайды разной высоты — блок ниже прыгает») the window is as tall as the TALLEST card, so nothing below moves */
+    var hmax=0; cards.forEach(function(c){ hmax=Math.max(hmax,c.offsetHeight); }); r.querySelector('.vp').style.height=(hmax||cards[i].offsetHeight)+'px';
     tabs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
     dots.forEach(function(d,k){ d.classList.toggle('on',k===i); });
     r.setAttribute('data-cur',i);
