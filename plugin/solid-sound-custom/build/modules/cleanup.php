@@ -56,3 +56,26 @@ add_action( 'template_redirect', function () {
 	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
 	if ( preg_match( '#^/([a-z]{2}/)?(forum-experimental|experimental)(/|$)#', $p ) ) { wp_safe_redirect( home_url( '/en/' ), 302 ); exit; }
 }, 1 );
+
+/* 4. (18.11.2026, owner) "Forest Spirits" is a friend's project, not ours: remove it completely.
+   Once: every post/page whose slug starts with "forest-spirits" (all languages, with child pages) goes to the WordPress trash.
+   Old links (/en/forest-spirits/, /ua/forest-spirits/ …) lead to the home page with a permanent redirect. */
+add_action( 'init', function () {
+	if ( get_option( 'ss_forest_spirits_removed' ) ) return;
+	global $wpdb;
+	$ids = $wpdb->get_col( $wpdb->prepare(
+		"SELECT ID FROM {$wpdb->posts} WHERE post_name LIKE %s AND post_status NOT IN ('trash','auto-draft','inherit')",
+		$wpdb->esc_like( 'forest-spirits' ) . '%'
+	) );
+	$all = array();
+	foreach ( (array) $ids as $id ) {
+		$all[] = (int) $id;
+		foreach ( get_children( array( 'post_parent' => (int) $id, 'post_type' => 'any', 'fields' => 'ids' ) ) as $c ) $all[] = (int) $c;
+	}
+	foreach ( array_unique( $all ) as $id ) wp_trash_post( $id );
+	update_option( 'ss_forest_spirits_removed', $all ? implode( ',', array_unique( $all ) ) : 'none', false );
+}, 30 );
+add_action( 'template_redirect', function () {
+	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+	if ( preg_match( '#^/([a-z]{2}/)?forest-spirits(-[^/]*)?(/|$)#', $p ) ) { wp_safe_redirect( home_url( '/en/' ), 301 ); exit; }
+}, 0 );
