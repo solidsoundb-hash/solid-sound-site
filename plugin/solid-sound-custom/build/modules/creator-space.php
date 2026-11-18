@@ -144,6 +144,7 @@ function ss_cs_render() {
 		. '<a class="st" href="' . esc_url( ss_cp_url( 'ss-products' ) ) . '"><b>' . (int) $d['review'] . '</b><span>In review</span></a>'
 		. '<a class="st" href="' . esc_url( ss_cp_url( 'ss-earnings' ) ) . '"><b>' . (int) $d['s7'] . ss_cs_delta( $d['s7'], $d['s7p'] ) . '</b><span>Sales · last 7 days</span><svg class="sp" data-v="' . esc_attr( implode( ',', $d['spark_s'] ) ) . '"></svg></a>'
 		. '<a class="st" href="' . esc_url( ss_cp_url( 'ss-earnings' ) ) . '"><b>' . $money( $d['e7'] ) . ss_cs_delta( $d['e7'], $d['e7p'] ) . '</b><span>Your earnings · last 7 days</span><svg class="sp" data-v="' . esc_attr( implode( ',', $d['spark_e'] ) ) . '"></svg></a></div>';
+	$h .= apply_filters( 'ss_cs_after_stats', '', $id, $d ); /* 18.11: wins (modules/kudos.php) */
 	$h .= '<div class="grid"><div>';
 	/* chart */
 	$any = array_sum( wp_list_pluck( $d['days'], 's' ) ) + array_sum( wp_list_pluck( $d['days'], 'p' ) );
@@ -175,6 +176,7 @@ function ss_cs_render() {
 		$h .= '<div class="empty">No products yet. Add your first template, preset pack or track — we review it within 24 hours.</div><a class="btn" href="' . esc_url( $add ) . '">' . ss_cs_ic( 'up' ) . 'Add product</a>';
 	}
 	$h .= '</section></div><div>';
+	$h .= apply_filters( 'ss_cs_side_top', '', $id ); /* 18.11: love from listeners (modules/kudos.php) */
 	/* profile link */
 	if ( $d['store'] ) $h .= '<section class="p">' . $head( 'Your profile page', 'link' ) . '<p class="sub" style="margin:0">Share it in your bio, under videos, in Discord — fans see only your products. Every sale from it counts.</p><div class="lnk"><input readonly value="' . esc_attr( $d['store'] ) . '" aria-label="Your profile page link"><button type="button" class="btn g ss-cs-copy">Copy</button></div></section>';
 	/* payouts */

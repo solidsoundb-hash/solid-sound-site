@@ -5591,6 +5591,7 @@ require_once __DIR__ . '/modules/creator-autofill.php';
 require_once __DIR__ . '/modules/creator-preview.php';
 require_once __DIR__ . '/modules/home-wow.php';
 require_once __DIR__ . '/modules/forum.php';
+require_once __DIR__ . '/modules/kudos.php'; /* 18.11 owner: positive mood — welcome, thank the author, small wins */
 require_once __DIR__ . '/modules/css-files.php';
 require_once __DIR__ . '/modules/antispam.php';
 require_once __DIR__ . '/modules/family.php';
