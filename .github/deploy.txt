@@ -153,3 +153,4 @@
 148: owner 18.11 «Примеры на главной не играют начиная со второго» — fixed phone examples
 149: owner 18.11 «ты все исправил то что нашел тестировщик?» — Play All, example pause icons
 150: owner 18.11 «Делай и выкладывай» — positive mood (kudos, wins, Say hi)
+151: owner 18.11 «Делай и выкладывай» — kudos polish
