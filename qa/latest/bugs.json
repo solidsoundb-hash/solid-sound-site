@@ -1,15 +1,15 @@
 {
  "mode": "full",
- "date": "2026-11-17T21:30:45.551Z",
+ "date": "2026-11-18T03:10:17.797Z",
  "stats": {
   "pages": 106,
-  "clicks": 654,
+  "clicks": 606,
   "sounds": 71,
-  "links": 524,
+  "links": 527,
   "blockedRequests": 55,
   "eyesTiles": 0,
   "eyesPages": 0,
-  "audioFiles": 0,
+  "audioFiles": 21,
   "robots": 20
  },
  "bugs": [
@@ -64,27 +64,8 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_015.jpg",
+   "shot": "shots/10_014.jpg",
    "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "img",
-   "title": "Картинка не загружается",
-   "steps": [
-    "Открыть https://solid-sound.net/en/"
-   ],
-   "expected": "Картинка видна",
-   "actual": "/wp-content/uploads/Pitch_Title_PSD-400x400.jpg",
-   "sig": "img|https://solid-sound.net/wp-content/uploads/Pitch_Title_PSD-400x400.jpg",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_001.jpg",
-   "isNew": true
   },
   {
    "sev": "major",
@@ -103,129 +84,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_006.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-icon",
-   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Значок меняется на ⏸",
-   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.ss-top-play в ss-top-c)",
-   "sig": "sndicon|Play|/en/all-products/",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_017.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Video» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Video»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в span.ssh-tag",
-   "sig": "covered|/en/all-products/|Video",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/10_019.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-icon",
-   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
-   "steps": [
-    "Открыть https://solid-sound.net/en/presets/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Значок меняется на ⏸",
-   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.ss-top-play в ss-top-c)",
-   "sig": "sndicon|Play|/en/presets/",
-   "where": [
-    "/en/presets/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/10_021.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-icon",
-   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Значок меняется на ⏸",
-   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.ss-top-play в ss-top-c)",
-   "sig": "sndicon|Play|/en/shop/",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/12_013.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Video» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
-    "Нажать «Video»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в span.ssh-tag",
-   "sig": "covered|/en/shop/|Video",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/12_017.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-icon",
-   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
-   "steps": [
-    "Открыть https://solid-sound.net/en/music/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Значок меняется на ⏸",
-   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.ss-top-play в ss-top-c)",
-   "sig": "sndicon|Play|/en/music/",
-   "where": [
-    "/en/music/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/13_009.jpg",
+   "shot": "shots/10_005.jpg",
    "isNew": false
   },
   {
@@ -250,27 +109,6 @@
   },
   {
    "sev": "major",
-   "type": "sound-icon",
-   "title": "Кнопка «Play» не превращается в ⏸ (паузу), когда трек играет",
-   "steps": [
-    "Открыть https://solid-sound.net/en/templates/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Значок меняется на ⏸",
-   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.ss-top-play в ss-top-c)",
-   "sig": "sndicon|Play|/en/templates/",
-   "where": [
-    "/en/templates/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/17_007.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
    "type": "sound-wrong",
    "title": "Кнопка ▶ «Play all tracks» включает другой трек",
    "steps": [
@@ -286,7 +124,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/17_008.jpg",
+   "shot": "shots/17_007.jpg",
    "isNew": false
   },
   {
@@ -306,7 +144,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/17_015.jpg",
+   "shot": "shots/17_014.jpg",
    "isNew": false
   },
   {
@@ -325,6 +163,27 @@
    ],
    "devices": [
     "компьютер"
+   ],
+   "shot": "shots/17_015.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "covered",
+   "title": "«Повірити вміння заявленого духа спрацює» нельзя нажать — сверху лежит другой элемент",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/",
+    "Нажать «Повірити вміння заявленого духа спрацює»"
+   ],
+   "expected": "Кнопка нажимается",
+   "actual": "Клик попадает в rect",
+   "sig": "covered|/en/forest-spirits/|Повірити вміння заявленого духа спрацює",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
    ],
    "shot": "shots/17_016.jpg",
    "isNew": false
@@ -394,26 +253,6 @@
   {
    "sev": "major",
    "type": "covered",
-   "title": "«Повірити вміння заявленого духа спрацює» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Повірити вміння заявленого духа спрацює»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в i",
-   "sig": "covered|/en/forest-spirits/|Повірити вміння заявленого духа спрацює",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/17_021.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
    "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
    "steps": [
     "Открыть https://solid-sound.net/en/forest-spirits/",
@@ -428,28 +267,8 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/17_022.jpg",
+   "shot": "shots/17_021.jpg",
    "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "kb-shop-zero-price",
-   "title": "Товар за $0 / €0 виден покупателям (не бесплатный пакет)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/ (компьютер)"
-   ],
-   "expected": "Скрыть из каталога.",
-   "actual": "Текст: «Bonus balance: $0.00». Почему важно: Обычно это технический товар — выглядит как ошибка магазина.",
-   "sig": "kb|kb-shop-zero-price|Товар за $0 / €0 виден покупателям (не бесплатный пакет)",
-   "where": [
-    "/en/my-account/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/19_003.jpg",
-   "isNew": true
   },
   {
    "sev": "major",
@@ -470,7 +289,7 @@
     "телефон"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -491,7 +310,7 @@
     "телефон"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -560,7 +379,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_004.jpg",
+   "shot": "shots/10_003.jpg",
    "isNew": false
   },
   {
@@ -607,7 +426,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_007.jpg",
+   "shot": "shots/10_006.jpg",
    "isNew": false
   },
   {
@@ -642,7 +461,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_014.jpg",
+   "shot": "shots/10_013.jpg",
    "isNew": false
   },
   {
@@ -675,7 +494,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_005.jpg",
+   "shot": "shots/10_004.jpg",
    "isNew": false
   },
   {
@@ -701,7 +520,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_013.jpg",
+   "shot": "shots/10_012.jpg",
    "isNew": false
   },
   {
@@ -726,7 +545,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_018.jpg",
+   "shot": "shots/10_017.jpg",
    "isNew": false
   },
   {
@@ -749,7 +568,7 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_022.jpg",
+   "shot": "shots/10_019.jpg",
    "isNew": false
   },
   {
@@ -758,7 +577,7 @@
    "title": "Картинка загружается намного больше, чем показывается",
    "steps": [
     "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
-    "Где: P1_3.jpg 1080px → 218px; P1_4.jpg 880px → 218px"
+    "Где: xP1_3.jpg.pagespeed.ic.GgXTSEaTvn.webp 1080px → 218px; xP1_4.jpg.pagespeed.ic.xgRK2x1cif.webp 880px → 218px"
    ],
    "expected": "srcset / миниатюра нужного размера.",
    "actual": "Почему важно: Лишние мегабайты на каждой загрузке.",
@@ -772,7 +591,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/15_015.jpg",
+   "shot": "shots/15_011.jpg",
    "isNew": false
   },
   {
@@ -825,7 +644,7 @@
    "title": "Картинки без размеров — страница «прыгает» при загрузке",
    "steps": [
     "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
-    "Где: xP1_1.jpg.pagespeed.ic.scqHlX9dBa.webp; P1_2.jpg; P1_3.jpg; P1_4.jpg; P1_5.jpg"
+    "Где: xP1_1.jpg.pagespeed.ic.scqHlX9dBa.webp; xP1_2.jpg.pagespeed.ic.GWL1JTogGk.webp; xP1_3.jpg.pagespeed.ic.GgXTSEaTvn.webp; xP1_4.jpg.pagespeed.ic.xgRK2x1cif.webp; xP1_5.jpg.pagespeed.ic.X6I2H2Afi-.webp"
    ],
    "expected": "width/height или aspect-ratio.",
    "actual": "Почему важно: Пока грузится картинка, текст и кнопки съезжают — промахи, плохая оценка Google (CLS).",
@@ -838,91 +657,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/15_016.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «GET A FREE DEMO FEEDBACK» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/",
-    "Найти кнопку «GET A FREE DEMO FEEDBACK»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 50px при высоте 60px)",
-   "sig": "pill|GET A FREE DEMO FEEDBACK",
-   "where": [
-    "/en/free-demo-feedback/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_008.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «WRITE US NOW!» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/",
-    "Найти кнопку «WRITE US NOW!»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 50px при высоте 60px)",
-   "sig": "pill|WRITE US NOW!",
-   "where": [
-    "/en/free-demo-feedback/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_009.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «SEE MORE CLIENT STORIES» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/",
-    "Найти кнопку «SEE MORE CLIENT STORIES»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 50px при высоте 52px)",
-   "sig": "pill|SEE MORE CLIENT STORIES",
-   "where": [
-    "/en/free-demo-feedback/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_010.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "style-pill",
-   "title": "Кнопка «MESSAGE US NOW!» круглая («таблетка»), а не в стиле сайта",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/",
-    "Найти кнопку «MESSAGE US NOW!»"
-   ],
-   "expected": "Прямоугольная кнопка со скруглёнными углами 8–12px, как остальные кнопки сайта",
-   "actual": "Углы скруглены полностью (радиус 50px при высоте 62px)",
-   "sig": "pill|MESSAGE US NOW!",
-   "where": [
-    "/en/free-demo-feedback/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_013.jpg",
+   "shot": "shots/15_012.jpg",
    "isNew": false
   },
   {
@@ -943,49 +678,147 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/15_014.jpg",
+   "shot": "shots/15_010.jpg",
    "isNew": false
   },
   {
    "sev": "minor",
-   "type": "anchor",
-   "title": "Ссылка «#chat» ведёт в никуда (нет такого раздела на странице)",
+   "type": "kb-perf-lcp-lazy",
+   "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
    "steps": [
-    "Открыть https://solid-sound.net/en/my-account/",
-    "Нажать ссылку #chat"
+    "Открыть https://solid-sound.net/en/all-products/ (Samsung A31)",
+    "Где: xPitch_Title_PSD-400x400.jpg.pagespeed.ic.MWCMls9aF0.webp"
    ],
-   "expected": "Прокрутка к разделу",
-   "actual": "Раздела с таким id нет",
-   "sig": "anchor|/en/my-account/#chat",
+   "expected": "Для первого экрана — без lazy, с fetchpriority=high.",
+   "actual": "Почему важно: Самая важная картинка появляется последней.",
+   "sig": "kb|kb-perf-lcp-lazy|Главная картинка первого экрана грузится «лениво» (loading=lazy)",
    "where": [
-    "/en/my-account/"
+    "/en/all-products/"
    ],
    "devices": [
-    "компьютер",
-    "телефон"
+    "Samsung A31"
    ],
-   "shot": "shots/19_001.jpg",
+   "shot": "shots/18_012.jpg",
    "isNew": true
   },
   {
    "sev": "minor",
-   "type": "anchor",
-   "title": "Ссылка «#chat» ведёт в никуда (нет такого раздела на странице)",
+   "type": "ears-clip",
+   "title": "Превью «02-After.mp3» может хрипеть (перегруз)",
    "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать ссылку #chat"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ у трека «02-After.mp3»"
    ],
-   "expected": "Прокрутка к разделу",
-   "actual": "Раздела с таким id нет",
-   "sig": "anchor|/en/store-manager/#chat",
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.9 дБ",
+   "sig": "ears-clip|02-After.mp3",
    "where": [
-    "/en/store-manager/"
+    "/en/all-products/"
    ],
    "devices": [
-    "компьютер",
-    "телефон"
+    "звук"
    ],
-   "shot": "shots/19_007.jpg",
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "ears-start",
+   "title": "Превью «01-Before.mp3» начинается с тишины (4.4 с)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ у трека «01-Before.mp3»"
+   ],
+   "expected": "Музыка с первой секунды — покупатель слушает 2–3 секунды",
+   "actual": "Первые 4.4 с тишина",
+   "sig": "ears-start|01-Before.mp3",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "звук"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "ears-clip",
+   "title": "Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ у трека «Pitch_128_kbps.mp3»"
+   ],
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.3 дБ",
+   "sig": "ears-clip|Pitch_128_kbps.mp3",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "звук"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "ears-clip",
+   "title": "Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз)",
+   "steps": [
+    "Открыть https://solid-sound.net/?p=338",
+    "Нажать ▶ у трека «Infinity_Tech_House_128Kbps.mp3»"
+   ],
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.1 дБ",
+   "sig": "ears-clip|Infinity_Tech_House_128Kbps.mp3",
+   "where": [
+    "/?p=338"
+   ],
+   "devices": [
+    "звук"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "ears-clip",
+   "title": "Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз)",
+   "steps": [
+    "Открыть https://solid-sound.net/?p=340",
+    "Нажать ▶ у трека «Intricate_Dark-Techno_128kbps.mp3»"
+   ],
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.4 дБ",
+   "sig": "ears-clip|Intricate_Dark-Techno_128kbps.mp3",
+   "where": [
+    "/?p=340"
+   ],
+   "devices": [
+    "звук"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "ears-clip",
+   "title": "Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз)",
+   "steps": [
+    "Открыть https://solid-sound.net/?p=61",
+    "Нажать ▶ у трека «Kratos_Dark_Techno_128kbps.mp3»"
+   ],
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -7.9 дБ",
+   "sig": "ears-clip|Kratos_Dark_Techno_128kbps.mp3",
+   "where": [
+    "/?p=61"
+   ],
+   "devices": [
+    "звук"
+   ],
+   "shot": "",
    "isNew": true
   },
   {
@@ -1049,7 +882,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_003.jpg",
+   "shot": "shots/10_002.jpg",
    "isNew": false
   },
   {
@@ -1075,7 +908,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_010.jpg",
+   "shot": "shots/10_009.jpg",
    "isNew": false
   },
   {
@@ -1097,7 +930,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_002.jpg",
+   "shot": "shots/10_001.jpg",
    "isNew": false
   },
   {
@@ -1117,7 +950,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_008.jpg",
+   "shot": "shots/10_007.jpg",
    "isNew": false
   },
   {
@@ -1137,7 +970,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_009.jpg",
+   "shot": "shots/10_008.jpg",
    "isNew": false
   },
   {
@@ -1159,7 +992,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_011.jpg",
+   "shot": "shots/10_010.jpg",
    "isNew": false
   },
   {
@@ -1181,7 +1014,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_012.jpg",
+   "shot": "shots/10_011.jpg",
    "isNew": false
   },
   {
@@ -1192,7 +1025,7 @@
     "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
    "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3563. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "actual": "Элементов: 3544. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3563. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
    "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
@@ -1203,8 +1036,9 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_016.jpg",
-   "isNew": false
+   "shot": "shots/10_015.jpg",
+   "isNew": false,
+   "more": 1
   },
   {
    "sev": "check",
@@ -1224,7 +1058,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_020.jpg",
+   "shot": "shots/10_018.jpg",
    "isNew": false
   },
   {
@@ -1271,45 +1105,24 @@
   },
   {
    "sev": "check",
-   "type": "kb-perf-weight",
-   "title": "Страница весит больше 3 МБ",
+   "type": "dead",
+   "title": "Кнопка «Video» ничего не делает",
    "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Video»"
    ],
-   "expected": "Смотреть, что самое тяжёлое.",
-   "actual": "Скачано 3.4 МБ. Почему важно: На 3G/4G в дороге — долго и дорого. · Скачано 3.5 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
-   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/all-products/|Video",
    "where": [
-    "/en/free-demo-feedback/",
-    "/en/forest-spirits/"
+    "/en/all-products/"
    ],
    "devices": [
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/15_017.jpg",
-   "isNew": false,
-   "more": 1
-  },
-  {
-   "sev": "check",
-   "type": "dead",
-   "title": "Кнопка «Video» ничего не делает",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
-    "Нажать «Video»"
-   ],
-   "expected": "Что-то открывается/меняется",
-   "actual": "Ничего не происходит",
-   "sig": "dead|/en/shop/|Video",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/12_016.jpg",
-   "isNew": false
+   "shot": "shots/10_016.jpg",
+   "isNew": true
   },
   {
    "sev": "check",
@@ -1347,7 +1160,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/15_011.jpg",
+   "shot": "shots/15_008.jpg",
    "isNew": false
   },
   {
@@ -1366,7 +1179,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/15_012.jpg",
+   "shot": "shots/15_009.jpg",
    "isNew": false
   },
   {
@@ -1386,7 +1199,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/17_011.jpg",
+   "shot": "shots/17_010.jpg",
    "isNew": false
   },
   {
@@ -1406,7 +1219,27 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/17_012.jpg",
+   "shot": "shots/17_011.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "kb-perf-weight",
+   "title": "Страница весит больше 3 МБ",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forest-spirits/ (компьютер)"
+   ],
+   "expected": "Смотреть, что самое тяжёлое.",
+   "actual": "Скачано 3.7 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
+   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
+   "where": [
+    "/en/forest-spirits/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/17_013.jpg",
    "isNew": false
   },
   {
@@ -1426,7 +1259,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_015.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1446,7 +1279,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_016.jpg",
+   "shot": "shots/18_017.jpg",
    "isNew": false
   },
   {
@@ -1466,7 +1299,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_017.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1486,7 +1319,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_018.jpg",
+   "shot": "shots/18_019.jpg",
    "isNew": false
   },
   {
@@ -1506,7 +1339,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_019.jpg",
+   "shot": "shots/18_020.jpg",
    "isNew": false
   },
   {
@@ -1526,7 +1359,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_020.jpg",
+   "shot": "shots/18_021.jpg",
    "isNew": false
   },
   {
@@ -1546,7 +1379,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_021.jpg",
+   "shot": "shots/18_022.jpg",
    "isNew": false
   },
   {
@@ -1566,7 +1399,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_022.jpg",
+   "shot": "shots/18_023.jpg",
    "isNew": false
   },
   {
@@ -1586,7 +1419,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_023.jpg",
+   "shot": "shots/18_024.jpg",
    "isNew": false
   },
   {
@@ -1606,7 +1439,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_024.jpg",
+   "shot": "shots/18_025.jpg",
    "isNew": false
   },
   {
@@ -1626,7 +1459,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_025.jpg",
+   "shot": "shots/18_026.jpg",
    "isNew": false
   },
   {
@@ -1646,7 +1479,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_026.jpg",
+   "shot": "shots/18_027.jpg",
    "isNew": false
   },
   {
@@ -1665,12 +1498,10 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/19_008.jpg",
-   "isNew": true
+   "shot": "shots/19_005.jpg",
+   "isNew": false
   }
  ],
- "notChecked": [
-  "Звук файлов не проверен: ffmpeg не установлен"
- ],
+ "notChecked": [],
  "l10nSkipped": 23
 }
