@@ -155,7 +155,7 @@ function seekFrac(f){var d=durOf();if(audio.readyState>=1&&isFinite(audio.durati
 function rmQ(i){if(i<0||i>=P.queue.length||i===P.idx)return;P.queue.splice(i,1);if(i<P.idx)P.idx--;Bar.render();Bar.renderQueue();save()}
 function qToast(msg){var t=document.querySelector('.ssp-toast');if(!t){t=el('div','ssp-toast');t.setAttribute('role','status');document.body.appendChild(t)}t.textContent=msg;t.classList.add('is-on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('is-on')},1800);var q=document.querySelector('.ssp-q');if(q){q.classList.remove('ssp-bump');void q.offsetWidth;q.classList.add('ssp-bump')}}
 function addToQueue(t){if(!P.cur){load(t,[t]);qToast('Added to player');return true}for(var i=0;i<P.queue.length;i++){if(fileOf(P.queue[i].src)===fileOf(t.src)){qToast('Already in queue');return false}}P.queue.push(t);Bar.render();save();qToast('Added to queue \u00b7 '+P.queue.length+' tracks');return true}
-function playTrack(t,queue,frac){
+function playTrack(t,queue,frac){P.all=!!playTrack.all;playTrack.all=false;
   if(P.cur&&isCur(t.src)){if(frac!=null){seekFrac(frac);if(audio.paused)play()}else toggle();return}
   if(!queue){queue=P.queue.slice();var ex=-1;for(var qi=0;qi<queue.length;qi++){if(fileOf(queue[qi].src)===fileOf(t.src)){ex=qi;break}}if(ex<0)queue.splice(P.idx+1,0,t)}
   load(t,queue,{at:frac!=null&&t.d?frac*t.d:null});
@@ -397,7 +397,7 @@ function initToolbar(root){
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.contains(mf))closeAll(null)});
     }
 
-    lead.querySelector('.sstb-play').addEventListener('click',function(){ if(P.cur && !audio.paused){ audio.pause(); return; } if(P.cur && audio.paused && document.querySelector('.ssw.is-current')){ var pr=audio.play(); if(pr&&pr.catch)pr.catch(function(){}); return; } var q=pageQueue();if(q.length)playTrack(q[0],q)});
+    lead.querySelector('.sstb-play').addEventListener('click',function(){ if(P.cur && !audio.paused){ audio.pause(); return; } if(P.cur && audio.paused && P.all && document.querySelector('.ssw.is-current')){ var pr=audio.play(); if(pr&&pr.catch)pr.catch(function(){}); return; } var q=pageQueue();if(q.length){playTrack.all=true;playTrack(q[0],q);}}); /* (18.11.2026) resume only a Play All queue; after a single track Play All starts from the first track */
     var cnt=lead.querySelector('.sstb-count'),chips=act.querySelector('.sstb-chips');
     function upd(){
       if(!document.body.contains(hw))return;
