@@ -337,17 +337,19 @@ document.addEventListener('click',function(e){
     else if(t>=CUT-0.1) au.currentTime=t=0;
     var p=Math.max(0,Math.min(100,((a?t-CUT:t)/CUT)*100)); var w=cur.querySelector('.ss-abw'); if(w){ w.style.setProperty('--p',p+'%'); w.setAttribute('aria-valuenow',Math.round(p)); } }
   function start(b,pos){ var x=A(), src=b.getAttribute('data-src');
-    if(cur!==b){ if(cur){ var ow=cur.querySelector('.ss-abw'); if(ow) ow.style.setProperty('--p','0%'); } cur=b; if(x.getAttribute('src')!==src){ x.src=src; } }
+    if(cur!==b){ if(cur){ var ow=cur.querySelector('.ss-abw'); if(ow) ow.style.setProperty('--p','0%'); } cur=b; }
+    if(x.getAttribute('src')!==src){ x.src=src; } /* (18.11.2026) the phone carousel reuses one card for every example: always switch the file */
     var go=function(){ x.currentTime=(aft(b)?CUT:0)+(pos||0); };
     if(x.readyState>=1) go(); else x.addEventListener('loadedmetadata',go,{once:true});
     var p=x.play(); if(p&&p.catch) p.catch(function(){}); }
   document.addEventListener('click',function(e){
     var t=e.target.closest && e.target.closest('#ss-app .ss-ab .ss-abb, #ss-app .ss-ab .ss-abs, #ss-app .ss-ab .ss-abw'); if(!t) return;
     var b=t.closest('.ss-ab'), x=A();
-    if(t.classList.contains('ss-abb')){ if(cur===b && !x.paused){ x.pause(); return; } var keep=cur===b ? ((x.currentTime||0)%CUT) : 0; start(b,keep); return; }
+    var same=cur===b && x.getAttribute('src')===b.getAttribute('data-src');
+    if(t.classList.contains('ss-abb')){ if(same && !x.paused){ x.pause(); return; } var keep=same ? ((x.currentTime||0)%CUT) : 0; start(b,keep); return; }
     if(t.classList.contains('ss-abw')){ var r=t.getBoundingClientRect(); start(b, Math.max(0,Math.min(CUT-0.2,(e.clientX-r.left)/r.width*CUT))); return; }
     var a=!aft(b); AFT[b.getAttribute('data-src')]=a; b.classList.toggle('aft',a); t.setAttribute('aria-checked',a?'true':'false');
-    if(cur===b && !x.paused){ var pos=(x.currentTime||0)%CUT; x.currentTime=(a?CUT:0)+pos; } else start(b,0);
+    if(same && !x.paused){ var pos=(x.currentTime||0)%CUT; x.currentTime=(a?CUT:0)+pos; } else start(b,0);
   });
   /* when the home app re-renders and the card disappears, stop */
   document.addEventListener('ssp:navigated',function(){ if(au) au.pause(); });
