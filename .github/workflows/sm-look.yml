@@ -1,6 +1,7 @@
 # Read-only screenshots of our creator area (store manager) as the test vendor and the test admin.
 # Run: add a line to .github/sm-look.txt. Needs secrets TEST_VENDOR_USER/PASS (and TEST_ADMIN_USER/PASS).
-# Result: private artifact "sm-screens" (7 days). Nothing is committed, nothing is changed on the site.
+# Result: artifact "sm-screens" (7 days) + the test vendor's creator space (dashboard, desktop and phone) committed to checks/sm-look/
+# (18.11: the cloud Claude cannot download artifacts). Nothing is changed on the site.
 name: Store manager look
 on:
   workflow_dispatch:
@@ -8,7 +9,7 @@ on:
     branches: [main]
     paths: [".github/sm-look.txt"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   look:
     runs-on: ubuntu-latest
@@ -32,3 +33,12 @@ jobs:
           name: sm-screens
           path: sm-out/
           retention-days: 7
+      - name: Commit the test vendor's dashboard screenshots
+        if: always()
+        run: |
+          mkdir -p checks/sm-look && rm -f checks/sm-look/*.jpg
+          cp sm-out/vendor_*_01_*.jpg checks/sm-look/ 2>/dev/null || true
+          grep -v "^## admin" sm-out/report.txt | grep -B0 -A2 "vendor_" > checks/sm-look/report.txt 2>/dev/null || true
+          git config user.name main-robot && git config user.email actions@users.noreply.github.com
+          git add checks/sm-look && git commit -qm "creator space look: $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 5; done

@@ -38,7 +38,7 @@ const PAGES = ['/en/store-manager/', '/en/store-manager/ss-add-product/', '/en/s
           const h = (document.querySelector('h1, h2') || {}).textContent || '';
           const light = [...document.querySelectorAll('input:not([type=hidden]):not([type=checkbox]):not([type=radio]), textarea, select, .select2-selection')].filter(e => e.offsetParent).filter(e => { const c = getComputedStyle(e).backgroundColor.match(/\d+/g); return c && (+c[0] + +c[1] + +c[2]) / 3 > 200; }).map(e => e.name || e.id || e.className).slice(0, 15);
           const small = [...document.querySelectorAll('body *')].filter(e => e.offsetParent && e.children.length === 0 && e.textContent.trim() && getComputedStyle(e).color.match(/\d+/g) && (() => { const c = getComputedStyle(e).color.match(/\d+/g); return (+c[0] + +c[1] + +c[2]) / 3 > 200 && (() => { let x = e; while (x && getComputedStyle(x).backgroundColor === 'rgba(0, 0, 0, 0)') x = x.parentElement; const b = x ? getComputedStyle(x).backgroundColor.match(/\d+/g) : null; return b && (+b[0] + +b[1] + +b[2]) / 3 > 200; })(); })()).map(e => e.textContent.trim().slice(0, 30)).slice(0, 10);
-          return { title: document.title, h: h.trim().slice(0, 80), menu, light, lowContrast: small, overflow: document.documentElement.scrollWidth > innerWidth + 2 };
+          return { title: document.title, h: h.trim().slice(0, 80), kudos: ['.ss-kd-win', '.ss-kd-lad', '.ss-kd-list'].filter(q => document.querySelector(q)), menu, light, lowContrast: small, overflow: document.documentElement.scrollWidth > innerWidth + 2 };
         }).catch(e => ({ err: e.message }));
         i++;
         const f = `${who.n}_${dev.n}_${String(i).padStart(2, '0')}_${path.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'home'}.jpg`;
