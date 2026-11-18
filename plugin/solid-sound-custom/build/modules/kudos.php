@@ -115,7 +115,7 @@ add_action( 'wp_footer', function () {
 .ss-kd .ss-kd-b.o{background:#f59e0b;border-color:#f59e0b;color:#0b1220}.ss-kd .ss-kd-b.on{border-color:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.35)}
 .ss-kd .m{display:flex;gap:8px;margin-top:10px}.ss-kd .m input{flex:1;min-width:0;height:42px;border-radius:6px;border:1px solid rgba(255,255,255,.14);background:#0b1220;color:#fff;padding:0 12px;font-size:15px}
 .ss-kd .ss-kd-s{height:42px;padding:0 16px;border-radius:6px;border:0;background:#f59e0b;color:#0b1220;font-weight:800;cursor:pointer}
-.ss-kd .ok{margin:10px 0 0;color:#6ee7a8;font-weight:700}</style>
+.ss-kd .ok{margin:10px 0 0;color:#6ee7a8;font-weight:700}.ss-kd [hidden]{display:none!important}</style>
 <script>(function(){var A=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>;
 function mount(){var t=document.getElementById('ss-kd-tpl');if(!t||document.querySelector('.ss-kd'))return;var at=document.querySelector('.ss-desc3')||document.querySelector('form.cart');if(!at)return;var n=t.content.firstElementChild.cloneNode(true);at.parentNode.insertBefore(n,at.nextSibling);wire(n)}
 function send(box,t,m){var f=new FormData();f.append('action','ss_kd_give');f.append('p',box.dataset.p);f.append('t',t);if(m)f.append('m',m);return fetch(A,{method:'POST',body:f,credentials:'same-origin'}).then(function(r){return r.json()})}
@@ -320,7 +320,7 @@ add_action( 'wp_footer', function () {
 	?>
 <style>#wpforo .ss-rx{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 2px}#wpforo .ss-rx-b{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 10px;border-radius:6px;border:1px solid rgba(255,255,255,.1);background:#0f1729;color:#cdd6e8;font:600 13px/1 inherit;cursor:pointer}
 #wpforo .ss-rx-b i{font-style:normal;min-width:0}#wpforo .ss-rx-b.on{border-color:#f59e0b;color:#f59e0b}#wpforo .ss-rx-b:hover{border-color:rgba(245,158,11,.6)}
-.ss-bdg{display:inline-block;font:700 11px/1.4 Inter,sans-serif;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:1px;white-space:nowrap}.ss-bdg.n{background:#1f3b2c;color:#6ee7a8}.ss-bdg.h{background:#2a2350;color:#c4b5fd}</style>
+.ss-bdg{display:inline-block;font:700 11px/1.4 Inter,sans-serif;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:1px;white-space:nowrap}.ss-bdg.n{background:#1f3b2c;color:#6ee7a8}#wpforo .author-name .ss-bdg{display:table;margin:5px auto 0}.ss-bdg.h{background:#2a2350;color:#c4b5fd}</style>
 <script>(function(){var A=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,N=<?php echo wp_json_encode( $new ); ?>,H=<?php echo (int) SS_KD_HOST; ?>,L=<?php echo wp_json_encode( wp_login_url( isset( $_SERVER['REQUEST_URI'] ) ? home_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : home_url( '/' ) ) ); ?>,IN=<?php echo is_user_logged_in() ? 'true' : 'false'; ?>;
 function badges(){document.querySelectorAll('#wpforo .post-wrap[data-userid]').forEach(function(p){var u=+p.getAttribute('data-userid'),n=p.querySelector('.author-name');if(!n||n.querySelector('.ss-bdg'))return;var b=null;if(u===H){b=document.createElement('span');b.className='ss-bdg h';b.textContent='Community host'}else if(N.indexOf(u)>-1){b=document.createElement('span');b.className='ss-bdg n';b.textContent='New face'}if(b)n.appendChild(b)})}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#wpforo .ss-rx-b');if(!b)return;if(!IN){location.href=L;return}var box=b.closest('.ss-rx'),f=new FormData();f.append('action','ss_kd_rx');f.append('p',box.dataset.pid);f.append('t',b.dataset.t);
