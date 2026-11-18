@@ -17,9 +17,9 @@ Good news: [DATE] is still available.
 I capture weddings as a **content creator**: real, vertical photos and videos made for sharing, with a **sneak-peek teaser the same evening** and everything else within 48–72 hours. You get to relive the day while you're still in it.
 
 Here are my packages: [LINK]
-- **Ceremony** (2h): 390 €
+- **Ceremony** (3h): 390 €
 - **Essential** (5h): 690 €, the most popular, teaser the same night
-- **Full Day** (9h): 1 190 €, teaser the same night
+- **Full Day** (9h): 1 090 €, teaser the same night
 
 Could you tell me a bit more about your day? What's the venue, how many guests, and what matters most to you?
 
@@ -40,9 +40,9 @@ Bonne nouvelle : le [DATE] est encore disponible.
 Je suis **créateur de contenu mariage** : des photos et vidéos verticales, vraies et naturelles, pensées pour être partagées, avec **un teaser le soir même** et tout le reste sous 48 à 72 h. Vous revivez votre journée pendant qu'elle se déroule encore.
 
 Voici mes formules : [LINK]
-- **Ceremony** (2 h) : 390 €
+- **Ceremony** (3 h) : 390 €
 - **Essential** (5 h) : 690 €, la plus choisie, teaser le soir même
-- **Full Day** (9 h) : 1 190 €, teaser le soir même
+- **Full Day** (9 h) : 1 090 €, teaser le soir même
 
 Pouvez-vous m'en dire un peu plus sur votre journée ? Le lieu, le nombre d'invités, ce qui compte le plus pour vous ?
 
