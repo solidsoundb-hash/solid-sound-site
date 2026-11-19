@@ -44,6 +44,8 @@ function parseAls(x){var r={};var m=x.match(/Creator="Ableton Live ([\d.]+)/);if
  m=x.match(/<Tempo>[\s\S]{0,4000}?<Manual Value="([\d.]+)"/);if(m)r.bpm=Math.round(parseFloat(m[1])*100)/100;
  var pl={},re=/<(VstPluginInfo|Vst3PluginInfo|AuPluginInfo)\b[\s\S]*?<\/\1>/g,b;while((b=re.exec(x))){var nm=b[0].match(/<PlugName Value="([^"]+)"/)||b[0].match(/<Name Value="([^"]+)"/);if(nm){var c=cleanPlug(nm[1]);if(c)pl[c.toLowerCase()]=c}}
  r.plugins=Object.keys(pl).map(function(k){return pl[k]}).slice(0,20);
+ /* 19.11 files-first.php: samples the project uses (for the «missing samples» check); Ableton's own libraries are on every computer */
+ var fl={},rr=/<SampleRef>[\s\S]*?<\/SampleRef>/g,sr;while((sr=rr.exec(x))){var pm=sr[0].match(/<Path Value="([^"]+)"/)||sr[0].match(/<RelativePath Value="([^"]+)"/);if(!pm)continue;var pth=pm[1].replace(/\\/g,'/');if(/(Core Library|\/Packs\/|Ableton\/Factory|Live Recordings)/i.test(pth))continue;var bn=pth.split('/').pop();if(bn)fl[bn.toLowerCase()]=bn}r.files=Object.keys(fl).map(function(k){return fl[k]});
  m=x.match(/<ScaleInformation>\s*<Root(?:Note)? Value="(\d+)"\s*\/>\s*<Name Value="([^"]+)"/);if(m){var nm2=m[2];r.scale=NOTES[+m[1]%12]+(/minor/i.test(nm2)?'m':(/major/i.test(nm2)?'':' '+nm2))}
  return r}
 /* --- form helpers (apply only on the creator's tap) --- */
