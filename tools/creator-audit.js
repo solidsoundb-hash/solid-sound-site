@@ -49,6 +49,7 @@ async function login(page, user, pass) {
       await page.screenshot({ path: `${OUT}/${f}`, type: 'jpeg', quality: 62, fullPage: true });
       lines.push(`- ${p} → HTTP ${st} · height ${info.h}px${info.ovf > 0 ? ' · ⚠ sideways scroll ' + info.ovf + 'px' : ''} · [${f}](${f})`);
       errs.forEach(e => lines.push('    - ' + e));
+      if (d.name === 'phone') { const who = await page.evaluate(() => { const o = []; for (const y of [330, 345, 360]) { const e = document.elementFromPoint(60, y); if (e) { let n = e, path = []; for (let k = 0; k < 5 && n && n !== document.body; k++, n = n.parentElement) path.push(n.tagName.toLowerCase() + (n.id ? '#' + n.id : '') + (n.className && typeof n.className === 'string' ? '.' + n.className.trim().split(/\s+/).slice(0, 3).join('.') : '')); o.push(y + ': ' + path.join(' < ')); } } return o; }); who.forEach(w => lines.push('    - at ' + w)); }
       if (/add-product/.test(p)) {
         const add = page.locator('a.acf-icon[data-name=add]').first();
         if (await add.count()) {
