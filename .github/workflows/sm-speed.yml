@@ -1,0 +1,34 @@
+# Robot "creator area speed" (owner 19.11.2026): server time, DB queries, downloads and page jumps of the creator pages.
+# Run: add a line to .github/sm-speed.txt. Result: checks/sm-speed/ (report.md + probe JSON + pictures). Read-only.
+name: Creator area speed
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/sm-speed.txt"]
+permissions:
+  contents: write
+concurrency: sm-speed
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Measure (read-only)
+        env:
+          PW_CHANNEL: chrome
+          TEST_VENDOR_USER: ${{ secrets.TEST_VENDOR_USER }}
+          TEST_VENDOR_PASS: ${{ secrets.TEST_VENDOR_PASS }}
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: rm -rf checks/sm-speed && node tools/sm-speed.js
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name main-robot && git config user.email actions@users.noreply.github.com
+          git add checks/sm-speed && git commit -qm "creator area speed: $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 5; done
