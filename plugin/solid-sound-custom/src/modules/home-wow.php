@@ -83,11 +83,26 @@ body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,25
  body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)!important;column-gap:36px!important}
  body.ss-wow .ssx .card .left>.f.row{display:flex!important;flex-wrap:nowrap!important;align-items:flex-end!important;gap:28px!important;margin-bottom:16px!important}
  body.ss-wow .ssx .card .left>.f.row>*{margin:0!important}
- body.ss-wow .ssx .card .left>.ssw-match{grid-column:2!important;grid-row:5;margin:4px 0 0!important;align-self:stretch}
- body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:1!important;grid-row:5;align-self:end;margin:4px 0 0!important}
+ body.ss-wow .ssx .card .left>.ssw-match{grid-column:1!important;grid-row:5;margin:4px 0 0!important;align-self:stretch}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:2!important;grid-row:5;align-self:end;justify-content:flex-end;margin:4px 0 0!important}
+ body.ss-wow .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left>.cta{justify-content:flex-end;align-self:flex-end}
+}
+/* owner 19.11 «сортировка странная, особенно первый слайдер»: the template picker as one tidy filter grid —
+   genre on top, then three equal columns BPM | Key | Ableton (+ «No external plugins» under Ableton), result left, buttons right */
+@media(min-width:1000px){
+ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){grid-template-columns:repeat(3,minmax(0,1fr))!important;column-gap:32px!important;row-gap:0!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f.row{display:contents!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f.row>div{grid-column:auto!important;margin:0!important;min-width:0}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f.row>.chk{grid-column:3!important;margin:10px 0 0!important}
+ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:not(.f.row):not(.ssw-match):not(.acts){grid-column:1 / -1!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f:not(.row){margin-bottom:18px!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match) .rng{display:flex;align-items:center;gap:10px}
+ body.ss-wow .ssx .card .left:has(>.ssw-match) .rng input[type=range]{flex:1;min-width:0}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.ssw-match{grid-column:1 / span 2!important;grid-row:auto!important;margin:18px 0 0!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:3!important;grid-row:auto!important;margin:18px 0 0!important;justify-content:flex-end;align-self:center}
 }
 /* owner 19.11 «каждый раздел — кнопки примерно одинаково расположены, однородно»: every slide has the same frame —
-   title + subtitle on top, the choices in the middle, the buttons in one place at the bottom-left (cards are as tall
+   title + subtitle on top, the choices in the middle, the buttons in one place at the bottom-right (owner: «неудобно когда кнопки слева») (cards are as tall
    as the tallest one, so the buttons line up on every tab) */
 body.ss-wow .ssx .track{align-items:stretch}
 body.ss-wow .ssx .card .left:not(:has(>.ssw-match)){display:flex!important;flex-direction:column!important;height:100%}
