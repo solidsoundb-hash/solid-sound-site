@@ -1,11 +1,11 @@
 {
  "mode": "full",
- "date": "2026-11-19T03:01:36.094Z",
+ "date": "2026-11-19T12:18:51.819Z",
  "stats": {
   "pages": 104,
-  "clicks": 608,
+  "clicks": 537,
   "sounds": 71,
-  "links": 527,
+  "links": 519,
   "blockedRequests": 55,
   "eyesTiles": 0,
   "eyesPages": 0,
@@ -69,22 +69,20 @@
   },
   {
    "sev": "major",
-   "type": "clickerr",
-   "title": "После нажатия «Video» — ошибка в коде",
+   "type": "link404",
+   "title": "Битая ссылка: /de/vorlagen/ (код 503)",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Video»"
+    "Открыть https://solid-sound.net/en/templates/",
+    "Нажать ссылку на /de/vorlagen/"
    ],
-   "expected": "Без ошибок",
-   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "expected": "Страница открывается",
+   "actual": "Ошибка 503. Ссылка есть на страницах: /en/templates/",
+   "sig": "link|/de/vorlagen/",
    "where": [
-    "/en/all-products/"
+    "/en/templates/"
    ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/10_017.jpg",
+   "devices": [],
+   "shot": "",
    "isNew": true
   },
   {
@@ -360,7 +358,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_016.jpg",
+   "shot": "shots/10_015.jpg",
    "isNew": false
   },
   {
@@ -492,26 +490,6 @@
     "телефон"
    ],
    "shot": "shots/15_012.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-perf-lcp-lazy",
-   "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/ (Samsung A31)",
-    "Где: xPitch_Title_PSD-400x400.jpg.pagespeed.ic.MWCMls9aF0.webp"
-   ],
-   "expected": "Для первого экрана — без lazy, с fetchpriority=high.",
-   "actual": "Почему важно: Самая важная картинка появляется последней.",
-   "sig": "kb|kb-perf-lcp-lazy|Главная картинка первого экрана грузится «лениво» (loading=lazy)",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "Samsung A31"
-   ],
-   "shot": "shots/18_012.jpg",
    "isNew": false
   },
   {
@@ -837,7 +815,7 @@
     "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
    "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3559. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "actual": "Элементов: 3557. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3538. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
    "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
@@ -849,7 +827,8 @@
     "Samsung A31"
    ],
    "shot": "shots/10_014.jpg",
-   "isNew": false
+   "isNew": false,
+   "more": 1
   },
   {
    "sev": "check",
@@ -869,7 +848,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_018.jpg",
+   "shot": "shots/10_016.jpg",
    "isNew": false
   },
   {
@@ -919,26 +898,6 @@
    "type": "dead",
    "title": "Кнопка «Video» ничего не делает",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Video»"
-   ],
-   "expected": "Что-то открывается/меняется",
-   "actual": "Ничего не происходит",
-   "sig": "dead|/en/all-products/|Video",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_015.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "dead",
-   "title": "Кнопка «Video» ничего не делает",
-   "steps": [
     "Открыть https://solid-sound.net/en/shop/",
     "Нажать «Video»"
    ],
@@ -952,7 +911,7 @@
     "телефон"
    ],
    "shot": "shots/12_015.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "check",
@@ -1049,7 +1008,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_016.jpg",
+   "shot": "shots/18_015.jpg",
    "isNew": false
   },
   {
@@ -1069,7 +1028,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_017.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1089,7 +1048,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_018.jpg",
+   "shot": "shots/18_017.jpg",
    "isNew": false
   },
   {
@@ -1109,7 +1068,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_019.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1129,7 +1088,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_020.jpg",
+   "shot": "shots/18_019.jpg",
    "isNew": false
   },
   {
@@ -1149,7 +1108,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_021.jpg",
+   "shot": "shots/18_020.jpg",
    "isNew": false
   },
   {
@@ -1169,7 +1128,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_022.jpg",
+   "shot": "shots/18_021.jpg",
    "isNew": false
   },
   {
@@ -1189,7 +1148,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_023.jpg",
+   "shot": "shots/18_022.jpg",
    "isNew": false
   },
   {
@@ -1209,7 +1168,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_024.jpg",
+   "shot": "shots/18_023.jpg",
    "isNew": false
   },
   {
@@ -1229,7 +1188,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_025.jpg",
+   "shot": "shots/18_024.jpg",
    "isNew": false
   },
   {
@@ -1249,7 +1208,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_026.jpg",
+   "shot": "shots/18_025.jpg",
    "isNew": false
   },
   {
@@ -1269,7 +1228,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_027.jpg",
+   "shot": "shots/18_026.jpg",
    "isNew": false
   },
   {
@@ -1292,6 +1251,9 @@
    "isNew": false
   }
  ],
- "notChecked": [],
+ "notChecked": [
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
+  "Проверка остановлена по времени — часть ссылок/входов не проверена"
+ ],
  "l10nSkipped": 22
 }
