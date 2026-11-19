@@ -161,3 +161,4 @@
 156: owner 19.11 «ровненько четенько» — product of the week polish
 157: owner 19.11 «верни обратно главную! переделать слайдер на алл продуктс»
 158: owner 19.11 «давай графит и на пк растяни слайдер»
+159: owner 19.11 «Выкладывай» — home picker: width 1200, labels column, aligned controls, buttons bottom-right, same frame on every tab
