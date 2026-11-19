@@ -64,10 +64,10 @@ function tr(h){ if(!LG||!h) return h; var M=window.ssTrMap||{}; var k=h.split('#
 var NAV=[
   {t:'Home',i:'home',h:L+'/'},
   {t:'Products',i:'grid',h:L+'/all-products/',sub:[['All products','prod',L+'/all-products/'],['Templates','layers',S+'/templates'],['Presets','knob',S+'/presets'],['Music','note',S+'/music']]},
-  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/studio-calculator/?s=mixing'],['Mastering Album Calculator','disc',S+'/studio-calculator/?s=mastering'],['Examples','wave',L+'/#examples'],['Reviews','chat',L+'/#reviews'],['How it works','layers',L+'/#dashboard']]},
+  {t:'Services',i:'serv',h:L+'/services-prices/',sub:[['Services & Prices','tag',L+'/services-prices/'],['Mixing & Mastering Calculator','calc',S+'/studio-calculator/?s=mixing'],['Mastering Album Calculator','disc',S+'/studio-calculator/?s=mastering'],['Get your set heard','mic',L+'/get-heard/'],['Examples','wave',L+'/#examples'],['Reviews','chat',L+'/#reviews'],['How it works','layers',L+'/#dashboard']]},
   {t:'Wiki',i:'wiki',h:L+'/wiki/'},
   {t:'Forum',i:'forum',h:L+'/forum/'},  /* owner 17.11: «Форум выведи в меню» */
-  {t:'FAQ',i:'faq',sub:[['Common Questions','faq',L+'/faq/'],['Contact Us','mail',S+'/contacts'],['Terms of Sale','doc',L+'/terms/'],['Refund Policy','refund',S+'/refund_returns/'],['License Agreement','shield',S+'/license/'],['Privacy Policy','lock',S+'/privacy-policy/'],['Legal Notice','scale',L+'/legal-notice/']]},
+  {t:'FAQ',i:'faq',sub:[['Why Solid Sound','shield',L+'/why-solid-sound/'],['Common Questions','faq',L+'/faq/'],['Contact Us','mail',S+'/contacts'],['Terms of Sale','doc',L+'/terms/'],['Refund Policy','refund',S+'/refund_returns/'],['License Agreement','shield',S+'/license/'],['Privacy Policy','lock',S+'/privacy-policy/'],['Legal Notice','scale',L+'/legal-notice/']]},
   {t:'Free',i:'free',h:L+'/free/'},
   {t:'Sell',i:'sell',h:L+'/sell/'}
 ];
@@ -88,7 +88,7 @@ function isHome(h){ try{ return normP(new URL(h,location.href).pathname)==='/'; 
 function go(h){ if(!(window.sspGo && window.sspGo(h))) location.href=h; }
 function isCur(h){ try{ var u=new URL(h,location.href); if(u.hash && u.hash.length>1) return false; return normP(u.pathname)===path; }catch(e){ return false; } }
 /* a whole section lights up its menu item (product pages -> Products, calculators -> Services ...) */
-var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator|studio-calculator)([/]|$)/,FAQ:/^[/](faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/,Forum:/^[/](forum|community)([/]|$)/};
+var SEC={Products:/^[/](product|product-category|templates|presets|music|all-products|shop)([/]|$)/,Services:/^[/](services-prices|services-calculator|mastering-album-calculator|studio-calculator|get-heard)([/]|$)/,FAQ:/^[/](why-solid-sound|faq|contacts|terms|refund_returns|license|privacy-policy|legal-notice)([/]|$)/,Wiki:/^[/]wiki/,Forum:/^[/](forum|community)([/]|$)/};
 function inSec(t){ return !!(SEC[t] && SEC[t].test(path)); }
 
 /* ---------- styles ---------- */
@@ -245,7 +245,7 @@ var head=tag('div',{'class':'g-in'},
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
   NAV.forEach(function(n){ if(n.sub){ h+=tag('div',{'class':'s-g'},n.t)+n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],20)+s[0].replace(/&/g,'and')); }).join(''); } });
-  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/forum/'},ico(I.forum,20)+'Forum')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/sell/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(!logged ? tag('a',{href:MYA+'?ss_tab=reg'},ico(I.user,20)+'Create account')+tag('a',{href:MYA+'?ss_tab=sell'},ico(I.sell,20)+'Become a vendor') : '')+(logged ? (VENDOR || ROLE==='admin' ? tag('a',{href:VND},ico(I.sell,20)+'Producer space') : '')+tag('a',{href:MYA+'orders/'},ico(I.cart,20)+'Purchases')+tag('a',{href:MYA+'edit-account/'},ico(I.doc,20)+'Settings')+tag('a',{href:window.ssLogout||MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
+  h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/forum/'},ico(I.forum,20)+'Forum')+tag('a',{href:L+'/why-solid-sound/'},ico(I.shield,20)+'Why Solid Sound')+tag('a',{href:L+'/get-heard/'},ico(I.mic,20)+'Get your set heard')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/sell/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(!logged ? tag('a',{href:MYA+'?ss_tab=reg'},ico(I.user,20)+'Create account')+tag('a',{href:MYA+'?ss_tab=sell'},ico(I.sell,20)+'Become a vendor') : '')+(logged ? (VENDOR || ROLE==='admin' ? tag('a',{href:VND},ico(I.sell,20)+'Producer space') : '')+tag('a',{href:MYA+'orders/'},ico(I.cart,20)+'Purchases')+tag('a',{href:MYA+'edit-account/'},ico(I.doc,20)+'Settings')+tag('a',{href:window.ssLogout||MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k},tag('b',{'class':'g-lc'},l.t)+l.n); }).join('');
   return h+LT+'/div'+GT;
 }
