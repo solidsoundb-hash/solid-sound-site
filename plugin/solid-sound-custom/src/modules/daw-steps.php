@@ -45,6 +45,7 @@ add_action( 'wp_footer', function () {
 	if ( ! get_option( 'ss_ds_live' ) && ! current_user_can( 'manage_options' ) ) return; ?>
 <style>#solid-sound-upload-form .ss-ds-off{display:none!important}#solid-sound-upload-form .ss-ds-hint{margin:6px 0 0;color:#94a3b8;font-size:14px}
 #solid-sound-upload-form .ss-ap-daw,#solid-sound-upload-form .ss-ap-version{margin-top:14px}
+#solid-sound-upload-form .ss-ap-format .acf-radio-list,#solid-sound-upload-form .ss-ap-daw .acf-radio-list,#solid-sound-upload-form .ss-ap-version .acf-radio-list{max-height:none!important;overflow:visible!important}
 /* owner 19.11: «сначала — что это: шаблон, пресет и т.д., а уже от этого плясать дальше» — nothing else until the type is chosen */
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>*:not(.ss-ap-format),#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body~*:not(.ss-wm-hidden){display:none!important}
 #solid-sound-upload-form .ss-ds-first{margin:10px 0 0;color:#F59E0B;font-weight:700}</style>
@@ -63,6 +64,7 @@ function run(){var form=document.getElementById('solid-sound-upload-form');if(!f
   hint.style.display=dn?'none':'';
   var on=!daw.classList.contains('ss-ap-off');if(on&&!dn)ver.style.setProperty('display','none','important');else ver.style.removeProperty('display')}
  form.addEventListener('change',function(e){if(e.target.closest&&(e.target.closest('.ss-ap-daw')||e.target.closest('.ss-ap-format')))setTimeout(upd,0)});
+ (function(){var ul=ver.querySelector('ul');if(!ul)return;var li=[].slice.call(ul.children);li.sort(function(a,b){var x=(a.textContent.match(/(\d+)\s*$/)||[0,0])[1],y=(b.textContent.match(/(\d+)\s*$/)||[0,0])[1];var na=a.textContent.replace(/\d+\s*$/,''),nb=b.textContent.replace(/\d+\s*$/,'');return na<nb?-1:na>nb?1:(+y)-(+x)});li.forEach(function(x){ul.appendChild(x)})})(); /* newest version first */
  upd();return true}
 if(!run()){var mo=new MutationObserver(function(){if(run())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
 })();</script>

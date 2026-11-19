@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action( 'wp_head', function () {
 	if ( is_admin() || ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return;
+	if ( function_exists( 'ss_cs_ok' ) && ss_cs_ok() ) return; /* 19.11: our Creator space has its own tab row — the old WCFM icon row is not needed (it showed as a second menu on phones) */
 	echo '<style id="ss-vendor-mobile">@media(max-width:767px){'
 		/* menu: one horizontal row of icons, sticky under the site header, scrolls sideways */
 		. '#wcfm-content #wcfm_menu{position:sticky!important;top:var(--ssg-h,61px)!important;left:0!important;width:auto!important;height:auto!important;min-height:0!important;'

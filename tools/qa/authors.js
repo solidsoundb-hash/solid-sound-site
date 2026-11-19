@@ -19,7 +19,8 @@ const bug = (lvl, page, what, detail, shot) => bugs.push({ lvl, page, what, deta
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
-  const who = process.env.TEST_VENDOR_USER ? ['vendor', process.env.TEST_VENDOR_USER, process.env.TEST_VENDOR_PASS] : ['admin', process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS];
+  const E = process.env, ssU = E.SS_L1 || E.SS_L2 || E.SS_L3 || E.SS_L4, ssP = E.SS_P1 || E.SS_P2 || E.SS_P3 || E.SS_P4;
+  const who = ssU && ssP ? ['solid-sound', ssU, ssP] : process.env.TEST_VENDOR_USER ? ['vendor', process.env.TEST_VENDOR_USER, process.env.TEST_VENDOR_PASS] : ['admin', process.env.TEST_ADMIN_USER, process.env.TEST_ADMIN_PASS];
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const d = DEVS[DEV];
   const ctx = await browser.newContext({ ...d, locale: 'en-US', userAgent: d.isMobile ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
@@ -36,7 +37,9 @@ const bug = (lvl, page, what, detail, shot) => bugs.push({ lvl, page, what, deta
   await page.fill('#user_login', who[1] || ''); await page.fill('#user_pass', who[2] || '');
   await Promise.all([page.waitForNavigation({ timeout: 90000 }).catch(() => {}), page.click('#wp-submit')]);
   await sleep(2000);
-  md.push(`# Рой авторов — ${DEV} (${who[0]})`, '', `Снято: ${new Date().toISOString()}`, '');
+  const logged = await page.evaluate(() => document.body.classList.contains('logged-in')).catch(() => false);
+  md.push(`# Рой авторов — ${DEV} (${who[0]})`, '', `Снято: ${new Date().toISOString()}`, `Вход: ${logged ? '✅' : '❌ не вошёл'} · секреты SOLID_SOUND_*: ${ssU && ssP ? 'найдены' : 'не найдены (имена другие)'}`, '');
+  if (!logged) bug('🔴', '/wp-login.php', 'Робот не смог войти', who[0]);
   let n = 0; const shot = async (name, full) => { const f = `${String(++n).padStart(2, '0')}_${name.replace(/[^a-z0-9]+/gi, '-').slice(0, 50)}.jpg`; await page.screenshot({ path: `${OUT}/${f}`, type: 'jpeg', quality: 55, fullPage: !!full }).catch(() => {}); return f; };
 
   for (const p of PAGES) {

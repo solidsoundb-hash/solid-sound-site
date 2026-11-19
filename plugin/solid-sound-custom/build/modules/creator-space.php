@@ -216,7 +216,7 @@ add_action( 'wp_footer', function () {
 <?php try { $ss_cs_html = ss_cs_nav() . ( $root ? ss_cs_render() : '' ); } catch ( \Throwable $e ) { error_log( 'creator space: ' . $e->getMessage() ); return; } ?>
 <template id="ss-cs-tpl"><div id="ss-cs-wrap"><?php echo $ss_cs_html; /* escaped inside */ ?></div></template>
 <style id="ss-cs-css">
-body.ss-cs #wcfm_menu{display:none!important} /* 19.11 owner «грузится криво»: hidden from the first paint, not after the footer script */
+body.ss-cs #wcfm_menu,body.ss-cs #wcfm-main-contentainer #wcfm-content #wcfm_menu{display:none!important} /* 19.11 owner «грузится криво»: hidden from the first paint, not after the footer script */
 body.ss-cs:not(.ss-cs-mounted) #wcfm-content{padding-top:80px!important} /* room for the tab row that the footer script puts on top — nothing jumps */
 body.ss-cs #wcfm-content{width:100%!important;max-width:none!important;margin:0!important;float:none!important;background:transparent!important}
 body.ss-cs #wcfm-main-contentainer{background:transparent!important;max-width:1220px;margin-left:auto!important;margin-right:auto!important}
@@ -232,7 +232,9 @@ body.ss-cs #wcfm-content>*{min-width:0;max-width:100%;box-sizing:border-box}
 #ss-cs-wrap .ssa-nav{max-width:100%;flex-wrap:nowrap;overflow-x:auto}
 @media(max-width:1199px){body.ss-cs #wcfm-content{padding:0 16px!important}}
 /* add-product page: the WCFM title duplicates the form's own «Add Product», WCFM's floating «quick add» cube sat on the chat button */
-body.ss-cs #wcfm_ss_add_product>.wcfm-page-headig{display:none!important}
+body.ss-cs .wcfm-collapse>.wcfm-page-headig{display:none!important} /* «Marketplace Product List», «Marketplace Edit Seller Profile»…: the tab row already says where you are */
+@media(max-width:600px){body.ss-cs #solid-sound-upload-form .ss-wm-top{flex-wrap:wrap;padding:12px 14px!important;gap:10px}body.ss-cs #solid-sound-upload-form .ss-wm-top h2{flex:1 1 100%;font-size:20px}body.ss-cs #solid-sound-upload-form .ss-wm-top>div{display:flex;gap:8px;width:100%}body.ss-cs #solid-sound-upload-form .ss-wm-top>div>*{flex:1 1 0;margin:0!important;justify-content:center;min-height:44px}
+body.ss-cs #solid-sound-upload-form .acf-radio-list,body.ss-cs #solid-sound-upload-form .acf-checkbox-list{max-width:100%;box-sizing:border-box}body.ss-cs #solid-sound-upload-form .acf-radio-list li,body.ss-cs #solid-sound-upload-form .acf-checkbox-list li{min-width:0}}
 body.ss-cs .wcfm_product_popup_button_wrapper{display:none!important}
 body.ss-cs .acf-field ul.acf-radio-list,body.ss-cs .acf-field ul.acf-checkbox-list{border:0!important;box-shadow:none!important;padding:0!important}
 body.ss-cs .ss-pv-b{background:transparent!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;box-shadow:none!important}

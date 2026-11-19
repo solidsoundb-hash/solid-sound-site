@@ -30,6 +30,15 @@ jobs:
           TEST_VENDOR_PASS: ${{ secrets.TEST_VENDOR_PASS }}
           TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
           TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+          # owner 19.11: «дал секреты на вход, назвал как-то солид саунд логин и пароль» — the likely names
+          SS_L1: ${{ secrets.SOLID_SOUND_LOGIN }}
+          SS_L2: ${{ secrets.SOLID_SOUND_USER }}
+          SS_L3: ${{ secrets.SOLIDSOUND_LOGIN }}
+          SS_L4: ${{ secrets.SOLID_SOUND_USERNAME }}
+          SS_P1: ${{ secrets.SOLID_SOUND_PASSWORD }}
+          SS_P2: ${{ secrets.SOLID_SOUND_PASS }}
+          SS_P3: ${{ secrets.SOLIDSOUND_PASSWORD }}
+          SS_P4: ${{ secrets.SOLID_SOUND_PASSWORD_ }}
         run: node tools/qa/authors.js
       - uses: actions/upload-artifact@v4
         if: always()
