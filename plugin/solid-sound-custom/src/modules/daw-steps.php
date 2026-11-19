@@ -33,6 +33,12 @@ add_action( 'init', function () {
 }, 30 );
 
 /* the step logic, only where the upload form is */
+function ss_ds_on() { return function_exists( 'ss_cs_ok' ) && ss_cs_ok() && ( get_option( 'ss_ds_live' ) || current_user_can( 'manage_options' ) ); }
+/* in <head>: the form is drawn already folded (nothing jumps when the script runs) */
+add_action( 'wp_head', function () {
+	if ( ! ss_ds_on() ) return;
+	echo '<style id="ss-ds-head">#solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body>*:not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version){display:none!important}</style>';
+}, 99 );
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_cs_ok' ) || ! ss_cs_ok() ) return;
 	/* owner rule 19.11: screenshots before every release — admins (owner + robot) see it first; on with option ss_ds_live=1 */
@@ -50,11 +56,12 @@ function run(){var form=document.getElementById('solid-sound-upload-form');if(!f
  function txt(i){var l=i.closest('label');return (l?l.textContent:'').trim()}
  var first=document.createElement('p');first.className='ss-ds-first';first.textContent='Start here: what are you selling? The rest of the form adapts to it.';(fmt.querySelector('.acf-input')||fmt).appendChild(first);
  var lb=fmt.querySelector('.acf-label label');if(lb&&lb.firstChild&&lb.firstChild.nodeType===3)lb.firstChild.nodeValue='What are you selling?';
+ function names(){return [].map.call(daw.querySelectorAll('input[type=radio]'),txt).filter(Boolean)} /* a version the creator typed («Add your own») that names no known DAW is always shown */
  function upd(){var fc=!!(fmt.querySelector('input:checked')||(fmt.querySelector('select')&&fmt.querySelector('select').value));form.classList.toggle('ss-ds-nofmt',!fc);first.style.display=fc?'none':'';
   var d=daw.querySelector('input:checked'),dn=d?txt(d):'';
-  ver.querySelectorAll('input[type=radio]').forEach(function(i){var li=i.closest('li')||i.closest('label'),ok=!!dn&&txt(i).indexOf(dn+' ')===0;if(li)li.classList.toggle('ss-ds-off',!ok);if(!ok&&i.checked)i.checked=false});
+  ver.querySelectorAll('input[type=radio]').forEach(function(i){var li=i.closest('li')||i.closest('label'),t=txt(i),mine=names().some(function(n){return t.indexOf(n+' ')===0}),ok=!mine||(!!dn&&t.indexOf(dn+' ')===0);if(li){if(ok)li.style.removeProperty('display');else li.style.setProperty('display','none','important')}if(!ok&&i.checked)i.checked=false});
   hint.style.display=dn?'none':'';
-  var on=!daw.classList.contains('ss-ap-off');ver.classList.toggle('ss-ds-off',on&&!dn)}
+  var on=!daw.classList.contains('ss-ap-off');if(on&&!dn)ver.style.setProperty('display','none','important');else ver.style.removeProperty('display')}
  form.addEventListener('change',function(e){if(e.target.closest&&(e.target.closest('.ss-ap-daw')||e.target.closest('.ss-ap-format')))setTimeout(upd,0)});
  upd();return true}
 if(!run()){var mo=new MutationObserver(function(){if(run())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}

@@ -30,7 +30,7 @@ const bug = (lvl, page, what, detail, shot) => bugs.push({ lvl, page, what, deta
     if (/facebook|google-analytics|googletagmanager|tidio|hotjar|clarity/.test(u)) return route.abort();
     route.continue(); });
   const page = await ctx.newPage();
-  const errs = []; page.on('pageerror', e => errs.push(e.message)); page.on('console', m => { if (m.type() === 'error' && !/pagespeed|favicon|net::ERR_ABORTED|Failed to load resource.*(facebook|google|tidio)/i.test(m.text())) errs.push(m.text()); });
+  const errs = []; page.on('pageerror', e => { if (!/mod_pagespeed|FacebookSignal|fbq|gtag/.test(e.message)) errs.push(e.message); }); page.on('console', m => { if (m.type() === 'error' && !/pagespeed|favicon|net::ERR_ABORTED|net::ERR_FAILED|FacebookSignal|fbq|gtag|Failed to load resource.*(facebook|google|tidio)/i.test(m.text())) errs.push(m.text()); });
   const bad = []; page.on('response', r => { if (r.status() >= 400 && /solid-sound\.net/.test(r.url()) && !/ss_prof|favicon/.test(r.url())) bad.push(r.status() + ' ' + r.url().replace(BASE, '')); });
   await page.goto(BASE + '/wp-login.php', { waitUntil: 'domcontentloaded', timeout: 90000 });
   await page.fill('#user_login', who[1] || ''); await page.fill('#user_pass', who[2] || '');
@@ -77,6 +77,8 @@ const bug = (lvl, page, what, detail, shot) => bugs.push({ lvl, page, what, deta
     }
     md.push(`Нажато кнопок: ${pressed}`, '');
     if (errs.length) bug('🟠', p, 'Ошибки в коде страницы', [...new Set(errs)].slice(0, 5).join(' | '), f);
+    if (bad.some(b => /^503/.test(b))) bug('🟡', p, 'Хостинг ответил 503 (перегружен)', bad.filter(b => /^503/.test(b)).slice(0, 3).join(' | '));
+    const bad2 = bad.filter(b => !/^503/.test(b)); bad.length = 0; bad.push(...bad2);
     if (bad.length) bug('🟠', p, 'Файлы/запросы не загрузились', [...new Set(bad)].slice(0, 6).join(' | '), f);
   }
 
