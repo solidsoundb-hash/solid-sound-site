@@ -5625,5 +5625,5 @@ require_once __DIR__ . '/modules/site-polish.php'; /* 19.11 owner: «проше�
 require_once __DIR__ . '/modules/files-first.php'; /* 19.11 owner: Add Product starts with the files, AI fills the rest */
 require_once __DIR__ . '/modules/key-detect.php'; /* 19.11 owner: key from the audio, own analyser */
 require_once __DIR__ . '/modules/listen-depth.php'; /* 19.11 creator tools: where listeners stop in the previews */
-require_once __DIR__ . '/modules/update-notify.php'; /* 19.11 creator tools: tell buyers about an update (creator's click only) */
+/* require_once __DIR__ . '/modules/update-notify.php'; — «tell buyers about an update»: OFF, owner 19.11 «письма покупателям — убери пока» */
 require_once __DIR__ . '/modules/media-janitor.php'; /* 19.11 owner: no leftover files on hosting */

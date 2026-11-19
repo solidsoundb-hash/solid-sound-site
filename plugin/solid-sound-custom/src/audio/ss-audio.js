@@ -130,6 +130,44 @@
     return sum ? Array.prototype.map.call(acc, function (v) { return v / sum; }) : null;
   }
 
+  /* ---------- the bass line, like a listener hears it (owner 19.11: «слушал как человек и определял по тонике») ----------
+     Short windows (0.25 s, step 0.1 s) between 55 and 260 Hz; the strongest bass pitch of each step; a note counts only
+     when it HOLDS (same pitch ±35 cents for ≥ 3 steps = 0.3 s) — a kick's thump falls in pitch and dies, a bass note stays.
+     Weighted by how long it is held: the note the bass keeps returning to and resting on is the tonic. */
+  function bassline(x, sr, opt) {
+    opt = opt || {};
+    var d = decimate(x, sr, 2756); x = d.x; sr = d.sr;
+    var W = Math.round(0.25 * sr), N = 4096, H = Math.round(0.1 * sr), i, j, f;
+    var win = new Float32Array(W); for (i = 0; i < W; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (W - 1));
+    var lo = Math.floor((opt.blo || 55) * N / sr), hi = Math.ceil((opt.bhi || 260) * N / sr);
+    var re = new Float32Array(N), im = new Float32Array(N), P = [], E = [];
+    var frames = Math.floor((x.length - W) / H), step = Math.max(1, Math.ceil(frames / 2400));
+    for (f = 0; f < frames; f += step) {
+      var o = f * H; re.fill(0); im.fill(0);
+      for (i = 0; i < W; i++) re[i] = x[o + i] * win[i];
+      fft(re, im);
+      var best = 0, bj = -1, tot = 0, m = new Float32Array(hi + 2);
+      for (j = lo - 1; j <= hi + 1; j++) m[j] = Math.sqrt(re[j] * re[j] + im[j] * im[j]);
+      for (j = lo; j <= hi; j++) { tot += m[j]; if (m[j] > best && m[j] >= m[j - 1] && m[j] >= m[j + 1]) { best = m[j]; bj = j; } }
+      if (bj < 0) { P.push(null); E.push(0); continue; }
+      var p = 0.5 * (m[bj - 1] - m[bj + 1]) / (m[bj - 1] - 2 * best + m[bj + 1] || 1e-12);
+      var hz = (bj + p) * sr / N;
+      /* prefer the fundamental: if half the frequency also has a strong peak, that is the note */
+      var hj = Math.round(bj / 2); if (hj >= lo && m[hj] > best * 0.5) hz = hz / 2;
+      P.push(69 + 12 * Math.log2(hz / 440)); E.push(best / (tot / (hi - lo + 1) + 1e-9));
+    }
+    var hist = new Float64Array(12), held = 0, run = [], k;
+    function flush() { if (run.length >= (opt.hold || 3)) { var s = 0; run.forEach(function (v) { s += v; }); var mid = s / run.length, pc = ((Math.round(mid) % 12) + 12) % 12; hist[pc] += run.length; held += run.length; } run = []; }
+    for (k = 0; k < P.length; k++) {
+      if (P[k] == null || E[k] < (opt.peaky || 3)) { flush(); continue; }
+      if (run.length && Math.abs(P[k] - run[run.length - 1]) > 0.35) flush();
+      run.push(P[k]);
+    }
+    flush();
+    var sum = 0; for (i = 0; i < 12; i++) sum += hist[i];
+    return { hist: sum ? Array.prototype.map.call(hist, function (v) { return v / sum; }) : null, held: held * step * 0.1 };
+  }
+
   function key(x, sr, opt) {
     opt = opt || {}; var ch = chroma(x, sr, opt); if (!ch) return null; var PROF = profiles(opt);
     if (opt.thr) { var mx0 = Math.max.apply(null, ch); ch = ch.map(function (v) { return v < mx0 * opt.thr ? 0 : v; }); }
@@ -173,6 +211,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, chroma: chroma, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);
