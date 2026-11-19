@@ -3700,6 +3700,7 @@ if ( ! function_exists( 'ss_cat_url' ) ) {
 	}
 	add_action( 'template_redirect', function () {
 		if ( is_admin() || wp_doing_ajax() ) return;
+		if ( function_exists( 'wcfmmp_is_store_page' ) && wcfmmp_is_store_page() ) return; /* 19.11 owner: creator profile pages are not the shop («View my profile» led to all products) */
 		if ( function_exists( 'is_shop' ) && is_shop() ) { wp_safe_redirect( home_url( '/en/all-products/' ), 301 ); exit; } /* shop = the catalog page (13.11.2026) */
 		if ( ! is_tax() && ! ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() ) ) return;
 		$t = get_queried_object();
