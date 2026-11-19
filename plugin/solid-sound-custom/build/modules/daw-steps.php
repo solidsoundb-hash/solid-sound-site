@@ -64,7 +64,7 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-grid .select2-container{width:100%!important}
 #solid-sound-upload-form .ss-ff-grid .select2-selection{min-height:44px}
 #solid-sound-upload-form .ss-ff-grid #ss-kd{margin:0!important}
-#solid-sound-upload-form .ss-ff-grid .acf-label{position:relative}#solid-sound-upload-form .ss-ff-grid .acf-label .ss-wm-cnt{position:absolute;right:0;top:0;margin:0!important;padding:2px 8px!important;font-size:12px!important}</style>
+#solid-sound-upload-form .ss-ff-grid .acf-label{position:relative}#solid-sound-upload-form .ss-ff-grid .acf-label .ss-wm-cnt{position:absolute;right:0;top:0;margin:0!important;padding:2px 8px!important;font-size:12px!important}#solid-sound-upload-form .ss-ff-grid .acf-label:has(.ss-wm-cnt) .ss-wm-max{display:none!important}#solid-sound-upload-form .ss-ff-grid .acf-label:has(.ss-wm-cnt)>label{padding-right:96px}</style>
 <script>(function(){
 function run(){var form=document.getElementById('solid-sound-upload-form');if(!form||form.dataset.ssds)return!!form;var fmt=form.querySelector('.ss-ap-format'),daw=form.querySelector('.ss-ap-daw'),ver=form.querySelector('.ss-ap-version');if(!fmt||!daw||!ver)return false;form.dataset.ssds='1';
  /* 1 → 2 → 3 right under each other */
