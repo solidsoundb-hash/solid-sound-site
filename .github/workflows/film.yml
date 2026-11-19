@@ -1,0 +1,42 @@
+# Robot "film" (owner 19.11.2026): frames of a page while it loads (every 300 ms, PC + phone). Read-only.
+# Run: add a line to .github/film.txt (optional: "pages: /a/,/b/"). Result: checks/film/.
+name: Film
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/film.txt"]
+permissions:
+  contents: write
+concurrency: film
+jobs:
+  film:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Film
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+          SS_L1: ${{ secrets.SOLID_SOUND_LOGIN }}
+          SS_L2: ${{ secrets.SOLID_SOUND_USER }}
+          SS_L3: ${{ secrets.SOLIDSOUND_LOGIN }}
+          SS_L4: ${{ secrets.SOLID_SOUND_USERNAME }}
+          SS_P1: ${{ secrets.SOLID_SOUND_PASSWORD }}
+          SS_P2: ${{ secrets.SOLID_SOUND_PASS }}
+          SS_P3: ${{ secrets.SOLIDSOUND_PASSWORD }}
+          SS_P4: ${{ secrets.SOLID_SOUND_PASSWORD_ }}
+        run: |
+          L=$(tail -1 .github/film.txt); case "$L" in *pages:*) export FILM_PAGES=$(echo "${L#*pages:}" | tr -d ' ');; esac
+          rm -rf checks/film && node tools/qa/film.js
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name film-robot && git config user.email actions@users.noreply.github.com
+          git add checks/film && git commit -qm "film: $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 5; done
