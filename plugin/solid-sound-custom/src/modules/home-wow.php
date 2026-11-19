@@ -77,10 +77,16 @@ body.ss-wow .ssx .sub{display:none}
 body.ss-wow .ssx{position:relative;z-index:2;background:#111214!important;border-color:rgba(245,158,11,.45)!important;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(245,158,11,.15)}
 /* owner 19.11: colour «Графит» (variant 2) */
 body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,255,.07)!important}body.ss-wow .ssx .tasks button{background:#1b1c20!important}body.ss-wow .ssx .tasks button.on{background:rgba(245,158,11,.14)!important}
-/* owner 19.11: «на ПК растяни слайдер, чтобы полностью влезал на экране» — wide screens: full width, picker in three columns */
-@media(min-width:1300px){body.ss-wow #ss-app .ssx{max-width:100%!important;width:100%}
- body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:1.25fr 1fr 1fr!important}
- body.ss-wow .ssx .card .left:has(>.f.row)>.f:not(.row){grid-column:1!important}}
+/* owner 19.11 «верни размер обратно и пересобери… логично, эргономично, интуитивно»: width back to 1200;
+   the picker reads top to bottom: 1) genre, 2) BPM · key · Ableton on one line, 3) result and buttons on one line */
+@media(min-width:1000px){
+ body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)!important;column-gap:36px!important}
+ body.ss-wow .ssx .card .left>.f.row{display:flex!important;flex-wrap:nowrap!important;align-items:flex-end!important;gap:28px!important;margin-bottom:16px!important}
+ body.ss-wow .ssx .card .left>.f.row>*{margin:0!important}
+ body.ss-wow .ssx .card .left>.ssw-match{grid-column:1!important;margin:4px 0 0!important;align-self:stretch}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:2!important;align-self:end;justify-self:stretch;display:flex!important;gap:10px!important;margin:4px 0 0!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts>*{flex:1 1 auto;justify-content:center}
+}
 /* owner 19.11: the slider turns by itself — a thin progress line under the active task; stops for good once the visitor touches the slider */
 body.ss-wow .ssx .tasks button{position:relative}
 body.ss-wow .ssx.ss-auto .tasks button.on:after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:#f59e0b;transform-origin:0 50%;animation:ssxbar var(--ssx-t,7s) linear forwards}
