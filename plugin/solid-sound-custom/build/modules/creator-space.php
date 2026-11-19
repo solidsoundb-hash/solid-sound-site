@@ -24,7 +24,7 @@ function ss_cs_is_root() {
    → browser Out of Memory. On the dashboard root we don't load WCFM Chart.js; a no-op stub keeps WCFM code error-free. */
 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) {
 	if ( false === strpos( (string) $src, '/libs/chart-js/chart' ) || ! ss_cs_ok() || ! ss_cs_is_root() ) return $tag;
-	return '<script id="ss-cs-nochart">(function(){var s;s=new Proxy(function(){},{get:function(t,k){return k===Symbol.toPrimitive?function(){return ""}:s},set:function(){return true},apply:function(){return s},construct:function(){return s}});window.Chart=s})();</script>' . "\n";
+	return '<script id="ss-cs-nochart">(function(){var s;s=new Proxy(function(){},{get:function(t,k){return k===Symbol.toPrimitive?function(){return ""}:s},set:function(){return true},apply:function(){return s},construct:function(){return s}});window.Chart=s;if(!window.color)window.color=function(){return s};if(!window.chartColors)window.chartColors=new Proxy({},{get:function(){return "#999"}})})();</script>' . "\n";
 }, 99, 3 );
 
 /* plays per day (kept 62 days) */

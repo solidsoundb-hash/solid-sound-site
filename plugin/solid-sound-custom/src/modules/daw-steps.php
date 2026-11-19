@@ -50,7 +50,8 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-wm-body>.ss-ap-daw,#solid-sound-upload-form .ss-wm-body>.ss-ap-version,#solid-sound-upload-form .ss-wm-body>.ss-ap-genre{margin-top:22px!important}
 #solid-sound-upload-form .ss-ap-format .acf-radio-list,#solid-sound-upload-form .ss-ap-daw .acf-radio-list,#solid-sound-upload-form .ss-ap-version .acf-radio-list{max-height:none!important;overflow:visible!important}
 /* owner 19.11: «сначала — что это: шаблон, пресет и т.д., а уже от этого плясать дальше» — nothing else until the type is chosen */
-#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>*:not(.ss-ap-format),#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body~*:not(.ss-wm-hidden){display:none!important}
+/* 19.11 owner: files FIRST — the «Drop your files» window (files-first.php) stays visible before the type is chosen; it picks the type itself */
+#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>*:not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c2),#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body~*:not(.ss-wm-hidden){display:none!important}
 #solid-sound-upload-form .ss-ds-first{margin:10px 0 0;color:#F59E0B;font-weight:700}</style>
 <script>(function(){
 function run(){var form=document.getElementById('solid-sound-upload-form');if(!form||form.dataset.ssds)return!!form;var fmt=form.querySelector('.ss-ap-format'),daw=form.querySelector('.ss-ap-daw'),ver=form.querySelector('.ss-ap-version');if(!fmt||!daw||!ver)return false;form.dataset.ssds='1';
