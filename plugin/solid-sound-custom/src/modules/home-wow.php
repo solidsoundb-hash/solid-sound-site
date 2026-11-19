@@ -83,10 +83,20 @@ body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,25
  body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)!important;column-gap:36px!important}
  body.ss-wow .ssx .card .left>.f.row{display:flex!important;flex-wrap:nowrap!important;align-items:flex-end!important;gap:28px!important;margin-bottom:16px!important}
  body.ss-wow .ssx .card .left>.f.row>*{margin:0!important}
- body.ss-wow .ssx .card .left>.ssw-match{grid-column:1!important;margin:4px 0 0!important;align-self:stretch}
- body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:2!important;align-self:end;justify-self:stretch;display:flex!important;gap:10px!important;margin:4px 0 0!important}
- body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts>*{flex:1 1 auto;justify-content:center}
+ body.ss-wow .ssx .card .left>.ssw-match{grid-column:2!important;grid-row:5;margin:4px 0 0!important;align-self:stretch}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:1!important;grid-row:5;align-self:end;margin:4px 0 0!important}
 }
+/* owner 19.11 «каждый раздел — кнопки примерно одинаково расположены, однородно»: every slide has the same frame —
+   title + subtitle on top, the choices in the middle, the buttons in one place at the bottom-left (cards are as tall
+   as the tallest one, so the buttons line up on every tab) */
+body.ss-wow .ssx .track{align-items:stretch}
+body.ss-wow .ssx .card .left:not(:has(>.ssw-match)){display:flex!important;flex-direction:column!important;height:100%}
+body.ss-wow .ssx .card .left:not(:has(>.ssw-match))>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left:not(:has(>.ssw-match))>.cta{margin-top:auto!important}
+body.ss-wow .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left>.cta{padding-top:14px}
+body.ss-wow .ssx .card .left .acts{display:flex;flex-wrap:wrap;gap:10px}
+body.ss-wow .ssx .card .left form.acts .inp{flex:1 1 240px;min-width:0;min-height:48px}body.ss-wow .ssx .card .left form.acts .cta{flex:1 1 auto}body.ss-wow .ssx .card .left form.acts .ss-priv-note{flex-basis:100%}
+@media(max-width:600px){body.ss-wow #ss-app .ssx .card .left form.acts{display:flex!important;flex-wrap:wrap!important}body.ss-wow #ss-app .ssx .card .left form.acts .inp{flex:1 1 100%!important;width:100%!important}body.ss-wow #ss-app .ssx .card .left form.acts .cta{flex:1 1 100%!important;width:100%!important;max-width:none!important;padding:0 16px!important}}
+body.ss-wow .ssx .card .left .cta,body.ss-wow .ssx .card .left .gbtn{min-height:48px;padding:0 22px!important;display:inline-flex;align-items:center;justify-content:center}
 /* owner 19.11: the slider turns by itself — a thin progress line under the active task; stops for good once the visitor touches the slider */
 body.ss-wow .ssx .tasks button{position:relative}
 body.ss-wow .ssx.ss-auto .tasks button.on:after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:#f59e0b;transform-origin:0 50%;animation:ssxbar var(--ssx-t,7s) linear forwards}
