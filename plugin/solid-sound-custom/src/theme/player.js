@@ -127,6 +127,7 @@ var audio=new Audio();audio.preload='none';
 /* (13.11.2026) tell the page when the site player starts / stops, so every ▶ on the page can switch to ⏸ */
 ['play','playing','pause','ended','emptied'].forEach(function(n){audio.addEventListener(n,function(){setTimeout(function(){try{document.dispatchEvent(new CustomEvent('ssp:state',{detail:{playing:!audio.paused,src:audio.currentSrc||audio.src}}))}catch(x){}},0)})});
 var P={queue:[],idx:-1,cur:null,pendingSeek:null};
+window.ssPlayer={audio:audio,pid:function(){return P.cur&&P.cur.pid||null}}; /* listen-depth.php: how far each preview is heard */
 var vol=parseFloat(ls('ssp_vol'));if(!(vol>=0&&vol<=1))vol=0.9;audio.volume=vol;
 var muted=ls('ssp_mute')==='1';audio.muted=muted;
 

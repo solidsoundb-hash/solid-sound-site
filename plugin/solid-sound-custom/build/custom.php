@@ -5624,4 +5624,5 @@ require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-
 require_once __DIR__ . '/modules/site-polish.php'; /* 19.11 owner: «прошерсти сайт, улучши» — small QA fixes */
 require_once __DIR__ . '/modules/files-first.php'; /* 19.11 owner: Add Product starts with the files, AI fills the rest */
 require_once __DIR__ . '/modules/key-detect.php'; /* 19.11 owner: key from the audio, own analyser */
+require_once __DIR__ . '/modules/listen-depth.php'; /* 19.11 creator tools: where listeners stop in the previews */
 require_once __DIR__ . '/modules/media-janitor.php'; /* 19.11 owner: no leftover files on hosting */
