@@ -247,11 +247,14 @@ body.ss-wow #ss-app .ssx .fp-cover .fp-b{position:absolute;top:14px;left:16px;pa
 body.ss-wow #ss-app .ssx .fp-cover .fp-t{color:#fff;font:800 30px/1 "Exo 2",sans-serif;letter-spacing:-.01em;position:relative;z-index:1}
 body.ss-wow #ss-app .ssx .fp-cover .fp-s{color:#F5C77A;font:600 13px "Exo 2",sans-serif;position:relative;z-index:1}
 body.ss-wow #ss-app .ssx .fp-cover .fp-w{position:absolute;right:14px;top:16px;width:46%;height:56px;opacity:.85;background:repeating-linear-gradient(90deg,#F59E0B 0 3px,transparent 3px 6px);-webkit-mask:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q5 2 10 20 T20 20 T30 20 Q35 6 40 20 T50 20 Q55 0 60 20 T70 20 Q75 10 80 20 T90 20 Q95 4 100 20 L100 40 L0 40Z'/%3E%3C/svg%3E") center/100% 100%;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q5 2 10 20 T20 20 T30 20 Q35 6 40 20 T50 20 Q55 0 60 20 T70 20 Q75 10 80 20 T90 20 Q95 4 100 20 Q95 36 90 20 T80 20 Q75 32 70 20 T60 20 Q55 40 50 20 T40 20 Q35 34 30 20 T20 20 Q15 38 10 20 T0 20Z'/%3E%3C/svg%3E") center/100% 100%}
+/* phones: a slim banner, so the slider keeps its height */
+@media(max-width:1000px){body.ss-wow #ss-app .ssx .fp-cover{height:88px;padding:10px 14px;margin-bottom:10px}body.ss-wow #ss-app .ssx .fp-cover .fp-t{font-size:22px}body.ss-wow #ss-app .ssx .fp-cover .fp-b{top:10px;left:auto;right:14px}body.ss-wow #ss-app .ssx .fp-cover .fp-w{display:none}body.ss-wow #ss-app .ssx .fp-list{gap:4px;margin:2px 0 10px}body.ss-wow #ss-app .ssx .fp-list li{font-size:14px}}
 @media(min-width:1001px){
 body.ss-wow #ss-app .ssx .card .left.fp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;column-gap:36px!important;align-content:start!important;align-items:start!important}
 body.ss-wow #ss-app .ssx .card .left.fp>*{grid-column:1!important;margin-left:0!important}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover,body.ss-wow #ss-app .ssx .card .left.fp>.acts,body.ss-wow #ss-app .ssx .card .left.fp>.fp-or,body.ss-wow #ss-app .ssx .card .left.fp>form,body.ss-wow #ss-app .ssx .card .left.fp>.fp-note{grid-column:2!important;width:100%!important;max-width:none!important}
-body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{grid-row:1 / span 3!important;height:auto!important;aspect-ratio:300/190;margin:0 0 12px!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{grid-row:1 / span 3!important;height:130px!important;margin:0 0 10px!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:4px 0!important}body.ss-wow #ss-app .ssx .card .left.fp>form{gap:8px!important}body.ss-wow #ss-app .ssx .card .left.fp>.fp-note{margin-top:6px!important}
 body.ss-wow #ss-app .ssx .card .left.fp>.acts .gbtn{width:100%!important;justify-content:center!important;box-sizing:border-box}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:8px 0!important;text-align:center}
 }
