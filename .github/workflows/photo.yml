@@ -1,0 +1,47 @@
+# Robot "photographer" (owner 19.11.2026): pictures of the whole site — every page, the menus and every button,
+# computer + phone, the home page at 8 widths. Read-only.
+# Run: add a line to .github/photo.txt (or Actions → Photographer → Run).
+# Result: branch `shots` (replaced on every run, keeps main light): shots/index.md + pictures. Also an artifact (7 days).
+name: Photographer
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/photo.txt"]
+permissions:
+  contents: write
+concurrency: photographer
+jobs:
+  shoot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]     # the hosting slows down with more than ~3 robots at once (17.11)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Photographer ${{ matrix.shard }} of 3
+        env: { PW_CHANNEL: chrome, PHOTO_SHARD: "${{ matrix.shard }}/3", PHOTO_OUT: "shots", PHOTO_BUDGET_MIN: "150" }
+        run: node tools/photo/photo.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "shots-${{ matrix.shard }}", path: shots, retention-days: 7 }
+  save:
+    needs: shoot
+    if: "!cancelled()"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl }
+      - name: Merge and save to branch shots
+        run: |
+          mkdir -p shots && for d in dl/shots-*; do cp -r $d/. shots/; done
+          node tools/photo/index.js shots
+          cd shots && git init -q -b shots && git config user.name photographer && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "photographer: $(date -u +%FT%TZ)"
+          git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shots
