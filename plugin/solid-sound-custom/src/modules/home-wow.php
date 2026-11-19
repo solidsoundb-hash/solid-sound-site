@@ -15,7 +15,7 @@ function ss_wow_on() {
 }
 
 function ss_wow_items() {
-	$c = get_transient( 'ss_wow_items' );
+	$c = get_transient( 'ss_wow_items2' );
 	if ( is_array( $c ) ) return $c;
 	$keys = function_exists( 'ss_ap_keys' ) ? ss_ap_keys() : array();
 	$val  = function ( $k, $pid ) use ( $keys ) {
@@ -38,12 +38,31 @@ function ss_wow_items() {
 			'p' => $p->ID, 't' => get_the_title( $p ), 'i' => $img, 'u' => get_permalink( $p ), 's' => $mp3,
 			'g' => is_wp_error( $g ) ? '' : strtolower( implode( '|', $g ) ),
 			'b' => (int) preg_replace( '/\D.*/', '', $val( 'bpm', $p->ID ) ), 'k' => $val( 'key', $p->ID ),
+			'd' => (int) get_post_time( 'U', true, $p ), 'pr' => ss_wow_price( $p->ID ), 'c' => ss_wow_type( $p->ID ),
 		);
 	}
-	set_transient( 'ss_wow_items', $out, HOUR_IN_SECONDS );
+	set_transient( 'ss_wow_items2', $out, HOUR_IN_SECONDS );
 	return $out;
 }
-add_action( 'save_post_product', function () { delete_transient( 'ss_wow_items' ); } );
+function ss_wow_price( $id ) {
+	$w = function_exists( 'wc_get_product' ) ? wc_get_product( $id ) : null; if ( ! $w ) return array( '', '' );
+	$f = function ( $v ) { return '' === (string) $v ? '' : html_entity_decode( wp_strip_all_tags( wc_price( $v ) ) ); };
+	return array( $f( $w->get_price() ), $w->is_on_sale() ? $f( $w->get_regular_price() ) : '' );
+}
+function ss_wow_type( $id ) {
+	$c = wp_get_post_terms( $id, 'product_cat', array( 'fields' => 'slugs' ) ); $c = is_wp_error( $c ) ? '' : implode( ' ', $c );
+	foreach ( array( 'template' => 'Template', 'preset' => 'Presets', 'music' => 'Music' ) as $k => $v ) if ( false !== strpos( $c, $k ) ) return $v;
+	return '';
+}
+/* owner 19.11: «1 карточка с новым товаром, обновляется через 1 неделю» — the newest product if it came out in the last
+   7 days, otherwise the next product of the catalog each week (week number), so the card changes every Monday */
+function ss_wow_new( $items ) {
+	if ( ! $items ) return null;
+	if ( $items[0]['d'] > time() - 7 * DAY_IN_SECONDS ) return $items[0];
+	$w = (int) gmdate( 'oW' );
+	return $items[ $w % count( $items ) ];
+}
+add_action( 'save_post_product', function () { delete_transient( 'ss_wow_items2' ); } );
 
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_home_is_app_page' ) || ! ss_home_is_app_page() || ! ss_wow_on() ) return;
@@ -86,6 +105,23 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
    the tallest card is ~100px lower and the whole slider fits the first screen */
 @media(min-width:1000px){body.ss-wow .ssx .card .left{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}body.ss-wow .ssx .card .left>*{grid-column:1/-1}body.ss-wow .ssx .card .left>.f.row{grid-column:auto}}
 @media(min-width:1000px) and (max-height:900px){.ssw-hero{padding:14px 12px 8px!important}.ssw-hero .slg{font-size:38px!important;margin-bottom:6px}body.ss-wow .ssx{padding-top:16px!important;padding-bottom:16px!important}body.ss-wow .ssx .tasks{margin-bottom:12px!important}}
+/* owner 19.11: clear category buttons under the slogan, like the product tabs on the home cards */
+.ssw-cats{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:14px auto 0;max-width:900px}
+.ssw-cats a{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:10px;background:rgba(19,27,46,.92);border:1px solid rgba(255,255,255,.12);color:#e5e7eb!important;font:700 14.5px "Exo 2",sans-serif;text-decoration:none!important;white-space:nowrap;transition:border-color .15s,color .15s}
+.ssw-cats a svg{color:#f59e0b;flex:none}.ssw-cats a:hover{border-color:rgba(245,158,11,.6);color:#fff!important}
+@media(max-width:600px){.ssw-cats{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;margin:10px -6px 0;padding:0 6px}.ssw-cats::-webkit-scrollbar{display:none}.ssw-cats a{height:38px;padding:0 13px;font-size:13.5px}}
+/* product of the week slide */
+body.ss-wow .ssx .ssw-nt i{color:#f59e0b}
+body.ss-wow .ssx .ssw-new .left{display:grid!important;grid-template-columns:200px 1fr;gap:20px;align-items:center}
+body.ss-wow .ssx .ssw-new .left>*{grid-column:auto!important}
+.ssw-new .cvr{position:relative;display:block;border-radius:14px;overflow:hidden;aspect-ratio:1;background:#1b2338}
+.ssw-new .cvr img{width:100%;height:100%;object-fit:cover;display:block}
+.ssw-new .cvr .tag{position:absolute;left:8px;top:8px;background:#f59e0b;color:#111;font:800 11px Roboto,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.ssw-new .inf{min-width:0}.ssw-new h2{margin:0 0 6px;color:#fff;font:700 24px/1.2 "Exo 2",sans-serif}
+.ssw-new .mt{color:#94a3b8;font:400 14px Roboto,sans-serif;margin-bottom:10px}
+.ssw-new .pr{margin-bottom:14px;font:800 22px "Exo 2",sans-serif;color:#f59e0b}.ssw-new .pr s{color:#64748b;font-size:16px;font-weight:600;margin-right:4px}
+.ssw-new .acts{display:flex;flex-wrap:wrap;gap:8px}
+@media(max-width:600px){body.ss-wow .ssx .ssw-new .left{grid-template-columns:110px 1fr;gap:12px;align-items:start}.ssw-new h2{font-size:18px}.ssw-new .pr{font-size:18px;margin-bottom:10px}.ssw-new .acts{grid-column:1/-1!important}.ssw-new .acts>*{flex:1 1 auto}}
 /* tablets */
 @media(min-width:601px) and (max-width:1024px){.ssw-hero .slg{font-size:44px!important}.ssw-row a{width:120px;height:120px}}
 .ssw-match{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 10px;border-radius:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.28);cursor:pointer;text-align:left}
@@ -116,12 +152,20 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
-var TR=<?php echo wp_json_encode( array( 'lcr' => ss_home_t( 'Learn · Create · Release' ), 'cl' => ss_home_t( 'Closest to your choice' ), 'one' => ss_home_t( ' template matches' ), 'many' => ss_home_t( ' templates match' ), 'tap' => ss_home_t( ' — tap to listen' ) ) ); ?>;
+var NEW=<?php echo wp_json_encode( ss_wow_new( $items ) ); ?>;
+var CATS=<?php $hl = function_exists( 'ss_home_lang' ) ? ss_home_lang() : ''; $pre = $hl ? '/' . $hl : '/en'; echo wp_json_encode( array(
+	array( ss_home_t( 'Templates' ), home_url( '/templates/' ), 'M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5' ),
+	array( ss_home_t( 'Presets' ), home_url( '/presets/' ), 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2' ),
+	array( ss_home_t( 'Music' ), home_url( '/music/' ), 'M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z' ),
+	array( ss_home_t( 'Mixing & Mastering' ), home_url( $pre . '/services-prices/' ), 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6' ),
+	array( ss_home_t( 'Free' ), home_url( $pre . '/free/' ), 'M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z' ),
+) ); ?>;
+var TR=<?php echo wp_json_encode( array( 'nw' => ss_home_t( 'New this week' ), 'ls' => ss_home_t( 'Listen' ), 'vw' => ss_home_t( 'View product' ), 'ac' => ss_home_t( 'Add to cart' ), 'lcr' => ss_home_t( 'Learn · Create · Release' ), 'cl' => ss_home_t( 'Closest to your choice' ), 'one' => ss_home_t( ' template matches' ), 'many' => ss_home_t( ' templates match' ), 'tap' => ss_home_t( ' — tap to listen' ) ) ); ?>;
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function track(x){return {pid:String(x.p),src:x.s,t:x.t,a:'Solid Sound',i:x.i,u:x.u}}
 function play(x,a){if(x.s&&window.SSP){var q=W.filter(function(y){return y.s}).map(track);try{SSP.play(track(x),q,null);if(a){var o=document.querySelector('.ssw-row a.pl');if(o)o.classList.remove('pl');a.classList.add('pl')}return true}catch(e){}}return false}
 function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.classList.add('ss-wow');
- var hero=document.createElement('div');hero.className='ssw-hero';hero.innerHTML='<p class="slg" role="heading" aria-level="2">'+H1+'</p><span class="k"><i></i>'+TR.lcr+'</span>';/* owner 16.11: slogan first, then the pill */
+ var hero=document.createElement('div');hero.className='ssw-hero';hero.innerHTML='<p class="slg" role="heading" aria-level="2">'+H1+'</p><span class="k"><i></i>'+TR.lcr+'</span><nav class="ssw-cats" aria-label="Categories">'+CATS.map(function(c){return '<a href="'+esc(c[1])+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+c[2]+'"/></svg>'+esc(c[0])+'</a>'}).join('')+'</nav>';/* owner 16.11: slogan first, then the pill */
  ssx.parentNode.insertBefore(hero,ssx);
  var wall=document.createElement('div');wall.className='ssw-wall';wall.setAttribute('aria-hidden','true');var inr=document.createElement('div');inr.className='in';wall.appendChild(inr);hero.appendChild(wall);
  function size(){wall.style.height=(ssx.getBoundingClientRect().bottom-hero.getBoundingClientRect().top+30)+'px'}size();
@@ -131,7 +175,16 @@ function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.
   wall.addEventListener('click',function(e){var a=e.target.closest('a[data-n]');if(!a)return;if(play(W[+a.getAttribute('data-n')],a))e.preventDefault()});
 };
  wall.classList.add('stage');requestAnimationFrame(function(){wall.classList.add('on')}); /* owner 19.11: blue stage instead of the cover wall (go0 keeps the old wall code) */
- match(ssx)}
+ match(ssx);addNew(ssx)}
+/* owner 19.11: one slide with the product of the week (2nd tab), same look as the other cards */
+function addNew(ssx){var x=NEW,tasks=ssx.querySelector('.tasks'),cards=ssx.querySelectorAll('.card');if(!x||!tasks||cards.length<1||ssx.querySelector('.ssw-new'))return;
+ var b=document.createElement('button');b.type='button';b.className='ssw-nt';b.innerHTML='<i><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></i>'+esc(TR.nw);
+ var t0=tasks.querySelector('button');tasks.insertBefore(b,t0?t0.nextSibling:null);[].forEach.call(tasks.querySelectorAll('button'),function(e,k){e.setAttribute('data-i',k)});
+ var meta=[x.c,x.g?x.g.split('|')[0].replace(/\b\w/g,function(m){return m.toUpperCase()}):'',x.b?x.b+' BPM':'',x.k].filter(Boolean).join(' · ');
+ var c=document.createElement('div');c.className='card ssw-new';c.innerHTML='<div class="left"><a class="cvr" href="'+esc(x.u)+'"><img src="'+esc(x.i)+'" alt="" width="300" height="300" loading="lazy"><span class="tag">'+esc(TR.nw)+'</span></a><div class="inf"><h2>'+esc(x.t)+'</h2><div class="mt">'+esc(meta)+'</div><div class="pr">'+(x.pr&&x.pr[1]?'<s>'+esc(x.pr[1])+'</s> ':'')+'<b>'+esc(x.pr?x.pr[0]:'')+'</b></div><div class="acts">'+(x.s?'<button type="button" class="gbtn ssw-pl">▶ '+esc(TR.ls)+'</button>':'')+'<a class="cta" href="'+esc(x.u)+'?add-to-cart='+x.p+'">'+esc(TR.ac)+'</a><a class="gbtn" href="'+esc(x.u)+'">'+esc(TR.vw)+'</a></div></div></div>';
+ cards[0].parentNode.insertBefore(c,cards[0].nextSibling);
+ var pl=c.querySelector('.ssw-pl');if(pl)pl.addEventListener('click',function(){play(x)});
+ var dots=ssx.querySelector('.dots');if(dots){var d=document.createElement('i');dots.appendChild(d)}}
 /* "N templates match" in the first card; updates only on the visitor's own clicks/typing (no observers) */
 function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;var acts=card.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)card.insertBefore(box,acts);else card.appendChild(box);var last='';
  function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=card.querySelectorAll('.f.row .chips')[0];var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
