@@ -350,6 +350,21 @@ body.ss-wow #ss-app .ssx .fz-t b{color:#fff;font:700 16px/1.25 "Exo 2",sans-seri
 body.ss-wow #ss-app .ssx .fz-t b i{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:5px;background:#34D399;color:#062014;font:800 11px/1.5 "Exo 2",sans-serif;font-style:normal;letter-spacing:.08em;vertical-align:2px}
 body.ss-wow #ss-app .ssx .fz-t small{color:#94A3B8;font:400 13.5px/1.35 Roboto,sans-serif}
 body.ss-wow #ss-app .ssx .fz-t:after{content:"→"!important;position:static!important;margin-left:auto;color:#F59E0B;font:700 18px "Exo 2",sans-serif}
+@media(min-width:1001px){
+body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:minmax(0,1fr) 340px!important;gap:16px 24px!important;align-content:stretch!important;align-items:stretch!important}
+body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{grid-auto-rows:1fr!important;align-self:stretch!important;gap:16px}
+body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{align-self:stretch!important;padding:30px;gap:12px}
+body.ss-wow #ss-app .ssx .fz-t{padding:20px 26px;gap:22px;border-radius:14px}
+body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:60px;width:60px;height:60px;border-radius:14px}
+body.ss-wow #ss-app .ssx .fz-t .i svg{width:28px;height:28px}
+body.ss-wow #ss-app .ssx .fz-t b{font-size:22px}
+body.ss-wow #ss-app .ssx .fz-t b i{font-size:12.5px;padding:2px 9px;vertical-align:3px}
+body.ss-wow #ss-app .ssx .fz-t small{font-size:15.5px}
+body.ss-wow #ss-app .ssx .fz-t:after{font-size:24px}
+body.ss-wow #ss-app .ssx .hp-card b{font-size:30px}
+body.ss-wow #ss-app .ssx .hp-card small{font-size:16px}
+body.ss-wow #ss-app .ssx .hp-card .cta{padding:16px!important;font-size:17px!important}
+}
 @media(max-width:1000px){body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:1fr!important;align-content:start!important}body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:1!important;grid-row:2!important;padding:16px}body.ss-wow #ss-app .ssx .hp-card b{font-size:19px}}
 @media(max-width:600px){body.ss-wow #ss-app .ssx .fz-tiles{gap:8px}body.ss-wow #ss-app .ssx .fz-t{padding:11px 12px;gap:12px}body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:36px;width:36px;height:36px}body.ss-wow #ss-app .ssx .fz-t b{font-size:15px}body.ss-wow #ss-app .ssx .fz-t small{font-size:12.5px}body.ss-wow #ss-app .ssx .hp-card small{display:none}}
 </style>
