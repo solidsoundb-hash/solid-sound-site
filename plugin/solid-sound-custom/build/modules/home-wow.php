@@ -277,6 +277,8 @@ body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:none;font-size:12.5px}
 body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{max-width:100%;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2){display:none}
 body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel) .f .chips{flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important}
+body.ss-wow #ss-app .ssx .ssw-rel .ri{max-width:100%;box-sizing:border-box}body.ss-wow #ss-app .ssx .ssw-rel .ri em{white-space:normal;min-width:0}
 }
 </style>
 <script>(function(){
