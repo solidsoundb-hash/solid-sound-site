@@ -292,6 +292,27 @@ body.ss-wow #ss-app .ssx .ssw-vd .vd-ex{display:grid;grid-template-columns:1fr 1
 body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{margin:0!important}
 body.ss-wow #ss-app .ssx .ssw-vd .vd-ex img{width:100%!important;height:auto!important;aspect-ratio:16/9!important;object-fit:cover;border-radius:8px}
 body.ss-wow #ss-app .ssx .ssw-vd .ri em{font-size:12.5px}
+/* Get help — the first tab (owner 19.11): the biggest pains, each opens with the answer and one step */
+body.ss-wow #ss-app .ssx .hp-acc{display:flex;flex-direction:column;gap:6px;margin:4px 0 0}
+body.ss-wow #ss-app .ssx .hp-acc details{border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(255,255,255,.02);overflow:hidden}
+body.ss-wow #ss-app .ssx .hp-acc details[open]{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.06)}
+body.ss-wow #ss-app .ssx .hp-acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;color:#fff;font:600 14.5px "Exo 2",sans-serif}
+body.ss-wow #ss-app .ssx .hp-acc summary::-webkit-details-marker{display:none}
+body.ss-wow #ss-app .ssx .hp-acc summary:after{content:"+";color:#F59E0B;font-weight:800;font-size:18px;line-height:1}
+body.ss-wow #ss-app .ssx .hp-acc details[open] summary:after{content:"–"}
+body.ss-wow #ss-app .ssx .hp-acc p{margin:0;padding:0 12px 6px;color:#CBD5E1;font:400 14px/1.5 Roboto,sans-serif}
+body.ss-wow #ss-app .ssx .hp-acc .hp-go{display:inline-block;margin:0 12px 10px;color:#F59E0B;font:700 14px "Exo 2",sans-serif;text-decoration:none}
+body.ss-wow #ss-app .ssx .hp-acc .hp-go:hover{text-decoration:underline}
+body.ss-wow #ss-app .ssx .hp-card{display:none}
+@media(min-width:1001px){
+body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 280px!important;column-gap:36px!important;align-content:start!important;align-items:start!important}
+body.ss-wow #ss-app .ssx .card .left.hp>*{grid-column:1!important}
+body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:2!important;grid-row:1 / span 3!important;display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:12px;border:1px solid rgba(245,158,11,.35);background:radial-gradient(120% 90% at 100% 0%,rgba(245,158,11,.35),transparent 60%),#17181b}
+body.ss-wow #ss-app .ssx .hp-card .hp-b{align-self:flex-start;padding:3px 9px;border-radius:6px;background:#34D399;color:#062014;font:800 12px "Exo 2",sans-serif;letter-spacing:.1em}
+body.ss-wow #ss-app .ssx .hp-card b{color:#fff;font:800 22px/1.2 "Exo 2",sans-serif}
+body.ss-wow #ss-app .ssx .hp-card small{color:#CBD5E1;font:400 14px/1.45 Roboto,sans-serif}
+body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;text-align:center}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -312,7 +333,7 @@ function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.
  wall.classList.add('stage');requestAnimationFrame(function(){wall.classList.add('on')}); /* owner 19.11: blue stage instead of the cover wall (go0 keeps the old wall code) */
  match(ssx);sides(ssx)}
 /* "N templates match" in the first card; updates only on the visitor's own clicks/typing (no observers) */
-function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;var acts=card.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)card.insertBefore(box,acts);else card.appendChild(box);var last='';
+function match(ssx){var card=[].filter.call(ssx.querySelectorAll('.card .left'),function(l){return l.querySelector('input[type=range]')&&!l.classList.contains('hp')})[0]; /* the templates card (no longer the first: «Get help» is) */if(!card)return;var acts=card.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)card.insertBefore(box,acts);else card.appendChild(box);var last='';
  function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=null;[].forEach.call(card.querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*(key|тональн|tonart|tonali|clave|tom\b)/i.test(l.textContent))kc=d.querySelector('.chips')});if(!kc)kc=card.querySelectorAll('.f.row .chips')[0]; /* by its label, not by position (owner 19.11 moved Key) */var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
  function run(){var s=pick(),ok=W.filter(function(x){return (!s.g||x.g.split('|').indexOf(s.g)>-1)&&(!s.b||!x.b||Math.abs(x.b-s.b)<=6)&&(!s.k||s.k==='Any'||!x.k||x.k.toLowerCase().indexOf(s.k.toLowerCase())===0)});
   var close=!ok.length;var list=close?W.filter(function(x){return !s.g||x.g.split('|').indexOf(s.g)>-1}):ok;if(!list.length)list=W;var top=list.slice(0,3);
@@ -344,7 +365,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   function run(){var c=on(left,0),g=/^master/i.test(c)?'master':(/mix/i.test(c)?'mix':'');var l=ex.filter(function(e){return !g||e.g===g});ex.forEach(function(e){if(l.length<2&&l.indexOf(e)<0)l.push(e)});l=l.slice(0,2);
    var key=l.map(function(e){return e.id}).join();if(key===last)return;last=key;
    box.innerHTML='<b>Hear before → after</b><small>Client tracks — switch BEFORE / AFTER while it plays</small>'+l.map(function(e){var t=String(e.title||'').replace(/\s*—\s*client track$/i,'');return '<span class="abt">'+esc(t)+'</span>'+'<div class="ss-ab" data-src="'+esc(e.mp3)+'" data-title="'+esc(t)+'" data-pb="'+esc(e.pb||'')+'" data-pa="'+esc(e.pa||'')+'"><div class="ss-abp"><button type="button" class="ss-abb" aria-label="Play '+esc(t)+'" aria-pressed="false"><svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg><svg class="pa" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"></path></svg></button><div class="ss-abw" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i class="b"></i><i class="a"></i><u><i class="b"></i><i class="a"></i></u></div></div><button type="button" class="ss-abs" role="switch" aria-checked="false" aria-label="Before or after — '+esc(t)+'"><i aria-hidden="true"></i><span>BEFORE</span><span>AFTER</span></button></div>'}).join('')}
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[1]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[2]);
  /* Releasing (owner 19.11: «кнопки должны нажиматься, квадратик справа показывает, что клиент выбрал») */
  (function(left){if(!left||left.querySelector('.ssw-match'))return;var f=left.querySelector('.f .chips');if(!f)return;var acts=left.querySelector('.acts');
   var IC={'mix':'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0','master':'M12 3v18M5 8l7-5 7 5','stem':'M3 12h3l3-8 4 16 3-8h5','instr':'M9 18V5l11-2v13','call':'M15 10l5-3v10l-5-3zM3 7h12v10H3z','meta':'M4 4h10l6 6v10H4zM8 13h8M8 17h5'};
@@ -354,7 +375,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    box.innerHTML='<b>Your release pack</b><small>'+sel.length+' of '+all.length+' selected</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])inc=[^&]*/,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;all();function all(){[].forEach.call(f.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')})}run()});
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[2]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[3]);
  /* DJ set (owner 19.11: DJs who play their OWN music): tracks in the set + what they need -> "Your set pack" on the right */
  (function(left){if(!left||left.querySelector('.ssw-match'))return;var fs=left.querySelectorAll('.f .chips');var cnt=fs[0],need=fs[1];if(!need)return;var acts=left.querySelector('.acts');
   var IC={loud:'M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2',club:'M4 12h4l2-5 4 10 2-5h4',key:'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',live:'M4 5h16v14H4zM4 10h16M9 10v9M14 10v9',mix:'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12',tools:'M5 19L19 5M14 5h5v5'};
@@ -364,7 +385,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    box.innerHTML='<b>Your set pack</b><small>'+(n?esc(n)+' tracks · ':'')+sel.length+' of '+all.length+' selected · price in 1 minute</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].split('?')[0];a.href=u+'?set='+encodeURIComponent(n)+'&inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;[].forEach.call(need.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')});run()});
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[3]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[4]);
  /* Video & ads: our work for picture — opens the video */
  /* Video & ads (owner 19.11: «на основе вопроса — зачем это клиенту»): where it goes + what's wrong -> "Your fix", the loudness
     we deliver at, and two of our videos */
@@ -380,13 +401,15 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    box._v=vids;
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])(for|fix)=[^&]*/g,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'for='+encodeURIComponent(w)+'&fix='+encodeURIComponent(sel.join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri[data-p]');if(r){var t=r.getAttribute('data-p');[].forEach.call(pain.querySelectorAll('span'),function(x){if(x.textContent.trim()===t)x.classList.toggle('on')});run();return}var m=e.target.closest&&e.target.closest('.mx');if(!m)return;var x=box._v&&box._v[+m.getAttribute('data-k')];if(!x)return;var id=String(x.yt).split('/').pop().split('?')[0];if(window.ssYtOpen)ssYtOpen(id,x.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')});
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[4]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[5]);
+ /* Get help: one answer open at a time */
+ (function(left){if(!left)return;left.addEventListener('toggle',function(e){var d=e.target;if(!d.open||d.tagName!=='DETAILS')return;[].forEach.call(left.querySelectorAll('details[open]'),function(x){if(x!==d)x.open=false})},true)})(L[0]);
  /* More: "Preparing a live set" now has its own tab (DJ set) — go there instead of the price list */
- (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[3];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[6]);
+ (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[4];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[7]);
  /* "Before / after" in the Video card -> the Examples section, its video tab (owner 19.11) */
  (function(left){var a=left&&[].filter.call(left.querySelectorAll('.acts a'),function(x){return /before/i.test(x.textContent)})[0];if(!a)return;
   a.addEventListener('click',function(e){var ex=document.getElementById('examples');if(!ex)return;e.preventDefault();ex.scrollIntoView({behavior:'smooth',block:'start'});
-   setTimeout(function(){var t=[].filter.call(ex.querySelectorAll('button,[role=tab]'),function(x){return /video/i.test(x.textContent)})[0];if(t)t.click()},450)})})(L[4]);
+   setTimeout(function(){var t=[].filter.call(ex.querySelectorAll('button,[role=tab]'),function(x){return /video/i.test(x.textContent)})[0];if(t)t.click()},450)})})(L[5]);
 }
 function init(){var s=document.querySelector('#ss-app .ssx');if(!s)return false;build(s);return true}
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
