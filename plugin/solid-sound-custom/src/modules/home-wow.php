@@ -315,12 +315,16 @@ body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;tex
 }
 /* "Why producers work with us" — 4 advantages */
 .ss-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 22px}
-.ss-why .w{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(245,158,11,.08),rgba(255,255,255,.02))}
-.ss-why .i{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(245,158,11,.14);color:#F59E0B;margin-bottom:4px}
-.ss-why b{color:#fff;font:800 16px/1.25 "Exo 2",sans-serif}
-.ss-why small{color:#94A3B8;font:400 14px/1.45 Roboto,sans-serif}
+.ss-why .w{display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid rgba(255,255,255,.08);background:#111a2c;text-decoration:none!important;transition:border-color .2s}
+.ss-why .w:hover{border-color:rgba(245,158,11,.55)}
+.ss-why .i{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(245,158,11,.35);background:rgba(245,158,11,.10);color:#F59E0B;margin-bottom:6px}
+.ss-why b{color:#fff;font:700 16px/1.3 "Exo 2",sans-serif}
+.ss-why b i{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;background:rgba(52,211,153,.14);color:#34d399;font:italic 700 11px/1.5 "Exo 2",sans-serif;vertical-align:2px}
+.ss-why small{flex:1;color:#94A3B8;font:400 14px/1.5 Roboto,sans-serif}
+.ss-why em{margin-top:6px;color:#F59E0B;font:700 14px/1.3 "Exo 2",sans-serif;font-style:normal}
+.ss-why-all{grid-column:1/-1;margin:2px 0 0;text-align:center}.ss-why-all a{color:#F59E0B!important;font-weight:700;text-decoration:none}
 @media(max-width:1000px){.ss-why{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.ss-why{gap:8px}.ss-why .w{padding:12px}.ss-why b{font-size:14.5px}.ss-why small{font-size:13px}.ss-why .i{width:38px;height:38px}}
+@media(max-width:520px){.ss-why{gap:8px}.ss-why .w{padding:12px}.ss-why b{font-size:14.5px}.ss-why small{font-size:13px}.ss-why .i{width:34px;height:34px}.ss-why em{font-size:13px}}
 /* Free — the first tab (owner 19.11): everything free as tiles */
 body.ss-wow #ss-app .ssx .fz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 0}
 body.ss-wow #ss-app .ssx .fz-t{display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);text-decoration:none!important;transition:border-color .15s,background .15s}
@@ -332,6 +336,7 @@ body.ss-wow #ss-app .ssx .fz-t small{color:#94A3B8;font:400 12.5px/1.35 Roboto,s
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
+var WHY=<?php $wi = function_exists( 'ss_why_items' ) ? ss_why_items() : array(); echo wp_json_encode( $wi ? array_map( function ( $x ) { $x[3] = esc_url( $x[3] ); return array_map( 'esc_html', $x ); }, reset( $wi ) ) : array() ); ?>,WHYU=<?php echo wp_json_encode( esc_url( home_url( '/en/why-solid-sound/' ) ) ); ?>;
 var TR=<?php echo wp_json_encode( array( 'lcr' => ss_home_t( 'Learn · Create · Release' ), 'cl' => ss_home_t( 'Closest to your choice' ), 'one' => ss_home_t( ' template matches' ), 'many' => ss_home_t( ' templates match' ), 'tap' => ss_home_t( ' — tap to listen' ) ) ); ?>;
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function track(x){return {pid:String(x.p),src:x.s,t:x.t,a:'Solid Sound',i:x.i,u:x.u}}
@@ -429,14 +434,10 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
 }
 /* (owner 19.11 «наши преимущества красиво — только самые основные») the Client dashboard section becomes "why us":
    4 advantages with icons above the revision player (the player illustrates the first one) */
-function why(){var sec=document.getElementById('dashboard');if(!sec||sec.querySelector('.ss-why'))return !!sec;var h=sec.querySelector('h2');if(!h)return false;
- h.textContent='Why producers work with us';
- var A=[['M4 17l4-6 4 3 4-7 4 5','Notes on the exact second','Comment right on the waveform — nothing gets lost in chats.'],
-  ['M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4','Revisions included','3–10 rounds of changes until it sounds right.'],
-  ['M12 3v18M7 7h7a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8','Pay 50% to start','The rest only when you’re happy with the result.'],
-  ['M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z M9 12l2 2 4-4','Royalty-free, yours to release','Use our templates and music in your releases — no royalties.']];
- var w=document.createElement('div');w.className='ss-why';w.innerHTML=A.map(function(a){return '<div class="w"><span class="i"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+a[0]+'"/></svg></span><b>'+a[1]+'</b><small>'+a[2]+'</small></div>'}).join('');
- var p=h.parentNode.querySelector('p');var anchor=p&&p.parentNode===h.parentNode?p:h;anchor.insertAdjacentElement('afterend',w);return true}
+function why(){var sec=document.getElementById('dashboard');if(!sec||sec.querySelector('.ss-why'))return !!sec;var h=sec.querySelector('h2');if(!h||!WHY.length)return !!h&&!WHY.length;
+ h.textContent='Why Solid Sound';
+ var w=document.createElement('div');w.className='ss-why';w.innerHTML=WHY.map(function(a){return '<a class="w" href="'+a[3]+'"><span class="i"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+a[0]+'"/></svg></span><b>'+a[1]+(a[5]?' <i>'+a[5]+'</i>':'')+'</b><small>'+a[2]+'</small><em>'+a[4]+' →</em></a>'}).join('')+'<p class="ss-why-all"><a href="'+WHYU+'">Everything you get with Solid Sound →</a></p>';
+ var p=h.parentNode.querySelector('p');var anchor=p&&p.parentNode===h.parentNode?p:h;if(p&&p.parentNode===h.parentNode)p.style.display='none';anchor.insertAdjacentElement('afterend',w);return true}
 function init(){var s=document.querySelector('#ss-app .ssx');if(!s)return false;build(s);return true}
 (function(){if(why())return;var m2=new MutationObserver(function(){requestAnimationFrame(function(){if(why())m2.disconnect()})});m2.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){m2.disconnect()},15000)})();
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
