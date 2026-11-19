@@ -79,3 +79,20 @@ add_action( 'template_redirect', function () {
 	$p = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
 	if ( preg_match( '#^/([a-z]{2}/)?forest-spirits(-[^/]*)?(/|$)#', $p ) ) { wp_safe_redirect( home_url( '/en/' ), 301 ); exit; }
 }, 0 );
+
+/* 5. (19.11.2026, owner «делай», analytics report) Two test reviews from 12.01.2022 ("vhgvhgv", "hghjgj", 5★ on Kratos/Protos)
+   were shown as real ratings and went into Google's product markup. Once: move them to the trash (undoable in Comments),
+   then let WooCommerce recount the rating. Only reviews whose whole text is one of these test strings are touched. */
+add_action( 'init', function () {
+	if ( get_option( 'ss_test_reviews_removed' ) ) return;
+	$junk = array( 'vhgvhgv', 'hghjgj' );
+	$done = array();
+	foreach ( get_comments( array( 'post_type' => 'product', 'status' => 'all', 'number' => 200 ) ) as $c ) {
+		if ( in_array( strtolower( trim( wp_strip_all_tags( $c->comment_content ) ) ), $junk, true ) ) {
+			wp_trash_comment( $c->comment_ID );
+			$done[] = (int) $c->comment_ID;
+			if ( class_exists( 'WC_Comments' ) ) WC_Comments::clear_transients( (int) $c->comment_post_ID );
+		}
+	}
+	update_option( 'ss_test_reviews_removed', $done ? implode( ',', $done ) : 'none', false );
+}, 30 );

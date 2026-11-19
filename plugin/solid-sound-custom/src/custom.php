@@ -571,6 +571,9 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'faq' => array( 'FAQ – Payments, Licenses & Downloads | Solid Sound', 'Answers about payments, licenses, downloads and using Solid Sound templates in your own productions.' ),
 			'license' => array( 'License Agreement – Royalty-Free Use | Solid Sound', 'What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.' ),
 			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 60€, mastering from 15€, remixes, remakes, ghost production, co-production and audio post production. Compare packages and order online.' ),
+			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
+			'all-products' => array( 'Ableton Templates, Serum Presets & Royalty-Free Music – All Products | Solid Sound', 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
+			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
 			'refund_returns' => array( 'Refund Policy for Digital Products | Solid Sound', 'Refund rules for Solid Sound digital downloads: Ableton templates, Serum presets and royalty-free music. When and how you can request a refund.' ),

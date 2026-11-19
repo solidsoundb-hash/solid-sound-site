@@ -31,3 +31,25 @@ add_action( 'wp_head', function () {
 	if ( mb_strlen( $d ) > 160 ) $d = mb_substr( $d, 0, 157 ) . '…';
 	echo '<meta name="description" content="' . esc_attr( $d ) . '">' . "\n";
 }, 3 );
+
+/* 19.11.2026 (analytics report): the prices page and the studio calculator had no structured data, so Google and AI search
+   could not read the studio offer. Service markup with the same "from" prices the page itself shows (60 € mixing, 15 € mastering). */
+add_action( 'wp_head', function () {
+	if ( is_admin() || ! is_page() ) return;
+	$slug = strtolower( (string) get_post_field( 'post_name', get_queried_object_id() ) );
+	if ( ! in_array( $slug, array( 'services-prices', 'studio-calculator' ), true ) ) return;
+	$url = get_permalink();
+	$offer = function ( $name, $from ) use ( $url ) {
+		return array( '@type' => 'Offer', 'name' => $name, 'url' => $url, 'priceCurrency' => 'EUR',
+			'priceSpecification' => array( '@type' => 'PriceSpecification', 'minPrice' => $from, 'priceCurrency' => 'EUR' ) );
+	};
+	$data = array(
+		'@context' => 'https://schema.org', '@type' => 'Service',
+		'name' => 'Online mixing & mastering', 'serviceType' => 'Audio mixing and mastering',
+		'provider' => array( '@type' => 'Organization', 'name' => 'Solid Sound', 'url' => home_url( '/' ) ),
+		'areaServed' => 'Worldwide', 'url' => $url,
+		'hasOfferCatalog' => array( '@type' => 'OfferCatalog', 'name' => 'Studio services',
+			'itemListElement' => array( $offer( 'Online mixing', 60 ), $offer( 'Mastering', 15 ) ) ),
+	);
+	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}, 4 );
