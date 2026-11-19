@@ -66,6 +66,7 @@ for (const [name, type, files, noMinify] of [
   ['ss-global', 'js', ['src/ss-global.js']],
   ['ss-account-css', 'css', ['src/account/dashboard.css', 'src/account/shell.css']],
   ['ss-account-js', 'js', ['src/account/dashboard.js']],
+  ['ss-cab', 'js', ['src/account/cab.js']],
   ['home-css', 'css', ['src/home/home.css', 'src/home/parts/assistant.css']],
   ['theme-player-css', 'css', ['src/theme/player.css']],
   ['theme-player-js', 'js', ['src/theme/player.js']],

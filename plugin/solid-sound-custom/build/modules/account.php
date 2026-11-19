@@ -66,9 +66,9 @@ function ss_acc_nav() {
 		'out'  => 'M10 17l5-5-5-5M15 12H3M14 3h6v18h-6',
 	);
 	$settings = in_array( $ep, array( 'edit-account', 'edit-address', 'payment-methods', 'add-payment-method' ), true );
-	if ( '' === $ep ) return; /* the overview shows everything at once, like the client dashboard */
+	/* 19.11 owner: the tab bar also on the overview, so tabs switch like a slider (account/cab.js) */
 	$tabs = array(
-		array( 'My account', 'dash', $root, false ),
+		array( 'My account', 'dash', $root, '' === $ep ),
 		array( 'Purchases', 'bag', ss_acc_myaccount_url( 'orders' ), in_array( $ep, array( 'orders', 'view-order' ), true ) ),
 		array( 'Downloads', 'down', ss_acc_myaccount_url( 'downloads' ), 'downloads' === $ep ),
 		array( 'Settings', 'set', ss_acc_myaccount_url( 'edit-account' ), $settings ),
@@ -134,7 +134,7 @@ add_action( 'wp', function () {
 		echo ss_acc_render( $data );
 	} );
 	add_action( 'wp_head', function () { ss_asset( 'ss-account-css' ); }, 50 );
-	add_action( 'wp_footer', function () { if ( '' === WC()->query->get_current_endpoint() ) ss_asset( 'ss-account-js', 'defer' ); }, 50 );
+	add_action( 'wp_footer', function () { if ( '' === WC()->query->get_current_endpoint() ) ss_asset( 'ss-account-js', 'defer' ); ss_asset( 'ss-cab', 'defer' ); }, 50 );
 } );
 
 /* ---------- Overview, rendered on the server (same markup and classes as the client dashboard) ---------- */

@@ -45,3 +45,22 @@
 #ssd #purchases > .btn{margin-top:10px}
 #ssd .ssa-role{display:inline-flex;vertical-align:middle;margin-left:8px;padding:3px 10px;border-radius:999px;background:rgba(245,158,11,.14);color:#F59E0B;font-size:12px;font-weight:800;letter-spacing:.02em}
 #ssd .top-b{display:flex;flex-wrap:wrap;gap:10px}
+/* 19.11 owner: tabs like a slider + small hints (account/cab.js) */
+.ssa-nav{scroll-snap-type:x proximity;scroll-behavior:smooth;position:relative}
+.ssa-nav a{scroll-snap-align:center}
+.ssa-nav.cab-ml{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px);mask-image:linear-gradient(90deg,transparent,#000 28px)}
+.ssa-nav.cab-mr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.ssa-nav.cab-ml.cab-mr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent)}
+.ssa-nav~*,#wcfm-content{transition:transform .16s ease-out,opacity .16s ease-out}
+body.cab-go.cab-l .ssa-nav~*,body.cab-go.cab-l #ss-cs-wrap~*{transform:translateX(-28px);opacity:.25}
+body.cab-go.cab-r .ssa-nav~*,body.cab-go.cab-r #ss-cs-wrap~*{transform:translateX(28px);opacity:.25}
+.cab-tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-left:8px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:transparent;color:#94A3B8;font:700 12px/1 "Exo 2",sans-serif;cursor:help;vertical-align:middle;flex:none}
+.cab-tip:hover,.cab-tip.open,.cab-tip:focus-visible{border-color:#F59E0B;color:#F59E0B;outline:0}
+.cab-tip span{position:absolute;z-index:50;left:50%;top:calc(100% + 8px);width:max-content;max-width:260px;padding:9px 11px;border-radius:10px;background:#0B1220;border:1px solid rgba(245,158,11,.35);box-shadow:0 12px 30px rgba(0,0,0,.55);color:#E2E8F0;font:400 13px/1.45 Roboto,system-ui,sans-serif;text-align:left;white-space:normal;letter-spacing:0;text-transform:none;opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .12s,transform .12s;pointer-events:none}
+@media(hover:hover){.cab-tip:hover span{opacity:1;visibility:visible;transform:translate(-50%,0)}}
+.cab-tip.open span,.cab-tip:focus-visible span{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media(max-width:600px){h2:has(>.cab-tip){position:relative}h2>.cab-tip{position:static}h2>.cab-tip span{left:0;right:0;width:auto;max-width:none;transform:translateY(-4px)}h2>.cab-tip.open span{transform:none}}
+.cab-hint{display:flex;align-items:center;gap:10px;margin:-8px 0 14px;padding:9px 12px;border-radius:10px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#E2E8F0;font-size:13px}
+.cab-hint span{flex:1}.cab-hint span:before{content:"⇆ ";color:#F59E0B;font-weight:800}
+.cab-hint button{flex:none;height:30px;padding:0 12px;border-radius:8px;border:0;background:#F59E0B;color:#111;font-weight:700;font-size:12.5px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.ssa-nav{scroll-behavior:auto}.ssa-nav~*,#wcfm-content{transition:none}}

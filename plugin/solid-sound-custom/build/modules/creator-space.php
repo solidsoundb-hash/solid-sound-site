@@ -208,6 +208,7 @@ function ss_cs_render() {
 }
 
 add_action( 'wp_head', function () { if ( ss_cs_ok() && function_exists( 'ss_asset' ) ) ss_asset( 'ss-account-css' ); }, 60 );
+add_action( 'wp_footer', function () { if ( ss_cs_ok() && function_exists( 'ss_asset' ) ) ss_asset( 'ss-cab', 'defer' ); }, 99 ); /* 19.11 swipe tabs + hints */
 
 add_action( 'wp_footer', function () {
 	if ( ! ss_cs_ok() ) return;

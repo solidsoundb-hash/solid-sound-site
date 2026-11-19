@@ -187,12 +187,17 @@ return array(
   'id' => null
  ),
  'ss-account-css' => array(
-  'f' => 'ss-account-css.f52941b278.css',
+  'f' => 'ss-account-css.1ac6666233.css',
   't' => 'css',
   'id' => null
  ),
  'ss-account-js' => array(
   'f' => 'ss-account-js.14ab1241c7.js',
+  't' => 'js',
+  'id' => null
+ ),
+ 'ss-cab' => array(
+  'f' => 'ss-cab.18125e0017.js',
   't' => 'js',
   'id' => null
  ),
