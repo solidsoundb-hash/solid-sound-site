@@ -278,12 +278,13 @@ document.addEventListener('click',function(e){
       r.style.setProperty('--ssx-t',T+'ms'); bar(r); timer=setTimeout(function(){ var r2=el(); if(!r2 || stopped) return; var n=r2.querySelectorAll('.card').length; go(((+(r2.getAttribute('data-cur')||0))+1)%n, true); arm(); }, T); }
     function stop(){ if(stopped) return; stopped=true; clear(); var r=el(); if(r){ r.classList.remove('ss-auto'); r.classList.remove('ss-hold'); } }
     function wire(r){ if(r===cur) return; cur=r;
-      ['pointerdown','keydown','wheel','touchstart'].forEach(function(t){ r.addEventListener(t,stop,{passive:true}); });
-      r.addEventListener('mouseenter',function(){ if(stopped) return; hold=true; r.classList.add('ss-hold'); clear(); });
-      r.addEventListener('mouseleave',function(){ if(stopped) return; hold=false; r.classList.remove('ss-hold'); arm(); });
+      /* (owner 19.11: «листался до тех пор, пока человек не клацнет на какую-то кнопку или меню») any click / tap / key
+         anywhere on the page stops it; the mouse just resting over the slider no longer pauses it */
+      r.addEventListener('wheel',stop,{passive:true});
       if('IntersectionObserver' in window) new IntersectionObserver(function(es){ seen=es[0].isIntersecting; if(seen) arm(); else clear(); },{threshold:0.35}).observe(r);
       setTimeout(arm, 1500); }
     document.addEventListener('visibilitychange',function(){ if(document.hidden) clear(); else arm(); });
+    ['pointerdown','keydown','touchstart'].forEach(function(t){ document.addEventListener(t,stop,{capture:true,passive:true}); });
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && r!==cur) wire(r); });
   })();
   document.addEventListener('click',function(e){
@@ -332,7 +333,7 @@ document.addEventListener('click',function(e){
   var done=null;
   (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
   var lastW=innerWidth; addEventListener('resize',function(){ if(innerWidth===lastW) return; lastW=innerWidth; var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
-  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var i=+(r.getAttribute('data-cur')||0), c=r.querySelectorAll('.card')[i], vp=r.querySelector('.vp'); if(c && vp && Math.abs(vp.offsetHeight-c.offsetHeight)>2) vp.style.height=c.offsetHeight+'px'; });
+  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var vp=r.querySelector('.vp'), h=0; r.querySelectorAll('.card').forEach(function(c){ h=Math.max(h,c.offsetHeight); }); if(vp && h && Math.abs(vp.offsetHeight-h)>2) vp.style.height=h+'px'; }); /* tallest card, like go() */
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && !r.__ro){ r.__ro=1; r.querySelectorAll('.card').forEach(function(c){ ro.observe(c); }); } }); }
 })();
 

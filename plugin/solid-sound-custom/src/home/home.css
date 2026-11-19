@@ -137,3 +137,7 @@ html.ss-msearch #ss-app header .ss-msrch-wrap{display:flex!important;position:fi
 
 /* (17.11) no text selection while a card is dragged */
 html.ss-xdrag #ss-app .ssx{user-select:none;-webkit-user-select:none}
+
+/* (owner 19.11) no scrollbar under the "What are you working on?" tabs — the row still scrolls by finger / wheel */
+#ss-app .ssx .tasks{scrollbar-width:none;-ms-overflow-style:none}#ss-app .ssx .tasks::-webkit-scrollbar{display:none;height:0}
+#ss-app header nav,#ss-app .ss-nav{scrollbar-width:none}#ss-app header nav::-webkit-scrollbar,#ss-app .ss-nav::-webkit-scrollbar{display:none;height:0}

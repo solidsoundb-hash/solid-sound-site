@@ -167,7 +167,7 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow .ssx .card .f b{font-size:12px!important}
  body.ss-wow .ssx .rng .bpm input{height:35px!important;font-size:16px!important}
  body.ss-wow .ssx .chk{font-size:13.5px!important;white-space:nowrap;gap:5px!important}
- body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:8px!important}body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 12px!important}body.ss-wow .ssx .f.row:has(.chk) .chips{gap:5px!important}
+ body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:8px!important}@media(max-width:600px){body.ss-wow .ssx .f.row:has(.chk){flex-wrap:wrap!important;row-gap:10px!important}body.ss-wow .ssx .f.row:has(.chk)>.chk{flex:1 0 100%}} /* (19.11) Key + checkbox: the checkbox on its own line on phones */body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 12px!important}body.ss-wow .ssx .f.row:has(.chk) .chips{gap:5px!important}
 }
 @media(max-width:380px){.ssw-hero .slg{font-size:34px!important}}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
@@ -193,7 +193,7 @@ function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.
  match(ssx)}
 /* "N templates match" in the first card; updates only on the visitor's own clicks/typing (no observers) */
 function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;var acts=card.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)card.insertBefore(box,acts);else card.appendChild(box);var last='';
- function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=card.querySelectorAll('.f.row .chips')[0];var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
+ function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=null;[].forEach.call(card.querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*(key|тональн|tonart|tonali|clave|tom\b)/i.test(l.textContent))kc=d.querySelector('.chips')});if(!kc)kc=card.querySelectorAll('.f.row .chips')[0]; /* by its label, not by position (owner 19.11 moved Key) */var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
  function run(){var s=pick(),ok=W.filter(function(x){return (!s.g||x.g.split('|').indexOf(s.g)>-1)&&(!s.b||!x.b||Math.abs(x.b-s.b)<=6)&&(!s.k||s.k==='Any'||!x.k||x.k.toLowerCase().indexOf(s.k.toLowerCase())===0)});
   var close=!ok.length;var list=close?W.filter(function(x){return !s.g||x.g.split('|').indexOf(s.g)>-1}):ok;if(!list.length)list=W;var top=list.slice(0,3);
   var h='<span class="cv">'+top.map(function(x){return '<img src="'+esc(x.i)+'" alt="" width="38" height="38">'}).join('')+'</span><span><b>'+(close?TR.cl:ok.length+(ok.length===1?TR.one:TR.many))+'</b><small>'+esc([s.g&&s.g.replace(/\b\w/g,function(c){return c.toUpperCase()}),s.b&&s.b+' BPM',s.k].filter(Boolean).join(' · '))+TR.tap+'</small></span>';
