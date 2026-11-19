@@ -43,6 +43,10 @@ jobs:
           getf $WPC/plugins/us-core/functions/grid.php live/plugins/us-core/functions/grid.php
           getf $WPC/plugins/us-core/templates/us_grid/listing.php live/plugins/us-core/templates/us_grid/listing.php
           getf $WPC/plugins/us-core/templates/elements/grid_filter.php live/plugins/us-core/templates/elements/grid_filter.php
+          get  $WPC/plugins/wc-frontend-manager/core live/plugins/wc-frontend-manager/core
+          get  $WPC/plugins/wc-frontend-manager/views/dashboard live/plugins/wc-frontend-manager/views/dashboard
+          get  $WPC/plugins/wc-frontend-manager/controllers/dashboard live/plugins/wc-frontend-manager/controllers/dashboard
+          getf $WPC/plugins/wc-frontend-manager/wc_frontend_manager.php live/plugins/wc-frontend-manager/wc_frontend_manager.php
           getf solid-sound.net/www/.user.ini live/root/.user.ini
           getf solid-sound.net/www/php.ini live/root/php.ini
           find live -name 'wp-config*.php' -delete
