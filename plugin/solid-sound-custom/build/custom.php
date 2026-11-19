@@ -5602,3 +5602,4 @@ require_once __DIR__ . '/modules/free-hub.php';
 require_once __DIR__ . '/modules/get-heard.php'; /* 19.11 owner: «Get heard» + «Why Solid Sound» */
 require_once __DIR__ . '/modules/prof.php'; /* 19.11 owner: speed — probe only with ?ss_prof=1 */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
+require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
