@@ -130,18 +130,35 @@ add_action( 'wp_ajax_ss_aic_price', function () {
 	wp_send_json_success( $res );
 } );
 
+
+/* (19.11 owner: «мейк кавер не работает») the real reason of an AI failure: a short line for the creator, the full one for the
+   site admin, and the last error in uploads/ss-prof/ai-last-error.json (no keys or personal data inside) for checking. */
+function ss_aic_err( $what, $m ) {
+	$d = WP_CONTENT_DIR . '/uploads/ss-prof'; if ( ! is_dir( $d ) ) @mkdir( $d, 0755, true );
+	@file_put_contents( $d . '/ai-last-error.json', wp_json_encode( array( 'time' => gmdate( 'c' ), 'what' => $what, 'error' => mb_substr( (string) $m, 0, 400 ) ), JSON_PRETTY_PRINT ) );
+}
+function ss_aic_msg( $m ) {
+	$m = (string) $m;
+	if ( preg_match( '/limit|quota|neuron|429|exceed/i', $m ) ) $t = 'The free AI limit for today is used up — please try again tomorrow, or drop your own cover.';
+	elseif ( preg_match( '/timed? ?out|cURL error 28/i', $m ) ) $t = 'The AI took too long — please press the button again.';
+	elseif ( preg_match( '/auth|token|10000|permission|forbidden|401|403/i', $m ) ) $t = 'AI is not connected right now — the site owner has been told. You can drop your own cover.';
+	else $t = 'AI is busy — please try again in a minute.';
+	return current_user_can( 'manage_options' ) ? $t . ' [admin: ' . mb_substr( $m, 0, 200 ) . ']' : $t;
+}
+
 add_action( 'wp_ajax_ss_aic_cover', function () {
 	ss_aic_guard( 'img' );
+	@set_time_limit( 90 ); /* the picture can take up to a minute; a shorter PHP limit cut it off silently */
 	$f = ss_aic_facts();
 	$g = $f['genre'] ?? ''; $m = $f['mood'] ?? ''; $fmt = $f['format'] ?? '';
 	$style = array( 'abstract', 'minimal geometric', 'cinematic', 'textured', 'neon' );
 	$p = 'Album cover artwork background for ' . ( $g ? $g . ' ' : 'electronic ' ) . 'music' . ( $m ? ', mood: ' . $m : '' ) . ( $fmt ? ', ' . $fmt : '' )
 		. ', ' . $style[ wp_rand( 0, count( $style ) - 1 ) ] . ' style, dramatic lighting, deep contrast, rich colors, square composition, empty space in the lower third for a title. No text, no letters, no words, no logos, no watermark, no people faces.';
 	$r = ss_cf_ai( '@cf/black-forest-labs/flux-1-schnell', array( 'prompt' => $p, 'steps' => 6, 'seed' => wp_rand( 1, 999999 ) ), 60 );
-	if ( is_wp_error( $r ) ) wp_send_json_error( array( 'm' => 'AI is busy — please try again in a minute.' ), 502 );
+	if ( is_wp_error( $r ) ) { ss_aic_err( 'cover', $r->get_error_message() ); wp_send_json_error( array( 'm' => ss_aic_msg( $r->get_error_message() ) ), 502 ); }
 	$img = isset( $r['image'] ) ? (string) $r['image'] : '';
 	if ( isset( $r['type'] ) ) $img = base64_encode( $img ); /* raw bytes answer */
-	if ( strlen( $img ) < 1000 ) wp_send_json_error( array( 'm' => 'No image came back — please try again.' ), 502 );
+	if ( strlen( $img ) < 1000 ) { ss_aic_err( 'cover', 'no image: ' . substr( wp_json_encode( $r ), 0, 300 ) ); wp_send_json_error( array( 'm' => 'No image came back — please try again.' ), 502 ); }
 	ss_aic_left( 'img', true );
 	wp_send_json_success( array( 'img' => 'data:image/jpeg;base64,' . $img, 'left' => ss_aic_left( 'img' ) ) );
 } );
@@ -220,8 +237,8 @@ function init(){var f=document.getElementById('solid-sound-upload-form');if(!f||
   function redraw(){if(bg)compose(cv,bg,T.value||'Untitled',Sb.value)}
   T.addEventListener('input',redraw);Sb.addEventListener('input',redraw);
   function gen(btn){btn.disabled=true;var old=btn.textContent;btn.textContent='✨ Painting 3 options… (10–30 s)';th.textContent='';var got=0,done=0,left=null;
-   for(var i=0;i<3;i++)post('ss_aic_cover',f).then(function(j){if(!(j&&j.success))return;left=j.data.left;var im=new Image();im.onload=function(){var t=document.createElement('button');t.type='button';t.className='tb';t.appendChild(im);t.addEventListener('click',function(){bg=im;[].forEach.call(th.children,function(x){x.classList.toggle('on',x===t)});redraw()});th.appendChild(t);if(!got++){var fc=facts(f);if(!T.value)T.value=fc.name||'';if(!Sb.value)Sb.value=(fc.genre||'').split(',')[0];box.classList.add('on');t.click()}};im.src=j.data.img}).catch(function(){}).then(function(){if(++done===3){btn.disabled=false;btn.textContent=old;note(cb,got?'Tap a background, edit the text, then “Use this cover”.'+(left!=null?' AI covers left today: '+left+'.':''):'AI is busy — please try again in a minute.',!got)}})}
-  cb.addEventListener('click',function(){if(!f.querySelector('[name=product_name]').value.trim()&&!T.value){note(cb,'Add the product name first.',true);return}gen(cb)});
+   var why='';for(var i=0;i<3;i++)post('ss_aic_cover',f).then(function(j){if(!(j&&j.success)){if(j&&j.data&&j.data.m)why=j.data.m;return}left=j.data.left;var im=new Image();im.onload=function(){var t=document.createElement('button');t.type='button';t.className='tb';t.appendChild(im);t.addEventListener('click',function(){bg=im;[].forEach.call(th.children,function(x){x.classList.toggle('on',x===t)});redraw()});th.appendChild(t);if(!got++){var fc=facts(f);if(!T.value)T.value=fc.name||'';if(!Sb.value)Sb.value=(fc.genre||'').split(',')[0];box.classList.add('on');t.click()}};im.src=j.data.img}).catch(function(){}).then(function(){if(++done===3){btn.disabled=false;btn.textContent=old;note(cb,got?'Tap a background, edit the text, then “Use this cover”.'+(left!=null?' AI covers left today: '+left+'.':''):(why||'AI is busy — please try again in a minute.'),!got)}})}
+  cb.addEventListener('click',function(){gen(cb)}); /* 19.11: no name yet is fine — the title on the cover stays editable */
   box.querySelector('.again').addEventListener('click',function(){gen(this)});
   box.querySelector('.use').addEventListener('click',function(){cv.toBlob(function(bl){if(!bl)return;var file=new File([bl],(T.value||'cover').replace(/[^\w\-]+/g,'-').toLowerCase()+'-cover.jpg',{type:'image/jpeg'});var multi=f.querySelector('input[type=file][multiple]');try{var dt=new DataTransfer();dt.items.add(file);multi.files=dt.files;multi.dispatchEvent(new Event('change',{bubbles:true}));note(cb,'✓ Cover added to the product. You can still drop your own picture instead.')}catch(e){note(cb,'Your browser could not attach it — right-click the picture, save it and drop it into the box.',true)}},'image/jpeg',0.9)})}
  return true}
