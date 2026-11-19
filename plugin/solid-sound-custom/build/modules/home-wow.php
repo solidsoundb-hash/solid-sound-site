@@ -110,18 +110,22 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
 .ssw-cats a{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:10px;background:rgba(19,27,46,.92);border:1px solid rgba(255,255,255,.12);color:#e5e7eb!important;font:700 14.5px "Exo 2",sans-serif;text-decoration:none!important;white-space:nowrap;transition:border-color .15s,color .15s}
 .ssw-cats a svg{color:#f59e0b;flex:none}.ssw-cats a:hover{border-color:rgba(245,158,11,.6);color:#fff!important}
 @media(max-width:600px){.ssw-cats{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;margin:10px -6px 0;padding:0 6px}.ssw-cats::-webkit-scrollbar{display:none}.ssw-cats a{height:38px;padding:0 13px;font-size:13.5px}}
-/* product of the week slide */
+/* product of the week slide — fills the slider window (no empty space), own buttons */
+body.ss-wow .ssx .track{align-items:stretch}
 body.ss-wow .ssx .ssw-nt i{color:#f59e0b}
-body.ss-wow .ssx .ssw-new .left{display:grid!important;grid-template-columns:200px 1fr;gap:20px;align-items:center}
+body.ss-wow .ssx .ssw-new{display:flex}
+body.ss-wow .ssx .ssw-new .left{display:grid!important;grid-template-columns:minmax(200px,300px) 1fr;gap:28px;align-items:center;align-content:center;flex:1;width:100%}
 body.ss-wow .ssx .ssw-new .left>*{grid-column:auto!important}
-.ssw-new .cvr{position:relative;display:block;border-radius:14px;overflow:hidden;aspect-ratio:1;background:#1b2338}
+.ssw-new .cvr{position:relative;display:block;border-radius:14px;overflow:hidden;aspect-ratio:1;background:#1b2338;max-height:340px}
 .ssw-new .cvr img{width:100%;height:100%;object-fit:cover;display:block}
-.ssw-new .cvr .tag{position:absolute;left:8px;top:8px;background:#f59e0b;color:#111;font:800 11px Roboto,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
-.ssw-new .inf{min-width:0}.ssw-new h2{margin:0 0 6px;color:#fff;font:700 24px/1.2 "Exo 2",sans-serif}
-.ssw-new .mt{color:#94a3b8;font:400 14px Roboto,sans-serif;margin-bottom:10px}
-.ssw-new .pr{margin-bottom:14px;font:800 22px "Exo 2",sans-serif;color:#f59e0b}.ssw-new .pr s{color:#64748b;font-size:16px;font-weight:600;margin-right:4px}
-.ssw-new .acts{display:flex;flex-wrap:wrap;gap:8px}
-@media(max-width:600px){body.ss-wow .ssx .ssw-new .left{grid-template-columns:110px 1fr;gap:12px;align-items:start}.ssw-new h2{font-size:18px}.ssw-new .pr{font-size:18px;margin-bottom:10px}.ssw-new .acts{grid-column:1/-1!important}.ssw-new .acts>*{flex:1 1 auto}}
+.ssw-new .cvr .tag{position:absolute;left:10px;top:10px;background:#f59e0b;color:#111;font:800 11px/1 Roboto,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:6px;white-space:nowrap}
+.ssw-new .inf{min-width:0}.ssw-new .ttl{margin:0 0 6px;color:#fff;font:800 30px/1.15 "Exo 2",sans-serif}
+.ssw-new .mt{color:#94a3b8;font:400 15px Roboto,sans-serif;margin-bottom:12px}
+.ssw-new .pr{margin-bottom:18px;font:800 26px "Exo 2",sans-serif;color:#f59e0b}.ssw-new .pr s{color:#64748b;font-size:17px;font-weight:600;margin-right:6px}
+.ssw-new .acts{display:flex;flex-wrap:wrap;gap:10px}
+.ssw-b{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 20px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#1e293b;color:#fff!important;font:800 15.5px "Exo 2",sans-serif;text-decoration:none!important;cursor:pointer;white-space:nowrap}
+.ssw-b.o{background:#f59e0b;border-color:#f59e0b;color:#111!important}.ssw-b svg{color:#f59e0b}.ssw-b:hover{border-color:rgba(245,158,11,.6)}
+@media(max-width:700px){body.ss-wow .ssx .ssw-new .left{grid-template-columns:1fr;gap:14px;align-content:start}.ssw-new .cvr{aspect-ratio:16/10;max-height:none}.ssw-new .ttl{font-size:21px}.ssw-new .mt{font-size:13.5px;margin-bottom:8px}.ssw-new .pr{font-size:20px;margin-bottom:12px}.ssw-new .acts{display:grid;grid-template-columns:1fr 1fr}.ssw-new .acts .ssw-b:last-child{grid-column:1/-1}.ssw-b{height:44px;padding:0 12px;font-size:14.5px}.ssw-new .cvr .tag{font-size:10px;padding:5px 7px}}
 /* tablets */
 @media(min-width:601px) and (max-width:1024px){.ssw-hero .slg{font-size:44px!important}.ssw-row a{width:120px;height:120px}}
 .ssw-match{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 10px;border-radius:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.28);cursor:pointer;text-align:left}
@@ -181,7 +185,7 @@ function addNew(ssx){var x=NEW,tasks=ssx.querySelector('.tasks'),cards=ssx.query
  var b=document.createElement('button');b.type='button';b.className='ssw-nt';b.innerHTML='<i><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></i>'+esc(TR.nw);
  var t0=tasks.querySelector('button');tasks.insertBefore(b,t0?t0.nextSibling:null);[].forEach.call(tasks.querySelectorAll('button'),function(e,k){e.setAttribute('data-i',k)});
  var meta=[x.c,x.g?x.g.split('|')[0].replace(/\b\w/g,function(m){return m.toUpperCase()}):'',x.b?x.b+' BPM':'',x.k].filter(Boolean).join(' · ');
- var c=document.createElement('div');c.className='card ssw-new';c.innerHTML='<div class="left"><a class="cvr" href="'+esc(x.u)+'"><img src="'+esc(x.i)+'" alt="" width="300" height="300" loading="lazy"><span class="tag">'+esc(TR.nw)+'</span></a><div class="inf"><h2>'+esc(x.t)+'</h2><div class="mt">'+esc(meta)+'</div><div class="pr">'+(x.pr&&x.pr[1]?'<s>'+esc(x.pr[1])+'</s> ':'')+'<b>'+esc(x.pr?x.pr[0]:'')+'</b></div><div class="acts">'+(x.s?'<button type="button" class="gbtn ssw-pl">▶ '+esc(TR.ls)+'</button>':'')+'<a class="cta" href="'+esc(x.u)+'?add-to-cart='+x.p+'">'+esc(TR.ac)+'</a><a class="gbtn" href="'+esc(x.u)+'">'+esc(TR.vw)+'</a></div></div></div>';
+ var c=document.createElement('div');c.className='card ssw-new';c.innerHTML='<div class="left"><a class="cvr" href="'+esc(x.u)+'"><img src="'+esc(x.i)+'" alt="" width="300" height="300" loading="lazy"><span class="tag">'+esc(TR.nw)+'</span></a><div class="inf"><div class="ttl">'+esc(x.t)+'</div><div class="mt">'+esc(meta)+'</div><div class="pr">'+(x.pr&&x.pr[1]?'<s>'+esc(x.pr[1])+'</s> ':'')+'<b>'+esc(x.pr?x.pr[0]:'')+'</b></div><div class="acts">'+(x.s?'<button type="button" class="ssw-b ssw-pl"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>'+esc(TR.ls)+'</button>':'')+'<a class="ssw-b o" href="'+esc(x.u)+'?add-to-cart='+x.p+'">'+esc(TR.ac)+'</a><a class="ssw-b" href="'+esc(x.u)+'">'+esc(TR.vw)+'</a></div></div></div>';
  cards[0].parentNode.insertBefore(c,cards[0].nextSibling);
  var pl=c.querySelector('.ssw-pl');if(pl)pl.addEventListener('click',function(){play(x)});
  var dots=ssx.querySelector('.dots');if(dots){var d=document.createElement('i');dots.appendChild(d)}}
