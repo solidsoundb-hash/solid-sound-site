@@ -51,6 +51,16 @@ async function login(page, user, pass) {
       errs.forEach(e => lines.push('    - ' + e));
       if (d.name === 'phone') { const who = await page.evaluate(() => { const o = []; for (const y of [330, 345, 360]) { const e = document.elementFromPoint(60, y); if (e) { let n = e, path = []; for (let k = 0; k < 5 && n && n !== document.body; k++, n = n.parentElement) path.push(n.tagName.toLowerCase() + (n.id ? '#' + n.id : '') + (n.className && typeof n.className === 'string' ? '.' + n.className.trim().split(/\s+/).slice(0, 3).join('.') : '')); o.push(y + ': ' + path.join(' < ')); } } return o; }); who.forEach(w => lines.push('    - at ' + w)); }
       if (/add-product/.test(p)) {
+        // (19.11) why is a block hidden: every child of the form body with its computed display and the CSS rules that set display:none
+        const dbg = await page.evaluate(() => {
+          const out = []; const f = document.getElementById('solid-sound-upload-form'); if (!f) return ['no form'];
+          out.push('form.class=' + f.className + ' data=' + JSON.stringify(Object.assign({}, f.dataset)));
+          const body = f.querySelector('.ss-wm-body'); if (!body) return out.concat('no .ss-wm-body');
+          const rulesFor = (el) => { const r = []; for (const sh of document.styleSheets) { let cr; try { cr = sh.cssRules; } catch (e) { continue; } for (const ru of cr || []) { if (ru.style && ru.style.display === 'none' && ru.selectorText) { try { if (el.matches(ru.selectorText)) r.push(ru.selectorText.slice(0, 160)); } catch (e) {} } } } return r; };
+          [...body.children].forEach(c => { const s = getComputedStyle(c); out.push(`${c.tagName.toLowerCase()}${c.id ? '#' + c.id : ''}.${String(c.className).trim().split(/\s+/).join('.')} display=${s.display}${c.getAttribute('style') ? ' inline="' + c.getAttribute('style').slice(0, 80) + '"' : ''}${s.display === 'none' ? ' ← ' + rulesFor(c).join(' | ') : ''}`); });
+          return out;
+        }).catch(e => ['dbg error ' + e.message]);
+        dbg.forEach(x => lines.push('    - ' + x));
         const add = page.locator('a.acf-icon[data-name=add]').first();
         if (await add.count()) {
           await add.scrollIntoViewIfNeeded().catch(() => {}); await add.click().catch(() => {}); await page.waitForTimeout(1500);
