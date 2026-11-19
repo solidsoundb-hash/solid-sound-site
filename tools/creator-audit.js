@@ -88,6 +88,22 @@ async function login(page, user, pass) {
         }
       }
     }
+    // (19.11 copy protection) desktop: Tools → Fingerprints → «Build missing», wait until it finishes, record the log
+    if (d.name === 'desktop') {
+      try {
+        await page.goto(S + '/wp-admin/tools.php?page=ss-fp', { waitUntil: 'domcontentloaded', timeout: 120000 });
+        const head = await page.locator('.wrap p').first().textContent().catch(() => '');
+        lines.push('- Fingerprints: ' + (head || '').trim());
+        const go = page.locator('#ss-fp-go');
+        if (await go.isEnabled().catch(() => false)) {
+          await go.click();
+          await page.waitForFunction(() => document.getElementById('ss-fp-go').dataset.done === '1', null, { timeout: 900000 }).catch(() => {});
+          const log = await page.$$eval('#ss-fp-log li', x => x.map(l => l.textContent));
+          lines.push('    - ' + ((await page.locator('#ss-fp-st').textContent().catch(() => '')) || ''));
+          log.filter(t => /⚠|✗/.test(t)).forEach(t => lines.push('    - ' + t));
+        }
+      } catch (e) { lines.push('- Fingerprints error: ' + e.message.split('\n')[0]); }
+    }
     await ctx.close();
   }
   fs.writeFileSync(OUT + '/report.md', lines.join('\n') + '\n');

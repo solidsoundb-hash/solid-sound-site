@@ -168,6 +168,40 @@
     return { hist: sum ? Array.prototype.map.call(hist, function (v) { return v / sum; }) : null, held: held * step * 0.1 };
   }
 
+  /* ---------- fingerprint (copy protection, owner 19.11 «защиту от копий делай») ----------
+     Every ~0.19 s: the two strongest notes (100–2000 Hz) → a code 0..143. Three codes in a row (t, t+2, t+4) make one hash.
+     The set of hashes survives re-encoding, a lower bitrate, a different loudness and cutting the start; two different
+     tracks share few of them. Returned as a sorted array of unique numbers (at most 3000). */
+  function fingerprint(x, sr) {
+    var d = decimate(x, sr, 11025); x = d.x; sr = d.sr;
+    var N = 4096, H = 2048, i, j, f, win = new Float32Array(N);
+    for (i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1));
+    var lo = Math.floor(100 * N / sr), hi = Math.ceil(2000 * N / sr), pcOf = new Int8Array(hi + 1);
+    for (j = lo; j <= hi; j++) pcOf[j] = ((Math.round(69 + 12 * Math.log2(j * sr / N / 440)) % 12) + 12) % 12;
+    var re = new Float32Array(N), im = new Float32Array(N), codes = [];
+    var frames = Math.floor((x.length - N) / H);
+    for (f = 0; f < frames; f++) {
+      var o = f * H, e = 0; for (i = 0; i < N; i++) { var v = x[o + i]; re[i] = v * win[i]; im[i] = 0; e += v * v; }
+      if (e / N < 1e-7) { codes.push(-1); continue; } /* silence */
+      fft(re, im);
+      var c = new Float64Array(12); for (j = lo; j <= hi; j++) c[pcOf[j]] += Math.sqrt(re[j] * re[j] + im[j] * im[j]);
+      var a = 0, b = 1; if (c[b] > c[a]) { a = 1; b = 0; }
+      for (i = 2; i < 12; i++) { if (c[i] > c[a]) { b = a; a = i; } else if (c[i] > c[b]) b = i; }
+      codes.push(a * 12 + b);
+    }
+    var set = {}, out = [];
+    for (f = 0; f + 4 < codes.length; f++) { if (codes[f] < 0 || codes[f + 2] < 0 || codes[f + 4] < 0) continue; set[codes[f] * 20736 + codes[f + 2] * 144 + codes[f + 4]] = 1; }
+    for (var k in set) out.push(+k);
+    out.sort(function (p, q) { return p - q; });
+    if (out.length > 3000) { var st = out.length / 3000, s2 = []; for (i = 0; i < 3000; i++) s2.push(out[Math.floor(i * st)]); out = s2; }
+    return out;
+  }
+  /* share of the smaller set found in the other one (0..1) */
+  function fpMatch(a, b) {
+    var i = 0, j = 0, n = 0; while (i < a.length && j < b.length) { if (a[i] === b[j]) { n++; i++; j++; } else if (a[i] < b[j]) i++; else j++; }
+    return Math.min(a.length, b.length) ? n / Math.min(a.length, b.length) : 0;
+  }
+
   /* ---------- the vote (owner 19.11: «по многим способам определишь среднее») ----------
      Two ways of hearing (full range with the bass / without the bass) × four key profiles (classical listening tests,
      scale statistics, pop, electronic) = 8 voters, plus the bass listener (tonic it rests on + minor/major by the third)
@@ -253,6 +287,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, vote: vote, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, vote: vote, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);
