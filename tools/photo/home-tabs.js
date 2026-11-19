@@ -1,0 +1,67 @@
+// Robot "home slider look" (owner 19.11.2026: «слайдер кривой… компактно и норм, отключи остановку при прокрутке»).
+// For 3 screen sizes: every tab of the slider on the home page — picture of the slider block + heights (window vs card,
+// empty space under the card); and a check that the slider keeps turning by itself while the page is scrolled.
+// Read-only: no forms, no purchases. Run: a line in .github/home-look.txt → branch `shots-home` (report.md + pictures).
+const { chromium } = require('playwright');
+const fs = require('fs'), path = require('path');
+const BASE = process.env.HOME_URL || 'https://solid-sound.net/en/';
+const OUT = process.env.PHOTO_OUT || 'shots-home';
+const ALLOWED = /(^|\.)(solid-sound\.net|jsdelivr\.net|ytimg\.com|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unpkg\.com)$/;
+const UA_DESK = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
+const UA_PHONE = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0';
+const SIZES = [[1920, 1080, 0], [1366, 768, 0], [412, 780, 1]];
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+async function ctxFor(browser, w, h, mob) {
+  const ctx = await browser.newContext({ viewport: { width: w, height: h }, isMobile: !!mob, hasTouch: !!mob, userAgent: mob ? UA_PHONE : UA_DESK, locale: 'en-US', deviceScaleFactor: 1 });
+  await ctx.route('**/*', (route) => { const req = route.request(); let host = ''; try { host = new URL(req.url()).hostname; } catch (e) {}
+    if (!ALLOWED.test(host) || req.resourceType() === 'media') return route.abort().catch(() => {});
+    if (req.method() !== 'GET' && req.method() !== 'HEAD') return route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true,"data":{}}' }).catch(() => {});
+    route.continue().catch(() => {}); });
+  return ctx;
+}
+async function open(p) {
+  for (let i = 0; i < 4; i++) {
+    let ok = false; try { const r = await p.goto(BASE + (BASE.includes('?') ? '&' : '?') + 'r=' + Date.now(), { waitUntil: 'load', timeout: 120000 }); ok = !!r && r.status() < 500; } catch (e) {}
+    if (ok && await p.locator('#ss-app .ssx .card').count().catch(() => 0)) break;
+    await sleep(15000 * (i + 1));
+  }
+  await p.waitForTimeout(2500);
+}
+const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-app .ssx'); if (!r) return null;
+  const cur = +(r.getAttribute('data-cur') || 0), cards = [...r.querySelectorAll('.card')], vp = r.querySelector('.vp');
+  return { cur, vp: vp ? vp.offsetHeight : 0, card: cards[cur] ? cards[cur].offsetHeight : 0, max: Math.max(...cards.map(c => c.offsetHeight)),
+    title: cards[cur] ? (cards[cur].querySelector('h2') || {}).textContent : '', tabs: r.querySelectorAll('.tasks button').length,
+    overflowX: document.documentElement.scrollWidth > innerWidth + 1 }; });
+
+(async () => {
+  const browser = await chromium.launch({ ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}) });
+  fs.mkdirSync(OUT, { recursive: true });
+  const md = ['# Слайдер главной — вкладки и автолистание', '', `Снято: ${new Date().toISOString()} · ${BASE}`, ''];
+  for (const [w, h, mob] of SIZES) {
+    // 1) auto-turn while scrolling: fresh page, nobody clicks, the page is scrolled a little, wait > 7 s
+    let ctx = await ctxFor(browser, w, h, mob), p = await ctx.newPage(); await open(p);
+    const a0 = await state(p);
+    await p.mouse.wheel(0, 250).catch(() => {}); await p.evaluate(() => scrollBy(0, 150)); await sleep(9500);
+    const a1 = await state(p);
+    await ctx.close();
+    md.push(`## ${w}×${h}${mob ? ' (телефон)' : ''}`, '', `Автолистание при прокрутке: было «${a0 && a0.cur}», через 9,5 с «${a1 && a1.cur}» → ${a0 && a1 && a0.cur !== a1.cur ? '✅ листается' : '❌ стоит'}`, '');
+    // 2) every tab
+    ctx = await ctxFor(browser, w, h, mob); p = await ctx.newPage(); await open(p);
+    const n = (await state(p) || { tabs: 0 }).tabs;
+    md.push('| Вкладка | Окно | Карточка | Пусто снизу | Самая высокая | Снимок |', '|---|---|---|---|---|---|');
+    for (let i = 0; i < n; i++) {
+      await p.locator('#ss-app .ssx .tasks button').nth(i).click({ timeout: 5000 }).catch(() => {}); await sleep(900);
+      const s = await state(p); const f = `${w}x${h}-${i}.jpg`;
+      await p.locator('#ss-app .ssx').first().screenshot({ path: path.join(OUT, f), type: 'jpeg', quality: 60 }).catch(() => {});
+      md.push(`| ${i} ${s.title} | ${s.vp} | ${s.card} | ${s.vp - s.card} | ${s.max} | [снимок](${f}) |`);
+    }
+    await p.evaluate(() => scrollTo(0, 0)); await p.locator('#ss-app .ssx .tasks button').first().click().catch(() => {}); await sleep(900);
+    await p.screenshot({ path: path.join(OUT, `${w}x${h}-screen.jpg`), type: 'jpeg', quality: 60 }).catch(() => {});
+    const s = await state(p); md.push('', `Первый экран: [снимок](${w}x${h}-screen.jpg)${s && s.overflowX ? ' · ❌ есть прокрутка вбок' : ''}`, '');
+    await ctx.close();
+  }
+  fs.writeFileSync(path.join(OUT, 'report.md'), md.join('\n') + '\n');
+  console.log(md.join('\n'));
+  await browser.close();
+})();
