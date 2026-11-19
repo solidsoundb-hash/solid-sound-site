@@ -274,7 +274,7 @@ body.ss-wow #ss-app .ssx .ssw-rel .rl{flex-direction:row;flex-wrap:wrap;gap:6px;
 body.ss-wow #ss-app .ssx .ssw-rel .ri{padding:5px 8px;gap:6px}
 body.ss-wow #ss-app .ssx .ssw-rel .ri svg{display:none}
 body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:0 1 auto;min-width:0;white-space:normal;font-size:12.5px}
-body.ss-wow #ss-app .ssx .ssw-vd .vd-ex{display:none} /* phones: the examples are one tap away under «Before / after» */
+body.ss-wow #ss-app .ssx .ssw-vd .vd-ex{display:none!important} /* phones: the examples are one tap away under «Before / after» */
 body.ss-wow #ss-app .ssx .ssw-vd .ri{width:auto}body.ss-wow #ss-app .ssx .ssw-vd .ri.on{width:100%}body.ss-wow #ss-app .ssx .ssw-vd .ri em{flex:1 1 auto}
 body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{width:100%!important;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri{padding:4px 8px!important;gap:5px!important;border-radius:6px}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri em{font-size:12px!important;white-space:nowrap!important}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri i{font-size:11px}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .rl{gap:5px!important}body.ss-wow #ss-app .ssx .ssw-rel>b{font-size:15px!important}
