@@ -147,37 +147,37 @@ return array(
   'id' => null
  ),
  'home-app' => array(
-  'f' => 'home-app.c71fc1b561.js',
+  'f' => 'home-app.d9455878ce.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-de' => array(
-  'f' => 'home-app-de.e1b4d2ca41.js',
+  'f' => 'home-app-de.f8273ac3ff.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-es' => array(
-  'f' => 'home-app-es.9dea531d3c.js',
+  'f' => 'home-app-es.4f700cc4cd.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-fr' => array(
-  'f' => 'home-app-fr.fda139f7ee.js',
+  'f' => 'home-app-fr.9a1a1db1cd.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-it' => array(
-  'f' => 'home-app-it.b25a53c31d.js',
+  'f' => 'home-app-it.b2e0d29073.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-pt' => array(
-  'f' => 'home-app-pt.1bcca94346.js',
+  'f' => 'home-app-pt.a95b280132.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-ua' => array(
-  'f' => 'home-app-ua.84960c4287.js',
+  'f' => 'home-app-ua.071e8e105b.js',
   't' => 'js',
   'id' => null
  ),

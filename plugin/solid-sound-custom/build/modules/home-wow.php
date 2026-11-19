@@ -277,9 +277,16 @@ body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:none;font-size:12.5px}
 body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{max-width:100%;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2){display:none}
 body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel) .f .chips{flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important}
+/* Releasing / DJ set on phones: the items are toggled in the card itself — no second copy of them on the left */
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel:not(.ssw-vd))>.f:has(>.chips:not(.one)){display:none!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips{flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important}
 body.ss-wow #ss-app .ssx .ssw-rel .ri{max-width:100%;box-sizing:border-box}body.ss-wow #ss-app .ssx .ssw-rel .ri em{white-space:normal;min-width:0}
 }
+/* Video: two example videos under "Your fix" */
+body.ss-wow #ss-app .ssx .ssw-vd .vd-ex{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{margin:0!important}
+body.ss-wow #ss-app .ssx .ssw-vd .vd-ex img{width:100%!important;height:auto!important;aspect-ratio:16/9!important;object-fit:cover;border-radius:8px}
+body.ss-wow #ss-app .ssx .ssw-vd .ri em{font-size:12.5px}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -354,13 +361,21 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;[].forEach.call(need.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')});run()});
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[3]);
  /* Video & ads: our work for picture — opens the video */
- side(L[4],function(){var v=AB.filter(function(e){return e.yt});if(!v.length)return null;
-  /* (owner 19.11 «визуализируй, что выбирают кнопки») the card shows the visitor's choice and the closest of our videos first */
-  var pick=[].concat.apply([],[].map.call(L[4].querySelectorAll('.f'),function(f){return [].map.call(f.querySelectorAll('.chips .on'),function(x){return x.textContent.trim()})}));
-  var KW={'YouTube':/youtube|video/i,'Ad spot':/ads?\b|tv/i,'Film / trailer':/film|showreel/i,'Podcast':/cleanup|restoration|dialogue/i,'Clean dialogue':/cleanup|restoration/i,'Sound design':/sound design|showreel/i,'Music':/showreel|music/i,'Royalty-free music':/showreel|music|ads?\b/i,'Final mix':/mix|showreel|tv/i};
-  var sc=function(e){var t=(e.title||'')+' '+(e.service||'')+' '+(e.genre||'');return pick.reduce(function(n,k){return n+(KW[k]&&KW[k].test(t)?1:0)},0)};
-  var l=v.slice().sort(function(a,b){return sc(b)-sc(a)}).slice(0,3);
-  return {verb:'Watch',b:pick.length?pick.join(' · '):'Our work for video',s:'Closest of our work — tap to watch',items:l.map(function(e){var id=String(e.yt).split('/').pop().split('?')[0];return {t:e.title,i:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg',go:function(){if(window.ssYtOpen)ssYtOpen(id,e.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')}}})}});
+ /* Video & ads (owner 19.11: «на основе вопроса — зачем это клиенту»): where it goes + what's wrong -> "Your fix", the loudness
+    we deliver at, and two of our videos */
+ (function(left){if(!left||left.querySelector('.ssw-match'))return;var where=left.querySelector('.vd-where'),pain=left.querySelector('.vd-pain');if(!where||!pain)return;var acts=left.querySelector('.acts');
+  var FIX={'Noisy or muffled voice':'Dialogue cleanup — noise removed, voice clear and present','Echo / room sound':'Room & echo repair — sounds like a studio','Music copyright claims':'Royalty-free music from our library — no claims','Too quiet or too loud':'Even, platform-ready loudness','Sounds cheap / flat':'Mix with depth and punch','No sound design':'Sound design & effects that sell the picture'};
+  var LU={'YouTube / social':'YouTube / social · −14 LUFS','Ad / TV':'TV broadcast · −23 LUFS (EBU R128)','Film / festival':'Film / festival delivery spec','Podcast':'Podcast standard · −16 LUFS'};
+  var V=AB.filter(function(e){return e.yt});
+  var box=document.createElement('div');box.className='ssw-match ssw-rel ssw-vd';box.setAttribute('aria-live','polite');if(acts)left.insertBefore(box,acts);else left.appendChild(box);
+  function run(){var w=((where.querySelector('.on'))||{}).textContent||'YouTube / social',sel=[].filter.call(pain.querySelectorAll('span'),function(x){return x.classList.contains('on')}).map(function(x){return x.textContent.trim()});
+   var vids=V.slice().sort(function(a,b){var r=function(e){var t=(e.title||'')+' '+(e.service||'');return (/cleanup|restor/i.test(t)&&sel.some(function(x){return /voice|echo/i.test(x)})?2:0)+(/design/i.test(t)&&sel.some(function(x){return /design|cheap/i.test(x)})?2:0)+(/tv|ads/i.test(t)&&/TV/.test(w)?1:0)+(/film|showreel/i.test(t)&&/Film/.test(w)?1:0)};return r(b)-r(a)}).slice(0,2);
+   box.innerHTML='<b>Your fix</b><small>'+esc(LU[w]||w)+'</small><span class="rl">'+(sel.length?sel.map(function(x){return '<span class="ri on"><em>'+esc(FIX[x]||x)+'</em><i aria-hidden="true">✓</i></span>'}).join(''):'<span class="ri"><em>Pick what’s wrong — we’ll show the fix</em></span>')+'</span>'+
+    (vids.length?'<span class="vd-ex">'+vids.map(function(e,k){var id=String(e.yt).split('/').pop().split('?')[0];return '<span class="mx" data-k="'+k+'" role="button" tabindex="0" title="'+esc(e.title)+'" aria-label="Watch '+esc(e.title)+'"><img src="https://i.ytimg.com/vi/'+id+'/mqdefault.jpg" alt="" width="120" height="68" loading="lazy"><i aria-hidden="true"></i></span>'}).join('')+'</span>':'');
+   box._v=vids;
+   var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])(for|fix)=[^&]*/g,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'for='+encodeURIComponent(w)+'&fix='+encodeURIComponent(sel.join(','))}}
+  box.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.mx');if(!m)return;var x=box._v&&box._v[+m.getAttribute('data-k')];if(!x)return;var id=String(x.yt).split('/').pop().split('?')[0];if(window.ssYtOpen)ssYtOpen(id,x.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')});
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[4]);
  /* More: "Preparing a live set" now has its own tab (DJ set) — go there instead of the price list */
  (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[3];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[6]);
  /* "Before / after" in the Video card -> the Examples section, its video tab (owner 19.11) */
