@@ -1,4 +1,4 @@
-# Creator area audit 2026-11-19T23:23:19.085Z
+# Creator area audit 2026-11-19T23:30:07.123Z
 
 ## phone
 - /en/store-manager/ → HTTP 200 · height 4292px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
@@ -78,7 +78,7 @@
     - div.ss-ff-card.ss-ff-c6 display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body  | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
-    - AI cover: button visible=true, after 7 s → preview shown, pictures 3; messages: Tap a background, edit the text, then “Use this cover”. AI covers left today: 27.
+    - AI cover: button visible=true, after 7 s → preview shown, pictures 2; messages: —
     - [desktop_ai_cover.jpg](desktop_ai_cover.jpg)
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
 - /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1449px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
