@@ -188,6 +188,27 @@ body.ss-wow #ss-app .ssx.ss-auto .tasks button.on:after{left:0!important;right:0
 body.ss-wow #ss-app .ssx .tasks button.on i,body.ss-wow #ss-app .ssx .tasks button.on svg{color:#F59E0B!important}
 body.ss-wow #ss-app .ssx .card{border:0!important;background:transparent!important;box-shadow:none!important}
 }
+/* (owner 19.11) computer: filters on the left (Genre, BPM, Key, then Ableton + No external plugins),
+   the "templates match" card square on the right, the buttons under it */
+@media(min-width:1001px){
+body.ss-wow #ss-app .ssx .card .left,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){display:grid!important;grid-template-columns:minmax(0,1fr) 280px!important;column-gap:36px!important;row-gap:0!important;align-items:start!important;grid-auto-flow:row!important}
+body.ss-wow #ss-app .ssx .card .left>*,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>*{grid-column:1!important;grid-row:auto!important}
+body.ss-wow #ss-app .ssx .card .left>.f.row,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row{display:flex!important;align-items:center!important;gap:28px!important;margin:0 0 14px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row>div{display:grid!important;grid-template-columns:var(--lbl,190px) auto!important;align-items:center!important;margin:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row>.chk{margin:0!important;grid-column:auto!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match{grid-column:2!important;grid-row:1 / span 6!important;align-self:start!important;aspect-ratio:1/1!important;margin:0!important;flex-direction:column!important;align-items:stretch!important;justify-content:center!important;gap:12px!important;padding:16px!important;text-align:center!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match .cv{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match .cv img{width:100%!important;height:auto!important;aspect-ratio:1!important;margin:0!important;border-radius:10px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match b{font-size:17px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.acts{grid-column:2!important;grid-row:7!important;display:flex!important;gap:10px!important;margin:12px 0 0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.acts>a{flex:1 1 auto!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important;font-size:14.5px!important;padding:0 14px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(1):not(.ssw-match):not(.acts){grid-row:1!important;order:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(2):not(.ssw-match):not(.acts){grid-row:2!important;order:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(3):not(.ssw-match):not(.acts){grid-row:3!important;order:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(4):not(.ssw-match):not(.acts){grid-row:4!important;order:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(5):not(.ssw-match):not(.acts){grid-row:5!important;order:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(6):not(.ssw-match):not(.acts){grid-row:6!important;order:0!important}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
