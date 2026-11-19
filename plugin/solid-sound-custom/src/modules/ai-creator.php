@@ -154,7 +154,7 @@ add_action( 'wp_ajax_ss_aic_cover', function () {
 	$style = array( 'abstract', 'minimal geometric', 'cinematic', 'textured', 'neon' );
 	$p = 'Album cover artwork background for ' . ( $g ? $g . ' ' : 'electronic ' ) . 'music' . ( $m ? ', mood: ' . $m : '' ) . ( $fmt ? ', ' . $fmt : '' )
 		. ', ' . $style[ wp_rand( 0, count( $style ) - 1 ) ] . ' style, dramatic lighting, deep contrast, rich colors, square composition, empty space in the lower third for a title. No text, no letters, no words, no logos, no watermark, no people faces.';
-	$r = ss_cf_ai( '@cf/black-forest-labs/flux-1-schnell', array( 'prompt' => $p, 'steps' => 6, 'seed' => wp_rand( 1, 999999 ) ), 60 );
+	$r = ss_cf_ai( '@cf/black-forest-labs/flux-1-schnell', array( 'prompt' => $p . ' Variation ' . wp_rand( 1000, 9999 ) . '.', 'steps' => 6 ) /* 19.11: the model no longer accepts «seed» (Bad input) — a random word keeps the 3 pictures different */, 60 );
 	if ( is_wp_error( $r ) ) { ss_aic_err( 'cover', $r->get_error_message() ); wp_send_json_error( array( 'm' => ss_aic_msg( $r->get_error_message() ) ), 502 ); }
 	$img = isset( $r['image'] ) ? (string) $r['image'] : '';
 	if ( isset( $r['type'] ) ) $img = base64_encode( $img ); /* raw bytes answer */
