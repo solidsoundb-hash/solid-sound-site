@@ -72,6 +72,7 @@ for (const [name, type, files, noMinify] of [
   ['theme-player-js', 'js', ['src/theme/player.js']],
   ['home-js', 'js', ['src/home/home.js']],
   ['home-ai', 'js', ['src/home/ai-search.js']],
+  ['ss-audio', 'js', ['src/audio/ss-audio.js']],
   ['react', 'js', ['src/home/vendor/react.production.min.js'], true],
   ['react-dom', 'js', ['src/home/vendor/react-dom.production.min.js'], true],
 ]) {
