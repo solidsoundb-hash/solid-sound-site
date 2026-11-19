@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Heard (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070A12;--panel:#131B2E;--panel2:#0F1626;--line:rgba(255,255,255,.08);--or:#F59E0B;--mut:#94A3B8;--txt:#E5E7EB;--green:#34D399}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(70% 90vh at 50% 0%,rgba(43,78,150,.42),rgba(43,78,150,0)),linear-gradient(180deg,#0D1527,#070A12);color:var(--txt);font:16px/1.55 "Exo 2",system-ui,sans-serif;min-height:100vh}
+a{color:var(--or)}
+.wrap{max-width:1120px;margin:0 auto;padding:36px 16px 64px}
+.kick{display:inline-block;padding:4px 12px;border:1px solid rgba(245,158,11,.5);border-radius:999px;color:var(--or);font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(32px,5vw,54px);line-height:1.1;margin:14px 0 12px;color:#fff;font-weight:800}
+h1 span{color:var(--or)}
+.lead{font-size:19px;color:#CBD5E1;max-width:720px;margin:0 0 26px}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:start}
+.steps{display:grid;gap:12px;margin:0 0 22px}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.step .n{flex:none;width:36px;height:36px;border-radius:10px;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.4);color:var(--or);font-weight:800;display:flex;align-items:center;justify-content:center}
+.step b{color:#fff;display:block}
+.step span{color:var(--mut);font-size:15px}
+.note{font-size:14px;color:var(--mut);border-left:3px solid var(--or);padding:4px 0 4px 12px}
+.form{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.5);padding:22px}
+.form h2{margin:0 0 4px;color:#fff;font-size:22px}
+.form p.s{margin:0 0 16px;color:var(--mut);font-size:14.5px}
+label{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:12px 0 6px;font-weight:700}
+input,select,textarea{width:100%;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:#fff;font:15px "Exo 2",sans-serif;padding:0 12px}
+textarea{height:80px;padding:10px 12px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:#CBD5E1;font-weight:600;font-size:14px}
+.chips span.on{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.55);color:var(--or)}
+.ck{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;font-size:14px;color:#CBD5E1;text-transform:none;letter-spacing:0;font-weight:400}
+.ck i{flex:none;width:20px;height:20px;border-radius:6px;border:1px solid var(--or);background:rgba(245,158,11,.2)}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:50px;margin-top:18px;border:0;border-radius:12px;background:var(--or);color:#111;font:800 16px "Exo 2",sans-serif}
+h3.sec{font-size:clamp(24px,3vw,32px);color:#fff;margin:56px 0 6px}
+p.secs{color:var(--mut);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{display:block;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:var(--txt)}
+.card:hover{border-color:var(--or)}
+.card .ic{width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--or);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.card b{color:#fff;display:block;font-size:17px;margin-bottom:4px}
+.card span{color:var(--mut);font-size:14.5px}
+.card em{display:block;margin-top:10px;font-style:normal;color:var(--or);font-weight:700;font-size:14.5px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin:10px 0}
+.faq summary{cursor:pointer;padding:14px 18px;font-weight:700;color:#fff}
+.faq p{padding:0 18px 6px;margin:0 0 10px;color:#CBD5E1}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<span class="kick">Solid Sound · Artist support</span>
+<div class="hero">
+<div>
+<h1>Get your set <span>heard</span> by the right people</h1>
+<p class="lead">Send us your best DJ set or original track. We listen to every submission, and the ones that stand out go to club and festival managers we work with.</p>
+<div class="steps">
+<div class="step"><span class="n">1</span><div><b>Send one link</b><span>SoundCloud, Mixcloud, YouTube or a private download. Your best 30–60 minutes, not everything you've ever made.</span></div></div>
+<div class="step"><span class="n">2</span><div><b>We listen, for real</b><span>A sound engineer listens to every set. No algorithms, no pay-to-play.</span></div></div>
+<div class="step"><span class="n">3</span><div><b>The best ones get passed on</b><span>When a set fits a venue's sound and season, we recommend you to the people who book it. If it isn't ready yet, we tell you what to work on.</span></div></div>
+</div>
+<p class="note">It's free, and we don't promise bookings. Venues make the final call. What we can promise is an honest listen and a real introduction when your sound fits.</p>
+</div>
+<form class="form" onsubmit="return false">
+<h2>Submit your set</h2>
+<p class="s">Takes 2 minutes. You'll get a reply by email.</p>
+<div class="row"><div><label>Artist name</label><input placeholder="DJ name or project"></div><div><label>Email</label><input placeholder="you@example.com"></div></div>
+<label>Link to your set or track</label><input placeholder="https://soundcloud.com/…">
+<div class="row"><div><label>Main genre</label><select><option>Melodic techno</option></select></div><div><label>City / country</label><input placeholder="Paris, France"></div></div>
+<label>What are you looking for?</label>
+<div class="chips"><span class="on">Club gigs</span><span>Festivals</span><span>Label release</span><span>Feedback first</span></div>
+<label>Instagram or other socials (optional)</label><input placeholder="@yourname">
+<label>Anything we should know? (optional)</label><textarea placeholder="Past gigs, releases, where you'd love to play…"></textarea>
+<div class="ck"><i></i><span>I made this set / track (or have the rights to share it), and I agree that Solid Sound may share it with venue managers.</span></div>
+<button class="btn">Send my set →</button>
+</form>
+</div>
+
+<h3 class="sec">Make your set ready for a big room</h3>
+<p class="secs">Managers hear hundreds of sets. A clean mix and a loud, balanced master make you stand out in the first 30 seconds.</p>
+<div class="grid">
+<a class="card" href="#"><div class="ic">★</div><b>Free feedback first</b><span>Not sure it's ready? A sound engineer tells you what to fix, for free.</span><em>Get free feedback →</em></a>
+<a class="card" href="#"><div class="ic">♫</div><b>Mixing &amp; mastering</b><span>Your own tracks, club-ready: punchy low end, clear highs, proper loudness.</span><em>See prices →</em></a>
+<a class="card" href="#"><div class="ic">▦</div><b>Ableton templates</b><span>Build original tracks faster, from projects made by working producers.</span><em>Browse templates →</em></a>
+</div>
+
+<h3 class="sec">Want to push yourself too?</h3>
+<p class="secs">Free guides from Solid Wiki: where to play, what venues pay and how to get in.</p>
+<div class="grid">
+<a class="card" href="wiki-start-promoting.html"><div class="ic">⚑</div><b>How to start promoting yourself as a DJ</b><span>The first 90 days: your set, your press kit, your first gigs.</span><em>Read · 9 min →</em></a>
+<a class="card" href="wiki-dj-fees.html"><div class="ic">€</div><b>How much do DJs get paid?</b><span>Rough fees from bar gigs to festival stages, and what moves you up.</span><em>Read · 8 min →</em></a>
+<a class="card" href="wiki-get-booked.html"><div class="ic">✉</div><b>How to get booked at clubs and festivals</b><span>Who books, when they book, and the email that actually gets answered.</span><em>Read · 9 min →</em></a>
+</div>
+
+<h3 class="sec">Questions</h3>
+<div class="faq">
+<details open><summary>Does it cost anything?</summary><p>No. Submitting a set is free. Our paid services are optional and have no effect on who we recommend.</p></details>
+<details><summary>Will I definitely get a gig?</summary><p>No one can promise that. We pass on the sets we believe in, and the venue decides.</p></details>
+<details><summary>How long until I hear back?</summary><p>Usually within two weeks. If your set is a fit for a specific venue, we'll ask you before sharing it.</p></details>
+</div>
+</div>
+</body>
+</html>

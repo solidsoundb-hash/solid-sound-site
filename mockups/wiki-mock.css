@@ -1,0 +1,26 @@
+body{margin:0;background:#141210;font-family:"Exo 2",system-ui,sans-serif}
+.ssa{max-width:820px;margin:0 auto;padding:24px 16px 56px;font-size:17.5px;line-height:1.75;color:#e6e2dc}
+.ssa h1{font-size:clamp(30px,4.4vw,44px);line-height:1.15;margin:8px 0 14px;color:#fff}
+.ssa h2{display:flex;align-items:center;gap:12px;font-size:clamp(24px,3vw,31px);line-height:1.25;margin:52px 0 14px;color:#fff}
+.ssa h2 .wi{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:rgba(224,153,0,.12);border:1px solid rgba(224,153,0,.3);color:#e09900;font-size:18px}
+.ssa h3{font-size:20px;margin:30px 0 8px;color:#fff}
+.ssa p,.ssa ul,.ssa ol{margin:0 0 18px}
+.ssa a{color:#e09900;text-decoration:underline;text-underline-offset:3px}
+.ssa strong{color:#fff}
+.ssa .kick{display:inline-block;padding:4px 12px;border:1px solid rgba(224,153,0,.5);border-radius:999px;color:#e09900;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.ssa .lead{font-size:19.5px;color:#cfcac4}
+.ssa .box{padding:18px 22px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);margin:26px 0}
+.ssa .box.or{background:rgba(224,153,0,.08);border-color:rgba(224,153,0,.4)}
+.ssa table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:16px}
+.ssa th,.ssa td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+.ssa th{color:#e09900;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.ssa td b{color:#fff}
+.ssa .check{list-style:none;padding:0}
+.ssa .check li{position:relative;padding:10px 12px 10px 44px;margin:8px 0;border-radius:10px;background:rgba(255,255,255,.04)}
+.ssa .check li:before{content:"✓";position:absolute;left:14px;top:9px;width:20px;height:20px;border-radius:5px;background:#e09900;color:#111;font-weight:800;font-size:14px;line-height:20px;text-align:center}
+.ssa .cta{padding:18px 22px;border-radius:14px;background:#1c1a18;border:1px solid rgba(224,153,0,.4);margin:26px 0}
+.ssa .cta a{display:inline-block;margin-top:10px;padding:10px 18px;border-radius:10px;background:#e09900;color:#111;text-decoration:none;font-weight:800}
+.ssa details{border:1px solid rgba(255,255,255,.09);border-radius:12px;background:#1c1a18;margin:10px 0}
+.ssa summary{cursor:pointer;padding:14px 18px;font-weight:700;color:#fff}
+.ssa details p{padding:0 18px 4px;color:#cfcac4}
+@media(max-width:700px){.ssa{font-size:16.5px}.ssa table{font-size:14.5px}.ssa th,.ssa td{padding:8px 6px}}
