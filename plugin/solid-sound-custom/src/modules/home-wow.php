@@ -369,7 +369,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
  /* Video & ads (owner 19.11: «на основе вопроса — зачем это клиенту»): where it goes + what's wrong -> "Your fix", the loudness
     we deliver at, and two of our videos */
  (function(left){if(!left||left.querySelector('.ssw-match'))return;var where=left.querySelector('.vd-where'),pain=left.querySelector('.vd-pain');if(!where||!pain)return;var acts=left.querySelector('.acts');
-  var FIX={'Noisy or muffled voice':'Dialogue cleanup — noise removed, voice clear and present','Echo / room sound':'Room & echo repair — sounds like a studio','Music copyright claims':'Royalty-free music from our library — no claims','Too quiet or too loud':'Even, platform-ready loudness','Sounds cheap / flat':'Mix with depth and punch','No sound design':'Sound design & effects that sell the picture'};
+  var FIX={'Noisy or muffled voice':'Clean, clear voice','Echo / room sound':'Echo removed','Music copyright claims':'Royalty-free music, no claims','Too quiet or too loud':'Even, platform-ready loudness','Sounds cheap / flat':'Mix with depth and punch','No sound design':'Sound design & effects'};
   var LU={'YouTube / social':'YouTube / social · −14 LUFS','Ad / TV':'TV broadcast · −23 LUFS (EBU R128)','Film / festival':'Film / festival delivery spec','Podcast':'Podcast standard · −16 LUFS'};
   var V=AB.filter(function(e){return e.yt});
   var box=document.createElement('div');box.className='ssw-match ssw-rel ssw-vd';box.setAttribute('aria-live','polite');if(acts)left.insertBefore(box,acts);else left.appendChild(box);
