@@ -258,8 +258,9 @@ document.addEventListener('click',function(e){
     var tabs=r.querySelectorAll('.tasks button'), cards=r.querySelectorAll('.card'), dots=r.querySelectorAll('.dots i');
     i=Math.max(0,Math.min(cards.length-1,i));
     r.querySelector('.track').style.transform='translateX('+(-100*i)+'%)';
-    /* (owner 18.11: «слайды разной высоты — блок ниже прыгает») the window is as tall as the TALLEST card, so nothing below moves */
-    var hmax=0; cards.forEach(function(c){ hmax=Math.max(hmax,c.offsetHeight); }); r.querySelector('.vp').style.height=(hmax||cards[i].offsetHeight)+'px';
+    /* (owner 19.11: «подгони, чтобы всё было компактно») the window is as tall as the OPEN card (no empty space under short
+       ones); the height change is animated in CSS (.ssx .vp transition), so the block below glides instead of jumping */
+    r.querySelector('.vp').style.height=cards[i].offsetHeight+'px';
     tabs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
     dots.forEach(function(d,k){ d.classList.toggle('on',k===i); });
     r.setAttribute('data-cur',i);
@@ -277,14 +278,15 @@ document.addEventListener('click',function(e){
     function arm(){ clear(); var r=el(); if(!r || stopped || hold || !seen || document.hidden || rm()) return; if(r.querySelectorAll('.card').length<2) return;
       r.style.setProperty('--ssx-t',T+'ms'); bar(r); timer=setTimeout(function(){ var r2=el(); if(!r2 || stopped) return; var n=r2.querySelectorAll('.card').length; go(((+(r2.getAttribute('data-cur')||0))+1)%n, true); arm(); }, T); }
     function stop(){ if(stopped) return; stopped=true; clear(); var r=el(); if(r){ r.classList.remove('ss-auto'); r.classList.remove('ss-hold'); } }
+    window.ssxStop=stop; /* a sideways swipe of the cards (handler below) stops it too */
     function wire(r){ if(r===cur) return; cur=r;
-      /* (owner 19.11: «листался до тех пор, пока человек не клацнет на какую-то кнопку или меню») any click / tap / key
-         anywhere on the page stops it; the mouse just resting over the slider no longer pauses it */
-      r.addEventListener('wheel',stop,{passive:true});
+      /* (owner 19.11: «листался до тех пор, пока человек не клацнет на какую-то кнопку или меню»; «отключи остановку слайдера
+         при прокрутке сайта») only a real click / tap / key press stops it — scrolling (wheel, finger swipe on the page) does not */
       if('IntersectionObserver' in window) new IntersectionObserver(function(es){ seen=es[0].isIntersecting; if(seen) arm(); else clear(); },{threshold:0.35}).observe(r);
       setTimeout(arm, 1500); }
     document.addEventListener('visibilitychange',function(){ if(document.hidden) clear(); else arm(); });
-    ['pointerdown','keydown','touchstart'].forEach(function(t){ document.addEventListener(t,stop,{capture:true,passive:true}); });
+    document.addEventListener('click',function(e){ if(!(e.target.closest && e.target.closest('#ss-cc'))) stop(); },{capture:true,passive:true}); /* the cookie banner does not count */
+    document.addEventListener('keydown',function(e){ if(!/^(Arrow|Page|Home|End| $|Spacebar)/.test(e.key) || (e.target.closest && e.target.closest('input,textarea,select,button,a,[role=tab]'))) stop(); },{capture:true,passive:true});
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && r!==cur) wire(r); });
   })();
   document.addEventListener('click',function(e){
@@ -320,6 +322,7 @@ document.addEventListener('click',function(e){
     /* (17.11 eyes check: «тугой», 20–50 px did nothing) 10% of the width or a quick 15 px flick turns the page */
     var to=cur; if(was==='x' && (Math.abs(dx)>w*0.10 || (Math.abs(dx)>15 && Math.abs(dx)/dt>0.2))) to=Math.max(0,Math.min(n-1,cur+(dx<0?1:-1)));
     tr.style.transform='translateX('+(-100*to)+'%)'; /* no leftover offset after a short drag */
+    if(was==='x' && window.ssxStop) window.ssxStop();
     if(to!==cur) go(to); else go(cur,true); }
   document.addEventListener('touchstart',function(e){ if(e.touches.length===1) start(e.touches[0].clientX,e.touches[0].clientY,e.target); },{passive:true});
   document.addEventListener('touchmove',function(e){ if(x0!==null) move(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
@@ -333,7 +336,7 @@ document.addEventListener('click',function(e){
   var done=null;
   (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
   var lastW=innerWidth; addEventListener('resize',function(){ if(innerWidth===lastW) return; lastW=innerWidth; var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
-  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var vp=r.querySelector('.vp'), h=0; r.querySelectorAll('.card').forEach(function(c){ h=Math.max(h,c.offsetHeight); }); if(vp && h && Math.abs(vp.offsetHeight-h)>2) vp.style.height=h+'px'; }); /* tallest card, like go() */
+  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var vp=r.querySelector('.vp'), c=r.querySelectorAll('.card')[+(r.getAttribute('data-cur')||0)], h=c?c.offsetHeight:0; if(vp && h && Math.abs(vp.offsetHeight-h)>2) vp.style.height=h+'px'; }); /* open card, like go() */
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && !r.__ro){ r.__ro=1; r.querySelectorAll('.card').forEach(function(c){ ro.observe(c); }); } }); }
 })();
 
