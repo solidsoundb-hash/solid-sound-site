@@ -40,6 +40,25 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-h b{display:block;color:#fff;font:800 19px/1.25 "Exo 2",sans-serif}
 #solid-sound-upload-form .ss-ff-h small{display:block;margin-top:3px;color:#94A3B8;font-size:14px;line-height:1.45}
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c1,#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c2{display:block!important}
+/* card 2 compact: choices as small chips that do not stretch, the small fields in one tight grid */
+#solid-sound-upload-form .ss-ff-c2 .acf-checkbox-list,#solid-sound-upload-form .ss-ff-c2 .acf-radio-list{display:flex!important;flex-wrap:wrap!important;gap:6px!important;grid-template-columns:none!important}
+#solid-sound-upload-form .ss-ff-c2 .acf-checkbox-list>li,#solid-sound-upload-form .ss-ff-c2 .acf-radio-list>li{flex:0 0 auto!important;width:auto!important;margin:0!important}
+#solid-sound-upload-form .ss-ff-c2 .acf-checkbox-list label,#solid-sound-upload-form .ss-ff-c2 .acf-radio-list label{display:inline-flex!important;align-items:center;gap:6px;width:auto!important;min-height:0!important;padding:6px 11px!important;font-size:14px!important;line-height:1.25!important}
+#solid-sound-upload-form .ss-ff-c2>.acf-field{margin:0 0 14px!important;padding:0!important}
+#solid-sound-upload-form .ss-ff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px 14px;margin:0 0 14px}
+#solid-sound-upload-form .ss-ff-grid>.ss-wm-row,#solid-sound-upload-form .ss-ff-grid>.ss-wm-row2{display:contents!important}
+#solid-sound-upload-form .ss-ff-grid .acf-field{margin:0!important;padding:0!important}
+#solid-sound-upload-form .ss-ff-grid .acf-field.ss-ap-off{display:none!important}
+#solid-sound-upload-form .ss-ff-grid .acf-checkbox-list,#solid-sound-upload-form .ss-ff-grid .acf-radio-list{max-height:180px;overflow:auto}
+/* card 3: cover */
+#solid-sound-upload-form .ss-ff-cov{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 14px}
+#solid-sound-upload-form .ss-ff-cov .pv{flex:none;width:120px;height:120px;border-radius:12px;border:1px dashed rgba(255,255,255,.18);background:#0b1220;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#64748B;font-size:12.5px;text-align:center}
+#solid-sound-upload-form .ss-ff-cov .pv img{width:100%;height:100%;object-fit:cover}
+#solid-sound-upload-form .ss-ff-cov .bt{display:flex;flex-wrap:wrap;gap:10px}
+#solid-sound-upload-form .ss-ff-up,#solid-sound-upload-form .ss-ff-cov .bt .ss-aic-b{display:inline-flex!important;align-items:center;justify-content:center;min-height:44px;padding:0 18px!important;border-radius:10px!important;font:700 15px "Exo 2",sans-serif!important;cursor:pointer;margin:0!important}
+#solid-sound-upload-form .ss-ff-up{border:0;background:#F59E0B;color:#111}
+#solid-sound-upload-form .ss-ff-cov .bt .ss-aic-b{border:1px solid #F59E0B!important;background:transparent!important;color:#F59E0B!important}
+#solid-sound-upload-form .ss-ff-c4 .ss-wm-ai{margin:0 0 14px!important}
 #solid-sound-upload-form.ss-ds-nofmt .ss-ff-card.ss-ff-c2>*:not(.ss-ap-format):not(.ss-ff-h){display:none!important}
 #solid-sound-upload-form .ss-ds-first,#solid-sound-upload-form .ss-wm-drop.ss-ff .ss-ff-step{display:none!important}
 #solid-sound-upload-form .ss-wm-drop.ss-ff{margin:0}
@@ -181,19 +200,37 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  st=document.createElement('div');st.id='ss-ff-st';st.innerHTML='<ul></ul>';
  body.insertBefore(drop,body.firstChild);if(files)body.insertBefore(files,drop.nextSibling);body.insertBefore(st,(files||drop).nextSibling);
  var zf=document.getElementById('ss-zf');if(zf)body.insertBefore(zf,st.nextSibling);
- /* three cards: 1 files → 2 about the sound → 3 shop page (preview with ?ss_ff3=1 until the owner says «ок»; then option ss_ff3_on) */
- if(FF3||/[?&]ss_ff3=1/.test(location.search)){
+ /* four cards (owner 19.11: «текст с названием — в самом конце, фильтры компактнее, для своей обложки — нормальная кнопка»):
+    1 files → 2 about the sound (compact) → 3 cover & price → 4 name & description (AI writes them from 1–3). For everyone. */
+ if(!/[?&]ss_ff4=0/.test(location.search)){
  function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h"><i>'+num+'</i><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
  var c1=card('ss-ff-c1','1','Your files','Drop the project ZIP, the full track (WAV) or your MP3 preview, and a cover. We read them and fill in the rest.'),
-     c2=card('ss-ff-c2','2','About the sound','Filled in from your files — check it. Or choose the type yourself if you have no files yet.'),
-     c3=card('ss-ff-c3','3','Shop page','Name, description, cover and price — AI made a draft, change anything.');
- body.insertBefore(c1,body.firstChild);body.insertBefore(c2,c1.nextSibling);body.insertBefore(c3,c2.nextSibling);
- [drop,files,st,zf].forEach(function(x){if(x)c1.appendChild(x)});
+     c2=card('ss-ff-c2','2','About the sound','Filled in from your files — check it. No files yet? Choose the type yourself.'),
+     c3=card('ss-ff-c3','3','Cover & price','Upload your own cover or let AI make one. Square, at least 1000×1000.'),
+     c4=card('ss-ff-c4','4','Name & description','Written by AI from your files and the details above — change anything you like.');
+ body.insertBefore(c1,body.firstChild);body.insertBefore(c2,c1.nextSibling);body.insertBefore(c3,c2.nextSibling);body.insertBefore(c4,c3.nextSibling);
+ [drop,files,st,zf,document.getElementById('ss-az')].forEach(function(x){if(x)c1.appendChild(x)});
  function P(sel){var e=q(sel);return e?e.closest('p')||e:null}
- [F('format'),q('.ss-wm-row2'),F('genre'),q('.ss-wm-row'),F('tag')].forEach(function(x){if(x)c2.appendChild(x)});
- [P('[name=product_name]'),P('[name=product_description]'),P('[name=product_price]'),q('.ss-wm-ai')].forEach(function(x){if(x)c3.appendChild(x)});
- /* the AI cover button and its box are added by another script: bring them to card 3 when they appear */
- var tries=0;(function cov(){var b=qa('.ss-aic-b').filter(function(x){return /cover with ai/i.test(x.textContent)})[0],bx=q('.ss-aic-cv');if(b&&bx){var pr=P('[name=product_price]');c3.insertBefore(b,pr);c3.insertBefore(bx,pr);return}if(++tries<25)setTimeout(cov,300)})();
+ var grid=document.createElement('div');grid.className='ss-ff-grid';
+ [F('format'),F('daw'),F('version')].forEach(function(x){if(x)c2.appendChild(x)});
+ c2.appendChild(grid);[q('.ss-wm-row'),q('.ss-wm-row2')].forEach(function(r){if(r)grid.appendChild(r)}); /* rows stay (other scripts look for them), the grid lays out their fields */
+ [F('genre'),F('mood'),F('tag')].forEach(function(x){if(x)c2.appendChild(x)});
+ /* card 3: a real «Upload your cover» button (the image goes through the same drop-zone route) + the AI cover button + preview + price */
+ var cv=document.createElement('div');cv.className='ss-ff-cov';cv.innerHTML='<div class="pv" aria-live="polite"><span>No cover yet</span></div><div class="bt"><button type="button" class="ss-ff-up">Upload your cover</button></div>';
+ var pick=document.createElement('input');pick.type='file';pick.accept='image/jpeg,image/png,image/webp';pick.hidden=true;cv.appendChild(pick);c3.appendChild(cv);
+ cv.querySelector('.ss-ff-up').onclick=function(){pick.click()};
+ function prev(f){if(!f||!/^image\//.test(f.type))return;var pv=cv.querySelector('.pv');pv.innerHTML='';var im=new Image();im.alt='Cover';im.src=URL.createObjectURL(f);pv.appendChild(im);cv.querySelector('.ss-ff-up').textContent='Change cover'}
+ pick.onchange=function(){var f=pick.files&&pick.files[0],mi=q('input[type=file][multiple]');if(!f)return;prev(f);
+  if(mi&&window.DataTransfer){var dt=new DataTransfer();dt.items.add(f);mi.files=dt.files;mi.dispatchEvent(new Event('change',{bubbles:true}))}else{var pi=q('[name=product_image]');if(pi&&window.DataTransfer){var d2=new DataTransfer();d2.items.add(f);pi.files=d2.files;pi.dispatchEvent(new Event('change',{bubbles:true}))}}};
+ form.addEventListener('change',function(e){var t=e.target;if(t&&t.name==='product_image'&&t.files&&t.files[0])prev(t.files[0])},true);
+ form.addEventListener('drop',function(e){var fl=e.dataTransfer&&e.dataTransfer.files;[].forEach.call(fl||[],function(f){if(/^image\//.test(f.type))prev(f)})},true);
+ (function(){var mi=q('input[type=file][multiple]');if(mi)mi.addEventListener('change',function(){[].forEach.call(mi.files||[],function(f){if(/^image\//.test(f.type))prev(f)})})})();
+ var pp=P('[name=product_price]');if(pp)c3.appendChild(pp);
+ [q('.ss-wm-ai'),P('[name=product_name]'),P('[name=product_description]')].forEach(function(x){if(x)c4.appendChild(x)});
+ /* the AI cover button and its box are added by another script: bring them next to «Upload your cover» */
+ var tries=0;(function cov(){var b=qa('.ss-aic-b').filter(function(x){return /cover/i.test(x.textContent)})[0],bx=q('.ss-aic-cv');if(b&&bx){cv.querySelector('.bt').appendChild(b);cv.parentNode.insertBefore(bx,cv.nextSibling);return}if(++tries<25)setTimeout(cov,300)})();
+ /* an AI cover that gets chosen lands in the product image: show it too */
+ new MutationObserver(function(){var im=q('.ss-aic-cv .on img,.ss-aic-cv img.sel');if(im){var pv=cv.querySelector('.pv');if(!pv.querySelector('img')||pv.querySelector('img').src!==im.src){pv.innerHTML='';var c=im.cloneNode();pv.appendChild(c)}}}).observe(c3,{subtree:true,attributes:true,attributeFilter:['class']});
  }
  var hint=q('.ss-ds-first');if(hint)hint.textContent='Step 2: check what you are selling (we pick it from your files).';
  /* grab files before the drop zone routes them (capture phase) */
