@@ -84,6 +84,9 @@ body .acf-popup-box .loading{position:absolute!important;inset:0!important;borde
 body .acf-popup-box .acf-error-message{margin:0 0 12px!important;border-radius:10px!important;background:rgba(239,68,68,.12)!important;border:1px solid rgba(239,68,68,.4)!important;color:#FCA5A5!important}
 body .acf-popup-box .acf-error-message p{color:#FCA5A5!important;margin:8px 12px!important}
 </style>
+<script>/* 19.11 owner («расположи версии в алфавитном порядке»): DAW versions A→Z, numbers in natural order (Ableton Live 9, 10, 11, 12) */
+(function(){function sort(){var w=document.querySelector('#solid-sound-upload-form .ss-ap-version ul.acf-radio-list,#solid-sound-upload-form .ss-ap-version ul.acf-checkbox-list');if(!w||w.dataset.sorted)return!!w;var li=[].slice.call(w.children);li.sort(function(a,b){return a.textContent.trim().localeCompare(b.textContent.trim(),'en',{numeric:true,sensitivity:'base'})});li.forEach(function(x){w.appendChild(x)});w.dataset.sorted='1';return true}
+if(!sort()){var mo=new MutationObserver(function(){if(sort())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}})();</script>
 <script>/* 19.11: name the "Add your own" window after its field, placeholder, one-line hint, focus */
 (function(){var last='';document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a.acf-icon[data-name=add]'):null;if(!a)return;var f=a.closest('.acf-field'),l=f?f.querySelector('.acf-label label'):null;last=l?(l.textContent||'').replace(/\*|\(.*?\)/g,'').trim():'';},true);
 new MutationObserver(function(){var b=document.querySelector('.acf-popup-box:not([data-ss])');if(!b)return;b.setAttribute('data-ss','1');var n=last.replace(/^select\s+/i,'').replace(/\(s\)$/i,'').trim()||'item';var low=n.toLowerCase();

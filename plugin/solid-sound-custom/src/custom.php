@@ -2339,7 +2339,7 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 			$p['phone'] = sanitize_text_field( wp_unslash( $_POST['phone'] ?? '' ) );
 			$addr = isset( $p['address'] ) ? (array) $p['address'] : array(); $addr['country'] = sanitize_text_field( wp_unslash( $_POST['country'] ?? '' ) ); $p['address'] = $addr;
 			$soc = isset( $p['social'] ) ? (array) $p['social'] : array();
-			foreach ( array( 'instagram', 'youtube', 'soundcloud', 'spotify', 'tiktok', 'fb' ) as $k ) $soc[ $k ] = esc_url_raw( wp_unslash( $_POST[ 'social_' . $k ] ?? '' ) );
+			foreach ( array( 'instagram', 'youtube', 'soundcloud', 'spotify', 'tiktok', 'fb', 'beatport', 'bandcamp', 'website' ) as $k ) { if ( isset( $_POST[ 'social_' . $k ] ) ) $soc[ $k ] = esc_url_raw( wp_unslash( $_POST[ 'social_' . $k ] ) ); }
 			$p['social'] = $soc;
 			$seo = isset( $p['store_seo'] ) ? (array) $p['store_seo'] : array();
 			$seo['wcfmmp-seo-meta-desc'] = sanitize_text_field( wp_unslash( $_POST['meta_desc'] ?? '' ) );
@@ -2389,10 +2389,12 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 			$rows = array();
 			foreach ( $ids as $pid ) { $pr = wc_get_product( $pid ); if ( ! $pr ) continue; list( $q, $e ) = ss_cp_sold( $pid ); $rows[] = array( 'p' => $pr, 'q' => $q, 'e' => $e, 'st' => get_post_status( $pid ) ); }
 			$best = $rows; usort( $best, function ( $a, $b ) { return $b['q'] <=> $a['q']; } ); $best = array_slice( array_filter( $best, function ( $r ) { return 'publish' === $r['st']; } ), 0, 6 );
-			$o .= '<div class="ssw-card"><div class="ssw-h"><b>Your Best Sellers</b><a class="ssw-btn" href="' . esc_url( ss_cp_url( 'ss-add-product' ) ) . '">+ Add Product</a></div>';
+			if ( ! $rows && function_exists( 'ss_ct_empty_products' ) ) return $o . ss_ct_empty_products(); /* 19.11: one clear empty state instead of two empty tables */
+			$best = array_values( array_filter( $best, function ( $r ) { return $r['q'] > 0; } ) );
+			if ( $best ) $o .= '<div class="ssw-card"><div class="ssw-h"><b>Best sellers</b></div>';
 			if ( $best ) { $o .= '<div class="sscp-best">'; $n = 0; foreach ( $best as $r ) { $n++; $o .= '<div class="sscp-bi"><span class="rk r' . min( $n, 4 ) . '">' . $n . '</span>' . $r['p']->get_image( array( 80, 80 ) ) . '<div><b>' . esc_html( $r['p']->get_name() ) . '</b><p>Uploaded: <i>' . esc_html( get_the_date( 'M j, Y', $r['p']->get_id() ) ) . '</i> · Sold: <i class="bl">' . (int) $r['q'] . '</i> · Earned: <i class="gr">' . wp_strip_all_tags( ss_cp_money( $r['e'] ) ) . '</i></p></div></div>'; } $o .= '</div>'; }
-			else $o .= '<p class="sscp-empty">No sales yet. Your best sellers will appear here.</p>';
-			$o .= '</div><div class="ssw-card sscp-tw"><table class="sscp-t"><thead><tr><th>Thumbnail</th><th>Name</th><th>Status</th><th>Price</th><th>Qty sold</th><th>Earned</th><th>Actions</th></tr></thead><tbody>';
+			if ( $best ) $o .= '</div>';
+			$o .= '<div class="ssw-card sscp-tw"><table class="sscp-t"><thead><tr><th>Thumbnail</th><th>Name</th><th>Status</th><th>Price</th><th>Qty sold</th><th>Earned</th><th>Actions</th></tr></thead><tbody>';
 			if ( ! $rows ) $o .= '<tr><td colspan="7" class="sscp-empty">You have no products yet. <a href="' . esc_url( ss_cp_url( 'ss-add-product' ) ) . '">Add your first product</a>.</td></tr>';
 			$lbl = array( 'publish' => 'Live', 'pending' => 'In review', 'draft' => 'Draft', 'private' => 'Hidden' );
 			foreach ( $rows as $r ) { $p = $r['p']; $o .= '<tr><td>' . $p->get_image( array( 48, 48 ) ) . '</td><td><b>' . esc_html( $p->get_name() ) . '</b></td><td><span class="sscp-st ' . esc_attr( $r['st'] ) . '">' . esc_html( $lbl[ $r['st'] ] ?? $r['st'] ) . '</span>' . ( function_exists( 'ss_cr_status_note' ) ? ss_cr_status_note( $p->get_id(), $r['st'] ) : '' ) . '</td><td>' . wp_kses_post( wc_price( $p->get_price() ) ) . '</td><td>' . (int) $r['q'] . '</td><td class="gr">' . wp_kses_post( ss_cp_money( $r['e'] ) ) . '</td><td><a class="ssw-btn sm" href="' . esc_url( trailingslashit( get_wcfm_url() ) . 'products-manage/' . $p->get_id() . '/' ) . '">Edit</a> ' . ( 'publish' === $r['st'] ? '<a class="ssw-btn ghost sm" target="_blank" href="' . esc_url( get_permalink( $p->get_id() ) ) . '">View</a>' : '' ) . '</td></tr>'; }
@@ -2411,7 +2413,7 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 		if ( 'ss-payouts' === $s ) {
 			$p = ss_cp_prof( $id ); $pay = isset( $p['payment'] ) ? (array) $p['payment'] : array(); $mth = $pay['method'] ?? '';
 			$n = wp_nonce_field( 'ss_cp_payout', '_sscp', true, false ) . '<input type="hidden" name="ss_cp_action" value="payout">';
-			$o .= '<div class="ssw-card"><div class="ssw-h"><b>Select Payment Method</b></div><p class="sscp-sub">Choose how you want to receive your payouts. You can only have one active payout method at a time. We pay once a month when your balance is at least $25.</p><div class="sscp-pm">'
+			$o .= ( function_exists( 'ss_ct_payout_status' ) ? ss_ct_payout_status( $id, $mth, $pay ) : '' ) . '<div class="ssw-card"><div class="ssw-h"><b>' . ( $mth ? 'Change payout method' : 'Choose how we pay you' ) . '</b></div><p class="sscp-sub">One method at a time. Your details are private: only our payout team sees them.</p><div class="sscp-pm">'
 				. '<form method="post" class="sscp-pmc' . ( 'paypal' === $mth ? ' on' : '' ) . '">' . $n . '<input type="hidden" name="method" value="paypal"><h3>PayPal</h3><p class="h">PayPal — Monthly</p><span class="tag">Paid within 30 days</span><p>We pay your PayPal on the 1st of each month for everything you are owed (from $25).</p><input type="email" name="paypal_email" placeholder="your@paypal.com" value="' . esc_attr( $pay['paypal']['email'] ?? '' ) . '" required><button class="sscp-sel">' . ( 'paypal' === $mth ? 'Selected ✓ — Save' : 'Select' ) . '</button></form>'
 				. '<form method="post" class="sscp-pmc' . ( 'bank_transfer' === $mth ? ' on' : '' ) . '">' . $n . '<input type="hidden" name="method" value="bank_transfer"><h3>Bank transfer</h3><p class="h">Bank Transfer — Monthly</p><span class="tag">Paid within 30 days</span><p>We send a bank transfer on the 1st of each month for everything you are owed (from $25).</p>'
 				. '<input name="bank_ac_name" placeholder="Account holder name" value="' . esc_attr( $pay['bank']['ac_name'] ?? '' ) . '" required><input name="bank_bank_name" placeholder="Bank name" value="' . esc_attr( $pay['bank']['bank_name'] ?? '' ) . '"><input name="bank_iban" placeholder="IBAN" value="' . esc_attr( $pay['bank']['iban'] ?? '' ) . '" required><input name="bank_swift" placeholder="SWIFT / BIC" value="' . esc_attr( $pay['bank']['swift'] ?? '' ) . '"><button class="sscp-sel">' . ( 'bank_transfer' === $mth ? 'Selected ✓ — Save' : 'Select' ) . '</button></form>'
@@ -2419,8 +2421,9 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 		}
 		if ( 'ss-reviews' === $s ) {
 			$cs = get_comments( array( 'post_author' => $id, 'post_type' => 'product', 'status' => 'approve', 'parent' => 0, 'number' => 100 ) );
-			$o .= '<div class="ssw-card"><div class="ssw-h"><b>My Reviews</b></div>';
-			if ( ! $cs ) $o .= '<p class="sscp-sub"><b>No reviews yet</b><br>When a buyer reviews one of your products it shows up here, and we email you. You can reply and your reply appears publicly under the review.</p>';
+			$o .= '<div class="ssw-card">';
+			if ( $cs ) { $sum = 0; $nr = 0; foreach ( $cs as $c0 ) { $r0 = (int) get_comment_meta( $c0->comment_ID, 'rating', true ); if ( $r0 ) { $sum += $r0; $nr++; } } if ( $nr ) $o .= '<div class="sscp-rsum"><b>' . esc_html( number_format( $sum / $nr, 1 ) ) . '</b><span class="st">' . str_repeat( '★', (int) round( $sum / $nr ) ) . str_repeat( '☆', 5 - (int) round( $sum / $nr ) ) . '</span><em>' . (int) $nr . ' review' . ( 1 === $nr ? '' : 's' ) . '</em></div>'; }
+			if ( ! $cs ) $o .= '<div class="sscp-none"><span class="ic">★</span><b>No reviews yet</b><p>When a buyer reviews one of your products it shows up here and we email you. Reply publicly — buyers trust creators who answer.</p></div>';
 			foreach ( $cs as $c ) {
 				$r = (int) get_comment_meta( $c->comment_ID, 'rating', true );
 				$rep = get_comments( array( 'parent' => $c->comment_ID, 'status' => 'approve' ) );
@@ -2440,18 +2443,21 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 			$cc = $p['address']['country'] ?? '';
 			$opt = '<option value="">Select country</option>'; foreach ( $countries as $k => $v ) $opt .= '<option value="' . esc_attr( $k ) . '"' . selected( $cc, $k, false ) . '>' . esc_html( $v ) . '</option>';
 			$f = function ( $k, $lbl, $ph ) use ( $soc ) { return '<label>' . esc_html( $lbl ) . '<input type="url" name="social_' . $k . '" placeholder="' . esc_attr( $ph ) . '" value="' . esc_attr( $soc[ $k ] ?? '' ) . '"></label>'; };
-			$o .= '<form method="post" enctype="multipart/form-data" class="sscp-set">' . wp_nonce_field( 'ss_cp_settings', '_sscp', true, false ) . '<input type="hidden" name="ss_cp_action" value="settings">'
-				. '<div class="ssw-card"><div class="ssw-h"><b>👤 Profile &amp; Branding</b><button class="ssw-btn">💾 Save</button></div>'
-				. '<label>Artist / Producer Name<input name="store_name" value="' . esc_attr( $name ) . '"><small>This is how you’ll appear across the marketplace</small></label>'
-				. '<div class="sscp-up"><img src="' . esc_url( $av ) . '" class="av" alt=""><label class="btnf">⬆ Upload New Photo<input type="file" name="avatar_file" accept="image/*"></label><small>Recommended: square image, at least 400×400px</small></div>'
-				. '<div class="sscp-up">' . ( $cv ? '<img src="' . esc_url( $cv ) . '" class="cv" alt="">' : '<span class="cv ph">No cover yet</span>' ) . '<label class="btnf">⬆ Upload Cover Image<input type="file" name="cover_file" accept="image/*"></label><small>Recommended: 1200×400px for best results</small></div>'
-				. '<label>Bio<textarea name="bio" rows="5">' . esc_textarea( $p['shop_description'] ?? '' ) . '</textarea></label></div>'
-				. '<div class="ssw-card"><div class="ssw-h"><b>📍 Location (Optional)</b></div><label>Country<select name="country">' . $opt . '</select></label></div>'
-				. '<div class="ssw-card"><div class="ssw-h"><b>🔗 Social Media</b></div><div class="sscp-g2">' . $f( 'instagram', 'Instagram', 'https://instagram.com/…' ) . $f( 'youtube', 'YouTube', 'https://youtube.com/…' ) . $f( 'soundcloud', 'SoundCloud', 'https://soundcloud.com/…' ) . $f( 'spotify', 'Spotify', 'https://open.spotify.com/…' ) . $f( 'tiktok', 'TikTok', 'https://tiktok.com/@…' ) . $f( 'fb', 'Facebook', 'https://facebook.com/…' ) . '</div></div>'
-				. '<div class="ssw-card"><div class="ssw-h"><b>☎ Contact Information</b></div><label>Contact Number (Optional)<input name="phone" value="' . esc_attr( $p['phone'] ?? '' ) . '"></label><label>Email Address<input value="' . esc_attr( $u->user_email ) . '" disabled></label></div>'
-				. '<div class="ssw-card"><div class="ssw-h"><b>💳 Payment Information</b></div><p class="sscp-sub">' . ( ss_cp_payout_set( $id ) ? 'Your payout method is set. ' : 'No payout method yet. ' ) . '<a href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">Manage payouts →</a></p></div>'
-				/* SEO keywords card removed (owner 15.11: nothing extra for producers) */
-				. '<p><button class="ssw-btn">💾 Save</button></p></form>';
+			/* 19.11 owner («сделай ещё лучше»): form on the left, live preview of the public page on the right, one sticky Save */
+			$av = ! empty( $p['gravatar'] ) ? wp_get_attachment_image_url( $p['gravatar'], 'thumbnail' ) : '';
+			$pub = function_exists( 'wcfm_get_option' ) ? home_url( '/' . wcfm_get_option( 'wcfm_store_url', 'store' ) . '/' . $u->user_nicename . '/' ) : '';
+			$o .= '<form method="post" enctype="multipart/form-data" class="sscp-set">' . wp_nonce_field( 'ss_cp_settings', '_sscp', true, false ) . '<input type="hidden" name="ss_cp_action" value="settings"><div class="sscp-pg"><div class="sscp-pf">'
+				. '<div class="ssw-card"><div class="ssw-h"><b>Name &amp; photos</b></div>'
+				. '<label>Artist / producer name<input name="store_name" value="' . esc_attr( $name ) . '" maxlength="60" required><small>Shown on your page, on every product and in search.</small></label>'
+				. '<div class="sscp-up"><span class="av" data-pv="av"' . ( $av ? ' style="background-image:url(' . esc_url( $av ) . ')"' : '' ) . '>' . ( $av ? '' : esc_html( mb_strtoupper( mb_substr( $name, 0, 1 ) ) ) ) . '</span><div><label class="btnf">' . ( $av ? 'Change photo' : 'Upload photo' ) . '<input type="file" name="avatar_file" accept="image/*" data-pvf="av"></label><small>Square, at least 400×400. Your face or logo.</small></div></div>'
+				. '<div class="sscp-up"><span class="cv" data-pv="cv"' . ( $cv ? ' style="background-image:url(' . esc_url( $cv ) . ')"' : '' ) . '></span><div><label class="btnf">' . ( $cv ? 'Change cover' : 'Upload cover' ) . '<input type="file" name="cover_file" accept="image/*" data-pvf="cv"></label><small>Wide image, 1500×500. Studio, live show or artwork.</small></div></div></div>'
+				. '<div class="ssw-card"><div class="ssw-h"><b>About you</b></div><label>Bio<textarea name="bio" rows="5" maxlength="700" data-pv="bio" placeholder="2–3 sentences: who you are, your sound, what is inside your packs. E.g. Kyiv techno producer, releases on …">' . esc_textarea( $p['shop_description'] ?? '' ) . '</textarea><small class="sscp-cnt">Buyers read this before they buy. <span>0</span>/700</small></label>'
+				. '<label>Country <span class="opt">optional</span><select name="country">' . $opt . '</select></label></div>'
+				. '<div class="ssw-card"><div class="ssw-h"><b>Where to listen</b></div><p class="sscp-sub">Links show as buttons on your page. Add at least two — profiles with music links sell more.</p><div class="sscp-g2">' . $f( 'soundcloud', 'SoundCloud', 'https://soundcloud.com/…' ) . $f( 'spotify', 'Spotify', 'https://open.spotify.com/artist/…' ) . $f( 'youtube', 'YouTube', 'https://youtube.com/@…' ) . $f( 'instagram', 'Instagram', 'https://instagram.com/…' ) . $f( 'tiktok', 'TikTok', 'https://tiktok.com/@…' ) . $f( 'beatport', 'Beatport', 'https://beatport.com/artist/…' ) . $f( 'bandcamp', 'Bandcamp', 'https://….bandcamp.com' ) . $f( 'website', 'Website', 'https://…' ) . '</div></div>'
+				. '<div class="ssw-card"><div class="ssw-h"><b>Private</b><span class="sscp-lock">Only our team sees this</span></div><label>Phone <span class="opt">optional, for urgent questions about your products</span><input name="phone" value="' . esc_attr( $p['phone'] ?? '' ) . '"></label><label>Email<input value="' . esc_attr( $u->user_email ) . '" disabled><small>Change it in <a href="' . esc_url( wc_get_account_endpoint_url( 'edit-account' ) ) . '">account settings</a>.</small></label>'
+				. '<p class="sscp-sub" style="margin:0">' . ( ss_cp_payout_set( $id ) ? '✓ Payout method set. ' : 'No payout method yet. ' ) . '<a href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">' . ( ss_cp_payout_set( $id ) ? 'Change' : 'Set up payouts' ) . ' →</a></p></div>'
+				. '</div><aside class="sscp-pv"><div class="sscp-pvh"><b>Live preview</b>' . ( $pub ? '<a href="' . esc_url( $pub ) . '" target="_blank" rel="noopener">Open my page ↗</a>' : '' ) . '</div><div class="sscp-pvc"><div class="cv" data-pvo="cv"' . ( $cv ? ' style="background-image:url(' . esc_url( $cv ) . ')"' : '' ) . '></div><div class="av" data-pvo="av"' . ( $av ? ' style="background-image:url(' . esc_url( $av ) . ')"' : '' ) . '>' . ( $av ? '' : esc_html( mb_strtoupper( mb_substr( $name, 0, 1 ) ) ) ) . '</div><b data-pvo="name">' . esc_html( $name ) . '</b><span class="cr">Creator</span><p data-pvo="bio">' . esc_html( wp_trim_words( wp_strip_all_tags( $p['shop_description'] ?? '' ), 40 ) ) . '</p><div class="lk" data-pvo="links"></div></div><p class="sscp-sub">This is how buyers see you.</p></aside></div>'
+				. '<div class="sscp-save"><span>Changes are saved when you press Save.</span><button class="ssw-btn">Save profile</button></div></form>';
 		}
 		if ( 'ss-help' === $s ) {
 			$qa = array(
@@ -2464,9 +2470,9 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 				array( 'How do buyers find my products?', 'Through the shop filters (format, genre, BPM, key, plugins). Fill in these fields carefully when you add a product.' ),
 				array( 'Do I get a discount on mixing and mastering?', 'Yes, approved creators get 20% off our mixing and mastering services.' ),
 			);
-			$o .= '<div class="ssw-card"><div class="ssw-h"><b>Help / FAQ</b><a class="ssw-btn ghost" href="' . esc_url( home_url( '/creator-terms/' ) ) . '" target="_blank">Creator Terms</a></div>';
+			$o .= '<div class="ssw-card"><input type="search" class="sscp-hs" placeholder="Search help, e.g. payout, files, samples" aria-label="Search help">';
 			foreach ( $qa as $x ) $o .= '<details class="sscp-faq"><summary>' . esc_html( $x[0] ) . '</summary><p>' . esc_html( $x[1] ) . '</p></details>';
-			$o .= '<p class="sscp-sub">Still need help? <a href="' . esc_url( home_url( '/contacts/' ) ) . '">Contact us</a>.</p></div>';
+			$o .= '<p class="sscp-sub sscp-hn" hidden>Nothing found — ask us, we reply in minutes.</p><p class="sscp-sub">Still need help? <a href="#" data-chat="1">Ask the team</a> · <a href="' . esc_url( home_url( '/creator-terms/' ) ) . '" target="_blank">Creator terms</a></p></div>';
 		}
 		return $o;
 	}
@@ -2474,7 +2480,7 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 	add_action( 'wcfm_load_views', function ( $ep ) {
 		$s = preg_replace( '/^wcfm-/', '', (string) $ep ); $pages = ss_cp_pages();
 		if ( ! isset( $pages[ $s ] ) || ! ss_cp_can() ) return;
-		echo '<div class="collapse wcfm-collapse"><div class="wcfm-page-headig"><span class="wcfm-page-heading-text">' . esc_html( $pages[ $s ] ) . '</span></div><div class="wcfm-collapse-content sscp">' . ss_cp_render( $s ) . '</div></div>'; // phpcs:ignore
+		echo '<div class="collapse wcfm-collapse">' . ( function_exists( 'ss_ct_head' ) ? ss_ct_head( $s ) : '<div class="wcfm-page-headig"><span class="wcfm-page-heading-text">' . esc_html( $pages[ $s ] ) . '</span></div>' ) . '<div class="wcfm-collapse-content sscp sscp-' . esc_attr( $s ) . '">' . ss_cp_render( $s ) . '</div></div>'; // phpcs:ignore
 	}, 50 );
 
 	add_action( 'wp_head', function () {
@@ -6885,3 +6891,4 @@ require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product —
 require_once __DIR__ . '/modules/speed-lite.php'; /* 19.11 owner: speed — no hidden Tidio (1 MB) while the Telegram chat works */
 require_once __DIR__ . '/modules/smart-search.php'; /* 19.11 owner: smart search (code first, Cloudflare AI optional) */
 require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public creator page /store/<slug>/ */
+require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-tabs look + payouts status + profile preview */

@@ -39,6 +39,7 @@ add_action( 'wp_ajax_ss_aic_desc', function () {
 	ss_aic_guard( 'desc' );
 	$f = ss_aic_facts();
 	if ( empty( $f['name'] ) ) wp_send_json_error( array( 'm' => 'Add the product name first.' ), 400 );
+	if ( count( $f ) < 4 ) wp_send_json_error( array( 'm' => 'AI writes only from your data — first fill in the type, genre, BPM and key (and the DAW).' ), 400 );
 	$facts = ''; foreach ( $f as $k => $v ) $facts .= ucfirst( str_replace( '_', ' ', $k ) ) . ': ' . $v . "\n";
 	$style = isset( $_POST['style'] ) ? sanitize_key( $_POST['style'] ) : 'detailed';
 	$shape = array(
@@ -48,9 +49,9 @@ add_action( 'wp_ajax_ss_aic_desc', function () {
 	);
 	$sys = "You write product descriptions for Solid Sound, a marketplace of Ableton Live templates, synth presets, sample packs and royalty-free music for producers and DJs.\n"
 		. ( $shape[ $style ] ?? $shape['detailed'] )
-		. "Use ONLY the facts given. Never invent plugin names, numbers, artists, awards or contents that are not in the facts. If a fact is missing, leave it out.\n"
+		. "Build the description from ALL the facts given: mention the format, genre, BPM, key, DAW and version, plugins (or that no external plugins are needed), mood, length, channels and anything else listed, naturally, the way a producer would describe it. Use ONLY these facts. Never invent plugin names, numbers, artists, awards or contents that are not in the facts. If a fact is missing, leave it out.\n"
 		. "Plain, confident producer language. No emojis, no hashtags, no words like ultimate, game-changer, unleash, elevate, next level. Do not repeat the product name more than twice. Output only the description.";
-	$r = ss_cf_ai( '@cf/meta/llama-3.1-8b-instruct', array( 'messages' => array( array( 'role' => 'system', 'content' => $sys ), array( 'role' => 'user', 'content' => "Facts:\n" . $facts ) ), 'max_tokens' => 420, 'temperature' => 0.7 ) );
+	$r = ss_cf_ai( '@cf/meta/llama-3.1-8b-instruct', array( 'messages' => array( array( 'role' => 'system', 'content' => $sys ), array( 'role' => 'user', 'content' => "Facts:\n" . $facts ) ), 'max_tokens' => 460, 'temperature' => 0.6 ) );
 	if ( is_wp_error( $r ) ) wp_send_json_error( array( 'm' => 'AI is busy — please try again in a minute.' ), 502 );
 	$t = trim( (string) ( $r['response'] ?? '' ) );
 	$t = preg_replace( '/^(here is|here\'s)[^\n]*\n+/i', '', $t );
@@ -146,6 +147,12 @@ function facts(f){var o={},q=function(s){return f.querySelector(s)};
  o.name=(q('[name=product_name]')||{}).value||'';
  function picked(cls){var w=q('.ss-ap-'+cls);if(!w)return '';var a=[];w.querySelectorAll('input:checked').forEach(function(i){var l=i.closest('label');a.push((l?l.textContent:i.value).trim())});w.querySelectorAll('select').forEach(function(s){[].forEach.call(s.selectedOptions||[],function(o){if(o.value)a.push(o.text.trim())})});w.querySelectorAll('input[type=text],input[type=number]').forEach(function(i){if(i.value)a.push(i.value)});return a.join(', ')}
  ['format','genre','daw','version','ext','mood','bpm','key','length','tag','dl'].forEach(function(k){var v=picked(k);if(v)o[k==='ext'?'plugins':(k==='dl'?'download':k)]=v});
+ /* 19.11 owner («Аи описание должно учитывать все данные трека»): every other filled field of the form goes in too */
+ var seen={};for(var k0 in o)seen[String(o[k0]).toLowerCase()]=1;
+ f.querySelectorAll('.acf-field').forEach(function(fl){if(fl.offsetParent===null&&!fl.querySelector('input:checked'))return;var lb=fl.querySelector('.acf-label label');if(!lb)return;var L=lb.textContent.replace(/\*|\(.*?\)/g,'').replace(/\s+/g,' ').trim();if(!L||/descr|price|cover|image|file|zip|mp3|preview|demo|terms|agree/i.test(L))return;
+  var a=[];fl.querySelectorAll('input:checked').forEach(function(i){var l=i.closest('label');a.push((l?l.textContent:i.value).trim())});fl.querySelectorAll('select').forEach(function(sl){[].forEach.call(sl.selectedOptions||[],function(op){if(op.value)a.push(op.text.trim())})});fl.querySelectorAll('input[type=text],input[type=number],input[type=url]').forEach(function(i){if(i.value&&i.name!=='product_name')a.push(i.value)});fl.querySelectorAll('textarea').forEach(function(t){if(t.name!=='product_description'&&t.value)a.push(t.value.slice(0,200))});
+  var v=a.filter(Boolean).join(', ');if(!v||seen[v.toLowerCase()])return;seen[v.toLowerCase()]=1;var key=L.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,40);if(key&&!o[key])o[key]=v});
+ var zf=document.getElementById('ss-zf');if(zf){var zt=zf.textContent.replace(/\s+/g,' ').trim();if(zt)o.project_check=zt.slice(0,300)}
  o.price=(q('[name=product_price]')||{}).value||'';return o}
 function post(action,f,extra){var fd=new FormData();fd.append('action',action);fd.append('n',N);for(var k in (extra||{}))fd.append(k,extra[k]);fd.append('f',JSON.stringify(facts(f)));return fetch(AJAX,{method:'POST',credentials:'same-origin',body:fd}).then(function(r){return r.json()})}
 function note(after,txt,bad){var n=after.nextElementSibling;if(!(n&&n.classList.contains('ss-aic-n'))){n=document.createElement('p');n.className='ss-aic-n';after.parentNode.insertBefore(n,after.nextSibling)}n.textContent=txt;n.classList.toggle('bad',!!bad)}
