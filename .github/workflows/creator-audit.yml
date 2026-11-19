@@ -1,0 +1,30 @@
+# Creator area audit: full-page screenshots of every creator tab (phone + desktop), "Add your own" window, JS errors.
+# Starts on a commit that changes .github/creator-audit.txt (or by hand). Result: checks/creator-audit/.
+name: Creator audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/creator-audit.txt"]
+permissions:
+  contents: write
+concurrency: creator-audit
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Audit the creator area
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/creator-audit.js
+      - name: Save the result in the repo
+        if: always()
+        run: BOT_NAME=audit-bot bash .github/save.sh "creator audit: $(date -u +%FT%TZ)" checks/creator-audit
