@@ -221,6 +221,12 @@ body.ss-wow #ss-app .ssx .ssw-match .mx.pl{box-shadow:0 0 0 2px #F59E0B}
 .ssw-wall{border-radius:0!important}
 body.ss-wow #ss-app :is(#shop,#services,#examples,#dashboard,#reviews,#free){position:relative;margin:16px -12px 0!important;padding-left:12px!important;padding-right:12px!important;background:radial-gradient(55% 70% at 50% -10%,rgba(59,130,246,.30),transparent 70%),radial-gradient(35% 55% at 12% 0%,rgba(37,99,235,.22),transparent 72%),radial-gradient(35% 55% at 88% 0%,rgba(29,78,216,.22),transparent 72%),radial-gradient(70% 40% at 50% 100%,rgba(30,58,138,.28),transparent 75%),linear-gradient(180deg,#0e1a36 0%,#0b1226 55%,#0a0f1f 100%);border:1px solid rgba(96,165,250,.10);border-radius:0}
 body.ss-wow #ss-app :is(#shop,#services,#examples,#dashboard,#reviews,#free):before{content:"";position:absolute;left:8%;right:8%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(147,197,253,.45),transparent);pointer-events:none}
+/* Finishing card: A/B players inside the square card */
+body.ss-wow #ss-app .ssx .ssw-match.ssw-ab{cursor:default;text-align:left!important;justify-content:flex-start!important;gap:8px!important}
+body.ss-wow #ss-app .ssx .ssw-match.ssw-ab .abt{display:block;margin-top:6px;color:#fff;font:600 13.5px "Exo 2",sans-serif}
+body.ss-wow #ss-app .ssx .ssw-match.ssw-ab .ss-ab{width:100%;margin:0}
+body.ss-wow #ss-app .ssx .ssw-match.ssw-ab>small{margin-bottom:4px}
+@media(min-width:1001px){body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match.ssw-ab{aspect-ratio:auto!important}}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -266,10 +272,14 @@ function side(left,data){if(!left||left.querySelector('.ssw-match'))return;var a
  function later(){requestAnimationFrame(run)}left.addEventListener('click',later);left.addEventListener('input',later);left.addEventListener('change',later);run()}
 function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[];
  var on=function(left,i){var f=left.querySelectorAll('.f')[i];return ((f&&f.querySelector('.chips .on'))||{}).textContent||''};
- /* Finishing a track: real client tracks, before -> after, filtered by the service chosen */
- side(L[1],function(){var ex=AB.filter(function(e){return e.mp3});if(!ex.length)return null;var c=on(L[1],0),g=/^master/i.test(c)?'master':(/mix/i.test(c)?'mix':'');
-  var l=ex.filter(function(e){return !g||e.g===g});ex.forEach(function(e){if(l.length<3&&l.indexOf(e)<0)l.push(e)});l=l.slice(0,3);
-  return {b:'Hear before → after',s:l.length+' client tracks — tap to listen',items:l.map(function(e){var t=String(e.title||'').replace(/\s*—\s*client track$/i,'');return {t:t,i:wave(e.pa||e.pb),go:function(){if(window.SSP)try{SSP.play({pid:'ab-'+e.id,src:e.mp3,t:t+' — before → after',a:'Solid Sound studio',i:'',u:''},null,null)}catch(x){}}}})}});
+ /* Finishing a track (owner 19.11 «примеры только с переключателями before / after»): the same A/B players as in Examples,
+    filtered by the service chosen; the home app's own A/B code plays them and paints the waves */
+ (function(left){if(!left||left.querySelector('.ssw-match'))return;var ex=AB.filter(function(e){return e.mp3});if(!ex.length)return;var acts=left.querySelector('.acts');
+  var box=document.createElement('div');box.className='ssw-match ssw-ab';if(acts)left.insertBefore(box,acts);else left.appendChild(box);var last='';
+  function run(){var c=on(left,0),g=/^master/i.test(c)?'master':(/mix/i.test(c)?'mix':'');var l=ex.filter(function(e){return !g||e.g===g});ex.forEach(function(e){if(l.length<2&&l.indexOf(e)<0)l.push(e)});l=l.slice(0,2);
+   var key=l.map(function(e){return e.id}).join();if(key===last)return;last=key;
+   box.innerHTML='<b>Hear before → after</b><small>Client tracks — switch BEFORE / AFTER while it plays</small>'+l.map(function(e){var t=String(e.title||'').replace(/\s*—\s*client track$/i,'');return '<span class="abt">'+esc(t)+'</span>'+'<div class="ss-ab" data-src="'+esc(e.mp3)+'" data-title="'+esc(t)+'" data-pb="'+esc(e.pb||'')+'" data-pa="'+esc(e.pa||'')+'"><div class="ss-abp"><button type="button" class="ss-abb" aria-label="Play '+esc(t)+'" aria-pressed="false"><svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg><svg class="pa" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"></path></svg></button><div class="ss-abw" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i class="b"></i><i class="a"></i><u><i class="b"></i><i class="a"></i></u></div></div><button type="button" class="ss-abs" role="switch" aria-checked="false" aria-label="Before or after — '+esc(t)+'"><i aria-hidden="true"></i><span>BEFORE</span><span>AFTER</span></button></div>'}).join('')}
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[1]);
  /* DJ set: music by genre / BPM / key, like the templates card */
  side(L[3],function(){var M=W.filter(function(x){return x.s&&/music/.test(x.f||'')}).concat(W.filter(function(x){return x.s&&!/music|presets/.test(x.f||'')}));if(!M.length)return null; /* music first, then templates (full tracks) */var g=on(L[3],0).trim().toLowerCase(),bi=L[3].querySelector('input[type=number]'),b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0,kc=null;
   [].forEach.call(L[3].querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*key/i.test(l.textContent))kc=d.querySelector('.chips')});var k=((kc&&kc.querySelector('.on'))||{}).textContent||'';k=k.trim();
