@@ -267,6 +267,17 @@ body.ss-wow #ss-app .ssx .fp-links a:hover{text-decoration:underline}
 /* Writing a track: add-ons the visitor ticked, under "N templates match" */
 body.ss-wow #ss-app .ssx .ssw-match .adds{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px}
 body.ss-wow #ss-app .ssx .ssw-match .adds em{font-style:normal;font:600 12.5px "Exo 2",sans-serif;color:#F59E0B;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.35);border-radius:6px;padding:4px 8px}
+/* phones (QA 19.11): the new cards stay inside the screen and short */
+@media(max-width:1000px){
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-ab,body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel{margin:10px 0 0!important;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;padding:10px!important}
+body.ss-wow #ss-app .ssx .ssw-rel .rl{flex-direction:row;flex-wrap:wrap;gap:6px;margin-top:4px}
+body.ss-wow #ss-app .ssx .ssw-rel .ri{padding:5px 8px;gap:6px}
+body.ss-wow #ss-app .ssx .ssw-rel .ri svg{display:none}
+body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:none;font-size:12.5px}
+body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{max-width:100%;min-width:0}
+body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2){display:none}
+body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
