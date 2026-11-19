@@ -258,6 +258,9 @@ body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:4px 0!important}body.ss-wo
 body.ss-wow #ss-app .ssx .card .left.fp>.acts .gbtn{width:100%!important;justify-content:center!important;box-sizing:border-box}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:8px 0!important;text-align:center}
 }
+/* DJ set pack: two columns of items so it stays compact */
+body.ss-wow #ss-app .ssx .ssw-dj .ri{padding:6px 9px}
+body.ss-wow #ss-app .ssx .ssw-dj .ri em{font-size:13px}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -321,12 +324,16 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])inc=[^&]*/,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;all();function all(){[].forEach.call(f.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')})}run()});
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[2]);
- /* DJ set: music by genre / BPM / key, like the templates card */
- side(L[3],function(){var M=W.filter(function(x){return x.s&&/music/.test(x.f||'')}).concat(W.filter(function(x){return x.s&&!/music|presets/.test(x.f||'')}));if(!M.length)return null; /* music first, then templates (full tracks) */var g=on(L[3],0).trim().toLowerCase(),bi=L[3].querySelector('input[type=number]'),b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0,kc=null;
-  [].forEach.call(L[3].querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*key/i.test(l.textContent))kc=d.querySelector('.chips')});var k=((kc&&kc.querySelector('.on'))||{}).textContent||'';k=k.trim();
-  var ok=M.filter(function(x){return (!g||(x.g||'').indexOf(g)>-1)&&(!b||!x.b||Math.abs(x.b-b)<=6)&&(!k||k==='Any'||!x.k||x.k.toLowerCase().indexOf(k.toLowerCase())===0)});
-  var close=!ok.length,l=(close?M.filter(function(x){return !g||(x.g||'').indexOf(g)>-1}):ok);if(!l.length)l=M;
-  return {b:close?'Closest to your choice':(ok.length+(ok.length===1?' track matches':' tracks match')),s:[g&&g.replace(/\b\w/g,function(c){return c.toUpperCase()}),b&&b+' BPM',k&&k!=='Any'&&k].filter(Boolean).join(' · ')+' — tap to listen',items:l.slice(0,3).map(function(x){return {t:x.t,i:x.i,go:function(){if(!play(x))location.href=x.u}}})}});
+ /* DJ set (owner 19.11: DJs who play their OWN music): tracks in the set + what they need -> "Your set pack" on the right */
+ (function(left){if(!left||left.querySelector('.ssw-match'))return;var fs=left.querySelectorAll('.f .chips');var cnt=fs[0],need=fs[1];if(!need)return;var acts=left.querySelector('.acts');
+  var IC={loud:'M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2',club:'M4 12h4l2-5 4 10 2-5h4',key:'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',live:'M4 5h16v14H4zM4 10h16M9 10v9M14 10v9',mix:'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12',tools:'M5 19L19 5M14 5h5v5'};
+  function ic(t){var k=/loud/i.test(t)?'loud':/club|extend/i.test(t)?'club':/key|bpm/i.test(t)?'key':/live|stem/i.test(t)?'live':/mix/i.test(t)?'mix':'tools';return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+IC[k]+'"/></svg>'}
+  var box=document.createElement('div');box.className='ssw-match ssw-rel ssw-dj';box.setAttribute('aria-live','polite');if(acts)left.insertBefore(box,acts);else left.appendChild(box);
+  function run(){var all=[].slice.call(need.querySelectorAll('span')),sel=all.filter(function(x){return x.classList.contains('on')}),n=((cnt&&cnt.querySelector('.on'))||{}).textContent||'';
+   box.innerHTML='<b>Your set pack</b><small>'+(n?esc(n)+' tracks · ':'')+sel.length+' of '+all.length+' selected · price in 1 minute</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
+   var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].split('?')[0];a.href=u+'?set='+encodeURIComponent(n)+'&inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
+  box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;[].forEach.call(need.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')});run()});
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[3]);
  /* Video & ads: our work for picture — opens the video */
  side(L[4],function(){var v=AB.filter(function(e){return e.yt});if(!v.length)return null;
   /* (owner 19.11 «визуализируй, что выбирают кнопки») the card shows the visitor's choice and the closest of our videos first */
