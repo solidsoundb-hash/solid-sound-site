@@ -101,6 +101,7 @@ add_action( 'wp_ajax_ss_fd_dl', 'ss_fd_dl' );
 add_action( 'wp_ajax_nopriv_ss_fd_dl', 'ss_fd_dl' );
 
 add_action( 'wp_footer', function () {
+	if ( ! get_option( 'ss_fd_on' ) ) return; /* owner 19.11: «трай фор фри убери» — the button is hidden everywhere (server part kept; option ss_fd_on=1 brings it back) */
 	if ( is_admin() || ( function_exists( 'is_checkout' ) && is_checkout() ) || ( function_exists( 'is_cart' ) && is_cart() ) ) return;
 	if ( function_exists( 'is_wcfm_page' ) && is_wcfm_page() ) return; /* 15.11: not in the creator area (browser Out of Memory) */
 	$single = '';

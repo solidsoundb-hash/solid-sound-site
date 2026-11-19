@@ -841,7 +841,7 @@ class Component extends DCLogic {
         playing: playing, notPlaying: !playing, playLabel: (playing ? 'Pause ' : 'Play ') + c.name + ' preview',
         buyLabel: 'Add to cart · $' + (c.price + (mix ? MIX_USD : 0)),
         buyBg: '#F59E0B', buyFg: '#111',
-        front: !flipped, back: flipped, hasDemo: true, demoText: 'Get the full ' + (c.t === 'templates' ? 'Ableton project ' : '') + c.name + ' free. Enter your email — we’ll send the download link right away.', demoTitle: 'free', upsellD: isTpl && !isM, mix: mix,
+        front: !flipped, back: flipped, hasDemo: false /* owner 19.11: «трай фор фри убери» */, demoText: 'Get the full ' + (c.t === 'templates' ? 'Ableton project ' : '') + c.name + ' free. Enter your email — we’ll send the download link right away.', demoTitle: 'free', upsellD: isTpl && !isM, mix: mix,
         inCart: !!(s.inCart || {})[c.id], notInCart: !(s.inCart || {})[c.id],
         add: function () { var ic2 = Object.assign({}, s.inCart || {}); ic2[c.id] = true; self.setState({ cart: s.cart + (mix ? 2 : 1), inCart: ic2 }); },
         flip: function () { var f = Object.assign({}, s.flipped); f[c.id] = !flipped; self.setState({ flipped: f }); },
