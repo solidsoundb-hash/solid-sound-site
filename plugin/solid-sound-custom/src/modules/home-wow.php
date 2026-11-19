@@ -261,6 +261,9 @@ body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:8px 0!important;text-align
 /* DJ set pack: two columns of items so it stays compact */
 body.ss-wow #ss-app .ssx .ssw-dj .ri{padding:6px 9px}
 body.ss-wow #ss-app .ssx .ssw-dj .ri em{font-size:13px}
+body.ss-wow #ss-app .ssx .fp-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 10px}
+body.ss-wow #ss-app .ssx .fp-links a{color:#F59E0B;font-weight:600;font-size:14px;text-decoration:none}
+body.ss-wow #ss-app .ssx .fp-links a:hover{text-decoration:underline}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -316,8 +319,8 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[1]);
  /* Releasing (owner 19.11: «кнопки должны нажиматься, квадратик справа показывает, что клиент выбрал») */
  (function(left){if(!left||left.querySelector('.ssw-match'))return;var f=left.querySelector('.f .chips');if(!f)return;var acts=left.querySelector('.acts');
-  var IC={'mix':'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0','master':'M12 3v18M5 8l7-5 7 5','stem':'M3 12h3l3-8 4 16 3-8h5','instr':'M9 18V5l11-2v13','call':'M15 10l5-3v10l-5-3zM3 7h12v10H3z'};
-  function ic(t){var k=/master/i.test(t)?'master':/mix/i.test(t)?'mix':/stem/i.test(t)?'stem':/instr/i.test(t)?'instr':'call';return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+IC[k]+'"/></svg>'}
+  var IC={'mix':'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0','master':'M12 3v18M5 8l7-5 7 5','stem':'M3 12h3l3-8 4 16 3-8h5','instr':'M9 18V5l11-2v13','call':'M15 10l5-3v10l-5-3zM3 7h12v10H3z','meta':'M4 4h10l6 6v10H4zM8 13h8M8 17h5'};
+  function ic(t){var k=/meta|isrc/i.test(t)?'meta':/master/i.test(t)?'master':/mix/i.test(t)?'mix':/stem/i.test(t)?'stem':/instr/i.test(t)?'instr':'call';return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+IC[k]+'"/></svg>'}
   var box=document.createElement('div');box.className='ssw-match ssw-rel';box.setAttribute('aria-live','polite');if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   function run(){var all=[].slice.call(f.querySelectorAll('span')),sel=all.filter(function(x){return x.classList.contains('on')});
    box.innerHTML='<b>Your release pack</b><small>'+sel.length+' of '+all.length+' selected</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
@@ -338,10 +341,12 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
  side(L[4],function(){var v=AB.filter(function(e){return e.yt});if(!v.length)return null;
   /* (owner 19.11 «визуализируй, что выбирают кнопки») the card shows the visitor's choice and the closest of our videos first */
   var pick=[].concat.apply([],[].map.call(L[4].querySelectorAll('.f'),function(f){return [].map.call(f.querySelectorAll('.chips .on'),function(x){return x.textContent.trim()})}));
-  var KW={'YouTube':/youtube|video/i,'Ad spot':/ads?\b|tv/i,'Film / trailer':/film|showreel/i,'Podcast':/cleanup|restoration|dialogue/i,'Clean dialogue':/cleanup|restoration/i,'Sound design':/sound design|showreel/i,'Music':/showreel|music/i,'Final mix':/mix|showreel|tv/i};
+  var KW={'YouTube':/youtube|video/i,'Ad spot':/ads?\b|tv/i,'Film / trailer':/film|showreel/i,'Podcast':/cleanup|restoration|dialogue/i,'Clean dialogue':/cleanup|restoration/i,'Sound design':/sound design|showreel/i,'Music':/showreel|music/i,'Royalty-free music':/showreel|music|ads?\b/i,'Final mix':/mix|showreel|tv/i};
   var sc=function(e){var t=(e.title||'')+' '+(e.service||'')+' '+(e.genre||'');return pick.reduce(function(n,k){return n+(KW[k]&&KW[k].test(t)?1:0)},0)};
   var l=v.slice().sort(function(a,b){return sc(b)-sc(a)}).slice(0,3);
   return {verb:'Watch',b:pick.length?pick.join(' · '):'Our work for video',s:'Closest of our work — tap to watch',items:l.map(function(e){var id=String(e.yt).split('/').pop().split('?')[0];return {t:e.title,i:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg',go:function(){if(window.ssYtOpen)ssYtOpen(id,e.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')}}})}});
+ /* More: "Preparing a live set" now has its own tab (DJ set) — go there instead of the price list */
+ (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[3];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[6]);
  /* "Before / after" in the Video card -> the Examples section, its video tab (owner 19.11) */
  (function(left){var a=left&&[].filter.call(left.querySelectorAll('.acts a'),function(x){return /before/i.test(x.textContent)})[0];if(!a)return;
   a.addEventListener('click',function(e){var ex=document.getElementById('examples');if(!ex)return;e.preventDefault();ex.scrollIntoView({behavior:'smooth',block:'start'});
