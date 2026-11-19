@@ -33,7 +33,7 @@ add_action( 'init', function () {
 }, 30 );
 
 /* the step logic, only where the upload form is */
-function ss_ds_on() { return function_exists( 'ss_cs_ok' ) && ss_cs_ok() && ( get_option( 'ss_ds_live' ) || current_user_can( 'manage_options' ) ); }
+function ss_ds_on() { return function_exists( 'ss_cs_ok' ) && ss_cs_ok() && ! get_option( 'ss_ds_off' ); }
 /* in <head>: the form is drawn already folded (nothing jumps when the script runs) */
 add_action( 'wp_head', function () {
 	if ( ! ss_ds_on() ) return;
@@ -41,8 +41,8 @@ add_action( 'wp_head', function () {
 }, 99 );
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_cs_ok' ) || ! ss_cs_ok() ) return;
-	/* owner rule 19.11: screenshots before every release — admins (owner + robot) see it first; on with option ss_ds_live=1 */
-	if ( ! get_option( 'ss_ds_live' ) && ! current_user_can( 'manage_options' ) ) return; ?>
+	/* on for everyone (owner 19.11: «выкладывай всё, что готово»); off with option ss_ds_off=1 */
+	if ( get_option( 'ss_ds_off' ) ) return; ?>
 <style>#solid-sound-upload-form .ss-ds-off{display:none!important}#solid-sound-upload-form .ss-ds-hint{margin:6px 0 0;color:#94a3b8;font-size:14px}
 #solid-sound-upload-form .ss-ap-daw,#solid-sound-upload-form .ss-ap-version{margin-top:14px}
 #solid-sound-upload-form .ss-ap-format .acf-radio-list,#solid-sound-upload-form .ss-ap-daw .acf-radio-list,#solid-sound-upload-form .ss-ap-version .acf-radio-list{max-height:none!important;overflow:visible!important}
