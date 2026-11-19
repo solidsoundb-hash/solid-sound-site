@@ -216,11 +216,12 @@ add_action( 'wp_footer', function () {
 <?php try { $ss_cs_html = ss_cs_nav() . ( $root ? ss_cs_render() : '' ); } catch ( \Throwable $e ) { error_log( 'creator space: ' . $e->getMessage() ); return; } ?>
 <template id="ss-cs-tpl"><div id="ss-cs-wrap"><?php echo $ss_cs_html; /* escaped inside */ ?></div></template>
 <style id="ss-cs-css">
-body.ss-cs-mounted #wcfm_menu{display:none!important}
+body.ss-cs #wcfm_menu{display:none!important} /* 19.11 owner «грузится криво»: hidden from the first paint, not after the footer script */
+body.ss-cs:not(.ss-cs-mounted) #wcfm-content{padding-top:80px!important} /* room for the tab row that the footer script puts on top — nothing jumps */
 body.ss-cs #wcfm-content{width:100%!important;max-width:none!important;margin:0!important;float:none!important;background:transparent!important}
 body.ss-cs #wcfm-main-contentainer{background:transparent!important;max-width:1220px;margin-left:auto!important;margin-right:auto!important}
 /* 16.11: NOT display:none — a zero-size WCFM Chart.js canvas makes buildTicks loop forever (browser Out of Memory). Keep it sized, off-screen. */
-body.ss-cs-mounted.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){position:fixed!important;left:-20000px!important;top:0!important;width:1100px!important;visibility:hidden!important;pointer-events:none!important}
+body.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){position:fixed!important;left:-20000px!important;top:0!important;width:1100px!important;visibility:hidden!important;pointer-events:none!important}
 #ss-cs-wrap{font-family:"Exo 2",system-ui,sans-serif;padding:0 0 10px}
 /* owner 19.11: «обводка у авторского кабинета урыганская — убери её»: no frame around the whole space; the space is centred
    and as wide as the client account (1140), with a 16 px side gutter on phones (it used to be 973 px wide on a 390 px phone) */
