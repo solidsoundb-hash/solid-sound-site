@@ -128,8 +128,10 @@ body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,25
 /* owner 19.11 «каждый раздел — кнопки примерно одинаково расположены, однородно»: every slide has the same frame —
    title + subtitle on top, the choices in the middle, the buttons in one place at the bottom-right (owner: «неудобно когда кнопки слева») (cards are as tall
    as the tallest one, so the buttons line up on every tab) */
-body.ss-wow .ssx .track{align-items:stretch}
-body.ss-wow .ssx .card .left:not(:has(>.ssw-match)){display:flex!important;flex-direction:column!important;height:100%}
+/* (owner 19.11 evening: «слайдер кривой… подгони, чтобы всё было компактно») each card is only as tall as its own content
+   (no empty space under short tabs, no gap inside the tall one); the window follows the open card smoothly (home.js go()) */
+body.ss-wow .ssx .track{align-items:flex-start}
+body.ss-wow .ssx .card .left:not(:has(>.ssw-match)){display:flex!important;flex-direction:column!important}
 body.ss-wow .ssx .card .left:not(:has(>.ssw-match))>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left:not(:has(>.ssw-match))>.cta{margin-top:auto!important}
 body.ss-wow .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left>.cta{padding-top:14px}
 body.ss-wow .ssx .card .left .acts{display:flex;flex-wrap:wrap;gap:10px}
