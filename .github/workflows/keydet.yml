@@ -1,0 +1,47 @@
+# Key detector exam: SS Audio (src/audio/ss-audio.js) on the GiantSteps Key dataset (604 EDM previews, public research data).
+# Starts on a commit that changes .github/keydet.txt (or by hand). The last line of keydet.txt can carry
+#   tracks=<N> configs=<JSON list of option objects>   e.g. tracks=200 configs=[{},{"single":1}]
+# Result: checks/keydet/report.md.
+name: Key detector exam
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/keydet.txt"]
+permissions:
+  contents: write
+concurrency: keydet
+jobs:
+  exam:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Dataset (annotations + audio, cached)
+        id: ds
+        run: |
+          git clone -q --depth 1 https://github.com/GiantSteps/giantsteps-key-dataset gs
+          L=$(tail -1 .github/keydet.txt)
+          N=$(echo "$L" | grep -o 'tracks=[0-9]*' | cut -d= -f2); N=${N:-200}
+          echo "n=$N" >> $GITHUB_OUTPUT
+          echo "$L" | grep -o 'configs=.*' | cut -d= -f2- > configs.json || true
+          [ -s configs.json ] || echo '[{}]' > configs.json
+      - uses: actions/cache@v4
+        with: { path: gsaudio, key: gs-audio-v1 }
+      - name: Download audio
+        run: |
+          mkdir -p gsaudio
+          ls gs/annotations/key/*.key | head -n ${{ steps.ds.outputs.n }} | while read f; do
+            id=$(basename "$f" .key); [ -s "gsaudio/$id.mp3" ] && continue
+            curl -sf --retry 3 -o "gsaudio/$id.mp3" "https://www.cp.jku.at/datasets/giantsteps/backup/$id.mp3" || rm -f "gsaudio/$id.mp3"
+          done
+          ls gsaudio | wc -l
+      - name: Exam
+        run: CONFIGS="$(cat configs.json)" node tools/keydet/gs-eval.js gs gsaudio ${{ steps.ds.outputs.n }}
+      - name: Save the result in the repo
+        if: always()
+        run: BOT_NAME=keydet-bot bash .github/save.sh "key detector exam $(date -u +%FT%TZ)" checks/keydet
