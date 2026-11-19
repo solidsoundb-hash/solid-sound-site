@@ -11,7 +11,7 @@ const E = process.env, U = E.SS_L1 || E.SS_L2 || E.SS_L3 || E.SS_L4 || E.TEST_AD
   const md = ['# Как грузится страница — кадры каждые 300 мс', '', `Снято: ${new Date().toISOString()}`, ''];
   const b = await chromium.launch({ channel: E.PW_CHANNEL || undefined });
   for (const dev of [['pc', { viewport: { width: 1440, height: 900 } }], ['phone', { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }]]) {
-    const ctx = await b.newContext({ ...dev[1], locale: 'en-US', deviceScaleFactor: 1 });
+    const ctx = await b.newContext({ ...dev[1], locale: 'en-US', deviceScaleFactor: 1, userAgent: dev[0] === 'phone' ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
     await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
     const p = await ctx.newPage();
     for (let i = 0; i < 5; i++) { await p.goto(BASE + '/wp-login.php', { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(() => {}); if (await p.locator('#user_login').count().catch(() => 0)) break; await new Promise(r => setTimeout(r, 15000 * (i + 1))); }
