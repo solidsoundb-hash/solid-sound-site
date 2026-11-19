@@ -209,6 +209,9 @@ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(4):not(.ssw-mat
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(5):not(.ssw-match):not(.acts){grid-row:5!important;order:0!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(6):not(.ssw-match):not(.acts){grid-row:6!important;order:0!important}
 }
+/* (owner 19.11 «графит метча») the match card in the site's navy instead of graphite */
+body.ss-wow #ss-app .ssx .ssw-match{background:linear-gradient(180deg,#18233D,#111A2E)!important;border-color:rgba(245,158,11,.35)!important}
+body.ss-wow #ss-app .ssx .ssw-match:hover{background:linear-gradient(180deg,#1C2947,#131D33)!important}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
