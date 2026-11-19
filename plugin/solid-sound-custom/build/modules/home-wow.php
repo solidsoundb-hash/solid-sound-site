@@ -311,16 +311,6 @@ body.ss-wow #ss-app .ssx .hp-acc details[open] summary:after{content:"–"}
 body.ss-wow #ss-app .ssx .hp-acc p{margin:0;padding:0 12px 6px;color:#CBD5E1;font:400 14px/1.5 Roboto,sans-serif}
 body.ss-wow #ss-app .ssx .hp-acc .hp-go{display:inline-block;margin:0 12px 10px;color:#F59E0B;font:700 14px "Exo 2",sans-serif;text-decoration:none}
 body.ss-wow #ss-app .ssx .hp-acc .hp-go:hover{text-decoration:underline}
-body.ss-wow #ss-app .ssx .hp-card{display:none}
-@media(min-width:1001px){
-body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 280px!important;column-gap:36px!important;align-content:start!important;align-items:start!important}
-body.ss-wow #ss-app .ssx .card .left.hp>*{grid-column:1!important}
-body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:2!important;grid-row:1 / span 3!important;display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:12px;border:1px solid rgba(245,158,11,.35);background:radial-gradient(120% 90% at 100% 0%,rgba(245,158,11,.35),transparent 60%),#17181b}
-body.ss-wow #ss-app .ssx .hp-card .hp-b{align-self:flex-start;padding:3px 9px;border-radius:6px;background:#34D399;color:#062014;font:800 12px "Exo 2",sans-serif;letter-spacing:.1em}
-body.ss-wow #ss-app .ssx .hp-card b{color:#fff;font:800 22px/1.2 "Exo 2",sans-serif}
-body.ss-wow #ss-app .ssx .hp-card small{color:#CBD5E1;font:400 14px/1.45 Roboto,sans-serif}
-body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;text-align:center}
-}
 /* "Why producers work with us" — 4 advantages */
 .ss-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 22px}
 .ss-why .w{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(245,158,11,.08),rgba(255,255,255,.02))}
@@ -343,14 +333,25 @@ body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;tex
 .ss-why2 .all{margin:22px 0 0;text-align:center}.ss-why2 .all a{color:#F59E0B!important;font-weight:700;text-decoration:none}
 @media(max-width:1000px){.ss-why2 .gr{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.ss-why2{margin-top:36px}.ss-why2 h2.t{font-size:24px}.ss-why2 h3.g{font-size:20px;margin:18px 0 10px}.ss-why2 .gr{grid-template-columns:1fr;gap:10px}.ss-why2 .w{padding:16px;gap:6px}.ss-why2 .i{width:40px;height:40px}.ss-why2 b{font-size:16.5px}.ss-why2 small{font-size:14px}.ss-why2 em{font-size:15px;margin-top:6px}}
-/* Free — the first tab (owner 19.11): everything free as tiles */
-body.ss-wow #ss-app .ssx .fz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 0}
-body.ss-wow #ss-app .ssx .fz-t{display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);text-decoration:none!important;transition:border-color .15s,background .15s}
+/* Free — the first tab (owner 19.11): 3 free blocks + the "Get everything free" card */
+body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:12px 20px!important;align-items:stretch!important;align-content:center!important}
+body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{grid-column:1!important;grid-row:1!important}
+body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:2!important;grid-row:1!important;align-self:center!important;display:flex!important;flex-direction:column;justify-content:center;gap:8px;padding:20px;border-radius:12px;border:1px solid rgba(245,158,11,.35);background:radial-gradient(120% 90% at 100% 0%,rgba(245,158,11,.35),transparent 60%),#17181b}
+body.ss-wow #ss-app .ssx .hp-card .hp-b{align-self:flex-start;padding:3px 9px;border-radius:6px;background:#34D399;color:#062014;font:800 12px "Exo 2",sans-serif;letter-spacing:.1em}
+body.ss-wow #ss-app .ssx .hp-card b{color:#fff;font:800 22px/1.2 "Exo 2",sans-serif}
+body.ss-wow #ss-app .ssx .hp-card small{color:#CBD5E1;font:400 14px/1.45 Roboto,sans-serif}
+body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;text-align:center}
+body.ss-wow #ss-app .ssx .fz-tiles{display:grid!important;grid-template-columns:1fr!important;grid-auto-rows:min-content;align-content:center;align-self:center!important;gap:10px;margin:0}
+body.ss-wow #ss-app .ssx .fz-t{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;text-align:left!important;min-height:0!important;height:auto!important;gap:14px;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);text-decoration:none!important;transition:border-color .15s,background .15s}
 body.ss-wow #ss-app .ssx .fz-t:hover{border-color:rgba(245,158,11,.45);background:rgba(245,158,11,.06)}
-body.ss-wow #ss-app .ssx .fz-t .i{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(52,211,153,.14);color:#34D399;margin-bottom:4px}
-body.ss-wow #ss-app .ssx .fz-t b{color:#fff;font:700 14.5px "Exo 2",sans-serif}
-body.ss-wow #ss-app .ssx .fz-t small{color:#94A3B8;font:400 12.5px/1.35 Roboto,sans-serif}
-@media(max-width:1000px){body.ss-wow #ss-app .ssx .fz-tiles{grid-template-columns:1fr 1fr}body.ss-wow #ss-app .ssx .fz-t{padding:10px}body.ss-wow #ss-app .ssx .fz-t small{display:none}}
+body.ss-wow #ss-app .ssx .fz-t .i{flex:0 0 40px;margin:0!important;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:rgba(52,211,153,.14);color:#34D399}
+body.ss-wow #ss-app .ssx .fz-t .fz-x{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;flex:1}
+body.ss-wow #ss-app .ssx .fz-t b{color:#fff;font:700 16px/1.25 "Exo 2",sans-serif}
+body.ss-wow #ss-app .ssx .fz-t b i{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:5px;background:#34D399;color:#062014;font:800 11px/1.5 "Exo 2",sans-serif;font-style:normal;letter-spacing:.08em;vertical-align:2px}
+body.ss-wow #ss-app .ssx .fz-t small{color:#94A3B8;font:400 13.5px/1.35 Roboto,sans-serif}
+body.ss-wow #ss-app .ssx .fz-t:after{content:"→"!important;position:static!important;margin-left:auto;color:#F59E0B;font:700 18px "Exo 2",sans-serif}
+@media(max-width:1000px){body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:1fr!important;align-content:start!important}body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:1!important;grid-row:2!important;padding:16px}body.ss-wow #ss-app .ssx .hp-card b{font-size:19px}}
+@media(max-width:600px){body.ss-wow #ss-app .ssx .fz-tiles{gap:8px}body.ss-wow #ss-app .ssx .fz-t{padding:11px 12px;gap:12px}body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:36px;width:36px;height:36px}body.ss-wow #ss-app .ssx .fz-t b{font-size:15px}body.ss-wow #ss-app .ssx .fz-t small{font-size:12.5px}body.ss-wow #ss-app .ssx .hp-card small{display:none}}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
