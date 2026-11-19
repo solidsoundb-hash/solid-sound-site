@@ -101,6 +101,21 @@ body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,25
  body.ss-wow .ssx .card .left:has(>.ssw-match)>.ssw-match{grid-column:1 / span 2!important;grid-row:auto!important;margin:18px 0 0!important}
  body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:3!important;grid-row:auto!important;margin:18px 0 0!important;justify-content:flex-end;align-self:center}
 }
+/* owner 19.11 «как под линеечку, а не хаотично»: on computers every slide is a neat form — one column of labels
+   (GENRE, BPM, KEY, ABLETON, WHAT DO YOU NEED…) and every control starts on the same vertical line; the result strip
+   starts on that line too; the buttons sit bottom-right. Overrides the column layouts above. */
+@media(min-width:1000px){
+ body.ss-wow #ss-app .ssx .card .left{display:flex!important;flex-direction:column!important;--lbl:150px}
+ body.ss-wow #ss-app .ssx .card .left>.f.row{display:block!important;margin:0!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{display:grid!important;grid-template-columns:var(--lbl) minmax(0,1fr);align-items:center;column-gap:18px;margin:0 0 14px!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row)>b,body.ss-wow #ss-app .ssx .card .left>.f.row>div>b{margin:0!important;line-height:1.25}
+ body.ss-wow #ss-app .ssx .card .left>.f.row>.chk{margin:-4px 0 14px calc(var(--lbl) + 18px)!important;display:flex!important}
+ body.ss-wow #ss-app .ssx .card .left .rng{display:flex;align-items:center;gap:12px;max-width:420px}
+ body.ss-wow #ss-app .ssx .card .left .rng input[type=range]{flex:1;min-width:0}
+ body.ss-wow #ss-app .ssx .card .left>.f~.d{margin-left:calc(var(--lbl) + 18px)!important}
+ body.ss-wow #ss-app .ssx .card .left>.ssw-match{margin:4px 0 0 calc(var(--lbl) + 18px)!important;grid-column:auto!important;grid-row:auto!important}
+ body.ss-wow #ss-app .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow #ss-app .ssx .card .left>.cta{margin-top:auto!important;padding-top:16px;justify-content:flex-end;align-self:flex-end;grid-column:auto!important;grid-row:auto!important}
+}
 /* owner 19.11 «каждый раздел — кнопки примерно одинаково расположены, однородно»: every slide has the same frame —
    title + subtitle on top, the choices in the middle, the buttons in one place at the bottom-right (owner: «неудобно когда кнопки слева») (cards are as tall
    as the tallest one, so the buttons line up on every tab) */
