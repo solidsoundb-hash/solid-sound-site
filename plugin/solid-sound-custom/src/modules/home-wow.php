@@ -274,7 +274,7 @@ body.ss-wow #ss-app .ssx .ssw-rel .rl{flex-direction:row;flex-wrap:wrap;gap:6px;
 body.ss-wow #ss-app .ssx .ssw-rel .ri{padding:5px 8px;gap:6px}
 body.ss-wow #ss-app .ssx .ssw-rel .ri svg{display:none}
 body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:0 1 auto;min-width:0;white-space:normal;font-size:12.5px}
-body.ss-wow #ss-app .ssx .ssw-vd .ri{width:100%}body.ss-wow #ss-app .ssx .ssw-vd .ri em{flex:1 1 auto}
+body.ss-wow #ss-app .ssx .ssw-vd .ri{width:auto}body.ss-wow #ss-app .ssx .ssw-vd .ri.on{width:100%}body.ss-wow #ss-app .ssx .ssw-vd .ri em{flex:1 1 auto}
 body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{width:100%!important;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri{padding:4px 8px!important;gap:5px!important;border-radius:6px}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri em{font-size:12px!important;white-space:nowrap!important}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri i{font-size:11px}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .rl{gap:5px!important}body.ss-wow #ss-app .ssx .ssw-rel>b{font-size:15px!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-dj) .f .chips.one{flex-wrap:wrap!important;overflow:visible!important}body.ss-wow #ss-app .ssx .ssw-vd .vd-ex img{width:100%!important;height:auto!important}
@@ -282,7 +282,7 @@ body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{max-width:100%;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2){display:none}
 body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
 /* Releasing / DJ set on phones: the items are toggled in the card itself — no second copy of them on the left */
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel:not(.ssw-vd))>.f:has(>.chips:not(.one)){display:none!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.f:has(>.chips:not(.one)){display:none!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips{flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important}
 body.ss-wow #ss-app .ssx .ssw-rel .ri{max-width:100%;box-sizing:border-box}body.ss-wow #ss-app .ssx .ssw-rel .ri em{white-space:normal;min-width:0}
 }
@@ -374,11 +374,11 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   var box=document.createElement('div');box.className='ssw-match ssw-rel ssw-vd';box.setAttribute('aria-live','polite');if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   function run(){var w=((where.querySelector('.on'))||{}).textContent||'YouTube / social',sel=[].filter.call(pain.querySelectorAll('span'),function(x){return x.classList.contains('on')}).map(function(x){return x.textContent.trim()});
    var vids=V.slice().sort(function(a,b){var r=function(e){var t=(e.title||'')+' '+(e.service||'');return (/cleanup|restor/i.test(t)&&sel.some(function(x){return /voice|echo/i.test(x)})?2:0)+(/design/i.test(t)&&sel.some(function(x){return /design|cheap/i.test(x)})?2:0)+(/tv|ads/i.test(t)&&/TV/.test(w)?1:0)+(/film|showreel/i.test(t)&&/Film/.test(w)?1:0)};return r(b)-r(a)}).slice(0,2);
-   box.innerHTML='<b>Your fix</b><small>'+esc(LU[w]||w)+'</small><span class="rl">'+(sel.length?sel.map(function(x){return '<span class="ri on"><em>'+esc(FIX[x]||x)+'</em><i aria-hidden="true">✓</i></span>'}).join(''):'<span class="ri"><em>Pick what’s wrong — we’ll show the fix</em></span>')+'</span>'+
+   box.innerHTML='<b>Your fix</b><small>'+esc(LU[w]||w)+'</small><span class="rl">'+[].map.call(pain.querySelectorAll('span'),function(x){var t=x.textContent.trim(),o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'" data-p="'+esc(t)+'" role="button" tabindex="0"><em>'+esc(o?(FIX[t]||t):t)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>'+
     (vids.length?'<span class="vd-ex">'+vids.map(function(e,k){var id=String(e.yt).split('/').pop().split('?')[0];return '<span class="mx" data-k="'+k+'" role="button" tabindex="0" title="'+esc(e.title)+'" aria-label="Watch '+esc(e.title)+'"><img src="https://i.ytimg.com/vi/'+id+'/mqdefault.jpg" alt="" width="120" height="68" loading="lazy"><i aria-hidden="true"></i></span>'}).join('')+'</span>':'');
    box._v=vids;
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])(for|fix)=[^&]*/g,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'for='+encodeURIComponent(w)+'&fix='+encodeURIComponent(sel.join(','))}}
-  box.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.mx');if(!m)return;var x=box._v&&box._v[+m.getAttribute('data-k')];if(!x)return;var id=String(x.yt).split('/').pop().split('?')[0];if(window.ssYtOpen)ssYtOpen(id,x.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')});
+  box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri[data-p]');if(r){var t=r.getAttribute('data-p');[].forEach.call(pain.querySelectorAll('span'),function(x){if(x.textContent.trim()===t)x.classList.toggle('on')});run();return}var m=e.target.closest&&e.target.closest('.mx');if(!m)return;var x=box._v&&box._v[+m.getAttribute('data-k')];if(!x)return;var id=String(x.yt).split('/').pop().split('?')[0];if(window.ssYtOpen)ssYtOpen(id,x.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')});
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[4]);
  /* More: "Preparing a live set" now has its own tab (DJ set) — go there instead of the price list */
  (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[3];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[6]);
