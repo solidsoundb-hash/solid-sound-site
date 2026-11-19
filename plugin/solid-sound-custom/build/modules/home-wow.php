@@ -329,6 +329,20 @@ body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;tex
 .ss-why small{color:#94A3B8;font:400 14px/1.45 Roboto,sans-serif}
 @media(max-width:1000px){.ss-why{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.ss-why{gap:8px}.ss-why .w{padding:12px}.ss-why b{font-size:14.5px}.ss-why small{font-size:13px}.ss-why .i{width:38px;height:38px}}
+.ss-why2{margin:56px 0 0}
+.ss-why2 h2.t{margin:0 0 6px;color:#fff;font:700 32px/1.2 "Exo 2",sans-serif}
+.ss-why2 h3.g{margin:22px 0 12px;color:#fff;font:400 26px/1.2 Roboto,sans-serif}
+.ss-why2 .gr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ss-why2 .w{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:#0f1729;text-decoration:none!important;transition:border-color .2s}
+.ss-why2 .w:hover{border-color:#F59E0B}
+.ss-why2 .i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;border:1px solid rgba(245,158,11,.35);background:rgba(245,158,11,.12);color:#cbd5e1;margin-bottom:8px}
+.ss-why2 b{color:#fff;font:600 19px/1.4 "Exo 2",sans-serif;letter-spacing:.2px}
+.ss-why2 b i{display:inline-block;margin-left:4px;padding:1px 9px;border-radius:999px;background:rgba(52,211,153,.14);color:#34d399;font:italic 600 13px/1.6 "Exo 2",sans-serif;letter-spacing:.5px;vertical-align:2px}
+.ss-why2 small{flex:1;color:#94A3B8;font:400 15.5px/1.6 "Exo 2",sans-serif}
+.ss-why2 em{margin-top:10px;color:#F59E0B;font:500 17px/1.3 "Exo 2",sans-serif;font-style:normal}
+.ss-why2 .all{margin:22px 0 0;text-align:center}.ss-why2 .all a{color:#F59E0B!important;font-weight:700;text-decoration:none}
+@media(max-width:1000px){.ss-why2 .gr{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.ss-why2{margin-top:36px}.ss-why2 h2.t{font-size:24px}.ss-why2 h3.g{font-size:20px;margin:18px 0 10px}.ss-why2 .gr{grid-template-columns:1fr;gap:10px}.ss-why2 .w{padding:16px;gap:6px}.ss-why2 .i{width:40px;height:40px}.ss-why2 b{font-size:16.5px}.ss-why2 small{font-size:14px}.ss-why2 em{font-size:15px;margin-top:6px}}
 /* Free — the first tab (owner 19.11): everything free as tiles */
 body.ss-wow #ss-app .ssx .fz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 0}
 body.ss-wow #ss-app .ssx .fz-t{display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);text-decoration:none!important;transition:border-color .15s,background .15s}
@@ -340,6 +354,7 @@ body.ss-wow #ss-app .ssx .fz-t small{color:#94A3B8;font:400 12.5px/1.35 Roboto,s
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
+var WHY=<?php $wi = function_exists( 'ss_why_items' ) ? ss_why_items() : array(); $wo = array(); foreach ( array( 'For producers & DJs', 'For creators who sell', 'Learn & connect' ) as $g ) { if ( empty( $wi[ $g ] ) ) continue; $wo[] = array( esc_html( $g ), array_map( function ( $x ) { $x[3] = esc_url( $x[3] ); return array_map( 'esc_html', $x ); }, $wi[ $g ] ) ); } echo wp_json_encode( $wo ); ?>,WHYU=<?php echo wp_json_encode( esc_url( home_url( '/en/why-solid-sound/' ) ) ); ?>;
 var TR=<?php echo wp_json_encode( array( 'lcr' => ss_home_t( 'Learn · Create · Release' ), 'cl' => ss_home_t( 'Closest to your choice' ), 'one' => ss_home_t( ' template matches' ), 'many' => ss_home_t( ' templates match' ), 'tap' => ss_home_t( ' — tap to listen' ) ) ); ?>;
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function track(x){return {pid:String(x.p),src:x.s,t:x.t,a:'Solid Sound',i:x.i,u:x.u}}
@@ -446,6 +461,8 @@ function why(){var sec=document.getElementById('dashboard');if(!sec||sec.querySe
  var ic=function(d,s){return '<span class="i"><svg viewBox="0 0 24 24" width="'+s+'" height="'+s+'" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg></span>'};
  var w=document.createElement('div');w.className='ss-why';w.innerHTML=A.map(function(a){return '<div class="w">'+ic(a[0],26)+'<b>'+a[1]+'</b><small>'+a[2]+'</small></div>'}).join('');
  var p=h.parentNode.querySelector('p');var anchor=p&&p.parentNode===h.parentNode?p:h;anchor.insertAdjacentElement('afterend',w);
+ /* owner 19.11 «под этим блоком — наши преимущества, плитки: 1 продюсеры, 2 криэйторы, 3 learn & connect» (tiles from /why-solid-sound/) */
+ if(WHY.length){var w2=document.createElement('div');w2.className='ss-why2';w2.innerHTML='<h2 class="t">Our advantages</h2>'+WHY.map(function(g){return '<h3 class="g">'+g[0]+'</h3><div class="gr">'+g[1].map(function(a){return '<a class="w" href="'+a[3]+'">'+ic(a[0],22)+'<b>'+a[1]+(a[5]?' <i>'+a[5]+'</i>':'')+'</b><small>'+a[2]+'</small><em>'+a[4]+' →</em></a>'}).join('')+'</div>'}).join('')+'<p class="all"><a href="'+WHYU+'">Everything you get with Solid Sound →</a></p>';(h.parentNode.parentNode||h.parentNode).appendChild(w2)}
  return true}
 function init(){var s=document.querySelector('#ss-app .ssx');if(!s)return false;build(s);return true}
 (function(){if(why())return;var m2=new MutationObserver(function(){requestAnimationFrame(function(){if(why())m2.disconnect()})});m2.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){m2.disconnect()},15000)})();
