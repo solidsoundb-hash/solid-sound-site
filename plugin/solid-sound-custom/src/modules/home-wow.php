@@ -273,7 +273,9 @@ body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-ab,body.ss-wow #ss-app .ssx 
 body.ss-wow #ss-app .ssx .ssw-rel .rl{flex-direction:row;flex-wrap:wrap;gap:6px;margin-top:4px}
 body.ss-wow #ss-app .ssx .ssw-rel .ri{padding:5px 8px;gap:6px}
 body.ss-wow #ss-app .ssx .ssw-rel .ri svg{display:none}
-body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:none;font-size:12.5px}
+body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:0 1 auto;min-width:0;white-space:normal;font-size:12.5px}
+body.ss-wow #ss-app .ssx .ssw-vd .ri{width:100%}body.ss-wow #ss-app .ssx .ssw-vd .ri em{flex:1 1 auto}
+body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{width:100%!important;min-width:0}body.ss-wow #ss-app .ssx .ssw-vd .vd-ex img{width:100%!important;height:auto!important}
 body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{max-width:100%;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2){display:none}
 body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
