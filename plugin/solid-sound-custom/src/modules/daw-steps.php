@@ -38,14 +38,20 @@ add_action( 'wp_footer', function () {
 	/* owner rule 19.11: screenshots before every release — admins (owner + robot) see it first; on with option ss_ds_live=1 */
 	if ( ! get_option( 'ss_ds_live' ) && ! current_user_can( 'manage_options' ) ) return; ?>
 <style>#solid-sound-upload-form .ss-ds-off{display:none!important}#solid-sound-upload-form .ss-ds-hint{margin:6px 0 0;color:#94a3b8;font-size:14px}
-#solid-sound-upload-form .ss-ap-daw,#solid-sound-upload-form .ss-ap-version{margin-top:14px}</style>
+#solid-sound-upload-form .ss-ap-daw,#solid-sound-upload-form .ss-ap-version{margin-top:14px}
+/* owner 19.11: «сначала — что это: шаблон, пресет и т.д., а уже от этого плясать дальше» — nothing else until the type is chosen */
+#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>*:not(.ss-ap-format),#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body~*:not(.ss-wm-hidden){display:none!important}
+#solid-sound-upload-form .ss-ds-first{margin:10px 0 0;color:#F59E0B;font-weight:700}</style>
 <script>(function(){
 function run(){var form=document.getElementById('solid-sound-upload-form');if(!form||form.dataset.ssds)return!!form;var fmt=form.querySelector('.ss-ap-format'),daw=form.querySelector('.ss-ap-daw'),ver=form.querySelector('.ss-ap-version');if(!fmt||!daw||!ver)return false;form.dataset.ssds='1';
  /* 1 → 2 → 3 right under each other */
  fmt.parentNode.insertBefore(daw,fmt.nextSibling);daw.parentNode.insertBefore(ver,daw.nextSibling);
  var hint=document.createElement('p');hint.className='ss-ds-hint';hint.textContent='Choose the DAW first — then its versions appear.';ver.querySelector('.acf-input')&&ver.querySelector('.acf-input').appendChild(hint);
  function txt(i){var l=i.closest('label');return (l?l.textContent:'').trim()}
- function upd(){var d=daw.querySelector('input:checked'),dn=d?txt(d):'';
+ var first=document.createElement('p');first.className='ss-ds-first';first.textContent='Start here: what are you selling? The rest of the form adapts to it.';(fmt.querySelector('.acf-input')||fmt).appendChild(first);
+ var lb=fmt.querySelector('.acf-label label');if(lb&&lb.firstChild&&lb.firstChild.nodeType===3)lb.firstChild.nodeValue='What are you selling?';
+ function upd(){var fc=!!(fmt.querySelector('input:checked')||(fmt.querySelector('select')&&fmt.querySelector('select').value));form.classList.toggle('ss-ds-nofmt',!fc);first.style.display=fc?'none':'';
+  var d=daw.querySelector('input:checked'),dn=d?txt(d):'';
   ver.querySelectorAll('input[type=radio]').forEach(function(i){var li=i.closest('li')||i.closest('label'),ok=!!dn&&txt(i).indexOf(dn+' ')===0;if(li)li.classList.toggle('ss-ds-off',!ok);if(!ok&&i.checked)i.checked=false});
   hint.style.display=dn?'none':'';
   var on=!daw.classList.contains('ss-ap-off');ver.classList.toggle('ss-ds-off',on&&!dn)}

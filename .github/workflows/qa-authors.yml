@@ -1,0 +1,50 @@
+# Author swarm (owner 19.11.2026): 3 robots (pc, laptop, phone) walk every creator tool, Add Product step by step.
+# Run: add a line to .github/qa-authors.txt. Result: qa/authors/<dev>/report.md + shots. Read-only (login only).
+name: QA authors
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/qa-authors.txt"]
+permissions:
+  contents: write
+concurrency: qa-authors
+jobs:
+  walk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        dev: [pc, laptop, phone]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Robot ${{ matrix.dev }}
+        env:
+          PW_CHANNEL: chrome
+          QA_DEV: ${{ matrix.dev }}
+          TEST_VENDOR_USER: ${{ secrets.TEST_VENDOR_USER }}
+          TEST_VENDOR_PASS: ${{ secrets.TEST_VENDOR_PASS }}
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/qa/authors.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "qa-authors-${{ matrix.dev }}", path: qa/authors, retention-days: 7 }
+  save:
+    needs: walk
+    if: "!cancelled()"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl }
+      - name: Commit
+        run: |
+          rm -rf qa/authors && mkdir -p qa/authors && for d in dl/qa-authors-*; do cp -r $d/. qa/authors/; done
+          git config user.name qa-authors && git config user.email actions@users.noreply.github.com
+          git add qa/authors && git commit -qm "QA authors: $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 5; done
