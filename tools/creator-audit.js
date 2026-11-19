@@ -61,6 +61,23 @@ async function login(page, user, pass) {
           return out;
         }).catch(e => ['dbg error ' + e.message]);
         dbg.forEach(x => lines.push('    - ' + x));
+        // (19.11 owner: «мейк кавер не работает») computer, plain Add product: choose a type, press «Make a cover with AI», wait, record
+        if (d.name === 'desktop' && !/ss_ff3/.test(p)) {
+          await page.locator('.ss-ap-format input[type=radio]').first().check({ force: true }).catch(() => {});
+          await page.waitForTimeout(800);
+          const cb = page.locator('button.ss-aic-b', { hasText: /cover/i }).first();
+          if (!(await cb.count())) lines.push('    - AI cover: no button on the page');
+          else {
+            const vis = await cb.isVisible().catch(() => false);
+            await cb.scrollIntoViewIfNeeded().catch(() => {}); await cb.click({ force: true }).catch(e => lines.push('    - AI cover click error: ' + e.message.split('\n')[0]));
+            const t0 = Date.now();
+            await page.waitForFunction(() => { const b = document.querySelector('.ss-aic-cv'); const n = document.querySelector('.ss-aic-n'); return (b && b.classList.contains('on')) || (n && n.textContent.trim()); }, null, { timeout: 120000 }).catch(() => {});
+            await page.waitForTimeout(1500);
+            const res = await page.evaluate(() => ({ on: !!document.querySelector('.ss-aic-cv.on'), thumbs: document.querySelectorAll('.ss-aic-cv .th .tb').length, notes: [...document.querySelectorAll('.ss-aic-n')].map(n => n.textContent.trim()).filter(Boolean).slice(0, 4) }));
+            lines.push(`    - AI cover: button visible=${vis}, after ${Math.round((Date.now() - t0) / 1000)} s → preview ${res.on ? 'shown' : 'NOT shown'}, pictures ${res.thumbs}; messages: ${res.notes.join(' / ') || '—'}`);
+            const g = `${d.name}_ai_cover.jpg`; await page.screenshot({ path: `${OUT}/${g}`, type: 'jpeg', quality: 62, fullPage: true }); lines.push(`    - [${g}](${g})`);
+          }
+        }
         const add = page.locator('a.acf-icon[data-name=add]').first();
         if (await add.count()) {
           await add.scrollIntoViewIfNeeded().catch(() => {}); await add.click().catch(() => {}); await page.waitForTimeout(1500);
