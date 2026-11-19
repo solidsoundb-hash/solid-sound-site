@@ -172,6 +172,22 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
 @media(max-width:380px){.ssw-hero .slg{font-size:34px!important}}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
 @media(prefers-reduced-motion:reduce){body.ss-wow .ssx.ss-auto .tasks button.on:after{display:none}}
+/* (owner 19.11 «как у профи сделай») computer only: text menu in one line, compact search, tabs as an underline row,
+   one surface instead of boxes in boxes. Phones keep their own layout. */
+@media(min-width:1001px){
+body.ss-wow #ss-app header nav.ss-nav svg{display:none!important}
+body.ss-wow #ss-app header nav.ss-nav a,body.ss-wow #ss-app header nav.ss-nav button{flex-direction:row!important;gap:4px!important;padding:8px 12px!important;font-size:15px!important;font-weight:600!important;letter-spacing:0!important;color:#CBD5E1!important;min-width:0!important;height:auto!important}
+body.ss-wow #ss-app header nav.ss-nav a:hover,body.ss-wow #ss-app header nav.ss-nav button:hover{color:#fff!important}
+body.ss-wow #ss-app header form{max-width:440px!important;height:42px!important;border-radius:10px!important}
+body.ss-wow #ss-app .ssx{border:0!important;box-shadow:0 30px 80px rgba(0,0,0,.45)!important;background:linear-gradient(180deg,#141C2E,#0F1524)!important;border-radius:16px!important}
+body.ss-wow #ss-app .ssx .tasks{gap:4px!important;border-bottom:1px solid rgba(255,255,255,.08)!important;padding-bottom:0!important}
+body.ss-wow #ss-app .ssx .tasks button{background:transparent!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;padding:12px 16px!important;color:#94A3B8!important;box-shadow:none!important}
+body.ss-wow #ss-app .ssx .tasks button.on{color:#fff!important;border-bottom-color:#F59E0B!important}
+body.ss-wow #ss-app .ssx.ss-auto .tasks button.on{border-bottom-color:rgba(245,158,11,.25)!important}
+body.ss-wow #ss-app .ssx.ss-auto .tasks button.on:after{left:0!important;right:0!important;bottom:-2px!important;border-radius:0!important}
+body.ss-wow #ss-app .ssx .tasks button.on i,body.ss-wow #ss-app .ssx .tasks button.on svg{color:#F59E0B!important}
+body.ss-wow #ss-app .ssx .card{border:0!important;background:transparent!important;box-shadow:none!important}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;

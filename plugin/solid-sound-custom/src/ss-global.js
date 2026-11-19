@@ -184,6 +184,8 @@ var css=[
 ' body.ssg-bar-on.ssp-open #ssb{bottom:calc(146px + env(safe-area-inset-bottom))!important}',
 '}',
 '.ssg-tri-btn svg{display:block}',
+/* (owner 19.11 «как у профи») computer: the main menu is text in one line (no icons above the words), compact search — same as the home page */
+'@media (min-width:1001px){#ssg .g-nav .g-a > svg{display:none}#ssg .g-nav .g-a{flex-direction:row;gap:4px;min-width:0;padding:8px 11px;font-size:15px;color:#CBD5E1}#ssg .g-nav .g-a:hover{color:#fff}#ssg .g-nav .g-a.cur{color:#F59E0B}#ssg form{max-width:440px;height:42px;border-radius:10px}}',
 /* (QA 17.11) free demo feedback page: its own "pill" buttons -> the site style (slight radius) */
 '.page-id-1709 .btn,.page-id-1709 .btn-outline,.page-id-1709 .btn-purple{border-radius:6px!important}',
 'button:has(path[d^="M6.87"]),.ssh-play{background:transparent!important;border-color:transparent!important;box-shadow:none!important;color:#F59E0B!important;transform:none!important}',
