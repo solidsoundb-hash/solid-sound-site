@@ -1,33 +1,30 @@
 # Рой авторов — phone
 
-Найдено: 🔴 1 · 🟠 2 · 🟡 11
+Найдено: 🔴 0 · 🟠 0 · 🟡 10
 
-1. 🔴 **Робот не смог войти** — /wp-login.php — solid-sound
-2. 🟠 **После нажатия «Play» — ошибка в коде** — /en/store-manager/ss-reviews/ — Failed to load resource: the server responded with a status of 503 () ([снимок](07_-en-store-manager-ss-reviews-err-Play.jpg))
-3. 🟠 **Ошибки в коде страницы** — /en/store-manager/ss-reviews/ — Failed to load resource: the server responded with a status of 503 () ([снимок](06_-en-store-manager-ss-reviews-.jpg))
-4. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ — ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20 ([снимок](01_-en-store-manager-.jpg))
-5. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-add-product/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](02_-en-store-manager-ss-add-product-.jpg))
-6. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-products/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](03_-en-store-manager-ss-products-.jpg))
-7. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-earnings/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](04_-en-store-manager-ss-earnings-.jpg))
-8. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-payouts/ — Privacy Policy 75×14; Payment history → 124×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20 ([снимок](05_-en-store-manager-ss-payouts-.jpg))
-9. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-reviews/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](06_-en-store-manager-ss-reviews-.jpg))
-10. 🟡 **Хостинг ответил 503 (перегружен)** — /en/store-manager/ss-reviews/ — 503 /en/store-manager/ss-payouts/
-11. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-settings/ — Set up payouts → 113×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20 ([снимок](08_-en-store-manager-ss-settings-.jpg))
-12. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-help/ — Ask the team 85×17; Creator terms 91×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20 ([снимок](09_-en-store-manager-ss-help-.jpg))
-13. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/sell/ — ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20 ([снимок](10_-en-sell-.jpg))
-14. 🟡 **Мелкие кнопки для пальца (<24px)** — /creator-guidelines/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](11_-creator-guidelines-.jpg))
+1. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ — ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20 ([снимок](01_-en-store-manager-.jpg))
+2. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-add-product/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](02_-en-store-manager-ss-add-product-.jpg))
+3. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-products/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](03_-en-store-manager-ss-products-.jpg))
+4. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-earnings/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](04_-en-store-manager-ss-earnings-.jpg))
+5. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-payouts/ — Privacy Policy 75×14; Payment history → 124×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20 ([снимок](05_-en-store-manager-ss-payouts-.jpg))
+6. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-reviews/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](06_-en-store-manager-ss-reviews-.jpg))
+7. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-settings/ — Set up payouts → 113×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20 ([снимок](07_-en-store-manager-ss-settings-.jpg))
+8. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/store-manager/ss-help/ — Ask the team 85×17; Creator terms 91×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20 ([снимок](08_-en-store-manager-ss-help-.jpg))
+9. 🟡 **Мелкие кнопки для пальца (<24px)** — /en/sell/ — ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20 ([снимок](09_-en-sell-.jpg))
+10. 🟡 **Мелкие кнопки для пальца (<24px)** — /creator-guidelines/ — Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20 ([снимок](10_-creator-guidelines-.jpg))
 
 ---
 
 # Рой авторов — phone (solid-sound)
 
-Снято: 2026-11-19T20:39:42.232Z
-Вход: ❌ не вошёл · секреты SOLID_SOUND_*: найдены
+Снято: 2026-11-19T20:49:57.845Z
+Вход: ✅ · секреты SOLID_SOUND_*: найдены
 
 ## /en/store-manager/
 
 Заголовок: ["Creator space Creator account","Last 30 days?Sales, your earnings and preview play"] · [снимок](01_-en-store-manager-.jpg)
 
+- «?»: после нажатия ничего не поменялось
 - «?»: после нажатия ничего не поменялось
 - «?»: после нажатия ничего не поменялось
 - «?»: после нажатия ничего не поменялось
@@ -67,6 +64,7 @@
 
 Заголовок: ["Earnings"] · [снимок](04_-en-store-manager-ss-earnings-.jpg)
 
+- «Open the product page»: после нажатия ничего не поменялось
 - «Play»: после нажатия ничего не поменялось
 - «Next»: после нажатия ничего не поменялось
 - «Queue»: после нажатия ничего не поменялось
@@ -97,7 +95,7 @@
 
 ## /en/store-manager/ss-settings/
 
-Заголовок: ["Profile"] · [снимок](08_-en-store-manager-ss-settings-.jpg)
+Заголовок: ["Profile"] · [снимок](07_-en-store-manager-ss-settings-.jpg)
 
 - «Open the product page»: после нажатия ничего не поменялось
 - «Play»: после нажатия ничего не поменялось
@@ -108,7 +106,7 @@
 
 ## /en/store-manager/ss-help/
 
-Заголовок: ["Help"] · [снимок](09_-en-store-manager-ss-help-.jpg)
+Заголовок: ["Help"] · [снимок](08_-en-store-manager-ss-help-.jpg)
 
 - «Open the product page»: после нажатия ничего не поменялось
 - «Play»: после нажатия ничего не поменялось
@@ -119,7 +117,7 @@
 
 ## /en/sell/
 
-Заголовок: ["Creator space Creator account","Last 30 days?Sales, your earnings and preview play"] · [снимок](10_-en-sell-.jpg)
+Заголовок: ["Creator space Creator account","Last 30 days?Sales, your earnings and preview play"] · [снимок](09_-en-sell-.jpg)
 
 - «?»: после нажатия ничего не поменялось
 - «?»: после нажатия ничего не поменялось
@@ -135,7 +133,7 @@
 
 ## /creator-guidelines/
 
-Заголовок: ["Creator Guidelines"] · [снимок](11_-creator-guidelines-.jpg)
+Заголовок: ["Creator Guidelines"] · [снимок](10_-creator-guidelines-.jpg)
 
 - «Open the product page»: после нажатия ничего не поменялось
 - «Play»: после нажатия ничего не поменялось
