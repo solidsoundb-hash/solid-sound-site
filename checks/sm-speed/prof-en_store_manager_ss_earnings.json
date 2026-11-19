@@ -1,0 +1,546 @@
+{
+ "url": "/en/store-manager/ss-earnings/?ss_prof=1&r=1795118218566",
+ "total_ms": 12012.9,
+ "before_wp_ms": 1204.2,
+ "queries": 255,
+ "mem_mb": 193.2,
+ "php": "8.3.37",
+ "opcache": "off",
+ "object_cache": null,
+ "autoload_kb": 475,
+ "opcache_ini": {
+  "loaded": false,
+  "enable": false,
+  "memory_limit": "512M",
+  "sapi": "litespeed"
+ },
+ "queries_by": {
+  "wc-frontend-manager": 61,
+  "us-core": 38,
+  "woocommerce": 29,
+  "wpforo": 28,
+  "polylang": 24,
+  "solid-sound-custom": 17,
+  "mailin": 14,
+  "woocommerce-payments": 9,
+  "core": 7,
+  "advanced-custom-fields": 6,
+  "facebook-for-woocommerce": 5,
+  "Impreza": 3,
+  "wc-multivendor-marketplace": 3,
+  "official-facebook-pixel": 2,
+  "ai-engine": 2,
+  "woocommerce-paypal-payments": 2,
+  "woocustomizer": 2
+ },
+ "http": [],
+ "active_plugins": [
+  "wpforo/wpforo.php",
+  "fluent-smtp/fluent-smtp.php",
+  "polylang/polylang.php",
+  "Ultimate_VC_Addons/Ultimate_VC_Addons.php",
+  "advanced-custom-fields/acf.php",
+  "ai-engine/ai-engine.php",
+  "duplicate-post/duplicate-post.php",
+  "facebook-for-woocommerce/facebook-for-woocommerce.php",
+  "js_composer/js_composer.php",
+  "mailin/sendinblue.php",
+  "official-facebook-pixel/facebook-for-wordpress.php",
+  "solid-sound-custom/solid-sound-custom.php",
+  "taxonomy-terms-order/taxonomy-terms-order.php",
+  "tidio-live-chat/tidio-elements.php",
+  "us-core/us-core.php",
+  "wc-frontend-manager/wc_frontend_manager.php",
+  "wc-multivendor-marketplace/wc-multivendor-marketplace.php",
+  "wc-multivendor-membership/wc-multivendor-membership.php",
+  "woocommerce-gateway-amazon-payments-advanced/woocommerce-gateway-amazon-payments-advanced.php",
+  "woocommerce-payments/woocommerce-payments.php",
+  "woocommerce-paypal-payments/woocommerce-paypal-payments.php",
+  "woocommerce/woocommerce.php",
+  "woocustomizer/woocustomizer.php"
+ ],
+ "speed_db": {
+  "date": "2026-11-19T18:47:16+00:00",
+  "names": [
+   "stm_ccb_form_settings_1277",
+   "stm_ccb_form_settings_1279",
+   "stm_ccb_form_settings_1281",
+   "stm_ccb_form_settings_1283",
+   "stm_ccb_form_settings_1285",
+   "stm_ccb_form_settings_1287",
+   "stm_ccb_form_settings_1289",
+   "stm_ccb_form_settings_1291",
+   "stm_ccb_form_settings_1293",
+   "stm_ccb_form_settings_1295",
+   "stm_ccb_form_settings_1297",
+   "stm_ccb_form_settings_1299",
+   "stm_ccb_form_settings_1301",
+   "stm_ccb_form_settings_1303",
+   "stm_ccb_form_settings_1305",
+   "stm_ccb_form_settings_1307",
+   "stm_ccb_form_settings_1309",
+   "stm_ccb_form_settings_1311",
+   "stm_ccb_form_settings_1313",
+   "stm_ccb_form_settings_1315",
+   "stm_ccb_form_settings_1317",
+   "stm_ccb_form_settings_1319",
+   "stm_ccb_form_settings_1321",
+   "stm_ccb_form_settings_1323",
+   "stm_ccb_form_settings_1325",
+   "stm_ccb_form_settings_1327",
+   "stm_ccb_form_settings_1329",
+   "stm_ccb_form_settings_1331",
+   "stm_ccb_form_settings_1333",
+   "stm_ccb_form_settings_1335",
+   "stm_ccb_form_settings_1337",
+   "stm_ccb_form_settings_1339",
+   "stm_ccb_form_settings_1341",
+   "stm_ccb_form_settings_1343",
+   "stm_ccb_form_settings_1345",
+   "stm_ccb_form_settings_1347",
+   "stm_ccb_form_settings_1349",
+   "stm_ccb_form_settings_1351",
+   "stm_ccb_form_settings_1353",
+   "stm_ccb_form_settings_1355",
+   "stm_ccb_form_settings_1357",
+   "stm_ccb_form_settings_1359",
+   "stm_ccb_form_settings_1361",
+   "stm_ccb_form_settings_1363",
+   "stm_ccb_form_settings_1365",
+   "stm_ccb_form_settings_1367",
+   "stm_ccb_form_settings_1369",
+   "stm_ccb_form_settings_1371",
+   "stm_ccb_form_settings_1373",
+   "stm_ccb_form_settings_1375",
+   "stm_ccb_form_settings_1377",
+   "stm_ccb_form_settings_1379",
+   "stm_ccb_form_settings_1381",
+   "stm_ccb_form_settings_1383",
+   "stm_ccb_form_settings_1385",
+   "stm_ccb_form_settings_1387",
+   "stm_ccb_form_settings_1389",
+   "stm_ccb_form_settings_1391",
+   "stm_ccb_form_settings_1393",
+   "stm_ccb_form_settings_1395",
+   "stm_ccb_form_settings_1397",
+   "stm_ccb_form_settings_1399",
+   "stm_ccb_form_settings_1401",
+   "stm_ccb_form_settings_1403",
+   "stm_ccb_form_settings_1405",
+   "stm_ccb_form_settings_1407",
+   "stm_ccb_form_settings_1409",
+   "stm_ccb_form_settings_1411",
+   "stm_ccb_form_settings_1413",
+   "stm_ccb_form_settings_1415",
+   "stm_ccb_form_settings_1417",
+   "stm_ccb_form_settings_1419",
+   "stm_ccb_form_settings_1421",
+   "stm_ccb_form_settings_1423",
+   "stm_ccb_form_settings_1425",
+   "stm_ccb_form_settings_1427",
+   "stm_ccb_form_settings_1429",
+   "stm_ccb_form_settings_1431",
+   "stm_ccb_form_settings_1433",
+   "stm_ccb_form_settings_1435",
+   "stm_ccb_form_settings_1437",
+   "stm_ccb_form_settings_1439",
+   "stm_ccb_form_settings_1441",
+   "stm_ccb_form_settings_1443",
+   "stm_ccb_form_settings_1445",
+   "stm_ccb_form_settings_1447",
+   "stm_ccb_form_settings_1449",
+   "stm_ccb_form_settings_1451",
+   "stm_ccb_form_settings_1453",
+   "stm_ccb_form_settings_1455",
+   "stm_ccb_form_settings_1457",
+   "stm_ccb_form_settings_1459",
+   "stm_ccb_form_settings_1461",
+   "stm_ccb_form_settings_1463",
+   "stm_ccb_form_settings_1465",
+   "stm_ccb_form_settings_1467",
+   "stm_ccb_form_settings_1469",
+   "stm_ccb_form_settings_1471",
+   "stm_ccb_form_settings_1473",
+   "stm_ccb_form_settings_1475",
+   "stm_ccb_form_settings_1477",
+   "stm_ccb_form_settings_1489",
+   "usof_options_Im",
+   "usof_options_Iмmpreza",
+   "usof_options_UltraTheme"
+  ],
+  "kb": 845
+ },
+ "single_options": {
+  "woocommerce-payments": [
+   "wcpay_account_data",
+   "jpsq_sync_checkout",
+   "jetpack_sync_full_status"
+  ],
+  "us-core": [
+   "_site_transient_update_plugins",
+   "_site_transient_update_themes",
+   "_site_transient_update_core"
+  ],
+  "woocommerce": [
+   "wc_pending_batch_processes"
+  ]
+ },
+ "query_at": {
+  "wc-frontend-manager core/class-wcfm-frontend.php:1115": 30,
+  "polylang src/translatable-object.php:374": 23,
+  "wc-frontend-manager views/products-popup/wcfm-view-product-popup.php:299": 12,
+  "woocommerce packages/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:724": 8,
+  "core ": 7,
+  "wc-frontend-manager core/class-wcfm-library.php:1901": 7,
+  "wpforo classes/Boards.php:408": 6,
+  "us-core templates/header.php:15": 6,
+  "us-core functions/helpers.php:2582": 6,
+  "us-core templates/elements/image.php:56": 6,
+  "woocommerce includes/class-wc-comments.php:471": 5,
+  "solid-sound-custom build/custom.php:3911": 5,
+  "us-core functions/helpers.php:2635": 4,
+  "Impreza functions.php:10": 3,
+  "advanced-custom-fields includes/class-acf-internal-post-type.php:406": 3,
+  "us-core templates/header.php:109": 3,
+  "us-core templates/header.php:127": 3,
+  "mailin model/model-forms.php:443": 2,
+  "woocommerce-payments vendor/automattic/jetpack-connection/src/class-manager.php:1183": 2,
+  "ai-engine classes/core.php:1979": 2,
+  "wpforo classes/Boards.php:429": 2,
+  "woocustomizer includes/customizer/customizer-options.php:72": 2,
+  "wpforo classes/Boards.php:442": 2,
+  "wc-frontend-manager core/class-wcfm-integrations.php:200": 2,
+  "wc-frontend-manager core/class-wcfm-withdrawal.php:98": 2,
+  "wc-multivendor-marketplace core/class-wcfmmp-media.php:90": 2,
+  "wpforo includes/functions.php:3580": 2,
+  "us-core functions/helpers.php:1874": 2,
+  "advanced-custom-fields includes/acf-field-functions.php:420": 2,
+  "us-core functions/helpers.php:2578": 2,
+  "us-core functions/header.php:1016": 2,
+  "solid-sound-custom build/custom.php:1780": 2,
+  "solid-sound-custom build/custom.php:1794": 2,
+  "wc-frontend-manager views/products-popup/wcfm-view-product-popup.php:101": 2,
+  "wc-frontend-manager views/products-popup/wcfm-view-product-popup.php:102": 2,
+  "mailin model/model-users.php:240": 1,
+  "mailin model/model-forms.php:31": 1,
+  "mailin model/model-forms.php:82": 1,
+  "mailin model/model-forms.php:99": 1,
+  "mailin model/model-users.php:35": 1
+ },
+ "query_samples": {
+  "mailin": {
+   "SHOW TABLES LIKE '?'": 3,
+   "SHOW COLUMNS FROM `wp_sib_model_forms` LIKE '?' ": 3,
+   "SHOW COLUMNS FROM `wp_sib_model_forms` LIKE '?';": 3,
+   "SHOW TABLES LIKE '?';": 2,
+   "SHOW COLUMNS FROM wp_sib_model_users LIKE '?' ": 2,
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 1
+  },
+  "official-facebook-pixel": {
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 2
+  },
+  "woocommerce": {
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 7,
+   "SELECT a.action_id FROM wp_actionscheduler_actions a WHERE N=N AND a.hook='?' AND a.status IN ('?') ORDER BY a.scheduled_date_gmt ASC LIMIT N, N": 6,
+   "SELECT COUNT(*) FROM wp_comments LEFT JOIN wp_posts AS wp_posts_to_exclude_reviews ON comment_post_ID = wp_posts_to_exclude_reviews.ID JOIN wp_posts ON wp_posts.ID = wp_c": 5,
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?','?','?','?')": 1,
+   "SELECT session_value FROM wp_woocommerce_sessions WHERE session_key = '?'": 1,
+   "SELECT umeta_id as meta_id, meta_key, meta_value FROM wp_usermeta WHERE user_id = N ORDER BY umeta_id": 1,
+   "SELECT a.action_id FROM wp_actionscheduler_actions a LEFT JOIN wp_actionscheduler_groups g ON g.group_id=a.group_id WHERE N=N AND g.slug='?' AND a.hook='?' AND a.args='?'": 1,
+   "SELECT * FROM wp_posts WHERE ID = N LIMIT N": 1
+  },
+  "polylang": {
+   "SELECT DISTINCT t.term_id, tr.object_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id INNER JOIN wp_term_relationships AS tr ON tr.term_t": 20,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N)": 3,
+   "SELECT term_id, meta_key, meta_value FROM wp_termmeta WHERE term_id IN (N) ORDER BY meta_id ASC": 1
+  },
+  "woocommerce-payments": {
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 3,
+   "SELECT option_value FROM wp_options WHERE option_name = '?' LIMIT N": 2,
+   "SELECT * FROM wp_users WHERE ID = '?' LIMIT N": 1,
+   "SELECT user_id, meta_key, meta_value FROM wp_usermeta WHERE user_id IN (N) ORDER BY umeta_id ASC": 1,
+   "SELECT option_value FROM wp_options WHERE option_name = '?'": 1,
+   "SELECT COUNT(*) FROM wp_jetpack_sync_queue WHERE queue_id = '?'": 1
+  },
+  "ai-engine": {
+   "SELECT * FROM wp_users WHERE user_login = '?' LIMIT N": 1,
+   "SELECT user_id, meta_key, meta_value FROM wp_usermeta WHERE user_id IN (N) ORDER BY umeta_id ASC": 1
+  },
+  "facebook-for-woocommerce": {
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 5
+  },
+  "Impreza": {
+   "SELECT autoload FROM wp_options WHERE option_name = '?' LIMIT N": 1,
+   "SHOW FULL COLUMNS FROM `wp_options`": 1,
+   "UPDATE `wp_options` SET `option_value` = '?' WHERE `option_name` = '?'": 1
+  },
+  "wpforo": {
+   "SELECT * FROM wp_wpforo_boards WHERE `boardid` IN(N) ORDER BY `boardid` DESC LIMIT N,N": 2,
+   "SELECT COUNT(*) FROM wp_wpforo_boards WHERE `status` = '?'": 2,
+   "SELECT `ID` FROM `wp_posts` WHERE `post_status` = '?' AND `post_name` = '?' AND `post_type` IN('?','?')": 2,
+   "SELECT * FROM wp_wpforo_boards WHERE `status` = '?' AND `pageid` IN(N) ORDER BY ( `locale` = '?' OR `locale` IS NULL ) ASC, `boardid` DESC LIMIT N,N": 2,
+   "SELECT * FROM wp_wpforo_boards WHERE `status` = '?' AND `is_standalone` = '?' ORDER BY ( `locale` = '?' OR `locale` IS NULL ) ASC, `boardid` DESC LIMIT N,N": 2,
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 2,
+   "SET SESSION group_concat_max_len = N": 1,
+   "SELECT * FROM wp_wpforo_boards WHERE `status` = '?' ORDER BY `boardid` ASC": 1
+  },
+  "woocommerce-paypal-payments": {
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 2
+  },
+  "advanced-custom-fields": {
+   "SELECT wp_posts.* FROM wp_posts WHERE N=N AND wp_posts.post_type = '?' AND ((wp_posts.post_status = '?' OR wp_posts.post_status = '?')) ORDER BY wp_posts.menu_order ASC, ": 3,
+   "SELECT wp_posts.* FROM wp_posts WHERE N=N AND wp_posts.post_parent = N AND wp_posts.post_type = '?' AND ((wp_posts.post_status = '?' OR wp_posts.post_status = '?')) ORDER": 2,
+   "SELECT wp_posts.ID FROM wp_posts WHERE N=N AND wp_posts.post_type = '?' AND ((wp_posts.post_status = '?')) AND wp_posts.post_name = '?' ORDER BY wp_posts.menu_order ASC, ": 1
+  },
+  "core": {
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 1,
+   " SELECT ID, post_name, post_parent, post_type FROM wp_posts WHERE post_name IN ('?') AND post_type IN ('?','?') ": 1,
+   "SELECT * FROM wp_posts WHERE ID = N LIMIT N": 1,
+   "SELECT wp_posts.* FROM wp_posts WHERE N=N AND (wp_posts.ID = '?') AND wp_posts.post_type = '?' ORDER BY wp_posts.post_date DESC ": 1,
+   "SELECT DISTINCT t.term_id, tr.object_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id INNER JOIN wp_term_relationships AS tr ON tr.term_t": 1,
+   "SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (N) ORDER BY meta_id ASC": 1,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N)": 1
+  },
+  "wc-frontend-manager": {
+   "SELECT DISTINCT t.term_id FROM wp_terms AS t LEFT JOIN wp_termmeta ON ( t.term_id = wp_termmeta.term_id AND wp_termmeta.meta_key='?') INNER JOIN wp_term_taxonomy AS tt ON": 15,
+   "SELECT t.term_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('?') AND tt.parent = '?' ORDER BY t.term_order ASC ": 8,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N,N)": 7,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N)": 4,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N,N,N,N)": 3,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N,N,N,N,N,N)": 3,
+   "SELECT term_id, meta_key, meta_value FROM wp_termmeta WHERE term_id IN (N) ORDER BY meta_id ASC": 2,
+   "SELECT term_id, meta_key, meta_value FROM wp_termmeta WHERE term_id IN (N,N,N,N) ORDER BY meta_id ASC": 2
+  },
+  "wc-multivendor-marketplace": {
+   "SHOW tables like '?'": 1,
+   "SELECT autoload FROM wp_options WHERE option_name = '?' LIMIT N": 1,
+   "UPDATE `wp_options` SET `option_value` = '?' WHERE `option_name` = '?'": 1
+  },
+  "woocustomizer": {
+   "SELECT t.term_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('?') ORDER BY t.term_order ASC ": 1,
+   "SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id IN (N,N,N)": 1
+  },
+  "us-core": {
+   "SELECT * FROM wp_posts WHERE ID = N LIMIT N": 8,
+   "SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (N) ORDER BY meta_id ASC": 7,
+   "SELECT option_value FROM wp_options WHERE option_name = '?' LIMIT N": 3,
+   "SELECT t.term_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('?') AND t.slug IN ('?') ORDER BY t.term_order ASC L": 2,
+   "SELECT wp_posts.* FROM wp_posts LEFT JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id) WHERE N=N AND ( wp_term_relationships.term_taxonomy_id ": 2,
+   "SELECT term_id, meta_key, meta_value FROM wp_termmeta WHERE term_id IN (N,N,N) ORDER BY meta_id ASC": 1,
+   "SELECT wp_posts.* FROM wp_posts LEFT JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id) WHERE N=N AND wp_posts.ID IN (N) AND ( wp_term_relation": 1,
+   "SELECT t.term_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('?') AND t.name IN ('?') ORDER BY t.term_order ASC L": 1
+  },
+  "solid-sound-custom": {
+   " SELECT ID, post_name, post_parent, post_type FROM wp_posts WHERE post_name IN ('?') AND post_type IN ('?','?') ": 4,
+   "SELECT * FROM wp_posts WHERE ID = N LIMIT N": 4,
+   "SELECT COUNT(*) n, SUM(total_commission) total, SUM(item_total) gross, SUM(CASE WHEN withdraw_status IN ('?','?') THEN total_commission ELSE N END) avail, SUM(CASE WHEN w": 2,
+   "SELECT option_name, option_value FROM wp_options WHERE option_name IN ('?','?')": 2,
+   "SHOW TABLES LIKE '?'": 1,
+   "SHOW COLUMNS FROM wp_wcfm_marketplace_orders": 1,
+   "SELECT wp_posts.ID FROM wp_posts WHERE N=N AND wp_posts.ID NOT IN (N) AND ( wp_posts.ID NOT IN ( SELECT object_id FROM wp_term_relationships WHERE term_taxonomy_id IN (N)": 1,
+   "SELECT COUNT(*) FROM wp_wcfm_marketplace_orders WHERE vendor_id = N AND is_trashed = N": 1
+  }
+ },
+ "autoload_top": [
+  {
+   "n": "usof_options_Impreza",
+   "kb": "114"
+  },
+  {
+   "n": "rewrite_rules",
+   "kb": "69"
+  },
+  {
+   "n": "woocommerce_amazon_payments_advanced_temp_private_keys",
+   "kb": "25"
+  },
+  {
+   "n": "us_theme_options_css",
+   "kb": "22"
+  },
+  {
+   "n": "_transient_wp_core_block_css_files",
+   "kb": "22"
+  },
+  {
+   "n": "wp_user_roles",
+   "kb": "21"
+  },
+  {
+   "n": "fs_accounts",
+   "kb": "20"
+  },
+  {
+   "n": "polylang_wpml_strings",
+   "kb": "12"
+  },
+  {
+   "n": "_transient_pll_languages_list",
+   "kb": "9"
+  },
+  {
+   "n": "cron",
+   "kb": "7"
+  },
+  {
+   "n": "wcfm_managed_menus",
+   "kb": "7"
+  },
+  {
+   "n": "wcpt_settings",
+   "kb": "5"
+  },
+  {
+   "n": "wcfm_membership_options",
+   "kb": "5"
+  },
+  {
+   "n": "ccb_general_settings",
+   "kb": "4"
+  },
+  {
+   "n": "wpmf_settings",
+   "kb": "4"
+  },
+  {
+   "n": "jetpack_sync_settings_taxonomies_blacklist",
+   "kb": "4"
+  },
+  {
+   "n": "_transient_wc_attribute_taxonomies",
+   "kb": "4"
+  },
+  {
+   "n": "woocommerce_all_except_countries",
+   "kb": "4"
+  },
+  {
+   "n": "wpforo_styles_classic",
+   "kb": "3"
+  },
+  {
+   "n": "jetpack_sync_settings_post_meta_whitelist",
+   "kb": "3"
+  },
+  {
+   "n": "wpforo_stat_1",
+   "kb": "3"
+  },
+  {
+   "n": "wpforo_stat_4",
+   "kb": "3"
+  },
+  {
+   "n": "wcfm_withdrawal_options",
+   "kb": "3"
+  },
+  {
+   "n": "ppcp-webhook",
+   "kb": "2"
+  },
+  {
+   "n": "jetpack_plugin_api_action_links",
+   "kb": "2"
+  }
+ ],
+ "phases": {
+  "plugins_loaded": 3705.8,
+  "setup_theme": 5405.2,
+  "after_setup_theme": 5495.9,
+  "init": 6599.7,
+  "wp_loaded": 9102.6,
+  "parse_request": 9400.2,
+  "wp": 9404.3,
+  "template_redirect": 9702.5,
+  "wp_head": 9802.2,
+  "wp_footer": 11896.7,
+  "shutdown": 12003.7
+ },
+ "plugins": {
+  "woocommerce": 893.3,
+  "mailin": 400.5,
+  "woocustomizer": 302.1,
+  "woocommerce-payments": 201.2,
+  "advanced-custom-fields": 194.7,
+  "ai-engine": 104.2,
+  "wpforo": 98.2,
+  "official-facebook-pixel": 94.2,
+  "wc-frontend-manager": 91,
+  "facebook-for-woocommerce": 90,
+  "js_composer": 8.4,
+  "woocommerce-gateway-amazon-payments-advanced": 3.3,
+  "fluent-smtp": 3.1,
+  "wc-multivendor-membership": 3.1,
+  "us-core": 2.9,
+  "wc-multivendor-marketplace": 2.5,
+  "polylang": 1.8,
+  "woocommerce-paypal-payments": 1.3,
+  "Ultimate_VC_Addons": 1.1,
+  "taxonomy-terms-order": 0.7,
+  "duplicate-post": 0.6,
+  "tidio-live-chat": 0.6,
+  "solid-sound-custom": 0.4
+ },
+ "hooks": {
+  "extra_plugin_headers": 566.3,
+  "query": 527.1,
+  "attribute_escape": 485.7,
+  "register_block_type_args": 467.2,
+  "wpforo_get_option": 386,
+  "gettext_with_context_default": 290.5,
+  "gettext": 286.1,
+  "self_admin_url": 283.4,
+  "woocommerce_log_directory": 274.4,
+  "plugins_url": 207.8,
+  "wcfmmp_enable_stripe_debug_mode": 203,
+  "transient_jetpack_autoloader_plugin_paths": 201.7,
+  "option_fs_debug_mode": 200,
+  "alloptions": 199.6,
+  "option_ultimate_row": 197.4,
+  "load_translation_file": 189.2,
+  "rest_url_prefix": 179.7,
+  "vc_path_filter": 114.6,
+  "wc_payments_api_client": 105.2,
+  "default_option_woocommerce_force_ssl_checkout": 102.3,
+  "user_has_cap": 102.1,
+  "wpforo_before_base_init": 100.4,
+  "transient_wc_facebook_svr_flags_last_update": 99.2,
+  "acf/field_group/additional_field_settings_tabs": 98.7,
+  "option_active_plugins": 97.3,
+  "option_woocommerce_feature_block_editor_unified_assets_enabled": 97.3,
+  "get_page_uri": 96.9,
+  "usof_get_option_tablets_breakpoint": 96,
+  "home_url": 95.9,
+  "pre_get_language_files_from_path": 95.9,
+  "woocommerce_amazon_pa_matched_compat_plugin_class_WC_Currency_Converter": 95.7,
+  "option_woocommerce_amazon_payments_new_install": 95.5,
+  "wp_parse_str": 95,
+  "theme_file_path": 95,
+  "option_woocommerce_allow_tracking": 94.9,
+  "woocommerce_is_rest_api_request": 94.5,
+  "gettext_us": 94.4,
+  "woocommerce_address_providers": 94.2,
+  "stylesheet": 94.2,
+  "clean_url": 94.2,
+  "woocommerce_queue_class": 94.1,
+  "option_woocommerce-ppcp-settings": 93.7,
+  "wp_allowed_block_metadata_collection_roots": 93.7,
+  "gettext_default": 93.2,
+  "us_tr_object_id": 92.8,
+  "woocommerce_admin_disabled": 92.7,
+  "default_option_fs_cache_4668": 92.2,
+  "us_get_page_area_id": 91.3,
+  "usof_get_option_product_gallery": 90.8,
+  "default_option_acf_first_activated_version": 90.4,
+  "transient_pll_languages_list": 90.3,
+  "wp_is_mobile": 90,
+  "option_as_has_wp_comment_logs": 89.9,
+  "load_default_widgets": 89.8,
+  "usof_get_option_default_breakpoint": 89.2,
+  "wcfm_is_vendor": 89.2,
+  "default_option_woocommerce_custom_orders_table_background_sync_mode": 88.8,
+  "woocommerce_background_image_regeneration": 88.7,
+  "option_woocommerce_analytics_enabled": 88.5,
+  "get_post_status": 88.4
+ }
+}
