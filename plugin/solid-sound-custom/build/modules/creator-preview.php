@@ -57,7 +57,40 @@ body #solid-sound-upload-form .ss-wm-row a.acf-icon[data-name=add]::after{conten
 #ss-pv .page .pr{font-size:26px}#ss-pv .page .buy{height:46px;padding:0 22px;font-size:16px;margin-left:12px}
 #ss-pv .desc{margin-top:18px;font-family:Roboto,sans-serif;font-size:15.5px;line-height:1.65;color:#e2e8f0}#ss-pv .desc ul{margin:6px 0 0 20px}#ss-pv .desc p{margin:0 0 10px}
 #ss-pv audio{width:100%;margin-top:14px}#ss-pv .miss{margin-top:16px;padding:10px 12px;border-radius:10px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);color:#fde68a;font-size:14px}
+/* 19.11 owner («что за колхоз, сделай круто»): the "Add your own" window in the site style */
+body .acf-popup{position:fixed!important;inset:0!important;z-index:100001!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:16px}
+body .acf-popup>.bg{position:absolute!important;inset:0!important;z-index:0!important;background:rgba(2,6,15,.78)!important;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+body .acf-popup-box{position:relative!important;z-index:1!important;box-sizing:border-box!important;top:auto!important;left:auto!important;right:auto!important;margin:0!important;transform:none!important;width:min(440px,100%)!important;min-width:0!important;max-height:none!important;background:#131B2E!important;border:1px solid rgba(245,158,11,.35)!important;border-radius:18px!important;box-shadow:0 30px 80px rgba(0,0,0,.65)!important;color:#E2E8F0!important;overflow:visible!important;animation:ssAp .18s ease-out}
+@keyframes ssAp{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+body .acf-popup-box .title{position:relative!important;display:flex!important;align-items:center!important;min-height:0!important;margin:0!important;padding:22px 64px 4px 24px!important;background:transparent!important;border:0!important}
+body .acf-popup-box .title h3{margin:0!important;padding:0!important;color:#fff!important;font:800 21px/1.25 "Exo 2",sans-serif!important}
+body .acf-popup-box .title h3:empty::before{content:"Add your own"}
+body .acf-popup-box .title .acf-icon{position:absolute!important;top:16px!important;right:16px!important;left:auto!important;width:36px!important;height:36px!important;margin:0!important;border-radius:50%!important;border:1px solid rgba(255,255,255,.14)!important;background:#1A2540!important;color:#CBD5E1!important}
+body .acf-popup-box .title .acf-icon:hover{border-color:#F59E0B!important;color:#F59E0B!important}
+body .acf-popup-box .inner{padding:6px 24px 24px!important;background:transparent!important}
+body .acf-popup-box .ss-ap-sub{margin:0 0 14px;color:#94A3B8;font:400 14px/1.5 Roboto,sans-serif}
+body .acf-popup-box .acf-field{padding:0!important;margin:0 0 14px!important;border:0!important;background:transparent!important}
+body .acf-popup-box .acf-field[data-name=term_parent],body .acf-popup-box .acf-field[data-name=term_parent]+.acf-field[data-name=term_parent]{display:none!important}
+body .acf-popup-box .acf-label{margin:0 0 6px!important}
+body .acf-popup-box .acf-label label{color:#CBD5E1!important;font:600 13px "Exo 2",sans-serif!important;letter-spacing:.04em;text-transform:uppercase}
+body .acf-popup-box input[type=text]{box-sizing:border-box!important;width:100%!important;height:50px!important;padding:0 16px!important;border-radius:12px!important;border:1px solid rgba(255,255,255,.14)!important;background:#090E17!important;color:#fff!important;font:500 16px Roboto,sans-serif!important;box-shadow:none!important;outline:0!important;transition:border-color .15s,box-shadow .15s}
+body .acf-popup-box input[type=text]:focus{border-color:#F59E0B!important;box-shadow:0 0 0 3px rgba(245,158,11,.18)!important}
+body .acf-popup-box input[type=text]::placeholder{color:#64748B!important}
+body .acf-popup-box .acf-submit{margin:4px 0 0!important;padding:0!important;display:block!important}
+body .acf-popup-box .acf-submit .acf-submit-button,body .acf-popup-box .acf-submit button{width:100%!important;height:50px!important;border:0!important;border-radius:12px!important;background:#F59E0B!important;color:#111!important;font:800 16px "Exo 2",sans-serif!important;text-shadow:none!important;box-shadow:0 8px 24px rgba(245,158,11,.25)!important;cursor:pointer}
+body .acf-popup-box .acf-submit .acf-submit-button:hover,body .acf-popup-box .acf-submit button:hover{background:#FBBF24!important}
+body .acf-popup-box .acf-submit .acf-spinner{display:none!important}
+body .acf-popup-box .loading{position:absolute!important;inset:0!important;border-radius:18px!important;background:rgba(19,27,46,.8)!important}
+body .acf-popup-box .acf-error-message{margin:0 0 12px!important;border-radius:10px!important;background:rgba(239,68,68,.12)!important;border:1px solid rgba(239,68,68,.4)!important;color:#FCA5A5!important}
+body .acf-popup-box .acf-error-message p{color:#FCA5A5!important;margin:8px 12px!important}
 </style>
+<script>/* 19.11: name the "Add your own" window after its field, placeholder, one-line hint, focus */
+(function(){var last='';document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a.acf-icon[data-name=add]'):null;if(!a)return;var f=a.closest('.acf-field'),l=f?f.querySelector('.acf-label label'):null;last=l?(l.textContent||'').replace(/\*|\(.*?\)/g,'').trim():'';},true);
+new MutationObserver(function(){var b=document.querySelector('.acf-popup-box:not([data-ss])');if(!b)return;b.setAttribute('data-ss','1');var n=last.replace(/^select\s+/i,'').replace(/\(s\)$/i,'').trim()||'item';var low=n.toLowerCase();
+var h=b.querySelector('.title h3');if(h)h.textContent='Add a '+low;var inp=b.querySelector('.acf-field[data-name=term_name] input');var lb=b.querySelector('.acf-field[data-name=term_name] .acf-label label');if(lb)lb.textContent=n+' name';
+if(inp){inp.placeholder=/genre/.test(low)?'e.g. Afro House':'Type a name';setTimeout(function(){inp.focus()},60)}
+var inn=b.querySelector('.inner');if(inn&&!inn.querySelector('.ss-ap-sub')){var p=document.createElement('p');p.className='ss-ap-sub';p.textContent='Not in the list? Add it here. It shows up in your list right away, and we check it together with your product.';inn.insertBefore(p,inn.firstChild)}
+var sb=b.querySelector('.acf-submit-button,.acf-submit button');if(sb)sb.textContent='Add '+low;}).observe(document.body,{childList:true,subtree:true});})();</script>
 <script>(function(){
 var ARTIST=<?php echo wp_json_encode( $artist ); ?>,CUR=<?php echo wp_json_encode( $cur ); ?>;
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}

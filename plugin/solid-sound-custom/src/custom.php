@@ -6882,3 +6882,4 @@ require_once __DIR__ . '/modules/prof.php'; /* 19.11 owner: speed — probe only
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
 require_once __DIR__ . '/modules/smart-search.php'; /* 19.11 owner: smart search (code first, Cloudflare AI optional) */
+require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public creator page /store/<slug>/ */
