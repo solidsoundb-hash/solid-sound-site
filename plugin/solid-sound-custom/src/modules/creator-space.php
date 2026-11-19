@@ -208,13 +208,9 @@ function ss_cs_render() {
 }
 
 add_action( 'wp_head', function () { if ( ss_cs_ok() && function_exists( 'ss_asset' ) ) ss_asset( 'ss-account-css' ); }, 60 );
-add_action( 'wp_footer', function () { if ( ss_cs_ok() && function_exists( 'ss_asset' ) ) ss_asset( 'ss-cab', 'defer' ); }, 99 ); /* 19.11 swipe tabs + hints */
-
-add_action( 'wp_footer', function () {
-	if ( ! ss_cs_ok() ) return;
-	$root = ss_cs_is_root(); ?>
-<?php try { $ss_cs_html = ss_cs_nav() . ( $root ? ss_cs_render() : '' ); } catch ( \Throwable $e ) { error_log( 'creator space: ' . $e->getMessage() ); return; } ?>
-<template id="ss-cs-tpl"><div id="ss-cs-wrap"><?php echo $ss_cs_html; /* escaped inside */ ?></div></template>
+/* 19.11 film robot: the creator-space styles were printed at the END of the page, so the old WCFM side menu, its «Marketplace …»
+   title and frame flashed for ~1 s first. They are in <head> now. */
+add_action( 'wp_head', function () { if ( ! ss_cs_ok() ) return; ?>
 <style id="ss-cs-css">
 body.ss-cs #wcfm_menu,body.ss-cs #wcfm-main-contentainer #wcfm-content #wcfm_menu{display:none!important} /* 19.11 owner «грузится криво»: hidden from the first paint, not after the footer script */
 body.ss-cs:not(.ss-cs-mounted) #wcfm-content{padding-top:80px!important} /* room for the tab row that the footer script puts on top — nothing jumps */
@@ -257,6 +253,15 @@ body.ss-cs .ss-pv-b{background:transparent!important;color:#fff!important;border
 .ss-cs-d .lnk{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.ss-cs-d .lnk input{flex:1 1 200px;min-width:0;height:42px;border-radius:10px;border:1px solid rgba(255,255,255,.12)!important;background:#0b1220!important;color:#fff!important;padding:0 12px;font:14px "Exo 2",sans-serif}
 @media(max-width:700px){#ss-cs-wrap .ssa-nav a span{display:inline}.ss-cs-d .chart{height:180px}}
 </style>
+<?php }, 61 );
+add_action( 'wp_footer', function () { if ( ss_cs_ok() && function_exists( 'ss_asset' ) ) ss_asset( 'ss-cab', 'defer' ); }, 99 ); /* 19.11 swipe tabs + hints */
+
+add_action( 'wp_footer', function () {
+	if ( ! ss_cs_ok() ) return;
+	$root = ss_cs_is_root(); ?>
+<?php try { $ss_cs_html = ss_cs_nav() . ( $root ? ss_cs_render() : '' ); } catch ( \Throwable $e ) { error_log( 'creator space: ' . $e->getMessage() ); return; } ?>
+<template id="ss-cs-tpl"><div id="ss-cs-wrap"><?php echo $ss_cs_html; /* escaped inside */ ?></div></template>
+
 <script>(function(){
 function mount(){var t=document.getElementById('ss-cs-tpl'),c=document.getElementById('wcfm-content');if(!t||!c)return false;if(document.getElementById('ss-cs-wrap'))return true;c.insertBefore(t.content.cloneNode(true),c.firstChild);try{init()}catch(e){}document.body.classList.add('ss-cs-mounted');return true}
 function spark(svg){var v=(svg.getAttribute('data-v')||'').split(',').map(Number),w=120,hh=28,m=Math.max.apply(0,v)||1;svg.setAttribute('viewBox','0 0 '+w+' '+hh);svg.setAttribute('preserveAspectRatio','none');if(!v.length)return;var pts=v.map(function(x,i){return (i*w/Math.max(1,v.length-1)).toFixed(1)+','+(hh-2-(x/m)*(hh-6)).toFixed(1)});svg.innerHTML='<polyline points="0,'+hh+' '+pts.join(' ')+' '+w+','+hh+'" fill="rgba(245,158,11,.15)"/><polyline points="'+pts.join(' ')+'" fill="none" stroke="#F59E0B" stroke-width="1.8" vector-effect="non-scaling-stroke"/>'}
