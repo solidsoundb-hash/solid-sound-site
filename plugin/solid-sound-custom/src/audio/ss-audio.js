@@ -168,7 +168,40 @@
     return { hist: sum ? Array.prototype.map.call(hist, function (v) { return v / sum; }) : null, held: held * step * 0.1 };
   }
 
+  /* ---------- the vote (owner 19.11: «по многим способам определишь среднее») ----------
+     Two ways of hearing (full range with the bass / without the bass) × four key profiles (classical listening tests,
+     scale statistics, pop, electronic) = 8 voters, plus the bass listener (tonic it rests on + minor/major by the third)
+     with double weight. The key with most votes wins; confidence = share of the votes. */
+  function best(ch, prof) {
+    var b = null, i, m, r;
+    for (i = 0; i < 12; i++) for (m = 0; m < 2; m++) {
+      var rot = []; for (r = 0; r < 12; r++) rot.push(ch[(r + i) % 12]);
+      var s = corr(rot, prof[m]); if (!b || s > b.s) b = { t: i, m: m, s: s };
+    }
+    return b;
+  }
+  function vote(x, sr, opt) {
+    opt = opt || {};
+    var P = { kk: profiles({ prof: 'kk' })[0], tp: profiles({ prof: 'tp' })[0], bg: profiles({ prof: 'bg' })[0], ed: profiles({ prof: 'ed' })[0] };
+    var hear = [chroma(x, sr, {}), chroma(x, sr, { lo: 200 })], votes = {}, total = 0, who = [];
+    function add(t, m, w, by) { var k = NAMES[t] + (m ? 'm' : ''); votes[k] = (votes[k] || 0) + w; total += w; who.push(by + ':' + k); }
+    hear.forEach(function (ch, hi) { if (!ch) return; Object.keys(P).forEach(function (p) { var b = best(ch, P[p]); add(b.t, b.m, 1, (hi ? 'nobass-' : 'full-') + p); }); });
+    var bl = bassline(x, sr, opt), ch0 = hear[0];
+    if (bl.hist && bl.held >= 6 && ch0) {
+      var t = 0; for (var i = 1; i < 12; i++) if (bl.hist[i] > bl.hist[t]) t = i;
+      var minor = ch0[(t + 3) % 12] + ch0[(t + 8) % 12] + ch0[(t + 10) % 12], major = ch0[(t + 4) % 12] + ch0[(t + 9) % 12] + ch0[(t + 11) % 12];
+      add(t, minor >= major ? 1 : 0, 2, 'bass');
+    }
+    var ks = Object.keys(votes).sort(function (a, b) { return votes[b] - votes[a]; });
+    if (!ks.length) return null;
+    var k = ks[0], m = /m$/.test(k), tn = k.replace(/m$/, ''), ti = NAMES.indexOf(tn), rel = NAMES[m ? (ti + 3) % 12 : (ti + 9) % 12] + (m ? '' : 'm');
+    return { key: k, tonic: tn, mode: m ? 'minor' : 'major', confidence: +(votes[k] / total).toFixed(2), alt: rel,
+      alt_close: votes[rel] ? +((votes[k] - votes[rel]) / total).toFixed(2) : 1, flat: (FLAT[tn] || tn) + (m ? 'm' : ''),
+      votes: votes, voters: who, chroma: ch0 };
+  }
+
   function key(x, sr, opt) {
+    if (!opt || !opt.single) return vote(x, sr, opt);
     opt = opt || {}; var ch = chroma(x, sr, opt); if (!ch) return null; var PROF = profiles(opt);
     if (opt.thr) { var mx0 = Math.max.apply(null, ch); ch = ch.map(function (v) { return v < mx0 * opt.thr ? 0 : v; }); }
     var sc = [], i, m, p, r;
@@ -176,6 +209,15 @@
       var rot = []; for (r = 0; r < 12; r++) rot.push(ch[(r + i) % 12]);
       var s = 0; for (p = 0; p < PROF.length; p++) s += corr(rot, PROF[p][m]);
       sc.push({ t: i, m: m, s: s / PROF.length });
+    }
+    /* tonic first, like a listener: the note the bass holds longest pulls its keys up (bw = how much we trust the bass) */
+    var bw = opt.bw == null ? 0.35 : opt.bw;
+    if (bw > 0) {
+      var bl = bassline(x, sr, opt);
+      if (bl.hist && bl.held >= 6) {
+        var bmax = Math.max.apply(null, bl.hist);
+        sc.forEach(function (c) { c.s += bw * (bl.hist[c.t] / bmax - 0.5); });
+      }
     }
     sc.sort(function (a, b) { return b.s - a.s; });
     var top = sc[0], rel = top.m ? (top.t + 3) % 12 : (top.t + 9) % 12;
@@ -211,6 +253,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, vote: vote, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);

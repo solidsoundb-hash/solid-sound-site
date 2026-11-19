@@ -3,8 +3,8 @@
  * Add Product: key from the audio, with our own analyser (src/audio/ss-audio.js — owner 19.11.2026 «разработай наш Essentia.js»).
  * When the creator drops an MP3/WAV, the browser decodes it (nothing is uploaded for this) and SS Audio finds the key.
  *  - the Ableton project's scale always wins: if the Key field is already filled, we only show what we heard;
- *  - very sure (≥ 0.9): the key is filled in, marked "from the audio — check";
- *  - fairly sure (≥ 0.5): a hint under the field «Sounds like Am (or C) — Use Am»;
+ *  - SS Audio lets 10 methods vote; very sure (≥ 80 % of the votes): the key is filled in, marked "from the audio — check";
+ *  - fairly sure (≥ 50 % of the votes): a hint under the field «Sounds like Am (or C) — Use Am»;
  *  - not sure: nothing (a wrong key is worse than none).
  * Customer-facing texts in English.
  */
@@ -29,10 +29,10 @@ function variants(k){var m=/m$/.test(k),t=k.replace(/m$/,''),fl={'C#':'Db','D#':
 function setKey(k){var f=field();if(!f)return false;var v=variants(k);if(f.tagName==='SELECT'){for(var i=0;i<f.options.length;i++)if(v.indexOf(f.options[i].text.trim().toLowerCase())>-1){f.selectedIndex=i;f.dispatchEvent(new Event('change',{bubbles:true}));return true}return false}f.value=k;f.dispatchEvent(new Event('input',{bubbles:true}));f.dispatchEvent(new Event('change',{bubbles:true}));return true}
 function show(r){var b=box();if(!b)return;b.className='';var have=cur();
  if(!r||r.confidence<0.5){b.innerHTML='<b>Key:</b> the audio does not make the key clear — please choose it.';return}
- var alt=r.alt_close<0.03?' <small>Could also be '+r.alt+' (same notes) — trust your ears.</small>':'';
+ var alt=r.alt_close<0.3?' <small>Could also be '+r.alt+' (same notes) — trust your ears.</small>':'';
  if(have){b.innerHTML='<b>From your audio:</b> sounds like '+r.key+'.'+(variants(r.key).indexOf(have.toLowerCase())>-1?' Matches your project ✓':' Your project says '+have+' — keep it if you are sure.')+alt;return}
- if(r.confidence>=0.9&&setKey(r.key)){b.innerHTML='<b>Key '+r.key+'</b> — from your audio. Please check it.'+alt;return}
- b.innerHTML='<b>Sounds like '+r.key+'</b> — please check.'+alt+'<br><button type="button" data-k="'+r.key+'">Use '+r.key+'</button>'+(r.alt_close<0.08?'<button type="button" class="o" data-k="'+r.alt+'">Use '+r.alt+'</button>':'')}
+ if(r.confidence>=0.8&&setKey(r.key)){b.innerHTML='<b>Key '+r.key+'</b> — from your audio. Please check it.'+alt;return}
+ b.innerHTML='<b>Sounds like '+r.key+'</b> — please check.'+alt+'<br><button type="button" data-k="'+r.key+'">Use '+r.key+'</button>'+(r.alt_close<0.3?'<button type="button" class="o" data-k="'+r.alt+'">Use '+r.alt+'</button>':'')}
 function run(f){if(!window.SSAudio||!window.AudioContext&&!window.webkitAudioContext)return;if(f===last)return;last=f;var b=box();if(!b)return;b.className='wt';b.textContent='Listening for the key…';busy++;
  f.arrayBuffer().then(function(ab){var C=window.AudioContext||window.webkitAudioContext,ctx=new C();return ctx.decodeAudioData(ab).then(function(buf){try{ctx.close()}catch(e){}return buf})}).then(function(buf){
   /* the middle 3 minutes are enough and keep the phone responsive */

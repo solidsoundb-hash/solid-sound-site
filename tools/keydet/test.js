@@ -15,6 +15,7 @@ for (const line of fs.readFileSync(process.argv[2], 'utf8').trim().split('\n')) 
   const hit = norm(r.key) === norm(want), isRel = !hit && norm(r.alt) === norm(want);
   n++; if (hit) ok++; if (isRel) rel++;
   if (process.env.CHROMA) console.log('   ' + r.chroma.map((v, i) => ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'][i] + ':' + Math.round(v * 100)).join(' '));
+  if (r.votes) console.log('   votes ' + JSON.stringify(r.votes));
   console.log((hit? '✓' : isRel ? '≈' : '✗') + ' ' + name.padEnd(36) + ' want ' + want.padEnd(4) + ' got ' + r.key.padEnd(4) + ' conf ' + r.confidence + ' score ' + r.score + ' (alt ' + r.alt + ' Δ' + r.alt_close + ') ' + ms + 'ms  ' + L.lufs + ' LUFS');
 }
 console.log(`\n${ok}/${n} exact, ${rel} relative major/minor`);
