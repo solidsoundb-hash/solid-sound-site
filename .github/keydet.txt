@@ -1,1 +1,2 @@
 1 2026-11-20 tracks=200 configs=[{},{"single":1},{"single":1,"bw":0},{"single":1,"prof":"bg"},{"single":1,"prof":"ed"}]
+2 2026-11-20 task=tempo tracks=200 configs=[{},{"sd":0.7},{"center":128,"sd":0.6},{"kick":1,"sd":0.6},{"sd":1.2}]

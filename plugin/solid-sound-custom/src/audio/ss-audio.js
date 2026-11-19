@@ -168,6 +168,41 @@
     return { hist: sum ? Array.prototype.map.call(hist, function (v) { return v / sum; }) : null, held: held * step * 0.1 };
   }
 
+  /* ---------- tempo (owner 19.11: «темп и длительность тоже должны быть точными») ----------
+     Onset strength = positive spectral flux of the log spectrum (kick weighted), local mean removed; tempo = the lag whose
+     autocorrelation (plus its 2× and 4× multiples, i.e. bars) is strongest under a prior around opt.center BPM; then a fine
+     search ±0.6 BPM over 16 beats; rounded to 0.5 and snapped to a whole BPM when within 0.3. */
+  function tempo(x, sr, opt) {
+    opt = opt || {};
+    var d = decimate(x, sr, 22050); x = d.x; sr = d.sr;
+    var max = (opt.sec || 100) * sr; if (x.length > max) { var st = Math.floor((x.length - max) * (x.length > 150 * sr ? 0.35 : 0.5)); x = x.subarray(st, st + max); }
+    var N = 1024, H = opt.H || 256, w = new Float32Array(N), nb = N / 2, i, f, frames = Math.floor((x.length - N) / H);
+    for (i = 0; i < N; i++) w[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1));
+    if (frames < 64) return { bpm: 0, conf: 0 };
+    var prev = new Float32Array(nb), env = new Float32Array(frames), re = new Float32Array(N), im = new Float32Array(N), maxBin = Math.floor(8000 / (sr / N));
+    for (f = 0; f < frames; f++) {
+      var o = f * H; for (i = 0; i < N; i++) { re[i] = x[o + i] * w[i]; im[i] = 0; }
+      fft(re, im);
+      var flux = 0; for (i = 1; i < maxBin; i++) { var mag = Math.log(1 + 100 * Math.sqrt(re[i] * re[i] + im[i] * im[i])), dd = mag - prev[i]; if (dd > 0) flux += dd * (i < 12 ? (opt.kick || 2) : 1); prev[i] = mag; }
+      env[f] = flux;
+    }
+    var fps = sr / H, win = Math.round(fps * 0.4), cs = new Float64Array(frames + 1), e2 = new Float32Array(frames);
+    for (f = 0; f < frames; f++) cs[f + 1] = cs[f] + env[f];
+    for (f = 0; f < frames; f++) { var a0 = Math.max(0, f - win), b0 = Math.min(frames, f + win + 1), m = (cs[b0] - cs[a0]) / (b0 - a0); e2[f] = Math.max(0, env[f] - m); }
+    function ac(lag) { var s = 0, L = Math.floor(lag), fr = lag - L; for (var t = 0; t + L + 1 < frames; t++) s += e2[t] * (e2[t + L] * (1 - fr) + e2[t + L + 1] * fr); return s; }
+    var center = opt.center || 125, sd = opt.sd || 0.45, best = 0, bestBpm = 0, sc = [];
+    for (var bpm = 60; bpm <= 200; bpm += 0.25) {
+      var lag = 60 * fps / bpm, s = ac(lag) + 0.5 * ac(2 * lag) + 0.25 * ac(4 * lag);
+      var pr = Math.exp(-0.5 * Math.pow(Math.log2(bpm / center) / sd, 2)), v = s * pr; sc.push(v);
+      if (v > best) { best = v; bestBpm = bpm; }
+    }
+    var srt = sc.slice().sort(function (p, q) { return p - q; }), conf = best / (srt[srt.length >> 1] || 1);
+    var fb = bestBpm, fs = -1;
+    for (var bb = bestBpm - 0.6; bb <= bestBpm + 0.6; bb += 0.02) { var lg = 60 * fps / bb, ss = 0; for (var kk = 1; kk <= 16; kk *= 2) ss += ac(kk * lg) / Math.sqrt(kk); if (ss > fs) { fs = ss; fb = bb; } }
+    var r = Math.round(fb * 2) / 2; if (Math.abs(fb - Math.round(fb)) < 0.3) r = Math.round(fb);
+    return { bpm: r, raw: +fb.toFixed(2), conf: +conf.toFixed(2) };
+  }
+
   /* ---------- fingerprint (copy protection, owner 19.11 «защиту от копий делай») ----------
      Every ~0.19 s: the two strongest notes (100–2000 Hz) → a code 0..143. Three codes in a row (t, t+2, t+4) make one hash.
      The set of hashes survives re-encoding, a lower bitrate, a different loudness and cutting the start; two different
@@ -287,6 +322,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, vote: vote, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);

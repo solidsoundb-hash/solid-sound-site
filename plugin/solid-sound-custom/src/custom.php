@@ -3459,7 +3459,8 @@ if ( ! function_exists( 'ss_az_is_form' ) ) {
     [r1, r3, a].forEach(function (x) { box.appendChild(x); });
     pick = { bpm: R.bpm, key: R.key, len: R.length };
     [].forEach.call(box.querySelectorAll('button.az-c.main'), function (x) { x.classList.add('on'); });
-    apply(['bpm', 'len']);
+    /* the Ableton project (creator-autofill.php) is exact: its tempo / arrangement length are never overwritten by the demo */
+    apply(['bpm', 'len'].filter(function (k) { return !(k === 'bpm' && window.__ssAlsBpm) && !(k === 'len' && window.__ssAlsLen); }));
   }
   var busy = false;
   function analyze(file) {

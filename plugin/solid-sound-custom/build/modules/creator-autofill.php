@@ -46,6 +46,9 @@ function parseAls(x){var r={};var m=x.match(/Creator="Ableton Live ([\d.]+)/);if
  r.plugins=Object.keys(pl).map(function(k){return pl[k]}).slice(0,20);
  /* 19.11 files-first.php: samples the project uses (for the «missing samples» check); Ableton's own libraries are on every computer */
  var fl={},rr=/<SampleRef>[\s\S]*?<\/SampleRef>/g,sr;while((sr=rr.exec(x))){var pm=sr[0].match(/<Path Value="([^"]+)"/)||sr[0].match(/<RelativePath Value="([^"]+)"/);if(!pm)continue;var pth=pm[1].replace(/\\/g,'/');if(/(Core Library|\/Packs\/|Ableton\/Factory|Live Recordings)/i.test(pth))continue;var bn=pth.split('/').pop();if(bn)fl[bn.toLowerCase()]=bn}r.files=Object.keys(fl).map(function(k){return fl[k]});
+ /* 19.11 owner «длительность должна быть точной»: the track length = end of the last clip in the Arrangement (beats) at the project tempo */
+ var mx=0,ar=/<ArrangerAutomation>[\s\S]*?<\/ArrangerAutomation>/g,ab;while((ab=ar.exec(x))){var ce=/<(?:AudioClip|MidiClip)\b[^>]*\bTime="([\d.]+)"[\s\S]*?<CurrentEnd Value="([\d.]+)"/g,cm;while((cm=ce.exec(ab[0]))){var en=parseFloat(cm[2]);if(en>mx&&en<100000)mx=en}}
+ if(mx&&r.bpm){var sec=Math.round(mx*60/r.bpm);if(sec>=20&&sec<=3600)r.lengthSec=sec}
  m=x.match(/<ScaleInformation>\s*<Root(?:Note)? Value="(\d+)"\s*\/>\s*<Name Value="([^"]+)"/);if(m){var nm2=m[2];r.scale=NOTES[+m[1]%12]+(/minor/i.test(nm2)?'m':(/major/i.test(nm2)?'':' '+nm2))}
  return r}
 /* --- form helpers (apply only on the creator's tap) --- */
@@ -65,7 +68,9 @@ function show(zipName,es,r){box.textContent='';var h=el('div','h');h.appendChild
  var nameIn=form.querySelector('[name=product_name]');var names={};[zipName,r.alsName].forEach(function(s){var n=s&&niceName(s);if(n&&n.length>2)names[n.toLowerCase()]=n});
  row('Name',Object.keys(names).map(function(k){var v=names[k];return {text:v,only:1,act:{set:function(){nameIn.value=v;fire(nameIn)}}}}));
  if(r.live){var maj=r.live.split('.')[0];row('DAW',[{text:'Ableton Live',act:choice(W('daw'),function(t){return /ableton/.test(t)})}].concat([{text:'Live '+maj+' ('+r.live+')',only:1,act:choice(W('version'),function(t){return new RegExp('(^|\\D)'+maj+'(\\D|$)').test(t)})}]))}
+ if(r.bpm)window.__ssAlsBpm=r.bpm;
  if(r.bpm)row('BPM',[{text:String(Math.round(r.bpm)),only:1,act:textField(W('bpm'),String(Math.round(r.bpm)))}]);
+ if(r.lengthSec){var ls=Math.floor(r.lengthSec/60)+':'+('0'+r.lengthSec%60).slice(-2),ls0=('0'+Math.floor(r.lengthSec/60)).slice(-2)+':'+('0'+r.lengthSec%60).slice(-2);window.__ssAlsLen=ls;row('Length',[{text:ls+' (arrangement)',only:1,act:choice(W('length'),function(t){return t===ls||t===ls0})||textField(W('length'),ls0)}])}
  if(r.scale)row('Key',[{text:r.scale+' (project scale)',only:1,act:choice(W('key'),function(t){var k=norm(r.scale);return t===k||t===k.replace(/m$/,' minor')||t===k+' major'})||textField(W('key'),r.scale)}]);
  var ext=W('ext');if(r.plugins){if(r.plugins.length)row('Plugins',r.plugins.map(function(p){var np=norm(p).replace(/ /g,'');return {text:p,act:choice(ext,function(t){t=t.replace(/ /g,'');return t===np||(t.length>3&&(t.indexOf(np)===0||np.indexOf(t)===0))})}}));else row('Plugins',[{text:'No external plugins',act:choice(ext,function(t){return /no (external|3rd|third)|stock|native|none/.test(t)})}])}
  var cnt={wav:0,mid:0,pre:0,als:0};es.forEach(function(e){var n=e.name.toLowerCase();if(/__macosx|\/\._/.test(n))return;if(/\.(wav|aif|aiff|flac)$/.test(n))cnt.wav++;else if(/\.midi?$/.test(n))cnt.mid++;else if(/\.(fxp|fxb|vital|vitalbank|nmsv|adv|adg|h2p|serumpreset)$/.test(n))cnt.pre++;else if(/\.als$/.test(n)&&!/backup\//.test(n))cnt.als++});

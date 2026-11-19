@@ -35,13 +35,26 @@ jobs:
       - name: Download audio
         run: |
           mkdir -p gsaudio
+          tail -1 .github/keydet.txt | grep -q 'task=tempo' && exit 0
           ls gs/annotations/key/*.key | head -n ${{ steps.ds.outputs.n }} | while read f; do
             id=$(basename "$f" .key); [ -s "gsaudio/$id.mp3" ] && continue
             curl -sf --retry 3 -o "gsaudio/$id.mp3" "https://www.cp.jku.at/datasets/giantsteps/backup/$id.mp3" || rm -f "gsaudio/$id.mp3"
           done
           ls gsaudio | wc -l
       - name: Exam
-        run: CONFIGS="$(cat configs.json)" node tools/keydet/gs-eval.js gs gsaudio ${{ steps.ds.outputs.n }}
+        run: |
+          L=$(tail -1 .github/keydet.txt)
+          if echo "$L" | grep -q 'task=tempo'; then
+            git clone -q --depth 1 https://github.com/GiantSteps/giantsteps-tempo-dataset gst
+            mkdir -p gstaudio
+            ls gst/annotations_v2/tempo/*.bpm | head -n ${{ steps.ds.outputs.n }} | while read f; do
+              id=$(basename "$f" .bpm); [ -s "gstaudio/$id.mp3" ] && continue
+              curl -sf --retry 3 -o "gstaudio/$id.mp3" "https://www.cp.jku.at/datasets/giantsteps/backup/$id.mp3" || rm -f "gstaudio/$id.mp3"
+            done
+            CONFIGS="$(cat configs.json)" node tools/keydet/gs-tempo.js gst gstaudio ${{ steps.ds.outputs.n }}
+          else
+            CONFIGS="$(cat configs.json)" node tools/keydet/gs-eval.js gs gsaudio ${{ steps.ds.outputs.n }}
+          fi
       - name: Save the result in the repo
         if: always()
         run: BOT_NAME=keydet-bot bash .github/save.sh "key detector exam $(date -u +%FT%TZ)" checks/keydet
