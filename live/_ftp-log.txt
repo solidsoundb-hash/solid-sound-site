@@ -1,163 +1,60 @@
-pull 2026-11-16T18:43:20Z
+pull 2026-11-19T18:51:35Z
+  retry after ConnectionRefusedError(111, 'Connection refused')
   retry after ConnectionRefusedError(111, 'Connection refused')
   retry after ConnectionRefusedError(111, 'Connection refused')
   retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after ConnectionRefusedError(111, 'Connection refused')
+  retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after ConnectionRefusedError(111, 'Connection refused')
+  retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after EOFError()
+  retry after ConnectionRefusedError(111, 'Connection refused')
+  retry after ConnectionRefusedError(111, 'Connection refused')
+  retry after ConnectionRefusedError(111, 'Connection refused')
+  retry after SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1081)')
+  retry after EOFError()
 ok  solid-sound.net/www/wp-content/plugins/solid-sound-custom
 ok  solid-sound.net/www/wp-content/themes/Impreza/functions.php
+  retry after ConnectionRefusedError(111, 'Connection refused')
 ok  solid-sound.net/www/wp-content/wp-cache-config.php
 ok  solid-sound.net/www/wp-content/themes/Impreza/common/functions
 Traceback (most recent call last):
-  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 175, in <module>
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 222, in <module>
     main()
-  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 165, in main
+    ~~~~^^
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 206, in main
     c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), a)
-  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 45, in run
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 48, in run
     return fn(self.f, *a)
-           ^^^^^^^^^^^^^^
-  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 165, in <lambda>
+  File "/home/runner/work/solid-sound-site/solid-sound-site/tools/ftp_sync.py", line 206, in <lambda>
     c.run(lambda f, p: (out.seek(0), out.truncate(), f.retrbinary('RETR ' + p, out.write)), a)
-                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/ftplib.py", line 436, in retrbinary
+                                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/ftplib.py", line 436, in retrbinary
     with self.transfercmd(cmd, rest) as conn:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/ftplib.py", line 393, in transfercmd
+         ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/ftplib.py", line 393, in transfercmd
     return self.ntransfercmd(cmd, rest)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/ftplib.py", line 771, in ntransfercmd
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/ftplib.py", line 771, in ntransfercmd
     conn, size = super().ntransfercmd(cmd, rest)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/ftplib.py", line 359, in ntransfercmd
+                 ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/ftplib.py", line 359, in ntransfercmd
     resp = self.sendcmd(cmd)
-           ^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/ftplib.py", line 281, in sendcmd
+  File "/usr/lib/python3.14/ftplib.py", line 281, in sendcmd
     return self.getresp()
-           ^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/ftplib.py", line 254, in getresp
+           ~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/ftplib.py", line 254, in getresp
     raise error_perm(resp)
 ftplib.error_perm: 550 solid-sound.net/www/wp-content/advanced-cache.php: No such file or directory
 --  solid-sound.net/www/wp-content/advanced-cache.php (missing)
 ok  solid-sound.net/www/.htaccess
-ok  solid-sound.net/www/wp-content/plugins/wc-multivendor-membership/controllers
-ok  solid-sound.net/www/wp-content/plugins/wc-multivendor-membership/core
-ok  solid-sound.net/www/wp-content/plugins/wc-multivendor-marketplace/core
-  retry after ConnectionRefusedError(111, 'Connection refused')
-ok  solid-sound.net/www/wp-content/plugins/wpforo/classes
-ok  solid-sound.net/www/wp-content/plugins/wpforo/wpforo.php
-  retry after ConnectionRefusedError(111, 'Connection refused')
-ok  solid-sound.net/www/wp-content/plugins/wpforo/includes
-  live/_ftp-log.txt
-  live/root/.htaccess
-  live/wp-content/wp-cache-config.php
-  live/plugins/wpforo/includes/functions.php
-  live/plugins/wpforo/includes/index.html
-  live/plugins/wpforo/includes/install-sql.php
-  live/plugins/wpforo/includes/installation.php
-  live/plugins/wpforo/includes/phrases.php
-  live/plugins/wpforo/includes/hooks.php
-  live/plugins/wpforo/includes/options-migration.php
-  live/plugins/wpforo/includes/functions-template.php
-  live/plugins/wpforo/classes/AIWordPressIndexer.php
-  live/plugins/wpforo/classes/AIAjaxTrait.php
-  live/plugins/wpforo/classes/Boards.php
-  live/plugins/wpforo/classes/UserGroups.php
-  live/plugins/wpforo/classes/FeatureIntro.php
-  live/plugins/wpforo/classes/Members.php
-  live/plugins/wpforo/classes/Topics.php
-  live/plugins/wpforo/classes/AIClient.php
-  live/plugins/wpforo/classes/AIContentModeration.php
-  live/plugins/wpforo/classes/EmailQueue.php
-  live/plugins/wpforo/classes/API.php
-  live/plugins/wpforo/classes/AILogs.php
-  live/plugins/wpforo/classes/index.html
-  live/plugins/wpforo/classes/RamCache.php
-  live/plugins/wpforo/classes/Logs.php
-  live/plugins/wpforo/classes/AIChatbot.php
-  live/plugins/wpforo/classes/PostMeta.php
-  live/plugins/wpforo/classes/TaskManager.php
-  live/plugins/wpforo/classes/Posts.php
-  live/plugins/wpforo/classes/Feed.php
-  live/plugins/wpforo/classes/Forms.php
-  live/plugins/wpforo/classes/Cache.php
-  live/plugins/wpforo/classes/Notices.php
-  live/plugins/wpforo/classes/Settings.php
-  live/plugins/wpforo/classes/Moderation.php
-  live/plugins/wpforo/classes/VectorStorageManager.php
-  live/plugins/wpforo/classes/PluginsOrdering.php
-  live/plugins/wpforo/classes/AIMarkdown.php
-  live/plugins/wpforo/classes/Phrases.php
-  live/plugins/wpforo/classes/Actions.php
-  live/plugins/wpforo/classes/Template.php
-  live/plugins/wpforo/classes/Blocks.php
-  live/plugins/wpforo/classes/Permissions.php
-  live/plugins/wpforo/classes/AIUserTrait.php
-  live/plugins/wpforo/classes/Forums.php
-  live/plugins/wpforo/classes/VectorStorageLocal.php
-  live/plugins/wpforo/classes/Activity.php
-  live/plugins/wpforo/classes/SEO.php
-  live/plugins/wpforo/wpforo.php
-  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-registration.php
-  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-payment.php
-  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-manage.php
-  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships.php
-  live/plugins/wc-multivendor-membership/controllers/wcfmvm-controller-memberships-settings.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-non-ajax.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-emails.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-frontend.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-library.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-shortcode.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-ajax.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-capability.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-template.php
-  live/plugins/wc-multivendor-membership/core/class-wcfmvm-pay-for-product.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-shipping.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-vendor.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-commission.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-withdraw.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-shipping-zone.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-shipping-gateway.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-sidebar-widgets.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-product.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-abstract-gateway.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-store.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-frontend.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-store-seo.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-shortcode.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-rewrite.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-admin.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-refund.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-non-ajax.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-settings.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-notification-manager.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-ajax.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-reviews.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-emails.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-media.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-library.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-gateways.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-store-hours.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-template.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-product-multivendor.php
-  live/plugins/wc-multivendor-marketplace/core/class-wcfmmp-ledger.php
-  live/plugins/solid-sound-custom/backup/README.php
-  live/plugins/solid-sound-custom/backup/theme-functions-header.php
-  live/plugins/solid-sound-custom/backup/theme-options-body.php
-  live/plugins/solid-sound-custom/backup/index.php
-  live/plugins/solid-sound-custom/backup/theme-options-css.php
-  live/plugins/solid-sound-custom/backup/theme-options-head.php
-  live/plugins/solid-sound-custom/exports/post-52.php
-  live/plugins/solid-sound-custom/exports/theme-custom_html.php
-  live/plugins/solid-sound-custom/exports/theme-custom_html_head.php
-  live/plugins/solid-sound-custom/exports/post-2433.php
-  live/plugins/solid-sound-custom/exports/theme-custom_css.php
-  live/plugins/solid-sound-custom/exports/post-2.php
-  live/plugins/solid-sound-custom/exports/meta.php
-  live/plugins/solid-sound-custom/exports/post-2561.php
-  live/plugins/solid-sound-custom/includes/index.php
-  live/plugins/solid-sound-custom/includes/custom.php
-  live/plugins/solid-sound-custom/solid-sound-custom.php
-  live/themes/Impreza/functions.php
-  live/themes/Impreza/common/functions/comments.php
-  live/themes/Impreza/common/functions/menu.php
-  live/themes/Impreza/common/functions/helpers.php
