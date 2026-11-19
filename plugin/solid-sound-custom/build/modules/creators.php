@@ -130,11 +130,11 @@ function ss_cr_check_zip( $tmp, $fmt, $declared_native, $declared_plugins, &$err
 	if ( ! class_exists( 'ZipArchive' ) ) { $rep[] = 'zip: not checked (server has no ZipArchive)'; return; }
 	$z = new ZipArchive();
 	if ( true !== $z->open( $tmp ) ) { $err[] = 'The project file is not a valid .zip archive. Re-create it (right click → Compress) and upload again.'; return; }
-	$names = array(); $als = array();
+	$names = array(); $als = array(); $paths = array();
 	for ( $i = 0; $i < $z->numFiles; $i++ ) {
 		$n = (string) $z->getNameIndex( $i );
 		if ( false !== strpos( $n, '__MACOSX/' ) || '/' === substr( $n, -1 ) ) continue;
-		$names[ strtolower( basename( $n ) ) ] = 1;
+		$names[ strtolower( basename( $n ) ) ] = 1; $paths[] = strtolower( $n );
 		if ( preg_match( '#\.als$#i', $n ) && false === stripos( basename( $n ), 'backup' ) && false === strpos( $n, '/Backup/' ) ) $als[] = $n;
 	}
 	$rep[] = 'zip: ' . count( $names ) . ' files';
@@ -142,6 +142,15 @@ function ss_cr_check_zip( $tmp, $fmt, $declared_native, $declared_plugins, &$err
 	$inside = array();
 	foreach ( $kinds as $label => $re ) { $c = 0; foreach ( array_keys( $names ) as $n ) if ( preg_match( $re, $n ) && ( 'Ableton projects' !== $label || false === strpos( $n, 'backup' ) ) ) $c++; if ( $c ) $inside[ $label ] = $c; }
 	$GLOBALS['ss_cr_inside'] = $inside;
+	$daw = isset( $GLOBALS['ss_cr_daw'] ) ? (string) $GLOBALS['ss_cr_daw'] : '';
+	if ( in_array( $fmt, array( 'templates', 'reconstructed-templates' ), true ) && '' !== $daw && 'ableton-live' !== $daw ) {
+		/* another sequencer: the zip must hold that DAW's project file (its inside is not read) */
+		$ext = array( 'fl-studio' => 'flp', 'logic-pro' => 'logicx', 'bitwig-studio' => 'bwproject', 'cubase' => 'cpr', 'studio-one' => 'song', 'reason' => 'reason' );
+		$want = isset( $ext[ $daw ] ) ? $ext[ $daw ] : '';
+		if ( $want ) { $ok = false; foreach ( array_keys( $names ) as $n ) if ( preg_match( '#\.' . $want . '$#i', $n ) ) { $ok = true; break; } if ( ! $ok && 'logicx' === $want ) $ok = (bool) preg_grep( '#\.logicx/#i', $paths );
+			if ( ! $ok ) $err[] = 'No ' . strtoupper( $want ) . ' project found in the zip. Save the project with all samples, then zip the whole project folder.'; }
+		$z->close(); return;
+	}
 	if ( in_array( $fmt, array( 'templates', 'reconstructed-templates' ), true ) ) {
 		if ( ! $als ) { $err[] = 'No Ableton project (.als) found in the zip. In Ableton use File → Collect All and Save, then zip the whole project folder.'; $z->close(); return; }
 		usort( $als, function ( $a, $b ) { return substr_count( $a, '/' ) - substr_count( $b, '/' ); } );
@@ -248,6 +257,9 @@ add_action( 'admin_post_solid_sound_add_product', function () {
 				if ( ! $tt || is_wp_error( $tt ) ) continue;
 				if ( false !== strpos( $tt->slug, 'no-' ) ) $native = true; else $declared = true;
 			}
+			/* (owner 19.11: other sequencers) which DAW the creator chose — only Ableton projects are opened and checked inside */
+			$GLOBALS['ss_cr_daw'] = '';
+			foreach ( (array) $val( 'daw' ) as $t ) { $tt = is_numeric( $t ) ? get_term( (int) $t ) : null; if ( $tt && ! is_wp_error( $tt ) ) { $GLOBALS['ss_cr_daw'] = $tt->slug; break; } }
 			ss_cr_check_zip( $f['tmp_name'], $fmt, $native, $declared, $err, $rep );
 		}
 	}
