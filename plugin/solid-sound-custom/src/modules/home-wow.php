@@ -15,7 +15,7 @@ function ss_wow_on() {
 }
 
 function ss_wow_items() {
-	$c = get_transient( 'ss_wow_items' );
+	$c = get_transient( 'ss_wow_items2' );
 	if ( is_array( $c ) ) return $c;
 	$keys = function_exists( 'ss_ap_keys' ) ? ss_ap_keys() : array();
 	$val  = function ( $k, $pid ) use ( $keys ) {
@@ -34,16 +34,18 @@ function ss_wow_items() {
 		$txt = $p->post_excerpt . ' ' . $p->post_content . ' ' . ( ! empty( $keys['mp3'] ) && function_exists( 'get_field' ) ? (string) get_field( $keys['mp3'], $p->ID, false ) : '' );
 		if ( preg_match( '#https?://[^\s"\'\]]+?\.mp3#i', $txt, $m ) ) $mp3 = $m[0];
 		$g = wp_get_post_terms( $p->ID, 'product-genre', array( 'fields' => 'names' ) );
+		$f = wp_get_post_terms( $p->ID, 'product-format', array( 'fields' => 'slugs' ) ); /* 19.11: music / templates / presets — the DJ card shows music */
 		$out[] = array(
 			'p' => $p->ID, 't' => get_the_title( $p ), 'i' => $img, 'u' => get_permalink( $p ), 's' => $mp3,
 			'g' => is_wp_error( $g ) ? '' : strtolower( implode( '|', $g ) ),
 			'b' => (int) preg_replace( '/\D.*/', '', $val( 'bpm', $p->ID ) ), 'k' => $val( 'key', $p->ID ),
+			'f' => is_wp_error( $f ) ? '' : implode( '|', $f ),
 		);
 	}
-	set_transient( 'ss_wow_items', $out, HOUR_IN_SECONDS );
+	set_transient( 'ss_wow_items2', $out, HOUR_IN_SECONDS );
 	return $out;
 }
-add_action( 'save_post_product', function () { delete_transient( 'ss_wow_items' ); } );
+add_action( 'save_post_product', function () { delete_transient( 'ss_wow_items2' ); } );
 
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_home_is_app_page' ) || ! ss_home_is_app_page() || ! ss_wow_on() ) return;
@@ -237,7 +239,7 @@ function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.
   wall.addEventListener('click',function(e){var a=e.target.closest('a[data-n]');if(!a)return;if(play(W[+a.getAttribute('data-n')],a))e.preventDefault()});
 };
  wall.classList.add('stage');requestAnimationFrame(function(){wall.classList.add('on')}); /* owner 19.11: blue stage instead of the cover wall (go0 keeps the old wall code) */
- match(ssx)}
+ match(ssx);sides(ssx)}
 /* "N templates match" in the first card; updates only on the visitor's own clicks/typing (no observers) */
 function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;var acts=card.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)card.insertBefore(box,acts);else card.appendChild(box);var last='';
  function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=null;[].forEach.call(card.querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*(key|тональн|tonart|tonali|clave|tom\b)/i.test(l.textContent))kc=d.querySelector('.chips')});if(!kc)kc=card.querySelectorAll('.f.row .chips')[0]; /* by its label, not by position (owner 19.11 moved Key) */var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
@@ -249,6 +251,35 @@ function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;va
  /* (owner 19.11) each cover plays its own template in the main player; the rest of the card plays the first one */
  box.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.mx');var x=m&&box._top?box._top[+m.getAttribute('data-k')]:box._x;if(m)e.stopPropagation();if(!x)return;
   [].forEach.call(box.querySelectorAll('.mx'),function(y){y.classList.toggle('pl',y===m||(!m&&y.getAttribute('data-k')==='0'))});if(!play(x))location.href=x.u});box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var m=e.target.closest&&e.target.closest('.mx');(m||box).click()}});run()}
+/* (owner 19.11 «как первую страницу слайдера — для всех вкладок, где уместно») the same square card on the right for
+   Finishing (client before/after examples), DJ set (music by genre / BPM / key) and Video (our video work).
+   Covers are buttons: audio plays in the main player, video opens the video window. Releasing / Just starting / More: not needed. */
+function wave(p){p=String(p||'');var b='',n=Math.min(p.length,48);for(var i=0;i<n;i++){var h=Math.max(3,(p.charCodeAt(i)-48)*0.9);b+='<rect x="'+(i*5+6)+'" y="'+((60-h)/2+20)+'" width="3" height="'+h+'" rx="1.5"/>'}
+ return 'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+(n*5+12)+' 100" preserveAspectRatio="none"><rect width="100%" height="100%" fill="#101827"/><g fill="#F59E0B">'+b+'</g></svg>')}
+function side(left,data){if(!left||left.querySelector('.ssw-match'))return;var acts=left.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)left.insertBefore(box,acts);else left.appendChild(box);var last='',cur=[];
+ function run(){var d=data();if(!d||!d.items.length){box.style.display='none';return}box.style.display='';cur=d.items;
+  var h='<span class="cv">'+d.items.map(function(x,i){return '<span class="mx" data-k="'+i+'" role="button" tabindex="0" title="'+esc(x.t)+'" aria-label="'+esc((d.verb||'Play')+' '+x.t)+'"><img src="'+esc(x.i)+'" alt="" width="38" height="38" style="object-fit:cover"><i aria-hidden="true"></i></span>'}).join('')+'</span><span><b>'+esc(d.b)+'</b><small>'+esc(d.s)+'</small></span>';
+  if(h!==last){last=h;box.innerHTML=h}}
+ box.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.mx');if(m)e.stopPropagation();var k=m?+m.getAttribute('data-k'):0,x=cur[k];if(!x)return;
+  [].forEach.call(box.querySelectorAll('.mx'),function(y){y.classList.toggle('pl',+y.getAttribute('data-k')===k)});x.go()});
+ box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var m=e.target.closest&&e.target.closest('.mx');(m||box).click()}});
+ function later(){requestAnimationFrame(run)}left.addEventListener('click',later);left.addEventListener('input',later);left.addEventListener('change',later);run()}
+function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[];
+ var on=function(left,i){var f=left.querySelectorAll('.f')[i];return ((f&&f.querySelector('.chips .on'))||{}).textContent||''};
+ /* Finishing a track: real client tracks, before -> after, filtered by the service chosen */
+ side(L[1],function(){var ex=AB.filter(function(e){return e.mp3});if(!ex.length)return null;var c=on(L[1],0),g=/^master/i.test(c)?'master':(/mix/i.test(c)?'mix':'');
+  var l=ex.filter(function(e){return !g||e.g===g});ex.forEach(function(e){if(l.length<3&&l.indexOf(e)<0)l.push(e)});l=l.slice(0,3);
+  return {b:'Hear before → after',s:l.length+' client tracks — tap to listen',items:l.map(function(e){var t=String(e.title||'').replace(/\s*—\s*client track$/i,'');return {t:t,i:wave(e.pa||e.pb),go:function(){if(window.SSP)try{SSP.play({pid:'ab-'+e.id,src:e.mp3,t:t+' — before → after',a:'Solid Sound studio',i:'',u:''},null,null)}catch(x){}}}})}});
+ /* DJ set: music by genre / BPM / key, like the templates card */
+ side(L[3],function(){var M=W.filter(function(x){return x.s&&/music/.test(x.f||'')});if(!M.length)return null;var g=on(L[3],0).trim().toLowerCase(),bi=L[3].querySelector('input[type=number]'),b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0,kc=null;
+  [].forEach.call(L[3].querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*key/i.test(l.textContent))kc=d.querySelector('.chips')});var k=((kc&&kc.querySelector('.on'))||{}).textContent||'';k=k.trim();
+  var ok=M.filter(function(x){return (!g||(x.g||'').indexOf(g)>-1)&&(!b||!x.b||Math.abs(x.b-b)<=6)&&(!k||k==='Any'||!x.k||x.k.toLowerCase().indexOf(k.toLowerCase())===0)});
+  var close=!ok.length,l=(close?M.filter(function(x){return !g||(x.g||'').indexOf(g)>-1}):ok);if(!l.length)l=M;
+  return {b:close?'Closest to your choice':(ok.length+(ok.length===1?' track matches':' tracks match')),s:[g&&g.replace(/\b\w/g,function(c){return c.toUpperCase()}),b&&b+' BPM',k&&k!=='Any'&&k].filter(Boolean).join(' · ')+' — tap to listen',items:l.slice(0,3).map(function(x){return {t:x.t,i:x.i,go:function(){if(!play(x))location.href=x.u}}})}});
+ /* Video & ads: our work for picture — opens the video */
+ side(L[4],function(){var v=AB.filter(function(e){return e.yt});if(!v.length)return null;
+  return {verb:'Watch',b:'Our work for video',s:v.length+' examples — tap to watch',items:v.slice(0,3).map(function(e){var id=String(e.yt).split('/').pop().split('?')[0];return {t:e.title,i:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg',go:function(){if(window.ssYtOpen)ssYtOpen(id,e.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')}}})}});
+}
 function init(){var s=document.querySelector('#ss-app .ssx');if(!s)return false;build(s);return true}
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
 })();</script>
