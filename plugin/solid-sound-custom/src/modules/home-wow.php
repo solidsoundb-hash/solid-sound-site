@@ -321,6 +321,14 @@ body.ss-wow #ss-app .ssx .hp-card .cta{margin-top:6px;justify-content:center;tex
 .ss-why small{color:#94A3B8;font:400 14px/1.45 Roboto,sans-serif}
 @media(max-width:1000px){.ss-why{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.ss-why{gap:8px}.ss-why .w{padding:12px}.ss-why b{font-size:14.5px}.ss-why small{font-size:13px}.ss-why .i{width:38px;height:38px}}
+/* Free — the first tab (owner 19.11): everything free as tiles */
+body.ss-wow #ss-app .ssx .fz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 0}
+body.ss-wow #ss-app .ssx .fz-t{display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);text-decoration:none!important;transition:border-color .15s,background .15s}
+body.ss-wow #ss-app .ssx .fz-t:hover{border-color:rgba(245,158,11,.45);background:rgba(245,158,11,.06)}
+body.ss-wow #ss-app .ssx .fz-t .i{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(52,211,153,.14);color:#34D399;margin-bottom:4px}
+body.ss-wow #ss-app .ssx .fz-t b{color:#fff;font:700 14.5px "Exo 2",sans-serif}
+body.ss-wow #ss-app .ssx .fz-t small{color:#94A3B8;font:400 12.5px/1.35 Roboto,sans-serif}
+@media(max-width:1000px){body.ss-wow #ss-app .ssx .fz-tiles{grid-template-columns:1fr 1fr}body.ss-wow #ss-app .ssx .fz-t{padding:10px}body.ss-wow #ss-app .ssx .fz-t small{display:none}}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;

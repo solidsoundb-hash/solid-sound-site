@@ -41,7 +41,8 @@ function put(){if(document.querySelector('.ss-fz'))return true;var h1=document.q
  var d=document.createElement('div');d.innerHTML=H;var s=d.firstChild;
  var box=h1.closest('.wpb_wrapper,.w-text,.vc_column-inner')||h1.parentNode;var after=box.querySelector('p')||h1;after.insertAdjacentElement('afterend',s);
  s.addEventListener('toggle',function(e){if(!e.target.open)return;[].forEach.call(s.querySelectorAll('details[open]'),function(x){if(x!==e.target)x.open=false})},true);
- s.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[href^="#"]');if(!l)return;var t=document.getElementById(l.getAttribute('href').slice(1));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})});return true}
+ s.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[href^="#"]');if(!l)return;var t=document.getElementById(l.getAttribute('href').slice(1));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})});if(location.hash){var t=document.getElementById(location.hash.slice(1));if(t)setTimeout(function(){t.scrollIntoView({behavior:'smooth',block:'start'})},300)} /* links from the home «Free» tab */
+ return true}
 if(!put()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(put())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
 })();</script>
 	<?php
