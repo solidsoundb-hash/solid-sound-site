@@ -10,7 +10,8 @@
  *    Ableton project: from audio it was right 1 time of 5 on our own previews, so we do not guess it);
  *  - AI (Cloudflare, ai-creator.php): genres, moods and tags chosen ONLY from the site's lists, then the description
  *    (the existing 3-version writer) if it is still empty.
- * Filled fields get a small "auto" mark; the creator checks and changes anything. Nothing is sent before "Send for review".
+ * Then description (the «Detailed» AI version), price (the middle of similar products) and, with no cover, an AI cover are
+ * filled too — owner: «чтобы автор мог сделать всё в два клика». Filled fields get a small "auto" mark; the creator checks and changes anything. Nothing is sent before "Send for review".
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -24,8 +25,9 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-wm-drop.ss-ff>b{display:block;font-size:20px!important;color:#fff}
 #solid-sound-upload-form .ss-wm-drop.ss-ff>small{display:block;max-width:560px;margin:6px auto 0;color:#CBD5E1;font-size:14.5px;line-height:1.5}
 #ss-ff-st{display:none;margin:10px 0 0;padding:12px 14px;border-radius:12px;background:#0b1220;border:1px solid rgba(255,255,255,.08);color:#CBD5E1;font-size:14px}
-#ss-ff-st.on{display:block}#ss-ff-st li{list-style:none;margin:3px 0}#ss-ff-st ul{margin:0;padding:0}
+#ss-ff-st.on{display:block}#ss-ff-st li{list-style:none;margin:3px 0}#ss-ff-st li[data-k=ready]{margin-top:8px;color:#fff;font-weight:700}#ss-ff-st ul{margin:0;padding:0}
 #ss-ff-st .ok:before{content:"✓ ";color:#34D399;font-weight:800}#ss-ff-st .wt:before{content:"";display:inline-block;width:12px;height:12px;margin-right:6px;border:2px solid #334155;border-top-color:#F59E0B;border-radius:50%;animation:ssff 1s linear infinite;vertical-align:-2px}
+#solid-sound-upload-form .ss-ff-go{animation:ssffgo 1.6s ease-in-out 3}@keyframes ssffgo{50%{box-shadow:0 0 0 6px rgba(245,158,11,.35)}}
 #ss-ff-st .no:before{content:"– ";color:#64748B}@keyframes ssff{to{transform:rotate(360deg)}}
 #solid-sound-upload-form .ss-ff-auto>.acf-label label:after,#solid-sound-upload-form p.ss-ff-auto .ss-wm-l:after{content:"auto";margin-left:8px;padding:1px 7px;border-radius:6px;background:rgba(52,211,153,.14);color:#34D399;font:700 11px "Exo 2",sans-serif;vertical-align:2px}
 </style>
@@ -91,8 +93,19 @@ function ai(){if(aiRan||!(done.zip||done.mp3))return;if(!done.zip&&lastZipName)r
  fetch(AJAX,{method:'POST',credentials:'same-origin',body:fd}).then(function(r){return r.json()}).then(function(j){if(!(j&&j.success)){line('ai','no','AI: '+((j&&j.data&&j.data.m)||'not available now')+' — pick genre and mood yourself.');return}
   var d=j.data,got=[];['genre','mood','tag'].forEach(function(n){(d[n]||[]).forEach(function(v){if(pick(n,function(t){return t===norm(v)},true))got.push(v)})});
   line('ai',got.length?'ok':'no',got.length?'AI picked: '+got.join(', '):'AI was not sure — pick genre and mood yourself.');
-  var desc=q('[name=product_description]');if(desc&&!desc.value.trim()){var b=qa('.ss-aic-b').filter(function(x){return /write with ai/i.test(x.textContent)})[0];if(b){line('desc','wt','AI is writing 3 descriptions — choose one below.');b.click();setTimeout(function(){line('desc','ok','Descriptions are ready under the Description field.')},9000)}}
- }).catch(function(){line('ai','no','AI is busy — pick genre and mood yourself.')})}
+  autopilot();
+ }).catch(function(){line('ai','no','AI is busy — pick genre and mood yourself.');autopilot()})}
+/* ---------- «two clicks» (owner 19.11): description, price and cover are filled too; the creator only checks and sends ---------- */
+function waitFor(test,ms){return new Promise(function(res){var t0=Date.now();(function tick(){var r=test();if(r)return res(r);if(Date.now()-t0>ms)return res(null);setTimeout(tick,400)})()})}
+var auto=false;
+function autopilot(){if(auto)return;auto=true;var jobs=[];
+ var desc=q('[name=product_description]'),nm=q('[name=product_name]');
+ if(desc&&!desc.value.trim()&&nm&&nm.value.trim()){var b=qa('.ss-aic-b').filter(function(x){return /write with ai|new versions/i.test(x.textContent)})[0];if(b){line('desc','wt','AI is writing the description…');b.click();
+  jobs.push(waitFor(function(){var u=qa('.ss-aic-pick .ss-aic-card .use:not([disabled])');return u.length>=2||(u.length&&!qa('.ss-aic-pick .ss-aic-card .t').some(function(t){return t.textContent==='…'}))?u:null},45000).then(function(u){if(!u){line('desc','no','Description: AI is slow — write it or press “Write with AI”.');return}if(desc.value.trim())return;var pick=u.filter(function(x){return /detailed/i.test(x.closest('.ss-aic-card').querySelector('b').textContent)})[0]||u[0];pick.click();mark(desc.closest('p'));line('desc','ok','Description written — 2 other versions are under it if you prefer.')}))}}
+ var pr=q('[name=product_price]');if(pr&&!pr.value){jobs.push(waitFor(function(){var c=qa('.ss-aic-pr .ss-aic-c');return c.length?c:null},8000).then(function(c){if(!c||pr.value)return;(c[Math.floor((c.length-1)/2)]||c[0]).click();mark(pr.closest('p'));line('price','ok','Price set like similar products: '+pr.value+' — change it if you want.')}))}
+ var img=q('[name=product_image]');if(img&&!(img.files&&img.files.length)){var cb=qa('.ss-aic-b').filter(function(x){return /cover with ai/i.test(x.textContent)})[0];if(cb&&nm&&nm.value.trim()){line('cover','wt','No cover yet — AI is painting one (10–30 s)…');cb.click();
+  jobs.push(waitFor(function(){var bx=q('.ss-aic-cv.on');return bx&&bx.querySelector('.th .tb')?bx:null},60000).then(function(bx){if(!bx){line('cover','no','Cover: AI is slow — drop your own picture or try again.');return}if(img.files&&img.files.length)return;setTimeout(function(){var u=bx.querySelector('.use');if(u)u.click();line('cover','ok','AI made a cover — 2 more options and your text are above, or drop your own picture.')},700)}))}}
+ Promise.all(jobs).then(function(){line('ready','ok','Ready. Check the form and press “Send for review”.');var sb=q('.ss-wm-save');if(sb)sb.classList.add('ss-ff-go')})}
 /* ---------- layout: files first ---------- */
 function init(){form=document.getElementById('solid-sound-upload-form');if(!form||form.dataset.ff)return !!form;var drop=q('.ss-wm-drop'),files=q('.ss-wm-files'),body=q('.ss-wm-body');if(!drop||!body)return false;form.dataset.ff=1;
  drop.classList.add('ss-ff');drop.querySelector('b').textContent='Drop your files — we fill in the rest';var sm=drop.querySelector('small');if(sm)sm.textContent='Project ZIP, MP3 preview and cover. We read the DAW, version, tempo, key (Ableton), plugins and length, and AI suggests genre, mood, tags and a description. You check and change anything.';
