@@ -175,9 +175,6 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
 /* (owner 19.11 «как у профи сделай») computer only: text menu in one line, compact search, tabs as an underline row,
    one surface instead of boxes in boxes. Phones keep their own layout. */
 @media(min-width:1001px){
-body.ss-wow #ss-app header nav.ss-nav svg{display:none!important}
-body.ss-wow #ss-app header nav.ss-nav a,body.ss-wow #ss-app header nav.ss-nav button{flex-direction:row!important;gap:4px!important;padding:8px 12px!important;font-size:15px!important;font-weight:600!important;letter-spacing:0!important;color:#CBD5E1!important;min-width:0!important;height:auto!important}
-body.ss-wow #ss-app header nav.ss-nav a:hover,body.ss-wow #ss-app header nav.ss-nav button:hover{color:#fff!important}
 body.ss-wow #ss-app header form{max-width:440px!important;height:42px!important;border-radius:10px!important}
 body.ss-wow #ss-app .ssx{border:0!important;box-shadow:0 30px 80px rgba(0,0,0,.45)!important;background:linear-gradient(180deg,#141C2E,#0F1524)!important;border-radius:16px!important}
 body.ss-wow #ss-app .ssx .tasks{gap:4px!important;border-bottom:1px solid rgba(255,255,255,.08)!important;padding-bottom:0!important}
@@ -209,9 +206,19 @@ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(4):not(.ssw-mat
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(5):not(.ssw-match):not(.acts){grid-row:5!important;order:0!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:nth-child(6):not(.ssw-match):not(.acts){grid-row:6!important;order:0!important}
 }
-/* (owner 19.11 «графит метча») the match card in the site's navy instead of graphite */
-body.ss-wow #ss-app .ssx .ssw-match{background:linear-gradient(180deg,#18233D,#111A2E)!important;border-color:rgba(245,158,11,.35)!important}
-body.ss-wow #ss-app .ssx .ssw-match:hover{background:linear-gradient(180deg,#1C2947,#131D33)!important}
+/* (owner 19.11) covers in the match card are buttons: a play mark on hover, an orange ring on the one playing */
+body.ss-wow #ss-app .ssx .ssw-match .mx{position:relative;display:block;cursor:pointer;border-radius:10px;line-height:0}
+body.ss-wow #ss-app .ssx .ssw-match .mx:not(:first-child){margin-left:-8px}
+body.ss-wow #ss-app .ssx .ssw-match .mx img{margin:0!important}
+body.ss-wow #ss-app .ssx .ssw-match .mx i{position:absolute;inset:0;border-radius:inherit;background:rgba(0,0,0,.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F59E0B' d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/42% no-repeat;opacity:0;transition:opacity .15s}
+body.ss-wow #ss-app .ssx .ssw-match .mx:hover i,body.ss-wow #ss-app .ssx .ssw-match .mx:focus-visible i,body.ss-wow #ss-app .ssx .ssw-match .mx.pl i{opacity:1}
+body.ss-wow #ss-app .ssx .ssw-match .mx.pl{box-shadow:0 0 0 2px #F59E0B}
+@media(min-width:1001px){body.ss-wow #ss-app .ssx .ssw-match .mx:not(:first-child){margin-left:0}body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match .mx img{width:100%!important;height:auto!important;aspect-ratio:1!important}}
+@media(hover:none){body.ss-wow #ss-app .ssx .ssw-match .mx i{opacity:.85;background-size:48%}}
+/* (owner 19.11) background blocks: square corners, and every section below gets the same panel as the first one */
+.ssw-wall{border-radius:0!important}
+body.ss-wow #ss-app :is(#shop,#services,#examples,#dashboard,#reviews,#free){position:relative;margin:16px -12px 0!important;padding-left:12px!important;padding-right:12px!important;background:radial-gradient(55% 70% at 50% -10%,rgba(59,130,246,.30),transparent 70%),radial-gradient(35% 55% at 12% 0%,rgba(37,99,235,.22),transparent 72%),radial-gradient(35% 55% at 88% 0%,rgba(29,78,216,.22),transparent 72%),radial-gradient(70% 40% at 50% 100%,rgba(30,58,138,.28),transparent 75%),linear-gradient(180deg,#0e1a36 0%,#0b1226 55%,#0a0f1f 100%);border:1px solid rgba(96,165,250,.10);border-radius:0}
+body.ss-wow #ss-app :is(#shop,#services,#examples,#dashboard,#reviews,#free):before{content:"";position:absolute;left:8%;right:8%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(147,197,253,.45),transparent);pointer-events:none}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -236,10 +243,12 @@ function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;va
  function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=null;[].forEach.call(card.querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*(key|тональн|tonart|tonali|clave|tom\b)/i.test(l.textContent))kc=d.querySelector('.chips')});if(!kc)kc=card.querySelectorAll('.f.row .chips')[0]; /* by its label, not by position (owner 19.11 moved Key) */var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
  function run(){var s=pick(),ok=W.filter(function(x){return (!s.g||x.g.split('|').indexOf(s.g)>-1)&&(!s.b||!x.b||Math.abs(x.b-s.b)<=6)&&(!s.k||s.k==='Any'||!x.k||x.k.toLowerCase().indexOf(s.k.toLowerCase())===0)});
   var close=!ok.length;var list=close?W.filter(function(x){return !s.g||x.g.split('|').indexOf(s.g)>-1}):ok;if(!list.length)list=W;var top=list.slice(0,3);
-  var h='<span class="cv">'+top.map(function(x){return '<img src="'+esc(x.i)+'" alt="" width="38" height="38">'}).join('')+'</span><span><b>'+(close?TR.cl:ok.length+(ok.length===1?TR.one:TR.many))+'</b><small>'+esc([s.g&&s.g.replace(/\b\w/g,function(c){return c.toUpperCase()}),s.b&&s.b+' BPM',s.k].filter(Boolean).join(' · '))+TR.tap+'</small></span>';
-  if(h!==last){last=h;box.innerHTML=h}box._x=top[0]}
+  var h='<span class="cv">'+top.map(function(x,i){return '<span class="mx" data-k="'+i+'" role="button" tabindex="0" title="'+esc(x.t)+'" aria-label="Play '+esc(x.t)+'"><img src="'+esc(x.i)+'" alt="" width="38" height="38"><i aria-hidden="true"></i></span>'}).join('')+'</span><span><b>'+(close?TR.cl:ok.length+(ok.length===1?TR.one:TR.many))+'</b><small>'+esc([s.g&&s.g.replace(/\b\w/g,function(c){return c.toUpperCase()}),s.b&&s.b+' BPM',s.k].filter(Boolean).join(' · '))+TR.tap+'</small></span>';
+  if(h!==last){last=h;box.innerHTML=h}box._x=top[0];box._top=top}
  function later(){requestAnimationFrame(run)}card.addEventListener('click',later);card.addEventListener('input',later);card.addEventListener('change',later);
- box.addEventListener('click',function(){if(box._x&&!play(box._x))location.href=box._x.u});box.addEventListener('keydown',function(e){if(e.key==='Enter')box.click()});run()}
+ /* (owner 19.11) each cover plays its own template in the main player; the rest of the card plays the first one */
+ box.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.mx');var x=m&&box._top?box._top[+m.getAttribute('data-k')]:box._x;if(m)e.stopPropagation();if(!x)return;
+  [].forEach.call(box.querySelectorAll('.mx'),function(y){y.classList.toggle('pl',y===m||(!m&&y.getAttribute('data-k')==='0'))});if(!play(x))location.href=x.u});box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var m=e.target.closest&&e.target.closest('.mx');(m||box).click()}});run()}
 function init(){var s=document.querySelector('#ss-app .ssx');if(!s)return false;build(s);return true}
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
 })();</script>
