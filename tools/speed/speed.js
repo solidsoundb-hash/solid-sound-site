@@ -6,13 +6,30 @@ const fs = require('fs');
 const path = require('path');
 
 const OUT = process.env.SPEED_OUT || 'speed';
-const PAGES = (process.env.SPEED_PAGES || '/en/,/en/all-products/,/product/infinity/,/en/wiki/').split(',');
+const PAGES = (process.env.SPEED_PAGES || '/en/,/en/all-products/,/product/infinity/,/en/studio-calculator/,/en/wiki/').split(',');
 const BASE = 'https://solid-sound.net';
 const KEY = process.env.PSI_KEY || '';
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 const T0 = Date.now(); const BUDGET = (+(process.env.SPEED_BUDGET_MIN || 14)) * 60000; // stop measuring in time, save what we have
 
+// No PSI_KEY (19.11.2026): Lighthouse runs right here on the GitHub robot (same Lighthouse as PageSpeed, own Chrome).
+async function local(url, strategy) {
+  try {
+    const lh = (await import('lighthouse')).default; const cl = await import('chrome-launcher');
+    const chrome = await cl.launch({ chromePath: process.env.CHROME_PATH || '/usr/bin/google-chrome', chromeFlags: ['--headless=new', '--no-sandbox'] });
+    try {
+      const cfg = strategy === 'desktop' ? (await import('lighthouse/core/config/desktop-config.js')).default : undefined;
+      const r = await lh(url, { port: chrome.port, onlyCategories: ['performance'], output: 'json', logLevel: 'error' }, cfg);
+      const L = r.lhr; const a = L.audits; const n = (k) => (a[k] && a[k].numericValue) || 0;
+      if (L.runtimeError) return { error: L.runtimeError.message.slice(0, 200) };
+      return { score: Math.round((L.categories.performance.score || 0) * 100), lcp: Math.round(n('largest-contentful-paint')), fcp: Math.round(n('first-contentful-paint')),
+        tbt: Math.round(n('total-blocking-time')), cls: +(n('cumulative-layout-shift')).toFixed(3), kb: Math.round(n('total-byte-weight') / 1024),
+        requests: ((a['network-requests'] && a['network-requests'].details && a['network-requests'].details.items) || []).length, ttfb: Math.round(n('server-response-time')), field: 'lighthouse на роботе' };
+    } finally { await chrome.kill(); }
+  } catch (e) { return { error: 'lighthouse: ' + String(e.message || e).slice(0, 180) }; }
+}
 async function psi(url, strategy) {
+  if (!KEY || process.env.SPEED_LOCAL === '1') return local(url, strategy);
   const q = new URLSearchParams({ url, strategy, category: 'performance' });
   if (KEY) q.set('key', KEY);
   let last = '';
@@ -58,15 +75,15 @@ async function psi(url, strategy) {
   }
   const sec = (ms) => (ms / 1000).toFixed(1) + ' с';
   const L = [`# Скорость сайта — ${date.slice(0, 16).replace('T', ' ')} UTC`, '',
-    'Google PageSpeed (Lighthouse). Оценка 90–100 — отлично, 50–89 — средне, ниже 50 — плохо. «Главный блок» (LCP) — когда видно основное: норма до 2.5 с.', ''];
+    (KEY ? 'Google PageSpeed (Lighthouse).' : 'Lighthouse на роботе GitHub (ключа PageSpeed нет).') + ' Оценка 90–100 — отлично, 50–89 — средне, ниже 50 — плохо. «Главный блок» (LCP) — когда видно основное: норма до 2.5 с.', ''];
   const measured = Object.values(results).filter(r => !r.error).length;
   L.push(!measured ? '## ⏸ Ничего не измерено — см. причину в таблице\n' : warn.length ? '## ⚠️ Стало хуже / проблемы\n\n' + warn.map(w => '- ' + w).join('\n') + '\n' : '## ✅ Скорость не ухудшилась\n');
-  L.push('| Страница | Устройство | Оценка | Главный блок (LCP) | Первый показ | Блокировка | Сдвиги (CLS) | Вес | Запросов |', '|---|---|---|---|---|---|---|---|---|');
+  L.push('| Страница | Устройство | Оценка | Главный блок (LCP) | Первый показ | Блокировка | Сдвиги (CLS) | Вес | Запросов | Ответ сервера |', '|---|---|---|---|---|---|---|---|---|---|');
   for (const [k, r] of Object.entries(results)) {
     const [p, s] = k.split('|'); const o = prev[k];
     const d = (o && !o.error && !r.error) ? ` (${r.score - o.score >= 0 ? '+' : ''}${r.score - o.score})` : '';
     L.push(r.error ? `| ${p} | ${s === 'mobile' ? 'телефон' : 'компьютер'} | не измерено: ${r.error.replace(/\|/g, '/')} |||||||` :
-      `| ${p} | ${s === 'mobile' ? 'телефон' : 'компьютер'} | **${r.score}**${d} | ${sec(r.lcp)} | ${sec(r.fcp)} | ${r.tbt} мс | ${r.cls} | ${r.kb} КБ | ${r.requests} |`);
+      `| ${p} | ${s === 'mobile' ? 'телефон' : 'компьютер'} | **${r.score}**${d} | ${sec(r.lcp)} | ${sec(r.fcp)} | ${r.tbt} мс | ${r.cls} | ${r.kb} КБ | ${r.requests} | ${r.ttfb != null ? sec(r.ttfb) : '—'} |`);
   }
   fs.writeFileSync(path.join(OUT, 'latest.md'), L.join('\n') + '\n');
   fs.writeFileSync(path.join(OUT, 'latest.json'), JSON.stringify({ date, results, warn }, null, 1));
