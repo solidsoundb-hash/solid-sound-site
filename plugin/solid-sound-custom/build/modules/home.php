@@ -33,15 +33,6 @@ function ss_home_t( $en ) {
 		' — tap to listen' => array( 'ua' => ' — натисніть, щоб послухати', 'de' => ' — zum Anhören tippen', 'fr' => ' — touchez pour écouter', 'es' => ' — toca para escuchar', 'it' => ' — tocca per ascoltare', 'pt' => ' — toque para ouvir' ),
 		"Editor's pick" => array( 'ua' => 'Вибір редакції', 'de' => 'Empfehlung', 'fr' => 'Choix de l’équipe', 'es' => 'Elección del editor', 'it' => 'Scelta della redazione', 'pt' => 'Escolha do editor' ),
 		'Best seller' => array( 'ua' => 'Хіт продажів', 'de' => 'Bestseller', 'fr' => 'Meilleure vente', 'es' => 'Más vendido', 'it' => 'Più venduto', 'pt' => 'Mais vendido' ),
-		'Templates' => array( 'ua' => 'Шаблони', 'de' => 'Vorlagen', 'fr' => 'Modèles', 'es' => 'Plantillas', 'it' => 'Template', 'pt' => 'Modelos' ),
-		'Presets' => array( 'ua' => 'Пресети', 'de' => 'Presets', 'fr' => 'Presets', 'es' => 'Presets', 'it' => 'Preset', 'pt' => 'Presets' ),
-		'Music' => array( 'ua' => 'Музика', 'de' => 'Musik', 'fr' => 'Musique', 'es' => 'Música', 'it' => 'Musica', 'pt' => 'Música' ),
-		'Mixing & Mastering' => array( 'ua' => 'Зведення і мастеринг', 'de' => 'Mixing & Mastering', 'fr' => 'Mixage & mastering', 'es' => 'Mezcla y máster', 'it' => 'Mix & master', 'pt' => 'Mixagem e master' ),
-		'Free' => array( 'ua' => 'Безкоштовно', 'de' => 'Gratis', 'fr' => 'Gratuit', 'es' => 'Gratis', 'it' => 'Gratis', 'pt' => 'Grátis' ),
-		'New this week' => array( 'ua' => 'Новинка тижня', 'de' => 'Neu diese Woche', 'fr' => 'Nouveauté de la semaine', 'es' => 'Novedad de la semana', 'it' => 'Novità della settimana', 'pt' => 'Novidade da semana' ),
-		'Listen' => array( 'ua' => 'Слухати', 'de' => 'Anhören', 'fr' => 'Écouter', 'es' => 'Escuchar', 'it' => 'Ascolta', 'pt' => 'Ouvir' ),
-		'View product' => array( 'ua' => 'Детальніше', 'de' => 'Ansehen', 'fr' => 'Voir', 'es' => 'Ver', 'it' => 'Vedi', 'pt' => 'Ver' ),
-		'Add to cart' => array( 'ua' => 'У кошик', 'de' => 'In den Warenkorb', 'fr' => 'Ajouter au panier', 'es' => 'Añadir al carrito', 'it' => 'Aggiungi al carrello', 'pt' => 'Adicionar ao carrinho' ),
 		'Trending' => array( 'ua' => 'У тренді', 'de' => 'Im Trend', 'fr' => 'Tendance', 'es' => 'Tendencia', 'it' => 'Di tendenza', 'pt' => 'Em alta' ),
 	);
 	$l = function_exists( 'ss_home_lang' ) ? ss_home_lang() : '';

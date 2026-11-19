@@ -267,7 +267,7 @@ document.addEventListener('click',function(e){
       try{ if(window.gtag) gtag('event','select_task',{task:(tabs[i]||{}).textContent}); }catch(x){} }
   }
   /* (owner 19.11: «сделай его интерактивным, пускай листается сам») the slider turns by itself every 7 s, looping, with a
-     progress line under the active task. It waits while it is off screen or the tab is
+     progress line under the active task. It waits while the pointer is over it, while it is off screen or the tab is
      hidden, and stops for good as soon as the visitor touches it (tap, click, key, swipe). Off with reduced motion. */
   (function(){
     var T=7000, timer=0, stopped=false, seen=true, hold=false, cur=null;
@@ -279,7 +279,8 @@ document.addEventListener('click',function(e){
     function stop(){ if(stopped) return; stopped=true; clear(); var r=el(); if(r){ r.classList.remove('ss-auto'); r.classList.remove('ss-hold'); } }
     function wire(r){ if(r===cur) return; cur=r;
       ['pointerdown','keydown','wheel','touchstart'].forEach(function(t){ r.addEventListener(t,stop,{passive:true}); });
-      /* owner 19.11: «курсор не должен останавливать слайдер» — hovering does not pause it any more */
+      r.addEventListener('mouseenter',function(){ if(stopped) return; hold=true; r.classList.add('ss-hold'); clear(); });
+      r.addEventListener('mouseleave',function(){ if(stopped) return; hold=false; r.classList.remove('ss-hold'); arm(); });
       if('IntersectionObserver' in window) new IntersectionObserver(function(es){ seen=es[0].isIntersecting; if(seen) arm(); else clear(); },{threshold:0.35}).observe(r);
       setTimeout(arm, 1500); }
     document.addEventListener('visibilitychange',function(){ if(document.hidden) clear(); else arm(); });
