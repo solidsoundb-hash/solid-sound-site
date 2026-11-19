@@ -162,3 +162,4 @@
 157: owner 19.11 «верни обратно главную! переделать слайдер на алл продуктс»
 158: owner 19.11 «давай графит и на пк растяни слайдер»
 159: owner 19.11 «Выкладывай» — home picker: width 1200, labels column, aligned controls, buttons bottom-right, same frame on every tab
+160: owner 19.11 «Выкладывай» — picker fits laptop, aligned pairs
