@@ -70,8 +70,10 @@ function show(zipName,es,r){box.textContent='';var h=el('div','h');h.appendChild
  var dl=W('dl'),pk=[];if(cnt.als)pk.push({text:'Ableton project',act:choice(dl,function(t){return /ableton|project|als/.test(t)})});if(cnt.wav)pk.push({text:'Samples ('+cnt.wav+')',act:choice(dl,function(t){return /sample|wav|audio|stem/.test(t)})});if(cnt.mid)pk.push({text:'MIDI ('+cnt.mid+')',act:choice(dl,function(t){return /midi/.test(t)})});if(cnt.pre)pk.push({text:'Presets ('+cnt.pre+')',act:choice(dl,function(t){return /preset/.test(t)})});
  row('Inside',pk);
  all.addEventListener('click',function(){[].forEach.call(box.querySelectorAll('.r'),function(rw){var bs=[].filter.call(rw.querySelectorAll('.c'),function(b){return b._act});(rw.querySelector('.c.on')?[]:(bs.length&&bs[0].parentNode.querySelector('.l').textContent==='Name'?bs.slice(0,1):(/^(BPM|Key)$/.test(rw.querySelector('.l').textContent)?bs.slice(0,1):bs))).forEach(function(b){b.click()})});all.textContent='✓ Added — check and edit';});
- box.classList.add('on')}
-function run(file){if(!/\.zip$/i.test(file.name))return;if(!('DecompressionStream' in window))return;box.classList.add('on');box.innerHTML='<span class="sp"></span>Reading your project…';
+ box.classList.add('on');
+ /* 19.11 files-first.php adds its rows (format, other DAWs, MP3, AI) and applies everything */
+ try{document.dispatchEvent(new CustomEvent('ss:zip',{detail:{file:zipName,entries:es,als:r,box:box,row:row,choice:choice,textField:textField,W:W,norm:norm,readEntry:readEntry,zip:window.__ssZipFile}}))}catch(e){}}
+function run(file){window.__ssZipFile=file;if(!/\.zip$/i.test(file.name))return;if(!('DecompressionStream' in window))return;box.classList.add('on');box.innerHTML='<span class="sp"></span>Reading your project…';
  entries(file).then(function(es){var a=es.filter(function(e){var n=e.name.toLowerCase();return /\.als$/.test(n)&&!/__macosx|(^|\/)\._|backup\//.test(n)&&e.size<200e6}).sort(function(x,y){return x.name.split('/').length-y.name.split('/').length||y.size-x.size})[0];
   if(!a)return show(file.name,es,{});return readEntry(file,a).then(als).then(function(x){var r=parseAls(x);r.alsName=a.name.split('/').pop();show(file.name,es,r)}).catch(function(){show(file.name,es,{})})})
  .catch(function(){box.classList.remove('on')})}

@@ -35,6 +35,36 @@ function ss_aic_facts() {
 	return $out;
 }
 
+/* 19.11 owner («в начале файлы… подключай все аи инструменты»): from what we read in the files (DAW, BPM, key, plugins,
+   length, sound of the preview) pick genres / moods / tags ONLY from the site's own lists. */
+add_action( 'wp_ajax_ss_aic_tags', function () {
+	ss_aic_guard( 'desc' );
+	$f = ss_aic_facts();
+	$opt = isset( $_POST['o'] ) ? json_decode( wp_unslash( (string) $_POST['o'] ), true ) : array();
+	$lists = array();
+	foreach ( array( 'genre', 'mood', 'tag' ) as $k ) {
+		$lists[ $k ] = array_values( array_unique( array_filter( array_map( function ( $x ) { return mb_substr( sanitize_text_field( (string) $x ), 0, 40 ); }, array_slice( (array) ( $opt[ $k ] ?? array() ), 0, 80 ) ) ) ) );
+	}
+	if ( ! $lists['genre'] && ! $lists['mood'] ) wp_send_json_error( array( 'm' => 'No lists.' ), 400 );
+	$facts = ''; foreach ( $f as $k => $v ) $facts .= ucfirst( str_replace( '_', ' ', $k ) ) . ': ' . $v . "\n";
+	$sys = "You tag products for Solid Sound, a marketplace for music producers. From the facts, choose the best matching items ONLY from the allowed lists (copy them exactly). "
+		. "Genres: 1-3. Moods: 1-3. Tags: up to 6 (only if a tag list is given). Use tempo, key, plugins, file names, length and sound features. If unsure, choose fewer. "
+		. "Reply with JSON only: {\"genre\":[],\"mood\":[],\"tag\":[]}";
+	$user = "Facts:\n" . $facts . "\nAllowed genres: " . implode( ' | ', $lists['genre'] ) . "\nAllowed moods: " . implode( ' | ', $lists['mood'] ) . ( $lists['tag'] ? "\nAllowed tags: " . implode( ' | ', $lists['tag'] ) : '' );
+	$r = ss_cf_ai( '@cf/meta/llama-3.1-8b-instruct', array( 'messages' => array( array( 'role' => 'system', 'content' => $sys ), array( 'role' => 'user', 'content' => $user ) ), 'max_tokens' => 200, 'temperature' => 0.2 ), 20 );
+	if ( is_wp_error( $r ) ) wp_send_json_error( array( 'm' => 'AI is busy — please try again in a minute.' ), 502 );
+	$t = is_array( $r['response'] ?? null ) ? wp_json_encode( $r['response'] ) : (string) ( $r['response'] ?? '' );
+	if ( ! preg_match( '/\{.*\}/s', $t, $m ) ) wp_send_json_error( array( 'm' => 'Empty answer — please try again.' ), 502 );
+	$j = json_decode( $m[0], true ); $out = array();
+	foreach ( array( 'genre' => 3, 'mood' => 3, 'tag' => 6 ) as $k => $max ) {
+		$ok = array(); $low = array_map( 'mb_strtolower', $lists[ $k ] );
+		foreach ( (array) ( $j[ $k ] ?? array() ) as $x ) { $i = array_search( mb_strtolower( trim( (string) $x ) ), $low, true ); if ( false !== $i ) $ok[] = $lists[ $k ][ $i ]; }
+		$out[ $k ] = array_slice( array_values( array_unique( $ok ) ), 0, $max );
+	}
+	ss_aic_left( 'desc', true );
+	wp_send_json_success( $out );
+} );
+
 add_action( 'wp_ajax_ss_aic_desc', function () {
 	ss_aic_guard( 'desc' );
 	$f = ss_aic_facts();
@@ -154,6 +184,7 @@ function facts(f){var o={},q=function(s){return f.querySelector(s)};
   var v=a.filter(Boolean).join(', ');if(!v||seen[v.toLowerCase()])return;seen[v.toLowerCase()]=1;var key=L.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,40);if(key&&!o[key])o[key]=v});
  var zf=document.getElementById('ss-zf');if(zf){var zt=zf.textContent.replace(/\s+/g,' ').trim();if(zt)o.project_check=zt.slice(0,300)}
  o.price=(q('[name=product_price]')||{}).value||'';return o}
+window.ssAicFacts=function(f){return facts(f)}; /* 19.11 files-first.php */
 function post(action,f,extra){var fd=new FormData();fd.append('action',action);fd.append('n',N);for(var k in (extra||{}))fd.append(k,extra[k]);fd.append('f',JSON.stringify(facts(f)));return fetch(AJAX,{method:'POST',credentials:'same-origin',body:fd}).then(function(r){return r.json()})}
 function note(after,txt,bad){var n=after.nextElementSibling;if(!(n&&n.classList.contains('ss-aic-n'))){n=document.createElement('p');n.className='ss-aic-n';after.parentNode.insertBefore(n,after.nextSibling)}n.textContent=txt;n.classList.toggle('bad',!!bad)}
 function wrap(ctx,text,x,y,maxW,lh,maxLines){var w=text.split(/\s+/),line='',lines=[];w.forEach(function(word){var t=line?line+' '+word:word;if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=word}else line=t});if(line)lines.push(line);lines=lines.slice(0,maxLines);lines.forEach(function(l,i){ctx.fillText(l,x,y+i*lh)});return lines.length}
