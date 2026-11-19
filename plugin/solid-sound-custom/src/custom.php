@@ -6877,3 +6877,4 @@ require_once __DIR__ . '/modules/ajax-cart.php';
 require_once __DIR__ . '/modules/forum-help.php';
 require_once __DIR__ . '/modules/free-hub.php';
 require_once __DIR__ . '/modules/get-heard.php'; /* 19.11 owner: «Get heard» + «Why Solid Sound» */
+require_once __DIR__ . '/modules/prof.php'; /* 19.11 owner: speed — probe only with ?ss_prof=1 */
