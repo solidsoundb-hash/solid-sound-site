@@ -1,4 +1,4 @@
-# Creator area audit 2026-11-19T22:55:41.826Z
+# Creator area audit 2026-11-19T23:05:58.270Z
 
 ## phone
 - /en/store-manager/ → HTTP 200 · height 4292px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
@@ -89,10 +89,12 @@
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - p.ss-wm-submit display=none inline="margin-top:16px" ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
-- /en/store-manager/ss-earnings/ → HTTP 200 · height 900px · [desktop_en_store_manager_ss_earnings.jpg](desktop_en_store_manager_ss_earnings.jpg)
+- /en/store-manager/ss-earnings/ → HTTP 200 · height 1446px · [desktop_en_store_manager_ss_earnings.jpg](desktop_en_store_manager_ss_earnings.jpg)
 - /en/store-manager/ss-payouts/ → HTTP 200 · height 1697px · [desktop_en_store_manager_ss_payouts.jpg](desktop_en_store_manager_ss_payouts.jpg)
 - /en/store-manager/ss-reviews/ → HTTP 200 · height 1151px · [desktop_en_store_manager_ss_reviews.jpg](desktop_en_store_manager_ss_reviews.jpg)
 - /en/store-manager/ss-settings/ → HTTP 200 · height 2753px · [desktop_en_store_manager_ss_settings.jpg](desktop_en_store_manager_ss_settings.jpg)
 - /en/store-manager/ss-help/ → HTTP 200 · height 1521px · [desktop_en_store_manager_ss_help.jpg](desktop_en_store_manager_ss_help.jpg)
 - /en/my-account/ → HTTP 200 · height 1909px · [desktop_en_my_account.jpg](desktop_en_my_account.jpg)
 - /sell/ → HTTP 200 · height 2651px · [desktop_sell.jpg](desktop_sell.jpg)
+- Fingerprints: Your shop currency USD does not match with Amazon payment region Euro Region. Amazon Pay will not be available. Please use a seller account from the appropiate region.
+    - Done: 8 of 8.
