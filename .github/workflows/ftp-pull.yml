@@ -27,6 +27,9 @@ jobs:
           mkdir -p live; LOG=live/_ftp-log.txt; echo "pull $(date -u +%FT%TZ)" > $LOG
           get() { python3 tools/ftp_sync.py download "$1" "$2" >> $LOG 2>&1 && echo "ok  $1" >> $LOG || echo "ERR $1" >> $LOG; }
           getf() { python3 tools/ftp_sync.py get "$1" "$2" >> $LOG 2>&1 && echo "ok  $1" >> $LOG || { rm -f "$2"; echo "--  $1 (missing)" >> $LOG; }; }
+          # fast mode (19.11): the last line of .github/ftp-pull.txt "only: <dir or file under wp-content> ..." downloads only those
+          L=$(tail -1 .github/ftp-pull.txt)
+          if [ "${L#only: }" != "$L" ]; then for P in ${L#only: }; do case "$P" in *.php|*.js|*.css|*.ini) getf $WPC/$P live/$P;; *) get $WPC/$P live/$P;; esac; done; find live -name 'wp-config*.php' -delete; find live -type f -newer .github/ftp-pull.txt | sed 's/^/  /' >> $LOG; exit 0; fi
           get  $WPC/plugins/solid-sound-custom live/plugins/solid-sound-custom
           rm -rf live/plugins/solid-sound-custom/build
           getf $WPC/themes/Impreza/functions.php live/themes/Impreza/functions.php
