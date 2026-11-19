@@ -61,6 +61,9 @@ function ss_asset_has( $name ) {
 	return ! empty( $map[ $name ] );
 }
 
+/* 19.11 speed: the catalog filter's product counts are remembered — must load before us-core (plugins load alphabetically) */
+if ( is_readable( __DIR__ . '/build/modules/speed-grid.php' ) ) require_once __DIR__ . '/build/modules/speed-grid.php';
+
 /* Load after the theme's functions.php. If the old copy is still inside the theme, skip (no duplicate functions). */
 add_action( 'after_setup_theme', function () {
 	if ( function_exists( 'rating_and_sidebar' ) ) return;
