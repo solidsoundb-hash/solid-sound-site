@@ -116,7 +116,7 @@ body.ss-cs #wcfm_menu,body.ss-cs .wcfm_menu_items_wrapper,body.ss-cs #wcfm-main-
 .sscp-set .sscp-up{display:flex;align-items:center;gap:16px}.sscp-set .sscp-up .av{flex:none;width:84px;height:84px;border-radius:50%;background:#1A2540 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:#F59E0B;font:800 30px "Exo 2"}
 .sscp-set .sscp-up .cv{flex:none;width:200px;height:68px;border-radius:10px;background:#0e1a36 center/cover no-repeat;border:1px dashed rgba(255,255,255,.15)}
 .sscp-set .btnf{display:inline-flex!important;align-items:center;height:40px;padding:0 14px!important;border-radius:10px!important;border:1px solid rgba(255,255,255,.14)!important;background:#1A2540;color:#fff!important;font:700 14px "Exo 2"!important;cursor:pointer}
-.sscp-set .btnf:hover{border-color:#F59E0B!important}
+.sscp-set .btnf{width:auto!important;min-width:0!important;max-width:max-content!important;justify-content:center;margin:0 0 6px!important;line-height:1!important}.sscp-set .btnf:hover{border-color:#F59E0B!important}
 .sscp-set input:not([type=file]),.sscp-set textarea,.sscp-set select{border-radius:10px!important;padding:11px 14px!important;font-size:15px!important}
 .sscp-set .opt{color:#94A3B8;font-weight:400;font-size:12.5px;margin-left:6px}.sscp-lock{color:#94A3B8;font-size:12.5px}.sscp-lock:before{content:"🔒 "}
 .sscp-save{position:sticky;bottom:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0 0;padding:12px 16px;border-radius:14px;background:rgba(11,18,32,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(245,158,11,.3)}
