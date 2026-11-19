@@ -40,6 +40,11 @@ jobs:
           get  $WPC/plugins/wpforo/classes live/plugins/wpforo/classes
           getf $WPC/plugins/wpforo/wpforo.php live/plugins/wpforo/wpforo.php
           get  $WPC/plugins/wpforo/includes live/plugins/wpforo/includes
+          getf $WPC/plugins/us-core/functions/grid.php live/plugins/us-core/functions/grid.php
+          getf $WPC/plugins/us-core/templates/us_grid/listing.php live/plugins/us-core/templates/us_grid/listing.php
+          getf $WPC/plugins/us-core/templates/elements/grid_filter.php live/plugins/us-core/templates/elements/grid_filter.php
+          getf solid-sound.net/www/.user.ini live/root/.user.ini
+          getf solid-sound.net/www/php.ini live/root/php.ini
           find live -name 'wp-config*.php' -delete
           find live -type f | sed 's/^/  /' >> $LOG
       - name: Commit
