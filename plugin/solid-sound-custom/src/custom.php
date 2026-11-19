@@ -1693,7 +1693,7 @@ if ( ! function_exists( 'ss_ap_keys' ) ) {
 			'dl' => 'Pack contents', 'tag' => 'Tags (optional)', 'mp3' => 'MP3 preview (128 kbps)',
 		);
 		$help = array(
-			'format' => 'Templates: your own original projects. Reconstructed Templates: remakes of existing tracks.',
+			'format' => 'Templates: your own original projects. Reconstructed Templates: remakes of existing tracks. Music: one ZIP with the track as WAV + MP3.',
 			'genre'  => 'Pick from the list or add your own.',
 			'key'    => 'Main key of the track, e.g. Am, F#m, C.',
 			'bpm'    => 'Pick from the list or type a number from 50 to 220.',

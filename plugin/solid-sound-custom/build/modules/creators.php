@@ -27,11 +27,12 @@ function ss_cr_guidelines_html( $short = false ) {
 	$rules = array(
 		array( 'Only your own work', 'Sell only projects, presets and sounds you made. No paid third-party samples, presets or loops inside your files — buyers must be able to use everything royalty-free.' ),
 		array( 'A finished, release-quality track', 'Templates must be complete tracks (intro → drop → outro), mixed and mastered — not an 8-bar loop or a sketch. Presets must be usable in a real track.' ),
+		array( 'Music: WAV + MP3 in one zip', 'For music upload one .zip with the full track as WAV (for buyers) and as MP3. No project files needed.' ),
 		array( 'A clean project that opens', 'Use "Collect All and Save" in Ableton before zipping: every sample inside the zip, no "missing files". Name and colour your tracks and groups so buyers can learn from them.' ),
 		array( 'Plugins: tell the truth', 'List every third-party plugin the project uses. Choose "No External Plugins" only if the project uses Ableton\'s own devices — our robot checks this. Using Serum, Sylenth and co.? Also include the bounced (frozen) audio of those tracks and keep the MIDI, so every buyer can use the project.' ),
 		array( 'A demo that sells', 'MP3, 1–10 minutes, at least 128 kbps (320 recommended). The demo must be the track from the project — no talking, no watermark noise over the whole track.' ),
 		array( 'A clean cover', 'Square, at least 1000×1000 px (JPG/PNG/WEBP). No other brands\' logos, no stolen artwork.' ),
-		array( 'Honest description', 'Genre, BPM, key, Ableton version and what is inside (MIDI, audio, effects). No fake "Beatport #1" claims.' ),
+		array( 'Honest description', 'Genre, BPM, key, DAW and its version and what is inside (MIDI, audio, effects). No fake "Beatport #1" claims.' ),
 	);
 	$h = '<div class="ss-cr-g">';
 	if ( $short ) {
@@ -172,6 +173,10 @@ function ss_cr_check_zip( $tmp, $fmt, $declared_native, $declared_plugins, &$err
 		if ( $missing ) $err[] = count( $missing ) . ' sample(s) used by the project are not in the zip: ' . implode( ', ', array_slice( $missing, 0, 8 ) ) . ( count( $missing ) > 8 ? ' …' : '' ) . '. In Ableton use File → Collect All and Save, then zip again.';
 		if ( $plugins && $declared_native ) $err[] = 'You chose "No External Plugins", but the project uses: ' . implode( ', ', $plugins ) . '. Remove them from the project or list them under "Plugins used".';
 		if ( $plugins && ! $declared_native && ! $declared_plugins ) $err[] = 'The project uses third-party plugins (' . implode( ', ', $plugins ) . '). List them under "Plugins used" so buyers know what they need.';
+	} elseif ( 'music' === $fmt ) {
+		/* owner 19.11: «для музыки — архив с WAV и MP3» */
+		$wav = (bool) preg_grep( '#\.wav$#i', array_keys( $names ) ); $mp3 = (bool) preg_grep( '#\.mp3$#i', array_keys( $names ) );
+		if ( ! $wav || ! $mp3 ) $err[] = 'Music: the zip must hold the track as WAV and as MP3 (missing: ' . implode( ' and ', array_filter( array( $wav ? '' : 'WAV', $mp3 ? '' : 'MP3' ) ) ) . ').';
 	} elseif ( 'presets' === $fmt ) {
 		$ok = false; foreach ( array_keys( $names ) as $n ) if ( preg_match( '#\.(fxp|fxb|serumpreset|vital|vitalbank|adv|adg|h2p|nmsv|vstpreset|aupreset|ksd|spf|xpf|syx|nki|nksf|phaseplant|pigments|ovpreset|nmspresetx)$#i', $n ) ) { $ok = true; break; }
 		if ( ! $ok ) $err[] = 'No preset files found in the zip (e.g. .fxp, .SerumPreset, .vital, .adv, .adg, .h2p, .vstpreset).';
@@ -248,7 +253,8 @@ add_action( 'admin_post_solid_sound_add_product', function () {
 		if ( (int) $f['size'] > SS_CR_MAX_ZIP ) $err[] = 'The file is larger than 2 GB.';
 		$is_zip = (bool) preg_match( '#\.zip$#', $name );
 		if ( in_array( $fmt, array( 'templates', 'reconstructed-templates', 'presets', 'sample-packs' ), true ) && ! $is_zip ) $err[] = 'Please upload the project as one .zip file.';
-		if ( 'music' === $fmt && ! preg_match( '#\.(zip|wav|mp3|flac|aif|aiff)$#', $name ) ) $err[] = 'Music must be a .zip, WAV, FLAC, AIFF or MP3 file.';
+		/* owner 19.11: music — one ZIP with the track as WAV and MP3 (not a project) */
+		if ( 'music' === $fmt && ! $is_zip ) $err[] = 'Music: please upload one .zip with the track as WAV and as MP3.';
 		if ( $is_zip ) {
 			$native = false; $declared = false;
 			foreach ( (array) $val( 'ext' ) as $t ) {
