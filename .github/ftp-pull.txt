@@ -9,3 +9,4 @@ pull 18:42:59 wpForo code (forum translation + community, owner 16.11)
 pull 18:51:23 speed: Impreza grid code (325 queries on all-products), .user.ini (A)
 pull 19:55:19 speed: WCFM core + dashboard view (creator area is heavy, A)
 only: plugins/wc-frontend-manager/core/class-wcfm-frontend.php plugins/wc-frontend-manager/core/class-wcfm-library.php plugins/wc-frontend-manager/views/dashboard plugins/wc-frontend-manager/views/products-popup plugins/wc-frontend-manager/core/class-wcfm.php
+only: plugins/wc-frontend-manager/core/class-wcfm-template.php plugins/wc-frontend-manager/core/class-wcfm-product-popup.php
