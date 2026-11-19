@@ -77,10 +77,56 @@ body.ss-wow .ssx .sub{display:none}
 body.ss-wow .ssx{position:relative;z-index:2;background:#111214!important;border-color:rgba(245,158,11,.45)!important;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(245,158,11,.15)}
 /* owner 19.11: colour «Графит» (variant 2) */
 body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,255,.07)!important}body.ss-wow .ssx .tasks button{background:#1b1c20!important}body.ss-wow .ssx .tasks button.on{background:rgba(245,158,11,.14)!important}
-/* owner 19.11: «на ПК растяни слайдер, чтобы полностью влезал на экране» — wide screens: full width, picker in three columns */
-@media(min-width:1300px){body.ss-wow #ss-app .ssx{max-width:100%!important;width:100%}
- body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:1.25fr 1fr 1fr!important}
- body.ss-wow .ssx .card .left:has(>.f.row)>.f:not(.row){grid-column:1!important}}
+/* owner 19.11 «верни размер обратно и пересобери… логично, эргономично, интуитивно»: width back to 1200;
+   the picker reads top to bottom: 1) genre, 2) BPM · key · Ableton on one line, 3) result and buttons on one line */
+@media(min-width:1000px){
+ body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)!important;column-gap:36px!important}
+ body.ss-wow .ssx .card .left>.f.row{display:flex!important;flex-wrap:nowrap!important;align-items:flex-end!important;gap:28px!important;margin-bottom:16px!important}
+ body.ss-wow .ssx .card .left>.f.row>*{margin:0!important}
+ body.ss-wow .ssx .card .left>.ssw-match{grid-column:1!important;grid-row:5;margin:4px 0 0!important;align-self:stretch}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:2!important;grid-row:5;align-self:end;justify-content:flex-end;margin:4px 0 0!important}
+ body.ss-wow .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left>.cta{justify-content:flex-end;align-self:flex-end}
+}
+/* owner 19.11 «сортировка странная, особенно первый слайдер»: the template picker as one tidy filter grid —
+   genre on top, then three equal columns BPM | Key | Ableton (+ «No external plugins» under Ableton), result left, buttons right */
+@media(min-width:1000px){
+ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){grid-template-columns:repeat(3,minmax(0,1fr))!important;column-gap:32px!important;row-gap:0!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f.row{display:contents!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f.row>div{grid-column:auto!important;margin:0!important;min-width:0}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f.row>.chk{grid-column:3!important;margin:10px 0 0!important}
+ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>:not(.f.row):not(.ssw-match):not(.acts){grid-column:1 / -1!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.f:not(.row){margin-bottom:18px!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match) .rng{display:flex;align-items:center;gap:10px}
+ body.ss-wow .ssx .card .left:has(>.ssw-match) .rng input[type=range]{flex:1;min-width:0}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.ssw-match{grid-column:1 / span 2!important;grid-row:auto!important;margin:18px 0 0!important}
+ body.ss-wow .ssx .card .left:has(>.ssw-match)>.acts{grid-column:3!important;grid-row:auto!important;margin:18px 0 0!important;justify-content:flex-end;align-self:center}
+}
+/* owner 19.11 «как под линеечку, а не хаотично»: on computers every slide is a neat form — one column of labels
+   (GENRE, BPM, KEY, ABLETON, WHAT DO YOU NEED…) and every control starts on the same vertical line; the result strip
+   starts on that line too; the buttons sit bottom-right. Overrides the column layouts above. */
+@media(min-width:1000px){
+ body.ss-wow #ss-app .ssx .card .left{display:flex!important;flex-direction:column!important;--lbl:150px}
+ body.ss-wow #ss-app .ssx .card .left>.f.row{display:block!important;margin:0!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{display:grid!important;grid-template-columns:var(--lbl) minmax(0,1fr);align-items:center;column-gap:18px;margin:0 0 14px!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row)>b,body.ss-wow #ss-app .ssx .card .left>.f.row>div>b{margin:0!important;line-height:1.25}
+ body.ss-wow #ss-app .ssx .card .left>.f.row>.chk{margin:-4px 0 14px calc(var(--lbl) + 18px)!important;display:flex!important}
+ body.ss-wow #ss-app .ssx .card .left .rng{display:flex;align-items:center;gap:12px;max-width:420px}
+ body.ss-wow #ss-app .ssx .card .left .rng input[type=range]{flex:1;min-width:0}
+ body.ss-wow #ss-app .ssx .card .left>.f~.d{margin-left:calc(var(--lbl) + 18px)!important}
+ body.ss-wow #ss-app .ssx .card .left>.ssw-match{margin:4px 0 0 calc(var(--lbl) + 18px)!important;grid-column:auto!important;grid-row:auto!important}
+ body.ss-wow #ss-app .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow #ss-app .ssx .card .left>.cta{margin-top:auto!important;padding-top:16px;justify-content:flex-end;align-self:flex-end;grid-column:auto!important;grid-row:auto!important}
+}
+/* owner 19.11 «каждый раздел — кнопки примерно одинаково расположены, однородно»: every slide has the same frame —
+   title + subtitle on top, the choices in the middle, the buttons in one place at the bottom-right (owner: «неудобно когда кнопки слева») (cards are as tall
+   as the tallest one, so the buttons line up on every tab) */
+body.ss-wow .ssx .track{align-items:stretch}
+body.ss-wow .ssx .card .left:not(:has(>.ssw-match)){display:flex!important;flex-direction:column!important;height:100%}
+body.ss-wow .ssx .card .left:not(:has(>.ssw-match))>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left:not(:has(>.ssw-match))>.cta{margin-top:auto!important}
+body.ss-wow .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow .ssx .card .left>.cta{padding-top:14px}
+body.ss-wow .ssx .card .left .acts{display:flex;flex-wrap:wrap;gap:10px}
+body.ss-wow .ssx .card .left form.acts .inp{flex:1 1 240px;min-width:0;min-height:48px}body.ss-wow .ssx .card .left form.acts .cta{flex:1 1 auto}body.ss-wow .ssx .card .left form.acts .ss-priv-note{flex-basis:100%}
+@media(max-width:600px){body.ss-wow #ss-app .ssx .card .left form.acts{display:flex!important;flex-wrap:wrap!important}body.ss-wow #ss-app .ssx .card .left form.acts .inp{flex:1 1 100%!important;width:100%!important}body.ss-wow #ss-app .ssx .card .left form.acts .cta{flex:1 1 100%!important;width:100%!important;max-width:none!important;padding:0 16px!important}}
+body.ss-wow .ssx .card .left .cta,body.ss-wow .ssx .card .left .gbtn{min-height:48px;padding:0 22px!important;display:inline-flex;align-items:center;justify-content:center}
 /* owner 19.11: the slider turns by itself — a thin progress line under the active task; stops for good once the visitor touches the slider */
 body.ss-wow .ssx .tasks button{position:relative}
 body.ss-wow .ssx.ss-auto .tasks button.on:after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:#f59e0b;transform-origin:0 50%;animation:ssxbar var(--ssx-t,7s) linear forwards}
