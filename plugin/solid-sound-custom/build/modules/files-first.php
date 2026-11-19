@@ -47,6 +47,22 @@ function empty(n){var w=F(n);if(!w)return false;return !qa('input:checked',w).le
 function setText(n,v){var w=F(n);if(!w||w.classList.contains('ss-ap-off'))return false;var i=q('input[type=text],input[type=number],input:not([type])',w);if(i&&!i.value){i.value=v;i.dispatchEvent(new Event('input',{bubbles:true}));i.dispatchEvent(new Event('change',{bubbles:true}));mark(w);return true}
  return pick(n,function(t){return t===norm(v)})}
 function line(k,cls,t){var u=q('ul',st);var li=st.querySelector('[data-k='+k+']');if(!li){li=document.createElement('li');li.setAttribute('data-k',k);u.appendChild(li)}li.className=cls;li.textContent=t;st.classList.add('on')}
+/* ---------- name (owner 19.11: «продукт нейм — автоматом из файлов, с мп3 превью») ---------- */
+function cleanName(s){s=String(s||'').replace(/\.(mp3|wav|zip|rar|7z|als|flp)$/i,'').replace(/[_]+/g,' ').replace(/(\w)-(?=\w)/g,'$1 ')
+ .replace(/\b\d{2,3}\s?k?bps\b/ig,'').replace(/\b\d{2,3}\s?bpm\b/ig,'').replace(/\b(demo|preview|watermark(ed)?|wm|master(ed)?|final|mixdown|export|copy|snippet|teaser|v\d+|\d{2,3})\b/ig,'')
+ .replace(/\(\s*\)|\[\s*\]/g,'').replace(/\s{2,}/g,' ').replace(/^[\s\-–—.]+|[\s\-–—.]+$/g,'').trim();
+ return s.replace(/\b([a-z])/g,function(a){return a.toUpperCase()})}
+function id3title(buf){var d=new DataView(buf);if(buf.byteLength<10||d.getUint8(0)!==73||d.getUint8(1)!==68||d.getUint8(2)!==51)return '';var v=d.getUint8(3),end=10+((d.getUint8(6)&127)<<21|(d.getUint8(7)&127)<<14|(d.getUint8(8)&127)<<7|(d.getUint8(9)&127)),o=10;
+ while(o+10<Math.min(end,buf.byteLength)){var id=String.fromCharCode(d.getUint8(o),d.getUint8(o+1),d.getUint8(o+2),d.getUint8(o+3));var sz=v===4?((d.getUint8(o+4)&127)<<21|(d.getUint8(o+5)&127)<<14|(d.getUint8(o+6)&127)<<7|(d.getUint8(o+7)&127)):d.getUint32(o+4);if(!sz||/[^A-Z0-9]/.test(id))break;
+  if(id==='TIT2'){var enc=d.getUint8(o+10),bytes=new Uint8Array(buf,o+11,Math.max(0,sz-1)),t='';try{t=new TextDecoder(enc===1?'utf-16':(enc===2?'utf-16be':(enc===3?'utf-8':'latin1'))).decode(bytes)}catch(e){}return t.replace(/\u0000/g,'').trim()}o+=10+sz}return ''}
+var names=[],nameAuto='',namePri=0,PRI={tag:3,mp3:2,zip:1};
+function offerName(v,src){v=cleanName(v);if(!v||v.length<2||names.some(function(n){return n[0].toLowerCase()===v.toLowerCase()}))return;names.push([v,src]);
+ var nm=q('[name=product_name]');if(!nm)return;
+ if(!nm.value.trim()||(nm.value===nameAuto&&PRI[src]>namePri)){nm.value=v;nameAuto=v;namePri=PRI[src];nm.dispatchEvent(new Event('input',{bubbles:true}));nm.dispatchEvent(new Event('change',{bubbles:true}));mark(nm.closest('p'))}
+ var li=st.querySelector('[data-k=name]');line('name','ok','Name: ');li=st.querySelector('[data-k=name]');li.textContent='Name: ';
+ names.forEach(function(n){var b=document.createElement('button');b.type='button';b.textContent=n[0]+(n[1]==='mp3'?' (from MP3)':(n[1]==='tag'?' (MP3 title)':' (from ZIP)'));b.style.cssText='margin:2px 6px 2px 0;padding:3px 10px;border-radius:999px;border:1px solid '+(nm.value===n[0]?'#F59E0B':'rgba(148,163,184,.4)')+';background:'+(nm.value===n[0]?'#F59E0B':'transparent')+';color:'+(nm.value===n[0]?'#111':'#e2e8f0')+';font-size:13px;cursor:pointer';
+  b.onclick=function(){nm.value=n[0];nameAuto=n[0];nm.dispatchEvent(new Event('input',{bubbles:true}));offerName.redraw()};li.appendChild(b)})}
+offerName.redraw=function(){var keep=names.slice();names=[];keep.forEach(function(n){names.push(n)});var nm=q('[name=product_name]');var li=st.querySelector('[data-k=name]');if(!li)return;[].forEach.call(li.querySelectorAll('button'),function(b){var on=b.textContent.indexOf(nm.value+' (')===0;b.style.background=on?'#F59E0B':'transparent';b.style.color=on?'#111':'#e2e8f0';b.style.borderColor=on?'#F59E0B':'rgba(148,163,184,.4)'})};
 /* ---------- MP3: length, tempo, key (in the browser) ---------- */
 function tempo(x,sr){var hop=128,win=1024,env=[];for(var i=0;i+win<x.length;i+=hop){var e=0;for(var j=0;j<win;j+=2)e+=x[i+j]*x[i+j];env.push(Math.log(1e-6+e))}
  var on=new Float64Array(env.length);for(var i=1;i<env.length;i++)on[i]=Math.max(0,env[i]-env[i-1]);var m=0;for(var i=0;i<on.length;i++)m+=on[i];m/=on.length;for(var i=0;i<on.length;i++)on[i]=Math.max(0,on[i]-m);
@@ -58,7 +74,7 @@ function tempo(x,sr){var hop=128,win=1024,env=[];for(var i=0;i+win<x.length;i+=h
  return Math.round(best[0])}
 function feel(x){var s=0,z=0;for(var i=1;i<x.length;i+=7){s+=Math.abs(x[i]);if((x[i]>0)!==(x[i-1]>0))z++}var e=s/(x.length/7),b=z/(x.length/7);return (e>0.18?'loud, energetic':(e>0.09?'medium energy':'calm, quiet'))+', '+(b>0.12?'bright':'warm/dark')+' sound'}
 function readMp3(f){line('mp3','wt','Listening to '+f.name+'…');
- f.arrayBuffer().then(function(ab){var C=window.AudioContext||window.webkitAudioContext;var ctx=new C();return ctx.decodeAudioData(ab).then(function(buf){ctx.close&&ctx.close();return buf})}).then(function(buf){
+ f.arrayBuffer().then(function(ab){var tt=id3title(ab.slice(0,Math.min(ab.byteLength,262144)));if(tt)offerName(tt,'tag');offerName(f.name,'mp3');var C=window.AudioContext||window.webkitAudioContext;var ctx=new C();return ctx.decodeAudioData(ab).then(function(buf){ctx.close&&ctx.close();return buf})}).then(function(buf){
   var dur=buf.duration,sr=buf.sampleRate,ch0=buf.getChannelData(0),ch1=buf.numberOfChannels>1?buf.getChannelData(1):ch0;
   var a=Math.floor(Math.min(dur*0.25,30)*sr),b=Math.min(ch0.length,a+Math.floor(45*sr)),x=new Float32Array(b-a);for(var i=a;i<b;i++)x[i-a]=(ch0[i]+ch1[i])/2;
   var bpm=tempo(x,sr),k='',mm=Math.floor(dur/60)+':'+('0'+Math.round(dur%60)).slice(-2);
@@ -76,11 +92,13 @@ document.addEventListener('ss:zip',function(e){var x=e.detail,es=x.entries||[],n
  var fmt=daw?'template':(cnt.pre>=3?'preset':(cnt.wav>=5?'sample':''));
  facts.files_in_zip=names.length+' files'+(cnt.wav?', '+cnt.wav+' audio':'')+(cnt.pre?', '+cnt.pre+' presets':'')+(cnt.mid?', '+cnt.mid+' MIDI':'');
  if(daw)facts.daw=daw[1];if(x.als){if(x.als.live)facts.daw_version='Ableton Live '+x.als.live;if(x.als.bpm)facts.bpm=x.als.bpm;if(x.als.scale)facts.key=x.als.scale;if(x.als.plugins)facts.plugins=x.als.plugins.length?x.als.plugins.join(', '):'no external plugins'}
+ if(x.file)offerName(x.file,'zip');if(x.als&&x.als.alsName)offerName(x.als.alsName,'zip');
  var got=[];
  if(fmt&&!qa('input:checked',F('format')||form).length){if(pick('format',function(t){return fmt==='template'?/^templates?$/.test(t):(fmt==='preset'?/preset/.test(t):/sample/.test(t))}))got.push(fmt==='template'?'Template':(fmt==='preset'?'Presets':'Sample pack'))}
  if(daw&&pick('daw',function(t){return daw[2].test(t)}))got.push(daw[1]);
  var after=function(){
-  if(x.box){var all=x.box.querySelector('.all');var n=x.box.querySelector('.n');if(n)n.textContent='We filled these in from your project — tap a chip to change it. Every field stays editable.';if(all&&!all._auto){all._auto=1;all.click()}}
+  if(x.box){[].forEach.call(x.box.querySelectorAll('.r'),function(rw){var l=rw.querySelector('.l');if(l&&l.textContent==='Name')rw.remove()}); /* names are offered in our list (MP3 first) */
+   var all=x.box.querySelector('.all');var n=x.box.querySelector('.n');if(n)n.textContent='We filled these in from your project — tap a chip to change it. Every field stays editable.';if(all&&!all._auto){all._auto=1;all.click()}}
   line('zip','ok','Project: '+(got.length?got.join(' · '):'read')+(facts.files_in_zip?' · '+facts.files_in_zip:''));done.zip=true;ai()};
  if(daw&&daw[1]==='FL Studio'&&x.zip&&x.readEntry){var en=es.filter(function(z){return /\.flp$/i.test(z.name)})[0];x.readEntry(x.zip,en).then(function(b){var r=flp(b);if(r.bpm){facts.bpm=r.bpm;if(empty('bpm'))setText('bpm',String(r.bpm))&&got.push(r.bpm+' BPM')}if(r.ver){facts.daw_version='FL Studio '+r.ver;var maj=r.ver.split('.')[0];setTimeout(function(){if(pick('version',function(t){return t.indexOf('fl studio '+maj)===0}))got.push('FL Studio '+maj)},60)}setTimeout(after,120)}).catch(after)}
  else setTimeout(after,60)});
