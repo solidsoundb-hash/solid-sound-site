@@ -6897,3 +6897,4 @@ require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public cr
 require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-tabs look + payouts status + profile preview */
 require_once __DIR__ . '/modules/site-polish.php'; /* 19.11 owner: «прошерсти сайт, улучши» — small QA fixes */
 require_once __DIR__ . '/modules/files-first.php'; /* 19.11 owner: Add Product starts with the files, AI fills the rest */
+require_once __DIR__ . '/modules/media-janitor.php'; /* 19.11 owner: no leftover files on hosting */
