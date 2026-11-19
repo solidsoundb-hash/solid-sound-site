@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const OUT = 'checks/creator-audit';
 const S = 'https://solid-sound.net';
-const PAGES = ['/en/store-manager/', '/en/store-manager/ss-products/', '/en/store-manager/ss-add-product/', '/en/store-manager/ss-earnings/',
+const PAGES = ['/en/store-manager/', '/en/store-manager/ss-products/', '/en/store-manager/ss-add-product/', '/en/store-manager/ss-add-product/?ss_ff3=1', '/en/store-manager/ss-earnings/',
   '/en/store-manager/ss-payouts/', '/en/store-manager/ss-reviews/', '/en/store-manager/ss-settings/', '/en/store-manager/ss-help/', '/en/my-account/', '/sell/'];
 const DEVICES = [
   { name: 'phone', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, ua: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' },

@@ -32,9 +32,21 @@ add_action( 'wp_footer', function () {
 #ss-ff-pv{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 0}#ss-ff-pv audio{height:34px;max-width:100%}#ss-ff-pv button{height:32px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:#1A2540;color:#fff;font:600 13px "Exo 2",sans-serif;cursor:pointer}
 #ss-ff-st .no:before{content:"– ";color:#64748B}@keyframes ssff{to{transform:rotate(360deg)}}
 #solid-sound-upload-form .ss-ff-auto>.acf-label label:after,#solid-sound-upload-form p.ss-ff-auto .ss-wm-l:after{content:"auto";margin-left:8px;padding:1px 7px;border-radius:6px;background:rgba(52,211,153,.14);color:#34D399;font:700 11px "Exo 2",sans-serif;vertical-align:2px}
+
+/* 19.11 owner («переделать Add product, грамотно совместить всё»): one flow in 3 cards */
+#solid-sound-upload-form .ss-ff-card{margin:0 0 16px;padding:20px;border-radius:16px;background:#0f1729;border:1px solid rgba(255,255,255,.08)}
+#solid-sound-upload-form .ss-ff-h{display:flex;align-items:flex-start;gap:12px;margin:0 0 14px}
+#solid-sound-upload-form .ss-ff-h i{flex:none;width:30px;height:30px;border-radius:50%;background:#F59E0B;color:#111;font:800 15px/30px "Exo 2",sans-serif;text-align:center;font-style:normal}
+#solid-sound-upload-form .ss-ff-h b{display:block;color:#fff;font:800 19px/1.25 "Exo 2",sans-serif}
+#solid-sound-upload-form .ss-ff-h small{display:block;margin-top:3px;color:#94A3B8;font-size:14px;line-height:1.45}
+#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c1,#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c2{display:block!important}
+#solid-sound-upload-form.ss-ds-nofmt .ss-ff-card.ss-ff-c2>*:not(.ss-ap-format):not(.ss-ff-h){display:none!important}
+#solid-sound-upload-form .ss-ds-first,#solid-sound-upload-form .ss-wm-drop.ss-ff .ss-ff-step{display:none!important}
+#solid-sound-upload-form .ss-wm-drop.ss-ff{margin:0}
+@media(max-width:600px){#solid-sound-upload-form .ss-ff-card{padding:14px;border-radius:14px}#solid-sound-upload-form .ss-ff-h b{font-size:17px}}
 </style>
 <script id="ss-ff-js">(function(){
-var AJAX=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,N=<?php echo wp_json_encode( wp_create_nonce( 'ss_aic' ) ); ?>;
+var FF3=<?php echo get_option( 'ss_ff3_on' ) ? 'true' : 'false'; ?>,AJAX=<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,N=<?php echo wp_json_encode( wp_create_nonce( 'ss_aic' ) ); ?>;
 var form,st,facts={},done={zip:false,mp3:false},aiRan=false,lastZipName='';
 function q(s,r){return (r||form).querySelector(s)}function qa(s,r){return [].slice.call((r||form).querySelectorAll(s))}
 function F(n){return q('.ss-ap-'+n)}
@@ -169,6 +181,20 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  st=document.createElement('div');st.id='ss-ff-st';st.innerHTML='<ul></ul>';
  body.insertBefore(drop,body.firstChild);if(files)body.insertBefore(files,drop.nextSibling);body.insertBefore(st,(files||drop).nextSibling);
  var zf=document.getElementById('ss-zf');if(zf)body.insertBefore(zf,st.nextSibling);
+ /* three cards: 1 files → 2 about the sound → 3 shop page (preview with ?ss_ff3=1 until the owner says «ок»; then option ss_ff3_on) */
+ if(FF3||/[?&]ss_ff3=1/.test(location.search)){
+ function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h"><i>'+num+'</i><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
+ var c1=card('ss-ff-c1','1','Your files','Drop the project ZIP, the full track (WAV) or your MP3 preview, and a cover. We read them and fill in the rest.'),
+     c2=card('ss-ff-c2','2','About the sound','Filled in from your files — check it. Or choose the type yourself if you have no files yet.'),
+     c3=card('ss-ff-c3','3','Shop page','Name, description, cover and price — AI made a draft, change anything.');
+ body.insertBefore(c1,body.firstChild);body.insertBefore(c2,c1.nextSibling);body.insertBefore(c3,c2.nextSibling);
+ [drop,files,st,zf].forEach(function(x){if(x)c1.appendChild(x)});
+ function P(sel){var e=q(sel);return e?e.closest('p')||e:null}
+ [F('format'),q('.ss-wm-row2'),F('genre'),q('.ss-wm-row'),F('tag')].forEach(function(x){if(x)c2.appendChild(x)});
+ [P('[name=product_name]'),P('[name=product_description]'),P('[name=product_price]'),q('.ss-wm-ai')].forEach(function(x){if(x)c3.appendChild(x)});
+ /* the AI cover button and its box are added by another script: bring them to card 3 when they appear */
+ var tries=0;(function cov(){var b=qa('.ss-aic-b').filter(function(x){return /cover with ai/i.test(x.textContent)})[0],bx=q('.ss-aic-cv');if(b&&bx){var pr=P('[name=product_price]');c3.insertBefore(b,pr);c3.insertBefore(bx,pr);return}if(++tries<25)setTimeout(cov,300)})();
+ }
  var hint=q('.ss-ds-first');if(hint)hint.textContent='Step 2: check what you are selling (we pick it from your files).';
  /* grab files before the drop zone routes them (capture phase) */
  function seen(list){[].forEach.call(list||[],function(f){var n=f.name.toLowerCase();if(f._ssGen||/-preview\.mp3$/i.test(f.name)&&full)return;if(/\.mp3$/.test(n)||/^audio\//.test(f.type)&&!/\.zip$/.test(n)){window.__ssFFmp3=1;done.mp3=false;aiRan=false;readMp3(f)}else if(/\.(zip|rar|7z)$/.test(n)){lastZipName=f.name;done.zip=false;aiRan=false;line('zip','wt','Reading '+f.name+'…');if(!/\.zip$/.test(n)){line('zip','no','RAR/7z cannot be read here — fill DAW and version yourself.');done.zip=true;ai()}else{setTimeout(function(){if(!done.zip){done.zip=true;line('zip','no','Could not read the ZIP here — fill DAW and version yourself.');ai()}},20000)}}else if(/^image\//.test(f.type)){line('cover','ok','Cover: '+f.name);var im=new Image();im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight;chk('cov',w>=1000&&Math.abs(w-h)<=w*0.02,w>=1000&&Math.abs(w-h)<=w*0.02?'Cover '+w+'×'+h+' — good.':'Cover is '+w+'×'+h+' — use a square image, at least 1000×1000, so it looks sharp in the shop.')};im.src=URL.createObjectURL(f)}})}
