@@ -264,6 +264,9 @@ body.ss-wow #ss-app .ssx .ssw-dj .ri em{font-size:13px}
 body.ss-wow #ss-app .ssx .fp-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 10px}
 body.ss-wow #ss-app .ssx .fp-links a{color:#F59E0B;font-weight:600;font-size:14px;text-decoration:none}
 body.ss-wow #ss-app .ssx .fp-links a:hover{text-decoration:underline}
+/* Writing a track: add-ons the visitor ticked, under "N templates match" */
+body.ss-wow #ss-app .ssx .ssw-match .adds{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px}
+body.ss-wow #ss-app .ssx .ssw-match .adds em{font-style:normal;font:600 12.5px "Exo 2",sans-serif;color:#F59E0B;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.35);border-radius:6px;padding:4px 8px}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -288,7 +291,7 @@ function match(ssx){var card=ssx.querySelector('.card .left');if(!card)return;va
  function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=null;[].forEach.call(card.querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*(key|тональн|tonart|tonali|clave|tom\b)/i.test(l.textContent))kc=d.querySelector('.chips')});if(!kc)kc=card.querySelectorAll('.f.row .chips')[0]; /* by its label, not by position (owner 19.11 moved Key) */var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
  function run(){var s=pick(),ok=W.filter(function(x){return (!s.g||x.g.split('|').indexOf(s.g)>-1)&&(!s.b||!x.b||Math.abs(x.b-s.b)<=6)&&(!s.k||s.k==='Any'||!x.k||x.k.toLowerCase().indexOf(s.k.toLowerCase())===0)});
   var close=!ok.length;var list=close?W.filter(function(x){return !s.g||x.g.split('|').indexOf(s.g)>-1}):ok;if(!list.length)list=W;var top=list.slice(0,3);
-  var h='<span class="cv">'+top.map(function(x,i){return '<span class="mx" data-k="'+i+'" role="button" tabindex="0" title="'+esc(x.t)+'" aria-label="Play '+esc(x.t)+'"><img src="'+esc(x.i)+'" alt="" width="38" height="38"><i aria-hidden="true"></i></span>'}).join('')+'</span><span><b>'+(close?TR.cl:ok.length+(ok.length===1?TR.one:TR.many))+'</b><small>'+esc([s.g&&s.g.replace(/\b\w/g,function(c){return c.toUpperCase()}),s.b&&s.b+' BPM',s.k].filter(Boolean).join(' · '))+TR.tap+'</small></span>';
+  var h='<span class="cv">'+top.map(function(x,i){return '<span class="mx" data-k="'+i+'" role="button" tabindex="0" title="'+esc(x.t)+'" aria-label="Play '+esc(x.t)+'"><img src="'+esc(x.i)+'" alt="" width="38" height="38"><i aria-hidden="true"></i></span>'}).join('')+'</span><span><b>'+(close?TR.cl:ok.length+(ok.length===1?TR.one:TR.many))+'</b><small>'+esc([s.g&&s.g.replace(/\b\w/g,function(c){return c.toUpperCase()}),s.b&&s.b+' BPM',s.k].filter(Boolean).join(' · '))+TR.tap+'</small>'+(function(){var ad=[].map.call(card.querySelectorAll('.chips.addon .on'),function(x){return x.textContent.trim()});return ad.length?'<span class="adds">'+ad.map(function(x){return '<em>+ '+esc(x)+'</em>'}).join('')+'</span>':''})()+'</span>';
   if(h!==last){last=h;box.innerHTML=h}box._x=top[0];box._top=top}
  function later(){requestAnimationFrame(run)}card.addEventListener('click',later);card.addEventListener('input',later);card.addEventListener('change',later);
  /* (owner 19.11) each cover plays its own template in the main player; the rest of the card plays the first one */
