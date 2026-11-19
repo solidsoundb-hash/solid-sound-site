@@ -154,3 +154,4 @@
 149: owner 18.11 «ты все исправил то что нашел тестировщик?» — Play All, example pause icons
 150: owner 18.11 «Делай и выкладывай» — positive mood (kudos, wins, Say hi)
 151: owner 18.11 «Делай и выкладывай» — kudos polish
+152: owner 19.11 «сделай фон статичным… фокус на слайдер… пускай листается сам… адаптируй» — static wall, autoplay slider
