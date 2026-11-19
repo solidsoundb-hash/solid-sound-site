@@ -4,3 +4,4 @@
 2026-11-12T16:07:28Z vendor pages audit
 2026-11-12T16:22:49Z vendor DOM dump
 2026-11-12T16:33:40Z vendor DOM dump deeper
+2026-11-19T19:51:53Z после выкладки 199: кабинеты автора и клиента (A)
