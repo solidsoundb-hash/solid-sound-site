@@ -266,6 +266,26 @@ document.addEventListener('click',function(e){
     if(!quiet){ try{ localStorage.setItem('ss_task',i); }catch(e){} var tl=r.querySelector('.tasks'); if(tabs[i] && tl){ var L=tabs[i].offsetLeft-tl.offsetLeft, R=L+tabs[i].offsetWidth; if(L<tl.scrollLeft || R>tl.scrollLeft+tl.clientWidth) tl.scrollTo({left:Math.max(0,L-12),behavior:'smooth'}); }
       try{ if(window.gtag) gtag('event','select_task',{task:(tabs[i]||{}).textContent}); }catch(x){} }
   }
+  /* (owner 19.11: «сделай его интерактивным, пускай листается сам») the slider turns by itself every 7 s, looping, with a
+     progress line under the active task. It waits while the pointer is over it, while it is off screen or the tab is
+     hidden, and stops for good as soon as the visitor touches it (tap, click, key, swipe). Off with reduced motion. */
+  (function(){
+    var T=7000, timer=0, stopped=false, seen=true, hold=false, cur=null;
+    function rm(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } }
+    function clear(){ clearTimeout(timer); timer=0; }
+    function bar(r){ r.classList.remove('ss-auto'); void r.offsetWidth; r.classList.add('ss-auto'); }
+    function arm(){ clear(); var r=el(); if(!r || stopped || hold || !seen || document.hidden || rm()) return; if(r.querySelectorAll('.card').length<2) return;
+      r.style.setProperty('--ssx-t',T+'ms'); bar(r); timer=setTimeout(function(){ var r2=el(); if(!r2 || stopped) return; var n=r2.querySelectorAll('.card').length; go(((+(r2.getAttribute('data-cur')||0))+1)%n, true); arm(); }, T); }
+    function stop(){ if(stopped) return; stopped=true; clear(); var r=el(); if(r){ r.classList.remove('ss-auto'); r.classList.remove('ss-hold'); } }
+    function wire(r){ if(r===cur) return; cur=r;
+      ['pointerdown','keydown','wheel','touchstart'].forEach(function(t){ r.addEventListener(t,stop,{passive:true}); });
+      r.addEventListener('mouseenter',function(){ if(stopped) return; hold=true; r.classList.add('ss-hold'); clear(); });
+      r.addEventListener('mouseleave',function(){ if(stopped) return; hold=false; r.classList.remove('ss-hold'); arm(); });
+      if('IntersectionObserver' in window) new IntersectionObserver(function(es){ seen=es[0].isIntersecting; if(seen) arm(); else clear(); },{threshold:0.35}).observe(r);
+      setTimeout(arm, 1500); }
+    document.addEventListener('visibilitychange',function(){ if(document.hidden) clear(); else arm(); });
+    (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && r!==cur) wire(r); });
+  })();
   document.addEventListener('click',function(e){
     var r=el(); if(!r || !r.contains(e.target)) return;
     var t=e.target.closest('.tasks button'); if(t){ e.preventDefault(); go(idx(t)); return; }

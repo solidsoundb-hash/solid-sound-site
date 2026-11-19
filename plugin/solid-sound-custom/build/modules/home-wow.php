@@ -59,20 +59,27 @@ add_action( 'wp_footer', function () {
 .ssw-hero .slg span{color:#f59e0b} /* owner 16.11: Solid Sound always brand orange */
 .ssw-wall{position:absolute;left:-12px;right:-12px;top:0;z-index:0;overflow:hidden;border-radius:24px;pointer-events:none;opacity:0;transition:opacity 1.2s}
 .ssw-wall.on{opacity:1}
-.ssw-wall .in{position:absolute;inset:-80px -60px;transform:perspective(900px) rotateX(16deg) rotateZ(-7deg)}
-.ssw-row{display:flex;gap:12px;margin-bottom:12px;width:max-content;animation:sswmq 70s linear infinite}
-.ssw-row:nth-child(2n){animation-direction:reverse;margin-left:-110px}.ssw-row:nth-child(3n){margin-left:-50px;animation-duration:85s}
-.ssw-row a{pointer-events:auto;position:relative;display:block;width:132px;height:132px;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5);flex:none}
+.ssw-wall .in{position:absolute;inset:-60px -60px;transform:rotate(-6deg)} /* owner 19.11: static background (no 3D, no motion) — focus on the slider, faster site */
+.ssw-row{display:flex;gap:12px;margin-bottom:12px;width:max-content}
+.ssw-row:nth-child(2n){margin-left:-110px}.ssw-row:nth-child(3n){margin-left:-50px}
+.ssw-row a{pointer-events:auto;position:relative;display:block;width:132px;height:132px;border-radius:14px;overflow:hidden;flex:none;opacity:.55}
 .ssw-row img{width:100%;height:100%;object-fit:cover;display:block}
 .ssw-row a:after{content:"▶";position:absolute;inset:auto auto 8px 8px;width:30px;height:30px;border-radius:50%;background:#f59e0b;color:#111;display:grid;place-items:center;font-size:12px;opacity:0;transition:opacity .2s}
 .ssw-row a:hover:after,.ssw-row a.pl:after{opacity:1}
-.ssw-wall:after{content:"";position:absolute;inset:0;background:radial-gradient(60% 120px at 50% 120px,rgba(11,16,32,.75),transparent 100%),linear-gradient(180deg,rgba(11,16,32,.5),rgba(11,16,32,.62) 40%,rgba(11,16,32,.9))}
-.ssw-wall.paused .ssw-row{animation-play-state:paused}
-@keyframes sswmq{to{transform:translateX(-50%)}}
+.ssw-wall:after{content:"";position:absolute;inset:0;background:radial-gradient(60% 140px at 50% 120px,rgba(11,16,32,.8),transparent 100%),linear-gradient(180deg,rgba(11,16,32,.55),rgba(11,16,32,.78) 40%,rgba(11,16,32,.9))}
 /* owner 16.11: «2 заголовка конфликтуют» — the slogan is the headline; the assistant title becomes a small card label */
 body.ss-wow .ssx h1.ssx-t,body.ss-wow #top .ssx h1.ssx-t,#top body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font:800 17px/1.3 "Exo 2",sans-serif!important;letter-spacing:.06em;text-transform:uppercase;color:#fff!important;margin:0 0 10px!important}
 body.ss-wow .ssx .sub{display:none}
-body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!important;-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+body.ss-wow .ssx{position:relative;z-index:2;background:rgba(14,20,37,.95)!important;border-color:rgba(245,158,11,.38)!important;box-shadow:0 0 0 1px rgba(245,158,11,.12),0 30px 80px rgba(0,0,0,.6),0 0 90px rgba(245,158,11,.10)}
+/* owner 19.11: the slider turns by itself — a thin progress line under the active task; stops for good once the visitor touches the slider */
+body.ss-wow .ssx .tasks button{position:relative}
+body.ss-wow .ssx.ss-auto .tasks button.on:after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:#f59e0b;transform-origin:0 50%;animation:ssxbar var(--ssx-t,7s) linear forwards}
+body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
+@keyframes ssxbar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* laptops (short screens): compact hero so the card and its button fit the first screen */
+@media(min-width:900px) and (max-height:860px){.ssw-hero{padding:18px 12px 12px!important}.ssw-hero .slg{font-size:40px!important;margin-bottom:8px}}
+/* tablets */
+@media(min-width:601px) and (max-width:1024px){.ssw-hero .slg{font-size:44px!important}.ssw-row a{width:120px;height:120px}}
 .ssw-match{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 10px;border-radius:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.28);cursor:pointer;text-align:left}
 .ssw-match .cv{display:flex;flex:none}.ssw-match .cv img{width:38px;height:38px;border-radius:8px;object-fit:cover;border:2px solid #0b1020;margin-left:-10px;background:#1b2338}.ssw-match .cv img:first-child{margin-left:0}
 .ssw-match b{display:block;color:#fff;font:700 14.5px "Exo 2",sans-serif}.ssw-match small{color:#a3b1c6;font:400 12.5px Roboto,sans-serif}
@@ -97,7 +104,7 @@ body.ss-wow .ssx{position:relative;z-index:2;background:rgba(15,22,40,.66)!impor
 }
 @media(max-width:380px){.ssw-hero .slg{font-size:34px!important}}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
-@media(prefers-reduced-motion:reduce){.ssw-row{animation:none}}
+@media(prefers-reduced-motion:reduce){body.ss-wow .ssx.ss-auto .tasks button.on:after{display:none}}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -111,10 +118,10 @@ function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.
  var wall=document.createElement('div');wall.className='ssw-wall';wall.setAttribute('aria-hidden','true');var inr=document.createElement('div');inr.className='in';wall.appendChild(inr);hero.appendChild(wall);
  function size(){wall.style.height=(ssx.getBoundingClientRect().bottom-hero.getBoundingClientRect().top+30)+'px'}size();
  if('ResizeObserver' in window)new ResizeObserver(size).observe(ssx);window.addEventListener('resize',size,{passive:true});
- var go=function(){var n=Math.max(8,W.length);for(var r=0;r<5;r++){var row=document.createElement('div');row.className='ssw-row';var h='';for(var k=0;k<n*2;k++){var x=W[(k+r*3)%W.length];h+='<a href="'+esc(x.u)+'" data-n="'+((k+r*3)%W.length)+'" tabindex="-1"><img src="'+esc(x.i)+'" alt="" loading="lazy" decoding="async" width="168" height="168"></a>'}row.innerHTML=h;inr.appendChild(row)}
+ var go=function(){var sz=innerWidth>=900?180:(innerWidth>600?132:104),n=Math.min(W.length*2,Math.ceil((wall.offsetWidth+260)/sz)+1);for(var r=0;r<4;r++){var row=document.createElement('div');row.className='ssw-row';var h='';for(var k=0;k<n;k++){var x=W[(k+r*3)%W.length];h+='<a href="'+esc(x.u)+'" data-n="'+((k+r*3)%W.length)+'" tabindex="-1"><img src="'+esc(x.i)+'" alt="" loading="lazy" decoding="async" width="168" height="168"></a>'}row.innerHTML=h;inr.appendChild(row)}
   requestAnimationFrame(function(){wall.classList.add('on')});
   wall.addEventListener('click',function(e){var a=e.target.closest('a[data-n]');if(!a)return;if(play(W[+a.getAttribute('data-n')],a))e.preventDefault()});
-  if('IntersectionObserver' in window)new IntersectionObserver(function(es){wall.classList.toggle('paused',!es[0].isIntersecting)}).observe(wall)};
+};
  (window.requestIdleCallback||function(f){setTimeout(f,600)})(go,{timeout:2500});
  match(ssx)}
 /* "N templates match" in the first card; updates only on the visitor's own clicks/typing (no observers) */
