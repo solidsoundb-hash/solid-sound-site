@@ -41,7 +41,7 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-h small{display:block;margin-top:3px;color:#94A3B8;font-size:14px;line-height:1.45}
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c1,#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c2{display:block!important}
 /* step by step (owner 19.11 «пункт 2 не показывай без пункта 1»): cards 2–4 appear after the files (or «fill in by hand») */
-#solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body>.ss-ff-card.ss-ff-c2,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c3,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c4{display:none!important}
+#solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body>.ss-ff-card.ss-ff-c2,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c3,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c4,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c5,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c6{display:none!important}
 #solid-sound-upload-form .ss-ff-man{display:inline-block;margin:12px 0 0;color:#94A3B8;font-size:14px;cursor:pointer;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px}
 #solid-sound-upload-form .ss-ff-man:hover{color:#F59E0B}#solid-sound-upload-form.ss-ff-has .ss-ff-man{display:none}
 #solid-sound-upload-form .ss-ff-card.ss-ff-in{animation:ssffin .35s ease}@keyframes ssffin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -63,7 +63,16 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-up,#solid-sound-upload-form .ss-ff-cov .bt .ss-aic-b{display:inline-flex!important;align-items:center;justify-content:center;min-height:44px;padding:0 18px!important;border-radius:10px!important;font:700 15px "Exo 2",sans-serif!important;cursor:pointer;margin:0!important}
 #solid-sound-upload-form .ss-ff-up{border:0;background:#F59E0B;color:#111}
 #solid-sound-upload-form .ss-ff-cov .bt .ss-aic-b{border:1px solid #F59E0B!important;background:transparent!important;color:#F59E0B!important}
-#solid-sound-upload-form .ss-ff-c4 .ss-wm-ai{margin:0 0 14px!important}
+#solid-sound-upload-form .ss-ff-c6 .ss-wm-ai{margin:6px 0 14px!important}
+#solid-sound-upload-form .ss-ff-c6 p.ss-wm-submit{margin:6px 0 0!important}
+/* step bar */
+#solid-sound-upload-form .ss-ff-steps{display:flex;gap:6px;margin:0 0 14px;padding:8px;border-radius:14px;background:#0b1220;border:1px solid rgba(255,255,255,.06);overflow-x:auto;scrollbar-width:none}
+#solid-sound-upload-form .ss-ff-steps::-webkit-scrollbar{display:none}
+#solid-sound-upload-form .ss-ff-steps button{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:#94A3B8;font:600 14px "Exo 2",sans-serif;cursor:pointer;white-space:nowrap}
+#solid-sound-upload-form .ss-ff-steps button:hover{background:rgba(255,255,255,.04);color:#fff}
+#solid-sound-upload-form .ss-ff-steps .d{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;border:1.5px solid #334155;font-size:12.5px;font-weight:800}
+#solid-sound-upload-form .ss-ff-steps button.ok{color:#E2E8F0}#solid-sound-upload-form .ss-ff-steps button.ok .d{background:#34D399;border-color:#34D399;color:#062}
+@media(max-width:700px){#solid-sound-upload-form .ss-ff-steps .t{display:none}#solid-sound-upload-form .ss-ff-steps button{flex:1 1 0;padding:0}}
 #solid-sound-upload-form.ss-ds-nofmt .ss-ff-card.ss-ff-c2>*:not(.ss-ap-format):not(.ss-ff-h){display:none!important}
 #solid-sound-upload-form .ss-ds-first,#solid-sound-upload-form .ss-wm-drop.ss-ff .ss-ff-step{display:none!important}
 #solid-sound-upload-form .ss-wm-drop.ss-ff{margin:0}
@@ -205,42 +214,57 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  st=document.createElement('div');st.id='ss-ff-st';st.innerHTML='<ul></ul>';
  body.insertBefore(drop,body.firstChild);if(files)body.insertBefore(files,drop.nextSibling);body.insertBefore(st,(files||drop).nextSibling);
  var zf=document.getElementById('ss-zf');if(zf)body.insertBefore(zf,st.nextSibling);
- /* four cards (owner 19.11: «текст с названием — в самом конце, фильтры компактнее, для своей обложки — нормальная кнопка»):
-    1 files → 2 about the sound (compact) → 3 cover & price → 4 name & description (AI writes them from 1–3). For everyone. */
+ /* six steps, in the order top marketplaces use (owner 20.11 «блоки по логике, как у топовых магазинов, удобно для автора»):
+    1 files → 2 what you're selling → 3 sound details → 4 cover → 5 name & description → 6 price & send, with a step bar on top.
+    Steps 2–6 open after the files (or «fill it in by hand»); 3–6 after the type is chosen. */
  if(!/[?&]ss_ff4=0/.test(location.search)){
  function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h"><span class="ss-ff-n">'+num+'</span><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
  var c1=card('ss-ff-c1','1','Your files','Drop the project ZIP, the full track (WAV) or your MP3 preview, and a cover. We read them and fill in the rest.'),
-     c2=card('ss-ff-c2','2','About the sound','Filled in from your files — check it. No files yet? Choose the type yourself.'),
-     c3=card('ss-ff-c3','3','Cover & price','Upload your own cover or let AI make one. Square, at least 1000×1000.'),
-     c4=card('ss-ff-c4','4','Name & description','Written by AI from your files and the details above — change anything you like.');
- body.insertBefore(c1,body.firstChild);body.insertBefore(c2,c1.nextSibling);body.insertBefore(c3,c2.nextSibling);body.insertBefore(c4,c3.nextSibling);
+     c2=card('ss-ff-c2','2','What you’re selling','Picked from your files — check it. No files yet? Choose the type yourself.'),
+     c3=card('ss-ff-c3','3','Sound details','Filled in from your files and the audio — fix anything that is wrong.'),
+     c4=card('ss-ff-c4','4','Cover','Square, at least 1000×1000. Upload yours or let AI make one.'),
+     c5=card('ss-ff-c5','5','Name & description','AI writes them from the steps above — change anything you like.'),
+     c6=card('ss-ff-c6','6','Price & send','You keep 70 % of every sale (85 % as a Founding Creator). We review new products within 24 hours.');
+ var CS=[c1,c2,c3,c4,c5,c6];CS.forEach(function(c,i){body.insertBefore(c,i?CS[i-1].nextSibling:body.firstChild)});
  [drop,files,st,zf,document.getElementById('ss-az')].forEach(function(x){if(x)c1.appendChild(x)});
  var man=document.createElement('button');man.type='button';man.className='ss-ff-man';man.textContent='No files yet? Fill it in by hand →';c1.appendChild(man);
- function open2(){if(form.classList.contains('ss-ff-has'))return;form.classList.add('ss-ff-has');[c2,c3,c4].forEach(function(c){c.classList.add('ss-ff-in')});setTimeout(function(){c2.scrollIntoView({behavior:'smooth',block:'start'})},250)}
+ function open2(){if(form.classList.contains('ss-ff-has'))return;form.classList.add('ss-ff-has');CS.slice(1).forEach(function(c){c.classList.add('ss-ff-in')});setTimeout(function(){c2.scrollIntoView({behavior:'smooth',block:'start'})},250);steps()}
  window.__ssFFopen=open2;man.onclick=open2;
  /* back from a failed send or editing: the form already has data — show everything */
  if((q('[name=product_name]')||{}).value||q('.ss-ap-format input:checked'))form.classList.add('ss-ff-has');
  function P(sel){var e=q(sel);return e?e.closest('p')||e:null}
- var grid=document.createElement('div');grid.className='ss-ff-grid';
  [F('format'),F('daw'),F('version')].forEach(function(x){if(x)c2.appendChild(x)});
- c2.appendChild(grid);[q('.ss-wm-row'),q('.ss-wm-row2')].forEach(function(r){if(r)grid.appendChild(r)}); /* rows stay (other scripts look for them), the grid lays out their fields */
- [F('genre'),F('mood'),F('tag')].forEach(function(x){if(x)c2.appendChild(x)});
- /* card 3: a real «Upload your cover» button (the image goes through the same drop-zone route) + the AI cover button + preview + price */
+ var grid=document.createElement('div');grid.className='ss-ff-grid';c3.appendChild(grid);
+ [q('.ss-wm-row'),q('.ss-wm-row2')].forEach(function(r){if(r)grid.appendChild(r)}); /* rows stay (other scripts look for them), the grid lays out their fields */
+ [F('genre'),F('mood'),F('tag')].forEach(function(x){if(x)c3.appendChild(x)});
+ /* step 4: a real «Upload your cover» button (the image goes through the same drop-zone route) + the AI cover button + preview */
  var cv=document.createElement('div');cv.className='ss-ff-cov';cv.innerHTML='<div class="pv" aria-live="polite"><span>No cover yet</span></div><div class="bt"><button type="button" class="ss-ff-up">Upload your cover</button></div>';
- var pick=document.createElement('input');pick.type='file';pick.accept='image/jpeg,image/png,image/webp';pick.hidden=true;cv.appendChild(pick);c3.appendChild(cv);
+ var pick=document.createElement('input');pick.type='file';pick.accept='image/jpeg,image/png,image/webp';pick.hidden=true;cv.appendChild(pick);c4.appendChild(cv);
  cv.querySelector('.ss-ff-up').onclick=function(){pick.click()};
- function prev(f){if(!f||!/^image\//.test(f.type))return;var pv=cv.querySelector('.pv');pv.innerHTML='';var im=new Image();im.alt='Cover';im.src=URL.createObjectURL(f);pv.appendChild(im);cv.querySelector('.ss-ff-up').textContent='Change cover'}
+ function prev(f){if(!f||!/^image\//.test(f.type))return;var pv=cv.querySelector('.pv');pv.innerHTML='';var im=new Image();im.alt='Cover';im.src=URL.createObjectURL(f);pv.appendChild(im);cv.querySelector('.ss-ff-up').textContent='Change cover';steps()}
  pick.onchange=function(){var f=pick.files&&pick.files[0],mi=q('input[type=file][multiple]');if(!f)return;prev(f);
   if(mi&&window.DataTransfer){var dt=new DataTransfer();dt.items.add(f);mi.files=dt.files;mi.dispatchEvent(new Event('change',{bubbles:true}))}else{var pi=q('[name=product_image]');if(pi&&window.DataTransfer){var d2=new DataTransfer();d2.items.add(f);pi.files=d2.files;pi.dispatchEvent(new Event('change',{bubbles:true}))}}};
  form.addEventListener('change',function(e){var t=e.target;if(t&&t.name==='product_image'&&t.files&&t.files[0])prev(t.files[0])},true);
  form.addEventListener('drop',function(e){var fl=e.dataTransfer&&e.dataTransfer.files;[].forEach.call(fl||[],function(f){if(/^image\//.test(f.type))prev(f)})},true);
  (function(){var mi=q('input[type=file][multiple]');if(mi)mi.addEventListener('change',function(){[].forEach.call(mi.files||[],function(f){if(/^image\//.test(f.type))prev(f)})})})();
- var pp=P('[name=product_price]');if(pp)c3.appendChild(pp);
- [q('.ss-wm-ai'),P('[name=product_name]'),P('[name=product_description]')].forEach(function(x){if(x)c4.appendChild(x)});
+ [P('[name=product_name]'),P('[name=product_description]')].forEach(function(x){if(x)c5.appendChild(x)});
+ [P('[name=product_price]'),q('.ss-wm-ai'),q('p.ss-wm-submit')].forEach(function(x){if(x)c6.appendChild(x)});
  /* the AI cover button and its box are added by another script: bring them next to «Upload your cover» */
  var tries=0;(function cov(){var b=qa('.ss-aic-b').filter(function(x){return /cover/i.test(x.textContent)})[0],bx=q('.ss-aic-cv');if(b&&bx){cv.querySelector('.bt').appendChild(b);cv.parentNode.insertBefore(bx,cv.nextSibling);return}if(++tries<25)setTimeout(cov,300)})();
  /* an AI cover that gets chosen lands in the product image: show it too */
- new MutationObserver(function(){var im=q('.ss-aic-cv .on img,.ss-aic-cv img.sel');if(im){var pv=cv.querySelector('.pv');if(!pv.querySelector('img')||pv.querySelector('img').src!==im.src){pv.innerHTML='';var c=im.cloneNode();pv.appendChild(c)}}}).observe(c3,{subtree:true,attributes:true,attributeFilter:['class']});
+ new MutationObserver(function(){var im=q('.ss-aic-cv .on img,.ss-aic-cv img.sel');if(im){var pv=cv.querySelector('.pv');if(!pv.querySelector('img')||pv.querySelector('img').src!==im.src){pv.innerHTML='';var c=im.cloneNode();pv.appendChild(c);steps()}}}).observe(c4,{subtree:true,attributes:true,attributeFilter:['class']});
+ /* the step bar: what is done gets a tick, a tap jumps to the step */
+ var NM=['Files','Type','Details','Cover','Name & text','Price & send'],nav=document.createElement('nav');nav.className='ss-ff-steps';nav.setAttribute('aria-label','Steps');
+ nav.innerHTML=NM.map(function(n,i){return '<button type="button" data-i="'+i+'"><span class="d">'+(i+1)+'</span><span class="t">'+n+'</span></button>'}).join('');
+ body.parentNode.insertBefore(nav,body);
+ nav.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-i]');if(!b)return;var i=+b.getAttribute('data-i');if(i>0)open2();var c=CS[i];if(c&&c.offsetParent)c.scrollIntoView({behavior:'smooth',block:'start'});else if(i>1){var f2=F('format');if(f2)f2.scrollIntoView({behavior:'smooth',block:'center'})}});
+ function has(w){if(!w)return false;if(w.querySelector('input[type=checkbox]:checked,input[type=radio]:checked'))return true;var sl=w.querySelector('select');if(sl&&[].some.call(sl.options,function(o){return o.selected&&o.value}))return true;var t=w.querySelector('input[type=text],input[type=number]');return !!(t&&t.value.trim())}
+ function steps(){var nm=q('[name=product_name]'),ds=q('[name=product_description]'),pr=q('[name=product_price]'),fl=q('.ss-wm-files');
+  var ok=[!!(fl&&fl.textContent.trim()),!!q('.ss-ap-format input:checked'),has(F('genre')),!!cv.querySelector('.pv img'),!!(nm&&nm.value.trim()&&ds&&ds.value.trim().length>20),!!(pr&&+pr.value>0)];
+  [].forEach.call(nav.children,function(b,i){b.classList.toggle('ok',ok[i]);b.querySelector('.d').textContent=ok[i]?'✓':String(i+1)})}
+ form.addEventListener('input',function(){requestAnimationFrame(steps)});form.addEventListener('change',function(){requestAnimationFrame(steps)});
+ var fl0=q('.ss-wm-files');if(fl0)new MutationObserver(function(){requestAnimationFrame(steps)}).observe(fl0,{childList:true,subtree:true,characterData:true});
+ steps();
  }
  var hint=q('.ss-ds-first');if(hint)hint.textContent='Step 2: check what you are selling (we pick it from your files).';
  /* grab files before the drop zone routes them (capture phase) */
