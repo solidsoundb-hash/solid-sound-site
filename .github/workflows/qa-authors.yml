@@ -39,10 +39,10 @@ jobs:
           SS_P2: ${{ secrets.SOLID_SOUND_PASS }}
           SS_P3: ${{ secrets.SOLIDSOUND_PASSWORD }}
           SS_P4: ${{ secrets.SOLID_SOUND_PASSWORD_ }}
-        run: node tools/qa/authors.js
+        run: rm -rf qa/authors && node tools/qa/authors.js
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: "qa-authors-${{ matrix.dev }}", path: qa/authors, retention-days: 7 }
+        with: { name: "qa-authors-${{ matrix.dev }}", path: "qa/authors/${{ matrix.dev }}", retention-days: 7 }
   save:
     needs: walk
     if: "!cancelled()"
@@ -53,7 +53,7 @@ jobs:
         with: { path: dl }
       - name: Commit
         run: |
-          rm -rf qa/authors && mkdir -p qa/authors && for d in dl/qa-authors-*; do cp -r $d/. qa/authors/; done
+          rm -rf qa/authors && mkdir -p qa/authors && for d in pc laptop phone; do [ -d dl/qa-authors-$d ] && mkdir -p qa/authors/$d && cp -r dl/qa-authors-$d/. qa/authors/$d/; done
           git config user.name qa-authors && git config user.email actions@users.noreply.github.com
           git add qa/authors && git commit -qm "QA authors: $(date -u +%FT%TZ)" || exit 0
           for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 5; done

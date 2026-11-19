@@ -37,7 +37,8 @@ const bug = (lvl, page, what, detail, shot) => bugs.push({ lvl, page, what, deta
   await page.fill('#user_login', who[1] || ''); await page.fill('#user_pass', who[2] || '');
   await Promise.all([page.waitForNavigation({ timeout: 90000 }).catch(() => {}), page.click('#wp-submit')]);
   await sleep(2000);
-  const logged = await page.evaluate(() => document.body.classList.contains('logged-in')).catch(() => false);
+  await page.goto(BASE + '/en/store-manager/', { waitUntil: 'domcontentloaded', timeout: 120000 }).catch(() => {});
+  const logged = await page.evaluate(() => document.body.classList.contains('logged-in') || !!document.getElementById('wpadminbar')).catch(() => false);
   md.push(`# Рой авторов — ${DEV} (${who[0]})`, '', `Снято: ${new Date().toISOString()}`, `Вход: ${logged ? '✅' : '❌ не вошёл'} · секреты SOLID_SOUND_*: ${ssU && ssP ? 'найдены' : 'не найдены (имена другие)'}`, '');
   if (!logged) bug('🔴', '/wp-login.php', 'Робот не смог войти', who[0]);
   let n = 0; const shot = async (name, full) => { const f = `${String(++n).padStart(2, '0')}_${name.replace(/[^a-z0-9]+/gi, '-').slice(0, 50)}.jpg`; await page.screenshot({ path: `${OUT}/${f}`, type: 'jpeg', quality: 55, fullPage: !!full }).catch(() => {}); return f; };
