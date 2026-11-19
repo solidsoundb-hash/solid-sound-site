@@ -231,7 +231,6 @@ body.ss-cs #wcfm-content>*{min-width:0;max-width:100%;box-sizing:border-box}
 body.ss-cs .wcfm-collapse>.wcfm-page-headig{display:none!important} /* «Marketplace Product List», «Marketplace Edit Seller Profile»…: the tab row already says where you are */
 @media(max-width:600px){body.ss-cs #solid-sound-upload-form .ss-wm-top{flex-wrap:wrap;padding:12px 14px!important;gap:10px}body.ss-cs #solid-sound-upload-form .ss-wm-top h2{flex:1 1 100%;font-size:20px}body.ss-cs #solid-sound-upload-form .ss-wm-top>div{display:flex;gap:8px;width:100%}body.ss-cs #solid-sound-upload-form .ss-wm-top>div>*{flex:1 1 0;margin:0!important;justify-content:center;min-height:44px}
 body.ss-cs #solid-sound-upload-form .acf-radio-list,body.ss-cs #solid-sound-upload-form .acf-checkbox-list{max-width:100%;box-sizing:border-box}body.ss-cs #solid-sound-upload-form .acf-radio-list li,body.ss-cs #solid-sound-upload-form .acf-checkbox-list li{min-width:0}}
-body.ss-cs .wcfm_product_popup_button_wrapper{display:none!important}
 body.ss-cs .acf-field ul.acf-radio-list,body.ss-cs .acf-field ul.acf-checkbox-list{border:0!important;box-shadow:none!important;padding:0!important}
 body.ss-cs .ss-pv-b{background:transparent!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;box-shadow:none!important}
 #ss-cs-wrap .ssa-nav{margin:6px 0 18px}

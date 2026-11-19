@@ -38,6 +38,8 @@ add_action( 'wp_footer', function () {
  *  - WCFM's floating "quick add product" popup (the teal cube, ~40 database queries + its form on every creator page) is off;
  *    products are added on our Add Product page. */
 add_filter( 'wcfm_is_pref_product_popup', '__return_false' );
+/* owner 19.11 «убери всё ненужное, а не скрывай»: WCFM's old side menu is not printed at all while our tab row is there */
+add_filter( 'wcfm_is_allow_show_menu', function ( $m ) { return ( function_exists( 'ss_cs_ok' ) && ss_cs_ok() ) ? false : $m; }, 99 );
 function ss_lite_cs_root() { return function_exists( 'ss_cs_ok' ) && ss_cs_ok() && function_exists( 'ss_cs_is_root' ) && ss_cs_is_root(); }
 add_filter( 'wcfm_locate_template', function ( $t, $name ) {
 	if ( 0 === strpos( (string) $name, 'dashboard/wcfm-view-' ) && false === strpos( $name, 'welcome' ) && ss_lite_cs_root() ) return __DIR__ . '/wcfm-empty-view.php';
@@ -53,3 +55,9 @@ add_action( 'wp_print_scripts', function () {
 		if ( false !== strpos( $s, '/chart-js/' ) || false !== strpos( $s, 'dashboard/wcfm-script-dashboard' ) ) wp_dequeue_script( $h );
 	}
 }, 2 );
+
+/* Add Product: the only rich-text field (MP3 fallback) is plain text now — TinyMCE is not loaded there */
+add_action( 'wp_print_scripts', function () {
+	if ( ! function_exists( 'ss_cs_ok' ) || ! ss_cs_ok() || false === strpos( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), 'ss-add-product' ) ) return;
+	foreach ( array( 'wp-tinymce', 'wp-tinymce-root', 'wp-tinymce-lists' ) as $h ) wp_dequeue_script( $h );
+}, 3 );

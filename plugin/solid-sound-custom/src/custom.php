@@ -1687,6 +1687,7 @@ if ( ! function_exists( 'ss_ap_keys' ) ) {
 		$field['wrapper']['width']  = '';
 		if ( in_array( $k, array( 'format', 'daw', 'version' ), true ) ) { $field['field_type'] = 'radio'; $field['allow_null'] = 0; }
 		if ( in_array( $k, array( 'genre', 'mood', 'ext', 'dl' ), true ) ) $field['field_type'] = 'checkbox';
+		if ( 'mp3' === $k ) { $field['tabs'] = 'text'; $field['delay'] = 1; } /* 19.11 owner «убери ненужное»: plain text box + «Add Media», no TinyMCE editor (~0.5 MB) for a hidden fallback field */
 		$labels = array(
 			'cat' => 'Category', 'format' => 'Product format', 'daw' => 'DAW', 'version' => 'DAW version', 'genre' => 'Genre',
 			'mood' => 'Mood', 'key' => 'Key', 'bpm' => 'BPM', 'length' => 'Length (m:ss)', 'ext' => 'Plugins used',
@@ -2187,7 +2188,7 @@ if ( ! function_exists( 'ss_ep_url' ) ) {
 	}, 50 );
 	add_action( 'wcfm_load_views', function ( $ep ) {
 		if ( 'wcfm-ss-add-product' !== $ep || ! function_exists( 'solid_sound_add_product_form_callback' ) ) return;
-		echo '<div class="collapse wcfm-collapse" id="wcfm_ss_add_product"><div class="wcfm-page-headig"><span class="wcfm-page-heading-text">Marketplace Add New Product</span></div><div class="wcfm-collapse-content">';
+		echo '<div class="collapse wcfm-collapse" id="wcfm_ss_add_product">' . ( function_exists( 'ss_cs_ok' ) && ss_cs_ok() ? '' : '<div class="wcfm-page-headig"><span class="wcfm-page-heading-text">Marketplace Add New Product</span></div>' ) . '<div class="wcfm-collapse-content">'; /* 19.11 owner «убери ненужное, а не скрывай»: no WCFM title under our tab row */
 		echo solid_sound_add_product_form_callback(); // phpcs:ignore
 		echo '</div></div>';
 	}, 50 );
@@ -2245,7 +2246,7 @@ if ( ! function_exists( 'ss_stub_pages' ) ) {
 		$s = preg_replace( '/^wcfm-/', '', (string) $ep );
 		if ( ! isset( $pages[ $s ] ) ) return;
 		$p = $pages[ $s ];
-		echo '<div class="collapse wcfm-collapse"><div class="wcfm-page-headig"><span class="wcfm-page-heading-text">' . esc_html( $p[0] ) . '</span></div><div class="wcfm-collapse-content"><div class="ssw-card" style="max-width:900px;margin:24px auto"><div class="ssw-h"><b>' . esc_html( $p[0] ) . '</b><span class="ssw-btn" style="opacity:.5;cursor:default">' . esc_html( $p[1] ) . '</span></div><p style="color:#94A3B8;margin:0 0 18px">' . esc_html( $p[2] ) . '</p><div style="border:1px dashed rgba(255,255,255,.1);border-radius:10px;padding:34px;text-align:center;color:#94A3B8"><b style="display:block;color:#E5E7EB;font-size:17px;margin-bottom:4px">Coming soon</b>We are building this feature. You will get an email when it is ready.</div></div></div></div>';
+		echo '<div class="collapse wcfm-collapse">' . ( function_exists( 'ss_cs_ok' ) && ss_cs_ok() ? '' : '<div class="wcfm-page-headig"><span class="wcfm-page-heading-text">' . esc_html( $p[0] ) . '</span></div>' ) . '<div class="wcfm-collapse-content"><div class="ssw-card" style="max-width:900px;margin:24px auto"><div class="ssw-h"><b>' . esc_html( $p[0] ) . '</b><span class="ssw-btn" style="opacity:.5;cursor:default">' . esc_html( $p[1] ) . '</span></div><p style="color:#94A3B8;margin:0 0 18px">' . esc_html( $p[2] ) . '</p><div style="border:1px dashed rgba(255,255,255,.1);border-radius:10px;padding:34px;text-align:center;color:#94A3B8"><b style="display:block;color:#E5E7EB;font-size:17px;margin-bottom:4px">Coming soon</b>We are building this feature. You will get an email when it is ready.</div></div></div></div>';
 	}, 50 );
 }
 
