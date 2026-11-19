@@ -227,6 +227,17 @@ body.ss-wow #ss-app .ssx .ssw-match.ssw-ab .abt{display:block;margin-top:6px;col
 body.ss-wow #ss-app .ssx .ssw-match.ssw-ab .ss-ab{width:100%;margin:0}
 body.ss-wow #ss-app .ssx .ssw-match.ssw-ab>small{margin-bottom:4px}
 @media(min-width:1001px){body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match.ssw-ab{aspect-ratio:auto!important}}
+/* Releasing: the pack the visitor builds, live */
+body.ss-wow #ss-app .ssx .ssw-match.ssw-rel{cursor:default;text-align:left!important;justify-content:flex-start!important;gap:6px!important}
+body.ss-wow #ss-app .ssx .ssw-rel .rl{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+body.ss-wow #ss-app .ssx .ssw-rel .ri{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.08);color:#64748B;cursor:pointer;transition:background .15s,color .15s}
+body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:1;font:600 13.5px "Exo 2",sans-serif;font-style:normal}
+body.ss-wow #ss-app .ssx .ssw-rel .ri i{font-style:normal;font-weight:800}
+body.ss-wow #ss-app .ssx .ssw-rel .ri.on{color:#fff;background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.35)}
+body.ss-wow #ss-app .ssx .ssw-rel .ri.on svg,body.ss-wow #ss-app .ssx .ssw-rel .ri.on i{color:#F59E0B}
+@media(min-width:1001px){body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match.ssw-rel{aspect-ratio:auto!important}}
+/* no tall empty rows when a card is shorter than the slider window */
+@media(min-width:1001px){body.ss-wow #ss-app .ssx .card .left,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){align-content:start!important}}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -280,6 +291,16 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    var key=l.map(function(e){return e.id}).join();if(key===last)return;last=key;
    box.innerHTML='<b>Hear before → after</b><small>Client tracks — switch BEFORE / AFTER while it plays</small>'+l.map(function(e){var t=String(e.title||'').replace(/\s*—\s*client track$/i,'');return '<span class="abt">'+esc(t)+'</span>'+'<div class="ss-ab" data-src="'+esc(e.mp3)+'" data-title="'+esc(t)+'" data-pb="'+esc(e.pb||'')+'" data-pa="'+esc(e.pa||'')+'"><div class="ss-abp"><button type="button" class="ss-abb" aria-label="Play '+esc(t)+'" aria-pressed="false"><svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg><svg class="pa" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"></path></svg></button><div class="ss-abw" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i class="b"></i><i class="a"></i><u><i class="b"></i><i class="a"></i></u></div></div><button type="button" class="ss-abs" role="switch" aria-checked="false" aria-label="Before or after — '+esc(t)+'"><i aria-hidden="true"></i><span>BEFORE</span><span>AFTER</span></button></div>'}).join('')}
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[1]);
+ /* Releasing (owner 19.11: «кнопки должны нажиматься, квадратик справа показывает, что клиент выбрал») */
+ (function(left){if(!left||left.querySelector('.ssw-match'))return;var f=left.querySelector('.f .chips');if(!f)return;var acts=left.querySelector('.acts');
+  var IC={'mix':'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0','master':'M12 3v18M5 8l7-5 7 5','stem':'M3 12h3l3-8 4 16 3-8h5','instr':'M9 18V5l11-2v13','call':'M15 10l5-3v10l-5-3zM3 7h12v10H3z'};
+  function ic(t){var k=/master/i.test(t)?'master':/mix/i.test(t)?'mix':/stem/i.test(t)?'stem':/instr/i.test(t)?'instr':'call';return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+IC[k]+'"/></svg>'}
+  var box=document.createElement('div');box.className='ssw-match ssw-rel';box.setAttribute('aria-live','polite');if(acts)left.insertBefore(box,acts);else left.appendChild(box);
+  function run(){var all=[].slice.call(f.querySelectorAll('span')),sel=all.filter(function(x){return x.classList.contains('on')});
+   box.innerHTML='<b>Your release pack</b><small>'+sel.length+' of '+all.length+' selected</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
+   var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])inc=[^&]*/,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
+  box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;all();function all(){[].forEach.call(f.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')})}run()});
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[2]);
  /* DJ set: music by genre / BPM / key, like the templates card */
  side(L[3],function(){var M=W.filter(function(x){return x.s&&/music/.test(x.f||'')}).concat(W.filter(function(x){return x.s&&!/music|presets/.test(x.f||'')}));if(!M.length)return null; /* music first, then templates (full tracks) */var g=on(L[3],0).trim().toLowerCase(),bi=L[3].querySelector('input[type=number]'),b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0,kc=null;
   [].forEach.call(L[3].querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*key/i.test(l.textContent))kc=d.querySelector('.chips')});var k=((kc&&kc.querySelector('.on'))||{}).textContent||'';k=k.trim();
