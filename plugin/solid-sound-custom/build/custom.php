@@ -5598,4 +5598,5 @@ require_once __DIR__ . '/modules/family.php';
 require_once __DIR__ . '/modules/prices.php';
 require_once __DIR__ . '/modules/ajax-cart.php';
 require_once __DIR__ . '/modules/forum-help.php';
+require_once __DIR__ . '/modules/free-hub.php';
 require_once __DIR__ . '/modules/get-heard.php'; /* 19.11 owner: «Get heard» + «Why Solid Sound» */
