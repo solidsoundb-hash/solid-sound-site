@@ -36,7 +36,7 @@ add_action( 'wp_footer', function () {
 /* 19.11 owner («переделать Add product, грамотно совместить всё»): one flow in 3 cards */
 #solid-sound-upload-form .ss-ff-card{margin:0 0 16px;padding:20px;border-radius:16px;background:#0f1729;border:1px solid rgba(255,255,255,.08)}
 #solid-sound-upload-form .ss-ff-h{display:flex;align-items:flex-start;gap:12px;margin:0 0 14px}
-#solid-sound-upload-form .ss-ff-h .ss-ff-n{flex:none;display:block;width:30px;height:30px;border-radius:50%;background:#F59E0B;color:#111!important;font:800 15px/30px "Exo 2",sans-serif!important;text-align:center;font-style:normal}
+#solid-sound-upload-form .ss-ff-h[data-n]::before{content:attr(data-n);flex:none;display:flex!important;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#F59E0B;color:#111;font:800 15px "Exo 2",sans-serif;visibility:visible!important;opacity:1!important}
 #solid-sound-upload-form .ss-ff-h b{display:block;color:#fff;font:800 19px/1.25 "Exo 2",sans-serif}
 #solid-sound-upload-form .ss-ff-h small{display:block;margin-top:3px;color:#94A3B8;font-size:14px;line-height:1.45}
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c1,#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c2{display:block!important}
@@ -218,7 +218,7 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
     1 files → 2 what you're selling → 3 sound details → 4 cover → 5 name & description → 6 price & send, with a step bar on top.
     Steps 2–6 open after the files (or «fill it in by hand»); 3–6 after the type is chosen. */
  if(!/[?&]ss_ff4=0/.test(location.search)){
- function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h"><span class="ss-ff-n">'+num+'</span><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
+ function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h" data-n="'+num+'"><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
  var c1=card('ss-ff-c1','1','Your files','Drop the project ZIP, the full track (WAV) or your MP3 preview, and a cover. We read them and fill in the rest.'),
      c2=card('ss-ff-c2','2','What you’re selling','Picked from your files — check it. No files yet? Choose the type yourself.'),
      c3=card('ss-ff-c3','3','Sound details','Filled in from your files and the audio — fix anything that is wrong.'),
