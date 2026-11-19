@@ -40,6 +40,11 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-h b{display:block;color:#fff;font:800 19px/1.25 "Exo 2",sans-serif}
 #solid-sound-upload-form .ss-ff-h small{display:block;margin-top:3px;color:#94A3B8;font-size:14px;line-height:1.45}
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c1,#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c2{display:block!important}
+/* step by step (owner 19.11 «пункт 2 не показывай без пункта 1»): cards 2–4 appear after the files (or «fill in by hand») */
+#solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body>.ss-ff-card.ss-ff-c2,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c3,#solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body>.ss-ff-card.ss-ff-c4{display:none!important}
+#solid-sound-upload-form .ss-ff-man{display:inline-block;margin:12px 0 0;color:#94A3B8;font-size:14px;cursor:pointer;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px}
+#solid-sound-upload-form .ss-ff-man:hover{color:#F59E0B}#solid-sound-upload-form.ss-ff-has .ss-ff-man{display:none}
+#solid-sound-upload-form .ss-ff-card.ss-ff-in{animation:ssffin .35s ease}@keyframes ssffin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 /* card 2 compact: choices as small chips that do not stretch, the small fields in one tight grid */
 #solid-sound-upload-form .ss-ff-c2 .acf-checkbox-list,#solid-sound-upload-form .ss-ff-c2 .acf-radio-list{display:flex!important;flex-wrap:wrap!important;gap:6px!important;grid-template-columns:none!important}
 #solid-sound-upload-form .ss-ff-c2 .acf-checkbox-list>li,#solid-sound-upload-form .ss-ff-c2 .acf-radio-list>li{flex:0 0 auto!important;width:auto!important;margin:0!important}
@@ -210,6 +215,11 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
      c4=card('ss-ff-c4','4','Name & description','Written by AI from your files and the details above — change anything you like.');
  body.insertBefore(c1,body.firstChild);body.insertBefore(c2,c1.nextSibling);body.insertBefore(c3,c2.nextSibling);body.insertBefore(c4,c3.nextSibling);
  [drop,files,st,zf,document.getElementById('ss-az')].forEach(function(x){if(x)c1.appendChild(x)});
+ var man=document.createElement('button');man.type='button';man.className='ss-ff-man';man.textContent='No files yet? Fill it in by hand →';c1.appendChild(man);
+ function open2(){if(form.classList.contains('ss-ff-has'))return;form.classList.add('ss-ff-has');[c2,c3,c4].forEach(function(c){c.classList.add('ss-ff-in')});setTimeout(function(){c2.scrollIntoView({behavior:'smooth',block:'start'})},250)}
+ window.__ssFFopen=open2;man.onclick=open2;
+ /* back from a failed send or editing: the form already has data — show everything */
+ if((q('[name=product_name]')||{}).value||q('.ss-ap-format input:checked'))form.classList.add('ss-ff-has');
  function P(sel){var e=q(sel);return e?e.closest('p')||e:null}
  var grid=document.createElement('div');grid.className='ss-ff-grid';
  [F('format'),F('daw'),F('version')].forEach(function(x){if(x)c2.appendChild(x)});
@@ -234,7 +244,7 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  }
  var hint=q('.ss-ds-first');if(hint)hint.textContent='Step 2: check what you are selling (we pick it from your files).';
  /* grab files before the drop zone routes them (capture phase) */
- function seen(list){[].forEach.call(list||[],function(f){var n=f.name.toLowerCase();if(f._ssGen||/-preview\.mp3$/i.test(f.name)&&full)return;if(/\.mp3$/.test(n)||/^audio\//.test(f.type)&&!/\.zip$/.test(n)){window.__ssFFmp3=1;done.mp3=false;aiRan=false;readMp3(f)}else if(/\.(zip|rar|7z)$/.test(n)){lastZipName=f.name;done.zip=false;aiRan=false;line('zip','wt','Reading '+f.name+'…');if(!/\.zip$/.test(n)){line('zip','no','RAR/7z cannot be read here — fill DAW and version yourself.');done.zip=true;ai()}else{setTimeout(function(){if(!done.zip){done.zip=true;line('zip','no','Could not read the ZIP here — fill DAW and version yourself.');ai()}},20000)}}else if(/^image\//.test(f.type)){line('cover','ok','Cover: '+f.name);var im=new Image();im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight;chk('cov',w>=1000&&Math.abs(w-h)<=w*0.02,w>=1000&&Math.abs(w-h)<=w*0.02?'Cover '+w+'×'+h+' — good.':'Cover is '+w+'×'+h+' — use a square image, at least 1000×1000, so it looks sharp in the shop.')};im.src=URL.createObjectURL(f)}})}
+ function seen(list){if(list&&list.length&&window.__ssFFopen)setTimeout(window.__ssFFopen,600);[].forEach.call(list||[],function(f){var n=f.name.toLowerCase();if(f._ssGen||/-preview\.mp3$/i.test(f.name)&&full)return;if(/\.mp3$/.test(n)||/^audio\//.test(f.type)&&!/\.zip$/.test(n)){window.__ssFFmp3=1;done.mp3=false;aiRan=false;readMp3(f)}else if(/\.(zip|rar|7z)$/.test(n)){lastZipName=f.name;done.zip=false;aiRan=false;line('zip','wt','Reading '+f.name+'…');if(!/\.zip$/.test(n)){line('zip','no','RAR/7z cannot be read here — fill DAW and version yourself.');done.zip=true;ai()}else{setTimeout(function(){if(!done.zip){done.zip=true;line('zip','no','Could not read the ZIP here — fill DAW and version yourself.');ai()}},20000)}}else if(/^image\//.test(f.type)){line('cover','ok','Cover: '+f.name);var im=new Image();im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight;chk('cov',w>=1000&&Math.abs(w-h)<=w*0.02,w>=1000&&Math.abs(w-h)<=w*0.02?'Cover '+w+'×'+h+' — good.':'Cover is '+w+'×'+h+' — use a square image, at least 1000×1000, so it looks sharp in the shop.')};im.src=URL.createObjectURL(f)}})}
  var multi=q('input[type=file][multiple]');
  function isFull(f){return /\.(wav|aiff?|flac)$/i.test(f.name)}
  function reroute(list,e){var full=[].filter.call(list,isFull);if(!full.length||!multi)return false;e.stopPropagation();e.preventDefault();var rest=[].filter.call(list,function(f){return !isFull(f)});
