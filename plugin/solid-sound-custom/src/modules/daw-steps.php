@@ -52,7 +52,18 @@ add_action( 'wp_footer', function () {
 /* owner 19.11: «сначала — что это: шаблон, пресет и т.д., а уже от этого плясать дальше» — nothing else until the type is chosen */
 /* 19.11 owner: files FIRST — the «Drop your files» window (files-first.php) stays visible before the type is chosen; it picks the type itself */
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>*:not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c2),#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body~*:not(.ss-wm-hidden){display:none!important}
-#solid-sound-upload-form .ss-ds-first{margin:10px 0 0;color:#F59E0B;font-weight:700}</style>
+#solid-sound-upload-form .ss-ds-first{margin:10px 0 0;color:#F59E0B;font-weight:700}
+/* 19.11 owner «надо всё выровнять, криво»: BPM / Key / Plugins… in the grid — title, one-height hint, «+ Add», then the field full width; key hint under it */
+#solid-sound-upload-form .ss-ff-grid .acf-field{display:flex!important;flex-direction:column!important;align-self:start!important;min-width:0}
+#solid-sound-upload-form .ss-ff-grid .acf-label{margin:0 0 8px!important}
+#solid-sound-upload-form .ss-ff-grid .acf-label label{margin:0 0 4px!important;line-height:1.3!important}
+#solid-sound-upload-form .ss-ff-grid .acf-label .description,#solid-sound-upload-form .ss-ff-grid .acf-label p{margin:0!important;line-height:1.45!important;font-size:14px!important;min-height:2.9em}
+#solid-sound-upload-form .ss-ff-grid .acf-input{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important}
+#solid-sound-upload-form .ss-ff-grid .acf-input>*{width:100%!important;max-width:100%!important;flex:none!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box}
+#solid-sound-upload-form .ss-ff-grid .acf-input>.acf-actions,#solid-sound-upload-form .ss-ff-grid .acf-input>a{width:auto!important;align-self:flex-start;order:-1}
+#solid-sound-upload-form .ss-ff-grid .select2-container{width:100%!important}
+#solid-sound-upload-form .ss-ff-grid .select2-selection{min-height:44px}
+#solid-sound-upload-form .ss-ff-grid #ss-kd{margin:0!important}</style>
 <script>(function(){
 function run(){var form=document.getElementById('solid-sound-upload-form');if(!form||form.dataset.ssds)return!!form;var fmt=form.querySelector('.ss-ap-format'),daw=form.querySelector('.ss-ap-daw'),ver=form.querySelector('.ss-ap-version');if(!fmt||!daw||!ver)return false;form.dataset.ssds='1';
  /* 1 → 2 → 3 right under each other */
