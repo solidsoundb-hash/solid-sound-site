@@ -1,30 +1,118 @@
 {
- "date": "2026-11-17T06:40:53.003Z",
+ "date": "2026-11-19T18:44:59.511Z",
  "results": {
   "/en/|mobile": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 36,
+   "lcp": 6559,
+   "fcp": 2791,
+   "tbt": 1937,
+   "cls": 0.077,
+   "kb": 1701,
+   "requests": 73,
+   "ttfb": 1714,
+   "field": "lighthouse на роботе"
   },
   "/en/|desktop": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 77,
+   "lcp": 2428,
+   "fcp": 1256,
+   "tbt": 40,
+   "cls": 0.014,
+   "kb": 1714,
+   "requests": 80,
+   "ttfb": 1920,
+   "field": "lighthouse на роботе"
   },
   "/en/all-products/|mobile": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 0,
+   "lcp": 0,
+   "fcp": 4196,
+   "tbt": 0,
+   "cls": 0.242,
+   "kb": 1776,
+   "requests": 94,
+   "ttfb": 2729,
+   "field": "lighthouse на роботе"
   },
   "/en/all-products/|desktop": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 0,
+   "lcp": 0,
+   "fcp": 1251,
+   "tbt": 0,
+   "cls": 0.056,
+   "kb": 1799,
+   "requests": 95,
+   "ttfb": 2337,
+   "field": "lighthouse на роботе"
   },
   "/product/infinity/|mobile": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 53,
+   "lcp": 20716,
+   "fcp": 2818,
+   "tbt": 338,
+   "cls": 0.081,
+   "kb": 6447,
+   "requests": 213,
+   "ttfb": 1203,
+   "field": "lighthouse на роботе"
   },
   "/product/infinity/|desktop": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 67,
+   "lcp": 4227,
+   "fcp": 1216,
+   "tbt": 17,
+   "cls": 0.038,
+   "kb": 6429,
+   "requests": 221,
+   "ttfb": 2838,
+   "field": "lighthouse на роботе"
+  },
+  "/en/studio-calculator/|mobile": {
+   "score": 87,
+   "lcp": 3066,
+   "fcp": 2285,
+   "tbt": 79,
+   "cls": 0,
+   "kb": 1268,
+   "requests": 65,
+   "ttfb": 1111,
+   "field": "lighthouse на роботе"
+  },
+  "/en/studio-calculator/|desktop": {
+   "score": 88,
+   "lcp": 1200,
+   "fcp": 1043,
+   "tbt": 0,
+   "cls": 0.089,
+   "kb": 1268,
+   "requests": 64,
+   "ttfb": 1812,
+   "field": "lighthouse на роботе"
   },
   "/en/wiki/|mobile": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 87,
+   "lcp": 3105,
+   "fcp": 2277,
+   "tbt": 74,
+   "cls": 0,
+   "kb": 1267,
+   "requests": 64,
+   "ttfb": 1109,
+   "field": "lighthouse на роботе"
   },
   "/en/wiki/|desktop": {
-   "error": "лимит Google без ключа — добавьте бесплатный PSI_KEY (docs/bots.md)"
+   "score": 92,
+   "lcp": 1217,
+   "fcp": 1046,
+   "tbt": 0,
+   "cls": 0.003,
+   "kb": 1267,
+   "requests": 64,
+   "ttfb": 1306,
+   "field": "lighthouse на роботе"
   }
  },
- "warn": []
+ "warn": [
+  "/en/all-products/ (телефон): страница «прыгает» при загрузке (CLS 0.242, норма до 0.1)"
+ ]
 }
