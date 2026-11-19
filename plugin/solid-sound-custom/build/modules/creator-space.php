@@ -222,6 +222,19 @@ body.ss-cs #wcfm-main-contentainer{background:transparent!important;max-width:12
 /* 16.11: NOT display:none — a zero-size WCFM Chart.js canvas makes buildTicks loop forever (browser Out of Memory). Keep it sized, off-screen. */
 body.ss-cs-mounted.ss-cs-root #wcfm-content>*:not(#ss-cs-wrap){position:fixed!important;left:-20000px!important;top:0!important;width:1100px!important;visibility:hidden!important;pointer-events:none!important}
 #ss-cs-wrap{font-family:"Exo 2",system-ui,sans-serif;padding:0 0 10px}
+/* owner 19.11: «обводка у авторского кабинета урыганская — убери её»: no frame around the whole space; the space is centred
+   and as wide as the client account (1140), with a 16 px side gutter on phones (it used to be 973 px wide on a 390 px phone) */
+body.ss-cs #wcfm-content,body.ss-cs #wcfm-main-contentainer{border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;overflow:visible!important}
+body.ss-cs #wcfm-content{max-width:1140px!important;margin:0 auto!important;padding:0!important;box-sizing:border-box}
+body.ss-cs #wcfm-content>*{min-width:0;max-width:100%;box-sizing:border-box}
+#ss-cs-wrap{width:100%;min-width:0}
+#ss-cs-wrap .ssa-nav{max-width:100%;flex-wrap:nowrap;overflow-x:auto}
+@media(max-width:1199px){body.ss-cs #wcfm-content{padding:0 16px!important}}
+/* add-product page: the WCFM title duplicates the form's own «Add Product», WCFM's floating «quick add» cube sat on the chat button */
+body.ss-cs #wcfm_ss_add_product>.wcfm-page-headig{display:none!important}
+body.ss-cs .wcfm_product_popup_button_wrapper{display:none!important}
+body.ss-cs .acf-field ul.acf-radio-list,body.ss-cs .acf-field ul.acf-checkbox-list{border:0!important;box-shadow:none!important;padding:0!important}
+body.ss-cs .ss-pv-b{background:transparent!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;box-shadow:none!important}
 #ss-cs-wrap .ssa-nav{margin:6px 0 18px}
 #ss-cs-wrap #ssd{padding:4px 0 40px}
 #ssd.ss-cs-d .row{display:flex;align-items:center;gap:14px;text-decoration:none!important}
