@@ -1,17 +1,47 @@
-# Creator area audit 2026-11-19T20:32:20.543Z
+# Creator area audit 2026-11-19T20:38:55.708Z
 
 ## phone
 - /en/store-manager/ → HTTP 200 · height 4292px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
-- /en/store-manager/ss-products/ → HTTP 200 · height 1938px · [phone_en_store_manager_ss_products.jpg](phone_en_store_manager_ss_products.jpg)
-- /en/store-manager/ss-add-product/ → HTTP 200 · height 1713px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+    - at 330: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+    - at 345: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+    - at 360: p.sub < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+- /en/store-manager/ss-products/ → HTTP 200 · height 1862px · [phone_en_store_manager_ss_products.jpg](phone_en_store_manager_ss_products.jpg)
+    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+- /en/store-manager/ss-add-product/ → HTTP 200 · height 1662px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+    - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
+    - at 360: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
     - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
-- /en/store-manager/ss-earnings/ → HTTP 200 · height 2402px · [phone_en_store_manager_ss_earnings.jpg](phone_en_store_manager_ss_earnings.jpg)
-- /en/store-manager/ss-payouts/ → HTTP 200 · height 2765px · [phone_en_store_manager_ss_payouts.jpg](phone_en_store_manager_ss_payouts.jpg)
-- /en/store-manager/ss-reviews/ → HTTP 200 · height 1616px · [phone_en_store_manager_ss_reviews.jpg](phone_en_store_manager_ss_reviews.jpg)
-- /en/store-manager/ss-settings/ → HTTP 200 · height 4168px · [phone_en_store_manager_ss_settings.jpg](phone_en_store_manager_ss_settings.jpg)
-- /en/store-manager/ss-help/ → HTTP 200 · height 2005px · [phone_en_store_manager_ss_help.jpg](phone_en_store_manager_ss_help.jpg)
+- /en/store-manager/ss-earnings/ → HTTP 200 · height 2326px · [phone_en_store_manager_ss_earnings.jpg](phone_en_store_manager_ss_earnings.jpg)
+    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+- /en/store-manager/ss-payouts/ → HTTP 200 · height 2661px · [phone_en_store_manager_ss_payouts.jpg](phone_en_store_manager_ss_payouts.jpg)
+    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+- /en/store-manager/ss-reviews/ → HTTP 200 · height 1540px · [phone_en_store_manager_ss_reviews.jpg](phone_en_store_manager_ss_reviews.jpg)
+    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+- /en/store-manager/ss-settings/ → HTTP 200 · height 4070px · [phone_en_store_manager_ss_settings.jpg](phone_en_store_manager_ss_settings.jpg)
+    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+- /en/store-manager/ss-help/ → HTTP 200 · height 1929px · [phone_en_store_manager_ss_help.jpg](phone_en_store_manager_ss_help.jpg)
+    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
 - /en/my-account/ → HTTP 200 · height 2950px · [phone_en_my_account.jpg](phone_en_my_account.jpg)
+    - at 330: p.sub < div < div.top < div#ssd < div.woocommerce-MyAccount-content
+    - at 345: span.ssa-bonus < p.sub < div < div.top < div#ssd
+    - at 360: span.ssa-bonus < p.sub < div < div.top < div#ssd
 - /sell/ → HTTP 200 · height 4292px · [phone_sell.jpg](phone_sell.jpg)
+    - at 330: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+    - at 345: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+    - at 360: p.sub < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
 ## desktop
 - /en/store-manager/ → HTTP 200 · height 2651px · [desktop_en_store_manager.jpg](desktop_en_store_manager.jpg)
 - /en/store-manager/ss-products/ → HTTP 200 · height 1286px · [desktop_en_store_manager_ss_products.jpg](desktop_en_store_manager_ss_products.jpg)
