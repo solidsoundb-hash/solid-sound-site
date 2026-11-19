@@ -36,7 +36,7 @@ add_action( 'wp_footer', function () {
 /* 19.11 owner («переделать Add product, грамотно совместить всё»): one flow in 3 cards */
 #solid-sound-upload-form .ss-ff-card{margin:0 0 16px;padding:20px;border-radius:16px;background:#0f1729;border:1px solid rgba(255,255,255,.08)}
 #solid-sound-upload-form .ss-ff-h{display:flex;align-items:flex-start;gap:12px;margin:0 0 14px}
-#solid-sound-upload-form .ss-ff-h i{flex:none;width:30px;height:30px;border-radius:50%;background:#F59E0B;color:#111;font:800 15px/30px "Exo 2",sans-serif;text-align:center;font-style:normal}
+#solid-sound-upload-form .ss-ff-h .ss-ff-n{flex:none;display:block;width:30px;height:30px;border-radius:50%;background:#F59E0B;color:#111!important;font:800 15px/30px "Exo 2",sans-serif!important;text-align:center;font-style:normal}
 #solid-sound-upload-form .ss-ff-h b{display:block;color:#fff;font:800 19px/1.25 "Exo 2",sans-serif}
 #solid-sound-upload-form .ss-ff-h small{display:block;margin-top:3px;color:#94A3B8;font-size:14px;line-height:1.45}
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c1,#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>.ss-ff-card.ss-ff-c2{display:block!important}
@@ -208,7 +208,7 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  /* four cards (owner 19.11: «текст с названием — в самом конце, фильтры компактнее, для своей обложки — нормальная кнопка»):
     1 files → 2 about the sound (compact) → 3 cover & price → 4 name & description (AI writes them from 1–3). For everyone. */
  if(!/[?&]ss_ff4=0/.test(location.search)){
- function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h"><i>'+num+'</i><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
+ function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h"><span class="ss-ff-n">'+num+'</span><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
  var c1=card('ss-ff-c1','1','Your files','Drop the project ZIP, the full track (WAV) or your MP3 preview, and a cover. We read them and fill in the rest.'),
      c2=card('ss-ff-c2','2','About the sound','Filled in from your files — check it. No files yet? Choose the type yourself.'),
      c3=card('ss-ff-c3','3','Cover & price','Upload your own cover or let AI make one. Square, at least 1000×1000.'),
