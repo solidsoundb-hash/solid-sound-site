@@ -14,8 +14,8 @@ const E = process.env, U = E.SS_L1 || E.SS_L2 || E.SS_L3 || E.SS_L4 || E.TEST_AD
     const ctx = await b.newContext({ ...dev[1], locale: 'en-US', deviceScaleFactor: 1 });
     await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
     const p = await ctx.newPage();
-    await p.goto(BASE + '/wp-login.php', { waitUntil: 'domcontentloaded', timeout: 90000 });
-    await p.fill('#user_login', U || ''); await p.fill('#user_pass', P || '');
+    for (let i = 0; i < 5; i++) { await p.goto(BASE + '/wp-login.php', { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(() => {}); if (await p.locator('#user_login').count().catch(() => 0)) break; await new Promise(r => setTimeout(r, 15000 * (i + 1))); }
+    await p.fill('#user_login', U || '', { timeout: 60000 }); await p.fill('#user_pass', P || '');
     await Promise.all([p.waitForNavigation({ timeout: 90000 }).catch(() => {}), p.click('#wp-submit')]);
     await ctx.addInitScript(() => { window.__cls = 0; try { new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: 'layout-shift', buffered: true }); } catch (e) {} });
     for (const pg of PAGES) {

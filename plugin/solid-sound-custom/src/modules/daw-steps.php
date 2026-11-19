@@ -37,6 +37,9 @@ function ss_ds_on() { return function_exists( 'ss_cs_ok' ) && ss_cs_ok() && ! ge
 /* in <head>: the form is drawn already folded (nothing jumps when the script runs) */
 add_action( 'wp_head', function () {
 	if ( ! ss_ds_on() ) return;
+	/* (owner 19.11 «эд продакт коряво грузится») five scripts finish the form after it shows (nice selects, «+ Add your own», AI and
+	   Preview buttons, the steps): it stays invisible until they are done and then appears at once; a quiet line meanwhile; 4 s safety */
+	echo '<style id="ss-ds-ready">#solid-sound-upload-form{opacity:0;transition:opacity .18s ease}#solid-sound-upload-form.ss-ready{opacity:1}#solid-sound-upload-form:not(.ss-ready)~.ss-ds-wait,.ss-ds-wait{display:block}.ss-ds-wait{position:absolute;left:0;right:0;top:120px;text-align:center;color:#94a3b8;font:600 15px "Exo 2",sans-serif}#solid-sound-upload-form.ss-ready~.ss-ds-wait{display:none}</style><noscript><style>#solid-sound-upload-form{opacity:1}</style></noscript>';
 	echo '<style id="ss-ds-head">#solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body>*:not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version){display:none!important}</style>';
 }, 99 );
 add_action( 'wp_footer', function () {
@@ -44,7 +47,7 @@ add_action( 'wp_footer', function () {
 	/* on for everyone (owner 19.11: «выкладывай всё, что готово»); off with option ss_ds_off=1 */
 	if ( get_option( 'ss_ds_off' ) ) return; ?>
 <style>#solid-sound-upload-form .ss-ds-off{display:none!important}#solid-sound-upload-form .ss-ds-hint{margin:6px 0 0;color:#94a3b8;font-size:14px}
-#solid-sound-upload-form .ss-ap-daw,#solid-sound-upload-form .ss-ap-version{margin-top:14px}
+#solid-sound-upload-form .ss-wm-body>.ss-ap-daw,#solid-sound-upload-form .ss-wm-body>.ss-ap-version,#solid-sound-upload-form .ss-wm-body>.ss-ap-genre{margin-top:22px!important}
 #solid-sound-upload-form .ss-ap-format .acf-radio-list,#solid-sound-upload-form .ss-ap-daw .acf-radio-list,#solid-sound-upload-form .ss-ap-version .acf-radio-list{max-height:none!important;overflow:visible!important}
 /* owner 19.11: «сначала — что это: шаблон, пресет и т.д., а уже от этого плясать дальше» — nothing else until the type is chosen */
 #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body>*:not(.ss-ap-format),#solid-sound-upload-form.ss-ds-nofmt .ss-wm-body~*:not(.ss-wm-hidden){display:none!important}
@@ -67,5 +70,11 @@ function run(){var form=document.getElementById('solid-sound-upload-form');if(!f
  (function(){var ul=ver.querySelector('ul');if(!ul)return;var li=[].slice.call(ul.children);li.sort(function(a,b){var x=(a.textContent.match(/(\d+)\s*$/)||[0,0])[1],y=(b.textContent.match(/(\d+)\s*$/)||[0,0])[1];var na=a.textContent.replace(/\d+\s*$/,''),nb=b.textContent.replace(/\d+\s*$/,'');return na<nb?-1:na>nb?1:(+y)-(+x)});li.forEach(function(x){ul.appendChild(x)})})(); /* newest version first */
  upd();return true}
 if(!run()){var mo=new MutationObserver(function(){if(run())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
+/* show the form once everything has finished building it */
+function show(){var f=document.getElementById('solid-sound-upload-form');if(f&&!f.classList.contains('ss-ready')){f.classList.add('ss-ready');var w=document.querySelector('.ss-ds-wait');if(w)w.remove()}}
+(function(){var f=document.getElementById('solid-sound-upload-form');if(!f)return;var p=f.parentNode;if(p&&getComputedStyle(p).position==='static')p.style.position='relative';var w=document.createElement('div');w.className='ss-ds-wait';w.textContent='Loading the form…';f.parentNode.insertBefore(w,f.nextSibling)})();
+function later(){requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(show,250)})})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',later);else later();
+setTimeout(show,4000);
 })();</script>
 <?php }, 100 );
