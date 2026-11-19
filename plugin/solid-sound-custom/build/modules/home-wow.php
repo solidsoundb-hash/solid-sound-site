@@ -275,7 +275,9 @@ body.ss-wow #ss-app .ssx .ssw-rel .ri{padding:5px 8px;gap:6px}
 body.ss-wow #ss-app .ssx .ssw-rel .ri svg{display:none}
 body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:0 1 auto;min-width:0;white-space:normal;font-size:12.5px}
 body.ss-wow #ss-app .ssx .ssw-vd .ri{width:100%}body.ss-wow #ss-app .ssx .ssw-vd .ri em{flex:1 1 auto}
-body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{width:100%!important;min-width:0}body.ss-wow #ss-app .ssx .ssw-vd .vd-ex img{width:100%!important;height:auto!important}
+body.ss-wow #ss-app .ssx .ssw-vd .vd-ex .mx{width:100%!important;min-width:0}
+body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri{padding:4px 8px!important;gap:5px!important;border-radius:6px}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri em{font-size:12px!important;white-space:nowrap!important}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .ri i{font-size:11px}body.ss-wow #ss-app .ssx .ssw-rel:not(.ssw-vd) .rl{gap:5px!important}body.ss-wow #ss-app .ssx .ssw-rel>b{font-size:15px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-dj) .f .chips.one{flex-wrap:wrap!important;overflow:visible!important}body.ss-wow #ss-app .ssx .ssw-vd .vd-ex img{width:100%!important;height:auto!important}
 body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{max-width:100%;min-width:0}
 body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2){display:none}
 body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
