@@ -190,9 +190,9 @@ body.ss-wow #ss-app .ssx .card{border:0!important;background:transparent!importa
 /* (owner 19.11) computer: filters on the left (Genre, BPM, Key, then Ableton + No external plugins),
    the "templates match" card square on the right, the buttons under it */
 @media(min-width:1001px){
-body.ss-wow #ss-app .ssx .card .left,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){display:grid!important;grid-template-columns:minmax(0,1fr) 280px!important;column-gap:36px!important;row-gap:0!important;align-items:start!important;grid-auto-flow:row!important}
-body.ss-wow #ss-app .ssx .card .left>*,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>*{grid-column:1!important;grid-row:auto!important}
-body.ss-wow #ss-app .ssx .card .left>.f.row,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row{display:flex!important;align-items:center!important;gap:28px!important;margin:0 0 14px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){display:grid!important;grid-template-columns:minmax(0,1fr) 280px!important;column-gap:36px!important;row-gap:0!important;align-items:start!important;grid-auto-flow:row!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>*{grid-column:1!important;grid-row:auto!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row{display:flex!important;align-items:center!important;gap:28px!important;margin:0 0 14px!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row>div{display:grid!important;grid-template-columns:var(--lbl,190px) auto!important;align-items:center!important;margin:0!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.f.row>.chk{margin:0!important;grid-column:auto!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match{grid-column:2!important;grid-row:1 / span 6!important;align-self:start!important;aspect-ratio:1/1!important;margin:0!important;flex-direction:column!important;align-items:stretch!important;justify-content:center!important;gap:12px!important;padding:16px!important;text-align:center!important}
@@ -238,6 +238,23 @@ body.ss-wow #ss-app .ssx .ssw-rel .ri.on svg,body.ss-wow #ss-app .ssx .ssw-rel .
 @media(min-width:1001px){body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match.ssw-rel{aspect-ratio:auto!important}}
 /* no tall empty rows when a card is shorter than the slider window */
 @media(min-width:1001px){body.ss-wow #ss-app .ssx .card .left,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match){align-content:start!important}}
+/* Just starting (owner 19.11): a cover for the free pack on the right, Google + email under it; what's inside on the left */
+body.ss-wow #ss-app .ssx .fp-list{list-style:none;margin:6px 0 14px;padding:0;display:grid;gap:8px}
+body.ss-wow #ss-app .ssx .fp-list li{position:relative;padding-left:26px;color:#CBD5E1;font:500 15px Roboto,sans-serif}
+body.ss-wow #ss-app .ssx .fp-list li:before{content:"✓";position:absolute;left:0;top:0;color:#34D399;font-weight:800}
+body.ss-wow #ss-app .ssx .fp-cover{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;height:180px;max-width:420px;margin:0 0 14px;padding:16px 18px;border-radius:12px;border:1px solid rgba(245,158,11,.35);background:radial-gradient(120% 90% at 100% 0%,rgba(245,158,11,.55),transparent 60%),radial-gradient(90% 80% at 0% 100%,rgba(59,130,246,.35),transparent 65%),linear-gradient(160deg,#1a2440,#0d1424)}
+body.ss-wow #ss-app .ssx .fp-cover .fp-b{position:absolute;top:14px;left:16px;padding:3px 9px;border-radius:6px;background:#34D399;color:#062014;font:800 12px "Exo 2",sans-serif;letter-spacing:.1em}
+body.ss-wow #ss-app .ssx .fp-cover .fp-t{color:#fff;font:800 30px/1 "Exo 2",sans-serif;letter-spacing:-.01em;position:relative;z-index:1}
+body.ss-wow #ss-app .ssx .fp-cover .fp-s{color:#F5C77A;font:600 13px "Exo 2",sans-serif;position:relative;z-index:1}
+body.ss-wow #ss-app .ssx .fp-cover .fp-w{position:absolute;right:14px;top:16px;width:46%;height:56px;opacity:.85;background:repeating-linear-gradient(90deg,#F59E0B 0 3px,transparent 3px 6px);-webkit-mask:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q5 2 10 20 T20 20 T30 20 Q35 6 40 20 T50 20 Q55 0 60 20 T70 20 Q75 10 80 20 T90 20 Q95 4 100 20 L100 40 L0 40Z'/%3E%3C/svg%3E") center/100% 100%;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q5 2 10 20 T20 20 T30 20 Q35 6 40 20 T50 20 Q55 0 60 20 T70 20 Q75 10 80 20 T90 20 Q95 4 100 20 Q95 36 90 20 T80 20 Q75 32 70 20 T60 20 Q55 40 50 20 T40 20 Q35 34 30 20 T20 20 Q15 38 10 20 T0 20Z'/%3E%3C/svg%3E") center/100% 100%}
+@media(min-width:1001px){
+body.ss-wow #ss-app .ssx .card .left.fp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;column-gap:36px!important;align-content:start!important;align-items:start!important}
+body.ss-wow #ss-app .ssx .card .left.fp>*{grid-column:1!important;margin-left:0!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover,body.ss-wow #ss-app .ssx .card .left.fp>.acts,body.ss-wow #ss-app .ssx .card .left.fp>.fp-or,body.ss-wow #ss-app .ssx .card .left.fp>form,body.ss-wow #ss-app .ssx .card .left.fp>.fp-note{grid-column:2!important;width:100%!important;max-width:none!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{grid-row:1 / span 3!important;height:auto!important;aspect-ratio:300/190;margin:0 0 12px!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.acts .gbtn{width:100%!important;justify-content:center!important;box-sizing:border-box}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:8px 0!important;text-align:center}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
@@ -309,7 +326,16 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   return {b:close?'Closest to your choice':(ok.length+(ok.length===1?' track matches':' tracks match')),s:[g&&g.replace(/\b\w/g,function(c){return c.toUpperCase()}),b&&b+' BPM',k&&k!=='Any'&&k].filter(Boolean).join(' · ')+' — tap to listen',items:l.slice(0,3).map(function(x){return {t:x.t,i:x.i,go:function(){if(!play(x))location.href=x.u}}})}});
  /* Video & ads: our work for picture — opens the video */
  side(L[4],function(){var v=AB.filter(function(e){return e.yt});if(!v.length)return null;
-  return {verb:'Watch',b:'Our work for video',s:v.length+' examples — tap to watch',items:v.slice(0,3).map(function(e){var id=String(e.yt).split('/').pop().split('?')[0];return {t:e.title,i:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg',go:function(){if(window.ssYtOpen)ssYtOpen(id,e.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')}}})}});
+  /* (owner 19.11 «визуализируй, что выбирают кнопки») the card shows the visitor's choice and the closest of our videos first */
+  var pick=[].concat.apply([],[].map.call(L[4].querySelectorAll('.f'),function(f){return [].map.call(f.querySelectorAll('.chips .on'),function(x){return x.textContent.trim()})}));
+  var KW={'YouTube':/youtube|video/i,'Ad spot':/ads?\b|tv/i,'Film / trailer':/film|showreel/i,'Podcast':/cleanup|restoration|dialogue/i,'Clean dialogue':/cleanup|restoration/i,'Sound design':/sound design|showreel/i,'Music':/showreel|music/i,'Final mix':/mix|showreel|tv/i};
+  var sc=function(e){var t=(e.title||'')+' '+(e.service||'')+' '+(e.genre||'');return pick.reduce(function(n,k){return n+(KW[k]&&KW[k].test(t)?1:0)},0)};
+  var l=v.slice().sort(function(a,b){return sc(b)-sc(a)}).slice(0,3);
+  return {verb:'Watch',b:pick.length?pick.join(' · '):'Our work for video',s:'Closest of our work — tap to watch',items:l.map(function(e){var id=String(e.yt).split('/').pop().split('?')[0];return {t:e.title,i:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg',go:function(){if(window.ssYtOpen)ssYtOpen(id,e.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')}}})}});
+ /* "Before / after" in the Video card -> the Examples section, its video tab (owner 19.11) */
+ (function(left){var a=left&&[].filter.call(left.querySelectorAll('.acts a'),function(x){return /before/i.test(x.textContent)})[0];if(!a)return;
+  a.addEventListener('click',function(e){var ex=document.getElementById('examples');if(!ex)return;e.preventDefault();ex.scrollIntoView({behavior:'smooth',block:'start'});
+   setTimeout(function(){var t=[].filter.call(ex.querySelectorAll('button,[role=tab]'),function(x){return /video/i.test(x.textContent)})[0];if(t)t.click()},450)})})(L[4]);
 }
 function init(){var s=document.querySelector('#ss-app .ssx');if(!s)return false;build(s);return true}
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.getElementById('ss-app')||document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
