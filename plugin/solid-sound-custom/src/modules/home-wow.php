@@ -74,7 +74,13 @@ add_action( 'wp_footer', function () {
 /* owner 16.11: «2 заголовка конфликтуют» — the slogan is the headline; the assistant title becomes a small card label */
 body.ss-wow .ssx h1.ssx-t,body.ss-wow #top .ssx h1.ssx-t,#top body.ss-wow .ssx h1.ssx-t,body.ss-wow#top .ssx h1.ssx-t{font:800 17px/1.3 "Exo 2",sans-serif!important;letter-spacing:.06em;text-transform:uppercase;color:#fff!important;margin:0 0 10px!important}
 body.ss-wow .ssx .sub{display:none}
-body.ss-wow .ssx{position:relative;z-index:2;background:rgba(14,20,37,.95)!important;border-color:rgba(245,158,11,.38)!important;box-shadow:0 0 0 1px rgba(245,158,11,.12),0 30px 80px rgba(0,0,0,.6),0 0 90px rgba(245,158,11,.10)}
+body.ss-wow .ssx{position:relative;z-index:2;background:#111214!important;border-color:rgba(245,158,11,.45)!important;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(245,158,11,.15)}
+/* owner 19.11: colour «Графит» (variant 2) */
+body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,255,.07)!important}body.ss-wow .ssx .tasks button{background:#1b1c20!important}body.ss-wow .ssx .tasks button.on{background:rgba(245,158,11,.14)!important}
+/* owner 19.11: «на ПК растяни слайдер, чтобы полностью влезал на экране» — wide screens: full width, picker in three columns */
+@media(min-width:1300px){body.ss-wow #ss-app .ssx{max-width:100%!important;width:100%}
+ body.ss-wow .ssx .card .left:has(>.f.row){grid-template-columns:1.25fr 1fr 1fr!important}
+ body.ss-wow .ssx .card .left:has(>.f.row)>.f:not(.row){grid-column:1!important}}
 /* owner 19.11: the slider turns by itself — a thin progress line under the active task; stops for good once the visitor touches the slider */
 body.ss-wow .ssx .tasks button{position:relative}
 body.ss-wow .ssx.ss-auto .tasks button.on:after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:#f59e0b;transform-origin:0 50%;animation:ssxbar var(--ssx-t,7s) linear forwards}
