@@ -114,6 +114,13 @@ body.ss-wow .ssx .card{background:#17181b!important;border-color:rgba(255,255,25
  body.ss-wow #ss-app .ssx .card .left .rng input[type=range]{flex:1;min-width:0}
  body.ss-wow #ss-app .ssx .card .left>.f~.d{margin-left:calc(var(--lbl) + 18px)!important}
  body.ss-wow #ss-app .ssx .card .left>.ssw-match{margin:4px 0 0 calc(var(--lbl) + 18px)!important;grid-column:auto!important;grid-row:auto!important}
+ /* rows of two label/control pairs (BPM | KEY, ABLETON | No external plugins): both columns start on fixed lines, so it
+    stays «под линеечку» and the slider fits a 1366×768 laptop */
+ body.ss-wow #ss-app .ssx .card .left>.f.row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:center;margin:0 0 12px!important}
+ body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0!important}
+ body.ss-wow #ss-app .ssx .card .left>.f.row>div:nth-child(2){grid-template-columns:70px minmax(0,1fr)}
+ body.ss-wow #ss-app .ssx .card .left>.f.row>.chk{grid-column:2!important;justify-self:start;margin:0 0 0 calc(70px + 18px)!important;align-self:center}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row){margin:0 0 12px!important}
  body.ss-wow #ss-app .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow #ss-app .ssx .card .left>.cta{margin-top:auto!important;padding-top:16px;justify-content:flex-end;align-self:flex-end;grid-column:auto!important;grid-row:auto!important}
 }
 /* owner 19.11 «каждый раздел — кнопки примерно одинаково расположены, однородно»: every slide has the same frame —
