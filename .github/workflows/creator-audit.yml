@@ -27,4 +27,5 @@ jobs:
         run: node tools/creator-audit.js
       - name: Save the result in the repo
         if: always()
-        run: BOT_NAME=audit-bot bash .github/save.sh "creator audit: $(date -u +%FT%TZ)" checks/creator-audit
+        run: |
+          BOT_NAME=audit-bot bash .github/save.sh "creator audit $(date -u +%FT%TZ)" checks/creator-audit
