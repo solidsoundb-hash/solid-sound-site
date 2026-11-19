@@ -1,9 +1,9 @@
 {
  "mode": "full",
- "date": "2026-11-18T03:10:17.797Z",
+ "date": "2026-11-19T03:01:36.094Z",
  "stats": {
-  "pages": 106,
-  "clicks": 606,
+  "pages": 104,
+  "clicks": 608,
   "sounds": 71,
   "links": 527,
   "blockedRequests": 55,
@@ -64,211 +64,28 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_014.jpg",
+   "shot": "shots/10_013.jpg",
    "isNew": false
   },
   {
    "sev": "major",
-   "type": "sound-stale",
-   "title": "После запуска другого трека прежняя кнопка всё ещё показывает ⏸",
+   "type": "clickerr",
+   "title": "После нажатия «Video» — ошибка в коде",
    "steps": [
-    "Нажать ▶ «Play Space Echo — client track»",
-    "Нажать ▶ «Play Feeling Good — client track»"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Video»"
    ],
-   "expected": "«Play Space Echo — client track» снова показывает ▶",
-   "actual": "Показывает ⏸, хотя этот трек не играет",
-   "sig": "sndstale|/en/",
+   "expected": "Без ошибок",
+   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
    "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_005.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-stale",
-   "title": "После запуска другого трека прежняя кнопка всё ещё показывает ⏸",
-   "steps": [
-    "Нажать ▶ «Play Space Echo — client track»",
-    "Нажать ▶ «Play Feeling Good — client track»"
-   ],
-   "expected": "«Play Space Echo — client track» снова показывает ▶",
-   "actual": "Показывает ⏸, хотя этот трек не играет",
-   "sig": "sndstale|/en/forum-experimental/",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/16_008.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-wrong",
-   "title": "Кнопка ▶ «Play all tracks» включает другой трек",
-   "steps": [
-    "Открыть https://solid-sound.net/en/templates/",
-    "Нажать ▶ «Play all tracks»"
-   ],
-   "expected": "Играет «pitch_128_kbps.mp3»",
-   "actual": "Играет «kratos_dark_techno_128kbps.mp3»",
-   "sig": "sndwrong|/en/templates/|Play all tracks",
-   "where": [
-    "/en/templates/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/17_007.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«⚙️ Налаштування» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «⚙️ Налаштування»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в a",
-   "sig": "covered|/en/forest-spirits/|⚙️ Налаштування",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/17_014.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«📜 Правила» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «📜 Правила»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в div#banner.pulse",
-   "sig": "covered|/en/forest-spirits/|📜 Правила",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/17_015.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Повірити вміння заявленого духа спрацює» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Повірити вміння заявленого духа спрацює»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в rect",
-   "sig": "covered|/en/forest-spirits/|Повірити вміння заявленого духа спрацює",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/17_016.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Звинуватити! карта відкриється — хтось отримає Оману» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Звинуватити! карта відкриється — хтось отримає Оману»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в div#dockGrid",
-   "sig": "covered|/en/forest-spirits/|Звинуватити! карта відкриється — хтось отримає Оману",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/17_017.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Зрозуміло» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Зрозуміло»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в img.cimg",
-   "sig": "covered|/en/forest-spirits/|Зрозуміло",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/17_018.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«🌿 Нова гра» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «🌿 Нова гра»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в div.mtitle",
-   "sig": "covered|/en/forest-spirits/|🌿 Нова гра",
-   "where": [
-    "/en/forest-spirits/"
+    "/en/all-products/"
    ],
    "devices": [
     "телефон"
    ],
-   "shot": "shots/17_020.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "covered",
-   "title": "«Cookie settings» нельзя нажать — сверху лежит другой элемент",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/",
-    "Нажать «Cookie settings»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "Клик попадает в p",
-   "sig": "covered|/en/forest-spirits/|Cookie settings",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/17_021.jpg",
-   "isNew": false
+   "shot": "shots/10_017.jpg",
+   "isNew": true
   },
   {
    "sev": "major",
@@ -328,41 +145,40 @@
     "/en/all-products/",
     "/en/contacts/",
     "/en/presets/",
-    "/en/prices/",
-    "/en/terms/",
+    "/en/services-prices/",
+    "/en/legal-notice/",
     "/en/privacy-policy/",
     "/en/faq/",
     "/en/services-calculator/",
-    "/en/services-prices/",
-    "/en/legal-notice/",
-    "/en/shop/",
-    "/en/mastering-album-calculator/",
     "/en/sell/",
     "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/shop/",
+    "/en/mastering-album-calculator/",
+    "/en/creator-terms/",
+    "/en/wiki/audio-interface-for-vocals/",
     "/en/cart/",
     "/en/vendor-membership/",
     "/en/music/",
-    "/en/creator-terms/",
-    "/en/wiki/audio-interface-for-vocals/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/en/checkout/",
     "/en/vendor-register/",
     "/en/forum/",
-    "/en/free/",
-    "/en/wiki/closed-back-headphones-for-recording/",
+    "/en/data-deletion/",
+    "/en/sitemap/",
     "/en/my-account/",
     "/en/add-product/",
     "/en/free-demo-feedback/",
-    "/en/data-deletion/",
-    "/en/sitemap/",
+    "/en/wiki/",
     "/en/refund_returns/",
     "/en/links/",
     "/en/forum-experimental/",
-    "/en/wiki/",
-    "/en/license/",
-    "/en/templates/",
-    "/en/forest-spirits/",
     "/en/wiki/record-clean-vocals-at-home/",
     "/en/client-dashboard/",
+    "/en/license/",
+    "/en/templates/",
+    "/en/prices/",
+    "/en/terms/",
     "/product/infinity/",
     "/forum/",
     "/ua/",
@@ -398,21 +214,21 @@
     "/en/all-products/",
     "/en/contacts/",
     "/en/services-calculator/",
-    "/en/shop/",
-    "/en/mastering-album-calculator/",
     "/en/sell/",
     "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/vendor-membership/",
+    "/en/shop/",
+    "/en/mastering-album-calculator/",
     "/en/creator-terms/",
+    "/en/vendor-membership/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/en/vendor-register/",
     "/en/forum/",
-    "/en/wiki/closed-back-headphones-for-recording/",
-    "/en/my-account/",
     "/en/sitemap/",
+    "/en/my-account/",
     "/en/forum-experimental/",
-    "/en/templates/",
     "/en/wiki/record-clean-vocals-at-home/",
     "/en/client-dashboard/",
+    "/en/templates/",
     "/product/infinity/",
     "/forum/",
     "/ua/",
@@ -426,7 +242,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_006.jpg",
+   "shot": "shots/10_005.jpg",
    "isNew": false
   },
   {
@@ -443,17 +259,16 @@
    "where": [
     "/en/all-products/",
     "/en/presets/",
-    "/en/shop/",
     "/en/sell/",
+    "/en/shop/",
     "/en/vendor-membership/",
     "/en/music/",
     "/en/vendor-register/",
     "/en/my-account/",
     "/en/free-demo-feedback/",
     "/en/links/",
-    "/en/templates/",
-    "/en/forest-spirits/",
     "/en/client-dashboard/",
+    "/en/templates/",
     "/en/my-account/edit-account/"
    ],
    "devices": [
@@ -461,7 +276,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_013.jpg",
+   "shot": "shots/10_012.jpg",
    "isNew": false
   },
   {
@@ -520,7 +335,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_012.jpg",
+   "shot": "shots/10_011.jpg",
    "isNew": false
   },
   {
@@ -545,7 +360,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_017.jpg",
+   "shot": "shots/10_016.jpg",
    "isNew": false
   },
   {
@@ -553,45 +368,22 @@
    "type": "kb-mob-font",
    "title": "Слишком мелкий текст на телефоне (меньше 12 px)",
    "steps": [
-    "Открыть https://solid-sound.net/en/prices/ (телефон)",
-    "Где: div.absolute.top-0 «POPULAR» 10px"
+    "Открыть https://solid-sound.net/en/sell/ (телефон)",
+    "Где: small «optional · SoundCloud, YouTube, Spotify,» 10.4px; small «optional» 10.4px"
    ],
    "expected": "Минимум 12–13 px для подписей, 15–16 для текста.",
    "actual": "Почему важно: Нечитаемо без увеличения.",
    "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
    "where": [
-    "/en/prices/",
     "/en/sell/",
     "/en/vendor-membership/",
-    "/en/vendor-register/"
+    "/en/vendor-register/",
+    "/en/prices/"
    ],
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_019.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-perf-img-oversize",
-   "title": "Картинка загружается намного больше, чем показывается",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
-    "Где: xP1_3.jpg.pagespeed.ic.GgXTSEaTvn.webp 1080px → 218px; xP1_4.jpg.pagespeed.ic.xgRK2x1cif.webp 880px → 218px"
-   ],
-   "expected": "srcset / миниатюра нужного размера.",
-   "actual": "Почему важно: Лишние мегабайты на каждой загрузке.",
-   "sig": "kb|kb-perf-img-oversize|Картинка загружается намного больше, чем показывается",
-   "where": [
-    "/en/free-demo-feedback/",
-    "/en/forest-spirits/",
-    "/en/wiki/record-clean-vocals-at-home/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_011.jpg",
+   "shot": "shots/11_007.jpg",
    "isNew": false
   },
   {
@@ -640,24 +432,24 @@
   },
   {
    "sev": "minor",
-   "type": "kb-perf-img-dims",
-   "title": "Картинки без размеров — страница «прыгает» при загрузке",
+   "type": "kb-perf-img-oversize",
+   "title": "Картинка загружается намного больше, чем показывается",
    "steps": [
     "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
-    "Где: xP1_1.jpg.pagespeed.ic.scqHlX9dBa.webp; xP1_2.jpg.pagespeed.ic.GWL1JTogGk.webp; xP1_3.jpg.pagespeed.ic.GgXTSEaTvn.webp; xP1_4.jpg.pagespeed.ic.xgRK2x1cif.webp; xP1_5.jpg.pagespeed.ic.X6I2H2Afi-.webp"
+    "Где: P1_3.jpg 1080px → 218px; P1_4.jpg 880px → 218px"
    ],
-   "expected": "width/height или aspect-ratio.",
-   "actual": "Почему важно: Пока грузится картинка, текст и кнопки съезжают — промахи, плохая оценка Google (CLS).",
-   "sig": "kb|kb-perf-img-dims|Картинки без размеров — страница «прыгает» при загрузке",
+   "expected": "srcset / миниатюра нужного размера.",
+   "actual": "Почему важно: Лишние мегабайты на каждой загрузке.",
+   "sig": "kb|kb-perf-img-oversize|Картинка загружается намного больше, чем показывается",
    "where": [
     "/en/free-demo-feedback/",
-    "/en/forest-spirits/"
+    "/en/wiki/record-clean-vocals-at-home/"
    ],
    "devices": [
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/15_012.jpg",
+   "shot": "shots/15_011.jpg",
    "isNew": false
   },
   {
@@ -683,6 +475,27 @@
   },
   {
    "sev": "minor",
+   "type": "kb-perf-img-dims",
+   "title": "Картинки без размеров — страница «прыгает» при загрузке",
+   "steps": [
+    "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
+    "Где: P1_1.jpg; P1_2.jpg; P1_3.jpg; P1_4.jpg; P1_5.jpg"
+   ],
+   "expected": "width/height или aspect-ratio.",
+   "actual": "Почему важно: Пока грузится картинка, текст и кнопки съезжают — промахи, плохая оценка Google (CLS).",
+   "sig": "kb|kb-perf-img-dims|Картинки без размеров — страница «прыгает» при загрузке",
+   "where": [
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/15_012.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
    "type": "kb-perf-lcp-lazy",
    "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
    "steps": [
@@ -699,7 +512,7 @@
     "Samsung A31"
    ],
    "shot": "shots/18_012.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -719,7 +532,7 @@
     "звук"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -739,7 +552,7 @@
     "звук"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -759,7 +572,7 @@
     "звук"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -779,7 +592,7 @@
     "звук"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -799,7 +612,7 @@
     "звук"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -819,7 +632,7 @@
     "звук"
    ],
    "shot": "",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "check",
@@ -836,42 +649,41 @@
     "/en/all-products/",
     "/en/contacts/",
     "/en/presets/",
-    "/en/prices/",
-    "/en/terms/",
+    "/en/services-prices/",
+    "/en/legal-notice/",
     "/en/privacy-policy/",
     "/en/faq/",
     "/en/services-calculator/",
-    "/en/services-prices/",
-    "/en/legal-notice/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/shop/",
     "/en/store-manager/",
     "/en/mastering-album-calculator/",
-    "/en/sell/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/creator-terms/",
+    "/en/wiki/audio-interface-for-vocals/",
     "/en/cart/",
     "/en/vendor-membership/",
     "/en/music/",
-    "/en/creator-terms/",
-    "/en/wiki/audio-interface-for-vocals/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/en/checkout/",
     "/en/vendor-register/",
     "/en/forum/",
-    "/en/free/",
-    "/en/wiki/closed-back-headphones-for-recording/",
+    "/en/data-deletion/",
+    "/en/sitemap/",
     "/en/my-account/",
     "/en/add-product/",
     "/en/free-demo-feedback/",
-    "/en/data-deletion/",
-    "/en/sitemap/",
+    "/en/wiki/",
     "/en/refund_returns/",
     "/en/links/",
     "/en/forum-experimental/",
-    "/en/wiki/",
-    "/en/license/",
-    "/en/templates/",
-    "/en/forest-spirits/",
     "/en/wiki/record-clean-vocals-at-home/",
     "/en/client-dashboard/",
+    "/en/license/",
+    "/en/templates/",
+    "/en/prices/",
+    "/en/terms/",
     "/product/infinity/",
     "/forum/",
     "/en/my-account/orders/",
@@ -908,7 +720,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_009.jpg",
+   "shot": "shots/10_008.jpg",
    "isNew": false
   },
   {
@@ -950,7 +762,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_007.jpg",
+   "shot": "shots/10_006.jpg",
    "isNew": false
   },
   {
@@ -970,7 +782,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_008.jpg",
+   "shot": "shots/10_007.jpg",
    "isNew": false
   },
   {
@@ -992,7 +804,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_010.jpg",
+   "shot": "shots/10_009.jpg",
    "isNew": false
   },
   {
@@ -1014,7 +826,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_011.jpg",
+   "shot": "shots/10_010.jpg",
    "isNew": false
   },
   {
@@ -1025,7 +837,7 @@
     "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
    "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3544. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3563. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "actual": "Элементов: 3559. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
    "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
@@ -1036,9 +848,8 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_015.jpg",
-   "isNew": false,
-   "more": 1
+   "shot": "shots/10_014.jpg",
+   "isNew": false
   },
   {
    "sev": "check",
@@ -1100,7 +911,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/14_010.jpg",
+   "shot": "shots/13_011.jpg",
    "isNew": false
   },
   {
@@ -1118,10 +929,29 @@
     "/en/all-products/"
    ],
    "devices": [
-    "компьютер",
+    "компьютер"
+   ],
+   "shot": "shots/10_015.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Video» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать «Video»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/shop/|Video",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
     "телефон"
    ],
-   "shot": "shots/10_016.jpg",
+   "shot": "shots/12_015.jpg",
    "isNew": true
   },
   {
@@ -1141,7 +971,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/14_009.jpg",
+   "shot": "shots/13_010.jpg",
    "isNew": false
   },
   {
@@ -1184,62 +1014,22 @@
   },
   {
    "sev": "check",
-   "type": "style-odd",
-   "title": "Кнопка «Повірити вміння заявленого духа спрацює» скруглена не так, как остальные",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/"
-   ],
-   "expected": "Скругление углов 8–12px",
-   "actual": "Радиус 18px",
-   "sig": "odd|Повірити вміння заявленого духа спрацює",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/17_010.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "style-odd",
-   "title": "Кнопка «Звинуватити! карта відкриється — хтось о» скруглена не так, как остальные",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/"
-   ],
-   "expected": "Скругление углов 8–12px",
-   "actual": "Радиус 18px",
-   "sig": "odd|Звинуватити! карта відкриється — хтось о",
-   "where": [
-    "/en/forest-spirits/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/17_011.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
    "type": "kb-perf-weight",
    "title": "Страница весит больше 3 МБ",
    "steps": [
-    "Открыть https://solid-sound.net/en/forest-spirits/ (компьютер)"
+    "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)"
    ],
    "expected": "Смотреть, что самое тяжёлое.",
-   "actual": "Скачано 3.7 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
+   "actual": "Скачано 3.5 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
    "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
    "where": [
-    "/en/forest-spirits/"
+    "/en/free-demo-feedback/"
    ],
    "devices": [
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/17_013.jpg",
+   "shot": "shots/15_013.jpg",
    "isNew": false
   },
   {
@@ -1503,5 +1293,5 @@
   }
  ],
  "notChecked": [],
- "l10nSkipped": 23
+ "l10nSkipped": 22
 }
