@@ -63,6 +63,7 @@ async function login(page, user, pass) {
         dbg.forEach(x => lines.push('    - ' + x));
         // (19.11 owner: «мейк кавер не работает») computer, plain Add product: choose a type, press «Make a cover with AI», wait, record
         if (d.name === 'desktop' && !/ss_ff3/.test(p)) {
+          { const hand = page.getByText(/fill it in by hand/i).first(); if (await hand.count()) { await hand.click().catch(() => {}); await page.waitForTimeout(800); } } // 19.11: only «Your files» shows first
           await page.locator('.ss-ap-format input[type=radio]').first().check({ force: true }).catch(() => {});
           await page.waitForTimeout(800);
           const cb = page.locator('button.ss-aic-b', { hasText: /cover/i }).first();
