@@ -1,4 +1,4 @@
-# Creator area audit 2026-11-19T21:25:46.796Z
+# Creator area audit 2026-11-19T21:37:21.232Z
 
 ## phone
 - /en/store-manager/ → HTTP 200 · height 4292px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
@@ -9,7 +9,12 @@
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-add-product/ → HTTP 200 · height 1690px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+- /en/store-manager/ss-add-product/ → HTTP 200 · height 1624px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+    - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
+    - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
+    - at 360: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
+    - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
+- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1297px · [phone_en_store_manager_ss_add_product_ss_ff3_1.jpg](phone_en_store_manager_ss_add_product_ss_ff3_1.jpg)
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
     - at 360: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
@@ -45,7 +50,9 @@
 ## desktop
 - /en/store-manager/ → HTTP 200 · height 2651px · [desktop_en_store_manager.jpg](desktop_en_store_manager.jpg)
 - /en/store-manager/ss-products/ → HTTP 200 · height 1286px · [desktop_en_store_manager_ss_products.jpg](desktop_en_store_manager_ss_products.jpg)
-- /en/store-manager/ss-add-product/ → HTTP 200 · height 1104px · [desktop_en_store_manager_ss_add_product.jpg](desktop_en_store_manager_ss_add_product.jpg)
+- /en/store-manager/ss-add-product/ → HTTP 200 · height 1066px · [desktop_en_store_manager_ss_add_product.jpg](desktop_en_store_manager_ss_add_product.jpg)
+    - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
+- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 938px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
 - /en/store-manager/ss-earnings/ → HTTP 200 · height 1446px · [desktop_en_store_manager_ss_earnings.jpg](desktop_en_store_manager_ss_earnings.jpg)
 - /en/store-manager/ss-payouts/ → HTTP 200 · height 1697px · [desktop_en_store_manager_ss_payouts.jpg](desktop_en_store_manager_ss_payouts.jpg)
