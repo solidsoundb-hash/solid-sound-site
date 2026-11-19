@@ -471,15 +471,25 @@ function ssgAI(){
       (p.mp3?'<button type="button" data-ai="play" data-mp3="'+p.mp3+'" aria-label="Play demo" style="flex:none;width:42px;height:42px;border-radius:50%;border:0;background:#F59E0B;color:#111;font-size:15px">'+(window.ssTri ? window.ssTri(18) : '▶')+'</button>':'')+
       '</div>';
   }
+  /* 19.11 smart search on the server (code + optional AI); any failure → the in-browser ranking below */
+  function srv(q){
+    var c=window.AbortController ? new AbortController() : null, t=setTimeout(function(){ if(c) c.abort(); },5000);
+    return fetch('/wp-json/ss/v1/find?q='+encodeURIComponent(q),c ? {signal:c.signal} : {}).then(function(x){ clearTimeout(t); return x.ok ? x.json() : null; }).then(function(j){
+      if(!j || !j.items) return null;
+      var r=j.items.map(function(i){ return {p:{name:i.name,url:i.url,img:i.img,price:i.price,mp3:i.mp3}, sc:i.sc, why:i.why}; });
+      r.svcs=j.svcs||[]; return r;
+    }).catch(function(){ clearTimeout(t); return null; });
+  }
   window.ssAI=function(q,lab){
     q=(q||'').trim(); if(!q) return; var hq=lab||q;
     try{ if(window.gtag) gtag('event','search',{search_term:q, search_mode:'ai'}); }catch(e){}
     var inp=document.getElementById('top-q'); if(inp) inp.blur();
     show(hq,'<div style="color:#94A3B8;padding:8px 2px">Finding the best match…</div>');
-    load().then(function(list){
-      var r=rank(q,list), rsx=(window.ssRefScores=null), top=r.filter(function(x){return x.sc>0;}).slice(0,3), svc=SVC.test(q.toLowerCase()), h='';
+    (window.ssRefScores ? Promise.resolve(null) : srv(q)).then(function(sr){ return sr || load().then(function(list){ return rank(q,list); }); }).then(function(r){
+      var rsx=(window.ssRefScores=null), top=r.filter(function(x){return x.sc>0;}).slice(0,3), svc=SVC.test(q.toLowerCase()), h='';
       if(top.length){ h+='<div style="font-size:12px;color:#94A3B8;margin:0 2px 8px">Best matches</div>'+top.map(card).join(''); }
       else if(!svc){ h+='<div style="font-size:13px;color:#cbd5e1;margin:0 2px 8px">No exact match yet. Popular picks:</div>'+r.slice(0,3).map(card).join(''); }
+      if(r.svcs ? r.svcs.length : false){ h+=r.svcs.slice(0,2).map(function(v){ return '<a href="'+v.url+'" style="display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fff;text-decoration:none;margin-bottom:8px"><span style="font-size:20px">🎚️</span><span style="flex:1"><b>'+esc(v.name)+'</b></span><span style="color:#F59E0B;font-weight:700;white-space:nowrap">'+esc(v.price)+' →</span></a>'; }).join(''); svc=false; }
       if(svc || top.length===0){
         h+='<a href="https://solid-sound.net/studio-calculator/?s=mixing" style="display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fff;text-decoration:none;margin-bottom:8px"><span style="font-size:20px">🎚️</span><span style="flex:1"><b>Mixing + mastering by our engineer</b><br><span style="color:#94A3B8;font-size:12px">Get your price in 1 minute</span></span><span style="color:#F59E0B;font-weight:700">→</span></a>';
         h+='<a href="https://solid-sound.net/en/free-demo-feedback/" style="display:block;padding:10px 12px;border-radius:12px;background:#1A2540;color:#cbd5e1;text-decoration:none;margin-bottom:8px;font-size:13px">🎧 Free feedback on your track →</a>';

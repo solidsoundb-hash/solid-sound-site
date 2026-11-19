@@ -47,9 +47,9 @@ add_action( 'template_redirect', function () {
 	global $wp_query;
 	$wp_query->is_404 = false;
 	status_header( 200 );
-	$ids = '' === $q ? array() : ss_srch_products( $q );
+	$ids = '' === $q ? array() : ( function_exists( 'ss_ssx_ids' ) && ss_ssx_on() ? ss_ssx_ids( $q ) : ss_srch_products( $q ) );
 	$lq = mb_strtolower( $q );
-	$svc = array_filter( ss_srch_services(), function ( $s ) use ( $lq ) {
+	$svc = ( function_exists( 'ss_ssx_search' ) && ss_ssx_on() && '' !== $q ) ? ss_ssx_search( $q, 1 )['svcs'] : array_filter( ss_srch_services(), function ( $s ) use ( $lq ) {
 		foreach ( preg_split( '/\s+/u', $lq ) as $w ) { if ( mb_strlen( $w ) > 1 && false !== mb_strpos( mb_strtolower( $s[0] . ' ' . $s[1] ), $w ) ) return true; }
 		return false;
 	} );

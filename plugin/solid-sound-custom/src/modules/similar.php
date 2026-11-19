@@ -37,6 +37,8 @@ function ss_sim_ids( $pid, $limit ) {
 		if ( $key && array_intersect( $key, ss_sim_terms( $id, 'pa_root-key' ) ) ) $s += 2;
 		$b = ss_sim_bpm( $id );
 		if ( $bpm && $b ) { $d = abs( $bpm - $b ); if ( $d <= 3 ) $s += 2; elseif ( $d <= 8 ) $s += 1; }
+		$c = function_exists( 'ss_ssx_cos' ) ? ss_ssx_cos( $pid, $id ) : null; /* 19.11: meaning fingerprints (smart-search.php) */
+		if ( null !== $c ) $s += max( 0, ( $c - 0.4 ) / 0.3 ) * 5;
 		$s += min( 1, (int) get_post_meta( $id, 'total_sales', true ) / 50 ); /* popularity: tie-breaker only */
 		$score[ $id ] = $s;
 	}
