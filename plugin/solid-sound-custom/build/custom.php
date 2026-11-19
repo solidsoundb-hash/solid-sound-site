@@ -5618,3 +5618,4 @@ require_once __DIR__ . '/modules/speed-lite.php'; /* 19.11 owner: speed — no h
 require_once __DIR__ . '/modules/smart-search.php'; /* 19.11 owner: smart search (code first, Cloudflare AI optional) */
 require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public creator page /store/<slug>/ */
 require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-tabs look + payouts status + profile preview */
+require_once __DIR__ . '/modules/site-polish.php'; /* 19.11 owner: «прошерсти сайт, улучши» — small QA fixes */
