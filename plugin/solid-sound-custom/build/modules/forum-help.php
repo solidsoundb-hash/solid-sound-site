@@ -33,7 +33,7 @@ add_action( 'wp_footer', function () {
 .ss-fh details a{display:inline-block;margin:0 12px 10px}.ss-fh-ask{margin:10px 0 0;color:#94a3b8;font-size:14px}</style>
 <script id="ss-fh-js">(function(){var H=<?php echo wp_json_encode( $h ); ?>,BASE=<?php echo wp_json_encode( wp_parse_url( $base, PHP_URL_PATH ) ); ?>;
 function norm(p){return String(p||'').replace(/\/+$/,'').replace(/^\/(en|ua|de|fr|es|it|pt)(?=\/)/,'')}
-if(norm(location.pathname)!==norm(BASE))return; /* the forum's front page only */
+var P=norm(location.pathname);if(P!==norm(BASE)&&!/^\/(forum|community)$/.test(P))return; /* the forum's front page only */
 function put(){if(document.querySelector('.ss-fh'))return true;var m=document.querySelector('#wpforo #wpforo-menu');if(!m)return false;var d=document.createElement('div');d.innerHTML=H;var s=d.firstChild;var lang=document.querySelector('.ss-fr-lang');(lang||m).insertAdjacentElement('afterend',s);
  s.addEventListener('toggle',function(e){if(!e.target.open)return;[].forEach.call(s.querySelectorAll('details[open]'),function(x){if(x!==e.target)x.open=false})},true);return true}
 if(!put()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(put())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},15000)}
