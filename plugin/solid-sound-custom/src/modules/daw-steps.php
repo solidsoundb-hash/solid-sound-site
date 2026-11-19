@@ -40,7 +40,7 @@ add_action( 'wp_head', function () {
 	/* (owner 19.11 «эд продакт коряво грузится») five scripts finish the form after it shows (nice selects, «+ Add your own», AI and
 	   Preview buttons, the steps): it stays invisible until they are done and then appears at once; a quiet line meanwhile; 4 s safety */
 	echo '<style id="ss-ds-ready">#solid-sound-upload-form{opacity:0;transition:opacity .18s ease}#solid-sound-upload-form.ss-ready{opacity:1}#solid-sound-upload-form:not(.ss-ready)~.ss-ds-wait,.ss-ds-wait{display:block}.ss-ds-wait{position:absolute;left:0;right:0;top:120px;text-align:center;color:#94a3b8;font:600 15px "Exo 2",sans-serif}#solid-sound-upload-form.ss-ready~.ss-ds-wait{display:none}</style><noscript><style>#solid-sound-upload-form{opacity:1}</style></noscript>';
-	echo '<style id="ss-ds-head">#solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body>*:not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version){display:none!important}</style>';
+	echo '<style id="ss-ds-head">#solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body>*:not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c2){display:none!important}</style>'; /* 19.11: files first — the drop window shows before the type */
 }, 99 );
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_cs_ok' ) || ! ss_cs_ok() ) return;
