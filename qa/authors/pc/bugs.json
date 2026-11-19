@@ -1,0 +1,260 @@
+[
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/",
+  "what": "После нажатия «Products» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED",
+  "shot": "02_-en-store-manager-err-Products.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/",
+  "what": "После нажатия «FAQ» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "03_-en-store-manager-err-FAQ.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | color is not defined",
+  "shot": "01_-en-store-manager-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "05_-en-store-manager-ss-add-product-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "04_-en-store-manager-ss-add-product-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-products/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "07_-en-store-manager-ss-products-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-products/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "06_-en-store-manager-ss-products-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-earnings/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "09_-en-store-manager-ss-earnings-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-earnings/",
+  "what": "После нажатия «Open the product page» — ошибка в коде",
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "10_-en-store-manager-ss-earnings-err-Open-the-product.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-earnings/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "08_-en-store-manager-ss-earnings-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-earnings/",
+  "what": "Файлы/запросы не загрузились",
+  "detail": "503 /en/store-manager/ss-add-product/",
+  "shot": "08_-en-store-manager-ss-earnings-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-payouts/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "12_-en-store-manager-ss-payouts-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-payouts/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "11_-en-store-manager-ss-payouts-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-reviews/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "14_-en-store-manager-ss-reviews-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-reviews/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "13_-en-store-manager-ss-reviews-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-settings/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "16_-en-store-manager-ss-settings-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-settings/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "15_-en-store-manager-ss-settings-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-settings/",
+  "what": "Файлы/запросы не загрузились",
+  "detail": "503 /en/store-manager/ss-settings/",
+  "shot": "15_-en-store-manager-ss-settings-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-help/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "18_-en-store-manager-ss-help-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-help/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "17_-en-store-manager-ss-help-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/sell/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined | Failed to load resource: net::ERR_FAILED",
+  "shot": "20_-en-sell-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/sell/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "19_-en-sell-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/creator-guidelines/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED | Failed to load resource: net::ERR_FAILED",
+  "shot": "22_-creator-guidelines-err-Services.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/creator-guidelines/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined",
+  "shot": "21_-creator-guidelines-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → Ableton Live: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → FL Studio: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → Logic Pro: чужие версии",
+  "detail": "Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → Bitwig Studio: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → Cubase: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → Studio One: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates → Reason: чужие версии",
+  "detail": "Logic Pro 11, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → Ableton Live: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → FL Studio: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → Logic Pro: чужие версии",
+  "detail": "Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → Bitwig Studio: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → Cubase: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Studio One 7, Studio One 6, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → Studio One: чужие версии",
+  "detail": "Logic Pro 11, Reason 13, Reason 12, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates → Reason: чужие версии",
+  "detail": "Logic Pro 11, Studio One 7, Studio One 6, Cubase 14, Cubase 13, Cubase 12, Bitwig Studio 5, Bitwig Studio 4, Ableton Live 10, Logic Pro 10, FL Studio 2025, FL Studio 2024, FL Studio 21, FL Studio 20, Ableton Live 12, Ableton Live 11, Ableton Live 9"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Ошибки в коде при выборе формата/DAW",
+  "detail": "Failed to load resource: net::ERR_FAILED | FacebookSignal is not defined | mod_pagespeed_soqXUdYZ$R is not defined | mod_pagespeed_KtEmnv1bn4 is not defined"
+ }
+]
