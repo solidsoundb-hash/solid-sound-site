@@ -43,7 +43,8 @@ function ss_wiki_pick( $id, $text ) {
 		'room' => 'home', 'mix' => 'sliders', 'checklist' => 'check', 'faq' => 'help', 'summary' => 'flag' );
 	if ( $id && isset( $by_id[ $id ] ) ) return $by_id[ $id ];
 	$t = mb_strtolower( wp_strip_all_tags( $text ) );
-	$words = array( 'checklist' => 'check', 'bottom line' => 'flag', 'faq' => 'help', 'question' => 'help', 'summary' => 'flag', 'conclusion' => 'flag',
+	$words = array( 'fee ladder' => 'star', 'moves you up' => 'bolt', 'agree before' => 'check', 'calling card' => 'flag', 'be seen' => 'star', 'ask for gigs' => 'bolt',
+		'who actually books' => 'star', 'when to reach out' => 'clock', 'gets answered' => 'bolt', 'before you hit send' => 'check', 'checklist' => 'check', 'bottom line' => 'flag', 'faq' => 'help', 'question' => 'help', 'summary' => 'flag', 'conclusion' => 'flag',
 		'respected' => 'star', 'standards' => 'star', 'quality' => 'star', 'trust' => 'star', 'how long' => 'ruler', 'care' => 'shield', 'keep them' => 'shield',
 		'impedance' => 'bolt', '48v' => 'bolt', 'phantom' => 'bolt', 'one-ear' => 'ear', 'latency' => 'clock', 'sample rate' => 'wave', 'bit depth' => 'wave',
 		'driver' => 'usb', 'usb' => 'usb', 'bleed' => 'alert', 'hum' => 'alert', 'ground loop' => 'alert', 'noise' => 'alert',
@@ -143,6 +144,10 @@ function ss_wiki_cards() {
 		'balanced-vs-unbalanced-cables'       => array( 'plug', 'XLR, TRS or TS: which cable goes where, and how to kill hum.', 9, 2 ),
 		'closed-back-headphones-for-recording'=> array( 'phones', 'Stop headphone bleed: models, fit, levels and the click track.', 8, 3 ),
 		'record-clean-vocals-at-home'         => array( 'mic', 'Distance, angle, consistency — three free rules for clean vocals.', 10, 4 ),
+		/* (19.11.2026) Promotion & DJ gigs — not part of the 4-step recording path (step 0) */
+		'how-to-promote-yourself-as-a-dj'     => array( 'flag', 'The first 90 days: your set, your press kit, your first gigs.', 6, 0 ),
+		'how-much-do-djs-get-paid'            => array( 'star', 'Rough fees from bar gigs to festival stages, and what moves you up.', 5, 0 ),
+		'how-to-get-booked-as-a-dj'           => array( 'bolt', 'Who books, when they book, and the message that gets answered.', 6, 0 ),
 	);
 }
 function ss_wiki_index( $html ) {
@@ -162,6 +167,7 @@ function ss_wiki_index( $html ) {
 	/* start here: the 4 steps to record at home */
 	$steps = '';
 	foreach ( $C as $slug => $c ) {
+		if ( (int) $c[3] < 1 ) continue; /* not a recording step */
 		$steps .= '<a class="st" href="' . esc_url( home_url( '/en/wiki/' . $slug . '/' ) ) . '"><span class="sn">' . (int) $c[3] . '</span><span class="wi">' . ss_wiki_icon( $c[0] ) . '</span><span class="sx">' . esc_html( array( 1 => 'Audio interface', 2 => 'Cables', 3 => 'Headphones', 4 => 'Mic technique' )[ $c[3] ] ) . '</span></a>';
 	}
 	$path = '<div class="wpath"><b class="wp-t">Start here: record at home in 4 steps</b><div class="wp-s">' . $steps . '</div></div>';
