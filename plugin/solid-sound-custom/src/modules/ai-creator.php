@@ -65,6 +65,26 @@ add_action( 'wp_ajax_ss_aic_tags', function () {
 	wp_send_json_success( $out );
 } );
 
+/* 20.11 owner («описание придумывает того, чего нет»): the AI writes ONLY the prose, «What's inside» is built here from the facts,
+   and every number / key / count the AI writes is checked against the facts — one rewrite, then invented sentences are cut. */
+function ss_aic_inside( $f ) {
+	$L = array();
+	$fmt = $f['format'] ?? ''; $daw = trim( ( $f['daw'] ?? '' ) . ( ! empty( $f['daw_version'] ) && false === stripos( $f['daw'] ?? '', $f['daw_version'] ) ? ' (' . $f['daw_version'] . ')' : '' ) );
+	if ( $fmt || $daw ) $L[] = trim( $fmt . ( $daw ? ' for ' . $daw : '' ) );
+	$tk = array(); if ( ! empty( $f['bpm'] ) ) $tk[] = preg_replace( '/\s*bpm$/i', '', $f['bpm'] ) . ' BPM'; if ( ! empty( $f['key'] ) ) $tk[] = 'key ' . $f['key']; if ( ! empty( $f['length'] ) ) $tk[] = 'length ' . $f['length'];
+	if ( $tk ) $L[] = ucfirst( implode( ', ', $tk ) );
+	if ( ! empty( $f['plugins'] ) ) $L[] = ( preg_match( '/no external|stock|none/i', $f['plugins'] ) ? 'No external plugins — stock devices only' : 'Plugins used: ' . $f['plugins'] );
+	foreach ( array( 'inside', 'download_include', 'dl', 'files' ) as $k ) if ( ! empty( $f[ $k ] ) ) { $L[] = 'Included: ' . $f[ $k ]; break; }
+	return $L ? "What's inside:\n- " . implode( "\n- ", $L ) : '';
+}
+function ss_aic_invented( $t, $f ) {
+	$all = strtolower( implode( ' ', $f ) ); $bad = array();
+	/* every number in the text must be in the facts (BPM, length, version, counts…) */
+	if ( preg_match_all( '/\b\d+(?:[.:]\d+)?\b/', $t, $m ) ) foreach ( $m[0] as $n ) { if ( ! preg_match( '/(?<![\d.:])' . preg_quote( $n, '/' ) . '(?![\d])/', $all ) ) $bad[] = $n; }
+	/* every key name in the text must be the product's key */
+	if ( preg_match_all( '/\b([A-G](?:#|b|♯|♭)?)\s?(major|minor|maj|min|m)\b/', $t, $m ) ) foreach ( $m[0] as $k ) { $kk = strtolower( preg_replace( '/\s+/', '', $k ) ); $fk = strtolower( preg_replace( '/\s+/', '', $f['key'] ?? '' ) ); $fk2 = str_replace( array( 'minor', 'major' ), array( 'm', '' ), $fk ); $k2 = str_replace( array( 'minor', 'min', 'major', 'maj' ), array( 'm', 'm', '', '' ), $kk ); if ( ! $fk || ( $k2 !== $fk2 && $kk !== $fk ) ) $bad[] = $k; }
+	return array_values( array_unique( $bad ) );
+}
 add_action( 'wp_ajax_ss_aic_desc', function () {
 	ss_aic_guard( 'desc' );
 	$f = ss_aic_facts();
@@ -73,24 +93,37 @@ add_action( 'wp_ajax_ss_aic_desc', function () {
 	$facts = ''; foreach ( $f as $k => $v ) $facts .= ucfirst( str_replace( '_', ' ', $k ) ) . ': ' . $v . "\n";
 	$style = isset( $_POST['style'] ) ? sanitize_key( $_POST['style'] ) : 'detailed';
 	$shape = array(
-		'short'    => "Write in English, 35-55 words: one short paragraph (what it is, the sound, who it is for), then a line 'What's inside:' and 3 bullet points starting with '- '.\n",
-		'detailed' => "Write in English, 70-110 words: two short paragraphs (what it is and the sound / who it is for, then what the buyer learns or gets), then a line 'What's inside:' and 3-5 bullet points starting with '- '.\n",
-		'story'    => "Write in English, 60-90 words, in a warm producer-to-producer voice: start with the vibe of the track and where it works (club, festival, late night), then what the buyer gets and learns. End with a line 'What's inside:' and 3-4 bullet points starting with '- '.\n",
+		'short'    => "Write ONE short paragraph, 30-50 words: what it is, the sound, who it is for.",
+		'detailed' => "Write TWO short paragraphs, 60-90 words in total: what it is and how it sounds, then who it is for and what they get from it.",
+		'story'    => "Write 50-80 words in a warm producer-to-producer voice: the vibe and where it works (club, festival, late night), then what the buyer gets.",
 	);
-	$sys = "You write product descriptions for Solid Sound, a marketplace of Ableton Live templates, synth presets, sample packs and royalty-free music for producers and DJs.\n"
-		. ( $shape[ $style ] ?? $shape['detailed'] )
-		. "Build the description from ALL the facts given: mention the format, genre, BPM, key, DAW and version, plugins (or that no external plugins are needed), mood, length, channels and anything else listed, naturally, the way a producer would describe it. Use ONLY these facts. Never invent plugin names, numbers, artists, awards or contents that are not in the facts. If a fact is missing, leave it out.\n"
-		. "Plain, confident producer language. No emojis, no hashtags, no words like ultimate, game-changer, unleash, elevate, next level. Do not repeat the product name more than twice. Output only the description.";
-	$r = ss_cf_ai( '@cf/meta/llama-3.1-8b-instruct', array( 'messages' => array( array( 'role' => 'system', 'content' => $sys ), array( 'role' => 'user', 'content' => "Facts:\n" . $facts ) ), 'max_tokens' => 460, 'temperature' => 0.6 ) );
-	if ( is_wp_error( $r ) ) wp_send_json_error( array( 'm' => 'AI is busy — please try again in a minute.' ), 502 );
-	$t = trim( (string) ( $r['response'] ?? '' ) );
-	$t = preg_replace( '/^(here is|here\'s)[^\n]*\n+/i', '', $t );
+	$sys = "You write product descriptions for Solid Sound, a marketplace of Ableton Live templates, synth presets, sample packs and royalty-free music.\n"
+		. ( $shape[ $style ] ?? $shape['detailed'] ) . "\n"
+		. "STRICT RULES:\n- Use ONLY the facts given. Never invent anything.\n- Do NOT write any number, BPM, BPM range, key, version, track length, channel count or number of files/templates/tracks unless it appears exactly in the facts. If unsure, leave it out.\n- It is ONE product (one template / one pack), not several, unless the facts say otherwise.\n- No list, no 'What's inside' section, no headings — prose only.\n"
+		. "- Plain, confident producer language. No emojis, hashtags, or words like ultimate, game-changer, unleash, elevate, next level. Output only the description text.";
+	$ask = function ( $extra ) use ( $sys, $facts ) {
+		$r = ss_cf_ai( '@cf/meta/llama-3.3-70b-instruct-fp8-fast', array( 'messages' => array( array( 'role' => 'system', 'content' => $sys ), array( 'role' => 'user', 'content' => "Facts:\n" . $facts . $extra ) ), 'max_tokens' => 360, 'temperature' => 0.4 ) );
+		if ( is_wp_error( $r ) ) $r = ss_cf_ai( '@cf/meta/llama-3.1-8b-instruct', array( 'messages' => array( array( 'role' => 'system', 'content' => $sys ), array( 'role' => 'user', 'content' => "Facts:\n" . $facts . $extra ) ), 'max_tokens' => 360, 'temperature' => 0.3 ) );
+		if ( is_wp_error( $r ) ) return null;
+		$t = trim( (string) ( $r['response'] ?? '' ) );
+		$t = preg_replace( '/^(here is|here\'s)[^\n]*\n+/i', '', $t );
+		return trim( preg_replace( "/\n*what'?s inside:?[\s\S]*$/i", '', $t ) );
+	};
+	$t = $ask( '' );
+	if ( null === $t ) wp_send_json_error( array( 'm' => 'AI is busy — please try again in a minute.' ), 502 );
+	$bad = ss_aic_invented( $t, $f );
+	if ( $bad ) { $t2 = $ask( "\nYour last draft invented: " . implode( ', ', $bad ) . ". These are NOT in the facts — write it again without them." ); if ( $t2 ) { $t = $t2; $bad = ss_aic_invented( $t, $f ); } }
+	if ( $bad ) { /* still inventing: drop the sentences that carry an invented detail */
+		$sent = preg_split( '/(?<=[.!?])\s+/', $t ); $keep = array();
+		foreach ( $sent as $sx ) { $hit = false; foreach ( $bad as $b ) if ( false !== stripos( $sx, $b ) ) { $hit = true; break; } if ( ! $hit ) $keep[] = $sx; }
+		$t = trim( implode( ' ', $keep ) );
+	}
 	if ( '' === $t ) wp_send_json_error( array( 'm' => 'Empty answer — please try again.' ), 502 );
+	$in = ss_aic_inside( $f ); if ( $in ) $t .= "\n\n" . $in;
 	ss_aic_left( 'desc', true );
 	wp_send_json_success( array( 'text' => $t, 'left' => ss_aic_left( 'desc' ) ) );
 } );
 
-/* 16.11: 5 name ideas to choose from (the creator taps one, then can edit it) */
 add_action( 'wp_ajax_ss_aic_names', function () {
 	ss_aic_guard( 'desc' );
 	$f = ss_aic_facts();
