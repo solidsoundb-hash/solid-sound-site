@@ -436,9 +436,9 @@ body.ss-wow #ss-app .ssx .ssw-desc b{font-size:18px!important}body.ss-wow #ss-ap
  body.ss-wow #ss-app .ssx .tasks{margin-bottom:6px!important}
 }
 /* Finishing: «Your style» — the genres artists ask for most; a light row under the services */
-body.ss-wow #ss-app .ssx .card .left>.f.ss-style{margin-top:10px!important}
+body.ss-wow #ss-app .ssx .card .left>.f.ss-style{margin-top:0!important;margin-bottom:10px!important}
 body.ss-wow #ss-app .ssx .card .left>.f.ss-style .chips span{height:30px!important;min-height:30px!important;padding:0 11px!important;font-size:13px!important}
-@media(min-width:1001px) and (max-height:1000px){body.ss-wow #ss-app .ssx .card .left>.f.ss-style{margin-top:4px!important}}
+@media(min-width:1001px) and (max-height:1000px){body.ss-wow #ss-app .ssx .card .left>.f.ss-style{margin-bottom:6px!important}}
 /* the 5 most wanted styles on show, the rest behind «+3 more» (owner 20.11) */
 body.ss-wow #ss-app .ssx .f.ss-style .chips:not(.all) span.x{display:none!important}body.ss-wow #ss-app .ssx .f.ss-style .chips.all .ss-more{display:none!important}
 body.ss-wow #ss-app .ssx .f.ss-style .ss-oth{display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:8px;border:1px dashed rgba(255,255,255,.25);color:#CBD5E1;font:600 13px Roboto,sans-serif;font-style:normal;cursor:pointer}body.ss-wow #ss-app .ssx .f.ss-style .ss-oth-in{height:30px;width:150px;padding:0 10px;border-radius:8px;border:1px solid #F59E0B;background:#0B1220;color:#fff;font:500 13px Roboto,sans-serif;outline:0}
