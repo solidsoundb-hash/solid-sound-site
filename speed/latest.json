@@ -1,15 +1,15 @@
 {
- "date": "2026-11-20T14:26:56.530Z",
+ "date": "2026-11-20T14:41:42.136Z",
  "results": {
   "/en/|mobile": {
-   "score": 27,
-   "lcp": 6940,
-   "fcp": 3332,
-   "tbt": 2137,
-   "cls": 0.159,
+   "score": 38,
+   "lcp": 8586,
+   "fcp": 2855,
+   "tbt": 1073,
+   "cls": 0.035,
    "kb": 1235,
-   "requests": 66,
-   "ttfb": 2574,
+   "requests": 68,
+   "ttfb": 4169,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -19,35 +19,35 @@
      "/wp-content/uploads/x619e28af-c8e8-4029-a58d-54ac6f895007-400x400.png.pagespeed.ic._2mWI_K 75KB",
      "/wp-content/themes/Impreza/css/A.style.min.css,qver=8.7.pagespeed.cf.BEABbXGU5z.css 73KB",
      "/wp-content/uploads/Intricate_Logo_JPG-400x400.jpg 50KB",
-     "/wp-content/plugins/solid-sound-custom/build/assets/home-app.2b38acb177.js.pagespeed.ce.Xb 50KB",
+     "/wp-content/plugins/solid-sound-custom/build/assets/home-app.d4ad1d5026.js.pagespeed.ce.LL 50KB",
      "/en/ 49KB"
     ],
     "cpu": [
-     "/wp-content/plugins/solid-sound-custom/build/assets/home-js.2b2164eb44.js.pagespeed.ce.HhP 3176ms",
-     "/en/ 3016ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/react.d949f1c368.js.pagespeed.ce.6RsmF 1218ms",
-     "Unattributable 922ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 422ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 383ms"
+     "/wp-content/plugins/solid-sound-custom/build/assets/home-js.2b2164eb44.js.pagespeed.ce.HhP 1971ms",
+     "/en/ 1934ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 1478ms",
+     "Unattributable 773ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/react.d949f1c368.js.pagespeed.ce.6RsmF 675ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 365ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −2574ms",
-     "Reduce unused CSS −520ms",
-     "Reduce unused JavaScript −260ms",
-     "Serve images in next-gen formats −260ms"
+     "Reduce initial server response time −4169ms",
+     "Reduce unused JavaScript −940ms",
+     "Serve images in next-gen formats −780ms",
+     "Reduce unused CSS −310ms"
     ]
    }
   },
   "/en/|desktop": {
-   "score": 76,
-   "lcp": 2475,
-   "fcp": 1316,
-   "tbt": 107,
+   "score": 68,
+   "lcp": 2933,
+   "fcp": 1523,
+   "tbt": 105,
    "cls": 0.013,
    "kb": 1239,
    "requests": 71,
-   "ttfb": 1438,
+   "ttfb": 4407,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -57,33 +57,35 @@
      "/wp-content/uploads/x619e28af-c8e8-4029-a58d-54ac6f895007-400x400.png.pagespeed.ic._2mWI_K 75KB",
      "/wp-content/themes/Impreza/css/A.style.min.css,qver=8.7.pagespeed.cf.BEABbXGU5z.css 73KB",
      "/wp-content/uploads/Intricate_Logo_JPG-400x400.jpg 50KB",
-     "/wp-content/plugins/solid-sound-custom/build/assets/home-app.2b38acb177.js.pagespeed.ce.Xb 50KB",
+     "/wp-content/plugins/solid-sound-custom/build/assets/home-app.d4ad1d5026.js.pagespeed.ce.LL 50KB",
      "/en/ 49KB"
     ],
     "cpu": [
-     "/en/ 417ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/home-js.2b2164eb44.js.pagespeed.ce.HhP 196ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 139ms",
-     "Unattributable 130ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/react.d949f1c368.js.pagespeed.ce.6RsmF 123ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 92ms"
+     "/en/ 472ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/home-js.2b2164eb44.js.pagespeed.ce.HhP 143ms",
+     "Unattributable 135ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/react.d949f1c368.js.pagespeed.ce.6RsmF 132ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 98ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 75ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −1438ms",
-     "Serve images in next-gen formats −410ms"
+     "Reduce initial server response time −4407ms",
+     "Reduce unused CSS −390ms",
+     "Serve images in next-gen formats −390ms",
+     "Reduce unused JavaScript −200ms"
     ]
    }
   },
   "/en/all-products/|mobile": {
-   "score": 0,
-   "lcp": 0,
-   "fcp": 2958,
-   "tbt": 0,
+   "score": 34,
+   "lcp": 6570,
+   "fcp": 2852,
+   "tbt": 1155,
    "cls": 0.189,
    "kb": 1418,
    "requests": 88,
-   "ttfb": 5708,
+   "ttfb": 1432,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -97,28 +99,32 @@
      "/en/all-products/ 46KB"
     ],
     "cpu": [
-     "/en/all-products/ 3077ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 1456ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 1054ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ac3ad69d43.js.pagespeed.ce.s 620ms",
-     "Unattributable 618ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 228ms"
+     "/en/all-products/ 2820ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 1584ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 880ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ac3ad69d43.js.pagespeed.ce.s 718ms",
+     "Unattributable 484ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 354ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −5708ms"
+     "Reduce initial server response time −1432ms",
+     "Serve images in next-gen formats −940ms",
+     "Defer offscreen images −630ms",
+     "Reduce unused CSS −630ms",
+     "Reduce unused JavaScript −630ms"
     ]
    }
   },
   "/en/all-products/|desktop": {
    "score": 0,
    "lcp": 0,
-   "fcp": 1164,
+   "fcp": 1514,
    "tbt": 0,
-   "cls": 0.056,
-   "kb": 1527,
-   "requests": 91,
-   "ttfb": 10109,
+   "cls": 0.067,
+   "kb": 1519,
+   "requests": 94,
+   "ttfb": 3048,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -132,103 +138,102 @@
      "/en/all-products/ 46KB"
     ],
     "cpu": [
-     "/en/all-products/ 968ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 343ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ac3ad69d43.js.pagespeed.ce.s 342ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 293ms",
-     "Unattributable 153ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 56ms"
+     "/en/all-products/ 1168ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 323ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 270ms",
+     "Unattributable 121ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ac3ad69d43.js.pagespeed.ce.s 106ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 64ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −10109ms"
+     "Reduce initial server response time −3048ms"
     ]
    }
   },
   "/product/infinity/|mobile": {
-   "score": 50,
-   "lcp": 14313,
-   "fcp": 2704,
-   "tbt": 497,
-   "cls": 0.081,
-   "kb": 4878,
-   "requests": 186,
-   "ttfb": 1235,
+   "score": 49,
+   "lcp": 14627,
+   "fcp": 2903,
+   "tbt": 481,
+   "cls": 0.016,
+   "kb": 5116,
+   "requests": 191,
+   "ttfb": 4388,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
-     "https://newassets.hcaptcha.com/c/8ec71d08704a3e8916b531ccd30bbaffaf77154337b9e8dcf81791d12 674KB",
-     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-73dfec4f9debad8b 651KB",
+     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-73dfec4f9debad8b 765KB",
+     "https://newassets.hcaptcha.com/c/c9d3a11cd5d78990419b5dcde7f392c8f411b227ffbf345ee89052d71 678KB",
+     "https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ef05d7acecbabef2faaa 452KB",
      "https://pay.google.com/gp/p/ui/pay 423KB",
-     "https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ef05d7acecbabef2faaa 379KB",
-     "https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/ 321KB",
-     "https://js.stripe.com/v3/?ver=3.0 268KB",
+     "https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/ 320KB",
+     "https://js.stripe.com/v3/?ver=3.0 292KB",
      "https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit 218KB",
-     "https://js.stripe.com/v3/fingerprinted/js/shared-863ee51b61b3fee6e0ad27ab3a9f5220.js 184KB"
+     "https://js.stripe.com/v3/fingerprinted/js/shared-863ee51b61b3fee6e0ad27ab3a9f5220.js 204KB"
     ],
     "cpu": [
      "/product/infinity/ 1725ms",
-     "Unattributable 653ms",
-     "https://js.stripe.com/v3/?ver=3.0 627ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 456ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 449ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 310ms"
+     "Unattributable 683ms",
+     "https://js.stripe.com/v3/?ver=3.0 637ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 530ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 464ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 312ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce unused JavaScript −1720ms",
-     "Reduce initial server response time −1235ms",
-     "Reduce unused CSS −780ms",
-     "Defer offscreen images −520ms",
-     "Properly size images −410ms"
+     "Reduce initial server response time −4388ms",
+     "Reduce unused JavaScript −1570ms",
+     "Reduce unused CSS −480ms",
+     "Properly size images −460ms",
+     "Defer offscreen images −310ms"
     ]
    }
   },
   "/product/infinity/|desktop": {
-   "score": 72,
-   "lcp": 3100,
-   "fcp": 1382,
+   "score": 68,
+   "lcp": 3365,
+   "fcp": 1515,
    "tbt": 0,
-   "cls": 0.05,
-   "kb": 5114,
+   "cls": 0.046,
+   "kb": 5110,
    "requests": 196,
-   "ttfb": 1898,
+   "ttfb": 2449,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
-     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-73dfec4f9debad8b 766KB",
-     "https://newassets.hcaptcha.com/c/8ec71d08704a3e8916b531ccd30bbaffaf77154337b9e8dcf81791d12 674KB",
+     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-73dfec4f9debad8b 765KB",
+     "https://newassets.hcaptcha.com/c/c9d3a11cd5d78990419b5dcde7f392c8f411b227ffbf345ee89052d71 678KB",
      "https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ef05d7acecbabef2faaa 452KB",
      "https://pay.google.com/gp/p/ui/pay 423KB",
      "https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/ 321KB",
-     "https://js.stripe.com/v3/?ver=3.0 292KB",
+     "https://js.stripe.com/v3/?ver=3.0 291KB",
      "https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit 218KB",
-     "https://js.stripe.com/v3/fingerprinted/js/shared-863ee51b61b3fee6e0ad27ab3a9f5220.js 205KB"
+     "https://js.stripe.com/v3/fingerprinted/js/shared-863ee51b61b3fee6e0ad27ab3a9f5220.js 204KB"
     ],
     "cpu": [
-     "/product/infinity/ 465ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 163ms",
-     "https://js.stripe.com/v3/?ver=3.0 141ms",
-     "Unattributable 99ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 97ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 94ms"
+     "/product/infinity/ 433ms",
+     "https://js.stripe.com/v3/?ver=3.0 150ms",
+     "Unattributable 145ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 116ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 99ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 85ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −1898ms",
-     "Reduce unused JavaScript −290ms"
+     "Reduce initial server response time −2449ms"
     ]
    }
   },
   "/en/studio-calculator/|mobile": {
-   "score": 83,
-   "lcp": 2921,
-   "fcp": 2178,
-   "tbt": 230,
+   "score": 75,
+   "lcp": 4060,
+   "fcp": 2556,
+   "tbt": 203,
    "cls": 0,
-   "kb": 1261,
+   "kb": 1269,
    "requests": 64,
-   "ttfb": 2255,
+   "ttfb": 1247,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -242,31 +247,32 @@
      "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 40KB"
     ],
     "cpu": [
-     "/en/studio-calculator/ 723ms",
-     "Unattributable 503ms",
-     "https://code.tidio.co/widget-v4/1_484_0/static/js/widget.7265abbbfc4f5d4e21bb.js 367ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 263ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 263ms",
-     "https://connect.facebook.net/en_US/fbevents.js 145ms"
+     "/en/studio-calculator/ 712ms",
+     "Unattributable 377ms",
+     "https://code.tidio.co/widget-v4/1_484_0/static/js/widget.7265abbbfc4f5d4e21bb.js 285ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 247ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 220ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 207ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −2255ms",
-     "Reduce unused CSS −260ms",
-     "Defer offscreen images −220ms",
-     "Serve images in next-gen formats −220ms"
+     "Reduce initial server response time −1247ms",
+     "Reduce unused CSS −630ms",
+     "Reduce unused JavaScript −310ms",
+     "Defer offscreen images −250ms",
+     "Serve images in next-gen formats −250ms"
     ]
    }
   },
   "/en/studio-calculator/|desktop": {
-   "score": 93,
-   "lcp": 1182,
-   "fcp": 1015,
+   "score": 81,
+   "lcp": 1522,
+   "fcp": 1317,
    "tbt": 0,
-   "cls": 0.03,
+   "cls": 0.101,
    "kb": 1269,
    "requests": 64,
-   "ttfb": 1159,
+   "ttfb": 2818,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -280,32 +286,33 @@
      "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 40KB"
     ],
     "cpu": [
-     "/en/studio-calculator/ 231ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 79ms",
-     "https://code.tidio.co/widget-v4/1_484_0/static/js/widget.7265abbbfc4f5d4e21bb.js 71ms",
-     "Unattributable 60ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 56ms"
+     "/en/studio-calculator/ 225ms",
+     "Unattributable 106ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 77ms",
+     "https://code.tidio.co/widget-v4/1_484_0/static/js/widget.7265abbbfc4f5d4e21bb.js 74ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −1159ms"
+     "Reduce initial server response time −2818ms",
+     "Reduce unused CSS −190ms",
+     "Serve images in next-gen formats −190ms"
     ]
    }
   },
   "/en/wiki/|mobile": {
-   "score": 89,
-   "lcp": 2395,
-   "fcp": 2174,
-   "tbt": 134,
+   "score": 77,
+   "lcp": 3813,
+   "fcp": 2489,
+   "tbt": 194,
    "cls": 0,
-   "kb": 752,
+   "kb": 755,
    "requests": 56,
-   "ttfb": 2258,
+   "ttfb": 1294,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
      "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 179KB",
-     "https://connect.facebook.net/en_US/fbevents.js 97KB",
+     "https://connect.facebook.net/en_US/fbevents.js 100KB",
      "/wp-content/themes/Impreza/css/A.style.min.css,qver=8.7.pagespeed.cf.BEABbXGU5z.css 73KB",
      "/wp-content/uploads/%D0%9C%D0%BE%D0%BD%D1%82%D0%B0%D0%B6%D0%BD%D0%B0%D1%8F-%D0%BE%D0%B1%D0 50KB",
      "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 40KB",
@@ -314,30 +321,32 @@
      "/en/wiki/ 36KB"
     ],
     "cpu": [
-     "/en/wiki/ 611ms",
-     "Unattributable 353ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 322ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 229ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ac3ad69d43.js.pagespeed.ce.s 182ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 135ms"
+     "/en/wiki/ 597ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 378ms",
+     "Unattributable 369ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 231ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 203ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ac3ad69d43.js.pagespeed.ce.s 153ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −2258ms",
-     "Reduce unused CSS −260ms",
-     "Defer offscreen images −220ms"
+     "Reduce initial server response time −1294ms",
+     "Reduce unused CSS −580ms",
+     "Defer offscreen images −310ms",
+     "Serve images in next-gen formats −310ms",
+     "Reduce unused JavaScript −270ms"
     ]
    }
   },
   "/en/wiki/|desktop": {
-   "score": 89,
-   "lcp": 1379,
-   "fcp": 1231,
+   "score": 85,
+   "lcp": 1514,
+   "fcp": 1514,
    "tbt": 0,
-   "cls": 0.002,
+   "cls": 0.006,
    "kb": 752,
    "requests": 56,
-   "ttfb": 1595,
+   "ttfb": 1416,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -351,20 +360,29 @@
      "/en/wiki/ 36KB"
     ],
     "cpu": [
-     "/en/wiki/ 239ms",
-     "Unattributable 81ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 79ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 57ms"
+     "/en/wiki/ 203ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 73ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 63ms",
+     "Unattributable 56ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −1595ms"
+     "Reduce initial server response time −1416ms",
+     "Reduce unused CSS −200ms"
     ]
    }
   }
  },
  "warn": [
-  "/en/ (телефон): страница «прыгает» при загрузке (CLS 0.159, норма до 0.1)",
-  "/en/all-products/ (телефон): страница «прыгает» при загрузке (CLS 0.189, норма до 0.1)"
+  "/en/ (телефон): главный блок появляется позже 6.9 → 8.6 с",
+  "/en/ (компьютер): оценка упала 76 → 68",
+  "/en/all-products/ (телефон): главный блок появляется позже 0.0 → 6.6 с",
+  "/en/all-products/ (телефон): страница «прыгает» при загрузке (CLS 0.189, норма до 0.1)",
+  "/en/studio-calculator/ (телефон): оценка упала 83 → 75",
+  "/en/studio-calculator/ (телефон): главный блок появляется позже 2.9 → 4.1 с",
+  "/en/studio-calculator/ (компьютер): оценка упала 93 → 81",
+  "/en/studio-calculator/ (компьютер): страница «прыгает» при загрузке (CLS 0.101, норма до 0.1)",
+  "/en/wiki/ (телефон): оценка упала 89 → 77",
+  "/en/wiki/ (телефон): главный блок появляется позже 2.4 → 3.8 с"
  ]
 }
