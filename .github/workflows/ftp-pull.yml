@@ -20,7 +20,7 @@ jobs:
       FTP_PASS: ${{ secrets.FTP_PASS }}
       WPC: solid-sound.net/www/wp-content
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download code and settings
         shell: bash {0}
         run: |
