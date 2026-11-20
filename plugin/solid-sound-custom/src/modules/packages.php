@@ -40,17 +40,11 @@ function ss_pk_cards() {
 			array( 'ULTRA', 'Custom Ultra', 'Label-ready package with a video walkthrough of the project.', array( $p( 'ghost', 2 )[2] . ' rounds of revisions', 'Video walkthrough' ), $p( 'ghost', 2 )[1], $p( 'ghost', 2 )[3], $calc . '?s=ghost', '' ),
 			array( 'LIVE', 'Online Collaboration', 'Three 2-hour live sessions with the producer, screen and sound — plus everything in Pro.', array( $p( 'ghost', 3 )[2] . ' rounds of revisions', '3 × 2 h live' ), $p( 'ghost', 3 )[1], $p( 'ghost', 3 )[3], $calc . '?s=ghost', '' ),
 		) ),
-		'inspired' => array( 'Inspired by & Remix', 'The sound and energy of a track you love — with an original melody you can release as your own.', 'M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z', array(
-			array( 'BASIC', 'Inspired Basic', 'Same vibe as your reference, new melody and arrangement. Free to release.', array( $p( 'inspired', 0 )[2] . ' rounds of revisions', '100 % yours' ), $p( 'inspired', 0 )[1], $p( 'inspired', 0 )[3], $calc . '?s=inspired', '' ),
-			array( 'STANDARD', 'Inspired Standard', 'Everything in Basic, mixed and mastered — ready for stores and labels.', array( $p( 'inspired', 1 )[2] . ' rounds of revisions', 'Mix + master' ), $p( 'inspired', 1 )[1], $p( 'inspired', 1 )[3], $calc . '?s=inspired', 'Most popular' ),
-			array( 'FULL', 'Inspired Full', 'Everything in Standard plus stems and the full Ableton project.', array( $p( 'inspired', 2 )[2] . ' rounds of revisions', 'Stems + project' ), $p( 'inspired', 2 )[1], $p( 'inspired', 2 )[3], $calc . '?s=inspired', '' ),
-			array( 'REMIX', 'Remix of your track', 'Radio, club or full remix with stems and the Ableton project.', array( 'From ' . $p( 'remix', 0 )[2] . ' rounds of revisions', 'Ableton project option' ), $p( 'remix', 0 )[1], $p( 'remix', 0 )[3] . ' and up', $calc . '?s=remix', '' ),
-		) ),
 		'release' => array( 'Release', 'Your track is done — artwork, short videos and a plan, so it goes out and gets heard.', 'M5 15c-1 1-2 4-2 6 2 0 5-1 6-2M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-5-5zM15 9h.01', array(
-			array( 'ARTWORK', 'Cover artwork', 'A 3000 × 3000 cover for Spotify, Apple Music and Beatport.', array( '2 rounds of revisions', 'Store-ready file' ), 49, '3–5 days', home_url( '/contacts/?subject=Release' ), '' ),
-			array( 'VIDEO', 'Canvas & clips', 'A Spotify Canvas loop and 3 short clips for Reels, TikTok and Shorts.', array( '9:16, ready to post', '2 rounds of revisions' ), 79, '5–7 days', home_url( '/contacts/?subject=Release' ), '' ),
-			array( 'KIT', 'Release Kit', 'Cover, Canvas + 3 clips, upload help with metadata, playlist pitch text and a release plan.', array( 'Everything for release day', 'Save over €100' ), 199, '7–10 days', home_url( '/contacts/?subject=Release%20Kit' ), 'Best value' ),
-			array( 'PITCH', 'Playlist pitching', 'Your Spotify for Artists pitch and a list of curators for your genre. No paid placements.', array( 'Honest outreach', 'No fake streams' ), 99, '5–7 days', home_url( '/contacts/?subject=Playlist%20pitching' ), '' ),
+			array( 'ARTWORK', 'Cover artwork', 'A 3000 × 3000 cover for Spotify, Apple Music and Beatport.', array( '2 rounds of revisions', 'Store-ready file' ), 29, '3–5 days', home_url( '/contacts/?subject=Release' ), '' ),
+			array( 'VIDEO', 'Canvas & clips', 'A Spotify Canvas loop and 3 short clips for Reels, TikTok and Shorts.', array( '9:16, ready to post', '2 rounds of revisions' ), 49, '5–7 days', home_url( '/contacts/?subject=Release' ), '' ),
+			array( 'KIT', 'Release Kit', 'Cover, Canvas + 3 clips, upload help with metadata, playlist pitch text and a release plan.', array( 'Everything for release day', 'Save over €50' ), 99, '7–10 days', home_url( '/contacts/?subject=Release%20Kit' ), 'Best value' ),
+			array( 'PITCH', 'Playlist pitching', 'Your Spotify for Artists pitch and a list of curators for your genre. No paid placements.', array( 'Honest outreach', 'No fake streams' ), 49, '5–7 days', home_url( '/contacts/?subject=Playlist%20pitching' ), '' ),
 		) ),
 	);
 }
@@ -62,7 +56,7 @@ function ss_pk_html( $only = null, $hero = true ) {
 	$h .= '<header class="hero"><span class="k">Professional music production services</span><h1>Your music. <em>Finished.</em></h1>'
 		. '<p>We work inside your project — in <b>your DAW</b>. Listen to every demo on your private project page, leave timed comments, approve when you love it. You pay half to start, the rest only when you are happy.</p>'
 		. '<ul class="trust"><li>' . $ic( 'M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z', 18 ) . '50 / 50 payment</li><li>' . $ic( 'M20 6L9 17l-5-5', 18 ) . '100 % copyright yours</li><li>' . $ic( 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', 18 ) . 'Timed comments on every demo</li><li>' . $ic( 'M14 3H6v18h12V7zM14 3v4h4', 18 ) . 'Project files in your DAW</li><li>' . $ic( 'M9 18V5l12-2v13', 18 ) . 'Free mastering demo</li><li>' . $ic( 'M20 12v9H4v-9M2 7h20v5H2zM12 21V7', 18 ) . 'Loyal clients keep their prices</li></ul>'
-		. '<nav class="jump"><a href="#mix">Mixing &amp; Mastering</a><a href="#rework">Project Rework</a><a href="#custom">Custom Production</a><a href="#inspired">Inspired by</a><a href="#release">Release</a></nav></header>';
+		. '<nav class="jump"><a href="#mix">Mixing &amp; Mastering</a><a href="#rework">Project Rework</a><a href="#custom">Custom Production</a><a href="#release">Release</a></nav></header>';
 	$h .= '<section class="how"><h2>How it works</h2><ol>'
 		. '<li><b>Choose &amp; pay 50 %</b><span>Pick a package. The rest only when you approve.</span></li>'
 		. '<li><b>Send your project</b><span>Upload stems or the project, tell us what you need.</span></li>'
@@ -124,7 +118,7 @@ add_filter( 'the_content', function ( $c ) {
 	if ( is_string( $new ) && $new ) $c = preg_replace( '#\[us_html\].*?\[/us_html\]#s', '[us_html]' . base64_encode( rawurlencode( $new ) ) . '[/us_html]', $c, 1 );
 	$css = ss_pk_css() . '.sspk.top{padding-bottom:0}.sspk.top .trust{margin-top:0}';
 	$trust = '<div class="sspk top"><ul class="trust"><li>50 / 50 payment</li><li>100 % copyright yours</li><li>Timed comments on every demo</li><li>Project files in your DAW</li><li>Free mastering demo</li><li>Loyal clients keep their prices</li></ul></div>';
-	return '<style>' . $css . '</style>' . $c . ss_pk_html( array( 'inspired', 'release' ), false ); /* the page's own hero already lists the guarantees */
+	return '<style>' . $css . '</style>' . $c . ss_pk_html( array( 'release' ), false ); /* the page's own hero already lists the guarantees */
 }, 5 );
 add_action( 'template_redirect', function () {
 	if ( ! ss_pk_path_ok() ) return;
