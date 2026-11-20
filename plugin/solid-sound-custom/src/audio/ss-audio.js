@@ -232,8 +232,8 @@
   /* ---------- the trained key model (20.11) ----------
      Four ways of hearing (whole range with 8 overtones, bass 30–220 Hz, mids 220–1000, highs 1000–5000) → 48 numbers per
      candidate key, weighted by a model trained on 1158 Beatport EDM tracks (GiantSteps MTG Key) and checked on 603 others it
-     never saw (GiantSteps Key): 69.7 % MIREX score (exact key 62 %), up from 53.5 % for profile matching. */
-  var KM = {"blocks":[{"white":0,"harm":8},{"white":0,"harm":1,"minF":30,"maxF":220},{"white":0,"harm":4,"minF":220,"maxF":1000},{"white":0,"harm":4,"minF":1000,"maxF":5000}],"W":[[0.4856,-0.2183,-0.2142,-0.1635,0.316,0.0337,-0.0833,0.1974,-0.1907,-0.0724,-0.1769,0.0866,0.4089,-0.056,-0.0304,-0.2274,0.038,0.0125,0.0374,0.0555,-0.1149,0.0021,-0.1482,0.0224,0.4561,-0.1704,-0.0904,-0.0778,0.3033,0.032,-0.2956,0.2289,-0.28,0.0662,-0.2036,0.0313,0.2477,-0.2468,0.2518,-0.2331,0.1566,-0.1114,-0.1384,0.2608,-0.1479,0.0004,-0.1696,0.1298],[0.5049,-0.2975,-0.1152,0.074,-0.0398,-0.1107,0.0935,0.3345,-0.0171,-0.3322,-0.0985,0.0041,0.5889,-0.0592,-0.2424,0.196,-0.1488,-0.1775,-0.006,-0.0701,-0.0921,-0.0811,-0.021,0.1133,0.4172,-0.3165,-0.1769,0.2399,0.0256,-0.0892,-0.0834,0.2336,-0.1704,-0.0832,0.0747,-0.0713,0.4456,-0.0776,0.0343,0.1586,-0.2255,-0.1195,-0.108,0.3023,-0.2885,-0.0371,0.1245,-0.2091]],"b":[-0.596,0.596]};
+     never saw (GiantSteps Key): 70.6 % MIREX score (exact key 63 %), up from 53.5 % for profile matching (GitHub autotune 20.11, final model trained on all 1763 tracks). */
+  var KM = {"blocks":[{"white":0,"harm":8},{"white":0,"harm":1,"minF":30,"maxF":220},{"white":0,"harm":4,"minF":220,"maxF":1000},{"white":0,"harm":4,"minF":1000,"maxF":5000}],"W":[[0.3509,-0.1454,-0.1322,-0.0963,0.1686,0.0161,-0.0879,0.1896,-0.1057,-0.0695,-0.1113,0.0232,0.3481,-0.0312,-0.0597,-0.1391,0.0006,0.0392,-0.0176,0.0844,-0.087,-0.0218,-0.1263,0.0103,0.3264,-0.1411,-0.0661,-0.0994,0.2316,-0.0008,-0.1698,0.1636,-0.1329,-0.0023,-0.1329,0.0237,0.1648,-0.1616,0.1376,-0.1502,0.1119,-0.0675,-0.0943,0.1695,-0.0717,-0.0136,-0.0969,0.0722],[0.4076,-0.1979,-0.0945,0.1195,-0.0887,-0.1312,0.0254,0.3361,-0.0692,-0.1956,-0.0609,-0.0504,0.5186,-0.0789,-0.1463,0.0805,-0.1198,-0.1391,-0.0313,-0.0048,-0.0424,-0.1328,0.0066,0.0898,0.3411,-0.2116,-0.06,0.2328,0.0191,-0.1184,-0.0178,0.1701,-0.1157,-0.1771,0.0546,-0.117,0.2492,-0.0582,0.0367,0.0774,-0.1267,-0.0588,-0.1048,0.181,-0.1808,-0.0481,0.1242,-0.0909]],"b":[-0.5565,0.5565]};
   function keyModel(x, sr) {
     var chs = KM.blocks.map(function (h) { return hpcp(x, sr, h); });
     if (chs.some(function (c) { return !c; })) return null;
@@ -265,14 +265,14 @@
     for (f = 0; f < frames; f++) {
       var o = f * H; for (i = 0; i < N; i++) { re[i] = x[o + i] * w[i]; im[i] = 0; }
       fft(re, im);
-      var flux = 0; for (i = 1; i < maxBin; i++) { var mag = Math.log(1 + 100 * Math.sqrt(re[i] * re[i] + im[i] * im[i])), dd = mag - prev[i]; if (dd > 0) flux += dd * (i < 12 ? (opt.kick || 2) : 1); prev[i] = mag; }
+      var flux = 0; for (i = 1; i < maxBin; i++) { var mag = Math.log(1 + 100 * Math.sqrt(re[i] * re[i] + im[i] * im[i])), dd = mag - prev[i]; if (dd > 0) flux += dd * (i < 12 ? (opt.kick || 1) : 1); prev[i] = mag; }
       env[f] = flux;
     }
     var fps = sr / H, win = Math.round(fps * 0.4), cs = new Float64Array(frames + 1), e2 = new Float32Array(frames);
     for (f = 0; f < frames; f++) cs[f + 1] = cs[f] + env[f];
     for (f = 0; f < frames; f++) { var a0 = Math.max(0, f - win), b0 = Math.min(frames, f + win + 1), m = (cs[b0] - cs[a0]) / (b0 - a0); e2[f] = Math.max(0, env[f] - m); }
     function ac(lag) { var s = 0, L = Math.floor(lag), fr = lag - L; for (var t = 0; t + L + 1 < frames; t++) s += e2[t] * (e2[t + L] * (1 - fr) + e2[t + L + 1] * fr); return s; }
-    var center = opt.center || 140, sd = opt.sd || 1, /* 20.11: best on GiantSteps Tempo (65 % exact vs the producers' BPM) */ best = 0, bestBpm = 0, sc = [];
+    var center = opt.center || 145, sd = opt.sd || 0.8, /* 20.11 GitHub autotune: best on GiantSteps Tempo (71.6 % exact vs the producers' BPM; was 65 %) */ best = 0, bestBpm = 0, sc = [];
     for (var bpm = 60; bpm <= 200; bpm += 0.25) {
       var lag = 60 * fps / bpm, s = ac(lag) + 0.5 * ac(2 * lag) + 0.25 * ac(4 * lag);
       var pr = Math.exp(-0.5 * Math.pow(Math.log2(bpm / center) / sd, 2)), v = s * pr; sc.push(v);
@@ -360,7 +360,7 @@
   }
 
   function key(x, sr, opt) {
-    if (!opt || (!opt.single && !opt.vote)) return keyModel(x, sr); /* default: the trained model (69.7 % on unseen tracks) */
+    if (!opt || (!opt.single && !opt.vote)) return keyModel(x, sr); /* default: the trained model (70.6 % on unseen tracks) */
     if (opt.vote) return vote(x, sr, opt);
     opt = opt || {}; var ch = chroma(x, sr, opt); if (!ch) return null; var PROF = profiles(opt);
     if (opt.thr) { var mx0 = Math.max.apply(null, ch); ch = ch.map(function (v) { return v < mx0 * opt.thr ? 0 : v; }); }

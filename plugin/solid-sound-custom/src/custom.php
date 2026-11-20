@@ -3426,6 +3426,7 @@ if ( ! function_exists( 'ss_az_is_form' ) ) {
       return true;
     }).catch(function () { return false; });
   }
+  g.ssAzSetTax = setTax; /* 20.11 key-detect.php «Use Cm»: the Key list loads by AJAX, so the term is found/created here */
   function apply(kinds) {
     var msg = [], jobs = [];
     kinds.forEach(function (k) {
