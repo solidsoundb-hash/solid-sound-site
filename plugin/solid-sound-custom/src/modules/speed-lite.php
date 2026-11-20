@@ -45,9 +45,9 @@ add_action( 'wp_footer', function () {
 add_action( 'template_redirect', function () {
 	if ( is_admin() || wp_doing_ajax() || ss_lite_no_tidio() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) return;
 	ob_start( function ( $h ) {
-		if ( false === strpos( $h, 'tidio' ) || false === stripos( $h, '</body>' ) ) return $h;
+		if ( false === strpos( $h, 'tidio' ) || false === stripos( $h, '</body>' ) ) return $h . ( strlen( $h ) > 2000 ? '<!-- ss-late: ' . ( false === strpos( $h, 'tidio' ) ? 'no-tidio' : 'no-body' ) . ' -->' : '' );
 		$h = ss_lite_late( $h );
-		if ( false === strpos( $h, 'ssLate(asyncLoad)' ) && false === strpos( $h, 'data-ss-late=' ) ) return $h;
+		if ( false === strpos( $h, 'ssLate(asyncLoad)' ) && false === strpos( $h, 'data-ss-late=' ) ) return $h . '<!-- ss-late: no-loader-match -->';
 		/* ssLate(fn): run fn at the first touch / scroll / key / mouse move, or after 10 s; also wakes the delayed script tags */
 		$js = '<script>(function(){var q=[],d=0,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=1;document.querySelectorAll("script[data-ss-late]").forEach(function(o){var s=document.createElement("script");s.src=o.getAttribute("data-ss-late");s.async=true;o.parentNode.replaceChild(s,o)});q.forEach(function(f){try{f()}catch(e){}})}window.ssLate=function(f){d?f():q.push(f)};E.forEach(function(n){addEventListener(n,go,{capture:true,passive:true,once:true})});setTimeout(go,10000)})();</script>';
 		return preg_replace( '#<body\b[^>]*>#i', '$0' . $js, $h, 1 );
