@@ -369,6 +369,12 @@ body.ss-wow #ss-app .ssx .hp-card .cta{padding:16px!important;font-size:17px!imp
 }
 @media(max-width:1000px){body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:1fr!important;align-content:start!important}body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:1!important;grid-row:2!important;padding:16px}body.ss-wow #ss-app .ssx .hp-card b{font-size:19px}}
 @media(max-width:600px){body.ss-wow #ss-app .ssx .fz-tiles{gap:8px}body.ss-wow #ss-app .ssx .fz-t{padding:11px 12px;gap:12px}body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:36px;width:36px;height:36px}body.ss-wow #ss-app .ssx .fz-t b{font-size:15px}body.ss-wow #ss-app .ssx .fz-t small{font-size:12.5px}body.ss-wow #ss-app .ssx .hp-card small{display:none}}
+/* owner 20.11 «туго листается, косо, всё съехало»: every row of choices wraps inside its own column — on a PC a long row
+   (Releasing: «Metadata & ISRC») ran under the box on the right, on a phone rows ran off the edge and scrolled sideways,
+   so a finger on them moved the row instead of the slide */
+body.ss-wow #ss-app .ssx .card .left .f .chips{flex-wrap:wrap!important;overflow:visible!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;min-width:0!important;max-width:100%!important;row-gap:8px!important}
+body.ss-wow #ss-app .ssx .card .left .f .chips span{flex:0 1 auto!important;max-width:100%!important;white-space:normal!important}
+body.ss-wow #ss-app .ssx .card .left .f{min-width:0!important}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;

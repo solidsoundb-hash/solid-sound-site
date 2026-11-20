@@ -32,7 +32,8 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
   const cur = +(r.getAttribute('data-cur') || 0), cards = [...r.querySelectorAll('.card')], vp = r.querySelector('.vp');
   return { cur, vp: vp ? vp.offsetHeight : 0, card: cards[cur] ? cards[cur].offsetHeight : 0, max: Math.max(...cards.map(c => c.offsetHeight)),
     title: cards[cur] ? (cards[cur].querySelector('h2') || {}).textContent : '', tabs: r.querySelectorAll('.tasks button').length,
-    overflowX: document.documentElement.scrollWidth > innerWidth + 1 }; });
+    overflowX: document.documentElement.scrollWidth > innerWidth + 1,
+    rowOut: cards[cur] ? [...cards[cur].querySelectorAll('.chips')].filter(c => c.scrollWidth > c.clientWidth + 2 || c.getBoundingClientRect().right > cards[cur].getBoundingClientRect().right + 2).length : 0 }; });
 
 (async () => {
   const browser = await chromium.launch({ ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}) });
@@ -54,8 +55,14 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
       await p.locator('#ss-app .ssx .tasks button').nth(i).click({ timeout: 5000 }).catch(() => {}); await sleep(900);
       const s = await state(p); const f = `${w}x${h}-${i}.jpg`;
       await p.locator('#ss-app .ssx').first().screenshot({ path: path.join(OUT, f), type: 'jpeg', quality: 60 }).catch(() => {});
-      md.push(`| ${i} ${s.title} | ${s.vp} | ${s.card} | ${s.vp - s.card} | ${s.max} | [снимок](${f}) |`);
+      md.push(`| ${i} ${s.title} | ${s.vp} | ${s.card} | ${s.vp - s.card} | ${s.max} | [снимок](${f})${s.rowOut ? ' ❌ ряд кнопок вылезает: ' + s.rowOut : ''} |`);
     }
+    // drag a card 70 px to the left (mouse; the same handler serves fingers) — it must turn
+    { await p.locator('#ss-app .ssx .tasks button').first().click().catch(() => {}); await sleep(800);
+      const bx = await p.locator('#ss-app .ssx .vp').first().boundingBox().catch(() => null);
+      if (bx) { const y = bx.y + Math.min(60, bx.height / 3), x = bx.x + bx.width / 2; const c0 = (await state(p)).cur;
+        await p.mouse.move(x, y); await p.mouse.down(); for (let k = 1; k <= 7; k++) { await p.mouse.move(x - k * 10, y); await sleep(16); } await p.mouse.up(); await sleep(800);
+        const c1 = (await state(p)).cur; md.push(`Свайп 70 px: было «${c0}», стало «${c1}» → ${c1 !== c0 ? '✅ листается' : '❌ туго (не перелистнулось)'}`); } }
     await p.evaluate(() => scrollTo(0, 0)); await p.locator('#ss-app .ssx .tasks button').first().click().catch(() => {}); await sleep(900);
     await p.screenshot({ path: path.join(OUT, `${w}x${h}-screen.jpg`), type: 'jpeg', quality: 60 }).catch(() => {});
     const s = await state(p); md.push('', `Первый экран: [снимок](${w}x${h}-screen.jpg)${s && s.overflowX ? ' · ❌ есть прокрутка вбок' : ''}`, '');

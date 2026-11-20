@@ -271,7 +271,7 @@ document.addEventListener('click',function(e){
      progress line under the active task. It waits while the pointer is over it, while it is off screen or the tab is
      hidden, and stops for good as soon as the visitor touches it (tap, click, key, swipe). Off with reduced motion. */
   (function(){
-    var T=7000, timer=0, stopped=false, seen=true, hold=false, cur=null;
+    var T=9000, /* owner 20.11: «автопрокрутку чуть дольше» (was 7 s) */ timer=0, stopped=false, seen=true, hold=false, cur=null;
     function rm(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } }
     function clear(){ clearTimeout(timer); timer=0; }
     function bar(r){ r.classList.remove('ss-auto'); void r.offsetWidth; r.classList.add('ss-auto'); }
@@ -319,8 +319,8 @@ document.addEventListener('click',function(e){
     var tr=r.querySelector('.track'); tr.style.transition=''; if(raf){ cancelAnimationFrame(raf); raf=0; }
     var cur=+(r.getAttribute('data-cur')||0), w=r.querySelector('.vp').offsetWidth||360, n=r.querySelectorAll('.card').length;
     document.documentElement.classList.remove('ss-xdrag');
-    /* (17.11 eyes check: «тугой», 20–50 px did nothing) 10% of the width or a quick 15 px flick turns the page */
-    var to=cur; if(was==='x' && (Math.abs(dx)>w*0.10 || (Math.abs(dx)>15 && Math.abs(dx)/dt>0.2))) to=Math.max(0,Math.min(n-1,cur+(dx<0?1:-1)));
+    /* (17.11 «тугой»; 20.11 owner again «туго листается») 8% of the width (60 px max) or a quick 12 px flick turns the page */
+    var to=cur; if(was==='x' && (Math.abs(dx)>Math.min(w*0.08,60) || (Math.abs(dx)>12 && Math.abs(dx)/dt>0.15))) to=Math.max(0,Math.min(n-1,cur+(dx<0?1:-1)));
     tr.style.transform='translateX('+(-100*to)+'%)'; /* no leftover offset after a short drag */
     if(was==='x' && window.ssxStop) window.ssxStop();
     if(to!==cur) go(to); else go(cur,true); }
