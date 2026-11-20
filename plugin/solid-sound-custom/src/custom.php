@@ -6901,6 +6901,7 @@ require_once __DIR__ . '/modules/get-heard.php'; /* 19.11 owner: «Get heard» +
 require_once __DIR__ . '/modules/prof.php'; /* 19.11 owner: speed — probe only with ?ss_prof=1 */
 require_once __DIR__ . '/modules/adaptive.php'; /* 19.11 owner: strong devices load the next page ahead, weak ones nothing extra */
 require_once __DIR__ . '/modules/yt-lite.php'; /* 20.11 speed: YouTube loads only when ▶ is pressed */
+require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
