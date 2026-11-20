@@ -1,0 +1,53 @@
+# CLICKER (owner 20.11.2026: «много роботов, по команде проклацывают все кнопки, делают скрины, проверяют куда ведут линки —
+# они могут быть перепутаны — на 3 устройствах: ПК, планшет, телефон»). Read-only: never buys, sends or deletes.
+# Run: add a line to .github/click.txt. 6 robots (3 devices × 2 halves of the site), at most 3 at once (the hosting blocks more).
+# Result: branch shots-click — report.md (broken links, links whose text does not match the page, buttons that do nothing,
+# code errors) + every screenshot.
+name: Clicker
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/click.txt"]
+permissions:
+  contents: write
+concurrency: { group: clicker, cancel-in-progress: false }
+jobs:
+  click:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        dev: [pc, tablet, phone]
+        part: [0, 1]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Click ${{ matrix.dev }} part ${{ matrix.part }}
+        env: { PW_CHANNEL: chrome, PHOTO_DEVS: "${{ matrix.dev }}", PHOTO_SHARD: "${{ matrix.part }}/2", PHOTO_OUT: "click/${{ matrix.dev }}-${{ matrix.part }}", PHOTO_BUDGET_MIN: "150", PHOTO_NO_WIDTHS: "1", PHOTO_MAX_CLICKS: "35" }
+        run: node tools/photo/photo.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "click-${{ matrix.dev }}-${{ matrix.part }}", path: click, retention-days: 7 }
+  report:
+    needs: click
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/download-artifact@v4
+        with: { pattern: "click-*", path: click, merge-multiple: true }
+      - name: Check every link + report
+        env: { CLICK_DIR: click }
+        run: node tools/clicker/report.js
+      - name: Save to branch shots-click
+        run: |
+          cd click && git init -q -b shots-click && git config user.name clicker && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "clicker: $(date -u +%FT%TZ)" && git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shots-click

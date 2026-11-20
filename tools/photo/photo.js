@@ -25,7 +25,9 @@ const UA_PHONE = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (K
 const DEV = {
   pc: { name: 'компьютер', viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false, userAgent: UA_DESK },
   phone: { name: 'телефон', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, userAgent: UA_PHONE },
+  tablet: { name: 'планшет', viewport: { width: 820, height: 1180 }, isMobile: true, hasTouch: true, userAgent: UA_PHONE }, // (20.11 owner: «пк, планшет, телефон»)
 };
+const DEVS = (process.env.PHOTO_DEVS || 'pc,phone').split(',').filter(k => DEV[k]); // the clicker robot runs one device per job
 const HOME_WIDTHS = [[360, 740, 1], [412, 780, 1], [768, 1024, 1], [1024, 768, 0], [1366, 768, 0], [1440, 900, 0], [1920, 1080, 0], [2560, 1300, 0]];
 // third-party scripts (pixels, chat, analytics, payments) are not loaded: they change nothing in our design
 const ALLOWED = /(^|\.)(solid-sound\.net|jsdelivr\.net|ytimg\.com|youtube-nocookie\.com|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unpkg\.com)$/;
@@ -99,6 +101,10 @@ async function shootPage(browser, url, dk, doneShared, index) {
   try {
     await open(page, url);
     await fullShot(page, path.join(dir, '00_page.jpg'), d.viewport.width); rec.shots.push(['вся страница', '00_page.jpg']);
+    /* (20.11 owner: «проверять куда ведут линки — они могут быть перепутаны») every link of the page with its visible text */
+    rec.links = await page.evaluate(() => { const o = [], seen = new Set(); document.querySelectorAll('a[href]').forEach(a => { const h = a.href; if (!/^https?:/.test(h) || seen.has(h + '|' + t(a))) return; const r = a.getBoundingClientRect(); seen.add(h + '|' + t(a)); o.push({ href: h.split('#')[0], text: t(a), vis: r.width > 2 && r.height > 2, where: a.closest('header,#ssg,.l-header') ? 'шапка' : a.closest('footer,.l-footer,.ssf') ? 'подвал' : 'страница' }); }); function t(a) { return (a.getAttribute('aria-label') || a.innerText || a.title || (a.querySelector('img') || {}).alt || '').replace(/\s+/g, ' ').trim().slice(0, 60); } return o; }).catch(() => []);
+    rec.clicks = [];
+    page.on('pageerror', e => { rec.jsErr = (rec.jsErr || 0) + 1; if (rec.clicks.length) rec.clicks[rec.clicks.length - 1].err = String(e.message).slice(0, 120); });
     // menu: computer — hover every top item that has a submenu; phone — open the menu button
     if (dk === 'pc' && !doneShared.has('menu')) {
       doneShared.add('menu');
@@ -123,6 +129,7 @@ async function shootPage(browser, url, dk, doneShared, index) {
       const loc = page.locator(`[data-ph="${b.id}"]`).first();
       if (!(await loc.count().catch(() => 0))) continue;
       const before = page.url();
+      await page.evaluate(() => { window.__m = 0; if (!window.__mo) { window.__mo = new MutationObserver(r => { window.__m += r.length; }); window.__mo.observe(document.body, { subtree: true, childList: true, attributes: true }); } }).catch(() => {});
       try {
         await loc.scrollIntoViewIfNeeded({ timeout: 3000 });
         if (dk === 'pc') { await loc.hover({ timeout: 2000 }).catch(() => {}); }
@@ -132,6 +139,8 @@ async function shootPage(browser, url, dk, doneShared, index) {
       const f = `${String(++n).padStart(2, '0')}_${(b.text || 'button').replace(/[^a-z0-9а-яіїє]+/gi, '_').slice(0, 30)}.jpg`;
       await page.screenshot({ path: path.join(dir, f), type: 'jpeg', quality: 50 }).catch(() => {});
       rec.shots.push([(b.shared ? '(общая) ' : '') + 'нажать «' + (b.text || 'без текста') + '»', f]);
+      { const m = await page.evaluate(() => window.__m || 0).catch(() => -1), moved = page.url().split('#')[0] !== before.split('#')[0];
+        rec.clicks.push({ text: b.text || 'без текста', shot: f, effect: moved ? 'открыл ' + page.url().replace(BASE, '') : m > 0 ? 'изменил страницу' : m === 0 ? 'НИЧЕГО НЕ ПРОИЗОШЛО' : '?' }); }
       // undo: Escape, and back to the page if the button opened another one
       await page.keyboard.press('Escape').catch(() => {});
       if (page.url().split('#')[0] !== before.split('#')[0]) { await open(page, url); await pressables(page); }
@@ -173,7 +182,7 @@ async function pageList(browser) {
   console.log(`pages: ${all.length}, this robot: ${mine.length}`);
   const index = []; const doneShared = new Set();
   // the home page at many widths (owner 19.11: «слайдер косой»)
-  if (SHARD[0] === 0) {
+  if (SHARD[0] === 0 && !process.env.PHOTO_NO_WIDTHS) {
     const dir = path.join(OUT, 'home-widths'); fs.mkdirSync(dir, { recursive: true });
     const rec = { url: BASE + '/en/', dev: 'разные ширины', shots: [] };
     for (const [w, h, mob] of HOME_WIDTHS) {
@@ -186,7 +195,7 @@ async function pageList(browser) {
   }
   for (const u of mine) {
     if (left() < 5 * 60000) { console.log('time budget reached'); break; }
-    for (const dk of ['pc', 'phone']) { await shootPage(browser, u, dk, doneShared, index); console.log(dk, u); }
+    for (const dk of DEVS) { await shootPage(browser, u, dk, doneShared, index); console.log(dk, u); }
   }
   fs.writeFileSync(path.join(OUT, `index-${SHARD[0]}.json`), JSON.stringify(index, null, 1));
   await browser.close();
