@@ -193,7 +193,9 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow .ssw-hero .slg span{white-space:nowrap;display:inline-block}
  /* (20.11 owner, A31: «не влазит целый блок Get everything free — глобально оптимизацию») the whole slider on the first screen: no pill, slimmer Free tiles and card */
  body.ss-wow .ssw-hero .k{display:none!important}
- body.ss-wow .ssw-hero .slg{font-size:26px!important;margin:0 auto 2px!important}
+ body.ss-wow .ssw-hero .slg{font-size:24px!important;margin:0 auto 4px!important;padding:0 14px!important}
+ /* (20.11 owner «Writing a track — чтобы было нужно») on phones only what is needed to pick a template: no «Add to it» row (extras are on the product page) */
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f:has(.chips.addon){display:none!important}
  body.ss-wow #ss-app .ssx{padding-bottom:10px!important}
  body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 8px!important}
  body.ss-wow #ss-app .ssx .tasks{margin-bottom:10px!important}
