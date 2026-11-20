@@ -27,7 +27,10 @@ jobs:
       - uses: actions/cache@v4
         with: { path: audio, key: gs-all-audio-v1 }
       - uses: actions/cache@v4
-        with: { path: cache, key: autotune-cache-v1-${{ github.run_id }}, restore-keys: autotune-cache-v1- }
+        with:
+          path: cache
+          key: autotune-cache-v1-${{ github.run_id }}
+          restore-keys: autotune-cache-v1-
       - name: Download audio (8 at a time)
         run: |
           mkdir -p audio/gs audio/mtg audio/gst cache
