@@ -229,6 +229,17 @@ body.ss-wow #ss-app .ssx.ss-auto .tasks button.on:after{left:0!important;right:0
 body.ss-wow #ss-app .ssx .tasks button.on i,body.ss-wow #ss-app .ssx .tasks button.on svg{color:#F59E0B!important}
 body.ss-wow #ss-app .ssx .card{border:0!important;background:transparent!important;box-shadow:none!important}
 }
+/* (20.11 owner: «на телефоне стиль слайдера не поменялся, отличается от ПК») phones/tablets — the same look as the computer: flat tabs with an orange line, same panel */
+@media(max-width:1000px){
+body.ss-wow #ss-app .ssx{border:0!important;background:linear-gradient(180deg,#141C2E,#0F1524)!important;border-radius:14px!important}
+body.ss-wow #ss-app .ssx .tasks{gap:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important;padding-bottom:0!important}
+body.ss-wow #ss-app .ssx .tasks button{background:transparent!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;padding:0 11px!important;height:40px!important;color:#94A3B8!important;box-shadow:none!important}
+body.ss-wow #ss-app .ssx .tasks button.on{color:#fff!important;border-bottom-color:#F59E0B!important}
+body.ss-wow #ss-app .ssx.ss-auto .tasks button.on{border-bottom-color:rgba(245,158,11,.25)!important}
+body.ss-wow #ss-app .ssx.ss-auto .tasks button.on:after{left:0!important;right:0!important;bottom:-2px!important;border-radius:0!important}
+body.ss-wow #ss-app .ssx .tasks button.on i,body.ss-wow #ss-app .ssx .tasks button.on svg{color:#F59E0B!important}
+body.ss-wow #ss-app .ssx .card{border:0!important;background:transparent!important;box-shadow:none!important}
+}
 /* (owner 19.11) computer: filters on the left (Genre, BPM, Key, then Ableton + No external plugins),
    the "templates match" card square on the right, the buttons under it */
 @media(min-width:1001px){
