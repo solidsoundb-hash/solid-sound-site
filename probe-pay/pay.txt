@@ -1,6 +1,8 @@
 NEW before any action: requests 74 payment requests 0
   box before {"id":"wcpay-express-checkout-wrapper","h":0,"iframes":0,"shown":true}
-  after a scroll: requests 170 payment requests 26 box no box errors []
+  url https://solid-sound.net/product/infinity/
+  after a scroll: requests 176 payment requests 65 box {"id":"wcpay-express-checkout-wrapper","h":104,"iframes":1,"shown":true} errors []
 ?ss_pay_now=1 before any action: requests 173 payment requests 65
   box before {"id":"wcpay-express-checkout-wrapper","h":56,"iframes":1,"shown":true}
-  after a scroll: requests 244 payment requests 67 box no box errors []
+  url https://solid-sound.net/product/infinity/?ss_pay_now=1
+  after a scroll: requests 177 payment requests 66 box {"id":"wcpay-express-checkout-wrapper","h":104,"iframes":1,"shown":true} errors []
