@@ -34,15 +34,25 @@ add_action( 'wp_print_scripts', function () {
 	foreach ( (array) $wp_scripts->registered as $h => $s ) if ( ! empty( $s->src ) && false !== strpos( $s->src, 'tidio' ) ) wp_dequeue_script( $h );
 }, 1 );
 /* the Tidio plugin may also print its loader directly into the footer: catch only that one tag */
-add_action( 'wp_footer', function () { if ( ! is_admin() ) ob_start(); }, -9999 );
+add_action( 'wp_footer', function () { if ( ss_lite_no_tidio() ) ob_start(); }, -9999 );
 add_action( 'wp_footer', function () {
-	if ( is_admin() ) return;
-	$h = (string) ob_get_clean();
-	$out = ss_lite_no_tidio() ? preg_replace( '#<script\b[^>]*src=["\'][^"\']*code\.tidio\.co/[^"\']+["\'][^>]*>\s*</script>#i', '', $h ) : ( false !== strpos( $h, 'tidio' ) ? ss_lite_late( $h ) : $h );
-	/* ssLate(fn): run fn at the first touch / scroll / key / mouse move, or after 10 s; also wakes the delayed script tags */
-	if ( ! empty( $GLOBALS['ss_lite_late'] ) ) echo '<script>(function(){var q=[],d=0,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=1;document.querySelectorAll("script[data-ss-late]").forEach(function(o){var s=document.createElement("script");s.src=o.getAttribute("data-ss-late");s.async=true;o.parentNode.replaceChild(s,o)});q.forEach(function(f){try{f()}catch(e){}})}window.ssLate=function(f){d?f():q.push(f)};E.forEach(function(n){addEventListener(n,go,{capture:true,passive:true,once:true})});setTimeout(go,10000)})();</script>';
-	echo $out;
+	if ( ! ss_lite_no_tidio() ) return;
+	$h = ob_get_clean();
+	echo preg_replace( '#<script\b[^>]*src=["\'][^"\']*code\.tidio\.co/[^"\']+["\'][^>]*>\s*</script>#i', '', (string) $h );
 }, 9999 );
+/* while Tidio is used, its loader (printed at the very end of the page, after wp_footer) waits for the first action: the whole
+   page passes through here once — only a text replace when the loader is there */
+add_action( 'template_redirect', function () {
+	if ( is_admin() || wp_doing_ajax() || ss_lite_no_tidio() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) return;
+	ob_start( function ( $h ) {
+		if ( false === strpos( $h, 'tidio' ) || false === stripos( $h, '</body>' ) ) return $h;
+		$h = ss_lite_late( $h );
+		if ( false === strpos( $h, 'ssLate(asyncLoad)' ) && false === strpos( $h, 'data-ss-late=' ) ) return $h;
+		/* ssLate(fn): run fn at the first touch / scroll / key / mouse move, or after 10 s; also wakes the delayed script tags */
+		$js = '<script>(function(){var q=[],d=0,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=1;document.querySelectorAll("script[data-ss-late]").forEach(function(o){var s=document.createElement("script");s.src=o.getAttribute("data-ss-late");s.async=true;o.parentNode.replaceChild(s,o)});q.forEach(function(f){try{f()}catch(e){}})}window.ssLate=function(f){d?f():q.push(f)};E.forEach(function(n){addEventListener(n,go,{capture:true,passive:true,once:true})});setTimeout(go,10000)})();</script>';
+		return preg_replace( '#<body\b[^>]*>#i', '$0' . $js, $h, 1 );
+	} );
+}, 1 );
 
 /* ── Creator area (owner 19.11: «всё, что касается авторов, тяжело грузится») ──
  *  - WCFM's old dashboard (sales/commission reports for the month + Chart.js) was built on /store-manager/ and then hidden
