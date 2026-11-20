@@ -55,9 +55,11 @@ function ss_pk_cards() {
 	);
 }
 
-function ss_pk_html() {
+function ss_pk_html( $only = null, $hero = true ) {
 	$ic = function ( $d, $s = 22 ) { return '<svg width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' . esc_attr( $d ) . '"/></svg>'; };
-	$h = '<div class="sspk"><header class="hero"><span class="k">Professional music production services</span><h1>Your music. <em>Finished.</em></h1>'
+	$h = '<div class="sspk">';
+	if ( $hero ) {
+	$h .= '<header class="hero"><span class="k">Professional music production services</span><h1>Your music. <em>Finished.</em></h1>'
 		. '<p>We work inside your project — in <b>your DAW</b>. Listen to every demo on your private project page, leave timed comments, approve when you love it. You pay half to start, the rest only when you are happy.</p>'
 		. '<ul class="trust"><li>' . $ic( 'M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z', 18 ) . '50 / 50 payment</li><li>' . $ic( 'M20 6L9 17l-5-5', 18 ) . '100 % copyright yours</li><li>' . $ic( 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', 18 ) . 'Timed comments on every demo</li><li>' . $ic( 'M14 3H6v18h12V7zM14 3v4h4', 18 ) . 'Project files in your DAW</li><li>' . $ic( 'M9 18V5l12-2v13', 18 ) . 'Free mastering demo</li><li>' . $ic( 'M20 12v9H4v-9M2 7h20v5H2zM12 21V7', 18 ) . 'Loyal clients keep their prices</li></ul>'
 		. '<nav class="jump"><a href="#mix">Mixing &amp; Mastering</a><a href="#rework">Project Rework</a><a href="#custom">Custom Production</a><a href="#inspired">Inspired by</a><a href="#release">Release</a></nav></header>';
@@ -66,7 +68,9 @@ function ss_pk_html() {
 		. '<li><b>Send your project</b><span>Upload stems or the project, tell us what you need.</span></li>'
 		. '<li><b>Review &amp; comment</b><span>Listen on your private page, comment on any second.</span></li>'
 		. '<li><b>Approve &amp; download</b><span>Happy? Pay the balance and get every file.</span></li></ol></section>';
+	}
 	foreach ( ss_pk_cards() as $id => $sec ) {
+		if ( $only && ! in_array( $id, $only, true ) ) continue;
 		$h .= '<section class="sec" id="' . esc_attr( $id ) . '"><div class="sh"><i>' . $ic( $sec[2], 24 ) . '</i><div><h2>' . esc_html( $sec[0] ) . '</h2><p>' . esc_html( $sec[1] ) . '</p></div></div><div class="cards c' . count( $sec[3] ) . '">';
 		foreach ( $sec[3] as $c ) {
 			$price = (float) $c[4];
@@ -118,7 +122,11 @@ add_filter( 'the_content', function ( $c ) {
 	if ( ! is_page( 1947 ) || ! in_the_loop() || ! is_main_query() ) return $c;
 	$new = include __DIR__ . '/services-prices-html.php';
 	if ( is_string( $new ) && $new ) $c = preg_replace( '#\[us_html\].*?\[/us_html\]#s', '[us_html]' . base64_encode( rawurlencode( $new ) ) . '[/us_html]', $c, 1 );
-	return '<style>' . ss_pk_css() . '.sspk-cmp{max-width:1120px;margin:10px auto 0;padding:0 16px;color:#fff;font:800 28px/1.2 "Exo 2",sans-serif;text-align:center}.sspk-cmp+p{max-width:1120px;margin:6px auto 0;text-align:center;color:#94A3B8}</style>' . ss_pk_html() . '<h2 class="sspk-cmp" id="compare">Compare every package in detail</h2><p>What is included, revisions and turnaround — package by package.</p>' . $c;
+	$css = ss_pk_css() . '.sspk.top{padding-bottom:0}.sspk.top .trust{margin-top:0}'
+		/* «Most popular» in the tables as a corner ribbon, like on the cards (owner 20.11 «ленточки прикольно») */
+		. '.pr-t thead th.pr-hl{position:relative;overflow:hidden}.pr-t thead th.pr-hl .pr-badge{position:absolute;top:18px;right:-38px;transform:rotate(45deg);width:150px;margin:0;padding:4px 0;border-radius:0;text-align:center;font-size:10px}';
+	$trust = '<div class="sspk top"><ul class="trust"><li>50 / 50 payment</li><li>100 % copyright yours</li><li>Timed comments on every demo</li><li>Project files in your DAW</li><li>Free mastering demo</li><li>Loyal clients keep their prices</li></ul></div>';
+	return '<style>' . $css . '</style>' . $c . ss_pk_html( array( 'inspired', 'release' ), false ); /* the page's own hero already lists the guarantees */
 }, 5 );
 add_action( 'template_redirect', function () {
 	if ( ! ss_pk_path_ok() ) return;
