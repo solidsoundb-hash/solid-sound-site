@@ -186,6 +186,13 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips{gap:6px!important}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .rng .bpm input{height:31px!important}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.acts{margin-top:10px!important}
+ /* (20.11 owner: «меню с заголовком чуть уже, большие кнопки чуть меньше, большие расстояния чуть меньше») */
+ body.ss-wow #ss-app header .ss-mh-btn,body.ss-wow #ss-app header .ss-mh-cart,body.ss-wow #ss-app header a[aria-label="Account"],body.ss-wow #ss-app header a[aria-label="Sign in"],body.ss-wow #ss-app header a[aria-label="My account"],body.ss-wow #ss-app header button[aria-label="Main menu"]{width:38px!important;height:38px!important;min-width:38px!important}
+ body.ss-wow .ssw-hero{padding:8px 6px 6px!important}
+ body.ss-wow .ssw-hero .slg{font-size:30px!important;margin:0 auto 6px!important}
+ body.ss-wow .ssw-hero .k{font-size:11.5px!important;padding:4px 12px!important}
+ body.ss-wow #ss-app .ssx{padding-top:12px!important}
+ body.ss-wow #ss-app .ssx .tasks button{height:38px!important;padding:0 12px!important}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips.addon{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips.addon span{padding:0 9px!important;font-size:12.5px!important;flex:none!important;width:auto!important}
 }
