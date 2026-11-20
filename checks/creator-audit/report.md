@@ -1,4 +1,4 @@
-# Creator area audit 2026-11-20T09:36:44.334Z
+# Creator area audit 2026-11-20T09:44:55.730Z
 
 ## phone
 - /en/store-manager/ → HTTP 200 · height 4288px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
@@ -10,6 +10,7 @@
     - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
 - /en/store-manager/ss-add-product/ → HTTP 200 · height 2050px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+    - JS: g is not defined
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
     - at 360: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
@@ -24,6 +25,7 @@
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
 - /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 2050px · [phone_en_store_manager_ss_add_product_ss_ff3_1.jpg](phone_en_store_manager_ss_add_product_ss_ff3_1.jpg)
+    - JS: g is not defined
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
     - at 360: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
@@ -69,6 +71,7 @@
 - /en/store-manager/ → HTTP 200 · height 2651px · [desktop_en_store_manager.jpg](desktop_en_store_manager.jpg)
 - /en/store-manager/ss-products/ → HTTP 200 · height 1910px · [desktop_en_store_manager_ss_products.jpg](desktop_en_store_manager_ss_products.jpg)
 - /en/store-manager/ss-add-product/ → HTTP 200 · height 1449px · [desktop_en_store_manager_ss_add_product.jpg](desktop_en_store_manager_ss_add_product.jpg)
+    - JS: g is not defined
     - form.class=ss-ds-nofmt ss-ready data={"ssap":"1","aic":"1","kd":"1","zf":"1","pv":"1","ff":"1","ssds":"1"}
     - div.ss-ff-card.ss-ff-c1 display=block
     - div.ss-ff-card.ss-ff-c2 display=none ← #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body 
@@ -78,7 +81,9 @@
     - div.ss-ff-card.ss-ff-c6 display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body  | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
-    - AI cover: button visible=true, after 7 s → preview shown, pictures 2; messages: —
+- open form before: [desktop_add_open_before.jpg](desktop_add_open_before.jpg)
+- open form after (preview CSS): [desktop_add_open_after.jpg](desktop_add_open_after.jpg)
+    - AI cover: button visible=true, after 8 s → preview shown, pictures 1; messages: —
     - [desktop_ai_cover.jpg](desktop_ai_cover.jpg)
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
 - /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1449px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
