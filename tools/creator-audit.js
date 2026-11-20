@@ -66,6 +66,14 @@ async function login(page, user, pass) {
           { await page.evaluate(() => { if (window.__ssFFopen) window.__ssFFopen(); else { const b = document.querySelector('.ss-ff-man'); if (b) b.click(); } }).catch(() => {}); await page.waitForTimeout(1200); } // 19.11: only «Your files» shows first
           await page.locator('.ss-ap-format input[type=radio]').first().check({ force: true }).catch(() => {});
           await page.waitForTimeout(800);
+          // (20.11 owner «причесать, кустарно»): the whole open form — «before»; with tools/photo/preview-ap.css on top — «after» (not deployed)
+          await page.evaluate(hideBanners).catch(() => {});
+          await page.screenshot({ path: `${OUT}/${d.name}_add_open_before.jpg`, type: 'jpeg', quality: 62, fullPage: true }).catch(() => {});
+          lines.push(`- open form before: [${d.name}_add_open_before.jpg](${d.name}_add_open_before.jpg)`);
+          { const pc = require('fs').existsSync('tools/photo/preview-ap.css') ? require('fs').readFileSync('tools/photo/preview-ap.css', 'utf8').trim() : '';
+            if (pc) { await page.addStyleTag({ content: pc }).catch(() => {}); await page.waitForTimeout(500);
+              await page.screenshot({ path: `${OUT}/${d.name}_add_open_after.jpg`, type: 'jpeg', quality: 62, fullPage: true }).catch(() => {});
+              lines.push(`- open form after (preview CSS): [${d.name}_add_open_after.jpg](${d.name}_add_open_after.jpg)`); } }
           const cb = page.locator('button.ss-aic-b', { hasText: /cover/i }).first();
           if (!(await cb.count())) lines.push('    - AI cover: no button on the page');
           else {

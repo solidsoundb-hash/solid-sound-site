@@ -1,0 +1,26 @@
+/* PREVIEW (not deployed): Add Product «причесать» (owner 20.11 «всё кривовато, кустарно») — one calm style for every field */
+#solid-sound-upload-form#solid-sound-upload-form .acf-field{border:0!important;padding:0!important;margin:0 0 20px!important}
+#solid-sound-upload-form#solid-sound-upload-form .acf-label{margin:0 0 8px!important}
+#solid-sound-upload-form#solid-sound-upload-form .acf-label label{font:600 15px/1.3 "Exo 2",sans-serif!important;color:#F1F5F9!important;margin:0 0 3px!important}
+#solid-sound-upload-form#solid-sound-upload-form .acf-label .description,#solid-sound-upload-form#solid-sound-upload-form .acf-label p{font:400 13px/1.45 Roboto,sans-serif!important;color:#94A3B8!important;min-height:0!important;margin:0!important}
+/* choices as light chips, no boxes around them */
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list){display:flex!important;flex-wrap:wrap!important;gap:8px!important;border:0!important;padding:0!important;margin:0!important;background:none!important;box-shadow:none!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list)>li{flex:0 0 auto!important;width:auto!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) label{display:inline-flex!important;align-items:center!important;gap:8px!important;min-height:38px!important;height:auto!important;padding:0 14px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important;color:#CBD5E1!important;font:500 14px Roboto,sans-serif!important;box-shadow:none!important;cursor:pointer;transition:border-color .15s,background .15s}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) label:hover{border-color:rgba(245,158,11,.5)!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) label:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) input{width:15px!important;height:15px!important;margin:0!important;accent-color:#F59E0B}
+/* «+ Add your own» — a small link under the field, not a big dashed pill */
+#solid-sound-upload-form#solid-sound-upload-form .acf-input>.acf-actions{order:5!important;margin:8px 0 0!important}
+#solid-sound-upload-form#solid-sound-upload-form a.acf-icon[data-name=add]{height:auto!important;padding:0!important;border:0!important;background:none!important;color:#F59E0B!important;font:600 13px Roboto,sans-serif!important;gap:4px!important}
+#solid-sound-upload-form#solid-sound-upload-form a.acf-icon[data-name=add]::before{font-size:15px!important}
+#solid-sound-upload-form#solid-sound-upload-form a.acf-icon[data-name=add]:hover{text-decoration:underline!important;background:none!important}
+/* selects and inputs: one height, one border */
+#solid-sound-upload-form#solid-sound-upload-form .select2-container .select2-selection{min-height:42px!important;height:auto!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:#0B1220!important;box-shadow:none!important}
+#solid-sound-upload-form#solid-sound-upload-form .select2-container .select2-selection--multiple{padding:3px 6px!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(input[type=text],input[type=number],input[type=email],textarea,select:not([multiple])){border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:#0B1220!important;min-height:42px;box-shadow:none!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(input,textarea,select):focus{border-color:#F59E0B!important;outline:0!important}
+/* sub-sections inside a step: a little more air */
+#solid-sound-upload-form#solid-sound-upload-form .ss-ff-card{padding:22px 24px!important}
+#solid-sound-upload-form#solid-sound-upload-form .ss-ff-grid{gap:18px 24px!important}
+#solid-sound-upload-form#solid-sound-upload-form #ss-kd{border-radius:10px!important;padding:8px 12px!important;font-size:13.5px!important}
