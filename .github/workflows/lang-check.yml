@@ -1,0 +1,26 @@
+# Language robot (owner 20.11.2026: «проверь языки»). Run: a line in .github/lang.txt. Read-only.
+# Result: branch shots-lang, report.md (Russian).
+name: Language check
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/lang.txt"]
+permissions:
+  contents: write
+concurrency: { group: lang-check, cancel-in-progress: false }
+jobs:
+  lang:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Check every translated page
+        run: node tools/lang/lang.js
+      - name: Save to branch shots-lang
+        if: always()
+        run: |
+          cd lang-out && git init -q -b shots-lang && git config user.name lang-bot && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "languages: $(date -u +%FT%TZ)" && git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shots-lang

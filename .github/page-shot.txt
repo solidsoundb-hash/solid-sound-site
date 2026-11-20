@@ -6,3 +6,4 @@
 2026-11-20 14:26:37 after-tidio /en/ /en/studio-calculator/ /en/wiki/
 2026-11-20 14:42:20 after-tidio /en/ /en/studio-calculator/ /en/wiki/ /product/infinity/
 2026-11-20 20:38:54 before-pay /product/infinity/ /product/kratos/
+2026-11-20 21:27:28 langs-home /ua/ /de/ /fr/ /pt/ /es/ /it/

@@ -27,6 +27,7 @@ jobs:
     outputs:
       run: ${{ steps.c.outputs.run }}
       t0: ${{ steps.c.outputs.t0 }}
+      l10n: ${{ steps.c.outputs.l10n }}
     steps:
       - uses: actions/checkout@v4
       - id: c
@@ -34,6 +35,8 @@ jobs:
           R=1
           if [ "${{ github.event_name }}" = push ]; then tail -1 .github/qa.txt | grep -qiE 'swarm|рой' || R=0; fi
           echo "run=$R" >> $GITHUB_OUTPUT; echo "t0=$(date +%s)" >> $GITHUB_OUTPUT
+          # (20.11 owner «проверь языки») a line with «языки / langs / l10n» turns the translation checks back on
+          L=0; tail -1 .github/qa.txt | grep -qiE 'язык|langs|l10n' && L=1; echo "l10n=$L" >> $GITHUB_OUTPUT
 
   pages:
     needs: go
@@ -54,6 +57,7 @@ jobs:
         timeout-minutes: 140
         env:
           QA_MODE: full
+          QA_L10N: ${{ needs.go.outputs.l10n }}
           QA_PARTS: pages,links
           QA_SHARD: ${{ matrix.shard }}/8
           QA_EYES_ALL: "1"
@@ -89,6 +93,7 @@ jobs:
         timeout-minutes: 140
         env:
           QA_MODE: full
+          QA_L10N: ${{ needs.go.outputs.l10n }}
           QA_PARTS: ${{ matrix.parts }}
           QA_PAGES: /en/
           QA_EARS_ALL: "1"

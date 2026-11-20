@@ -176,7 +176,9 @@ async function pageList(browser) {
   }
   await ctx.close();
   const other = /^\/(ua|de|fr|pt|es|it)\//;
-  return [...set].filter(u => { const p = new URL(u).pathname; return !other.test(p) && !/\/(wp-|feed|cart|checkout|my-account\/.+|customer-logout|\?add-to-cart)/.test(p + new URL(u).search); }).sort();
+  /* (20.11 owner «проверь языки») PHOTO_LANGS=only → only the translated pages; =all → every language; default: English only */
+  const L = process.env.PHOTO_LANGS || '';
+  return [...set].filter(u => { const p = new URL(u).pathname; return (L === 'all' ? true : L === 'only' ? other.test(p) : !other.test(p)) && !/\/(wp-|feed|cart|checkout|my-account\/.+|customer-logout|\?add-to-cart)/.test(p + new URL(u).search); }).sort();
 }
 
 (async () => {

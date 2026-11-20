@@ -29,8 +29,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
+      - name: Which pages (a line with «языки / langs» → only the translated pages)
+        run: if tail -1 .github/click.txt | grep -qiE 'язык|langs'; then echo "LANGS=only" >> $GITHUB_ENV; else echo "LANGS=" >> $GITHUB_ENV; fi
       - name: Click ${{ matrix.dev }} part ${{ matrix.part }}
-        env: { PW_CHANNEL: chrome, PHOTO_DEVS: "${{ matrix.dev }}", PHOTO_SHARD: "${{ matrix.part }}/2", PHOTO_OUT: "click/${{ matrix.dev }}-${{ matrix.part }}", PHOTO_BUDGET_MIN: "150", PHOTO_NO_WIDTHS: "1", PHOTO_MAX_CLICKS: "35" }
+        env: { PW_CHANNEL: chrome, PHOTO_DEVS: "${{ matrix.dev }}", PHOTO_SHARD: "${{ matrix.part }}/2", PHOTO_OUT: "click/${{ matrix.dev }}-${{ matrix.part }}", PHOTO_BUDGET_MIN: "150", PHOTO_NO_WIDTHS: "1", PHOTO_MAX_CLICKS: "35", PHOTO_LANGS: "${{ env.LANGS }}" }
         run: node tools/photo/photo.js
       - uses: actions/upload-artifact@v4
         if: always()
