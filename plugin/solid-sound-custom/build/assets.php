@@ -227,7 +227,7 @@ return array(
   'id' => null
  ),
  'ss-audio' => array(
-  'f' => 'ss-audio.eca55f1c92.js',
+  'f' => 'ss-audio.6e147d2ea8.js',
   't' => 'js',
   'id' => null
  ),

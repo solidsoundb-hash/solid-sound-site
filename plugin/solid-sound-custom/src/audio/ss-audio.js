@@ -229,6 +229,27 @@
     return { key: tn + (top.m ? 'm' : ''), tonic: tn, mode: top.m ? 'minor' : 'major', confidence: +Math.max(0, Math.min(1, (top.s - sc[1].s) / 0.15)).toFixed(2), alt: rel, alt_close: 1, flat: (FLAT[tn] || tn) + (top.m ? 'm' : ''), chroma: ch, scores: sc };
   }
 
+  /* ---------- the trained key model (20.11) ----------
+     Four ways of hearing (whole range with 8 overtones, bass 30–220 Hz, mids 220–1000, highs 1000–5000) → 48 numbers per
+     candidate key, weighted by a model trained on 1158 Beatport EDM tracks (GiantSteps MTG Key) and checked on 603 others it
+     never saw (GiantSteps Key): 69.7 % MIREX score (exact key 62 %), up from 53.5 % for profile matching. */
+  var KM = {"blocks":[{"white":0,"harm":8},{"white":0,"harm":1,"minF":30,"maxF":220},{"white":0,"harm":4,"minF":220,"maxF":1000},{"white":0,"harm":4,"minF":1000,"maxF":5000}],"W":[[0.4856,-0.2183,-0.2142,-0.1635,0.316,0.0337,-0.0833,0.1974,-0.1907,-0.0724,-0.1769,0.0866,0.4089,-0.056,-0.0304,-0.2274,0.038,0.0125,0.0374,0.0555,-0.1149,0.0021,-0.1482,0.0224,0.4561,-0.1704,-0.0904,-0.0778,0.3033,0.032,-0.2956,0.2289,-0.28,0.0662,-0.2036,0.0313,0.2477,-0.2468,0.2518,-0.2331,0.1566,-0.1114,-0.1384,0.2608,-0.1479,0.0004,-0.1696,0.1298],[0.5049,-0.2975,-0.1152,0.074,-0.0398,-0.1107,0.0935,0.3345,-0.0171,-0.3322,-0.0985,0.0041,0.5889,-0.0592,-0.2424,0.196,-0.1488,-0.1775,-0.006,-0.0701,-0.0921,-0.0811,-0.021,0.1133,0.4172,-0.3165,-0.1769,0.2399,0.0256,-0.0892,-0.0834,0.2336,-0.1704,-0.0832,0.0747,-0.0713,0.4456,-0.0776,0.0343,0.1586,-0.2255,-0.1195,-0.108,0.3023,-0.2885,-0.0371,0.1245,-0.2091]],"b":[-0.596,0.596]};
+  function keyModel(x, sr) {
+    var chs = KM.blocks.map(function (h) { return hpcp(x, sr, h); });
+    if (chs.some(function (c) { return !c; })) return null;
+    var z = [], t, m, i;
+    for (t = 0; t < 12; t++) {
+      var F = [];
+      chs.forEach(function (ch) { var s = 0, v = []; for (i = 0; i < 12; i++) s += ch[i]; for (i = 0; i < 12; i++) v.push(Math.log(0.01 + ch[(i + t) % 12] / s)); var mu = 0; v.forEach(function (q) { mu += q; }); mu /= 12; var sd = 0; v.forEach(function (q) { sd += (q - mu) * (q - mu); }); sd = Math.sqrt(sd / 12) || 1; v.forEach(function (q) { F.push((q - mu) / sd); }); });
+      for (m = 0; m < 2; m++) { var v2 = KM.b[m]; for (i = 0; i < F.length; i++) v2 += KM.W[m][i] * F[i]; z.push({ t: t, m: m, v: v2 }); }
+    }
+    var mx = -1e9; z.forEach(function (q) { if (q.v > mx) mx = q.v; }); var Z = 0; z.forEach(function (q) { q.p = Math.exp(q.v - mx); Z += q.p; }); z.forEach(function (q) { q.p /= Z; });
+    z.sort(function (a, b) { return b.p - a.p; });
+    var top = z[0], tn = NAMES[top.t], rt = top.m ? (top.t + 3) % 12 : (top.t + 9) % 12, rel = NAMES[rt] + (top.m ? '' : 'm'), relP = 0;
+    z.forEach(function (q) { if (q.t === rt && q.m !== top.m) relP = q.p; });
+    return { key: tn + (top.m ? 'm' : ''), tonic: tn, mode: top.m ? 'minor' : 'major', confidence: +top.p.toFixed(2), alt: rel, alt_close: +(top.p - relP).toFixed(2), flat: (FLAT[tn] || tn) + (top.m ? 'm' : ''), chroma: chs[0], top3: z.slice(0, 3).map(function (q) { return NAMES[q.t] + (q.m ? 'm' : '') + ' ' + Math.round(q.p * 100) + '%'; }) };
+  }
+
   /* ---------- tempo (owner 19.11: «темп и длительность тоже должны быть точными») ----------
      Onset strength = positive spectral flux of the log spectrum (kick weighted), local mean removed; tempo = the lag whose
      autocorrelation (plus its 2× and 4× multiples, i.e. bars) is strongest under a prior around opt.center BPM; then a fine
@@ -258,9 +279,17 @@
       if (v > best) { best = v; bestBpm = bpm; }
     }
     var srt = sc.slice().sort(function (p, q) { return p - q; }), conf = best / (srt[srt.length >> 1] || 1);
-    var fb = bestBpm, fs = -1;
-    for (var bb = bestBpm - 0.6; bb <= bestBpm + 0.6; bb += 0.02) { var lg = 60 * fps / bb, ss = 0; for (var kk = 1; kk <= 16; kk *= 2) ss += ac(kk * lg) / Math.sqrt(kk); if (ss > fs) { fs = ss; fb = bb; } }
-    var r = Math.round(fb * 2) / 2; if (Math.abs(fb - Math.round(fb)) < 0.3) r = Math.round(fb);
+    /* precise tempo by folding: lay every beat of the whole excerpt on top of each other — only the exact period keeps
+       the kicks aligned (0.1 BPM off at 128 BPM drifts a tenth of a beat over 100 s), so the sharpest fold wins */
+    /* smooth the onsets (Gaussian, σ = opt.sig frames) so a period that is a whole number of frames gets no advantage */
+    var sig = opt.sig == null ? 2 : opt.sig, es = e2;
+    if (sig > 0) { var R = Math.ceil(sig * 3), kg = []; for (var q = -R; q <= R; q++) kg.push(Math.exp(-q * q / (2 * sig * sig))); es = new Float32Array(frames); for (f = 0; f < frames; f++) { var acc2 = 0, ws = 0; for (q = -R; q <= R; q++) { var ff = f + q; if (ff < 0 || ff >= frames) continue; acc2 += e2[ff] * kg[q + R]; ws += kg[q + R]; } es[f] = acc2 / ws; } }
+    function fold(bpm) { var e2 = es, P = 60 * fps / bpm, best2 = 0; var nPh = Math.max(8, Math.round(P)); for (var ph = 0; ph < nPh; ph++) { var s = 0, n = 0, t0 = ph * P / nPh; for (var tt = t0; tt + 1 < frames; tt += P) { var L = Math.floor(tt), fr = tt - L; s += e2[L] * (1 - fr) + e2[L + 1] * fr; n++; } if (n && s / n > best2) best2 = s / n; } return best2; }
+    var fb = bestBpm;
+    if (opt.curve) { var cv2 = []; for (var cb = opt.curve[0]; cb <= opt.curve[1]; cb += 0.1) cv2.push([+cb.toFixed(1), +fold(cb).toFixed(4)]); return { curve: cv2, coarse: bestBpm, fps: fps }; }
+    if (opt.fold !== 0) { var fbest = -1; for (var bb = bestBpm - (opt.fr || 2.5); bb <= bestBpm + (opt.fr || 2.5); bb += 0.05) { var fv = fold(bb); if (fv > fbest) { fbest = fv; fb = bb; } } }
+    else { var fs = -1; for (var bb2 = bestBpm - 0.6; bb2 <= bestBpm + 0.6; bb2 += 0.02) { var lg = 60 * fps / bb2, ss = 0; for (var kk = 1; kk <= 16; kk *= 2) ss += ac(kk * lg) / Math.sqrt(kk); if (ss > fs) { fs = ss; fb = bb2; } } }
+    var r = Math.round(fb * 2) / 2; if (Math.abs(fb - Math.round(fb)) < (opt.snap || 0.35)) r = Math.round(fb);
     return { bpm: r, raw: +fb.toFixed(2), conf: +conf.toFixed(2) };
   }
 
@@ -331,7 +360,8 @@
   }
 
   function key(x, sr, opt) {
-    if (!opt || !opt.single) return vote(x, sr, opt);
+    if (!opt || (!opt.single && !opt.vote)) return keyModel(x, sr); /* default: the trained model (69.7 % on unseen tracks) */
+    if (opt.vote) return vote(x, sr, opt);
     opt = opt || {}; var ch = chroma(x, sr, opt); if (!ch) return null; var PROF = profiles(opt);
     if (opt.thr) { var mx0 = Math.max.apply(null, ch); ch = ch.map(function (v) { return v < mx0 * opt.thr ? 0 : v; }); }
     var sc = [], i, m, p, r;
@@ -383,6 +413,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, keyH: keyH, hpcp: hpcp, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, keyModel: keyModel, keyH: keyH, hpcp: hpcp, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);
