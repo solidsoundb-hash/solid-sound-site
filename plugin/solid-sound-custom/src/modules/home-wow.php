@@ -502,7 +502,17 @@ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card
 body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd{padding:10px!important;margin-top:6px!important}
 body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl{gap:5px!important}
 body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri{padding:6px 8px!important}
-body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri em{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:12px!important;line-height:1.3!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri em{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:12px!important;line-height:1.25!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd>b{display:inline!important;margin:0 6px 0 0!important;font-size:15px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd>small{display:inline!important;font-size:12px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd{display:block!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl{display:grid!important;margin-top:8px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips.one span,body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips span{padding:0 8px!important;font-size:12.5px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips{gap:5px!important}
+body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row:has(>.chk){display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px 14px!important;margin:0 0 8px!important}
+body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row:has(>.chk)>div{margin:0!important}
+body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>.chk{margin:0!important;font-size:13px!important}
+body.ss-wow #ss-app .ssx .dots{display:none!important}
 }
 </style>
 <script>(function(){
