@@ -566,6 +566,8 @@ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card
 @media(min-width:1001px){
 #ss-app#ss-app .ssx .card .left>.f,#ss-app#ss-app .ssx .card .left>.f.row>div{min-width:0!important;max-width:100%!important}
 #ss-app#ss-app .ssx .card .left>.f .chips,#ss-app#ss-app .ssx .card .left>.f .chips.one{flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important;min-width:0!important;max-width:100%!important}
+/* the choice row of Finishing (.ssw-desc box) spanned both columns (an older «1 / -1» rule) — left column only */
+#ss-app#ss-app .ssx .card .left:has(>.ssw-desc)>.f:not(.row),#ss-app#ss-app .ssx .card .left:has(>.ssw-desc)>p.d,#ss-app#ss-app .ssx .card .left:has(>.ssw-ab)>.f:not(.row){grid-column:1!important}
 }
 #ss-app#ss-app .ssx .card .left.fp>.fz-tiles{grid-column:1!important;grid-row:3 / span 2!important;align-self:start!important;margin:0 0 8px!important}
 @media(min-width:1001px){ /* Free tiles inside Just starting: compact on the computer */
