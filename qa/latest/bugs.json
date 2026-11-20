@@ -1,15 +1,15 @@
 {
  "mode": "full",
- "date": "2026-11-20T07:37:08.467Z",
+ "date": "2026-11-20T14:47:05.179Z",
  "stats": {
   "pages": 110,
-  "clicks": 709,
-  "sounds": 77,
-  "links": 556,
-  "blockedRequests": 53,
+  "clicks": 676,
+  "sounds": 75,
+  "links": 567,
+  "blockedRequests": 57,
   "eyesTiles": 0,
   "eyesPages": 0,
-  "audioFiles": 29,
+  "audioFiles": 32,
   "robots": 20
  },
  "bugs": [
@@ -46,53 +46,6 @@
   },
   {
    "sev": "major",
-   "type": "clickerr",
-   "title": "После нажатия «Film · Ads · Video» — ошибка в коде",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать «Film · Ads · Video»"
-   ],
-   "expected": "Без ошибок",
-   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "where": [
-    "/en/",
-    "/en/all-products/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/10_008.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "kb-seo-title",
-   "title": "Нет заголовка страницы (title) или он слишком длинный/короткий",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
-   ],
-   "expected": "title 15–65 символов, свой у каждой страницы.",
-   "actual": "Сейчас: «Ableton Templates, Serum Presets & Royalty-Free Music – All Products | Solid Sound» (82 симв.). Почему важно: Заголовок — первая строка в выдаче Google. Пустой/обрезанный = меньше кликов. · Сейчас: «How to Start Promoting Yourself as a DJ: Your First 90 Days – Solid Sound» (73 симв.). Почему важно: Заголовок ",
-   "sig": "kb|kb-seo-title|Нет заголовка страницы (title) или он слишком длинный/короткий",
-   "where": [
-    "/en/all-products/",
-    "/en/wiki/how-to-promote-yourself-as-a-dj/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон",
-    "Samsung A31"
-   ],
-   "shot": "shots/10_019.jpg",
-   "isNew": false,
-   "more": 1
-  },
-  {
-   "sev": "major",
    "type": "kb-mob-covered",
    "title": "Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
    "steps": [
@@ -111,7 +64,28 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_021.jpg",
+   "shot": "shots/10_016.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "clickerr",
+   "title": "После нажатия «Video» — ошибка в коде",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Video»"
+   ],
+   "expected": "Без ошибок",
+   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "where": [
+    "/en/all-products/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/10_020.jpg",
    "isNew": false
   },
   {
@@ -129,7 +103,8 @@
     "/en/"
    ],
    "devices": [
-    "компьютер"
+    "компьютер",
+    "телефон"
    ],
    "shot": "shots/10_005.jpg",
    "isNew": false
@@ -149,7 +124,8 @@
     "/en/"
    ],
    "devices": [
-    "компьютер"
+    "компьютер",
+    "телефон"
    ],
    "shot": "shots/10_006.jpg",
    "isNew": false
@@ -160,7 +136,7 @@
    "title": "После запуска другого трека прежняя кнопка всё ещё показывает ⏸",
    "steps": [
     "Нажать ▶ «Play Kratos»",
-    "Нажать ▶ «Play Space Echo»"
+    "Нажать ▶ «Play»"
    ],
    "expected": "«Play Kratos» снова показывает ▶",
    "actual": "Показывает ⏸, хотя этот трек не играет",
@@ -169,7 +145,8 @@
     "/en/"
    ],
    "devices": [
-    "компьютер"
+    "компьютер",
+    "телефон"
    ],
    "shot": "shots/10_007.jpg",
    "isNew": false
@@ -183,7 +160,7 @@
     "Пролистать карточки слайдера точками"
    ],
    "expected": "Весь блок «What are you working on?» виден над нижней панелью",
-   "actual": "Уходит под нижнюю панель: карточка 2 на 196px, карточка 6 на 55px, карточка 7 на 23px",
+   "actual": "Уходит под нижнюю панель: карточка 1 на 52px, карточка 2 на 52px, карточка 3 на 52px, карточка 4 на 52px, карточка 5 на 52px, карточка 6 на 52px, карточка 7 на 52px",
    "sig": "fit|phone",
    "where": [
     "/en/"
@@ -191,68 +168,47 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_010.jpg",
+   "shot": "shots/10_009.jpg",
    "isNew": false
   },
   {
    "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Infinity» невозможно нажать (её что-то закрывает)",
+   "type": "kb-a11y-btn-name",
+   "title": "Кнопка или ссылка без названия (только значок)",
    "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Infinity»"
+    "Открыть https://solid-sound.net/en/services-prices/ (компьютер)",
+    "Где: a.card; a.card; a.card; a.card.hot; a.card.hot"
    ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Infinity",
+   "expected": "aria-label=\"Play\", \"Add to cart\" и т.п.",
+   "actual": "Почему важно: Экранный диктор читает «кнопка» — непонятно, что она делает; Google тоже снижает оценку.",
+   "sig": "kb|kb-a11y-btn-name|Кнопка или ссылка без названия (только значок)",
    "where": [
-    "/en/"
+    "/en/services-prices/"
    ],
    "devices": [
+    "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_011.jpg",
-   "isNew": false
+   "shot": "shots/10_023.jpg",
+   "isNew": true
   },
   {
    "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Kratos» невозможно нажать (её что-то закрывает)",
+   "type": "link404",
+   "title": "Битая ссылка: /ua/wiki-ua/balansni-nebalansni-kabeli-ua/ (код 503)",
    "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Kratos»"
+    "Открыть https://solid-sound.net/en/wiki/balanced-vs-unbalanced-cables/",
+    "Нажать ссылку на /ua/wiki-ua/balansni-nebalansni-kabeli-ua/"
    ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Kratos",
+   "expected": "Страница открывается",
+   "actual": "Ошибка 503. Ссылка есть на страницах: /en/wiki/balanced-vs-unbalanced-cables/",
+   "sig": "link|/ua/wiki-ua/balansni-nebalansni-kabeli-ua/",
    "where": [
-    "/en/"
+    "/en/wiki/balanced-vs-unbalanced-cables/"
    ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/10_012.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Space Echo» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Space Echo»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Space Echo",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/10_013.jpg",
-   "isNew": false
+   "devices": [],
+   "shot": "",
+   "isNew": true
   },
   {
    "sev": "major",
@@ -302,7 +258,7 @@
    "title": "После запуска другого трека прежняя кнопка всё ещё показывает ⏸",
    "steps": [
     "Нажать ▶ «Play Kratos»",
-    "Нажать ▶ «Play Space Echo»"
+    "Нажать ▶ «Play»"
    ],
    "expected": "«Play Kratos» снова показывает ▶",
    "actual": "Показывает ⏸, хотя этот трек не играет",
@@ -319,23 +275,23 @@
   },
   {
    "sev": "major",
-   "type": "fit",
-   "title": "Слайдер на главной не помещается на экране (Samsung A31)",
+   "type": "langbtn",
+   "title": "Не нажимается кнопка выбора языка (телефон)",
    "steps": [
-    "Открыть главную на телефоне",
-    "Пролистать карточки слайдера точками"
+    "Открыть главную",
+    "Нажать «Menu»"
    ],
-   "expected": "Весь блок «What are you working on?» виден над нижней панелью",
-   "actual": "Уходит под нижнюю панель: карточка 2 на 60px, карточка 6 на 10px",
-   "sig": "fit|a31",
+   "expected": "Открывается список языков",
+   "actual": "locator.click: Timeout 5000ms exceeded.",
+   "sig": "langbtn|phone",
    "where": [
     "/en/"
    ],
    "devices": [
-    "Samsung A31"
+    "телефон"
    ],
-   "shot": "shots/18_006.jpg",
-   "isNew": false
+   "shot": "shots/18_020.jpg",
+   "isNew": true
   },
   {
    "sev": "minor",
@@ -453,7 +409,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_009.jpg",
+   "shot": "shots/10_008.jpg",
    "isNew": false
   },
   {
@@ -487,7 +443,40 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_020.jpg",
+   "shot": "shots/10_015.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-mob-font",
+   "title": "Слишком мелкий текст на телефоне (меньше 12 px)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/ (телефон)",
+    "Где: span.rib «BEST VALUE» 10px; span.rib «FREE» 10px; span.rib «MOST POPULAR» 10px"
+   ],
+   "expected": "Минимум 12–13 px для подписей, 15–16 для текста.",
+   "actual": "Почему важно: Нечитаемо без увеличения.",
+   "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
+   "where": [
+    "/en/services-prices/",
+    "/en/sell/",
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/forum-experimental/",
+    "/en/prices/",
+    "/en/",
+    "/ua/",
+    "/de/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/"
+   ],
+   "devices": [
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/10_024.jpg",
    "isNew": false
   },
   {
@@ -529,7 +518,7 @@
    "title": "Текст плохо читается: слишком бледный на фоне",
    "steps": [
     "Открыть https://solid-sound.net/en/ (компьютер)",
-    "Где: em «Metadata & ISRC» 3.8:1; em «BPM & key map» 3.8:1; em «Ableton live set (stems)» 3.8:1; em «Mix / mixtape mastering» 3.8:1; em «Transition tools» 3.8:1"
+    "Где: em «BPM & key map» 3.8:1; em «Ableton live set (stems)» 3.8:1; em «Mix / mixtape mastering» 3.8:1; em «Transition tools» 3.8:1; em «Echo / room sound» 3.8:1"
    ],
    "expected": "Контраст не ниже 4.5:1 (мелкий текст).",
    "actual": "Почему важно: На телефоне на улице такой текст не видно.",
@@ -575,30 +564,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_024.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-mob-font",
-   "title": "Слишком мелкий текст на телефоне (меньше 12 px)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/ (телефон)",
-    "Где: small «optional · SoundCloud, YouTube, Spotify,» 10.4px; small «optional» 10.4px"
-   ],
-   "expected": "Минимум 12–13 px для подписей, 15–16 для текста.",
-   "actual": "Почему важно: Нечитаемо без увеличения.",
-   "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
-   "where": [
-    "/en/sell/",
-    "/en/vendor-membership/",
-    "/en/vendor-register/",
-    "/en/prices/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/11_006.jpg",
+   "shot": "shots/10_018.jpg",
    "isNew": false
   },
   {
@@ -606,12 +572,13 @@
    "type": "kb-seo-h1",
    "title": "Нет главного заголовка H1 или их несколько",
    "steps": [
-    "Открыть https://solid-sound.net/en/add-product/ (компьютер)"
+    "Открыть https://solid-sound.net/en/services-prices/ (компьютер)"
    ],
    "expected": "Ровно один видимый H1.",
-   "actual": "Видимых H1: 0. Почему важно: Google и экранные дикторы по H1 понимают, о чём страница.",
+   "actual": "Видимых H1: 2 (Your music. Finished. | SERVICES & PRICES). Почему важно: Google и экранные дикторы по H1 понимают, о чём страница.",
    "sig": "kb|kb-seo-h1|Нет главного заголовка H1 или их несколько",
    "where": [
+    "/en/services-prices/",
     "/en/add-product/",
     "/en/links/"
    ],
@@ -619,7 +586,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/15_006.jpg",
+   "shot": "shots/10_022.jpg",
    "isNew": false
   },
   {
@@ -831,7 +798,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_016.jpg",
+   "shot": "shots/10_012.jpg",
    "isNew": false
   },
   {
@@ -851,7 +818,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_014.jpg",
+   "shot": "shots/10_010.jpg",
    "isNew": false
   },
   {
@@ -871,7 +838,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_015.jpg",
+   "shot": "shots/10_011.jpg",
    "isNew": false
   },
   {
@@ -893,7 +860,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_017.jpg",
+   "shot": "shots/10_013.jpg",
    "isNew": false
   },
   {
@@ -915,7 +882,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_018.jpg",
+   "shot": "shots/10_014.jpg",
    "isNew": false
   },
   {
@@ -926,7 +893,7 @@
     "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
    "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3582. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3561. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "actual": "Элементов: 3583. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3564. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
    "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
@@ -937,7 +904,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_022.jpg",
+   "shot": "shots/10_017.jpg",
    "isNew": false,
    "more": 1
   },
@@ -959,7 +926,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_025.jpg",
+   "shot": "shots/10_021.jpg",
    "isNew": false
   },
   {
@@ -977,10 +944,9 @@
     "/en/all-products/"
    ],
    "devices": [
-    "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_023.jpg",
+   "shot": "shots/10_019.jpg",
    "isNew": false
   },
   {
@@ -998,10 +964,9 @@
     "/en/shop/"
    ],
    "devices": [
-    "компьютер",
     "телефон"
    ],
-   "shot": "shots/12_013.jpg",
+   "shot": "shots/12_015.jpg",
    "isNew": false
   },
   {
@@ -1059,7 +1024,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_015.jpg",
+   "shot": "shots/18_014.jpg",
    "isNew": false
   },
   {
@@ -1079,7 +1044,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_016.jpg",
+   "shot": "shots/18_015.jpg",
    "isNew": false
   },
   {
@@ -1099,7 +1064,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_017.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1119,7 +1084,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_018.jpg",
+   "shot": "shots/18_017.jpg",
    "isNew": false
   },
   {
@@ -1139,7 +1104,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_019.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1159,26 +1124,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_020.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "kb-perf-weight",
-   "title": "Страница весит больше 3 МБ",
-   "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/ (телефон)"
-   ],
-   "expected": "Смотреть, что самое тяжёлое.",
-   "actual": "Скачано 3.1 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
-   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
-   "where": [
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/19_006.jpg",
+   "shot": "shots/18_019.jpg",
    "isNew": false
   }
  ],
