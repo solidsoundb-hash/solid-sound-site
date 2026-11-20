@@ -140,7 +140,12 @@ async function shootPage(browser, url, dk, doneShared, index) {
       await page.screenshot({ path: path.join(dir, f), type: 'jpeg', quality: 50 }).catch(() => {});
       rec.shots.push([(b.shared ? '(общая) ' : '') + 'нажать «' + (b.text || 'без текста') + '»', f]);
       { const m = await page.evaluate(() => window.__m || 0).catch(() => -1), moved = page.url().split('#')[0] !== before.split('#')[0];
-        rec.clicks.push({ text: b.text || 'без текста', shot: f, effect: moved ? 'открыл ' + page.url().replace(BASE, '') : m > 0 ? 'изменил страницу' : m === 0 ? 'НИЧЕГО НЕ ПРОИЗОШЛО' : '?' }); }
+        /* (20.11 owner: «кликает, а там другое по смыслу») what opened: the new page's heading, or the heading of a window / panel that appeared */
+        const opened = await page.evaluate((mv) => { const vis = (e) => { const r = e.getBoundingClientRect(), s = getComputedStyle(e); return r.width > 20 && r.height > 20 && s.display !== 'none' && s.visibility !== 'hidden' && +s.opacity > 0; };
+          if (mv) return ((document.querySelector('h1') || {}).innerText || document.title || '').trim().slice(0, 90);
+          const d = [...document.querySelectorAll('[role=dialog],dialog[open],.modal,.ss-modal,[aria-modal=true],[class*="popup"],[class*="sheet"],.w-popup-box,[aria-expanded=true] + *')].filter(vis).pop();
+          const h = d && d.querySelector('h1,h2,h3,h4,b,strong,legend'); return h ? h.innerText.trim().slice(0, 90) : ''; }, moved).catch(() => '');
+        rec.clicks.push({ text: b.text || 'без текста', shot: f, opened, effect: moved ? 'открыл ' + page.url().replace(BASE, '') : m > 0 ? 'изменил страницу' : m === 0 ? 'НИЧЕГО НЕ ПРОИЗОШЛО' : '?' }); }
       // undo: Escape, and back to the page if the button opened another one
       await page.keyboard.press('Escape').catch(() => {});
       if (page.url().split('#')[0] !== before.split('#')[0]) { await open(page, url); await pressables(page); }

@@ -38,6 +38,14 @@ const dec = (s) => String(s || '').replace(/&#8211;|&ndash;/g, '–').replace(/&
       if (!lw.some(w => target.includes(stem(w)))) { odd.push(`| «${x.text}» (${x.where}, ${x.dev}) | ${x.page} | ${href.replace(BASE, '')} → «${d.h1 || d.title}» |`); break; }
     }
   }
+  /* buttons: does what opened match the button's words? (same word test as links; synonyms below) */
+  const SYN = { price: ['cost', 'pric', 'calcu', 'quote'], cart: ['buy', 'order', 'basket', 'check'], mix: ['mixin', 'mixed'], login: ['sign', 'accou', 'log'], menu: ['secti', 'categ'], search: ['find', 'searc'] };
+  const near = (lw, target) => lw.some(w => { const s = stem(w); if (target.includes(s)) return true; for (const [k, v] of Object.entries(SYN)) if (s.startsWith(k.slice(0, 4)) || v.includes(s)) { if ([k.slice(0, 5), ...v].some(x => target.includes(x))) return true; } return false; });
+  const wrongBtn = [];
+  for (const r of recs) for (const c of (r.clicks || [])) {
+    if (!c.opened) continue; const lw = words(c.text); if (!lw.length || lw.length > 6) continue;
+    if (!near(lw, words(c.opened).map(stem))) wrongBtn.push(`| «${c.text}» | ${r.url.replace(BASE, '')} (${r.dev}) | «${c.opened}» | [снимок](${r.dir}/${slugDir(r)}/${c.shot}) |`);
+  }
   const dead = [], errs = [];
   for (const r of recs) for (const c of (r.clicks || [])) {
     const at = `${r.url.replace(BASE, '')} (${r.dev})`, shot = `[снимок](${r.dir}/${slugDir(r)}/${c.shot})`;
@@ -50,6 +58,7 @@ const dec = (s) => String(s || '').replace(/&#8211;|&ndash;/g, '–').replace(/&
     `Устройства: ${devs.join(', ')} · страниц: ${pages} · нажатий: ${clicks} · разных ссылок проверено: ${dest.size}`, '',
     `## ❌ Битые ссылки (${broken.length})`, '', '| Код | Ссылка | Текст | Где |', '|---|---|---|---|', ...broken.slice(0, 200), '',
     `## ⚠️ Ссылка, возможно, перепутана: текст не совпадает со страницей (${odd.length})`, '', 'Проверить глазами: робот сравнивает слова ссылки с заголовком страницы, куда она ведёт.', '', '| Текст ссылки | На странице | Ведёт на → заголовок там |', '|---|---|---|', ...odd.slice(0, 300), '',
+    `## ⚠️ Кнопка открыла что-то другое по смыслу (${wrongBtn.length})`, '', 'Робот сравнил слова кнопки с заголовком того, что открылось. Проверить глазами по снимку.', '', '| Кнопка | Где | Открылось | |', '|---|---|---|---|', ...wrongBtn.slice(0, 300), '',
     `## 🔇 Кнопка нажата — ничего не произошло (${dead.length})`, '', '| Кнопка | Где | |', '|---|---|---|', ...dead.slice(0, 300), '',
     `## 🐞 Ошибка в коде после нажатия (${errs.length})`, '', '| Кнопка | Где | Ошибка | |', '|---|---|---|---|', ...errs.slice(0, 200), '',
     '## Все снимки', '', ...recs.map(r => `- ${r.dev} · ${r.url.replace(BASE, '')}${r.err ? ' · ⚠ ' + r.err : ''}: ` + (r.shots || []).slice(0, 60).map(s => `[${s[0].slice(0, 30)}](${r.dir}/${slugDir(r)}/${s[1]})`).join(' · '))];
