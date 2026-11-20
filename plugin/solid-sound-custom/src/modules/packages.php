@@ -111,15 +111,16 @@ function ss_pk_css() {
 		. '@media(max-width:640px){.sspk .c3,.sspk .c4{grid-template-columns:1fr}.sspk .how ol{grid-template-columns:1fr 1fr;gap:16px 10px}.sspk .trust{gap:8px 16px}.sspk .trust li{font-size:13.5px}.sspk h2{font-size:24px}.sspk .sh i{width:44px;height:44px}}';
 }
 
+/* (owner 20.11 «у нас есть Services & Prices в меню») one page: the menu's Services & Prices (page 1947) shows the package cards on top
+   and its own detailed comparison tables (new prices) below; /production-services/ redirects there */
+function ss_pk_sp_url() { $u = get_permalink( 1947 ); return $u ? $u : home_url( '/services-prices/' ); }
+add_filter( 'the_content', function ( $c ) {
+	if ( ! is_page( 1947 ) || ! in_the_loop() || ! is_main_query() ) return $c;
+	$new = include __DIR__ . '/services-prices-html.php';
+	if ( is_string( $new ) && $new ) $c = preg_replace( '#\[us_html\].*?\[/us_html\]#s', '[us_html]' . base64_encode( rawurlencode( $new ) ) . '[/us_html]', $c, 1 );
+	return '<style>' . ss_pk_css() . '.sspk-cmp{max-width:1120px;margin:10px auto 0;padding:0 16px;color:#fff;font:800 28px/1.2 "Exo 2",sans-serif;text-align:center}.sspk-cmp+p{max-width:1120px;margin:6px auto 0;text-align:center;color:#94A3B8}</style>' . ss_pk_html() . '<h2 class="sspk-cmp" id="compare">Compare every package in detail</h2><p>What is included, revisions and turnaround — package by package.</p>' . $c;
+}, 5 );
 add_action( 'template_redirect', function () {
 	if ( ! ss_pk_path_ok() ) return;
-	global $wp_query;
-	$wp_query->is_404 = false;
-	status_header( 200 );
-	add_filter( 'pre_get_document_title', function () { return 'Music Production Services – Mixing, Mastering, Rework, Custom Production | Solid Sound'; } );
-	add_action( 'wp_head', function () { echo '<meta name="description" content="Mixing, mastering, project rework in your DAW and custom production. Pay 50 % to start, the rest when you love the result. Free track review.">' . "\n" . '<link rel="canonical" href="' . esc_url( home_url( '/production-services/' ) ) . '">' . "\n" . '<style>' . ss_pk_css() . '</style>'; } );
-	get_header();
-	echo '<main id="page-content" class="l-main"><section class="l-section"><div class="l-section-h">' . ss_pk_html() . '</div></section></main>';
-	get_footer();
-	exit;
+	wp_safe_redirect( ss_pk_sp_url(), 301 ); exit;
 }, 1 );
