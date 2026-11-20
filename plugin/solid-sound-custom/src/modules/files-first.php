@@ -79,6 +79,11 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-h.ss-ff-sub small{font-size:13px}#solid-sound-upload-form .ss-ff-h.ss-ff-sub small:empty{display:none}
 #solid-sound-upload-form .ss-ff-steps .ss-ff-time{flex:none;align-self:center;margin-left:auto;padding:0 10px;color:#34D399;font:600 13.5px "Exo 2",sans-serif;white-space:nowrap}
 @media(max-width:700px){#solid-sound-upload-form .ss-ff-steps .t{display:inline!important}#solid-sound-upload-form .ss-ff-steps .ss-ff-time{display:none}}
+/* genre / plugins: <li><input><span> without a label — the whole item is the chip */
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li{display:inline-flex!important;align-items:center!important;gap:8px!important;min-height:38px!important;padding:0 14px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important;color:#CBD5E1!important;font:500 14px Roboto,sans-serif!important;cursor:pointer;user-select:none;transition:border-color .15s,background .15s}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li:hover{border-color:rgba(245,158,11,.5)!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li>span{color:inherit!important}
 /* Add Product «причесать» (owner 20.11 «всё кривовато, кустарно») — one calm style for every field */
 #solid-sound-upload-form#solid-sound-upload-form .acf-field{border:0!important;padding:0!important;margin:0 0 20px!important}
 #solid-sound-upload-form#solid-sound-upload-form .acf-label{margin:0 0 8px!important}
@@ -333,6 +338,8 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
    setTimeout(function(){box.scrollIntoView({behavior:'smooth',block:'center'});box.classList.add('ss-ff-hl');setTimeout(function(){box.classList.remove('ss-ff-hl')},1800);
     var i=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)?t:box.querySelector('input:not([type=hidden]),textarea,select');if(i&&!/radio|checkbox|file/.test(i.type))try{i.focus({preventScroll:true})}catch(x){}},80)});
   [].forEach.call(qa('.ss-wm-ai .chips'),function(ch){ch.setAttribute('title','Tap to go to this field')})})();
+ /* genre / plugin items have no <label>: a tap anywhere on the chip ticks it */
+ form.addEventListener('click',function(e){var li=e.target.closest&&e.target.closest('.acf-taxonomy-field .acf-checkbox-list>li');if(!li||e.target.tagName==='INPUT')return;var i=li.querySelector('input[type=checkbox],input[type=radio]');if(i){e.preventDefault();i.click()}});
  var hint=q('.ss-ds-first');if(hint)hint.textContent='Step 2: check what you are selling (we pick it from your files).';
  /* grab files before the drop zone routes them (capture phase) */
  function seen(list){if(list&&list.length&&window.__ssFFopen)setTimeout(window.__ssFFopen,600);[].forEach.call(list||[],function(f){var n=f.name.toLowerCase();if(f._ssGen||/-preview\.mp3$/i.test(f.name)&&full)return;if(/\.mp3$/.test(n)||/^audio\//.test(f.type)&&!/\.zip$/.test(n)){window.__ssFFmp3=1;done.mp3=false;aiRan=false;readMp3(f)}else if(/\.(zip|rar|7z)$/.test(n)){lastZipName=f.name;done.zip=false;aiRan=false;line('zip','wt','Reading '+f.name+'…');if(!/\.zip$/.test(n)){line('zip','no','RAR/7z cannot be read here — fill DAW and version yourself.');done.zip=true;ai()}else{setTimeout(function(){if(!done.zip){done.zip=true;line('zip','no','Could not read the ZIP here — fill DAW and version yourself.');ai()}},20000)}}else if(/^image\//.test(f.type)){line('cover','ok','Cover: '+f.name);var im=new Image();im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight;chk('cov',w>=1000&&Math.abs(w-h)<=w*0.02,w>=1000&&Math.abs(w-h)<=w*0.02?'Cover '+w+'×'+h+' — good.':'Cover is '+w+'×'+h+' — use a square image, at least 1000×1000, so it looks sharp in the shop.')};im.src=URL.createObjectURL(f)}})}

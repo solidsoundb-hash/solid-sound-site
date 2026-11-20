@@ -1,5 +1,0 @@
-/* genre / plugins: <li><input><span> without a label — the whole item is the chip */
-html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li{display:inline-flex!important;align-items:center!important;gap:8px!important;min-height:38px!important;padding:0 14px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important;color:#CBD5E1!important;font:500 14px Roboto,sans-serif!important;cursor:pointer;user-select:none;transition:border-color .15s,background .15s}
-html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li:hover{border-color:rgba(245,158,11,.5)!important}
-html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
-html body #solid-sound-upload-form#solid-sound-upload-form .acf-taxonomy-field .acf-checkbox-list>li>span{color:inherit!important}
