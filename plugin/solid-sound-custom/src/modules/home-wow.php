@@ -415,6 +415,30 @@ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-desc)>.f .chips{display:flex!impo
 body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-desc,body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-desc *{text-align:left!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match.ssw-desc{aspect-ratio:auto!important;height:auto!important;padding:16px 18px!important}
 body.ss-wow #ss-app .ssx .ssw-desc b{font-size:18px!important}body.ss-wow #ss-app .ssx .ssw-desc p{margin:2px 0 0!important}
+/* short laptops — heading, pill and "What are you working on?" stay, just tighter; Writing card denser */
+@media(min-width:1001px) and (max-height:1000px){
+ body.ss-wow .ssw-hero{padding:6px 12px 2px!important}
+ body.ss-wow .ssw-hero .slg{font-size:30px!important;margin:0 auto 4px!important}
+ body.ss-wow .ssw-hero .k{padding:3px 12px!important;font-size:10.5px!important}
+ body.ss-wow #ss-app .ssx{padding-top:8px!important;padding-bottom:6px!important}
+ body.ss-wow #ss-app .ssx h1.ssx-t{font-size:14px!important;margin:0 0 2px!important}
+ body.ss-wow #ss-app .ssx .tasks{margin-bottom:6px!important}
+ body.ss-wow #ss-app .ssx .tasks button{padding-top:7px!important;padding-bottom:7px!important}
+ body.ss-wow #ss-app .ssx .card{padding-top:10px!important;padding-bottom:10px!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row{margin:0 0 6px!important}
+ body.ss-wow #ss-app .ssx .card .chips span{height:30px!important;min-height:30px!important}
+ body.ss-wow #ss-app .ssx .card .left .cta,body.ss-wow #ss-app .ssx .card .left .gbtn{min-height:40px!important;height:40px!important}
+}
+/* A31 (412×700): 21 px short */
+@media(max-width:600px) and (max-height:720px){
+ body.ss-wow .ssw-hero{padding-top:4px!important;padding-bottom:2px!important}
+ body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 4px!important}
+ body.ss-wow #ss-app .ssx .tasks{margin-bottom:6px!important}
+}
+/* Finishing: «Your style» — the genres artists ask for most; a light row under the services */
+body.ss-wow #ss-app .ssx .card .left>.f.ss-style{margin-top:10px!important}
+body.ss-wow #ss-app .ssx .card .left>.f.ss-style .chips span{height:30px!important;min-height:30px!important;padding:0 11px!important;font-size:13px!important}
+@media(min-width:1001px) and (max-height:1000px){body.ss-wow #ss-app .ssx .card .left>.f.ss-style{margin-top:4px!important}}
 /* Free — the first tab (owner 19.11): 3 free blocks + the "Get everything free" card */
 body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:12px 20px!important;align-items:stretch!important;align-content:center!important}
 body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{grid-column:1!important;grid-row:1!important}
@@ -682,7 +706,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   var box=document.createElement('div');box.className='ssw-match ssw-desc';if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   if(acts){var ex=document.createElement('a');ex.className='cta g';ex.href='#examples';ex.textContent='Hear examples';var g=acts.querySelector('a.cta.g');if(g)acts.replaceChild(ex,g);else acts.appendChild(ex);
    ex.addEventListener('click',function(e){var t=document.getElementById('examples');if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})}
-  var last='';function run(){var c=left.querySelector('.chips .on'),k=c?c.textContent.trim().toLowerCase():'',d=D[k];if(!d||k===last)return;last=k;
+  var last='';function run(){var c=left.querySelector('.chips.one .on'),k=c?c.textContent.trim().toLowerCase():'',d=D[k];if(!d||k===last)return;last=k;
    box.innerHTML='<b>'+esc(d[0])+'</b><span class="pp">'+esc(d[1])+'</span><p>'+esc(d[2])+'</p>'+(/^Free/.test(d[1])?'':'<small class="pay">Pay 50 % to start, the rest when you love it.</small>')}
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[2]);
  /* Releasing (owner 19.11: «кнопки должны нажиматься, квадратик справа показывает, что клиент выбрал») */
