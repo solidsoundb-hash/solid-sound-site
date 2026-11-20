@@ -24,7 +24,11 @@
  body.ss-wow #ss-app .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow #ss-app .ssx .card .left>.cta{padding-top:8px!important}
  /* Just starting: no cover picture on short screens (as on phones) — Google / email start at the top */
  body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{display:none!important}
- body.ss-wow #ss-app .ssx .card .left.fp{row-gap:6px!important}
+ body.ss-wow#ss-app .ssx .card .left.fp,#ss-app#ss-app .ssx .card .left.fp{row-gap:8px!important}
+ #ss-app#ss-app .ssx .card .left.fp>h2{grid-row:1!important}#ss-app#ss-app .ssx .card .left.fp>h2+p.d{grid-row:2!important}
+ #ss-app#ss-app .ssx .card .left.fp>.fp-list{grid-row:3 / span 2!important}#ss-app#ss-app .ssx .card .left.fp>.fp-links{grid-row:5!important}
+ #ss-app#ss-app .ssx .card .left.fp>div.acts{grid-row:1 / span 2!important;align-self:start!important}#ss-app#ss-app .ssx .card .left.fp>.fp-or{grid-row:3!important}
+ #ss-app#ss-app .ssx .card .left.fp>form{grid-row:4!important}#ss-app#ss-app .ssx .card .left.fp>.fp-note{grid-row:5!important}
  /* buttons a little lower in height */
  body.ss-wow #ss-app .ssx .card .left .cta,body.ss-wow #ss-app .ssx .card .left .gbtn,body.ss-wow #ss-app .ssx .card .left form.acts .inp{min-height:42px!important;height:42px!important}
  body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:0!important}
