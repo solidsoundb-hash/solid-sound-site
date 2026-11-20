@@ -1,0 +1,29 @@
+# Before / after pictures of our pages (owner 20.11 rule: screenshots before and after every change).
+# Run: add «<date> <label> /path/ /path2/» to .github/page-shot.txt. Result: branch shots-page, folder <label>/ (report.md + JPEG).
+name: Page shot
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/page-shot.txt"]
+permissions:
+  contents: write
+concurrency: { group: page-shot, cancel-in-progress: false }
+jobs:
+  shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Shoot
+        env: { PW_CHANNEL: chrome }
+        run: node tools/page-shot.js
+      - name: Save to branch shots-page
+        if: always()
+        run: |
+          git fetch -q origin shots-page && git worktree add -q sp origin/shots-page || (git worktree add -q --detach sp && cd sp && git checkout -q --orphan tmp && git rm -rqf . ; true)
+          cp -r page-shot/* sp/ && cd sp && git config user.name photographer && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "page shot: $(date -u +%FT%TZ)" && git push -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:shots-page
