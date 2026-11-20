@@ -26,7 +26,7 @@ function ss_pk_cards() {
 		'mix' => array( 'Mixing & Mastering', 'Release-ready sound. Your stems mixed and mastered by our engineers.', 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6', array(
 			array( 'MIXING', 'Professional Mixdown', 'Full mix from your stems: EQ, compression, space, automation and balance. Stereo master included.', array( $t( 'mixing', 0 )[3] . '–' . $t( 'mixing', 2 )[3] . ' rounds of revisions', 'Price by the number of tracks' ), $t( 'mixing', 0 )[2], $t( 'mixing', 0 )[4] . ' and up', $calc . '?s=mixing', '' ),
 			array( 'MASTERING', 'Professional Master', 'Mastering for streaming and clubs: EQ, limiting, stereo. Stem and multitrack mastering too.', array( $m[2] . ' rounds of revisions', '5+ songs: −20 %' ), $m[1], $m[3], $calc . '?s=mastering', '' ),
-			array( 'BUNDLE', 'Mix & Master Bundle', 'Stems to release-ready: mix, stem mastering, masters for every platform, stems, instrumental and a 30-min video call.', array( $rel[3] . ' rounds of revisions', 'Video call included' ), $rel[2] + $relPlus, $rel[4], $calc . '?s=release', 'Best value' ),
+			array( 'BUNDLE', 'Mix & Master Bundle', 'Stems to release-ready: mix, stem mastering, streaming + club masters, stems, instrumental and a 30-min video call.', array( $rel[3] . ' rounds of revisions', 'Video call included' ), $rel[2] + $relPlus, $rel[4], $calc . '?s=release', 'Best value' ),
 		) ),
 		'rework' => array( 'Project Rework', 'Send us your project. We finish it inside your own DAW session — and talk it through with you.', 'M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5', array(
 			array( 'FEEDBACK', 'Track Review', 'Not sure what your track needs? An engineer listens and tells you what to fix first — written + video.', array( 'First review free', 'Clear next steps' ), 0, $review[3], home_url( '/free-demo-feedback/' ), 'Free' ),
@@ -36,8 +36,8 @@ function ss_pk_cards() {
 		) ),
 		'custom' => array( 'Custom Production', 'Only an idea or a reference? We produce the whole track for you — 100 % yours.', 'M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z', array(
 			array( 'START', $p( 'ghost', 0 )[0], 'A full original track from your idea and references. All rights are yours.', array( $p( 'ghost', 0 )[2] . ' rounds of revisions', 'Master included' ), $p( 'ghost', 0 )[1], $p( 'ghost', 0 )[3], $calc . '?s=ghost', '' ),
-			array( 'PRO', 'Ghost Pro', 'Everything in Start plus stems and the full project file.', array( $p( 'ghost', 1 )[2] . ' rounds of revisions', 'Stems + project' ), $p( 'ghost', 1 )[1], $p( 'ghost', 1 )[3], $calc . '?s=ghost', 'Most popular' ),
-			array( 'ULTRA', 'Ghost Ultra', 'Label-ready package with a video walkthrough of the project.', array( $p( 'ghost', 2 )[2] . ' rounds of revisions', 'Video walkthrough' ), $p( 'ghost', 2 )[1], $p( 'ghost', 2 )[3], $calc . '?s=ghost', '' ),
+			array( 'PRO', 'Custom Pro', 'Everything in Start plus stems and the full project file.', array( $p( 'ghost', 1 )[2] . ' rounds of revisions', 'Stems + project' ), $p( 'ghost', 1 )[1], $p( 'ghost', 1 )[3], $calc . '?s=ghost', 'Most popular' ),
+			array( 'ULTRA', 'Custom Ultra', 'Label-ready package with a video walkthrough of the project.', array( $p( 'ghost', 2 )[2] . ' rounds of revisions', 'Video walkthrough' ), $p( 'ghost', 2 )[1], $p( 'ghost', 2 )[3], $calc . '?s=ghost', '' ),
 			array( 'REMIX', 'Remix or Remake', 'A remix of your track, or a remake of a reference — radio, club or full project.', array( 'From ' . $p( 'remake', 0 )[2] . ' rounds of revisions', 'Ableton project option' ), min( $p( 'remix', 0 )[1], $p( 'remake', 0 )[1] ), $p( 'remake', 0 )[3] . ' and up', $calc . '?s=remix', '' ),
 		) ),
 	);
