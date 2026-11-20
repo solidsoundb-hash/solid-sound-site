@@ -1,0 +1,20 @@
+/* PREVIEW (not deployed): short laptops — heading, pill and "What are you working on?" stay, just tighter; Writing card denser */
+@media(min-width:1001px) and (max-height:1000px){
+ body.ss-wow .ssw-hero{padding:6px 12px 2px!important}
+ body.ss-wow .ssw-hero .slg{font-size:30px!important;margin:0 auto 4px!important}
+ body.ss-wow .ssw-hero .k{padding:3px 12px!important;font-size:10.5px!important}
+ body.ss-wow #ss-app .ssx{padding-top:8px!important;padding-bottom:6px!important}
+ body.ss-wow #ss-app .ssx h1.ssx-t{font-size:14px!important;margin:0 0 2px!important}
+ body.ss-wow #ss-app .ssx .tasks{margin-bottom:6px!important}
+ body.ss-wow #ss-app .ssx .tasks button{padding-top:7px!important;padding-bottom:7px!important}
+ body.ss-wow #ss-app .ssx .card{padding-top:10px!important;padding-bottom:10px!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row{margin:0 0 6px!important}
+ body.ss-wow #ss-app .ssx .card .chips span{height:30px!important;min-height:30px!important}
+ body.ss-wow #ss-app .ssx .card .left .cta,body.ss-wow #ss-app .ssx .card .left .gbtn{min-height:40px!important;height:40px!important}
+}
+/* A31 (412×700): 21 px short */
+@media(max-width:600px) and (max-height:720px){
+ body.ss-wow .ssw-hero{padding-top:4px!important;padding-bottom:2px!important}
+ body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 4px!important}
+ body.ss-wow #ss-app .ssx .tasks{margin-bottom:6px!important}
+}
