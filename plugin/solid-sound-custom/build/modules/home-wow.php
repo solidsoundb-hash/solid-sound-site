@@ -450,7 +450,7 @@ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match:not(.ssw-ab):no
 body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab>small{display:none!important}
 body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f:has(.chips.addon){display:none!important}
 body.ss-wow #ss-app .ssx .card .left.fp>h2{grid-row:1!important}body.ss-wow #ss-app .ssx .card .left.fp>h2+p.d{grid-row:2!important}
-body.ss-wow #ss-app .ssx .card .left.fp>.fp-list{grid-row:3 / span 3!important}body.ss-wow #ss-app .ssx .card .left.fp>.fp-links{grid-row:6!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-list{grid-row:3 / span 2!important;margin-bottom:0!important}body.ss-wow #ss-app .ssx .card .left.fp>.fp-links{grid-row:5!important;align-self:start!important}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{grid-row:1 / span 2!important}body.ss-wow #ss-app .ssx .card .left.fp>div.acts{grid-row:3!important}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{grid-row:4!important}body.ss-wow #ss-app .ssx .card .left.fp>form{grid-row:5!important}body.ss-wow #ss-app .ssx .card .left.fp>.fp-note{grid-row:6!important}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{height:96px!important;padding:10px 16px!important}
