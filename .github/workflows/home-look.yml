@@ -19,7 +19,7 @@ jobs:
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: Look
-        env: { PW_CHANNEL: chrome, PHOTO_OUT: "shots-home" }
+        env: { PW_CHANNEL: chrome, PHOTO_OUT: "shots-home", PREVIEW_CSS: "tools/photo/preview.css", SIZES: "1920x848,1366x768,1920x1080" }
         run: node tools/photo/home-tabs.js
       - name: Save to branch shots-home
         if: always()
