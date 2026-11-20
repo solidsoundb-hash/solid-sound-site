@@ -121,3 +121,14 @@ jobs:
           git config user.name "deploy-bot"; git config user.email "actions@users.noreply.github.com"
           git add deploy-log && git commit -m "deploy log: run ${{ github.run_number }}" && git pull --rebase -q origin main && git push || true
           [ "$(cat /tmp/bad 2>/dev/null)" != 1 ]
+      # (20.11.2026 owner «7»: every deploy is a version) a successful deploy becomes a GitHub release: tag deploy-<run>,
+      # title = the line from .github/deploy.txt; rollback = deploy that tag's commit again
+      - name: Release this version
+        if: env.SKIP != '1' && success()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          T="$(tail -1 .github/deploy.txt | cut -c1-200)"
+          gh release create "deploy-${{ github.run_number }}" --target "${{ github.sha }}" --title "Выкладка ${{ github.run_number }}: ${T}" \
+            --notes "Коммит: ${{ github.sha }}
+          Строка выкладки: ${T}
+          Откат на эту версию: добавить в .github/deploy.txt строку «откат на deploy-${{ github.run_number }}» и выложить этот коммит." || true

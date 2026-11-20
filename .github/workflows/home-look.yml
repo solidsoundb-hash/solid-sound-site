@@ -3,6 +3,8 @@
 name: Home slider look
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "19 4 * * *"   # every night 04:19 UTC (owner 20.11 «1»)
   push:
     branches: [main]
     paths: [".github/home-look.txt"]

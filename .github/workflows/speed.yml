@@ -5,6 +5,8 @@
 name: Speed bot
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "41 3 * * *"   # every night 03:41 UTC (owner 20.11 «1»: robots on a schedule)
   workflow_call:          # started by the main robot (main-robot.yml) every Monday
   push:
     branches: [main]

@@ -6,6 +6,8 @@
 name: Clicker
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "13 21 * * 6"   # Saturday 21:13 UTC, done before the nightly swarm at 01:07 (owner 20.11 «1»)
   push:
     branches: [main]
     paths: [".github/click.txt"]

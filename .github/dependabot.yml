@@ -1,0 +1,8 @@
+# (20.11.2026 owner «6») Dependabot: once a week checks the GitHub Actions the robots use (checkout, setup-node, upload-artifact…)
+# and opens a pull request when one has a security fix or a new version. Nothing is merged without a person.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: { interval: "weekly", day: "monday", time: "05:37" }
+    open-pull-requests-limit: 3
