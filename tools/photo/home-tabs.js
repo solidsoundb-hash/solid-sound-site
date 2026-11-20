@@ -9,7 +9,7 @@ const OUT = process.env.PHOTO_OUT || 'shots-home';
 const ALLOWED = /(^|\.)(solid-sound\.net|jsdelivr\.net|ytimg\.com|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unpkg\.com)$/;
 const UA_DESK = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
 const UA_PHONE = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0';
-const SIZES = process.env.SIZES ? process.env.SIZES.split(',').map(x => { const [w, h, m] = x.split('x').map(Number); return [w, h, m || 0]; }) : [[1920, 848, 0], [1920, 1080, 0], [1366, 768, 0], [412, 780, 1], [412, 700, 1]]; // 1920×848 = owner's laptop: 1080 minus browser bars, taskbar and the admin bar (owner 20.11)
+const SIZES = process.env.SIZES ? process.env.SIZES.split(',').map(x => { const [w, h, m] = x.split('x').map(Number); return [w, h, m || 0]; }) : [[1536, 672, 0], [1920, 1080, 0], [1366, 768, 0], [412, 780, 1], [412, 700, 1]]; // 1536×672 = owner's laptop: 1920 px at 125 % scale, minus browser bars, taskbar and the admin bar (owner 20.11)
 // PREVIEW_CSS (owner 20.11 «делай скрины перед и после, а не выкладывай чепуху»): a CSS file is added on top of the live page —
 // every size is shot twice, «before» (live) and «after» (live + the CSS), so a change is seen before it is deployed.
 const PREVIEW = process.env.PREVIEW_CSS && fs.existsSync(process.env.PREVIEW_CSS) ? fs.readFileSync(process.env.PREVIEW_CSS, 'utf8').trim() : '';
