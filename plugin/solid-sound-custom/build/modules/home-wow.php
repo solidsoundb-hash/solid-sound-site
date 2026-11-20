@@ -286,15 +286,6 @@ body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx 
 body.ss-wow #ss-app .ssx .ssw-ab>small{display:none}
 /* Releasing / DJ set on phones: the items are toggled in the card itself — no second copy of them on the left */
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.f:has(>.chips:not(.one)){display:none!important}
-/* owner 20.11 «компактно»: on PCs the pack (Releasing / DJ set / Video) goes under the title in 3 columns instead of a tall
-   narrow box on the right with an empty left half; the buttons sit under it on the right */
-@media(min-width:1001px){
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel){grid-template-columns:minmax(0,1fr)!important}
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.ssw-match.ssw-rel{grid-column:1!important;grid-row:auto!important;aspect-ratio:auto!important;margin:14px 0 0!important;padding:14px 16px!important;text-align:left!important}
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.ssw-match.ssw-rel .rl{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.acts{grid-column:1!important;grid-row:auto!important;justify-content:flex-end!important;margin:14px 0 0!important}
-body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.acts>a{flex:0 0 auto!important;min-width:220px}
-}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips{flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important}
 body.ss-wow #ss-app .ssx .ssw-rel .ri{max-width:100%;box-sizing:border-box}body.ss-wow #ss-app .ssx .ssw-rel .ri em{white-space:normal;min-width:0}
 }
@@ -387,6 +378,15 @@ body.ss-wow #ss-app .ssx .card .left .f{min-width:0!important}
 /* the same items are switched on/off in the box on the right («Your release pack» / set / video pack) — the duplicate row on the
    left is not shown on any screen (on PCs it ran under the box) */
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.f:has(>.chips:not(.one)){display:none!important}
+/* owner 20.11 «компактно»: on PCs the pack (Releasing / DJ set / Video) goes under the title in 3 columns instead of a tall
+   narrow box on the right with an empty left half; the buttons sit under it on the right */
+@media(min-width:1001px){
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel){grid-template-columns:minmax(0,1fr)!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.ssw-match.ssw-rel{grid-column:1!important;grid-row:auto!important;aspect-ratio:auto!important;margin:14px 0 0!important;padding:14px 16px!important;text-align:left!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.ssw-match.ssw-rel .rl{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.acts{grid-column:1!important;grid-row:auto!important;justify-content:flex-end!important;margin:14px 0 0!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.acts>a{flex:0 0 auto!important;min-width:220px}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
