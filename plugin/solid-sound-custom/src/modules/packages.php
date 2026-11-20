@@ -25,7 +25,7 @@ function ss_pk_cards() {
 	return array(
 		'mix' => array( 'Mixing & Mastering', 'Release-ready sound. Your stems mixed and mastered by our engineers.', 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6', array(
 			array( 'MIXING', 'Professional Mixdown', 'Full mix from your stems: EQ, compression, space, automation and balance. Stereo master included.', array( $t( 'mixing', 0 )[3] . '–' . $t( 'mixing', 2 )[3] . ' rounds of revisions', 'Price by the number of tracks' ), $t( 'mixing', 0 )[2], $t( 'mixing', 0 )[4] . ' and up', $calc . '?s=mixing', '' ),
-			array( 'MASTERING', 'Professional Master', 'Mastering for streaming and clubs: EQ, limiting, stereo. Stem and multitrack mastering too.', array( $m[2] . ' rounds of revisions', '5+ songs: −20 %' ), $m[1], $m[3], $calc . '?s=mastering', '' ),
+			array( 'MASTERING', 'Professional Master', 'Mastering for streaming and clubs: EQ, limiting, stereo. Stem mastering too.', array( $m[2] . ' rounds of revisions', '5+ songs: −20 %' ), $m[1], $m[3], $calc . '?s=mastering', '' ),
 			array( 'BUNDLE', 'Mix & Master Bundle', 'Stems to release-ready: mix, stem mastering, streaming + club masters, stems, instrumental and a 30-min video call.', array( $rel[3] . ' rounds of revisions', 'Video call included' ), $rel[2] + $relPlus, $rel[4], $calc . '?s=release', 'Best value' ),
 		) ),
 		'rework' => array( 'Project Rework', 'Send us your project. We finish it inside your own DAW session — and talk it through with you.', 'M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5', array(
@@ -34,11 +34,23 @@ function ss_pk_cards() {
 			array( 'RELEASE READY', 'Rework — Release Ready', 'Everything in Standard plus final mix and master, two 60-min calls. Project file + stems, ready to release.', array( $finish[2] . ' rounds of revisions', '2 × 60-min calls' ), $finish[1], $finish[3], $calc . '?s=copro', 'Most popular' ),
 			array( 'VIDEO CALL', 'Live Session', 'An engineer joins you live — screen and sound — and works on your track with you.', array( '60 minutes', 'Any DAW' ), $live[1], 'book any day', $calc . '?s=copro', '' ),
 		) ),
-		'custom' => array( 'Custom Production', 'Only an idea or a reference? We produce the whole track for you — 100 % yours.', 'M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z', array(
+		'custom' => array( 'Custom Production', 'Only an idea or a reference? We produce the whole track for you — 100 % yours. Pay in 2–3 parts if you like.', 'M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z', array(
 			array( 'START', $p( 'ghost', 0 )[0], 'A full original track from your idea and references. All rights are yours.', array( $p( 'ghost', 0 )[2] . ' rounds of revisions', 'Master included' ), $p( 'ghost', 0 )[1], $p( 'ghost', 0 )[3], $calc . '?s=ghost', '' ),
 			array( 'PRO', 'Custom Pro', 'Everything in Start plus stems and the full project file.', array( $p( 'ghost', 1 )[2] . ' rounds of revisions', 'Stems + project' ), $p( 'ghost', 1 )[1], $p( 'ghost', 1 )[3], $calc . '?s=ghost', 'Most popular' ),
 			array( 'ULTRA', 'Custom Ultra', 'Label-ready package with a video walkthrough of the project.', array( $p( 'ghost', 2 )[2] . ' rounds of revisions', 'Video walkthrough' ), $p( 'ghost', 2 )[1], $p( 'ghost', 2 )[3], $calc . '?s=ghost', '' ),
-			array( 'REMIX', 'Remix or Remake', 'A remix of your track, or a remake of a reference — radio, club or full project.', array( 'From ' . $p( 'remake', 0 )[2] . ' rounds of revisions', 'Ableton project option' ), min( $p( 'remix', 0 )[1], $p( 'remake', 0 )[1] ), $p( 'remake', 0 )[3] . ' and up', $calc . '?s=remix', '' ),
+			array( 'LIVE', 'Online Collaboration', 'Three 2-hour live sessions with the producer, screen and sound — plus everything in Pro.', array( $p( 'ghost', 3 )[2] . ' rounds of revisions', '3 × 2 h live' ), $p( 'ghost', 3 )[1], $p( 'ghost', 3 )[3], $calc . '?s=ghost', '' ),
+		) ),
+		'inspired' => array( 'Inspired by & Remix', 'The sound and energy of a track you love — with an original melody you can release as your own.', 'M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z', array(
+			array( 'BASIC', 'Inspired Basic', 'Same vibe as your reference, new melody and arrangement. Free to release.', array( $p( 'inspired', 0 )[2] . ' rounds of revisions', '100 % yours' ), $p( 'inspired', 0 )[1], $p( 'inspired', 0 )[3], $calc . '?s=inspired', '' ),
+			array( 'STANDARD', 'Inspired Standard', 'Everything in Basic, mixed and mastered — ready for stores and labels.', array( $p( 'inspired', 1 )[2] . ' rounds of revisions', 'Mix + master' ), $p( 'inspired', 1 )[1], $p( 'inspired', 1 )[3], $calc . '?s=inspired', 'Most popular' ),
+			array( 'FULL', 'Inspired Full', 'Everything in Standard plus stems and the full Ableton project.', array( $p( 'inspired', 2 )[2] . ' rounds of revisions', 'Stems + project' ), $p( 'inspired', 2 )[1], $p( 'inspired', 2 )[3], $calc . '?s=inspired', '' ),
+			array( 'REMIX', 'Remix of your track', 'Radio, club or full remix with stems and the Ableton project.', array( 'From ' . $p( 'remix', 0 )[2] . ' rounds of revisions', 'Ableton project option' ), $p( 'remix', 0 )[1], $p( 'remix', 0 )[3] . ' and up', $calc . '?s=remix', '' ),
+		) ),
+		'release' => array( 'Release', 'Your track is done — artwork, short videos and a plan, so it goes out and gets heard.', 'M5 15c-1 1-2 4-2 6 2 0 5-1 6-2M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-5-5zM15 9h.01', array(
+			array( 'ARTWORK', 'Cover artwork', 'A 3000 × 3000 cover for Spotify, Apple Music and Beatport.', array( '2 rounds of revisions', 'Store-ready file' ), 49, '3–5 days', home_url( '/contacts/?subject=Release' ), '' ),
+			array( 'VIDEO', 'Canvas & clips', 'A Spotify Canvas loop and 3 short clips for Reels, TikTok and Shorts.', array( '9:16, ready to post', '2 rounds of revisions' ), 79, '5–7 days', home_url( '/contacts/?subject=Release' ), '' ),
+			array( 'KIT', 'Release Kit', 'Cover, Canvas + 3 clips, upload help with metadata, playlist pitch text and a release plan.', array( 'Everything for release day', 'Save over €100' ), 199, '7–10 days', home_url( '/contacts/?subject=Release%20Kit' ), 'Best value' ),
+			array( 'PITCH', 'Playlist pitching', 'Your Spotify for Artists pitch and a list of curators for your genre. No paid placements.', array( 'Honest outreach', 'No fake streams' ), 99, '5–7 days', home_url( '/contacts/?subject=Playlist%20pitching' ), '' ),
 		) ),
 	);
 }
@@ -47,8 +59,8 @@ function ss_pk_html() {
 	$ic = function ( $d, $s = 22 ) { return '<svg width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' . esc_attr( $d ) . '"/></svg>'; };
 	$h = '<div class="sspk"><header class="hero"><span class="k">Professional music production services</span><h1>Your music. <em>Finished.</em></h1>'
 		. '<p>We work inside your project — in <b>your DAW</b>. Listen to every demo on your private project page, leave timed comments, approve when you love it. You pay half to start, the rest only when you are happy.</p>'
-		. '<ul class="trust"><li>' . $ic( 'M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z', 18 ) . '50 / 50 payment</li><li>' . $ic( 'M20 6L9 17l-5-5', 18 ) . '100 % copyright yours</li><li>' . $ic( 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', 18 ) . 'Timed comments on every demo</li><li>' . $ic( 'M14 3H6v18h12V7zM14 3v4h4', 18 ) . 'Project files in your DAW</li></ul>'
-		. '<nav class="jump"><a href="#mix">Mixing &amp; Mastering</a><a href="#rework">Project Rework</a><a href="#custom">Custom Production</a></nav></header>';
+		. '<ul class="trust"><li>' . $ic( 'M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z', 18 ) . '50 / 50 payment</li><li>' . $ic( 'M20 6L9 17l-5-5', 18 ) . '100 % copyright yours</li><li>' . $ic( 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', 18 ) . 'Timed comments on every demo</li><li>' . $ic( 'M14 3H6v18h12V7zM14 3v4h4', 18 ) . 'Project files in your DAW</li><li>' . $ic( 'M9 18V5l12-2v13', 18 ) . 'Free mastering demo</li><li>' . $ic( 'M20 12v9H4v-9M2 7h20v5H2zM12 21V7', 18 ) . 'Loyal clients keep their prices</li></ul>'
+		. '<nav class="jump"><a href="#mix">Mixing &amp; Mastering</a><a href="#rework">Project Rework</a><a href="#custom">Custom Production</a><a href="#inspired">Inspired by</a><a href="#release">Release</a></nav></header>';
 	$h .= '<section class="how"><h2>How it works</h2><ol>'
 		. '<li><b>Choose &amp; pay 50 %</b><span>Pick a package. The rest only when you approve.</span></li>'
 		. '<li><b>Send your project</b><span>Upload stems or the project, tell us what you need.</span></li>'

@@ -705,10 +705,10 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
  /* Finishing (owner 20.11 «вместо примеров в квадратике — описание каждой кнопки, под квадратиком кнопки на примеры и на услуги») */
  (function(left){if(!left||left.querySelector('.ssw-desc'))return;var acts=left.querySelector('.acts');
   var D={'free track review':['Not sure what it needs?','Free · 2–3 days','An engineer tells you what to fix first — written and video notes.'],
-   'rework in your project':['Arrangement not finished?','from €120 · 5–14 days','We finish it inside your own DAW: arrangement, sound, mix.'],
-   'mixing':['Ready to mix?','from €60 · 2–9 days','Your stems mixed, stereo master included. With full mastering: bundle from €109.'],
-   'mastering':['Mixed, needs a master?','from €15 · 24–48 h','A loud, clean master for Spotify, Beatport and clubs.'],
-   'live video call':['Want to work live?','€30 / 60 min','An engineer works on your track together with you, live.']};
+   'rework in your project':['Arrangement not finished?','from €190 · 5–14 days','We finish it inside your own DAW: arrangement, sound, mix.'],
+   'mixing':['Ready to mix?','from €69 · 2–9 days','Your stems mixed, stereo master included. With full mastering: bundle from €99.'],
+   'mastering':['Mixed, needs a master?','from €25 · 24–48 h','A loud, clean master for Spotify, Beatport and clubs.'],
+   'live video call':['Want to work live?','€39 / 60 min','An engineer works on your track together with you, live.']};
   var box=document.createElement('div');box.className='ssw-match ssw-desc';if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   if(acts){var ex=document.createElement('a');ex.className='cta g';ex.href='#examples';ex.textContent='Hear examples';var g=acts.querySelector('a.cta.g');if(g)acts.replaceChild(ex,g);else acts.appendChild(ex);
    ex.addEventListener('click',function(e){var t=document.getElementById('examples');if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})}

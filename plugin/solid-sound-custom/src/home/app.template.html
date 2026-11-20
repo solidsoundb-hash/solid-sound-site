@@ -909,18 +909,18 @@ class Component extends DCLogic {
     for (var di = 0; di < abPages; di++) { (function (k) { abDots.push({ label: 'Page ' + (k + 1), w: k === abPage ? '24px' : '8px', bg: k === abPage ? '#F59E0B' : '#2A3754', go: function () { self.setState({ abPage: k }); } }); })(di); }
     var CALC = {
       mixing: { label: 'Mixing', qty: 'tracks', stems: { min: 2, def: 12, title: 'Stems' }, pk: [
-        { name: 'Mixing Start', min: 2, max: 8, price: 60, specs: ['2–8 stems', '3 revisions', 'Stereo mastering included'], d: '2–3 days', r: 3 },
-        { name: 'Mixing Pro', min: 9, max: 31, price: 100, pop: true, specs: ['9–31 stems', '5 revisions', 'Stereo mastering included'], d: '5–7 days', r: 5 },
-        { name: 'Mixing Ultra', min: 32, max: 52, price: 250, specs: ['32–52 stems', '10 revisions', 'Stems export included'], d: '7–9 days', r: 10 } ],
+        { name: 'Mixing Start', min: 2, max: 8, price: 69, specs: ['2–8 stems', '3 revisions', 'Stereo mastering included'], d: '2–3 days', r: 3 },
+        { name: 'Mixing Pro', min: 9, max: 31, price: 129, pop: true, specs: ['9–31 stems', '5 revisions', 'Stereo mastering included'], d: '5–7 days', r: 5 },
+        { name: 'Mixing Ultra', min: 32, max: 52, price: 279, specs: ['32–52 stems', '10 revisions', 'Stems export included'], d: '7–9 days', r: 10 } ],
         ex: [ { k: 'stems', label: 'Stems export', p: [10, 10, 0] }, { k: 'proj', label: 'Project files', p: [0, 0, 0] }, { k: 'rush', label: 'Rush order', p: [30, 30, 30], once: true } ] },
       mastering: { label: 'Mastering', qty: 'tracks', stems: { min: 1, def: 1, title: 'Stems (1 = stereo)' }, pk: [
-        { name: 'Stereo Mastering Pro', min: 1, max: 1, price: 15, specs: ['1 stereo file', '2 revisions', 'Streaming + club master'], d: '24–48 h', r: 2 },
-        { name: 'Stem Mastering', min: 2, max: 8, price: 30, pop: true, specs: ['Up to 8 stems', '3 revisions', 'Phase & resonance fixes'], d: '3–5 days', r: 3 } ],
+        { name: 'Stereo Mastering Pro', min: 1, max: 1, price: 25, specs: ['1 stereo file', '2 revisions', 'Streaming + club master'], d: '24–48 h', r: 2 },
+        { name: 'Stem Mastering', min: 2, max: 8, price: 49, pop: true, specs: ['Up to 8 stems', '3 revisions', 'Phase & resonance fixes'], d: '3–5 days', r: 3 } ],
         ex: [ { k: 'rush', label: 'Rush order', p: [30, 30, 30], once: true } ] },
       remix: { label: 'Remix', pk: [
-        { name: 'Radio Remix', price: 150, specs: ['Radio edit', '2 revisions'], d: '5–7 days', r: 2 },
-        { name: 'Club Remix', price: 250, pop: true, specs: ['Extended mix', 'DJ intro/outro + instrumental', '3 revisions'], d: '7–10 days', r: 3 },
-        { name: 'Remix Ultra', price: 400, specs: ['Extended + radio', 'Stems + Ableton project', '5 revisions'], d: '10–14 days', r: 5 } ],
+        { name: 'Radio Remix', price: 190, specs: ['Radio edit', '2 revisions'], d: '5–7 days', r: 2 },
+        { name: 'Club Remix', price: 290, pop: true, specs: ['Extended mix', 'DJ intro/outro + instrumental', '3 revisions'], d: '7–10 days', r: 3 },
+        { name: 'Remix Ultra', price: 450, specs: ['Extended + radio', 'Stems + Ableton project', '5 revisions'], d: '10–14 days', r: 5 } ],
         ex: [ { k: 'rev', label: 'Extra revision', p: [15, 15, 15] }, { k: 'stems', label: 'Stems', p: [20, 20, 0] }, { k: 'als', label: 'Ableton project file', p: [30, 30, 0] }, { k: 'rush', label: 'Rush order', p: [30, 30, 30] } ] },
       remake: { label: 'Remake', pk: [
         { name: 'Remake Basic', price: 120, specs: ['Up to 3 min, 8 parts', '2 revisions'], d: '3–5 days', r: 2 },
@@ -928,9 +928,9 @@ class Component extends DCLogic {
         { name: 'Remake Full', price: 350, specs: ['Up to 5 min, 32 parts', 'Backing vocals + project file', '5 revisions'], d: '7–10 days', r: 5 } ],
         ex: [ { k: 'key', label: 'Key / tempo change', p: [15, 15, 15] }, { k: 'stems', label: 'Stems', p: [20, 0, 0] }, { k: 'rush', label: 'Rush order', p: [30, 30, 30] } ] },
       ghost: { label: 'Custom production', pk: [
-        { name: 'Custom Start', price: 300, specs: ['Extended mix', 'Full rights + mix/master', '3 revisions'], d: '7–10 days', r: 3 },
-        { name: 'Custom Pro', price: 550, pop: true, specs: ['Extended + radio', 'Stems + Ableton project', '5 revisions'], d: '10–14 days', r: 5 },
-        { name: 'Custom Ultra', price: 900, specs: ['4 versions incl. DJ tool', 'Video walkthrough', '8 revisions'], d: '14–21 days', r: 8 } ],
+        { name: 'Custom Start', price: 350, specs: ['Extended mix', 'Full rights + mix/master', '3 revisions'], d: '7–10 days', r: 3 },
+        { name: 'Custom Pro', price: 650, pop: true, specs: ['Extended + radio', 'Stems + Ableton project', '5 revisions'], d: '10–14 days', r: 5 },
+        { name: 'Custom Ultra', price: 990, specs: ['4 versions incl. DJ tool', 'Video walkthrough', '8 revisions'], d: '14–21 days', r: 8 } ],
         ex: [ { k: 'als', label: 'Ableton project file', p: [50, 0, 0] }, { k: 'rev', label: 'Extra revision', p: [20, 20, 20] }, { k: 'rush', label: 'Rush order', p: [50, 50, 50] } ] },
       copro: { label: 'Co-producing', pk: [
         { name: 'Track Review', price: 40, specs: ['Written + video feedback'], d: '2–3 days', r: 0 },
@@ -1094,14 +1094,14 @@ class Component extends DCLogic {
       toggleGrpSvc: function () { self.setState({ grpSvc: !s.grpSvc, sideOpen: true }); },
       layoutStyle: isM ? 'display: block' : 'display: flex; align-items: flex-start; gap: 16px; max-width: 1680px; margin: 0 auto; padding: 20px 24px 0 12px; box-sizing: border-box',
       svcCards: [
-        { name: 'Mixing', desc: 'Balanced, loud, release-ready mix of your stems.', go: openCalcPage('mixing'), price: '60€', group: 'MUSIC', icon: ic.sliders, href: 'https://solid-sound.net/studio-calculator/?s=mixing', bd: 'rgba(245,158,11,0.55)' },
-        { name: 'Mastering', desc: 'Streaming-ready loudness, punch and polish.', go: openCalcPage('mastering'), price: '15€', group: 'MUSIC', icon: 'M3 12h3l3-8 4 16 3-8h5', href: 'https://solid-sound.net/studio-calculator/?s=mixing', bd: 'rgba(255,255,255,0.08)' },
+        { name: 'Mixing', desc: 'Balanced, loud, release-ready mix of your stems.', go: openCalcPage('mixing'), price: '69€', group: 'MUSIC', icon: ic.sliders, href: 'https://solid-sound.net/studio-calculator/?s=mixing', bd: 'rgba(245,158,11,0.55)' },
+        { name: 'Mastering', desc: 'Streaming-ready loudness, punch and polish.', go: openCalcPage('mastering'), price: '25€', group: 'MUSIC', icon: 'M3 12h3l3-8 4 16 3-8h5', href: 'https://solid-sound.net/studio-calculator/?s=mixing', bd: 'rgba(255,255,255,0.08)' },
         { name: 'Album mastering', desc: 'One consistent sound across the whole record.', go: null, price: 'quote', group: 'MUSIC', icon: ic.disc, href: 'https://solid-sound.net/studio-calculator/?s=mastering', bd: 'rgba(255,255,255,0.08)' },
-        { name: 'Remix', desc: 'Your track reimagined in a fresh style.', go: openCalcPage('remix'), price: '150€', group: 'MUSIC', icon: 'M4 7h11l-3-3M20 17H9l3 3M4 7v4M20 17v-4', href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
+        { name: 'Remix', desc: 'Your track reimagined in a fresh style.', go: openCalcPage('remix'), price: '190€', group: 'MUSIC', icon: 'M4 7h11l-3-3M20 17H9l3 3M4 7v4M20 17v-4', href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
         { name: 'Remake', desc: 'A faithful remake of your reference track.', go: openCalcPage('remake'), price: '120€', group: 'MUSIC', icon: ic.layers, href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
-        { name: 'Custom production', desc: 'A full track produced for you — 100 % yours.', go: openCalcPage('ghost'), price: '300€', group: 'MUSIC', icon: 'M12 3a7 7 0 0 0-7 7v11l3-2 2 2 2-2 2 2 2-2 3 2V10a7 7 0 0 0-7-7zM9 10h.01M15 10h.01', href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
-        { name: 'Co-producing', desc: 'We finish your idea together, step by step.', go: openCalcPage('copro'), price: '40€', group: 'MUSIC', icon: 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21c1-4 4-6 7-6s6 2 7 6M17 11a3 3 0 1 0 0-6M19 15c2 1 3 3 3.5 6', href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
-        { name: 'Post production', desc: 'Sound for film, ads and YouTube videos.', go: openCalcPage('post'), price: '40€', group: 'FILM · ADS · VIDEO', icon: 'M3 6h18v12H3zM7 6v12M17 6v12M3 10h4M3 14h4M17 10h4M17 14h4', href: 'http://post.solid-sound.net', bd: 'rgba(255,255,255,0.08)' }
+        { name: 'Custom production', desc: 'A full track produced for you — 100 % yours.', go: openCalcPage('ghost'), price: '350€', group: 'MUSIC', icon: 'M12 3a7 7 0 0 0-7 7v11l3-2 2 2 2-2 2 2 2-2 3 2V10a7 7 0 0 0-7-7zM9 10h.01M15 10h.01', href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
+        { name: 'Co-producing', desc: 'We finish your idea together, step by step.', go: openCalcPage('copro'), price: 'Free review', group: 'MUSIC', icon: 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21c1-4 4-6 7-6s6 2 7 6M17 11a3 3 0 1 0 0-6M19 15c2 1 3 3 3.5 6', href: 'https://solid-sound.net/en/services-prices/', bd: 'rgba(255,255,255,0.08)' },
+        { name: 'Post production', desc: 'Sound for film, ads and YouTube videos.', go: openCalcPage('post'), price: '90€', group: 'FILM · ADS · VIDEO', icon: 'M3 6h18v12H3zM7 6v12M17 6v12M3 10h4M3 14h4M17 10h4M17 14h4', href: 'http://post.solid-sound.net', bd: 'rgba(255,255,255,0.08)' }
       ],
       lines: lines, hasDiscount: hasDiscount, totalLabel: self.euro(total), depositLabel: self.euro(total / 2),
       steps: steps, wave: wave,
