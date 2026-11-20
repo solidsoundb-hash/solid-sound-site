@@ -674,11 +674,11 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(null); /* 20.11 owner: the before/after box made way for a description of the chosen service — examples are one tap away under it */
  /* Finishing (owner 20.11 «вместо примеров в квадратике — описание каждой кнопки, под квадратиком кнопки на примеры и на услуги») */
  (function(left){if(!left||left.querySelector('.ssw-desc'))return;var acts=left.querySelector('.acts');
-  var D={'not sure what it needs':['Free track review','Free · 2–3 days','An engineer tells you what to fix first — written and video notes.'],
-   'arrangement not finished':['Rework in your project','from €120 · 5–14 days','We finish it inside your own DAW: arrangement, sound, mix.'],
-   'ready to mix':['Mixing','from €60 · 2–9 days','Your stems mixed, stereo master included. With full mastering: bundle from €109.'],
-   'mixed, needs a master':['Mastering','from €15 · 24–48 h','A loud, clean master for Spotify, Beatport and clubs.'],
-   'want to work live':['Live video call','€30 / 60 min','An engineer works on your track together with you, live.']};
+  var D={'free track review':['Not sure what it needs?','Free · 2–3 days','An engineer tells you what to fix first — written and video notes.'],
+   'rework in your project':['Arrangement not finished?','from €120 · 5–14 days','We finish it inside your own DAW: arrangement, sound, mix.'],
+   'mixing':['Ready to mix?','from €60 · 2–9 days','Your stems mixed, stereo master included. With full mastering: bundle from €109.'],
+   'mastering':['Mixed, needs a master?','from €15 · 24–48 h','A loud, clean master for Spotify, Beatport and clubs.'],
+   'live video call':['Want to work live?','€30 / 60 min','An engineer works on your track together with you, live.']};
   var box=document.createElement('div');box.className='ssw-match ssw-desc';if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   if(acts){var ex=document.createElement('a');ex.className='cta g';ex.href='#examples';ex.textContent='Hear examples';var g=acts.querySelector('a.cta.g');if(g)acts.replaceChild(ex,g);else acts.appendChild(ex);
    ex.addEventListener('click',function(e){var t=document.getElementById('examples');if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})}
