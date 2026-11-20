@@ -43,11 +43,14 @@ add_action( 'wp_footer', function () {
 /* while Tidio is used, its loader (printed at the very end of the page, after wp_footer) waits for the first action: the whole
    page passes through here once — only a text replace when the loader is there */
 add_action( 'template_redirect', function () {
-	if ( is_admin() || wp_doing_ajax() || ss_lite_no_tidio() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) return;
+	if ( is_admin() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) return;
 	ob_start( function ( $h ) {
-		if ( false === strpos( $h, 'tidio' ) || false === stripos( $h, '</body>' ) ) return $h . ( strlen( $h ) > 2000 ? '<!-- ss-late: ' . ( false === strpos( $h, 'tidio' ) ? 'no-tidio' : 'no-body' ) . ' -->' : '' );
+		if ( false === strpos( $h, 'tidioChatCode' ) || false === stripos( $h, '</body>' ) ) return $h;
+		/* (20.11) Telegram chat works → Tidio is not used at all: its inline loader («document.tidioChatCode … on load add the script»)
+		   went past the old tag filter and still pulled ~450 KB on every page — removed here */
+		if ( ss_lite_no_tidio() ) return preg_replace( '#<script\b[^>]*>\s*document\.tidioChatCode\s*=.*?</script>#s', '', $h );
 		$h = ss_lite_late( $h );
-		if ( false === strpos( $h, 'ssLate(asyncLoad)' ) && false === strpos( $h, 'data-ss-late=' ) ) return $h . '<!-- ss-late: no-loader-match -->';
+		if ( false === strpos( $h, 'ssLate(asyncLoad)' ) && false === strpos( $h, 'data-ss-late=' ) ) return $h;
 		/* ssLate(fn): run fn at the first touch / scroll / key / mouse move, or after 10 s; also wakes the delayed script tags */
 		$js = '<script>(function(){var q=[],d=0,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=1;document.querySelectorAll("script[data-ss-late]").forEach(function(o){var s=document.createElement("script");s.src=o.getAttribute("data-ss-late");s.async=true;o.parentNode.replaceChild(s,o)});q.forEach(function(f){try{f()}catch(e){}})}window.ssLate=function(f){d?f():q.push(f)};E.forEach(function(n){addEventListener(n,go,{capture:true,passive:true,once:true})});setTimeout(go,10000)})();</script>';
 		return preg_replace( '#<body\b[^>]*>#i', '$0' . $js, $h, 1 );
