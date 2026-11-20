@@ -686,7 +686,9 @@ function match(ssx){var card=[].filter.call(ssx.querySelectorAll('.card .left'),
  function later(){requestAnimationFrame(run)}card.addEventListener('click',later);card.addEventListener('input',later);card.addEventListener('change',later);
  /* (owner 19.11) each cover plays its own template in the main player; the rest of the card plays the first one */
  box.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.mx');var x=m&&box._top?box._top[+m.getAttribute('data-k')]:box._x;if(m)e.stopPropagation();if(!x)return;
-  [].forEach.call(box.querySelectorAll('.mx'),function(y){y.classList.toggle('pl',y===m||(!m&&y.getAttribute('data-k')==='0'))});if(!play(x))location.href=x.u});box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var m=e.target.closest&&e.target.closest('.mx');(m||box).click()}});run()}
+  if(!play(x))location.href=x.u}); /* (20.11 swarm: «после паузы остаётся ⏸») the ⏸ mark follows the player itself — see mxSync below */
+ function mxSync(e){var d=e&&e.detail||{},pl=!!d.playing,src=String(d.src||'').split('?')[0].split('/').pop();[].forEach.call(box.querySelectorAll('.mx'),function(y){var t=box._top&&box._top[+y.getAttribute('data-k')],on=!!(pl&&t&&t.s&&String(t.s).split('?')[0].split('/').pop()===src);if(y.classList.contains('pl')!==on)y.classList.toggle('pl',on);var l=(on?'Pause ':'Play ')+(t?t.t:'');if(y.getAttribute('aria-label')!==l)y.setAttribute('aria-label',l)})}
+ document.addEventListener('ssp:state',mxSync);box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var m=e.target.closest&&e.target.closest('.mx');(m||box).click()}});run()}
 /* (owner 19.11 «как первую страницу слайдера — для всех вкладок, где уместно») the same square card on the right for
    Finishing (client before/after examples), DJ set (music by genre / BPM / key) and Video (our video work).
    Covers are buttons: audio plays in the main player, video opens the video window. Releasing / Just starting / More: not needed. */
