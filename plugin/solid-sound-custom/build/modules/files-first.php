@@ -68,6 +68,8 @@ add_action( 'wp_footer', function () {
 /* step bar */
 #solid-sound-upload-form .ss-ff-steps{display:flex;gap:6px;margin:0 0 14px;padding:8px;border-radius:14px;background:#0b1220;border:1px solid rgba(255,255,255,.06);overflow-x:auto;scrollbar-width:none}
 #solid-sound-upload-form .ss-ff-steps::-webkit-scrollbar{display:none}
+#solid-sound-upload-form .ss-wm-ai .chips span{cursor:pointer;transition:background .15s,color .15s}#solid-sound-upload-form .ss-wm-ai .chips span:not(.ok):hover{background:rgba(245,158,11,.18)!important;color:#FCD34D!important}
+#solid-sound-upload-form .ss-ff-hl{outline:2px solid #F59E0B!important;outline-offset:6px;border-radius:10px;transition:outline-color .4s}
 /* 3 steps (owner 20.11): blocks 3–4 join step 2 and block 6 joins step 3 — one card each, thin lines between */
 #solid-sound-upload-form .ss-ff-c2,#solid-sound-upload-form .ss-ff-c3,#solid-sound-upload-form .ss-ff-c5{margin-bottom:0!important;border-bottom:0!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
 #solid-sound-upload-form .ss-ff-c3,#solid-sound-upload-form .ss-ff-c4,#solid-sound-upload-form .ss-ff-c6{border-top:1px solid rgba(255,255,255,.05)!important;border-top-left-radius:0!important;border-top-right-radius:0!important;padding-top:16px!important}
@@ -323,6 +325,14 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  var fl0=q('.ss-wm-files');if(fl0)new MutationObserver(function(){requestAnimationFrame(steps)}).observe(fl0,{childList:true,subtree:true,characterData:true});
  steps();
  }
+ /* (owner 20.11 «в полосе прогресса сделай кнопки кликабельными, чтобы перекидывало автора, если он что-то пропустил»):
+    every chip of «Content Completeness» takes the creator to its field and lights it up for a moment */
+ (function(){var GO={name:'[name=product_name]',format:'.ss-ap-format',genre:'.ss-ap-genre',bpm:'.ss-ap-bpm',key:'.ss-ap-key',description:'[name=product_description]',price:'[name=product_price]',cover:'.ss-ff-c4',zip:'.ss-ff-c1',mp3:'.ss-ff-c1'};
+  form.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('.ss-wm-ai .chips span');if(!c)return;var k=c.textContent.replace(/[^a-z0-9]/ig,'').toLowerCase(),sel=GO[k];if(!sel)return;
+   if(window.__ssFFopen)window.__ssFFopen();var t=q(sel);if(!t)return;var box=t.closest('.acf-field')||t.closest('p')||t;
+   setTimeout(function(){box.scrollIntoView({behavior:'smooth',block:'center'});box.classList.add('ss-ff-hl');setTimeout(function(){box.classList.remove('ss-ff-hl')},1800);
+    var i=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)?t:box.querySelector('input:not([type=hidden]),textarea,select');if(i&&!/radio|checkbox|file/.test(i.type))try{i.focus({preventScroll:true})}catch(x){}},80)});
+  [].forEach.call(qa('.ss-wm-ai .chips'),function(ch){ch.setAttribute('title','Tap to go to this field')})})();
  var hint=q('.ss-ds-first');if(hint)hint.textContent='Step 2: check what you are selling (we pick it from your files).';
  /* grab files before the drop zone routes them (capture phase) */
  function seen(list){if(list&&list.length&&window.__ssFFopen)setTimeout(window.__ssFFopen,600);[].forEach.call(list||[],function(f){var n=f.name.toLowerCase();if(f._ssGen||/-preview\.mp3$/i.test(f.name)&&full)return;if(/\.mp3$/.test(n)||/^audio\//.test(f.type)&&!/\.zip$/.test(n)){window.__ssFFmp3=1;done.mp3=false;aiRan=false;readMp3(f)}else if(/\.(zip|rar|7z)$/.test(n)){lastZipName=f.name;done.zip=false;aiRan=false;line('zip','wt','Reading '+f.name+'…');if(!/\.zip$/.test(n)){line('zip','no','RAR/7z cannot be read here — fill DAW and version yourself.');done.zip=true;ai()}else{setTimeout(function(){if(!done.zip){done.zip=true;line('zip','no','Could not read the ZIP here — fill DAW and version yourself.');ai()}},20000)}}else if(/^image\//.test(f.type)){line('cover','ok','Cover: '+f.name);var im=new Image();im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight;chk('cov',w>=1000&&Math.abs(w-h)<=w*0.02,w>=1000&&Math.abs(w-h)<=w*0.02?'Cover '+w+'×'+h+' — good.':'Cover is '+w+'×'+h+' — use a square image, at least 1000×1000, so it looks sharp in the shop.')};im.src=URL.createObjectURL(f)}})}

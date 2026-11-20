@@ -42,13 +42,14 @@ function run(f){if(!window.SSAudio||!window.AudioContext&&!window.webkitAudioCon
   var full=SSAudio.mono(buf),x=full,sr=buf.sampleRate,max=180*sr;if(x.length>max){var s=Math.floor((x.length-max)/2);x=x.subarray(s,s+max)}
   setTimeout(function(){var r=null;try{r=SSAudio.key(x,sr)}catch(e){}busy--;show(r);setTimeout(function(){guard(full,sr)},30)},30)}).catch(function(){busy--;var b2=box();if(b2){b2.className='';b2.textContent=''}})}
 /* copy protection (copy-guard.php): fingerprint → compared with every product on the site; sent with the form */
-function guard(x,sr){if(!SSAudio.fingerprint||!window.ssFP)return;var fp;try{fp=SSAudio.fingerprint(x,sr)}catch(e){return}if(!fp||fp.length<30)return;
- var h=form.querySelector('input[name=ss_fp]');if(!h){h=document.createElement('input');h.type='hidden';h.name='ss_fp';form.appendChild(h)}h.value=JSON.stringify(fp);
- var f=new FormData();f.append('action','ss_fp_check');f.append('n',ssFP.n);f.append('fp',h.value);
+function hid(n,v){var h=form.querySelector('input[name='+n+']');if(!h){h=document.createElement('input');h.type='hidden';h.name=n;form.appendChild(h)}h.value=v;return v}
+function guard(x,sr){if(!SSAudio.fingerprint||!window.ssFP)return;var fp,fp2=[];try{fp=SSAudio.fingerprint(x,sr)}catch(e){return}try{if(SSAudio.fingerprint2)fp2=SSAudio.fingerprint2(x,sr)}catch(e){}if((!fp||fp.length<30)&&fp2.length<60)return;
+ /* fingerprint 2 (20.11): finds copies moved to another key or tempo too */
+ var f=new FormData();f.append('action','ss_fp_check');f.append('n',ssFP.n);f.append('fp',hid('ss_fp',JSON.stringify(fp||[])));f.append('fp2',hid('ss_fp2',JSON.stringify(fp2)));
  fetch(ssFP.ajax,{method:'POST',body:f,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(r){if(!r||!r.success||!r.data.length)return;
   var w=document.getElementById('ss-fpw');if(!w){w=document.createElement('div');w.id='ss-fpw';var b=form.querySelector('.ss-ff-c1')||form.querySelector('.ss-wm-drop');if(b)b.appendChild(w)}
   var m=r.data[0];w.innerHTML=m.own?'<b>You already have this sound on Solid Sound:</b> <a href="'+m.u+'" target="_blank" rel="noopener">'+m.t+'</a> — is this a new version? Then update that product instead.'
-   :'<b>⚠ This audio matches “<a href="'+m.u+'" target="_blank" rel="noopener">'+m.t+'</a>”</b>, which is already on Solid Sound ('+m.s+' % match). Upload only your own work — copies of other creators’ products are rejected.'}).catch(function(){})}
+   :'<b>⚠ This audio matches “<a href="'+m.u+'" target="_blank" rel="noopener">'+m.t+'</a>”</b>, which is already on Solid Sound ('+(m.shift?'the same music — key or tempo may be changed':m.s+' % match')+'). Upload only your own work — copies of other creators’ products are rejected.'}).catch(function(){})}
 function pick(list){var a=null;[].forEach.call(list||[],function(f){var n=(f.name||'').toLowerCase();if(/-preview\.mp3$/.test(n))return;if(/\.(wav|aiff?|flac)$/.test(n))a=f;else if(!a&&/\.(mp3|m4a|ogg)$/.test(n))a=f});if(a)run(a)} /* the full WAV is better than the preview */
 function init(){form=document.getElementById('solid-sound-upload-form');if(!form||form.dataset.kd)return !!form;form.dataset.kd=1;
  form.addEventListener('change',function(e){if(e.target&&e.target.type==='file')pick(e.target.files)},true);

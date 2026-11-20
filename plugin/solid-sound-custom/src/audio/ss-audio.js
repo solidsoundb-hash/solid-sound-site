@@ -235,7 +235,7 @@
      never saw (GiantSteps Key): 70.6 % MIREX score (exact key 63 %), up from 53.5 % for profile matching (GitHub autotune 20.11, final model trained on all 1763 tracks). */
   var KM = {"blocks":[{"white":0,"harm":8},{"white":0,"harm":1,"minF":30,"maxF":220},{"white":0,"harm":4,"minF":220,"maxF":1000},{"white":0,"harm":4,"minF":1000,"maxF":5000}],"W":[[0.3509,-0.1454,-0.1322,-0.0963,0.1686,0.0161,-0.0879,0.1896,-0.1057,-0.0695,-0.1113,0.0232,0.3481,-0.0312,-0.0597,-0.1391,0.0006,0.0392,-0.0176,0.0844,-0.087,-0.0218,-0.1263,0.0103,0.3264,-0.1411,-0.0661,-0.0994,0.2316,-0.0008,-0.1698,0.1636,-0.1329,-0.0023,-0.1329,0.0237,0.1648,-0.1616,0.1376,-0.1502,0.1119,-0.0675,-0.0943,0.1695,-0.0717,-0.0136,-0.0969,0.0722],[0.4076,-0.1979,-0.0945,0.1195,-0.0887,-0.1312,0.0254,0.3361,-0.0692,-0.1956,-0.0609,-0.0504,0.5186,-0.0789,-0.1463,0.0805,-0.1198,-0.1391,-0.0313,-0.0048,-0.0424,-0.1328,0.0066,0.0898,0.3411,-0.2116,-0.06,0.2328,0.0191,-0.1184,-0.0178,0.1701,-0.1157,-0.1771,0.0546,-0.117,0.2492,-0.0582,0.0367,0.0774,-0.1267,-0.0588,-0.1048,0.181,-0.1808,-0.0481,0.1242,-0.0909]],"b":[-0.5565,0.5565]};
   function keyModel(x, sr) {
-    var chs = KM.blocks.map(function (h) { return hpcp(x, sr, h); });
+    var chs = KM.blocks.map(function (h) { var y = h.seg ? x.subarray(Math.floor(x.length * h.seg[0]), Math.floor(x.length * h.seg[1])) : x; return hpcp(y, sr, h); }); /* seg: a part of the track (autotune round 2) */
     if (chs.some(function (c) { return !c; })) return null;
     var z = [], t, m, i;
     for (t = 0; t < 12; t++) {
@@ -320,6 +320,47 @@
     out.sort(function (p, q) { return p - q; });
     if (out.length > 3000) { var st = out.length / 3000, s2 = []; for (i = 0; i < 3000; i++) s2.push(out[Math.floor(i * st)]); out = s2; }
     return out;
+  }
+  /* ---------- fingerprint 2: survives pitch shift and tempo change (owner 20.11 «защита от копий — важно») ----------
+     Panako-style: peaks of a log-frequency spectrogram (1/3 semitone) → triplets of peaks within 1.5 s.
+     The hash keeps only the pitch DISTANCES between the peaks and the RATIO of their time gaps, so a copy moved up/down
+     in key or sped up/slowed down gives the same hashes; matching then looks for many hashes that agree on one
+     pitch shift, one stretch and one time offset. Tests on 12 EDM tracks: plain copy 40 %, key ±1–2 / tempo ±5 % copies
+     ≥ 0.5 %, different tracks ≤ 0.05 % — 10× apart. Output: flat array [hash, t<<16 | f<<8 | span, …] (every 3rd hash). */
+  function fingerprint2(x, sr) {
+    var d = decimate(x, sr, 11025); x = d.x; sr = d.sr;
+    var max = Math.floor(120 * sr); if (x.length > max) { var s0 = Math.floor((x.length - max) / 2); x = x.subarray(s0, s0 + max); }
+    var N = 2048, H = 128, BPO = 36, NB = 180, FMIN = 110, i, j, b, win = new Float32Array(N), map = new Int16Array(N / 2);
+    for (i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1));
+    for (j = 0; j < N / 2; j++) { b = j ? Math.round(BPO * Math.log2(j * sr / N / FMIN)) : -1; map[j] = b >= 0 && b < NB ? b : -1; }
+    var re = new Float32Array(N), im = new Float32Array(N), S = [];
+    for (var o = 0; o + N <= x.length; o += H) {
+      for (i = 0; i < N; i++) { re[i] = x[o + i] * win[i]; im[i] = 0; } fft(re, im);
+      var r = new Float32Array(NB); for (j = 1; j < N / 2; j++) if (map[j] >= 0) { var m = re[j] * re[j] + im[j] * im[j]; if (m > r[map[j]]) r[map[j]] = m; }
+      for (b = 0; b < NB; b++) r[b] = Math.log(1e-9 + r[b]); S.push(r);
+    }
+    var DT = 12, DF = 6, P = [], t, u, c;
+    for (t = DT; t < S.length - DT; t++) { var row = S[t], mean = 0; for (b = 0; b < NB; b++) mean += row[b]; mean /= NB;
+      for (b = DF; b < NB - DF; b++) { var v = row[b]; if (v < mean + 2) continue; var ok = true;
+        for (u = t - DT; u <= t + DT && ok; u++) for (c = b - DF; c <= b + DF; c++) if (S[u][c] > v) { ok = false; break; }
+        if (ok) P.push([t, b]); } }
+    var out = [], MAXT = Math.round(1.5 * sr / H), MINT = 3;
+    for (i = 0; i < P.length; i++) { var n1 = 0; for (j = i + 1; j < P.length && n1 < 3; j++) { var dt1 = P[j][0] - P[i][0]; if (dt1 < MINT) continue; if (dt1 > MAXT) break; var n2 = 0;
+      for (var k = j + 1; k < P.length && n2 < 2; k++) { var dt2 = P[k][0] - P[i][0]; if (P[k][0] - P[j][0] < MINT) continue; if (dt2 > MAXT) break;
+        var df1 = P[j][1] - P[i][1], df2 = P[k][1] - P[j][1]; if (Math.abs(df1) > 60 || Math.abs(df2) > 60) continue;
+        var h = ((df1 + 64) << 13) | ((df2 + 64) << 6) | Math.round(16 * dt1 / dt2); n2++;
+        if (h % 3) continue; out.push(h, (P[i][0] << 16) | (P[i][1] << 8) | Math.min(255, dt2)); }
+      n1++; } }
+    return out;
+  }
+  /* biggest group of shared hashes that agree on one pitch shift, stretch and offset, as a share of the smaller print */
+  function fpMatch2(a, b) {
+    var idx = {}, i, bins = {}, best = 0;
+    for (i = 0; i < b.length; i += 2) (idx[b[i]] || (idx[b[i]] = [])).push(b[i + 1]);
+    for (i = 0; i < a.length; i += 2) { var l = idx[a[i]]; if (!l) continue; var ea = a[i + 1], ta = ea >>> 16, fa = (ea >> 8) & 255, sa = ea & 255;
+      for (var j = 0; j < l.length; j++) { var eb = l[j], tb = eb >>> 16, fb = (eb >> 8) & 255, sb = eb & 255, s = sa / sb; if (s < 0.9 || s > 1.1) continue;
+        var key = (fa - fb) + ':' + Math.round(s * 25) + ':' + Math.round((ta - s * tb) / 40); var n = (bins[key] || 0) + 1; bins[key] = n; if (n > best) best = n; } }
+    var m = Math.min(a.length, b.length) / 2; return { n: best, s: m ? best / m : 0 };
   }
   /* share of the smaller set found in the other one (0..1) */
   function fpMatch(a, b) {
@@ -413,6 +454,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, keyModel: keyModel, keyH: keyH, hpcp: hpcp, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, keyModel: keyModel, keyH: keyH, hpcp: hpcp, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, fingerprint2: fingerprint2, fpMatch2: fpMatch2, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);

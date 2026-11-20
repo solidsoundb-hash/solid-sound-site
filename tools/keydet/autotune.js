@@ -19,6 +19,8 @@ const POOL = [
   { white: 0, harm: 8 }, { white: 0, harm: 1, minF: 30, maxF: 220 }, { white: 0, harm: 4, minF: 220, maxF: 1000 }, { white: 0, harm: 4, minF: 1000, maxF: 5000 },
   { white: 0, harm: 4 }, { white: 0, harm: 2, minF: 40, maxF: 300 }, { white: 0, harm: 4, minF: 150, maxF: 600 }, { white: 0, harm: 8, N: 8192, H: 4096 },
   { white: 0, harm: 1, minF: 25, maxF: 120 }, { white: 0, harm: 6, minF: 100, maxF: 2500 },
+  /* round 2 (20.11): parts of the track — the key often shows clearer in the intro/outro or the drop; a low-mid band */
+  { white: 0, harm: 8, seg: [0, 0.34] }, { white: 0, harm: 8, seg: [0.33, 0.67] }, { white: 0, harm: 8, seg: [0.66, 1] }, { white: 0, harm: 4, minF: 60, maxF: 500 },
 ];
 const gsList = fs.readdirSync(path.join(GS, 'annotations/key')).filter(f => /\.key$/.test(f)).map(f => { const id = f.replace(/\.key$/, ''); return { id, key: fs.readFileSync(path.join(GS, 'annotations/key', f), 'utf8').split('\n')[0], mp3: path.join(GSA, id + '.mp3') }; });
 const mtList = fs.readFileSync(path.join(MT, 'annotations/annotations.txt'), 'utf8').trim().split('\n').slice(1).map(l => l.split('\t')).filter(c => c[2] && c[2].trim() === '2').map(c => ({ id: 'mtg' + c[0], key: c[1], mp3: path.join(MTA, c[0] + '.LOFI.mp3') }));
@@ -27,7 +29,7 @@ function build(list) {
   const out = [];
   for (const L of list) {
     const g = parse(L.key); if (!g) continue;
-    if (!CH[L.id] || CH[L.id].length !== POOL.length) { const x = pcm(L.id, L.mp3); if (!x) continue; CH[L.id] = POOL.map(h => { const c = A.hpcp(x, SR, h); return c ? c.map(v => +v.toFixed(5)) : null; }); }
+    if (!CH[L.id] || CH[L.id].length !== POOL.length) { const x = pcm(L.id, L.mp3); if (!x) continue; CH[L.id] = POOL.map(h => { const c = A.hpcp(h.seg ? x.subarray(Math.floor(x.length * h.seg[0]), Math.floor(x.length * h.seg[1])) : x, SR, h); return c ? c.map(v => +v.toFixed(5)) : null; }); }
     if (CH[L.id].some(c => !c)) continue;
     out.push({ id: L.id, g, all: CH[L.id] });
   }
@@ -52,8 +54,8 @@ function train(items, blocks, [EP, LR, L2], LOG) {
   return { W: W.map(w => Array.from(w)), b };
 }
 function test(items, blocks, M, LOG) { let s = 0, ex = 0; for (const it of items) { const chs = blocks.map(k => it.all[k]); let best = null; for (let t = 0; t < 12; t++) { const F = feat(chs, t, LOG); for (let m = 0; m < 2; m++) { let v = M.b[m]; for (let d = 0; d < F.length; d++) v += M.W[m][d] * F[d]; if (!best || v > best.v) best = { t, m, v }; } } const sc = score(it.g, best); s += sc; if (sc === 1) ex++; } return { mirex: 100 * s / items.length, exact: 100 * ex / items.length }; }
-const COMBOS = LIM ? [[0, 1, 2, 3]] : [[0, 1, 2, 3], [0, 1, 2, 3, 4], [0, 1, 2, 3, 5, 6], [0, 1, 2, 3, 8, 9], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [0, 1, 3, 6, 8], [4, 1, 2, 3], [7, 1, 2, 3, 5]];
-const SETS = LIM ? [[2, 0.003, 0.003]] : [[60, 0.003, 0.003], [100, 0.002, 0.003], [60, 0.003, 0.01]];
+const COMBOS = LIM ? [[0, 1, 2, 3, 10]] : [[0, 1, 2, 3], [0, 1, 2, 3, 10, 11, 12], [0, 1, 2, 3, 13], [0, 1, 2, 3, 10, 11, 12, 13], [10, 11, 12, 1, 2, 3], [0, 1, 2, 3, 5, 13], [0, 10, 11, 12, 1, 13, 2, 3]];
+const SETS = LIM ? [[2, 0.003, 0.003]] : [[60, 0.003, 0.01], [100, 0.002, 0.01], [60, 0.003, 0.03]];
 let bestK = null;
 say('| hearing blocks | training | MIREX % | exact % |\n|---|---|---|---|');
 for (const c of COMBOS) for (const st of SETS) for (const LOG of [1]) {
@@ -67,7 +69,7 @@ fs.writeFileSync(path.join(OUT, 'best-key-model.json'), JSON.stringify({ blocks:
 
 /* ================= TEMPO ================= */
 const tdir = path.join(GT, 'annotations_v2/tempo');
-const TGRID = []; for (const center of [130, 135, 140, 145]) for (const sd of [0.8, 1, 1.3]) for (const kick of [1, 2]) TGRID.push({ center, sd, kick });
+const TGRID = []; for (const center of [145, 150, 155]) for (const sd of [0.6, 0.8]) for (const kick of [0.5, 1]) /* round 2: around the winner 145 · 0.8 · 1 */ TGRID.push({ center, sd, kick });
 const RT = TGRID.map(() => ({ ex: 0, a1: 0, a2: 0 })); let nT = 0;
 for (const f of cut(fs.readdirSync(tdir).filter(f => /\.bpm$/.test(f)).sort())) { /* each track decoded once, every setting scored on it */
   const id = f.replace(/\.bpm$/, ''), g = parseFloat(fs.readFileSync(path.join(tdir, f), 'utf8')), v1f = path.join(GT, 'annotations/tempo', f), g1 = fs.existsSync(v1f) ? parseFloat(fs.readFileSync(v1f, 'utf8')) : g;
