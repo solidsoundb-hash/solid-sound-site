@@ -23,6 +23,8 @@ add_action( 'wp_head', function () {
 		. '@media(max-width:760px){.l-canvas:not(:has(> #ssg))::before{height:61px}}'
 		/* the home app's own header, footer and phone bottom bar step aside */
 		. 'body.ss-one #ss-app header,body.ss-one #ss-app footer,body.ss-one #ss-app nav[aria-label="App"]{display:none!important}'
+		/* its own sale strip too — the shared one stays (it was shown twice) */
+		. 'body.ss-one #ss-app a[href="#shop"][style*="min-height: 36px"]{display:none!important}'
 		. 'body.ss-one #ss-app{padding-top:0!important}</style>';
 	if ( function_exists( 'ss_asset' ) ) ss_asset( 'ss-global', 'defer' );
 }, 2 );
