@@ -15,7 +15,7 @@ const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive:
     L(q || 'NEW', 'before any action: requests', n, 'payment requests', pay);
     const box = async () => p.evaluate(() => { const e = document.querySelector('#wcpay-express-checkout-element, .wcpay-express-checkout-wrapper, [id*=express-checkout]'); if (!e) return 'no box'; const r = e.getBoundingClientRect(); return { id: e.id || e.className, h: Math.round(r.height), iframes: e.querySelectorAll('iframe').length, shown: getComputedStyle(e).display !== 'none' }; });
     L('  box before', await box());
-    await p.mouse.wheel(0, 400); await p.touchscreen.tap(200, 650).catch(() => {}); await p.waitForTimeout(7000);
+    await p.evaluate(() => window.dispatchEvent(new Event('scroll'))); await p.mouse.wheel(0, 300); await p.waitForTimeout(9000); L('  url', p.url());
     L('  after a scroll: requests', n, 'payment requests', pay, 'box', await box(), 'errors', errs);
     const el = await p.$('#wcpay-express-checkout-element, .wcpay-express-checkout-wrapper');
     if (el) { await el.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(800); await p.screenshot({ path: `${OUT}/buy${q ? '_old' : ''}.jpg`, type: 'jpeg', quality: 65 }); }
