@@ -626,7 +626,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    box.innerHTML='<b>Your release pack</b><small>'+sel.length+' of '+all.length+' selected</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])inc=[^&]*/,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;all();function all(){[].forEach.call(f.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')})}run()});
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[3]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(null); /* 20.11 owner: Releasing tab removed — its pack lives in «Finish & release» (Release pack) */
  /* DJ set (owner 19.11: DJs who play their OWN music): tracks in the set + what they need -> "Your set pack" on the right */
  (function(left){if(!left||left.querySelector('.ssw-match'))return;var fs=left.querySelectorAll('.f .chips');var cnt=fs[0],need=fs[1];if(!need)return;var acts=left.querySelector('.acts');
   var IC={loud:'M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2',club:'M4 12h4l2-5 4 10 2-5h4',key:'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',live:'M4 5h16v14H4zM4 10h16M9 10v9M14 10v9',mix:'M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12',tools:'M5 19L19 5M14 5h5v5'};
@@ -636,7 +636,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    box.innerHTML='<b>Your set pack</b><small>'+(n?esc(n)+' tracks · ':'')+sel.length+' of '+all.length+' selected · price in 1 minute</small><span class="rl">'+all.map(function(x){var o=x.classList.contains('on');return '<span class="ri'+(o?' on':'')+'">'+ic(x.textContent)+'<em>'+esc(x.textContent)+'</em><i aria-hidden="true">'+(o?'✓':'+')+'</i></span>'}).join('')+'</span>';
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].split('?')[0];a.href=u+'?set='+encodeURIComponent(n)+'&inc='+encodeURIComponent(sel.map(function(x){return x.textContent.trim()}).join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri');if(!r)return;var t=r.querySelector('em').textContent;[].forEach.call(need.querySelectorAll('span'),function(x){if(x.textContent===t)x.classList.toggle('on')});run()});
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[4]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[3]);
  /* Video & ads: our work for picture — opens the video */
  /* Video & ads (owner 19.11: «на основе вопроса — зачем это клиенту»): where it goes + what's wrong -> "Your fix", the loudness
     we deliver at, and two of our videos */
@@ -652,15 +652,15 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
    box._v=vids;
    var a=left.querySelector('.acts a.cta');if(a){var u=a.href.split('#')[0].replace(/([?&])(for|fix)=[^&]*/g,'').replace(/[?&]$/,'');a.href=u+(u.indexOf('?')>-1?'&':'?')+'for='+encodeURIComponent(w)+'&fix='+encodeURIComponent(sel.join(','))}}
   box.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('.ri[data-p]');if(r){var t=r.getAttribute('data-p');[].forEach.call(pain.querySelectorAll('span'),function(x){if(x.textContent.trim()===t)x.classList.toggle('on')});run();return}var m=e.target.closest&&e.target.closest('.mx');if(!m)return;var x=box._v&&box._v[+m.getAttribute('data-k')];if(!x)return;var id=String(x.yt).split('/').pop().split('?')[0];if(window.ssYtOpen)ssYtOpen(id,x.title);else window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')});
-  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[5]);
+  left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[4]);
  /* Get help: one answer open at a time */
  (function(left){if(!left)return;left.addEventListener('toggle',function(e){var d=e.target;if(!d.open||d.tagName!=='DETAILS')return;[].forEach.call(left.querySelectorAll('details[open]'),function(x){if(x!==d)x.open=false})},true)})(L[0]);
  /* More: "Preparing a live set" now has its own tab (DJ set) — go there instead of the price list */
- (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[4];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[7]);
+ (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[4];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[6]);
  /* "Before / after" in the Video card -> the Examples section, its video tab (owner 19.11) */
  (function(left){var a=left&&[].filter.call(left.querySelectorAll('.acts a'),function(x){return /before/i.test(x.textContent)})[0];if(!a)return;
   a.addEventListener('click',function(e){var ex=document.getElementById('examples');if(!ex)return;e.preventDefault();ex.scrollIntoView({behavior:'smooth',block:'start'});
-   setTimeout(function(){var t=[].filter.call(ex.querySelectorAll('button,[role=tab]'),function(x){return /video/i.test(x.textContent)})[0];if(t)t.click()},450)})})(L[5]);
+   setTimeout(function(){var t=[].filter.call(ex.querySelectorAll('button,[role=tab]'),function(x){return /video/i.test(x.textContent)})[0];if(t)t.click()},450)})})(L[4]);
 }
 /* (owner 19.11 «наши преимущества красиво — только самые основные») the Client dashboard section becomes "why us":
    4 advantages with icons above the revision player (the player illustrates the first one) */
