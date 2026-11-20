@@ -545,6 +545,9 @@ body.ss-wow #ss-app .ssx .card .left .f .chips span{height:34px!important;min-he
 body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 10px!important}
 }
 @media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
+/* (20.11 owner: «при наведении все такие кнопки» — the theme paints hovered links orange, so the text vanished on the orange buttons) */
+#ss-app .ssx a.cta:not(.g):hover,#ss-app .ssx a.cta:not(.g):focus,#ss-app .ssx button.cta:hover,#ss-app .ssx .hp-card a.cta:hover{color:#111!important;filter:brightness(1.07)}
+#ss-app .ssx a.cta.g:hover,#ss-app .ssx a.cta.g:focus{color:#fff!important;filter:brightness(1.15)}
 /* (20.11 owner, screenshot: «наехало — перенеси под заголовок») computer: in a card with the before/after player on the right the
    choice row («What do you need?») stands UNDER its label and wraps inside the left column instead of running under the player */
 @media(min-width:1001px){
