@@ -193,11 +193,12 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow .ssw-hero .slg span{white-space:nowrap;display:inline-block}
  /* (20.11 owner, A31: «не влазит целый блок Get everything free — глобально оптимизацию») the whole slider on the first screen: no pill, slimmer Free tiles and card */
  body.ss-wow .ssw-hero .k{display:none!important}
- body.ss-wow .ssw-hero .slg{font-size:28px!important;margin:0 auto 4px!important}
+ body.ss-wow .ssw-hero .slg{font-size:26px!important;margin:0 auto 2px!important}
+ body.ss-wow #ss-app .ssx{padding-bottom:10px!important}
  body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 8px!important}
  body.ss-wow #ss-app .ssx .tasks{margin-bottom:10px!important}
  body.ss-wow #ss-app .ssx .fz-tiles{gap:6px!important}
- body.ss-wow #ss-app .ssx .fz-t{padding:8px 12px!important;gap:10px!important;border-radius:10px!important}
+ body.ss-wow #ss-app .ssx .fz-t{padding:7px 12px!important;gap:10px!important;border-radius:10px!important}
  body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:32px!important;width:32px!important;height:32px!important;border-radius:8px!important}
  body.ss-wow #ss-app .ssx .fz-t .i svg{width:18px;height:18px}
  body.ss-wow #ss-app .ssx .fz-t b{font-size:15px!important}
