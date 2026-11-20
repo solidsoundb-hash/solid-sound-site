@@ -186,6 +186,8 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips{gap:6px!important}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .rng .bpm input{height:31px!important}
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.acts{margin-top:10px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips.addon{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips.addon span{padding:0 9px!important;font-size:12.5px!important;flex:none!important;width:auto!important}
 }
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
 @media(prefers-reduced-motion:reduce){body.ss-wow .ssx.ss-auto .tasks button.on:after{display:none}}
