@@ -328,6 +328,9 @@ document.addEventListener('click',function(e){
   document.addEventListener('touchmove',function(e){ if(x0!==null) move(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
   document.addEventListener('touchend',function(e){ end(e.changedTouches[0].clientX); },{passive:true});
   document.addEventListener('touchcancel',function(){ if(x0!==null) end(x0); },{passive:true});
+  /* (owner 20.11 «туго листается») links and covers fill the cards; dragging them with the mouse started the browser's own
+     «drag the link/picture» instead of turning the slide — that native drag is off inside the slider */
+  document.addEventListener('dragstart',function(e){ if(e.target && e.target.closest && e.target.closest('#ss-app .ssx .track')) e.preventDefault(); },true);
   /* mouse on a computer: drag the card the same way (a click without dragging still works as before) */
   document.addEventListener('mousedown',function(e){ if(e.button===0 && start(e.clientX,e.clientY,e.target)){ mouse=true; } });
   document.addEventListener('mousemove',function(e){ if(mouse && x0!==null && move(e.clientX,e.clientY)) e.preventDefault(); });
