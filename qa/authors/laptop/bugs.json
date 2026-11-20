@@ -1,36 +1,89 @@
 [
  {
-  "lvl": "🟠",
+  "lvl": "🔴",
+  "page": "/wp-login.php",
+  "what": "Робот не смог войти",
+  "detail": "solid-sound"
+ },
+ {
+  "lvl": "🔴",
   "page": "/en/store-manager/ss-add-product/",
-  "what": "После нажатия «Products» — ошибка в коде",
-  "detail": "Failed to load resource: the server responded with a status of 404 ()",
-  "shot": "03_-en-store-manager-ss-add-product-err-Products.jpg"
+  "what": "Нет выбора формата",
+  "detail": "поле .ss-ap-format не найдено"
  },
  {
   "lvl": "🟠",
-  "page": "/en/store-manager/ss-add-product/",
-  "what": "После нажатия «Open the product page» — ошибка в коде",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "04_-en-store-manager-ss-add-product-err-Open-the-prod.jpg"
+  "page": "/en/store-manager/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode. | Failed to load resource: the server responded wit",
+  "shot": "01_-en-store-manager-.jpg"
  },
  {
   "lvl": "🟠",
   "page": "/en/store-manager/ss-add-product/",
   "what": "Ошибки в коде страницы",
-  "detail": "Failed to load resource: the server responded with a status of 404 () | Failed to load resource: the server responded with a status of 503 ()",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
   "shot": "02_-en-store-manager-ss-add-product-.jpg"
  },
  {
   "lvl": "🟠",
+  "page": "/en/store-manager/ss-products/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "shot": "03_-en-store-manager-ss-products-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-earnings/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "shot": "04_-en-store-manager-ss-earnings-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-payouts/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "shot": "05_-en-store-manager-ss-payouts-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-reviews/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "shot": "06_-en-store-manager-ss-reviews-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-settings/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "shot": "07_-en-store-manager-ss-settings-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-help/",
+  "what": "Ошибки в коде страницы",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "shot": "08_-en-store-manager-ss-help-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/sell/",
+  "what": "Технический текст на странице",
+  "detail": "[your_store]",
+  "shot": "09_-en-sell-.jpg"
+ },
+ {
+  "lvl": "🟠",
   "page": "/en/store-manager/ss-add-product/",
-  "what": "Файлы/запросы не загрузились",
-  "detail": "404 /en/store-manager/ss-earnings/",
-  "shot": "02_-en-store-manager-ss-add-product-.jpg"
+  "what": "Ошибки в коде при выборе формата/DAW",
+  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode."
  },
  {
   "lvl": "🟡",
-  "page": "/en/store-manager/ss-add-product/",
+  "page": "/en/store-manager/",
   "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /en/store-manager/ss-products/"
+  "detail": "503 /?wc-ajax=get_refreshed_fragments"
  }
 ]
