@@ -22,7 +22,9 @@ jobs:
       - run: npm i --no-save playwright@1.49.1
       - name: Look
         env: { PW_CHANNEL: chrome, PHOTO_OUT: "shots-home", PREVIEW_CSS: "tools/photo/preview.css", SIZES: "1536x672,1366x768,1920x1080,412x780x1,412x700x1" }
-        run: node tools/photo/home-tabs.js
+        run: |
+          # a line «… q:ss_one=1» → before / after with that query (20.11 shared header preview)
+          Q=$(tail -1 .github/home-look.txt | grep -o 'q:[^ ]*' | cut -c3-); HOME_AFTER_Q="$Q" node tools/photo/home-tabs.js
       - name: Save to branch shots-home
         if: always()
         run: |

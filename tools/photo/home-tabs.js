@@ -13,7 +13,8 @@ const SIZES = process.env.SIZES ? process.env.SIZES.split(',').map(x => { const 
 // PREVIEW_CSS (owner 20.11 «делай скрины перед и после, а не выкладывай чепуху»): a CSS file is added on top of the live page —
 // every size is shot twice, «before» (live) and «after» (live + the CSS), so a change is seen before it is deployed.
 const PREVIEW = process.env.PREVIEW_CSS && fs.existsSync(process.env.PREVIEW_CSS) ? fs.readFileSync(process.env.PREVIEW_CSS, 'utf8').trim() : '';
-const PASSES = PREVIEW ? ['before', 'after'] : ['']; // 412×700 ≈ Samsung A31 with browser bars (owner 20.11)
+const AFTER_Q = process.env.HOME_AFTER_Q || ''; // (20.11) «after» = the live page with this query, e.g. ss_one=1 (shared header preview)
+const PASSES = PREVIEW || AFTER_Q ? ['before', 'after'] : ['']; // 412×700 ≈ Samsung A31 with browser bars (owner 20.11)
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 async function ctxFor(browser, w, h, mob) {
@@ -26,7 +27,7 @@ async function ctxFor(browser, w, h, mob) {
 }
 async function open(p, pass) {
   for (let i = 0; i < 4; i++) {
-    let ok = false; try { const r = await p.goto(BASE + (BASE.includes('?') ? '&' : '?') + 'r=' + Date.now(), { waitUntil: 'load', timeout: 120000 }); ok = !!r && r.status() < 500; } catch (e) {}
+    let ok = false; try { const r = await p.goto(BASE + (BASE.includes('?') ? '&' : '?') + 'r=' + Date.now() + (pass === 'after' && AFTER_Q ? '&' + AFTER_Q : ''), { waitUntil: 'load', timeout: 120000 }); ok = !!r && r.status() < 500; } catch (e) {}
     if (ok && await p.locator('#ss-app .ssx .card').count().catch(() => 0)) break;
     await sleep(15000 * (i + 1));
   }
