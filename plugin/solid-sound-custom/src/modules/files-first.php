@@ -77,6 +77,51 @@ add_action( 'wp_footer', function () {
 #solid-sound-upload-form .ss-ff-h.ss-ff-sub small{font-size:13px}#solid-sound-upload-form .ss-ff-h.ss-ff-sub small:empty{display:none}
 #solid-sound-upload-form .ss-ff-steps .ss-ff-time{flex:none;align-self:center;margin-left:auto;padding:0 10px;color:#34D399;font:600 13.5px "Exo 2",sans-serif;white-space:nowrap}
 @media(max-width:700px){#solid-sound-upload-form .ss-ff-steps .t{display:inline!important}#solid-sound-upload-form .ss-ff-steps .ss-ff-time{display:none}}
+/* Add Product «причесать» (owner 20.11 «всё кривовато, кустарно») — one calm style for every field */
+#solid-sound-upload-form#solid-sound-upload-form .acf-field{border:0!important;padding:0!important;margin:0 0 20px!important}
+#solid-sound-upload-form#solid-sound-upload-form .acf-label{margin:0 0 8px!important}
+#solid-sound-upload-form#solid-sound-upload-form .acf-label label{font:600 15px/1.3 "Exo 2",sans-serif!important;color:#F1F5F9!important;margin:0 0 3px!important}
+#solid-sound-upload-form#solid-sound-upload-form .acf-label .description,#solid-sound-upload-form#solid-sound-upload-form .acf-label p{font:400 13px/1.45 Roboto,sans-serif!important;color:#94A3B8!important;min-height:0!important;margin:0!important}
+/* choices as light chips, no boxes around them */
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list){display:flex!important;flex-wrap:wrap!important;gap:8px!important;border:0!important;padding:0!important;margin:0!important;background:none!important;box-shadow:none!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list)>li{flex:0 0 auto!important;width:auto!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) label{display:inline-flex!important;align-items:center!important;gap:8px!important;min-height:38px!important;height:auto!important;padding:0 14px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important;color:#CBD5E1!important;font:500 14px Roboto,sans-serif!important;box-shadow:none!important;cursor:pointer;transition:border-color .15s,background .15s}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) label:hover{border-color:rgba(245,158,11,.5)!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) label:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(.acf-radio-list,.acf-checkbox-list) input{width:15px!important;height:15px!important;margin:0!important;accent-color:#F59E0B}
+/* «+ Add your own» — a small link under the field, not a big dashed pill */
+#solid-sound-upload-form#solid-sound-upload-form .acf-input>.acf-actions{order:5!important;margin:8px 0 0!important}
+#solid-sound-upload-form#solid-sound-upload-form a.acf-icon[data-name=add]{height:auto!important;padding:0!important;border:0!important;background:none!important;color:#F59E0B!important;font:600 13px Roboto,sans-serif!important;gap:4px!important}
+#solid-sound-upload-form#solid-sound-upload-form a.acf-icon[data-name=add]::before{font-size:15px!important}
+#solid-sound-upload-form#solid-sound-upload-form a.acf-icon[data-name=add]:hover{text-decoration:underline!important;background:none!important}
+/* selects and inputs: one height, one border */
+#solid-sound-upload-form#solid-sound-upload-form .select2-container .select2-selection{min-height:42px!important;height:auto!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:#0B1220!important;box-shadow:none!important}
+#solid-sound-upload-form#solid-sound-upload-form .select2-container .select2-selection--multiple{padding:3px 6px!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(input[type=text],input[type=number],input[type=email],textarea,select:not([multiple])){border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:#0B1220!important;min-height:42px;box-shadow:none!important}
+#solid-sound-upload-form#solid-sound-upload-form :is(input,textarea,select):focus{border-color:#F59E0B!important;outline:0!important}
+/* sub-sections inside a step: a little more air */
+#solid-sound-upload-form#solid-sound-upload-form .ss-ff-card{padding:22px 24px!important}
+#solid-sound-upload-form#solid-sound-upload-form .ss-ff-grid{gap:18px 24px!important}
+#solid-sound-upload-form#solid-sound-upload-form #ss-kd{border-radius:10px!important;padding:8px 12px!important;font-size:13.5px!important}
+/* round 2: no frame around the lists (taxonomy lists sit in .categorychecklist-holder), genre/plugin chips like the rest, selects text centred */
+html body #solid-sound-upload-form#solid-sound-upload-form .categorychecklist-holder,html body #solid-sound-upload-form#solid-sound-upload-form .acf-input>ul,html body #solid-sound-upload-form#solid-sound-upload-form .acf-input>div:has(>ul){border:0!important;padding:0!important;margin:0!important;background:none!important;box-shadow:none!important;max-height:none!important;overflow:visible!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-field ul li label{display:inline-flex!important;align-items:center!important;gap:8px!important;min-height:38px!important;height:auto!important;padding:0 14px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important;color:#CBD5E1!important;font:500 14px Roboto,sans-serif!important;box-shadow:none!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-field ul li label:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-field ul{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-field ul li{margin:0!important;padding:0!important;border:0!important;background:none!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .acf-field ul li input[type=checkbox]{appearance:auto!important;-webkit-appearance:checkbox!important;width:15px!important;height:15px!important;accent-color:#F59E0B;background:none!important;border:0!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection,html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection *{box-shadow:none!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection--single .select2-selection__rendered{line-height:40px!important;padding-left:12px!important;color:#E2E8F0!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection--single .select2-selection__arrow{height:40px!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection--multiple .select2-search__field{margin:6px 0 0 6px!important;height:26px!important}
+/* round 3: genre / mood / plugin checkboxes as chips too; selects without the glow; BPM/Key/Plugins fields on one line */
+html body #solid-sound-upload-form#solid-sound-upload-form :is(.ss-ap-genre,.ss-ap-mood,.ss-ap-ext,.ss-ap-dl) .acf-input label{display:inline-flex!important;align-items:center!important;gap:8px!important;min-height:38px!important;padding:0 14px!important;margin:0!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important;color:#CBD5E1!important;font:500 14px Roboto,sans-serif!important}
+html body #solid-sound-upload-form#solid-sound-upload-form :is(.ss-ap-genre,.ss-ap-mood,.ss-ap-ext,.ss-ap-dl) .acf-input label:has(input:checked){border-color:#F59E0B!important;background:rgba(245,158,11,.12)!important;color:#fff!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-container,html body #solid-sound-upload-form#solid-sound-upload-form .select2-container *{box-shadow:none!important;filter:none!important;outline:0!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection--multiple{display:flex!important;align-items:center!important;min-height:42px!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection--multiple .select2-selection__rendered{display:flex!important;flex-wrap:wrap;align-items:center;margin:0!important;padding:0 6px!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .select2-selection--multiple .select2-search__field{margin:0!important;line-height:30px!important;height:30px!important}
+html body #solid-sound-upload-form#solid-sound-upload-form .ss-ff-grid .acf-label p,html body #solid-sound-upload-form#solid-sound-upload-form .ss-ff-grid .acf-label .description{min-height:2.9em!important}
 #solid-sound-upload-form .ss-ff-steps button{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:#94A3B8;font:600 14px "Exo 2",sans-serif;cursor:pointer;white-space:nowrap}
 #solid-sound-upload-form .ss-ff-steps button:hover{background:rgba(255,255,255,.04);color:#fff}
 #solid-sound-upload-form .ss-ff-steps .d{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;border:1.5px solid #334155;font-size:12.5px;font-weight:800}
