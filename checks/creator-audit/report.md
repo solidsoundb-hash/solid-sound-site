@@ -1,4 +1,4 @@
-# Creator area audit 2026-11-20T10:10:51.712Z
+# Creator area audit 2026-11-20T10:40:38.046Z
 
 ## phone
 - /en/store-manager/ → HTTP 200 · height 4288px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
@@ -82,7 +82,7 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
 - open form before: [desktop_add_open_before.jpg](desktop_add_open_before.jpg)
-    - AI cover: button visible=true, after 8 s → preview shown, pictures 1; messages: —
+    - AI cover: button visible=true, after 12 s → preview shown, pictures 1; messages: —
     - [desktop_ai_cover.jpg](desktop_ai_cover.jpg)
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
 - /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1453px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
@@ -105,3 +105,4 @@
 - /en/my-account/ → HTTP 200 · height 1909px · [desktop_en_my_account.jpg](desktop_en_my_account.jpg)
 - /sell/ → HTTP 200 · height 2651px · [desktop_sell.jpg](desktop_sell.jpg)
 - Fingerprints: Your shop currency USD does not match with Amazon payment region Euro Region. Amazon Pay will not be available. Please use a seller account from the appropiate region.
+    - Done: 8 of 8.
