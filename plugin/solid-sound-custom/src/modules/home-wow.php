@@ -431,6 +431,21 @@ body.ss-wow #ss-app .ssx .hp-card b{font-size:30px}
 body.ss-wow #ss-app .ssx .hp-card small{font-size:16px}
 body.ss-wow #ss-app .ssx .hp-card .cta{padding:16px!important;font-size:17px!important}
 }
+/* owner 20.11 «на главной тоже не влазит на ноуте»: laptops (short screens) — slimmer Free tiles and card, the whole tab on the first screen */
+@media(min-width:1001px) and (max-height:1000px){
+body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{gap:10px}
+body.ss-wow #ss-app .ssx .fz-t{padding:11px 22px;gap:18px}
+body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:44px;width:44px;height:44px;border-radius:11px}
+body.ss-wow #ss-app .ssx .fz-t .i svg{width:22px;height:22px}
+body.ss-wow #ss-app .ssx .fz-t b{font-size:19px}
+body.ss-wow #ss-app .ssx .fz-t small{font-size:14.5px}
+body.ss-wow #ss-app .ssx .fz-t:after{font-size:20px}
+body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{padding:20px 24px;gap:8px}
+body.ss-wow #ss-app .ssx .hp-card b{font-size:24px}
+body.ss-wow #ss-app .ssx .hp-card small{font-size:14.5px}
+body.ss-wow #ss-app .ssx .hp-card .cta{padding:12px!important;font-size:16px!important}
+.ssw-hero .slg{font-size:34px!important;margin-bottom:4px!important}
+}
 @media(max-width:1000px){body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:1fr!important;align-content:start!important}body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:1!important;grid-row:2!important;padding:16px}body.ss-wow #ss-app .ssx .hp-card b{font-size:19px}}
 @media(max-width:600px){body.ss-wow #ss-app .ssx .fz-tiles{gap:8px}body.ss-wow #ss-app .ssx .fz-t{padding:11px 12px;gap:12px}body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:36px;width:36px;height:36px}body.ss-wow #ss-app .ssx .fz-t b{font-size:15px}body.ss-wow #ss-app .ssx .fz-t small{font-size:12.5px}body.ss-wow #ss-app .ssx .hp-card small{display:none}}
 /* owner 20.11 «туго листается, косо, всё съехало»: every row of choices wraps inside its own column — on a PC a long row
