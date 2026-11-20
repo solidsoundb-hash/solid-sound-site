@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ss_pe_services() { return array( 'mixing', 'release', 'mastering', 'remix', 'remake', 'ghost', 'copro', 'post' ); }
 function ss_pe_factor( $svc ) {
+	if ( ! get_option( 'ss_pe_on' ) ) return 1.0; /* owner 20.11: «автоцену пока не юзать» — off until ss_pe_on is set */
 	if ( function_exists( 'ss_pe_loyal' ) && ss_pe_loyal() ) return 1.0;
 	$f = (array) get_option( 'ss_pe_factor', array() ); $g = (float) get_option( 'ss_pe_global', 1 );
 	$x = isset( $f[ $svc ] ) ? (float) $f[ $svc ] : 1.0; if ( $g <= 0 ) $g = 1.0;
@@ -103,7 +104,7 @@ function ss_pe_week() {
 	update_option( 'ss_pe_factor', $f, false ); update_option( 'ss_pe_log', array_slice( $log, -100 ), false );
 	if ( $lines ) wp_mail( get_option( 'admin_email' ), 'Solid Sound: studio prices moved with demand', implode( "\n", $lines ) . "\n\nSee or reset: " . admin_url( 'tools.php?page=ss-prices' ) );
 }
-add_action( 'ss_pe_week', 'ss_pe_week' );
+add_action( 'ss_pe_week', function () { if ( get_option( 'ss_pe_on' ) ) ss_pe_week(); } ); /* off for now (owner 20.11); demand is still counted */
 add_action( 'init', function () { if ( ! wp_next_scheduled( 'ss_pe_week' ) ) wp_schedule_event( strtotime( 'next monday 03:17 UTC' ), 'weekly', 'ss_pe_week' ); } );
 
 /* loyal clients: someone who already sent a studio request with this account keeps the base prices */
@@ -120,7 +121,7 @@ add_action( 'admin_menu', function () {
 			echo '<div class="notice notice-success"><p>Saved.</p></div>';
 		}
 		$f = (array) get_option( 'ss_pe_factor', array() ); $d = (array) get_option( 'ss_pe_demand', array() ); $t = gmdate( 'Y-m-d' ); $w1 = gmdate( 'Y-m-d', strtotime( '-7 days' ) ); $w2 = gmdate( 'Y-m-d', strtotime( '-14 days' ) );
-		echo '<div class="wrap"><h1>Studio prices (demand)</h1><p>Prices move ±10 % a week with demand (calculator opens + 10 × requests), within 70–130 % of the base. Up to €50 never moves. Base: docs/prices.md.</p><table class="widefat striped" style="max-width:760px"><thead><tr><th>Service</th><th>Factor</th><th>Last 7 days</th><th>7 days before</th><th>Prices now</th></tr></thead><tbody>';
+		echo '<div class="wrap"><h1>Studio prices (demand)</h1><p><b>' . ( get_option( 'ss_pe_on' ) ? 'Auto prices: ON.' : 'Auto prices: OFF — demand is only counted (owner 20.11).' ) . '</b> Prices move ±10 % a week with demand (calculator opens + 10 × requests), within 70–130 % of the base. Up to €50 never moves. Base: docs/prices.md.</p><table class="widefat striped" style="max-width:760px"><thead><tr><th>Service</th><th>Factor</th><th>Last 7 days</th><th>7 days before</th><th>Prices now</th></tr></thead><tbody>';
 		foreach ( ss_pe_services() as $s ) { $pp = array_map( function ( $p ) { return '€' . (int) $p[1]; }, ss_pe_pairs( $s ) ); echo '<tr><td>' . esc_html( $s ) . '</td><td>×' . esc_html( number_format( isset( $f[ $s ] ) ? (float) $f[ $s ] : 1, 2 ) ) . '</td><td>' . (int) ss_pe_score( $d, $w1, $t, $s ) . '</td><td>' . (int) ss_pe_score( $d, $w2, $w1, $s ) . '</td><td>' . esc_html( implode( ' / ', $pp ) ) . '</td></tr>'; }
 		echo '</tbody></table><form method="post" style="margin-top:16px">' . wp_nonce_field( 'ss_pe', 'ss_pe_nonce', true, false ) . '<p><label>All prices × <input name="global" type="number" step="0.05" min="0.5" max="1.6" value="' . esc_attr( (string) get_option( 'ss_pe_global', 1 ) ) . '" style="width:80px"></label> <button class="button button-primary">Save</button> <button class="button" name="run" value="1">Run the weekly check now</button> <button class="button" name="reset" value="1" onclick="return confirm(\'Reset all demand factors to 1?\')">Reset demand factors</button></p></form>';
 		$log = array_reverse( (array) get_option( 'ss_pe_log', array() ) );

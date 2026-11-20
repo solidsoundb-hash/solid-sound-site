@@ -52,24 +52,13 @@ add_action( 'wp_ajax_ss_tr', function () {
 add_action( 'wp_footer', function () {
 	if ( ! is_user_logged_in() || ! function_exists( 'is_wcfm_page' ) || ! is_wcfm_page() ) return;
 	global $wp; if ( ! array_key_exists( 'wcfm-ss-add-product', (array) $wp->query_vars ) && ! array_key_exists( 'wcfm-products-manage', (array) $wp->query_vars ) ) return;
-	$cfg = array( 'ajax' => admin_url( 'admin-ajax.php' ), 'n' => wp_create_nonce( 'ss_tr' ), 'langs' => ss_tr_langs() ); ?>
+	 ?>
 <style id="ss-tr-css">#ss-tr{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 0;font:500 13.5px Roboto,sans-serif;color:#CBD5E1}#ss-tr select{height:34px;padding:0 8px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:#0B1220;color:#E2E8F0;font:500 13px Roboto,sans-serif}
 #ss-tr button{height:34px;padding:0 14px;border-radius:8px;border:0;background:#3B82F6;color:#fff;font:700 13.5px "Exo 2",sans-serif;cursor:pointer}#ss-tr button.o{background:transparent;border:1px solid rgba(255,255,255,.2);color:#E2E8F0}#ss-tr button:disabled{opacity:.6;cursor:wait}
 #ss-tr .m{flex-basis:100%;color:#94A3B8;font-size:13px}#ss-tr .m.hint{color:#93C5FD}</style>
-<script id="ss-tr-js">(function(){var C=<?php echo wp_json_encode( $cfg ); ?>,ta,bar,undo=null;
-function isEn(t){t=String(t||'');if(t.length<25)return true;var L=(t.match(/\p{L}/gu)||[]).length,lat=(t.match(/[a-z]/gi)||[]).length;if(L&&lat/L<.85)return false;var w=(t.match(/\b(the|and|with|for|your|this|you|of|to|in|is|it|a)\b/gi)||[]).length,n=(t.match(/\S+/g)||[]).length||1;return w/n>.08}
-function opts(sel,auto){return (auto?'<option value="">Auto-detect</option>':'')+C.langs.map(function(l){return '<option'+(l===sel?' selected':'')+'>'+l+'</option>'}).join('')}
-function msg(t,h){var m=bar.querySelector('.m');m.textContent=t||'';m.className='m'+(h?' hint':'')}
-function check(){if(!ta.value.trim()){msg('');return}if(!isEn(ta.value))msg('Writing in your language? Translate it to English for buyers — or just send it: we translate it for buyers and keep your original.',1);else msg('')}
-function go(){var t=ta.value.trim();if(!t){msg('Write the description first.');return}var b=bar.querySelector('.go');b.disabled=true;b.textContent='Translating…';
- var f=new FormData();f.append('action','ss_tr');f.append('n',C.n);f.append('text',t);f.append('to',bar.querySelector('.to').value);f.append('from',bar.querySelector('.from').value);
- fetch(C.ajax,{method:'POST',body:f,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){if(!j||!j.success){msg((j&&j.data&&j.data.m)||'Could not translate — try again.');return}
-  undo=ta.value;ta.value=j.data.text;ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));bar.querySelector('.un').hidden=false;msg('✓ Translated from '+j.data.lang+' — check it and edit freely.')})
- .catch(function(){msg('Network problem — try again.')}).then(function(){b.disabled=false;b.textContent='Translate'})}
-function init(){ta=document.querySelector('#solid-sound-upload-form [name=product_description], [name=description]');if(!ta||document.getElementById('ss-tr'))return !!ta;
- bar=document.createElement('div');bar.id='ss-tr';bar.innerHTML='<span>🌐 Translate</span><select class="from" aria-label="From">'+opts('',1)+'</select><span>→</span><select class="to" aria-label="To">'+opts('English')+'</select><button type="button" class="go">Translate</button><button type="button" class="o un" hidden>Undo</button><span class="m"></span>';
- ta.parentNode.insertBefore(bar,ta.nextSibling);bar.querySelector('.go').onclick=go;bar.querySelector('.un').onclick=function(){if(undo==null)return;ta.value=undo;undo=null;this.hidden=true;ta.dispatchEvent(new Event('input',{bubbles:true}));msg('Back to your text.')};
- ta.addEventListener('input',function(){requestAnimationFrame(check)});check();return true}
+<script id="ss-tr-js">(function(){/* owner 20.11 «пускай на своём пишет — автоматом переведётся»: just a note, the translation happens on save */
+function init(){var ta=document.querySelector('#solid-sound-upload-form [name=product_description], [name=description]');if(!ta||document.getElementById('ss-tr'))return !!ta;
+ var n=document.createElement('div');n.id='ss-tr';n.innerHTML='<span class="m hint">🌐 Write in any language — we translate it to English for buyers automatically and keep your original.</span>';ta.parentNode.insertBefore(n,ta.nextSibling);return true}
 if(!init()){var mo=new MutationObserver(function(){requestAnimationFrame(function(){if(init())mo.disconnect()})});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}
 })();</script>
 	<?php
