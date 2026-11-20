@@ -122,9 +122,7 @@ add_filter( 'the_content', function ( $c ) {
 	if ( ! is_page( 1947 ) || ! in_the_loop() || ! is_main_query() ) return $c;
 	$new = include __DIR__ . '/services-prices-html.php';
 	if ( is_string( $new ) && $new ) $c = preg_replace( '#\[us_html\].*?\[/us_html\]#s', '[us_html]' . base64_encode( rawurlencode( $new ) ) . '[/us_html]', $c, 1 );
-	$css = ss_pk_css() . '.sspk.top{padding-bottom:0}.sspk.top .trust{margin-top:0}'
-		/* «Most popular» in the tables as a corner ribbon, like on the cards (owner 20.11 «ленточки прикольно») */
-		. '.pr-t thead th.pr-hl{position:relative;overflow:hidden}.pr-t thead th.pr-hl .pr-badge{position:absolute;top:18px;right:-38px;transform:rotate(45deg);width:150px;margin:0;padding:4px 0;border-radius:0;text-align:center;font-size:10px}';
+	$css = ss_pk_css() . '.sspk.top{padding-bottom:0}.sspk.top .trust{margin-top:0}';
 	$trust = '<div class="sspk top"><ul class="trust"><li>50 / 50 payment</li><li>100 % copyright yours</li><li>Timed comments on every demo</li><li>Project files in your DAW</li><li>Free mastering demo</li><li>Loyal clients keep their prices</li></ul></div>';
 	return '<style>' . $css . '</style>' . $c . ss_pk_html( array( 'inspired', 'release' ), false ); /* the page's own hero already lists the guarantees */
 }, 5 );
