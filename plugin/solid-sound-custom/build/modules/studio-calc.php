@@ -9,18 +9,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function ss_sc_prices() {
 	return array(
 		'mixing'    => array( 'name' => 'Mixing (+ Stereo Mastering Pro)', 'unit' => 'tracks', 'ask' => 'How many tracks (stems) are in your project?', 'min' => 2, 'max' => 52, 'def' => 12,
-			'tiers' => array( array( 8, 'Mixing Start', 69, 3, '2–3 days' ), array( 31, 'Mixing Pro', 129, 5, '5–7 days' ), array( 52, 'Mixing Ultra', 279, 10, '7–9 days' ) ) ),
-		'release'   => array( 'name' => 'Release Ready (mix + master + everything for release)', 'unit' => 'tracks', 'ask' => 'How many tracks (stems)?', 'min' => 2, 'max' => 52, 'def' => 12, 'plus' => 49,
+			'tiers' => array( array( 8, 'Mixing Start', 39, 3, '2–3 days' ), array( 31, 'Mixing Pro', 79, 5, '5–7 days' ), array( 52, 'Mixing Ultra', 169, 10, '7–9 days' ) ) ),
+		'release'   => array( 'name' => 'Mix & Master bundle (mix + stem master + everything for release)', 'unit' => 'tracks', 'ask' => 'How many tracks (stems)?', 'min' => 2, 'max' => 52, 'def' => 12, 'plus' => 0,
 			'note' => 'Mixing + stem-level mastering, streaming + club masters, stems, instrumental, 30-min video consultation, 4 revisions.',
-			'tiers' => array( array( 8, 'Release Ready S', 50, 4, '4–5 days' ), array( 31, 'Release Ready M', 130, 4, '6–8 days' ), array( 52, 'Release Ready L', 280, 10, '8–10 days' ) ) ),
+			'tiers' => array( array( 8, 'Mix & Master S', 59, 4, '4–5 days' ), array( 31, 'Mix & Master M', 109, 4, '6–8 days' ), array( 52, 'Mix & Master L', 199, 10, '8–10 days' ) ) ),
 		'mastering' => array( 'name' => 'Mastering', 'unit' => 'songs', 'ask' => 'How many songs?', 'min' => 1, 'max' => 30, 'def' => 1,
 			'types' => array( 'stereo' => array( 'Stereo Mastering Pro — 1 stereo file', 25, 2, '24–48 h' ), 'stem' => array( 'Stem Mastering — up to 8 stems', 49, 3, '3–5 days' ) ),
 			'album' => array( 5, 0.2 ), 'note' => '5+ songs: −20% (album / EP). The first song of a group order is a free demo.' ),
-		'remix'     => array( 'name' => 'Remix', 'pkgs' => array( array( 'Radio Remix', 190, 2, '5–7 days' ), array( 'Club Remix', 290, 3, '7–10 days' ), array( 'Remix Ultra (stems + Ableton project)', 450, 5, '10–14 days' ) ) ),
-		'remake'    => array( 'name' => 'Remake (for learning)', 'note' => 'A faithful remake of a reference track for study — the sounds are made by us, the song belongs to its writers. To release your own track in that vibe, choose «Inspired by».', 'pkgs' => array( array( 'Remake Basic (up to 8 parts)', 120, 2, '3–5 days' ), array( 'Remake Standard (up to 16 parts)', 200, 3, '5–7 days' ), array( 'Remake Full (up to 32 parts + project)', 350, 5, '7–10 days' ) ) ),
-		'ghost'     => array( 'name' => 'Custom production', 'pkgs' => array( array( 'Custom Start', 350, 3, '7–10 days' ), array( 'Custom Pro (stems + project)', 650, 5, '10–14 days' ), array( 'Custom Ultra (label package + video walkthrough)', 990, 8, '14–21 days' ), array( 'Online Collaboration (3 × 2 h live sessions + everything in Pro)', 1290, 6, '20–30 days' ) ), 'note' => 'Pay in 2–3 parts if you like. 100 % copyright is yours.' ),
-		'copro'     => array( 'name' => 'Project rework', 'note' => 'Your first track review is free.', 'pkgs' => array( array( 'Track Review (written + video feedback)', 29, 0, '2–3 days' ), array( 'Rework Standard (we work in your project, 1 × 30 min call)', 190, 2, '5–7 days' ), array( 'Rework Release Ready (2 × 60 min calls, mix + master, stems)', 290, 5, '10–14 days' ) ) ),
-		'inspired'  => array( 'name' => 'Inspired by (your own track in that vibe)', 'note' => 'The sound and energy of a reference — with an original melody, so you can release it as your own. 100 % copyright is yours.', 'pkgs' => array( array( 'Inspired Basic', 149, 2, '5–7 days' ), array( 'Inspired Standard (mix + master)', 229, 3, '7–10 days' ), array( 'Inspired Full (stems + Ableton project)', 349, 5, '10–14 days' ) ) ),
+		'remix'     => array( 'name' => 'Remix', 'pkgs' => array( array( 'Radio Remix', 109, 2, '5–7 days' ), array( 'Club Remix', 169, 3, '7–10 days' ), array( 'Remix Ultra (stems + Ableton project)', 269, 5, '10–14 days' ) ) ),
+		'remake'    => array( 'name' => 'Remake (for learning)', 'note' => 'A faithful remake of a reference track for study — the sounds are made by us, the song belongs to its writers. Add «New melody» and you can release it as your own track.', 'pkgs' => array( array( 'Remake Basic (up to 8 parts)', 120, 2, '3–5 days' ), array( 'Remake Standard (up to 16 parts)', 200, 3, '5–7 days' ), array( 'Remake Full (up to 32 parts + project)', 350, 5, '7–10 days' ) ) ),
+		'ghost'     => array( 'name' => 'Custom production', 'pkgs' => array( array( 'Custom Start', 209, 3, '7–10 days' ), array( 'Custom Pro (stems + project)', 389, 5, '10–14 days' ), array( 'Custom Ultra (label package + video walkthrough)', 599, 8, '14–21 days' ), array( 'Online Collaboration (3 × 2 h live sessions + everything in Pro)', 779, 6, '20–30 days' ) ), 'note' => 'Pay in 2–3 parts if you like. 100 % copyright is yours.' ),
+		'copro'     => array( 'name' => 'Project rework', 'note' => 'Your first track review is free.', 'pkgs' => array( array( 'Track Review (written + video feedback)', 29, 0, '2–3 days' ), array( 'Rework Standard (we work in your project, 1 × 30 min call)', 109, 2, '5–7 days' ), array( 'Rework Release Ready (2 × 60 min calls, mix + master, stems)', 169, 5, '10–14 days' ) ) ),
 		'post'      => array( 'name' => 'Post production (video, podcast, film)', 'unit' => 'minutes', 'ask' => 'How long is the video / episode (minutes)?', 'min' => 1, 'max' => 120, 'def' => 10,
 			'pkgs' => array( array( 'Video — YouTube, reels, promo (+ sound design, music to picture)', 90, 3, '3–5 days', 10, 25 ), array( 'Film & Ads (+ separate stems)', 250, 5, '7–10 days', 30, 60 ) ),
 			'sub' => array( 'YouTube Channel — 4 videos up to 10 min every month', 199 ) ),
@@ -28,9 +27,10 @@ function ss_sc_prices() {
 			'stems'    => array( 'Stems', 10, 'once', array( 'mixing', 'mastering', 'remix' ) ),
 			'tuning'   => array( 'Manual vocal tuning', 12, 'per vocal track', array( 'mixing', 'release' ) ),
 			'live'     => array( 'Live online session, 60 min (screen + sound)', 39, 'once', array( 'mixing', 'release', 'remix', 'remake', 'ghost', 'copro' ) ),
-			'project'  => array( 'Your Ableton project back', 49, 'once', array( 'remix', 'ghost', 'inspired' ) ),
-			'rev'      => array( 'Extra revision', 15, 'each', array( 'mixing', 'mastering', 'remix', 'remake', 'ghost', 'inspired', 'post' ) ),
-			'rush'     => array( 'Rush order', 30, 'once', array( 'mixing', 'release', 'mastering', 'remix', 'remake', 'inspired', 'copro', 'post' ) ),
+			'project'  => array( 'Your Ableton project back', 49, 'once', array( 'remix', 'ghost' ) ),
+			'rev'      => array( 'Extra revision', 15, 'each', array( 'mixing', 'mastering', 'remix', 'remake', 'ghost', 'post' ) ),
+			'newmel'   => array( 'New melody — release it as your own track', 20, 'once', array( 'remake' ) ),
+			'rush'     => array( 'Rush order', 30, 'once', array( 'mixing', 'release', 'mastering', 'remix', 'remake', 'copro', 'post' ) ),
 			'rushg'    => array( 'Rush order', 50, 'once', array( 'ghost' ) ),
 		),
 	);
@@ -115,7 +115,7 @@ function ss_sc_js() {
 	return <<<'JS'
 (function(){var P=window.SS_SC,S={svc:'mixing',n:null,pkg:0,type:'stem',ex:{},cnt:{platform:0,tuning:0,rev:0}};
 var $=function(i){return document.getElementById(i)},e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-var SV=['mixing','release','mastering','copro','remix','inspired','remake','ghost','post'];
+var SV=['mixing','mastering','release','copro','ghost','remix','remake','post'];
 function eur(v){return '€'+(Math.round(v*100)/100).toLocaleString('en-US',{minimumFractionDigits:v%1?2:0})}
 function svcBtns(){$('sc-svc').innerHTML=SV.map(function(k){return '<button type="button" data-s="'+k+'" class="'+(S.svc===k?'on':'')+'">'+e(P[k].name.replace(/ \(.*/,''))+'</button>'}).join('')}
 function body(){var c=P[S.svc],h='';if(c.note)h+='<p class="muted" style="margin:12px 0 0">'+e(c.note)+'</p>';

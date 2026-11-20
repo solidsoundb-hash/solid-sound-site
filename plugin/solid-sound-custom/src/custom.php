@@ -570,7 +570,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'forum' => array( 'Music Production Forum | Solid Sound', 'Solid Sound community forum: ideas, questions and discussions about music production, Ableton Live, mixing and mastering.' ),
 			'faq' => array( 'FAQ – Payments, Licenses & Downloads | Solid Sound', 'Answers about payments, licenses, downloads and using Solid Sound templates in your own productions.' ),
 			'license' => array( 'License Agreement – Royalty-Free Use | Solid Sound', 'What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.' ),
-			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 69€, mastering from 25€, project rework in your DAW, custom production, Inspired by tracks, remixes and release help. Pay 50 % to start — compare packages and order online.' ),
+			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 39€, mastering from 25€, mix + master bundles, project rework in your DAW, custom production, remixes and release help. Pay 50 % to start — compare packages and order online.' ),
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
 			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),

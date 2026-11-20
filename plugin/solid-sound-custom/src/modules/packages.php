@@ -41,10 +41,10 @@ function ss_pk_cards() {
 			array( 'LIVE', 'Online Collaboration', 'Three 2-hour live sessions with the producer, screen and sound — plus everything in Pro.', array( $p( 'ghost', 3 )[2] . ' rounds of revisions', '3 × 2 h live' ), $p( 'ghost', 3 )[1], $p( 'ghost', 3 )[3], $calc . '?s=ghost', '' ),
 		) ),
 		'release' => array( 'Release', 'Your track is done — artwork, short videos and a plan, so it goes out and gets heard.', 'M5 15c-1 1-2 4-2 6 2 0 5-1 6-2M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-5-5zM15 9h.01', array(
-			array( 'ARTWORK', 'Cover artwork', 'A 3000 × 3000 cover for Spotify, Apple Music and Beatport.', array( '2 rounds of revisions', 'Store-ready file' ), 29, '3–5 days', home_url( '/contacts/?subject=Release' ), '' ),
+			array( 'ARTWORK', 'Cover artwork', 'A 3000 × 3000 cover for Spotify, Apple Music and Beatport.', array( '2 rounds of revisions', 'Store-ready file' ), 49, '3–5 days', home_url( '/contacts/?subject=Release' ), '' ),
 			array( 'VIDEO', 'Canvas & clips', 'A Spotify Canvas loop and 3 short clips for Reels, TikTok and Shorts.', array( '9:16, ready to post', '2 rounds of revisions' ), 49, '5–7 days', home_url( '/contacts/?subject=Release' ), '' ),
-			array( 'KIT', 'Release Kit', 'Cover, Canvas + 3 clips, upload help with metadata, playlist pitch text and a release plan.', array( 'Everything for release day', 'Save over €50' ), 99, '7–10 days', home_url( '/contacts/?subject=Release%20Kit' ), 'Best value' ),
-			array( 'PITCH', 'Playlist pitching', 'Your Spotify for Artists pitch and a list of curators for your genre. No paid placements.', array( 'Honest outreach', 'No fake streams' ), 49, '5–7 days', home_url( '/contacts/?subject=Playlist%20pitching' ), '' ),
+			array( 'KIT', 'Release Kit', 'Cover, Canvas + 3 clips, upload help with metadata, playlist pitch text and a release plan.', array( 'Everything for release day', 'Save over €40' ), 119, '7–10 days', home_url( '/contacts/?subject=Release%20Kit' ), 'Best value' ),
+			array( 'PITCH', 'Playlist pitching', 'Your Spotify for Artists pitch and a list of curators for your genre. No paid placements.', array( 'Honest outreach', 'No fake streams' ), 59, '5–7 days', home_url( '/contacts/?subject=Playlist%20pitching' ), '' ),
 		) ),
 	);
 }
