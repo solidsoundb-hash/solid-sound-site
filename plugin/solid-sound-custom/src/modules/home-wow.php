@@ -196,6 +196,17 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow .ssw-hero .slg{font-size:24px!important;margin:0 auto 4px!important;padding:0 14px!important}
  /* (20.11 owner «Writing a track — чтобы было нужно») on phones only what is needed to pick a template: no «Add to it» row (extras are on the product page) */
  body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f:has(.chips.addon){display:none!important}
+ /* (20.11 owner: one slider height that fits the A31 screen) the two tallest tabs made short — Video & ads (468 px) and Just starting (455 px) */
+ body.ss-wow #ss-app .ssx .card .chips span{height:31px!important}
+ body.ss-wow #ss-app .ssx .ssw-vd{padding:10px!important;margin-top:8px!important}
+ body.ss-wow #ss-app .ssx .ssw-vd .rl{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5px!important}
+ body.ss-wow #ss-app .ssx .ssw-vd .ri,body.ss-wow #ss-app .ssx .ssw-vd .ri.on{width:auto!important;min-width:0!important;padding:6px 8px!important}
+ body.ss-wow #ss-app .ssx .ssw-vd .ri em{font-size:12px!important;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+ body.ss-wow #ss-app .ssx .card .left.fp>.fp-links,body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{display:none!important}
+ body.ss-wow #ss-app .ssx .card .left.fp .fp-list{gap:5px!important;margin:0 0 10px!important}
+ body.ss-wow #ss-app .ssx .card .left.fp .fp-list li{font-size:14px!important}
+ body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:6px 0 4px!important}
+ body.ss-wow #ss-app .ssx .card .left.fp>.fp-note{margin-top:4px!important}
  body.ss-wow #ss-app .ssx{padding-bottom:10px!important}
  body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 8px!important}
  body.ss-wow #ss-app .ssx .tasks{margin-bottom:10px!important}
