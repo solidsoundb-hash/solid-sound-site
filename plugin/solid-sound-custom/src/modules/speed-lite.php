@@ -16,8 +16,17 @@ function ss_lite_no_tidio() {
 	return $r;
 }
 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) {
-	return ( false !== strpos( (string) $src, 'tidio.co' ) && ss_lite_no_tidio() ) ? '' : $tag;
+	if ( false === strpos( (string) $src, 'tidio.co' ) ) return $tag;
+	return ss_lite_no_tidio() ? '' : ss_lite_late( $tag );
 }, 99, 3 );
+/* (20.11 speed robot: Tidio = ~450 KB of scripts + fonts and the phone's processor busy on EVERY page) while Tidio is used
+   (Telegram not set up) it loads at the visitor's first touch / scroll / key / mouse move — or after 10 s — not with the page */
+function ss_lite_late( $html ) {
+	$GLOBALS['ss_lite_late'] = 1;
+	$html = preg_replace( '#<script\b([^>]*)\bsrc=(["\'])([^"\']*code\.tidio\.co/[^"\']+)\2([^>]*)>#i', '<script type="text/plain" data-ss-late="$3"$1$4>', $html );
+	/* the Tidio plugin's own inline loader («on window load → add the script») waits for the first action instead */
+	return str_replace( array( 'window.addEventListener("load", asyncLoad, false);', "window.addEventListener('load', asyncLoad, false);" ), 'window.ssLate?ssLate(asyncLoad):window.addEventListener("load", asyncLoad, false);', $html );
+}
 add_action( 'wp_print_scripts', function () {
 	if ( ! ss_lite_no_tidio() ) return;
 	global $wp_scripts;
@@ -25,11 +34,14 @@ add_action( 'wp_print_scripts', function () {
 	foreach ( (array) $wp_scripts->registered as $h => $s ) if ( ! empty( $s->src ) && false !== strpos( $s->src, 'tidio' ) ) wp_dequeue_script( $h );
 }, 1 );
 /* the Tidio plugin may also print its loader directly into the footer: catch only that one tag */
-add_action( 'wp_footer', function () { if ( ss_lite_no_tidio() ) ob_start(); }, -9999 );
+add_action( 'wp_footer', function () { if ( ! is_admin() ) ob_start(); }, -9999 );
 add_action( 'wp_footer', function () {
-	if ( ! ss_lite_no_tidio() ) return;
-	$h = ob_get_clean();
-	echo preg_replace( '#<script\b[^>]*src=["\'][^"\']*code\.tidio\.co/[^"\']+["\'][^>]*>\s*</script>#i', '', (string) $h );
+	if ( is_admin() ) return;
+	$h = (string) ob_get_clean();
+	$out = ss_lite_no_tidio() ? preg_replace( '#<script\b[^>]*src=["\'][^"\']*code\.tidio\.co/[^"\']+["\'][^>]*>\s*</script>#i', '', $h ) : ( false !== strpos( $h, 'tidio' ) ? ss_lite_late( $h ) : $h );
+	/* ssLate(fn): run fn at the first touch / scroll / key / mouse move, or after 10 s; also wakes the delayed script tags */
+	if ( ! empty( $GLOBALS['ss_lite_late'] ) ) echo '<script>(function(){var q=[],d=0,E=["pointerdown","keydown","scroll","touchstart","mousemove"];function go(){if(d)return;d=1;document.querySelectorAll("script[data-ss-late]").forEach(function(o){var s=document.createElement("script");s.src=o.getAttribute("data-ss-late");s.async=true;o.parentNode.replaceChild(s,o)});q.forEach(function(f){try{f()}catch(e){}})}window.ssLate=function(f){d?f():q.push(f)};E.forEach(function(n){addEventListener(n,go,{capture:true,passive:true,once:true})});setTimeout(go,10000)})();</script>';
+	echo $out;
 }, 9999 );
 
 /* ── Creator area (owner 19.11: «всё, что касается авторов, тяжело грузится») ──
