@@ -399,6 +399,11 @@ body.ss-wow #ss-app .ssx .hp-acc .hp-go:hover{text-decoration:underline}
 .ss-why2 .all{margin:22px 0 0;text-align:center}.ss-why2 .all a{color:#F59E0B!important;font-weight:700;text-decoration:none}
 @media(max-width:1000px){.ss-why2 .gr{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.ss-why2{margin-top:36px}.ss-why2 h2.t{font-size:24px}.ss-why2 h3.g{font-size:20px;margin:18px 0 10px}.ss-why2 .gr{grid-template-columns:1fr;gap:10px}.ss-why2 .w{padding:16px;gap:6px}.ss-why2 .i{width:40px;height:40px}.ss-why2 b{font-size:16.5px}.ss-why2 small{font-size:14px}.ss-why2 em{font-size:15px;margin-top:6px}}
+/* Writing a track: «Only an idea? Custom production →» sits in the buttons row (no extra line — the slider stays short) */
+body.ss-wow #ss-app .ssx .card .left .acts{flex-wrap:wrap}
+body.ss-wow #ss-app .ssx .card .left .acts .ss-cp{flex:1 1 auto;align-self:center;margin-right:auto;color:#94A3B8;font:500 14px Roboto,sans-serif;text-decoration:none;min-width:0}
+body.ss-wow #ss-app .ssx .card .left .acts .ss-cp b{color:#F59E0B;font-weight:700}body.ss-wow #ss-app .ssx .card .left .acts .ss-cp:hover b{text-decoration:underline}
+@media(max-width:600px){body.ss-wow #ss-app .ssx .card .left .acts .ss-cp{flex-basis:100%;order:5;text-align:center;font-size:13px}}
 /* Free — the first tab (owner 19.11): 3 free blocks + the "Get everything free" card */
 body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:12px 20px!important;align-items:stretch!important;align-content:center!important}
 body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{grid-column:1!important;grid-row:1!important}

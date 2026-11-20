@@ -1,0 +1,2 @@
+/* measure only: every card at its own height (no stretch) — which tab is the tallest on the owner's laptop */
+body.ss-wow #ss-app .ssx .track{align-items:flex-start!important}
