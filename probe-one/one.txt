@@ -1,0 +1,2 @@
+{"body":["ss-newhome","ss-one","ssg-bar-on"],"ssg":"виден 412×57 @34","bar":"виден 412×54 @646","promo":"виден 412×34 @0","foot":"виден 412×610 @7326","appHeader":"скрыт","appNav":"скрыт","appFooter":"скрыт"}
+errors: []
