@@ -1,3 +1,4 @@
+page {"title":"Ableton Templates, Presets & Mixing/Mastering | Solid Sound","n":4,"list":["SPAN[Play Infinity] in top","A[Open Infinity] in shop","BUTTON[Add Infinity to favorites] in shop","BUTTON[Play Infinity preview] in shop"]}
 0 before NO BUTTON
 cover no
 click1 fail locator.click: Timeout 5000ms exceeded.
