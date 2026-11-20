@@ -494,6 +494,16 @@ body.ss-wow #ss-app .ssx .card .left .f .chips span{height:34px!important;min-he
 body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 10px!important}
 }
 @media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
+/* (20.11 owner, A31: one slider height that fits the screen) LAST in the file on purpose — wins over the phone rules above:
+   slimmer choice buttons, «Your fix» items on one line each (Video & ads was the tallest tab, 468 px) */
+@media(max-width:600px){
+body.ss-wow #ss-app .ssx .card .left .f .chips span{height:31px!important;min-height:31px!important;padding:0 10px!important;font-size:13px!important}
+body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 8px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd{padding:10px!important;margin-top:6px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl{gap:5px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri{padding:6px 8px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri em{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:12px!important;line-height:1.3!important}
+}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
