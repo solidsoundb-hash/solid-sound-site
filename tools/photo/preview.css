@@ -1,12 +1,14 @@
 /* PREVIEW (not deployed) — owner 20.11 «ночью яркость сбавляют, днём усиливают»: softer at night, same punch by day */
 /* 1) background a touch lighter (0.8 % → ~1.5 %, like Steam) */
-body.ss-wow #ss-app :is(#shop,#services,#examples,#dashboard,#reviews,#free){background:radial-gradient(55% 70% at 50% -10%,rgba(59,130,246,.30),transparent 70%),radial-gradient(35% 55% at 12% 0%,rgba(37,99,235,.22),transparent 72%),radial-gradient(35% 55% at 88% 0%,rgba(29,78,216,.22),transparent 72%),linear-gradient(180deg,#132245 0%,#101a33 55%,#0f1729 100%)!important}
-body.ss-wow,body.ss-wow #ss-app{background-color:#0f1729!important}
-body.ss-wow #ss-app .ssx{background:#141d33!important}
-body.ss-wow #ss-app .ssx .card{background:#172036!important;border-color:rgba(255,255,255,.12)!important}
+html body.ss-wow #ss-app#ss-app :is(#shop,#services,#examples,#dashboard,#reviews,#free){background:radial-gradient(55% 70% at 50% -10%,rgba(59,130,246,.30),transparent 70%),radial-gradient(35% 55% at 12% 0%,rgba(37,99,235,.22),transparent 72%),radial-gradient(35% 55% at 88% 0%,rgba(29,78,216,.22),transparent 72%),linear-gradient(180deg,#132245 0%,#101a33 55%,#0f1729 100%)!important}
+html body.ss-wow,html body.ss-wow #ss-app#ss-app{background-color:#0f1729!important}
+html body.ss-wow #ss-app#ss-app .ssx{background:#141d33!important}
+html body.ss-wow #ss-app#ss-app .ssx .card{background:#172036!important;border-color:rgba(255,255,255,.12)!important}
 /* 2) body text off-white (no glow at night), headings stay white */
-body.ss-wow #ss-app{color:#E6EAF2}
-body.ss-wow #ss-app .ssx .card .chips span{color:#DCE2EC!important;border-color:rgba(255,255,255,.14)!important}
-body.ss-wow #ss-app .ssx .card .chips span.on{color:#FBBF24!important;border-color:#F59E0B!important}
+html body.ss-wow #ss-app#ss-app{color:#E6EAF2}
+html body.ss-wow #ss-app#ss-app .ssx .card .chips span{color:#DCE2EC!important;border-color:rgba(255,255,255,.14)!important}
+html body.ss-wow #ss-app#ss-app .ssx .card .chips span.on{color:#FBBF24!important;border-color:#F59E0B!important}
 /* 3) frames a little stronger so blocks do not melt together on a dimmed screen */
-body.ss-wow #ss-app .ssx .ssw-match,body.ss-wow #ss-app .ssx .fz-t{border-color:rgba(255,255,255,.13)!important}
+html body.ss-wow #ss-app#ss-app .ssx .ssw-match,html body.ss-wow #ss-app#ss-app .ssx .fz-t{border-color:rgba(255,255,255,.13)!important}
+html body.ss-wow #ss-app#ss-app .ssx .card .left,html body.ss-wow #ss-app#ss-app .ssx .vp{background:transparent!important}
+html body.ss-wow #ss-app#ss-app>*:first-child,html body.ss-wow #ss-app#ss-app section:first-of-type{background-color:#101a33!important}
