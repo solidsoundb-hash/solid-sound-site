@@ -1,3 +1,6 @@
+/* (20.11 owner, phone: «размеры разные, скачет») on phones / tablets the slider window keeps ONE height — the tallest card — so
+   nothing below it jumps when the tabs change; on a computer it follows the open card (owner 19.11 «компактно») */
+window.ssxH=function(r,i){ var cs=r.querySelectorAll('.card'); if(innerWidth<1001){ var m=0; cs.forEach(function(c){ m=Math.max(m,c.offsetHeight); }); return m; } return cs[i]?cs[i].offsetHeight:0; };
 /* other languages: translated label -> English (window.SS_EN comes with home-app-<lang>.js), so text matchers keep working */
 window.ssT=function(s){var m=window.SS_TR||{};return m[s]||s;};
 window.ssEN=function(s){s=String(s||'').trim();var m=window.SS_EN||{};return m[s]||s;};
@@ -260,7 +263,7 @@ document.addEventListener('click',function(e){
     r.querySelector('.track').style.transform='translateX('+(-100*i)+'%)';
     /* (owner 19.11: «подгони, чтобы всё было компактно») the window is as tall as the OPEN card (no empty space under short
        ones); the height change is animated in CSS (.ssx .vp transition), so the block below glides instead of jumping */
-    r.querySelector('.vp').style.height=cards[i].offsetHeight+'px';
+    r.querySelector('.vp').style.height=window.ssxH(r,i)+'px';
     tabs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
     dots.forEach(function(d,k){ d.classList.toggle('on',k===i); });
     r.setAttribute('data-cur',i);
@@ -342,7 +345,7 @@ document.addEventListener('click',function(e){
   var done=null;
   (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var vp=r.querySelector('.vp'); if(vp) vp.addEventListener('touchmove',hold,{passive:false}); var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
   var lastW=innerWidth; addEventListener('resize',function(){ if(innerWidth===lastW) return; lastW=innerWidth; var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
-  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var vp=r.querySelector('.vp'), c=r.querySelectorAll('.card')[+(r.getAttribute('data-cur')||0)], h=c?c.offsetHeight:0; if(vp && h && Math.abs(vp.offsetHeight-h)>2) vp.style.height=h+'px'; }); /* open card, like go() */
+  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var vp=r.querySelector('.vp'), c=r.querySelectorAll('.card')[+(r.getAttribute('data-cur')||0)], h=c?window.ssxH(r,+(r.getAttribute('data-cur')||0)):0; if(vp && h && Math.abs(vp.offsetHeight-h)>2) vp.style.height=h+'px'; }); /* open card, like go() */
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && !r.__ro){ r.__ro=1; r.querySelectorAll('.card').forEach(function(c){ ro.observe(c); }); } }); }
 })();
 
@@ -546,7 +549,7 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
       var top=r.getBoundingClientRect().top+scrollY; return top+r.offsetHeight-vp.offsetHeight+max; }
     for(var i=0;i<LV.length && need()>avail;i++) r.classList.add(LV[i]);
     /* keep the open card's height right after the change */
-    var cur=+(r.getAttribute('data-cur')||0), c=r.querySelectorAll('.card')[cur], vp=r.querySelector('.vp'); if(c&&vp) vp.style.height=c.offsetHeight+'px';
+    var cur=+(r.getAttribute('data-cur')||0), c=r.querySelectorAll('.card')[cur], vp=r.querySelector('.vp'); if(c&&vp) vp.style.height=window.ssxH(r,cur)+'px';
   }
   var last=null; (window.ssOnDom||function(f){f();})(function(){ var r=document.querySelector('#ss-app .ssx'); if(r && r!==last){ last=r; fit(); setTimeout(fit,600); } });
   var lw=innerWidth, lh=innerHeight; addEventListener('resize',function(){ if(innerWidth!==lw || Math.abs(innerHeight-lh)>120){ lw=innerWidth; lh=innerHeight; fit(); } },{passive:true});
