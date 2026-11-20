@@ -470,7 +470,7 @@ body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:2px 0!important}
  body.ss-wow .ssw-hero .k{display:none!important}
  body.ss-wow .ssw-hero .slg{font-size:28px!important;margin:0 auto!important}
  body.ss-wow #ss-app .ssx{padding-top:6px!important;padding-bottom:4px!important}
- body.ss-wow #ss-app .ssx h1.ssx-t{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;margin:0!important}
+ body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 6px!important;font-size:16px!important} /* (20.11 owner: «вернуть надпись What are you working on») */
  body.ss-wow #ss-app .ssx .tasks{margin-bottom:8px!important}
  body.ss-wow #ss-app .ssx .tasks button{padding-top:8px!important;padding-bottom:8px!important}
  body.ss-wow #ss-app .ssx .card{padding-top:10px!important;padding-bottom:10px!important}
@@ -540,6 +540,8 @@ body.ss-wow #ss-app .ssx .card .left .f .chips span{height:34px!important;min-he
 body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 10px!important}
 }
 @media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
+#ss-app#ss-app .ssx .card .left.fp>.fz-tiles{grid-column:1!important;grid-row:3 / span 2!important;align-self:start!important;margin:0 0 8px!important}
+#ss-app#ss-app .ssx .card .left.fp>.fp-links a{margin-right:14px}
 /* (20.11 owner, A31: one slider height that fits the screen) LAST in the file on purpose — wins over the phone rules above:
    slimmer choice buttons, «Your fix» items on one line each (Video & ads was the tallest tab, 468 px) */
 @media(max-width:600px){
@@ -582,7 +584,18 @@ function build(ssx){if(document.querySelector('.ssw-hero'))return;document.body.
   wall.addEventListener('click',function(e){var a=e.target.closest('a[data-n]');if(!a)return;if(play(W[+a.getAttribute('data-n')],a))e.preventDefault()});
 };
  wall.classList.add('stage');requestAnimationFrame(function(){wall.classList.add('on')}); /* owner 19.11: blue stage instead of the cover wall (go0 keeps the old wall code) */
- match(ssx);sides(ssx)}
+ match(ssx);sides(ssx);freeIn(ssx)}
+/* (20.11 owner: «Фри мы переносим в just starting и заменяем только то, что там есть, то чего нема — добавляем») the Free tab is gone:
+   its three tiles (Track feedback, Promotion advice, Templates & presets) take the place of Just starting's list and its «Free feedback»
+   link (the same things); the «Get everything free» page becomes a link next to Wiki; Google / email sign-up stay */
+function freeIn(ssx){var cards=ssx.querySelectorAll('.card'),c0=cards[0],h=c0&&c0.querySelector('.left.hp'),fp=ssx.querySelector('.card .left.fp');if(!h||!fp||ssx.dataset.ssFree)return;ssx.dataset.ssFree='1';
+ var tiles=h.querySelector('.fz-tiles'),hc=h.querySelector('.hp-card .cta'),list=fp.querySelector('.fp-list'),links=fp.querySelector('.fp-links');
+ if(tiles){if(list)fp.replaceChild(tiles,list);else fp.insertBefore(tiles,fp.querySelector('.acts'))}
+ if(links){[].forEach.call(links.querySelectorAll('a'),function(a){if(/feedback/i.test(a.textContent))a.remove()});if(hc){var a=document.createElement('a');a.href=hc.href;a.textContent='All free downloads →';links.appendChild(a)}}
+ var t0=ssx.querySelector('.tasks button[data-i="0"]'),on=!!(t0&&t0.classList.contains('on'));if(t0)t0.remove();c0.remove();
+ [].forEach.call(ssx.querySelectorAll('.tasks button'),function(b,k){b.setAttribute('data-i',k)});
+ var d=ssx.querySelectorAll('.dots i');if(d.length>ssx.querySelectorAll('.card').length)d[0].remove();
+ var cur=+(ssx.getAttribute('data-cur')||0),b=ssx.querySelectorAll('.tasks button')[on?0:Math.max(0,cur-1)];if(b)b.click()}
 /* "N templates match" in the first card; updates only on the visitor's own clicks/typing (no observers) */
 function match(ssx){var card=[].filter.call(ssx.querySelectorAll('.card .left'),function(l){return l.querySelector('input[type=range]')&&!l.classList.contains('hp')})[0]; /* the templates card (no longer the first: «Get help» is) */if(!card)return;var acts=card.querySelector('.acts');var box=document.createElement('div');box.className='ssw-match';box.setAttribute('role','button');box.tabIndex=0;if(acts)card.insertBefore(box,acts);else card.appendChild(box);var last='';
  function pick(){var fs=card.querySelectorAll('.f');var g=(fs[0]&&fs[0].querySelector('.chips .on')||{}).textContent||'';var bi=card.querySelector('input[type=number]');var b=+(bi&&(bi.value||bi.getAttribute('data-v')))||0;var kc=null;[].forEach.call(card.querySelectorAll('.f.row>div'),function(d){var l=d.querySelector('b');if(!kc&&l&&/^\s*(key|тональн|tonart|tonali|clave|tom\b)/i.test(l.textContent))kc=d.querySelector('.chips')});if(!kc)kc=card.querySelectorAll('.f.row .chips')[0]; /* by its label, not by position (owner 19.11 moved Key) */var k=(kc&&kc.querySelector('.on')||{}).textContent||'';return {g:g.trim().toLowerCase(),b:b,k:k.trim()}}
@@ -656,7 +669,7 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
  /* Get help: one answer open at a time */
  (function(left){if(!left)return;left.addEventListener('toggle',function(e){var d=e.target;if(!d.open||d.tagName!=='DETAILS')return;[].forEach.call(left.querySelectorAll('details[open]'),function(x){if(x!==d)x.open=false})},true)})(L[0]);
  /* More: "Preparing a live set" now has its own tab (DJ set) — go there instead of the price list */
- (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=ssx.querySelectorAll('.tasks button')[4];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[7]);
+ (function(left){if(!left)return;[].forEach.call(left.querySelectorAll('a'),function(a){if(!/live set/i.test(a.textContent))return;a.addEventListener('click',function(e){var b=[].filter.call(ssx.querySelectorAll('.tasks button'),function(x){return /DJ set/i.test(x.textContent)})[0];if(!b)return;e.preventDefault();b.click();try{ssx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}})})})(L[7]);
  /* "Before / after" in the Video card -> the Examples section, its video tab (owner 19.11) */
  (function(left){var a=left&&[].filter.call(left.querySelectorAll('.acts a'),function(x){return /before/i.test(x.textContent)})[0];if(!a)return;
   a.addEventListener('click',function(e){var ex=document.getElementById('examples');if(!ex)return;e.preventDefault();ex.scrollIntoView({behavior:'smooth',block:'start'});

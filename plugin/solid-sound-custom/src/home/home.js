@@ -288,7 +288,7 @@ document.addEventListener('click',function(e){
       if('IntersectionObserver' in window) new IntersectionObserver(function(es){ seen=es[0].isIntersecting; if(seen) arm(); else clear(); },{threshold:0.35}).observe(r);
       setTimeout(arm, 1500); }
     document.addEventListener('visibilitychange',function(){ if(document.hidden) clear(); else arm(); });
-    document.addEventListener('click',function(e){ if(!(e.target.closest && e.target.closest('#ss-cc'))) stop(); },{capture:true,passive:true}); /* the cookie banner does not count */
+    document.addEventListener('click',function(e){ if(e.isTrusted && !(e.target.closest && e.target.closest('#ss-cc'))) stop(); },{capture:true,passive:true}); /* clicks made by our own code do not count */ /* the cookie banner does not count */
     document.addEventListener('keydown',function(e){ if(!/^(Arrow|Page|Home|End| $|Spacebar)/.test(e.key) || (e.target.closest && e.target.closest('input,textarea,select,button,a,[role=tab]'))) stop(); },{capture:true,passive:true});
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && r!==cur) wire(r); });
   })();
