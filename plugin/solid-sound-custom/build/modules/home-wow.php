@@ -408,7 +408,7 @@ body.ss-wow #ss-app .ssx .card .left .acts .ss-cp b{color:#F59E0B;font-weight:70
 body.ss-wow #ss-app .ssx .ssw-match.ssw-desc{cursor:default;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;text-align:left!important;gap:6px!important;aspect-ratio:auto!important;padding:18px!important}
 body.ss-wow #ss-app .ssx .ssw-desc b{color:#fff;font:800 19px/1.25 "Exo 2",sans-serif}body.ss-wow #ss-app .ssx .ssw-desc .pp{color:#F59E0B;font:700 15px "Exo 2",sans-serif}
 body.ss-wow #ss-app .ssx .ssw-desc p{margin:4px 0 0;color:#CBD5E1;font:400 14px/1.5 Roboto,sans-serif}
-body.ss-wow #ss-app .ssx .ssw-desc ul{margin:6px 0 0;padding:0;list-style:none}body.ss-wow #ss-app .ssx .ssw-desc li{position:relative;padding-left:18px;margin:3px 0;color:#94A3B8;font:400 13px Roboto,sans-serif}body.ss-wow #ss-app .ssx .ssw-desc li:before{content:"✓";position:absolute;left:0;color:#34D399;font-weight:800}
+body.ss-wow #ss-app .ssx .ssw-desc ul{margin:6px 0 0;padding:0;list-style:none}body.ss-wow #ss-app .ssx .ssw-desc li{position:relative;padding-left:18px;margin:3px 0;color:#94A3B8;font:400 13px Roboto,sans-serif}body.ss-wow #ss-app .ssx .ssw-desc li:before{content:"✓";position:absolute;left:0;color:#34D399;font-weight:800}body.ss-wow #ss-app .ssx .ssw-desc .pay{margin-top:6px;color:#94A3B8;font:400 12.5px/1.4 Roboto,sans-serif}
 /* Free — the first tab (owner 19.11): 3 free blocks + the "Get everything free" card */
 body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:12px 20px!important;align-items:stretch!important;align-content:center!important}
 body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{grid-column:1!important;grid-row:1!important}
@@ -660,17 +660,16 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(null); /* 20.11 owner: the before/after box made way for a description of the chosen service — examples are one tap away under it */
  /* Finishing (owner 20.11 «вместо примеров в квадратике — описание каждой кнопки, под квадратиком кнопки на примеры и на услуги») */
  (function(left){if(!left||left.querySelector('.ssw-desc'))return;var acts=left.querySelector('.acts');
-  var D={'free track review':['Free track review','Free','Not sure what your track needs? An engineer listens and tells you what to fix first — written and video notes.',['Free for your first track','Answer in 2–3 days']],
-   'rework in your project':['Rework in your project','from €120','We open your project in your own DAW and finish it with you: arrangement, sound design, mix. The project file comes back.',['Calls with the engineer','5–14 days']],
-   'mixing':['Mixing','from €60','Your stems mixed by our engineers: balance, EQ, compression, space and automation. Stereo master included.',['3–10 revisions','2–9 days']],
-   'mastering':['Mastering','from €15','A loud, clean master for Spotify, Beatport and clubs — stereo, stem or multitrack.',['2 revisions','24–48 h']],
-   'mix & master bundle':['Mix & Master bundle','from €109','Stems to release: mix, stem mastering, masters for every platform, stems, instrumental and a 30-min video call.',['4 revisions','Best value']],
-   'video call':['Video call','€30 / 60 min','An engineer joins you live — screen and sound — and works on your track together with you.',['Any DAW','Book any day']]};
+  var D={'not sure what it needs':['Free track review','Free','An engineer listens and tells you what to fix first — written and video notes. Then you know exactly what to order.',['Free for your first track','Answer in 2–3 days']],
+   'arrangement not finished':['Rework in your project','from €120','We open your project in your own DAW and finish it with you: arrangement, sound design, mix. The project file comes back.',['Calls with the engineer','5–14 days']],
+   'ready to mix':['Mixing — or the Mix & Master bundle','from €60','Your stems mixed by our engineers: balance, EQ, compression, space. Stereo master included. Bundle (from €109): + stem master, platform masters, stems, instrumental, 30-min call.',['3–10 revisions','2–9 days']],
+   'mixed, needs a master':['Mastering','from €15','A loud, clean master for Spotify, Beatport and clubs — stereo, stem or multitrack.',['2 revisions','24–48 h']],
+   'want to work live':['Live video call','€30 / 60 min','An engineer joins you live — screen and sound — and works on your track together with you.',['Any DAW','Book any day']]};
   var box=document.createElement('div');box.className='ssw-match ssw-desc';if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   if(acts){var ex=document.createElement('a');ex.className='cta g';ex.href='#examples';ex.textContent='Hear examples';var g=acts.querySelector('a.cta.g');if(g)acts.replaceChild(ex,g);else acts.appendChild(ex);
    ex.addEventListener('click',function(e){var t=document.getElementById('examples');if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})}
   var last='';function run(){var c=left.querySelector('.chips .on'),k=c?c.textContent.trim().toLowerCase():'',d=D[k];if(!d||k===last)return;last=k;
-   box.innerHTML='<b>'+esc(d[0])+'</b><span class="pp">'+esc(d[1])+'</span><p>'+esc(d[2])+'</p><ul>'+d[3].map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'}
+   box.innerHTML='<b>'+esc(d[0])+'</b><span class="pp">'+esc(d[1])+'</span><p>'+esc(d[2])+'</p><ul>'+d[3].map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'+(d[1]==='Free'?'':'<small class="pay">Pay 50 % to start — the rest only when you love the result.</small>')}
   left.addEventListener('click',function(){requestAnimationFrame(run)});run()})(L[2]);
  /* Releasing (owner 19.11: «кнопки должны нажиматься, квадратик справа показывает, что клиент выбрал») */
  (function(left){if(!left||left.querySelector('.ssw-match'))return;var f=left.querySelector('.f .chips');if(!f)return;var acts=left.querySelector('.acts');
