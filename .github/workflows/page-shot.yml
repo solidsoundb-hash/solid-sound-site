@@ -1,5 +1,5 @@
 # Before / after pictures of our pages (owner 20.11 rule: screenshots before and after every change).
-# Run: add «<date> <label> /path/ /path2/» to .github/page-shot.txt. Result: branch shots-page, folder <label>/ (report.md + JPEG).
+# Run: add «<date> <label> /path/ /path2/» to .github/page-shot.txt. Result: branch shots-ab, folder <label>/ (report.md + JPEG).
 name: Page shot
 on:
   workflow_dispatch:
@@ -21,9 +21,9 @@ jobs:
       - name: Shoot
         env: { PW_CHANNEL: chrome }
         run: node tools/page-shot.js
-      - name: Save to branch shots-page
+      - name: Save to branch shots-ab
         if: always()
         run: |
-          git fetch -q origin shots-page && git worktree add -q sp origin/shots-page || (git worktree add -q --detach sp && cd sp && git checkout -q --orphan tmp && git rm -rqf . ; true)
+          git fetch -q origin shots-ab && git worktree add -q sp origin/shots-ab || (git worktree add -q --detach sp && cd sp && git checkout -q --orphan tmp && git rm -rqf . ; true)
           cp -r page-shot/* sp/ && cd sp && git config user.name photographer && git config user.email actions@users.noreply.github.com
-          git add -A && git commit -qm "page shot: $(date -u +%FT%TZ)" && git push -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:shots-page
+          git add -A && git commit -qm "page shot: $(date -u +%FT%TZ)" && git push -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:shots-ab

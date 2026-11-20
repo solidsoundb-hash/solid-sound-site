@@ -1,7 +1,7 @@
 // Before / after pictures of any pages of OUR site (owner 20.11: «всегда скринить до и после правок»).
 // Pages = last line of .github/page-shot.txt after the date: «<date> <label> /path/ /path2/ …». Each page on a computer (1366×768)
 // and a weak phone (Samsung A31 with browser bars, 412×700): first screen + full page, plus weight (KB), number of requests,
-// YouTube requests, JS errors. Output: page-shot/<label>/ + report.md, pushed to branch shots-page.
+// YouTube requests, JS errors. Output: page-shot/<label>/ + report.md, pushed to branch shots-ab.
 const { chromium } = require('playwright'); const fs = require('fs');
 const line = fs.readFileSync('.github/page-shot.txt', 'utf8').trim().split('\n').pop().trim().split(/\s+/);
 const paths = line.filter(x => x.startsWith('/')), label = (line.find(x => !x.startsWith('/') && !/^\d/.test(x)) || 'shot').replace(/[^\w-]/g, '');
