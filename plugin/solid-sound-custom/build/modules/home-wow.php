@@ -466,9 +466,9 @@ body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:2px 0!important}
 }
 @media(min-width:1001px) and (max-height:1000px){
  /* hero: one line, no pill; the "What are you working on?" line stays for search engines and screen readers only */
- body.ss-wow .ssw-hero{padding:4px 12px 2px!important}
- body.ss-wow .ssw-hero .k{display:none!important}
- body.ss-wow .ssw-hero .slg{font-size:28px!important;margin:0 auto!important}
+ /* (20.11 owner: «слайдер съехал вверх и перекрыл заголовок, и там ещё было 3 слова — верни как было») title, the pill, then the slider */
+ body.ss-wow .ssw-hero{padding:14px 12px 12px!important}
+ body.ss-wow .ssw-hero .slg{font-size:36px!important;margin:0 auto 8px!important;line-height:1.1!important}
  body.ss-wow #ss-app .ssx{padding-top:6px!important;padding-bottom:4px!important}
  body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 6px!important;font-size:16px!important} /* (20.11 owner: «вернуть надпись What are you working on») */
  body.ss-wow #ss-app .ssx .tasks{margin-bottom:8px!important}
@@ -541,6 +541,13 @@ body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card
 }
 @media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
 #ss-app#ss-app .ssx .card .left.fp>.fz-tiles{grid-column:1!important;grid-row:3 / span 2!important;align-self:start!important;margin:0 0 8px!important}
+@media(min-width:1001px){ /* Free tiles inside Just starting: compact on the computer */
+#ss-app#ss-app .ssx .card .left.fp>.fz-tiles{gap:8px!important;grid-auto-rows:auto!important;align-self:start!important}
+#ss-app#ss-app .ssx .card .left.fp .fz-t{padding:10px 14px!important;gap:12px!important;border-radius:10px!important}
+#ss-app#ss-app .ssx .card .left.fp .fz-t .i{flex-basis:36px!important;width:36px!important;height:36px!important;border-radius:9px!important}
+#ss-app#ss-app .ssx .card .left.fp .fz-t .i svg{width:18px!important;height:18px!important}
+#ss-app#ss-app .ssx .card .left.fp .fz-t b{font-size:16px!important}#ss-app#ss-app .ssx .card .left.fp .fz-t small{font-size:13px!important}
+}
 #ss-app#ss-app .ssx .card .left.fp>.fp-links a{margin-right:14px}
 /* (20.11 owner, A31: one slider height that fits the screen) LAST in the file on purpose — wins over the phone rules above:
    slimmer choice buttons, «Your fix» items on one line each (Video & ads was the tallest tab, 468 px) */
