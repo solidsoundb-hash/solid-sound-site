@@ -1,0 +1,20 @@
+// Read-only look at a public page (owner 20.11: «глянь вот это» — competitors' service pages). No clicks, no forms.
+// URL = last line of .github/page-look.txt. Output: page-out/ (full-page screenshots + headings/prices text), workflow artifact.
+const { chromium } = require('playwright'); const fs = require('fs');
+const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').pop().split(' ').pop();
+(async () => {
+  fs.mkdirSync('page-out', { recursive: true });
+  const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
+  for (const [n, o] of [['desktop', { viewport: { width: 1440, height: 900 } }], ['phone', { viewport: { width: 390, height: 844 }, isMobile: true }]]) {
+    const p = await (await b.newContext({ ...o, locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' })).newPage();
+    await p.goto(url, { waitUntil: 'networkidle', timeout: 120000 }).catch(() => {});
+    await p.waitForTimeout(3000);
+    for (let y = 0; y < 20; y++) { await p.mouse.wheel(0, 1200); await p.waitForTimeout(250); } await p.evaluate(() => scrollTo(0, 0));
+    await p.screenshot({ path: `page-out/${n}.jpg`, type: 'jpeg', quality: 60, fullPage: true }).catch(() => {});
+    if (n === 'desktop') {
+      const t = await p.evaluate(() => [...document.querySelectorAll('h1,h2,h3,h4,[class*=price],a.button,button,.btn')].filter(e => e.offsetParent && e.innerText.trim()).map(e => e.tagName + ': ' + e.innerText.trim().replace(/\s+/g, ' ').slice(0, 160)).join('\n'));
+      fs.writeFileSync('page-out/text.txt', url + '\n\n' + t + '\n\n---- full text ----\n' + (await p.evaluate(() => document.body.innerText)).slice(0, 60000));
+    }
+  }
+  await b.close();
+})();
