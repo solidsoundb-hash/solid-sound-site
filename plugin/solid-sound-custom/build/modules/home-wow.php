@@ -445,6 +445,13 @@ body.ss-wow #ss-app .ssx .hp-card b{font-size:24px}
 body.ss-wow #ss-app .ssx .hp-card small{font-size:14.5px}
 body.ss-wow #ss-app .ssx .hp-card .cta{padding:12px!important;font-size:16px!important}
 .ssw-hero .slg{font-size:34px!important;margin-bottom:4px!important}
+/* (owner 20.11 «все секции адаптируй») every tab ≤ ~410 px: the right column decided the height */
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-match)>.ssw-match:not(.ssw-ab):not(.ssw-rel){aspect-ratio:auto!important}
+body.ss-wow #ss-app .ssx .ssw-ab .abt:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab .ss-ab:nth-of-type(n+2),body.ss-wow #ss-app .ssx .ssw-ab>small{display:none!important}
+body.ss-wow #ss-app .ssx .card .left.fp{grid-auto-flow:row dense!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{height:96px!important;padding:10px 16px!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover .fp-t{font-size:24px!important}
+body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:2px 0!important}
 }
 @media(max-width:1000px){body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:1fr!important;align-content:start!important}body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:1!important;grid-row:2!important;padding:16px}body.ss-wow #ss-app .ssx .hp-card b{font-size:19px}}
 @media(max-width:600px){body.ss-wow #ss-app .ssx .fz-tiles{gap:8px}body.ss-wow #ss-app .ssx .fz-t{padding:11px 12px;gap:12px}body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:36px;width:36px;height:36px}body.ss-wow #ss-app .ssx .fz-t b{font-size:15px}body.ss-wow #ss-app .ssx .fz-t small{font-size:12.5px}body.ss-wow #ss-app .ssx .hp-card small{display:none}}
