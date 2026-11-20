@@ -1,15 +1,15 @@
 {
  "mode": "full",
- "date": "2026-11-20T03:01:14.292Z",
+ "date": "2026-11-20T07:37:08.467Z",
  "stats": {
   "pages": 110,
-  "clicks": 756,
+  "clicks": 709,
   "sounds": 77,
-  "links": 557,
+  "links": 556,
   "blockedRequests": 53,
   "eyesTiles": 0,
   "eyesPages": 0,
-  "audioFiles": 28,
+  "audioFiles": 29,
   "robots": 20
  },
  "bugs": [
@@ -46,6 +46,29 @@
   },
   {
    "sev": "major",
+   "type": "clickerr",
+   "title": "После нажатия «Film · Ads · Video» — ошибка в коде",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Нажать «Film · Ads · Video»"
+   ],
+   "expected": "Без ошибок",
+   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "where": [
+    "/en/",
+    "/en/all-products/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/10_008.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
    "type": "kb-seo-title",
    "title": "Нет заголовка страницы (title) или он слишком длинный/короткий",
    "steps": [
@@ -64,8 +87,8 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_018.jpg",
-   "isNew": true,
+   "shot": "shots/10_019.jpg",
+   "isNew": false,
    "more": 1
   },
   {
@@ -88,7 +111,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_020.jpg",
+   "shot": "shots/10_021.jpg",
    "isNew": false
   },
   {
@@ -109,7 +132,7 @@
     "компьютер"
    ],
    "shot": "shots/10_005.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -129,7 +152,7 @@
     "компьютер"
    ],
    "shot": "shots/10_006.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -149,7 +172,7 @@
     "компьютер"
    ],
    "shot": "shots/10_007.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -160,7 +183,7 @@
     "Пролистать карточки слайдера точками"
    ],
    "expected": "Весь блок «What are you working on?» виден над нижней панелью",
-   "actual": "Уходит под нижнюю панель: карточка 2 на 8px, карточка 6 на 69px, карточка 7 на 23px",
+   "actual": "Уходит под нижнюю панель: карточка 2 на 196px, карточка 6 на 55px, карточка 7 на 23px",
    "sig": "fit|phone",
    "where": [
     "/en/"
@@ -168,8 +191,8 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_009.jpg",
-   "isNew": true
+   "shot": "shots/10_010.jpg",
+   "isNew": false
   },
   {
    "sev": "major",
@@ -188,8 +211,8 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_010.jpg",
-   "isNew": true
+   "shot": "shots/10_011.jpg",
+   "isNew": false
   },
   {
    "sev": "major",
@@ -208,8 +231,8 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_011.jpg",
-   "isNew": true
+   "shot": "shots/10_012.jpg",
+   "isNew": false
   },
   {
    "sev": "major",
@@ -228,8 +251,8 @@
    "devices": [
     "телефон"
    ],
-   "shot": "shots/10_012.jpg",
-   "isNew": true
+   "shot": "shots/10_013.jpg",
+   "isNew": false
   },
   {
    "sev": "major",
@@ -250,7 +273,7 @@
     "телефон"
    ],
    "shot": "shots/16_008.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -271,7 +294,7 @@
     "телефон"
    ],
    "shot": "shots/16_009.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -292,7 +315,7 @@
     "телефон"
    ],
    "shot": "shots/16_010.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "major",
@@ -303,7 +326,7 @@
     "Пролистать карточки слайдера точками"
    ],
    "expected": "Весь блок «What are you working on?» виден над нижней панелью",
-   "actual": "Уходит под нижнюю панель: карточка 1 на 21px, карточка 2 на 72px, карточка 5 на 15px, карточка 6 на 125px, карточка 7 на 87px",
+   "actual": "Уходит под нижнюю панель: карточка 2 на 60px, карточка 6 на 10px",
    "sig": "fit|a31",
    "where": [
     "/en/"
@@ -312,7 +335,7 @@
     "Samsung A31"
    ],
    "shot": "shots/18_006.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "minor",
@@ -430,7 +453,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_008.jpg",
+   "shot": "shots/10_009.jpg",
    "isNew": false
   },
   {
@@ -464,7 +487,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_019.jpg",
+   "shot": "shots/10_020.jpg",
    "isNew": false
   },
   {
@@ -552,7 +575,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_022.jpg",
+   "shot": "shots/10_024.jpg",
    "isNew": false
   },
   {
@@ -598,26 +621,6 @@
    ],
    "shot": "shots/15_006.jpg",
    "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-perf-lcp-lazy",
-   "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/ (Samsung A31)",
-    "Где: xPitch_Title_PSD-200x200.jpg.pagespeed.ic.ahRYm-WLmX.webp"
-   ],
-   "expected": "Для первого экрана — без lazy, с fetchpriority=high.",
-   "actual": "Почему важно: Самая важная картинка появляется последней.",
-   "sig": "kb|kb-perf-lcp-lazy|Главная картинка первого экрана грузится «лениво» (loading=lazy)",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "Samsung A31"
-   ],
-   "shot": "shots/18_013.jpg",
-   "isNew": true
   },
   {
    "sev": "minor",
@@ -828,7 +831,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_015.jpg",
+   "shot": "shots/10_016.jpg",
    "isNew": false
   },
   {
@@ -848,7 +851,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_013.jpg",
+   "shot": "shots/10_014.jpg",
    "isNew": false
   },
   {
@@ -868,7 +871,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_014.jpg",
+   "shot": "shots/10_015.jpg",
    "isNew": false
   },
   {
@@ -890,7 +893,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_016.jpg",
+   "shot": "shots/10_017.jpg",
    "isNew": false
   },
   {
@@ -912,7 +915,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_017.jpg",
+   "shot": "shots/10_018.jpg",
    "isNew": false
   },
   {
@@ -934,7 +937,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_021.jpg",
+   "shot": "shots/10_022.jpg",
    "isNew": false,
    "more": 1
   },
@@ -956,7 +959,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_024.jpg",
+   "shot": "shots/10_025.jpg",
    "isNew": false
   },
   {
@@ -974,10 +977,11 @@
     "/en/all-products/"
    ],
    "devices": [
+    "компьютер",
     "телефон"
    ],
    "shot": "shots/10_023.jpg",
-   "isNew": true
+   "isNew": false
   },
   {
    "sev": "check",
@@ -994,9 +998,10 @@
     "/en/shop/"
    ],
    "devices": [
+    "компьютер",
     "телефон"
    ],
-   "shot": "shots/12_015.jpg",
+   "shot": "shots/12_013.jpg",
    "isNew": false
   },
   {
@@ -1054,7 +1059,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_016.jpg",
+   "shot": "shots/18_015.jpg",
    "isNew": false
   },
   {
@@ -1074,7 +1079,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_017.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1094,7 +1099,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_018.jpg",
+   "shot": "shots/18_017.jpg",
    "isNew": false
   },
   {
@@ -1114,7 +1119,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_019.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1134,7 +1139,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_020.jpg",
+   "shot": "shots/18_019.jpg",
    "isNew": false
   },
   {
@@ -1154,7 +1159,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_021.jpg",
+   "shot": "shots/18_020.jpg",
    "isNew": false
   },
   {
@@ -1162,7 +1167,7 @@
    "type": "kb-perf-weight",
    "title": "Страница весит больше 3 МБ",
    "steps": [
-    "Открыть https://solid-sound.net/en/my-account/edit-account/ (компьютер)"
+    "Открыть https://solid-sound.net/en/my-account/edit-account/ (телефон)"
    ],
    "expected": "Смотреть, что самое тяжёлое.",
    "actual": "Скачано 3.1 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
@@ -1171,10 +1176,9 @@
     "/en/my-account/edit-account/"
    ],
    "devices": [
-    "компьютер",
     "телефон"
    ],
-   "shot": "shots/19_005.jpg",
+   "shot": "shots/19_006.jpg",
    "isNew": false
   }
  ],
