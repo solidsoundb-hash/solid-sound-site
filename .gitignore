@@ -1,3 +1,6 @@
 node_modules
 __pycache__/
 *.pyc
+# server configs with secrets are never stored here (public repository)
+live/wp-content/wp-cache-config.php
+live/**/wp-config*.php

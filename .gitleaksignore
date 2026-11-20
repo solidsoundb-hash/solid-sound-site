@@ -1,0 +1,3 @@
+# Known, already handled finding (20.11.2026): WP Super Cache secret in an old pulled copy — file removed from the repo,
+# robot no longer pulls it; the secret is to be changed on the server (owner). Remove this line after the change.
+d8cea24e7c562cb2bc4dd38070960701ff4896ac:live/wp-content/wp-cache-config.php:generic-api-key:10

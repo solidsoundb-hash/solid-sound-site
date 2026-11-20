@@ -33,7 +33,7 @@ jobs:
           get  $WPC/plugins/solid-sound-custom live/plugins/solid-sound-custom
           rm -rf live/plugins/solid-sound-custom/build
           getf $WPC/themes/Impreza/functions.php live/themes/Impreza/functions.php
-          getf $WPC/wp-cache-config.php live/wp-content/wp-cache-config.php
+          # (20.11 secrets guard) wp-cache-config.php is NOT pulled any more: it holds the cache secret and the repository is public
           get  $WPC/themes/Impreza/common/functions live/themes/Impreza/common/functions
           getf $WPC/advanced-cache.php live/wp-content/advanced-cache.php
           getf solid-sound.net/www/.htaccess live/root/.htaccess
