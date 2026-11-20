@@ -33,6 +33,7 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
   return { cur, vp: vp ? vp.offsetHeight : 0, card: cards[cur] ? cards[cur].offsetHeight : 0, max: Math.max(...cards.map(c => c.offsetHeight)),
     title: cards[cur] ? (cards[cur].querySelector('h2') || {}).textContent : '', tabs: r.querySelectorAll('.tasks button').length,
     overflowX: document.documentElement.scrollWidth > innerWidth + 1,
+    cut: cards[cur] ? (() => { const cr = cards[cur].getBoundingClientRect(); return [...cards[cur].querySelectorAll('b,em,span,a,button,small,h2,p,label')].filter(e => e.offsetWidth && e.children.length === 0 && e.textContent.trim() && ((e.scrollWidth > e.clientWidth + 1 && getComputedStyle(e).overflow !== 'visible') || e.getBoundingClientRect().right > cr.right + 1 || e.getBoundingClientRect().left < cr.left - 1)).map(e => e.textContent.trim().slice(0, 20)).slice(0, 5); })() : [],
     rowOut: cards[cur] ? [...cards[cur].querySelectorAll('.chips')].filter(c => c.scrollWidth > c.clientWidth + 2 || c.getBoundingClientRect().right > cards[cur].getBoundingClientRect().right + 2).length : 0 }; });
 
 (async () => {
@@ -55,7 +56,7 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
       await p.locator('#ss-app .ssx .tasks button').nth(i).click({ timeout: 5000 }).catch(() => {}); await sleep(900);
       const s = await state(p); const f = `${w}x${h}-${i}.jpg`;
       await p.locator('#ss-app .ssx').first().screenshot({ path: path.join(OUT, f), type: 'jpeg', quality: 60 }).catch(() => {});
-      md.push(`| ${i} ${s.title} | ${s.vp} | ${s.card} | ${s.vp - s.card} | ${s.max} | [снимок](${f})${s.rowOut ? ' ❌ ряд кнопок вылезает: ' + s.rowOut : ''} |`);
+      md.push(`| ${i} ${s.title} | ${s.vp} | ${s.card} | ${s.vp - s.card} | ${s.max} | [снимок](${f})${s.rowOut ? ' ❌ ряд кнопок вылезает: ' + s.rowOut : ''}${s.cut && s.cut.length ? ' ❌ обрезано/вылезает: ' + s.cut.join(' · ') : ''} |`);
     }
     // drag a card 70 px to the left (mouse; the same handler serves fingers) — it must turn
     { await p.locator('#ss-app .ssx .tasks button').first().click().catch(() => {}); await sleep(800);

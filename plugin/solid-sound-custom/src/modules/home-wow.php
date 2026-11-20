@@ -387,6 +387,24 @@ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.ssw-match.ssw-rel .rl{displ
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.acts{grid-column:1!important;grid-row:auto!important;justify-content:flex-end!important;margin:14px 0 0!important}
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.acts>a{flex:0 0 auto!important;min-width:220px}
 }
+/* owner 20.11 (A31 screenshot: «на телефоне косо каждая вкладка, слайдер не влазит»): on phones and tablets everything in a card is
+   ONE column — the pack box (Releasing / DJ set / Video) and the before/after box stand as a block: title on top, items under it
+   in two columns, nothing cut; the labels (GENRE, BPM…) stand above their buttons instead of a column on the left */
+@media(max-width:1000px){
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel,body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-ab{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;text-align:left!important;aspect-ratio:auto!important;height:auto!important;padding:12px!important;gap:6px!important;width:100%!important;box-sizing:border-box!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel>b,body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel>small,body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-ab>b,body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-ab>small{display:block!important;width:auto!important;max-width:none!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;text-align:left!important}
+body.ss-wow #ss-app .ssx .ssw-rel .rl{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;width:100%!important;margin:4px 0 0!important}
+body.ss-wow #ss-app .ssx .ssw-rel .ri{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:6px!important;min-width:0!important;max-width:none!important;width:auto!important;padding:8px 10px!important;box-sizing:border-box!important}
+body.ss-wow #ss-app .ssx .ssw-rel .ri em{flex:1 1 auto!important;min-width:0!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere!important;font-size:13px!important;line-height:1.25!important;text-align:left!important}
+body.ss-wow #ss-app .ssx .ssw-rel .ri i{flex:none!important}
+body.ss-wow #ss-app .ssx .ssw-ab .ss-ab{width:100%!important;max-width:100%!important}
+body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{display:block!important}
+body.ss-wow #ss-app .ssx .card .left>.f:not(.row)>b,body.ss-wow #ss-app .ssx .card .left>.f.row>div>b{display:block!important;margin:0 0 6px!important}
+body.ss-wow #ss-app .ssx .card .left>.f.row{display:block!important}
+body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 12px!important}
+body.ss-wow #ss-app .ssx .card .left>.f.row>.chk{margin:0 0 12px!important}
+}
+@media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
