@@ -5585,6 +5585,7 @@ require_once __DIR__ . '/modules/bonus.php';
 require_once __DIR__ . '/modules/vendor.php';
 require_once __DIR__ . '/modules/creators.php';
 require_once __DIR__ . '/modules/studio-calc.php';
+require_once __DIR__ . '/modules/packages.php'; /* 20.11 owner: /production-services/ — packages like WMDM (mix & master, rework, custom production) */
 require_once __DIR__ . '/modules/perf.php';
 require_once __DIR__ . '/modules/cleanup.php';
 require_once __DIR__ . '/modules/sale.php';
