@@ -309,7 +309,7 @@ D.addEventListener('ssp:navigated',function(){ setTimeout(ssA11y,120); });
 D.addEventListener('ssp:navigated',function(){ setTimeout(cartCount,150); });
 
 function mount(){
-  if(D.getElementById('ss-app') ? true : D.getElementById('ssg')) return;
+  if((D.getElementById('ss-app') && !B.classList.contains('ss-one')) || D.getElementById('ssg')) return; /* (20.11 owner) the home page with the shared header (body.ss-one) gets it too */
   if(!D.getElementById('ssg-font')){ var lk=D.createElement('link'); lk.id='ssg-font'; lk.rel='stylesheet'; lk.href='https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&display=swap'; D.head.appendChild(lk); }
   var st=D.createElement('style'); st.id='ssg-css'; st.textContent=css; D.head.appendChild(st);
   var hd=D.createElement('header'); hd.id='ssg'; hd.innerHTML=head;

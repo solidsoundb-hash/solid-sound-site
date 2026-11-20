@@ -78,7 +78,7 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
     await p.screenshot({ path: path.join(OUT, `${PFX}${w}x${h}-screen.jpg`), type: 'jpeg', quality: 60 }).catch(() => {});
     const s = await state(p); md.push('', `Первый экран: [снимок](${PFX}${w}x${h}-screen.jpg)${s && s.overflowX ? ' · ❌ есть прокрутка вбок' : ''}`, '');
     if (mob) { // (20.11 owner: «слайдер не влазит») does the whole slider fit above the bottom bar on the first screen?
-      const fitr = await p.evaluate(() => { const r = document.querySelector('#ss-app .ssx'); const nav = document.querySelector('#ss-app nav[aria-label="App"]'); if (!r) return null; const b = r.getBoundingClientRect().bottom, lim = nav ? nav.getBoundingClientRect().top : innerHeight; return { b: Math.round(b), lim: Math.round(lim) }; }).catch(() => null);
+      const fitr = await p.evaluate(() => { const r = document.querySelector('#ss-app .ssx'); let nav = document.querySelector('#ss-app nav[aria-label="App"]'); if (!nav || !nav.offsetHeight) nav = document.getElementById('ssg-bar'); if (!r) return null; const b = r.getBoundingClientRect().bottom, lim = nav ? nav.getBoundingClientRect().top : innerHeight; return { b: Math.round(b), lim: Math.round(lim) }; }).catch(() => null);
       if (fitr) md.push(`Слайдер на первом экране: низ ${fitr.b} px, нижняя панель с ${fitr.lim} px → ${fitr.b <= fitr.lim ? '✅ влезает целиком' : '❌ не влезает на ' + (fitr.b - fitr.lim) + ' px'}`, '');
     }
     if (!mob) { // (20.11 owner: «при наведении текст кнопки пропадает») hover every visible orange button: text colour must differ from its background

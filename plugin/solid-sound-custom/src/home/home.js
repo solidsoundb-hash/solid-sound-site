@@ -547,7 +547,7 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
     var r=document.querySelector('#ss-app .ssx'); if(!r) return;
     LV.forEach(function(c){ r.classList.remove(c); });
     if(innerWidth>=760) return;
-    var nav=document.querySelector('#ss-app nav[aria-label="App"]'), navH=nav ? nav.getBoundingClientRect().height : 64;
+    var nav=document.querySelector('#ss-app nav[aria-label="App"]'); if(!nav || !nav.offsetHeight) nav=document.getElementById('ssg-bar'); var navH=nav && nav.offsetHeight ? nav.getBoundingClientRect().height : 64; /* (20.11) the shared bottom bar when the home uses the shared header */
     var avail=innerHeight-navH-10;
     function need(){ var vp=r.querySelector('.vp'), cards=r.querySelectorAll('.card'); if(!vp||!cards.length) return 0; var max=0; cards.forEach(function(c){ max=Math.max(max,c.offsetHeight); });
       var top=r.getBoundingClientRect().top+scrollY; return top+r.offsetHeight-vp.offsetHeight+max; }
