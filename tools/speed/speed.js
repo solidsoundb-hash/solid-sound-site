@@ -13,6 +13,20 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 const T0 = Date.now(); const BUDGET = (+(process.env.SPEED_BUDGET_MIN || 14)) * 60000; // stop measuring in time, save what we have
 
 // No PSI_KEY (19.11.2026): Lighthouse runs right here on the GitHub robot (same Lighthouse as PageSpeed, own Chrome).
+// (20.11) WHY it is slow — kept in latest.json and listed in latest.md: heaviest files, scripts that keep the processor busy,
+// the main block (LCP element), and the biggest savings Lighthouse sees
+function why(a) {
+  const it = (k) => ((a[k] && a[k].details && a[k].details.items) || []);
+  const short = (u) => String(u || '').replace(/^https?:\/\/(www\.)?solid-sound\.net/, '').slice(0, 90);
+  const lcpEl = it('largest-contentful-paint-element')[0]; let lcp = '';
+  try { const x = lcpEl && (lcpEl.items ? lcpEl.items[0] : lcpEl); lcp = (x && x.node && (x.node.snippet || x.node.selector)) || ''; } catch (e) {}
+  return {
+    heavy: it('total-byte-weight').slice(0, 8).map(x => short(x.url) + ' ' + Math.round((x.totalBytes || 0) / 1024) + 'KB'),
+    cpu: it('bootup-time').slice(0, 6).map(x => short(x.url) + ' ' + Math.round(x.total || 0) + 'ms'),
+    lcp: String(lcp).slice(0, 160),
+    save: Object.values(a).filter(x => x.details && x.details.type === 'opportunity' && (x.numericValue || 0) > 150).sort((p, q) => q.numericValue - p.numericValue).slice(0, 6).map(x => x.title + ' −' + Math.round(x.numericValue) + 'ms'),
+  };
+}
 async function local(url, strategy) {
   try {
     const lh = (await import('lighthouse')).default; const cl = await import('chrome-launcher');
@@ -24,7 +38,7 @@ async function local(url, strategy) {
       if (L.runtimeError) return { error: L.runtimeError.message.slice(0, 200) };
       return { score: Math.round((L.categories.performance.score || 0) * 100), lcp: Math.round(n('largest-contentful-paint')), fcp: Math.round(n('first-contentful-paint')),
         tbt: Math.round(n('total-blocking-time')), cls: +(n('cumulative-layout-shift')).toFixed(3), kb: Math.round(n('total-byte-weight') / 1024),
-        requests: ((a['network-requests'] && a['network-requests'].details && a['network-requests'].details.items) || []).length, ttfb: Math.round(n('server-response-time')), field: 'lighthouse на роботе' };
+        requests: ((a['network-requests'] && a['network-requests'].details && a['network-requests'].details.items) || []).length, ttfb: Math.round(n('server-response-time')), field: 'lighthouse на роботе', why: why(a) };
     } finally { await chrome.kill(); }
   } catch (e) { return { error: 'lighthouse: ' + String(e.message || e).slice(0, 180) }; }
 }
@@ -85,6 +99,8 @@ async function psi(url, strategy) {
     L.push(r.error ? `| ${p} | ${s === 'mobile' ? 'телефон' : 'компьютер'} | не измерено: ${r.error.replace(/\|/g, '/')} |||||||` :
       `| ${p} | ${s === 'mobile' ? 'телефон' : 'компьютер'} | **${r.score}**${d} | ${sec(r.lcp)} | ${sec(r.fcp)} | ${r.tbt} мс | ${r.cls} | ${r.kb} КБ | ${r.requests} | ${r.ttfb != null ? sec(r.ttfb) : '—'} |`);
   }
+  L.push('', '## Почему медленно (Lighthouse)');
+  for (const [k, v] of Object.entries(results)) if (v && v.why) { L.push('', '### ' + k.replace('|', ' — ')); if (v.why.lcp) L.push('- главный блок: `' + v.why.lcp.replace(/`/g, "'") + '`'); if (v.why.save.length) L.push('- можно выиграть: ' + v.why.save.join(' · ')); L.push('- тяжёлые файлы: ' + v.why.heavy.join(' · ')); L.push('- скрипты грузят процессор: ' + v.why.cpu.join(' · ')); }
   fs.writeFileSync(path.join(OUT, 'latest.md'), L.join('\n') + '\n');
   fs.writeFileSync(path.join(OUT, 'latest.json'), JSON.stringify({ date, results, warn }, null, 1));
   const csv = path.join(OUT, 'history.csv');
