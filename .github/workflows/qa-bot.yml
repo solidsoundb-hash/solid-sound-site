@@ -44,7 +44,7 @@ jobs:
             last=$(python3 -c "import json,datetime;d=json.load(open('qa/smoke/bugs.json'))['date'];print(int(datetime.datetime.fromisoformat(d.replace('Z','+00:00')).timestamp()))" 2>/dev/null || echo 0)
             if [ $(( $(date +%s) - last )) -lt 7200 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "checked recently, skipping"; fi
           fi
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.mode.outputs.skip != '1'
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1

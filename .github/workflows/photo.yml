@@ -21,7 +21,7 @@ jobs:
         shard: [0, 1, 2]     # the hosting slows down with more than ~3 robots at once (17.11)
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: Photographer ${{ matrix.shard }} of 3
