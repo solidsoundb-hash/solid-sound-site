@@ -96,3 +96,26 @@ add_action( 'init', function () {
 	}
 	update_option( 'ss_test_reviews_removed', $done ? implode( ',', $done ) : 'none', false );
 }, 30 );
+
+/* 3. (20.11.2026 language robot, owner «проверь языки») old duplicate Ukrainian pages → the real ones (301), and out of the sitemap.
+ *    The pages themselves stay in WordPress (nothing deleted); remove a line here to bring one back. */
+function ss_cleanup_dupes() {
+	return array(
+		'/ua/contacts-uk/'    => '/ua/kontakty/',
+		'/ua/music-uk/'       => '/ua/muzyka/',
+		'/ua/presets-uk/'     => '/ua/presety/',
+		'/ua/templates-uk/'   => '/ua/shablony/',
+		'/ua/sample-page-uk/' => '/ua/',
+	);
+}
+add_action( 'template_redirect', function () {
+	$p = strtok( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), '?' );
+	$m = ss_cleanup_dupes();
+	if ( isset( $m[ $p ] ) ) { wp_safe_redirect( home_url( $m[ $p ] ), 301 ); exit; }
+}, 1 );
+add_filter( 'wp_sitemaps_posts_query_args', function ( $a, $type ) {
+	if ( 'page' !== $type ) return $a;
+	$ids = array_filter( array_map( function ( $p ) { return url_to_postid( home_url( $p ) ); }, array_keys( ss_cleanup_dupes() ) ) );
+	if ( $ids ) $a['post__not_in'] = array_merge( isset( $a['post__not_in'] ) ? (array) $a['post__not_in'] : array(), $ids );
+	return $a;
+}, 10, 2 );
