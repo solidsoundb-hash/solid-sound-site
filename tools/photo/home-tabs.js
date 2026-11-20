@@ -80,6 +80,14 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
       const fitr = await p.evaluate(() => { const r = document.querySelector('#ss-app .ssx'); const nav = document.querySelector('#ss-app nav[aria-label="App"]'); if (!r) return null; const b = r.getBoundingClientRect().bottom, lim = nav ? nav.getBoundingClientRect().top : innerHeight; return { b: Math.round(b), lim: Math.round(lim) }; }).catch(() => null);
       if (fitr) md.push(`Слайдер на первом экране: низ ${fitr.b} px, нижняя панель с ${fitr.lim} px → ${fitr.b <= fitr.lim ? '✅ влезает целиком' : '❌ не влезает на ' + (fitr.b - fitr.lim) + ' px'}`, '');
     }
+    if (!mob) { // (20.11 owner: «при наведении текст кнопки пропадает») hover every visible orange button: text colour must differ from its background
+      const btns = p.locator('#ss-app .ssx .cta:visible'); const n = Math.min(await btns.count(), 6); const bad = []; let shot = false;
+      for (let k = 0; k < n; k++) { const b = btns.nth(k); await b.hover({ timeout: 3000 }).catch(() => {}); await sleep(250);
+        const c = await b.evaluate(e => { const s = getComputedStyle(e); return { t: (e.textContent || '').trim().slice(0, 30), fg: s.color, bg: s.backgroundColor }; }).catch(() => null);
+        if (c && c.fg === c.bg) bad.push(c.t);
+        if (!shot) { await b.screenshot({ path: path.join(OUT, `${PFX}${w}x${h}-hover.jpg`), type: 'jpeg', quality: 70 }).catch(() => {}); shot = true; } }
+      md.push(`Кнопки при наведении (${n}): ${bad.length ? '❌ текст сливается с фоном: ' + bad.join(' · ') : '✅ текст виден'} · [снимок](${PFX}${w}x${h}-hover.jpg)`, '');
+    }
     await ctx.close();
   }
   fs.writeFileSync(path.join(OUT, 'report.md'), md.join('\n') + '\n');
