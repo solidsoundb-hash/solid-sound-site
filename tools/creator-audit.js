@@ -70,6 +70,8 @@ async function login(page, user, pass) {
           await page.evaluate(hideBanners).catch(() => {});
           await page.screenshot({ path: `${OUT}/${d.name}_add_open_before.jpg`, type: 'jpeg', quality: 62, fullPage: true }).catch(() => {});
           lines.push(`- open form before: [${d.name}_add_open_before.jpg](${d.name}_add_open_before.jpg)`);
+          { const html = await page.evaluate(() => ['.ss-ap-genre', '.ss-ap-ext'].map(s => { const e = document.querySelector('#solid-sound-upload-form ' + s + ' .acf-input'); return s + ': ' + (e ? e.innerHTML.replace(/\s+/g, ' ').slice(0, 900) : 'none'); })).catch(() => []);
+            html.forEach(h => lines.push('    - DOM ' + h.replace(/`/g, "'"))); }
           { const pc = require('fs').existsSync('tools/photo/preview-ap.css') ? require('fs').readFileSync('tools/photo/preview-ap.css', 'utf8').trim() : '';
             if (pc) { await page.addStyleTag({ content: pc }).catch(() => {}); await page.waitForTimeout(500);
               await page.screenshot({ path: `${OUT}/${d.name}_add_open_after.jpg`, type: 'jpeg', quality: 62, fullPage: true }).catch(() => {});
