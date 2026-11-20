@@ -428,16 +428,20 @@ document.addEventListener('change',function(e){ var r=e.target; if(r.type!=='num
 
 /* (13.11.2026, QA bot) Best products cover ▶ shows ⏸ while its track plays in the site player */
 (function(){
-  function upd(){
-    var st=window.SSP&&SSP.state&&SSP.state.cur, on=!!(st && document.querySelector('#ssp.is-playing'));
+  /* (20.11 swarm: «после паузы ▶ остаётся ⏸», «прежняя кнопка всё ещё ⏸») the state comes from the player's own event — playing or not
+     and WHICH file — instead of classes that the player updates a moment later */
+  var last={playing:false,src:''};
+  function same(a,b){ if(!a||!b) return false; try{ return new URL(a,location.href).pathname===new URL(b,location.href).pathname; }catch(e){ return a===b; } }
+  function upd(e){
+    if(e && e.detail) last={playing:!!e.detail.playing,src:e.detail.src||''};
     document.querySelectorAll('#ss-app article').forEach(function(card){
       var w=card.querySelector('.ss-pw .ssw'), b=card.querySelector('button[aria-label^="Play "],button[aria-label^="Pause "]'); if(!w||!b) return;
-      var me=on && w.classList.contains('is-playing'); if(b.classList.contains('ss-on')===me) return;
+      var me=last.playing && same(w.getAttribute('data-src'),last.src); if(b.classList.contains('ss-on')===me) return;
       b.classList.toggle('ss-on',me); b.setAttribute('aria-pressed',me?'true':'false');
       b.setAttribute('aria-label',b.getAttribute('aria-label').replace(/^(Play|Pause) /,me?'Pause ':'Play '));
     });
   }
-  document.addEventListener('ssp:state',function(){ setTimeout(upd,30); });
+  document.addEventListener('ssp:state',function(e){ upd(e); });
   (window.ssOnDom||function(f){f();})(upd);
 })();
 

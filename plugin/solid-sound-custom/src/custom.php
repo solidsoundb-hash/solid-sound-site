@@ -572,7 +572,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'license' => array( 'License Agreement – Royalty-Free Use | Solid Sound', 'What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.' ),
 			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 60€, mastering from 15€, remixes, remakes, ghost production, co-production and audio post production. Compare packages and order online.' ),
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
-			'all-products' => array( 'Ableton Templates, Serum Presets & Royalty-Free Music – All Products | Solid Sound', 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
+			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
@@ -630,6 +630,14 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 		$s = ss_seo_current();
 		return ( $s && $s[0] ) ? $s[0] : $t;
 	}, 20 );
+	/* (20.11 swarm: titles over 65 characters, e.g. wiki «How to Start Promoting Yourself as a DJ: Your First 90 Days – Solid Sound»)
+	   Google shows about 60: a long article title keeps its main part (before «:») and the site name */
+	add_filter( 'document_title_parts', function ( $p ) {
+		if ( empty( $p['title'] ) || ! is_singular() || ( function_exists( 'is_product' ) && is_product() ) ) return $p;
+		$t = wp_strip_all_tags( html_entity_decode( $p['title'], ENT_QUOTES, 'UTF-8' ) );
+		if ( mb_strlen( $t ) + 15 > 65 && false !== ( $i = mb_strpos( $t, ': ' ) ) && $i >= 15 ) $p['title'] = mb_substr( $t, 0, $i );
+		return $p;
+	}, 30 );
 
 	add_action( 'wp_head', function () {
 		$s = ss_seo_current();

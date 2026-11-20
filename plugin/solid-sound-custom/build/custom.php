@@ -572,7 +572,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'license' => array( 'License Agreement – Royalty-Free Use | Solid Sound', 'What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.' ),
 			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 60€, mastering from 15€, remixes, remakes, ghost production, co-production and audio post production. Compare packages and order online.' ),
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
-			'all-products' => array( 'Ableton Templates, Serum Presets & Royalty-Free Music – All Products | Solid Sound', 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
+			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
@@ -630,6 +630,14 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 		$s = ss_seo_current();
 		return ( $s && $s[0] ) ? $s[0] : $t;
 	}, 20 );
+	/* (20.11 swarm: titles over 65 characters, e.g. wiki «How to Start Promoting Yourself as a DJ: Your First 90 Days – Solid Sound»)
+	   Google shows about 60: a long article title keeps its main part (before «:») and the site name */
+	add_filter( 'document_title_parts', function ( $p ) {
+		if ( empty( $p['title'] ) || ! is_singular() || ( function_exists( 'is_product' ) && is_product() ) ) return $p;
+		$t = wp_strip_all_tags( html_entity_decode( $p['title'], ENT_QUOTES, 'UTF-8' ) );
+		if ( mb_strlen( $t ) + 15 > 65 && false !== ( $i = mb_strpos( $t, ': ' ) ) && $i >= 15 ) $p['title'] = mb_substr( $t, 0, $i );
+		return $p;
+	}, 30 );
 
 	add_action( 'wp_head', function () {
 		$s = ss_seo_current();
@@ -1009,7 +1017,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 (function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c!=='yes')fbq('consent','revoke');})();
 </script>
-<?php ss_asset('css-l1007'); ?>
+<?php ss_asset('css-l1015'); ?>
 		<?php
 	}
 	add_action( 'wp_head', 'ss_consent_head', -1000 );
@@ -1023,7 +1031,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 <p>We use essential cookies to run this site (cart, login, checkout). With your permission we also use marketing cookies (Meta Pixel) to measure and improve our ads.<?php if ( $pp ) : ?> <a href="<?php echo esc_url( $pp ); ?>">Privacy Policy</a><?php endif; ?></p>
 <div class="ss-cc-row"><button type="button" class="ss-cc-no">Reject non-essential</button><button type="button" class="ss-cc-yes">Accept all</button></div>
 </div>
-<?php ss_asset('js-l1036'); ?>
+<?php ss_asset('js-l1044'); ?>
 		<?php
 	}
 	add_action( 'wp_footer', 'ss_consent_footer', 5 );
@@ -1283,7 +1291,7 @@ function ss_sell_page() {
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1478'); ?>
+<?php ss_asset('css-l1486'); ?>
 
 <section class="sssell-hero">
 	<div>
@@ -1688,7 +1696,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 /* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
-<?php ss_asset('js-l2167'); ?>
+<?php ss_asset('js-l2175'); ?>
 <?php }, 40 );
 
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */
@@ -1725,7 +1733,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2204'); ?>
+<?php ss_asset('js-l2212'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3843,7 +3851,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4694'); ?>
+<?php ss_asset('js-l4702'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4524,7 +4532,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5769'); ?>
+<?php ss_asset('css-l5777'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5103,7 +5111,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6382'); ?>
+<?php ss_asset('css-l6390'); ?>
 		<?php
 		return ob_get_clean();
 	}
