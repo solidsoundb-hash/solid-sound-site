@@ -9,7 +9,7 @@ const OUT = process.env.PHOTO_OUT || 'shots-home';
 const ALLOWED = /(^|\.)(solid-sound\.net|jsdelivr\.net|ytimg\.com|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unpkg\.com)$/;
 const UA_DESK = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
 const UA_PHONE = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0';
-const SIZES = [[1920, 1080, 0], [1366, 768, 0], [412, 780, 1]];
+const SIZES = [[1920, 1080, 0], [1366, 768, 0], [412, 780, 1], [412, 700, 1]]; // 412×700 ≈ Samsung A31 with browser bars (owner 20.11)
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 async function ctxFor(browser, w, h, mob) {
@@ -67,6 +67,10 @@ const state = (p) => p.evaluate(() => { const r = document.querySelector('#ss-ap
     await p.evaluate(() => scrollTo(0, 0)); await p.locator('#ss-app .ssx .tasks button').first().click().catch(() => {}); await sleep(900);
     await p.screenshot({ path: path.join(OUT, `${w}x${h}-screen.jpg`), type: 'jpeg', quality: 60 }).catch(() => {});
     const s = await state(p); md.push('', `Первый экран: [снимок](${w}x${h}-screen.jpg)${s && s.overflowX ? ' · ❌ есть прокрутка вбок' : ''}`, '');
+    if (mob) { // (20.11 owner: «слайдер не влазит») does the whole slider fit above the bottom bar on the first screen?
+      const fitr = await p.evaluate(() => { const r = document.querySelector('#ss-app .ssx'); const nav = document.querySelector('#ss-app nav[aria-label="App"]'); if (!r) return null; const b = r.getBoundingClientRect().bottom, lim = nav ? nav.getBoundingClientRect().top : innerHeight; return { b: Math.round(b), lim: Math.round(lim) }; }).catch(() => null);
+      if (fitr) md.push(`Слайдер на первом экране: низ ${fitr.b} px, нижняя панель с ${fitr.lim} px → ${fitr.b <= fitr.lim ? '✅ влезает целиком' : '❌ не влезает на ' + (fitr.b - fitr.lim) + ' px'}`, '');
+    }
     await ctx.close();
   }
   fs.writeFileSync(path.join(OUT, 'report.md'), md.join('\n') + '\n');
