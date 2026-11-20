@@ -375,6 +375,9 @@ body.ss-wow #ss-app .ssx .hp-card .cta{padding:16px!important;font-size:17px!imp
 body.ss-wow #ss-app .ssx .card .left .f .chips{flex-wrap:wrap!important;overflow:visible!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;min-width:0!important;max-width:100%!important;row-gap:8px!important}
 body.ss-wow #ss-app .ssx .card .left .f .chips span{flex:0 1 auto!important;max-width:100%!important;white-space:normal!important}
 body.ss-wow #ss-app .ssx .card .left .f{min-width:0!important}
+/* the same items are switched on/off in the box on the right («Your release pack» / set / video pack) — the duplicate row on the
+   left is not shown on any screen (on PCs it ran under the box) */
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-rel)>.f:has(>.chips:not(.one)){display:none!important}
 </style>
 <script>(function(){
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
