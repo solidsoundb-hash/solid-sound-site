@@ -5595,7 +5595,8 @@ require_once __DIR__ . '/modules/creators.php';
 require_once __DIR__ . '/modules/studio-calc.php';
 require_once __DIR__ . '/modules/packages.php';
 require_once __DIR__ . '/modules/price-guide.php';
-require_once __DIR__ . '/modules/price-engine.php'; /* 20.11 owner: studio prices follow demand (±10 %/week, 70–130 %), Tools → Studio prices */ /* 20.11 owner: price guide for creators in Add Product (market base + factors + their sales) */ /* 20.11 owner: /production-services/ — packages like WMDM (mix & master, rework, custom production) */
+require_once __DIR__ . '/modules/price-engine.php';
+require_once __DIR__ . '/modules/translate.php'; /* 20.11 owner: translator in the description box + auto-translate to English, «Show original» */ /* 20.11 owner: studio prices follow demand (±10 %/week, 70–130 %), Tools → Studio prices */ /* 20.11 owner: price guide for creators in Add Product (market base + factors + their sales) */ /* 20.11 owner: /production-services/ — packages like WMDM (mix & master, rework, custom production) */
 require_once __DIR__ . '/modules/perf.php';
 require_once __DIR__ . '/modules/cleanup.php';
 require_once __DIR__ . '/modules/sale.php';
