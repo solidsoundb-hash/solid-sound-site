@@ -168,6 +168,67 @@
     return { hist: sum ? Array.prototype.map.call(hist, function (v) { return v / sum; }) : null, held: held * step * 0.1 };
   }
 
+  /* ---------- HPCP: harmonic pitch class profile, 36 bins (owner 20.11 «тональность — отличный результат») ----------
+     Short frames (4096 at 22 kHz), optional spectral whitening, the 60 strongest peaks per frame between minF and maxF,
+     each peak spreads into 36 bins with a squared-cosine window (1 semitone wide) and also votes for its sub-harmonics
+     (it may be the 2nd, 3rd… harmonic of a lower note), weight slope^(h-1). Frames normalised to max 1, then averaged.
+     Tuning: the 3 sub-bins of each semitone tell how far the music sits from A440; the profile is rotated to fix it. */
+  function hpcp(x, sr, opt) {
+    opt = opt || {};
+    var d = decimate(x, sr, 22050); x = d.x; sr = d.sr;
+    var N = opt.N || 4096, H = opt.H || 2048, i, j, f, nb = N / 2, win = new Float32Array(N);
+    for (i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1));
+    var minF = opt.minF || 100, maxF = opt.maxF || 5000, nh = opt.harm == null ? 4 : opt.harm, sl = opt.hslope == null ? 0.6 : opt.hslope, maxP = opt.peaks || 60;
+    var lo = Math.max(2, Math.floor(minF * N / sr)), hi = Math.min(nb - 2, Math.ceil(maxF * N / sr));
+    var re = new Float32Array(N), im = new Float32Array(N), mag = new Float32Array(nb), acc = new Float64Array(36), fr = new Float64Array(36);
+    var frames = Math.floor((x.length - N) / H), step = Math.max(1, Math.ceil(frames / (opt.maxF2 || 1500))), used = 0;
+    var wb = opt.wb || 30; /* whitening: divide by the local mean over ±wb bins */
+    for (f = 0; f < frames; f += step) {
+      var o = f * H, e = 0; for (i = 0; i < N; i++) { var v = x[o + i]; re[i] = v * win[i]; im[i] = 0; e += v * v; }
+      if (e / N < 1e-6) continue;
+      fft(re, im);
+      for (j = 0; j < nb; j++) mag[j] = Math.sqrt(re[j] * re[j] + im[j] * im[j]);
+      var W = mag;
+      if (opt.white !== 0) { /* spectral whitening: flatten the overall tilt so loud bass does not drown the harmony */
+        W = new Float32Array(nb); var cs = new Float64Array(nb + 1); for (j = 0; j < nb; j++) cs[j + 1] = cs[j] + mag[j];
+        for (j = lo - 1; j <= hi + 1; j++) { var a0 = Math.max(0, j - wb), b0 = Math.min(nb, j + wb + 1), mean = (cs[b0] - cs[a0]) / (b0 - a0); W[j] = mag[j] / (mean + 1e-9); }
+      }
+      var pk = [];
+      for (j = lo; j <= hi; j++) if (W[j] > W[j - 1] && W[j] >= W[j + 1] && W[j] > (opt.pthr || 1.5)) pk.push(j);
+      if (!pk.length) continue;
+      pk.sort(function (p, q) { return W[q] - W[p]; }); if (pk.length > maxP) pk.length = maxP;
+      fr.fill(0);
+      for (var k = 0; k < pk.length; k++) {
+        j = pk[k]; var p = 0.5 * (W[j - 1] - W[j + 1]) / (W[j - 1] - 2 * W[j] + W[j + 1] || 1e-12), hz = (j + p) * sr / N, amp = opt.useMag ? mag[j] : W[j];
+        for (var h = 1; h <= Math.max(1, nh); h++) {
+          var f0 = hz / h; if (f0 < 40) break;
+          var wh = Math.pow(sl, h - 1), pos = 36 * Math.log2(f0 / 440), c = Math.round(pos);
+          for (var dd = -2; dd <= 2; dd++) { var bin = c + dd, dist = Math.abs(pos - bin) / 3; if (dist >= 0.5) continue; var wgt = Math.cos(Math.PI * dist); fr[((bin % 36) + 36) % 36] += amp * amp * wgt * wgt * wh; }
+        }
+      }
+      var mx = 0; for (i = 0; i < 36; i++) if (fr[i] > mx) mx = fr[i];
+      if (mx > 0) { for (i = 0; i < 36; i++) acc[i] += fr[i] / mx; used++; }
+    }
+    if (!used) return null;
+    /* tuning: which of the 3 sub-bins holds most energy; bin 0 = A exactly */
+    var sub = [0, 0, 0]; for (i = 0; i < 36; i++) sub[i % 3] += acc[i];
+    var sh = sub.indexOf(Math.max.apply(null, sub)); /* 0, 1 (+33 c) or 2 (−33 c) */
+    var c12 = new Array(12).fill(0);
+    for (i = 0; i < 36; i++) { var s2 = ((i - sh) % 36 + 36) % 36, semi = Math.round(s2 / 3) % 12; c12[(semi + 9) % 12] += acc[i]; } /* bin 0 = A → index 9 */
+    var sm = 0; for (i = 0; i < 12; i++) sm += c12[i];
+    return c12.map(function (v) { return v / sm; });
+  }
+  function keyH(x, sr, opt) {
+    opt = opt || {};
+    var ch = hpcp(x, sr, opt); if (!ch) return null;
+    if (opt.thr) { var m0 = Math.max.apply(null, ch); ch = ch.map(function (v) { return v < m0 * opt.thr ? 0 : v; }); }
+    var prof = profiles({ prof: opt.prof || 'bg', nh: opt.pnh == null ? 1 : opt.pnh, slope: 0.6 }), sc = [], i, m, r, p;
+    for (i = 0; i < 12; i++) for (m = 0; m < 2; m++) { var rot = []; for (r = 0; r < 12; r++) rot.push(ch[(r + i) % 12]); var s = 0; for (p = 0; p < prof.length; p++) s += corr(rot, prof[p][m]); sc.push({ t: i, m: m, s: s / prof.length }); }
+    sc.sort(function (a, b) { return b.s - a.s; });
+    var top = sc[0], tn = NAMES[top.t], rel = NAMES[top.m ? (top.t + 3) % 12 : (top.t + 9) % 12] + (top.m ? '' : 'm');
+    return { key: tn + (top.m ? 'm' : ''), tonic: tn, mode: top.m ? 'minor' : 'major', confidence: +Math.max(0, Math.min(1, (top.s - sc[1].s) / 0.15)).toFixed(2), alt: rel, alt_close: 1, flat: (FLAT[tn] || tn) + (top.m ? 'm' : ''), chroma: ch, scores: sc };
+  }
+
   /* ---------- tempo (owner 19.11: «темп и длительность тоже должны быть точными») ----------
      Onset strength = positive spectral flux of the log spectrum (kick weighted), local mean removed; tempo = the lag whose
      autocorrelation (plus its 2× and 4× multiples, i.e. bars) is strongest under a prior around opt.center BPM; then a fine
@@ -322,6 +383,6 @@
     return { key: key(mono(buf), buf.sampleRate), loudness: loudness(chs, buf.sampleRate), duration: buf.duration };
   }
 
-  var API = { key: key, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
+  var API = { key: key, keyH: keyH, hpcp: hpcp, vote: vote, tempo: tempo, fingerprint: fingerprint, fpMatch: fpMatch, chroma: chroma, bassline: bassline, loudness: loudness, analyze: analyze, mono: mono, version: '1.0' };
   if (typeof module === 'object' && module.exports) module.exports = API; else root.SSAudio = API;
 })(typeof window !== 'undefined' ? window : this);
