@@ -1,0 +1,5 @@
+0 before NO BUTTON
+click1 fail locator.click: Timeout 5000ms exceeded.
+1 after first click NO BUTTON
+click2 fail locator.click: Timeout 5000ms exceeded.
+2 after second click NO BUTTON
