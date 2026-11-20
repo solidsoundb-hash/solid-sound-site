@@ -518,7 +518,10 @@ body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips.one span,body.ss-wo
 body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd) .f .chips{gap:5px!important}
 body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row:has(>.chk){display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px 14px!important;margin:0 0 8px!important}
 body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row:has(>.chk)>div{margin:0!important}
-body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>.chk{margin:0!important;font-size:13px!important}
+body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>.chk{margin:0!important;font-size:13px!important;flex:none!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-vd)>.f>b{display:none!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri{padding:5px 8px!important}
+body.ss-wow #ss-app .ssx{padding-top:8px!important}body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 6px!important}
 body.ss-wow #ss-app .ssx .dots{display:none!important}
 }
 </style>
