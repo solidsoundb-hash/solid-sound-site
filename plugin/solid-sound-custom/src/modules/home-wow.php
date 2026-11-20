@@ -545,6 +545,14 @@ body.ss-wow #ss-app .ssx .card .left .f .chips span{height:34px!important;min-he
 body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 10px!important}
 }
 @media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
+/* (20.11 owner, screenshot: «наехало — перенеси под заголовок») computer: in a card with the before/after player on the right the
+   choice row («What do you need?») stands UNDER its label and wraps inside the left column instead of running under the player */
+@media(min-width:1001px){
+#ss-app#ss-app .ssx .card .left:has(>.ssw-ab)>.f{display:block!important;grid-column:1!important;min-width:0!important}
+#ss-app#ss-app .ssx .card .left:has(>.ssw-ab)>.f>b{display:block!important;margin:0 0 8px!important}
+#ss-app#ss-app .ssx .card .left:has(>.ssw-ab)>.f>.chips{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;white-space:normal!important;gap:8px!important;margin:0!important;max-width:100%!important}
+#ss-app#ss-app .ssx .card .left:has(>.ssw-ab)>.f~.d,#ss-app#ss-app .ssx .card .left:has(>.ssw-ab)>p.d{margin-left:0!important;grid-column:1!important}
+}
 #ss-app#ss-app .ssx .card .left.fp>.fz-tiles{grid-column:1!important;grid-row:3 / span 2!important;align-self:start!important;margin:0 0 8px!important}
 @media(min-width:1001px){ /* Free tiles inside Just starting: compact on the computer */
 #ss-app#ss-app .ssx .card .left.fp>.fz-tiles{gap:8px!important;grid-auto-rows:auto!important;align-self:start!important}
