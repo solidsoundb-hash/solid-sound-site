@@ -15,6 +15,7 @@ const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive:
     L(q || 'NEW', 'before any action: requests', n, 'payment requests', pay);
     const box = async () => p.evaluate(() => { const e = document.querySelector('#wcpay-express-checkout-element, .wcpay-express-checkout-wrapper, [id*=express-checkout]'); if (!e) return 'no box'; const r = e.getBoundingClientRect(); return { id: e.id || e.className, h: Math.round(r.height), iframes: e.querySelectorAll('iframe').length, shown: getComputedStyle(e).display !== 'none' }; });
     L('  box before', await box());
+    await p.waitForTimeout(5000); L('  6 s later, still no action: payment requests', pay, 'box', await box());
     await p.evaluate(() => window.dispatchEvent(new Event('scroll'))); await p.mouse.wheel(0, 300); await p.waitForTimeout(9000); L('  url', p.url());
     L('  after a scroll: requests', n, 'payment requests', pay, 'box', await box(), 'errors', errs);
     const el = await p.$('#wcpay-express-checkout-element, .wcpay-express-checkout-wrapper');
