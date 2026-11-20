@@ -1,0 +1,44 @@
+# Autotune of the key model and the tempo rule on GitHub (owner 20.11: robots do it until it works).
+# Starts on a commit that changes .github/autotune.txt (or by hand). Result: checks/keydet/autotune.md, best-key-model.json, best-tempo.json.
+name: Autotune key and tempo
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/autotune.txt"]
+permissions:
+  contents: write
+concurrency: autotune
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Datasets (annotations)
+        run: |
+          git clone -q --depth 1 https://github.com/GiantSteps/giantsteps-key-dataset gs
+          git clone -q --depth 1 https://github.com/GiantSteps/giantsteps-mtg-key-dataset gsm
+          git clone -q --depth 1 https://github.com/GiantSteps/giantsteps-tempo-dataset gst
+      - uses: actions/cache@v4
+        with: { path: audio, key: gs-all-audio-v1 }
+      - uses: actions/cache@v4
+        with: { path: cache, key: autotune-cache-v1-${{ github.run_id }}, restore-keys: autotune-cache-v1- }
+      - name: Download audio (8 at a time)
+        run: |
+          mkdir -p audio/gs audio/mtg audio/gst cache
+          get() { [ -s "$2" ] && return 0; curl -sf --retry 3 -o "$2.part" "$1" && mv "$2.part" "$2" || rm -f "$2.part"; }
+          export -f get
+          ls gs/annotations/key/*.key | xargs -n1 basename | sed 's/\.key$//' | sed 's#.*#https://www.cp.jku.at/datasets/giantsteps/backup/&.mp3 audio/gs/&.mp3#' | xargs -P 8 -n 2 bash -c 'get "$0" "$1"'
+          awk -F'\t' 'NR>1 && $3==2 {print $1}' gsm/annotations/annotations.txt | sed 's#.*#https://www.cp.jku.at/datasets/giantsteps/mtg_key_backup/&.LOFI.mp3 audio/mtg/&.LOFI.mp3#' | xargs -P 8 -n 2 bash -c 'get "$0" "$1"'
+          ls gst/annotations_v2/tempo/*.bpm | xargs -n1 basename | sed 's/\.bpm$//' | sed 's#.*#https://www.cp.jku.at/datasets/giantsteps/backup/&.mp3 audio/gst/&.mp3#' | xargs -P 8 -n 2 bash -c 'get "$0" "$1"'
+          echo gs $(ls audio/gs | wc -l) mtg $(ls audio/mtg | wc -l) tempo $(ls audio/gst | wc -l)
+      - name: Autotune
+        run: node tools/keydet/autotune.js gs audio/gs gsm audio/mtg gst audio/gst cache checks/keydet
+      - name: Save the result in the repo
+        if: always()
+        run: BOT_NAME=autotune-bot bash .github/save.sh "autotune $(date -u +%FT%TZ)" checks/keydet
