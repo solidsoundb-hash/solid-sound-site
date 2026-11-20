@@ -404,6 +404,16 @@ body.ss-wow #ss-app .ssx .card .left>.f.row{display:block!important}
 body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 12px!important}
 body.ss-wow #ss-app .ssx .card .left>.f.row>.chk{margin:0 0 12px!important}
 }
+@media(max-width:1000px){
+/* long items wrap to a second line instead of running under the ✓ (an older rule kept them on one line) */
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel .rl .ri em{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:12.5px!important}
+/* before / after switch: two equal halves, full width */
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-ab .ss-abs{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important;min-width:0!important}
+/* «не влазит»: smaller choice buttons on phones so a card fits the screen */
+body.ss-wow #ss-app .ssx .card .left .f .chips{gap:6px!important;row-gap:6px!important}
+body.ss-wow #ss-app .ssx .card .left .f .chips span{height:34px!important;min-height:34px!important;padding:0 11px!important;font-size:13.5px!important}
+body.ss-wow #ss-app .ssx .card .left>.f:not(.row),body.ss-wow #ss-app .ssx .card .left>.f.row>div{margin:0 0 10px!important}
+}
 @media(max-width:360px){body.ss-wow #ss-app .ssx .ssw-rel .rl{grid-template-columns:minmax(0,1fr)!important}}
 </style>
 <script>(function(){
