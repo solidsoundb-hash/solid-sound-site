@@ -174,6 +174,19 @@ body.ss-wow .ssx.ss-hold .tasks button.on:after{animation-play-state:paused}
  body.ss-wow .ssx .f.row:has(.chk){flex-wrap:nowrap!important;align-items:flex-end;gap:8px!important}@media(max-width:600px){body.ss-wow .ssx .f.row:has(.chk){flex-wrap:wrap!important;row-gap:10px!important}body.ss-wow .ssx .f.row:has(.chk)>.chk{flex:1 0 100%}} /* (19.11) Key + checkbox: the checkbox on its own line on phones */body.ss-wow .ssx .f.row:has(.chk) .chips span{padding:0 12px!important}body.ss-wow .ssx .f.row:has(.chk) .chips{gap:5px!important}
 }
 @media(max-width:380px){.ssw-hero .slg{font-size:34px!important}}
+/* (20.11 owner, Samsung A31: «не влазит полностью») phones — the template picker was 628 px tall: BPM / Key / Ableton with the label beside the buttons, slimmer buttons and gaps */
+@media(max-width:600px){
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f{margin:0 0 10px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f>b{margin-bottom:5px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>div{display:flex!important;align-items:center;gap:10px;margin:0!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>div>b{flex:0 0 62px;margin:0!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>div>.chips,body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>div>.rng{flex:1 1 auto;min-width:0;margin:0!important;padding:0!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.f.row>.chk{margin:8px 0 0 72px!important;flex:none!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips span{height:31px!important;padding:0 12px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .chips{gap:6px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range]) .rng .bpm input{height:31px!important}
+ body.ss-wow #ss-app .ssx .card .left:has(input[type=range])>.acts{margin-top:10px!important}
+}
 @media(min-width:900px){.ssw-hero{padding:34px 12px 22px}.ssw-row a{width:168px;height:168px}}
 @media(prefers-reduced-motion:reduce){body.ss-wow .ssx.ss-auto .tasks button.on:after{display:none}}
 /* (owner 19.11 «как у профи сделай») computer only: text menu in one line, compact search, tabs as an underline row,

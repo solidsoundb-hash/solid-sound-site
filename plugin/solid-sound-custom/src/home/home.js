@@ -313,7 +313,7 @@ document.addEventListener('click',function(e){
     var d=dxNow; if((cur===0 && d>0) || (cur===n-1 && d<0)) d=d/3; /* springy edges */
     tr.style.transition='none'; tr.style.transform='translateX(calc('+(-100*cur)+'% + '+d+'px))'; }
   function move(x,y){ if(x0===null) return false; var dx=x-x0, dy=y-y0;
-    if(!dir){ if(Math.abs(dx)<8 && Math.abs(dy)<8) return false; dir = Math.abs(dx)>Math.abs(dy)*1.15 ? 'x' : 'y'; }
+    if(!dir){ if(Math.abs(dx)<7 && Math.abs(dy)<7) return false; dir = Math.abs(dx)>Math.abs(dy)*0.9 ? 'x' : 'y'; } /* (20.11 owner, A31: «очень тяжело листается») a thumb swipe is an arc — up to ~48° still counts as sideways */
     if(dir!=='x') return false; if(!dxNow) document.documentElement.classList.add('ss-xdrag'); try{ var sel=getSelection(); if(sel && sel.rangeCount) sel.removeAllRanges(); }catch(e){} dxNow=dx; if(!raf) raf=requestAnimationFrame(paint); return true; }
   function end(x){ if(x0===null) return; var r=drag, dx=x-x0, dt=Math.max(1,Date.now()-t0), was=dir; x0=null; drag=null; if(!r) return;
     var tr=r.querySelector('.track'); tr.style.transition=''; if(raf){ cancelAnimationFrame(raf); raf=0; }
@@ -326,6 +326,9 @@ document.addEventListener('click',function(e){
     if(to!==cur) go(to); else go(cur,true); }
   document.addEventListener('touchstart',function(e){ if(e.touches.length===1) start(e.touches[0].clientX,e.touches[0].clientY,e.target); },{passive:true});
   document.addEventListener('touchmove',function(e){ if(x0!==null) move(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
+  /* (20.11 A31) once the swipe is sideways the page must not crawl up/down under the finger — only the slider's own box
+     listens non-passively, the rest of the page keeps fast passive scrolling */
+  function hold(e){ if(dir==='x' && e.cancelable) e.preventDefault(); }
   document.addEventListener('touchend',function(e){ end(e.changedTouches[0].clientX); },{passive:true});
   document.addEventListener('touchcancel',function(){ if(x0!==null) end(x0); },{passive:true});
   /* (owner 20.11 «туго листается») links and covers fill the cards; dragging them with the mouse started the browser's own
@@ -337,7 +340,7 @@ document.addEventListener('click',function(e){
   document.addEventListener('mouseup',function(e){ if(!mouse) return; mouse=false; var moved=dir==='x'; end(e.clientX);
     if(moved){ var stop=function(ev){ ev.stopPropagation(); ev.preventDefault(); document.removeEventListener('click',stop,true); }; document.addEventListener('click',stop,true); setTimeout(function(){ document.removeEventListener('click',stop,true); },0); } });
   var done=null;
-  (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
+  (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(!r || r===done) return; done=r; var vp=r.querySelector('.vp'); if(vp) vp.addEventListener('touchmove',hold,{passive:false}); var s=0; try{ s=+localStorage.getItem('ss_task')||0; }catch(e){} go(s,true); });
   var lastW=innerWidth; addEventListener('resize',function(){ if(innerWidth===lastW) return; lastW=innerWidth; var r=el(); if(r) go(+(r.getAttribute('data-cur')||0),true); },{passive:true});
   if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ var r=el(); if(!r) return; var vp=r.querySelector('.vp'), c=r.querySelectorAll('.card')[+(r.getAttribute('data-cur')||0)], h=c?c.offsetHeight:0; if(vp && h && Math.abs(vp.offsetHeight-h)>2) vp.style.height=h+'px'; }); /* open card, like go() */
     (window.ssOnDom||function(f){f();})(function(){ var r=el(); if(r && !r.__ro){ r.__ro=1; r.querySelectorAll('.card').forEach(function(c){ ro.observe(c); }); } }); }
