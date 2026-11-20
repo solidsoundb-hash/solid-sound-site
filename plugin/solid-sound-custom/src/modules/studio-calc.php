@@ -6,7 +6,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function ss_sc_prices() {
+/* today's prices = base × demand (price-engine.php); base = docs/prices.md */
+function ss_sc_prices() { $P = ss_sc_prices_base(); return function_exists( 'ss_pe_apply' ) ? ss_pe_apply( $P ) : $P; }
+function ss_sc_prices_base() {
 	return array(
 		'mixing'    => array( 'name' => 'Mixing (+ Stereo Mastering Pro)', 'unit' => 'tracks', 'ask' => 'How many tracks (stems) are in your project?', 'min' => 2, 'max' => 52, 'def' => 12,
 			'tiers' => array( array( 8, 'Mixing Start', 39, 3, '2–3 days' ), array( 31, 'Mixing Pro', 79, 5, '5–7 days' ), array( 52, 'Mixing Ultra', 169, 10, '7–9 days' ) ) ),
