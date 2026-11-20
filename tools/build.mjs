@@ -8,6 +8,11 @@ import { createHash } from 'node:crypto';
 import { transformSync } from 'esbuild';
 const root = new URL('../plugin/solid-sound-custom/', import.meta.url).pathname;
 const raw = '/tmp/ss-build-raw';
+/* (20.11: two stray </div> stacked every slider card on the live site) the home slider markup must balance before anything is built */
+for (const part of readdirSync(root + 'src/home/parts').filter(f => f.endsWith('.html'))) {
+  const t = readFileSync(root + 'src/home/parts/' + part, 'utf8'), o = (t.match(/<div\b/g) || []).length, c = (t.match(/<\/div>/g) || []).length;
+  if (o !== c) { console.error(`STOP: src/home/parts/${part} has ${o} <div> and ${c} </div> — fix the markup before building.`); process.exit(1); }
+}
 rmSync(root + 'build', { recursive: true, force: true }); rmSync(raw, { recursive: true, force: true });
 mkdirSync(root + 'build/assets', { recursive: true });
 cpSync(root + 'src/media', root + 'build/media', { recursive: true }); /* static media (example audio) */
