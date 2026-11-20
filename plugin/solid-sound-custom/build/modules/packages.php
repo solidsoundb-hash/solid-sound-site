@@ -68,7 +68,7 @@ function ss_pk_html( $only = null, $hero = true ) {
 		$h .= '<section class="sec" id="' . esc_attr( $id ) . '"><div class="sh"><i>' . $ic( $sec[2], 24 ) . '</i><div><h2>' . esc_html( $sec[0] ) . '</h2><p>' . esc_html( $sec[1] ) . '</p></div></div><div class="cards c' . count( $sec[3] ) . '">';
 		foreach ( $sec[3] as $c ) {
 			$price = (float) $c[4];
-			$h .= '<a class="card' . ( $c[7] ? ' hot' : '' ) . '" href="' . esc_url( $c[6] ) . '">' . ( $c[7] ? '<span class="rib">' . esc_html( $c[7] ) . '</span>' : '' )
+			$h .= '<a class="card' . ( $c[7] ? ' hot' : '' ) . '" href="' . esc_url( $c[6] ) . '" aria-label="' . esc_attr( $c[1] . ( $price > 0 ? ' — €' . round( $price ) : ' — free' ) ) . '">' . ( $c[7] ? '<span class="rib">' . esc_html( $c[7] ) . '</span>' : '' )
 				. '<div class="top"><span class="tag">' . esc_html( $c[0] ) . '</span><span class="d">' . esc_html( $c[5] ) . '</span></div>'
 				. '<h3>' . esc_html( $c[1] ) . '</h3><p>' . esc_html( $c[2] ) . '</p><ul>' . implode( '', array_map( function ( $x ) { return '<li>' . esc_html( $x ) . '</li>'; }, $c[3] ) ) . '</ul>'
 				. '<div class="pr">' . ( $price > 0 ? ( in_array( $c[0], array( 'MIXING', 'MASTERING', 'BUNDLE', 'REMIX' ), true ) ? '<span>from</span>' : '' ) . '<b>€' . esc_html( (string) round( $price ) ) . '</b><span>· €' . esc_html( fmod( $price / 2, 1 ) ? number_format( $price / 2, 2, '.', '' ) : (string) ( $price / 2 ) ) . ' to start</span>' : '<b>Free</b><span>for your first track</span>' ) . '<i>→</i></div></a>';
