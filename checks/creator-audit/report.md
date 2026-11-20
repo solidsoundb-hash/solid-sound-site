@@ -1,18 +1,18 @@
-# Creator area audit 2026-11-19T23:36:50.816Z
+# Creator area audit 2026-11-20T09:36:44.334Z
 
 ## phone
-- /en/store-manager/ → HTTP 200 · height 4292px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
+- /en/store-manager/ → HTTP 200 · height 4288px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
     - at 330: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
-    - at 345: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+    - at 345: div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap < div#wcfm-content
     - at 360: p.sub < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
-- /en/store-manager/ss-products/ → HTTP 200 · height 3116px · [phone_en_store_manager_ss_products.jpg](phone_en_store_manager_ss_products.jpg)
+- /en/store-manager/ss-products/ → HTTP 200 · height 3112px · [phone_en_store_manager_ss_products.jpg](phone_en_store_manager_ss_products.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-add-product/ → HTTP 200 · height 2095px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+- /en/store-manager/ss-add-product/ → HTTP 200 · height 2050px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
-    - at 360: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
+    - at 360: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - form.class=ss-ds-nofmt ss-ready data={"ssap":"1","aic":"1","kd":"1","zf":"1","pv":"1","ff":"1","ssds":"1"}
     - div.ss-ff-card.ss-ff-c1 display=block
     - div.ss-ff-card.ss-ff-c2 display=none ← #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body 
@@ -23,10 +23,10 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
-- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 2095px · [phone_en_store_manager_ss_add_product_ss_ff3_1.jpg](phone_en_store_manager_ss_add_product_ss_ff3_1.jpg)
+- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 2050px · [phone_en_store_manager_ss_add_product_ss_ff3_1.jpg](phone_en_store_manager_ss_add_product_ss_ff3_1.jpg)
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
-    - at 360: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
+    - at 360: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - form.class=ss-ds-nofmt ss-ready data={"ssap":"1","aic":"1","kd":"1","zf":"1","pv":"1","ff":"1","ssds":"1"}
     - div.ss-ff-card.ss-ff-c1 display=block
     - div.ss-ff-card.ss-ff-c2 display=none ← #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body 
@@ -37,33 +37,33 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
-- /en/store-manager/ss-earnings/ → HTTP 200 · height 2326px · [phone_en_store_manager_ss_earnings.jpg](phone_en_store_manager_ss_earnings.jpg)
+- /en/store-manager/ss-earnings/ → HTTP 200 · height 2322px · [phone_en_store_manager_ss_earnings.jpg](phone_en_store_manager_ss_earnings.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-payouts/ → HTTP 200 · height 2661px · [phone_en_store_manager_ss_payouts.jpg](phone_en_store_manager_ss_payouts.jpg)
+- /en/store-manager/ss-payouts/ → HTTP 200 · height 2657px · [phone_en_store_manager_ss_payouts.jpg](phone_en_store_manager_ss_payouts.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-reviews/ → HTTP 200 · height 1540px · [phone_en_store_manager_ss_reviews.jpg](phone_en_store_manager_ss_reviews.jpg)
+- /en/store-manager/ss-reviews/ → HTTP 200 · height 1536px · [phone_en_store_manager_ss_reviews.jpg](phone_en_store_manager_ss_reviews.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-settings/ → HTTP 200 · height 4074px · [phone_en_store_manager_ss_settings.jpg](phone_en_store_manager_ss_settings.jpg)
+- /en/store-manager/ss-settings/ → HTTP 200 · height 4070px · [phone_en_store_manager_ss_settings.jpg](phone_en_store_manager_ss_settings.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-help/ → HTTP 200 · height 1929px · [phone_en_store_manager_ss_help.jpg](phone_en_store_manager_ss_help.jpg)
+- /en/store-manager/ss-help/ → HTTP 200 · height 1925px · [phone_en_store_manager_ss_help.jpg](phone_en_store_manager_ss_help.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content < div#wcfm-main-contentainer
+    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/my-account/ → HTTP 200 · height 2950px · [phone_en_my_account.jpg](phone_en_my_account.jpg)
+- /en/my-account/ → HTTP 200 · height 2946px · [phone_en_my_account.jpg](phone_en_my_account.jpg)
     - at 330: p.sub < div < div.top < div#ssd < div.woocommerce-MyAccount-content
     - at 345: span.ssa-bonus < p.sub < div < div.top < div#ssd
-    - at 360: span.ssa-bonus < p.sub < div < div.top < div#ssd
-- /sell/ → HTTP 200 · height 4292px · [phone_sell.jpg](phone_sell.jpg)
+    - at 360: div.top < div#ssd < div.woocommerce-MyAccount-content < div.woocommerce < div.wpb_wrapper
+- /sell/ → HTTP 200 · height 4288px · [phone_sell.jpg](phone_sell.jpg)
     - at 330: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
-    - at 345: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
+    - at 345: div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap < div#wcfm-content
     - at 360: p.sub < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
 ## desktop
 - /en/store-manager/ → HTTP 200 · height 2651px · [desktop_en_store_manager.jpg](desktop_en_store_manager.jpg)
@@ -78,10 +78,11 @@
     - div.ss-ff-card.ss-ff-c6 display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body  | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
-    - AI cover: button visible=true, after 8 s → preview shown, pictures 1; messages: —
+    - AI cover: button visible=true, after 7 s → preview shown, pictures 2; messages: —
     - [desktop_ai_cover.jpg](desktop_ai_cover.jpg)
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
 - /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1449px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
+    - JS: g is not defined
     - form.class=ss-ds-nofmt ss-ready data={"ssap":"1","aic":"1","kd":"1","zf":"1","pv":"1","ff":"1","ssds":"1"}
     - div.ss-ff-card.ss-ff-c1 display=block
     - div.ss-ff-card.ss-ff-c2 display=none ← #solid-sound-upload-form:not(.ss-ff-has):not(.ss-ff-x1):not(.ss-ff-x2) .ss-wm-body > .ss-ff-card.ss-ff-c2, #solid-sound-upload-form:not(.ss-ff-has) .ss-wm-body 
