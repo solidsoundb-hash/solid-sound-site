@@ -443,6 +443,16 @@ body.ss-wow #ss-app .ssx .card .left>.f.ss-style .chips span{height:30px!importa
 body.ss-wow #ss-app .ssx .f.ss-style .chips:not(.all) span.x{display:none!important}body.ss-wow #ss-app .ssx .f.ss-style .chips.all .ss-more{display:none!important}
 body.ss-wow #ss-app .ssx .f.ss-style .ss-oth{display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:8px;border:1px dashed rgba(255,255,255,.25);color:#CBD5E1;font:600 13px Roboto,sans-serif;font-style:normal;cursor:pointer}body.ss-wow #ss-app .ssx .f.ss-style .ss-oth-in{height:30px;width:150px;padding:0 10px;border-radius:8px;border:1px solid #F59E0B;background:#0B1220;color:#fff;font:500 13px Roboto,sans-serif;outline:0}
 body.ss-wow #ss-app .ssx .f.ss-style .ss-more{display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:8px;border:1px dashed rgba(245,158,11,.5);color:#F59E0B;font:600 13px Roboto,sans-serif;font-style:normal;cursor:pointer}
+/* Finishing on phones (A31 412×700 was 65 px short): 3 styles on show (+6), lower chips, compact description box */
+@media(max-width:600px){
+body.ss-wow #ss-app .ssx .f.ss-style .chips:not(.all) span:nth-of-type(n+4){display:none!important}
+body.ss-wow #ss-app .ssx .f.ss-style .chips:not(.all) .ss-oth{display:none!important}
+body.ss-wow #ss-app .ssx .f.ss-style .ss-more{font-size:0!important}body.ss-wow #ss-app .ssx .f.ss-style .ss-more:after{content:"+6 more";font-size:13px}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-desc) .chips span{height:30px!important;min-height:30px!important;padding:0 10px!important;font-size:13px!important}
+body.ss-wow #ss-app .ssx .card .left:has(>.ssw-desc)>.f{gap:6px!important;margin-bottom:6px!important}
+body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-desc{padding:10px 12px!important;gap:2px!important;margin-top:4px!important}
+body.ss-wow #ss-app .ssx .ssw-desc b{font-size:15px!important}body.ss-wow #ss-app .ssx .ssw-desc .pp{font-size:13px!important}body.ss-wow #ss-app .ssx .ssw-desc p{font-size:13px!important;line-height:1.4!important}body.ss-wow #ss-app .ssx .ssw-desc .pay{display:none}
+}
 /* Free — the first tab (owner 19.11): 3 free blocks + the "Get everything free" card */
 body.ss-wow #ss-app .ssx .card .left.hp{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:12px 20px!important;align-items:stretch!important;align-content:center!important}
 body.ss-wow #ss-app .ssx .card .left.hp>.fz-tiles{grid-column:1!important;grid-row:1!important}
