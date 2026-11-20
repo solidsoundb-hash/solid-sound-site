@@ -3326,7 +3326,8 @@ if ( ! function_exists( 'ss_az_is_form' ) ) {
       return off.startRendering().then(function (r) {
         var x = r.getChannelData(0);
         return new Promise(function (res) { setTimeout(function () {
-          var t = tempo(x, SR), k = key(x, SR);
+          /* 20.11: our tempo (src/audio/ss-audio.js — folding + whole-BPM snap, 65 % exact on GiantSteps vs ~20 % before) */
+          var t = (g.SSAudio && g.SSAudio.tempo) ? g.SSAudio.tempo(x, SR) : tempo(x, SR), k = key(x, SR);
           var alt = [t.bpm / 2, t.bpm * 2].filter(function (v) { return v >= 60 && v <= 200; }).map(function (v) { return Math.round(v * 2) / 2; });
           res({ duration: dur, length: mmss(dur), bpm: t.bpm, bpmConf: t.conf, bpmAlternatives: alt, key: k });
         }, 30); });

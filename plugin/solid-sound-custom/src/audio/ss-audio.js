@@ -272,7 +272,7 @@
     for (f = 0; f < frames; f++) cs[f + 1] = cs[f] + env[f];
     for (f = 0; f < frames; f++) { var a0 = Math.max(0, f - win), b0 = Math.min(frames, f + win + 1), m = (cs[b0] - cs[a0]) / (b0 - a0); e2[f] = Math.max(0, env[f] - m); }
     function ac(lag) { var s = 0, L = Math.floor(lag), fr = lag - L; for (var t = 0; t + L + 1 < frames; t++) s += e2[t] * (e2[t + L] * (1 - fr) + e2[t + L + 1] * fr); return s; }
-    var center = opt.center || 125, sd = opt.sd || 0.45, best = 0, bestBpm = 0, sc = [];
+    var center = opt.center || 140, sd = opt.sd || 1, /* 20.11: best on GiantSteps Tempo (65 % exact vs the producers' BPM) */ best = 0, bestBpm = 0, sc = [];
     for (var bpm = 60; bpm <= 200; bpm += 0.25) {
       var lag = 60 * fps / bpm, s = ac(lag) + 0.5 * ac(2 * lag) + 0.25 * ac(4 * lag);
       var pr = Math.exp(-0.5 * Math.pow(Math.log2(bpm / center) / sd, 2)), v = s * pr; sc.push(v);
