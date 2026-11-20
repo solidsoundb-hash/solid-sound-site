@@ -8,7 +8,7 @@ on:
     paths: [".github/page-shot.txt"]
 permissions:
   contents: write
-concurrency: { group: page-shot, cancel-in-progress: false }
+concurrency: { group: shots-ab, cancel-in-progress: false }
 jobs:
   shot:
     runs-on: ubuntu-latest

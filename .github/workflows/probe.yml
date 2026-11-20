@@ -1,0 +1,31 @@
+# One-off probes of the live site (read-only). Run: add «<date> <name>» to .github/probe.txt → node tools/probe/<name>.js,
+# output pushed to branch shots-ab, folder probe-<name>/.
+name: Probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/probe.txt"]
+permissions:
+  contents: write
+concurrency: { group: shots-ab, cancel-in-progress: false }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Probe
+        run: |
+          N=$(tail -1 .github/probe.txt | awk '{print $NF}' | tr -cd 'a-z0-9-')
+          echo "N=$N" >> $GITHUB_ENV
+          PW_CHANNEL=chrome PROBE_OUT="probe-$N" node "tools/probe/$N.js"
+      - name: Save to branch shots-ab
+        if: always()
+        run: |
+          git fetch -q origin shots-ab && git worktree add -q sp origin/shots-ab || (git worktree add -q --detach sp && cd sp && git checkout -q --orphan tmp && git rm -rqf . ; true)
+          rm -rf "sp/probe-$N" && cp -r "probe-$N" sp/ && cd sp && git config user.name photographer && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "probe $N: $(date -u +%FT%TZ)" && git push -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:shots-ab
