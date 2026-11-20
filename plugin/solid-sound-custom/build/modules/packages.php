@@ -118,7 +118,7 @@ add_filter( 'the_content', function ( $c ) {
 	if ( is_string( $new ) && $new ) $c = preg_replace( '#\[us_html\].*?\[/us_html\]#s', '[us_html]' . base64_encode( rawurlencode( $new ) ) . '[/us_html]', $c, 1 );
 	$css = ss_pk_css() . '.sspk.top{padding-bottom:0}.sspk.top .trust{margin-top:0}';
 	$trust = '<div class="sspk top"><ul class="trust"><li>50 / 50 payment</li><li>100 % copyright yours</li><li>Timed comments on every demo</li><li>Project files in your DAW</li><li>Free mastering demo</li><li>Loyal clients keep their prices</li></ul></div>';
-	return '<style>' . $css . '</style>' . $c . ss_pk_html( array( 'release' ), false ); /* the page's own hero already lists the guarantees */
+	return '<style>' . $css . '</style>' . $c; /* tables only (owner 20.11: Release as a table too, no tiles) */
 }, 5 );
 add_action( 'template_redirect', function () {
 	if ( ! ss_pk_path_ok() ) return;
