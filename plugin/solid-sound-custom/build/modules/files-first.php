@@ -68,6 +68,15 @@ add_action( 'wp_footer', function () {
 /* step bar */
 #solid-sound-upload-form .ss-ff-steps{display:flex;gap:6px;margin:0 0 14px;padding:8px;border-radius:14px;background:#0b1220;border:1px solid rgba(255,255,255,.06);overflow-x:auto;scrollbar-width:none}
 #solid-sound-upload-form .ss-ff-steps::-webkit-scrollbar{display:none}
+/* 3 steps (owner 20.11): blocks 3–4 join step 2 and block 6 joins step 3 — one card each, thin lines between */
+#solid-sound-upload-form .ss-ff-c2,#solid-sound-upload-form .ss-ff-c3,#solid-sound-upload-form .ss-ff-c5{margin-bottom:0!important;border-bottom:0!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
+#solid-sound-upload-form .ss-ff-c3,#solid-sound-upload-form .ss-ff-c4,#solid-sound-upload-form .ss-ff-c6{border-top:1px solid rgba(255,255,255,.05)!important;border-top-left-radius:0!important;border-top-right-radius:0!important;padding-top:16px!important}
+#solid-sound-upload-form.ss-ds-nofmt .ss-ff-c2{border-bottom:1px solid rgba(255,255,255,.08)!important;border-radius:16px!important;margin-bottom:16px!important}
+#solid-sound-upload-form .ss-ff-h.ss-ff-sub{margin-bottom:10px}
+#solid-sound-upload-form .ss-ff-h.ss-ff-sub b{font-size:15px;color:#CBD5E1;text-transform:uppercase;letter-spacing:.06em}
+#solid-sound-upload-form .ss-ff-h.ss-ff-sub small{font-size:13px}#solid-sound-upload-form .ss-ff-h.ss-ff-sub small:empty{display:none}
+#solid-sound-upload-form .ss-ff-steps .ss-ff-time{flex:none;align-self:center;margin-left:auto;padding:0 10px;color:#34D399;font:600 13.5px "Exo 2",sans-serif;white-space:nowrap}
+@media(max-width:700px){#solid-sound-upload-form .ss-ff-steps .t{display:inline!important}#solid-sound-upload-form .ss-ff-steps .ss-ff-time{display:none}}
 #solid-sound-upload-form .ss-ff-steps button{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:#94A3B8;font:600 14px "Exo 2",sans-serif;cursor:pointer;white-space:nowrap}
 #solid-sound-upload-form .ss-ff-steps button:hover{background:rgba(255,255,255,.04);color:#fff}
 #solid-sound-upload-form .ss-ff-steps .d{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;border:1.5px solid #334155;font-size:12.5px;font-weight:800}
@@ -218,13 +227,15 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
     1 files → 2 what you're selling → 3 sound details → 4 cover → 5 name & description → 6 price & send, with a step bar on top.
     Steps 2–6 open after the files (or «fill it in by hand»); 3–6 after the type is chosen. */
  if(!/[?&]ss_ff4=0/.test(location.search)){
- function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h" data-n="'+num+'"><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
- var c1=card('ss-ff-c1','1','Your files','Drop the project ZIP, the full track (WAV) or your MP3 preview, and a cover. We read them and fill in the rest.'),
-     c2=card('ss-ff-c2','2','What you’re selling','Picked from your files — check it. No files yet? Choose the type yourself.'),
-     c3=card('ss-ff-c3','3','Sound details','Filled in from your files and the audio — fix anything that is wrong.'),
-     c4=card('ss-ff-c4','4','Cover','Square, at least 1000×1000. Upload yours or let AI make one.'),
-     c5=card('ss-ff-c5','5','Name & description','AI writes them from the steps above — change anything you like.'),
-     c6=card('ss-ff-c6','6','Price & send','You keep 70 % of every sale (85 % as a Founding Creator). We review new products within 24 hours.');
+ function card(c,num,t,sub){var d=document.createElement('div');d.className='ss-ff-card '+c;d.innerHTML='<div class="ss-ff-h'+(num?'" data-n="'+num+'"':' ss-ff-sub"')+'><div><b></b><small></small></div></div>';d.querySelector('b').textContent=t;d.querySelector('small').textContent=sub;return d}
+ /* owner 20.11 «не пугай людей 6-ю пунктами — всё должно говорить, что быстро и легко»: 3 steps for the eye
+    (1 files · 2 check what we filled in = type + sound + cover · 3 name, price & publish); the 6 blocks stay inside */
+ var c1=card('ss-ff-c1','1','Drop your files','ZIP, WAV or MP3 and a cover — we fill in the rest for you.'),
+     c2=card('ss-ff-c2','2','Check what we filled in','Usually nothing to change — about a minute.'),
+     c3=card('ss-ff-c3','','Sound',''),
+     c4=card('ss-ff-c4','','Cover','Square, 1000×1000 or larger — yours, or one from AI.'),
+     c5=card('ss-ff-c5','3','Name, price & publish','AI wrote the name and text from your files — tweak if you like, set a price, send.'),
+     c6=card('ss-ff-c6','','Price','You keep 70 % of every sale (85 % as a Founding Creator). Live within 24 hours.');
  var CS=[c1,c2,c3,c4,c5,c6];CS.forEach(function(c,i){body.insertBefore(c,i?CS[i-1].nextSibling:body.firstChild)});
  [drop,files,st,zf,document.getElementById('ss-az')].forEach(function(x){if(x)c1.appendChild(x)});
  var man=document.createElement('button');man.type='button';man.className='ss-ff-man';man.textContent='No files yet? Fill it in by hand →';c1.appendChild(man);
@@ -254,14 +265,15 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
  /* an AI cover that gets chosen lands in the product image: show it too */
  new MutationObserver(function(){var im=q('.ss-aic-cv .on img,.ss-aic-cv img.sel');if(im){var pv=cv.querySelector('.pv');if(!pv.querySelector('img')||pv.querySelector('img').src!==im.src){pv.innerHTML='';var c=im.cloneNode();pv.appendChild(c);steps()}}}).observe(c4,{subtree:true,attributes:true,attributeFilter:['class']});
  /* the step bar: what is done gets a tick, a tap jumps to the step */
- var NM=['Files','Type','Details','Cover','Name & text','Price & send'],nav=document.createElement('nav');nav.className='ss-ff-steps';nav.setAttribute('aria-label','Steps');
- nav.innerHTML=NM.map(function(n,i){return '<button type="button" data-i="'+i+'"><span class="d">'+(i+1)+'</span><span class="t">'+n+'</span></button>'}).join('');
+ var NM=['Files','Check','Publish'],GO=[0,1,4],nav=document.createElement('nav');nav.className='ss-ff-steps';nav.setAttribute('aria-label','Steps');
+ nav.innerHTML=NM.map(function(n,i){return '<button type="button" data-i="'+GO[i]+'"><span class="d">'+(i+1)+'</span><span class="t">'+n+'</span></button>'}).join('')+'<span class="ss-ff-time">⏱ About 3 minutes</span>';
  body.parentNode.insertBefore(nav,body);
  nav.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-i]');if(!b)return;var i=+b.getAttribute('data-i');if(i>0)open2();var c=CS[i];if(c&&c.offsetParent)c.scrollIntoView({behavior:'smooth',block:'start'});else if(i>1){var f2=F('format');if(f2)f2.scrollIntoView({behavior:'smooth',block:'center'})}});
  function has(w){if(!w)return false;if(w.querySelector('input[type=checkbox]:checked,input[type=radio]:checked'))return true;var sl=w.querySelector('select');if(sl&&[].some.call(sl.options,function(o){return o.selected&&o.value}))return true;var t=w.querySelector('input[type=text],input[type=number]');return !!(t&&t.value.trim())}
  function steps(){var nm=q('[name=product_name]'),ds=q('[name=product_description]'),pr=q('[name=product_price]'),fl=q('.ss-wm-files');
   var ok=[!!(fl&&fl.textContent.trim()),!!q('.ss-ap-format input:checked'),has(F('genre')),!!cv.querySelector('.pv img'),!!(nm&&nm.value.trim()&&ds&&ds.value.trim().length>20),!!(pr&&+pr.value>0)];
-  [].forEach.call(nav.children,function(b,i){b.classList.toggle('ok',ok[i]);b.querySelector('.d').textContent=ok[i]?'✓':String(i+1)})}
+  var k3=[ok[0],ok[1]&&ok[2]&&ok[3],ok[4]&&ok[5]];
+  [].forEach.call(nav.querySelectorAll('button'),function(b,i){b.classList.toggle('ok',k3[i]);b.querySelector('.d').textContent=k3[i]?'✓':String(i+1)})}
  form.addEventListener('input',function(){requestAnimationFrame(steps)});form.addEventListener('change',function(){requestAnimationFrame(steps)});
  var fl0=q('.ss-wm-files');if(fl0)new MutationObserver(function(){requestAnimationFrame(steps)}).observe(fl0,{childList:true,subtree:true,characterData:true});
  steps();
