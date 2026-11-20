@@ -3,7 +3,7 @@ const { chromium } = require('playwright'); const fs = require('fs');
 const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive: true });
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
-  const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, locale: 'en-US' });
+  const ctx = await b.newContext({ viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' }); // same phone as tools/page-shot.js
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
   const p = await ctx.newPage(); const log = []; const L = (...a) => log.push(a.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join(' '));
   p.on('pageerror', e => L('JS ERROR', e.message.slice(0, 200)));
@@ -16,6 +16,7 @@ const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive:
       ssw: w ? { src: (w.getAttribute('data-src') || '').split('/').pop(), cls: w.className } : null, ssp: (document.querySelector('#ssp') || {}).className, audio: au, ev: window.__ev.slice(-4), html: b.outerHTML.slice(0, 300) }; });
   L('0 before', await st());
   const btn = p.locator('#ss-app button[aria-label$="Infinity"]').first();
+  L('cover', await p.evaluate(() => { const b = document.querySelector('#ss-app button[aria-label$="Infinity"]'); if (!b) return 'no'; b.scrollIntoView({ block: 'center' }); const r = b.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return { rect: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)], top: t ? t.tagName + '.' + String(t.className).slice(0, 60) + ' < ' + (t.parentElement ? t.parentElement.tagName + '.' + String(t.parentElement.className).slice(0, 60) : '') : null, same: t === b || b.contains(t) }; }));
   await btn.scrollIntoViewIfNeeded().catch(() => {}); await btn.click({ timeout: 5000 }).catch(e => L('click1 fail', e.message.split('\n')[0]));
   await p.waitForTimeout(4000); L('1 after first click', await st());
   await btn.click({ timeout: 5000 }).catch(e => L('click2 fail', e.message.split('\n')[0]));

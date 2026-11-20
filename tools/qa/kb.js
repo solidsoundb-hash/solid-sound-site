@@ -200,6 +200,9 @@ function collect() {
   document.querySelectorAll('a.button, button.button, .single_add_to_cart_button, .add_to_cart_button, .checkout-button, a[class*=cta], button[type=submit]').forEach(e => {
     if (!vis(e) || f.covered.length > 4) return; const r = e.getBoundingClientRect(); if (r.top < 0 || r.bottom > vh) return;
     const x = r.left + r.width / 2, y = r.top + r.height / 2; const top = document.elementFromPoint(x, y);
+    // (20.11) a button that only scrolls UNDER a sticky / fixed header or toolbar at the top is not covered — scrolling brings it out
+    const stuck = (n) => { for (let k = 0; n && k < 8; k++, n = n.parentElement) { const p = getComputedStyle(n).position; if (p === 'sticky' || p === 'fixed') return n; } return null; };
+    const st = top && stuck(top); if (st && st.getBoundingClientRect().top < vh * 0.25 && y < st.getBoundingClientRect().bottom + 2) return;
     if (top && top !== e && !e.contains(top) && !top.contains(e)) f.covered.push(desc(e) + ' ← закрывает ' + desc(top));
   });
   // fixed panels height
