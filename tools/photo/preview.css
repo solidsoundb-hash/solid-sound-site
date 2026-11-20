@@ -1,0 +1,2 @@
+/* measure only: every card at its own height */
+body.ss-wow #ss-app .ssx .track{align-items:flex-start!important}
