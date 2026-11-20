@@ -457,6 +457,41 @@ body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{height:96px!important;padding:
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover .fp-t{font-size:24px!important}
 body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:2px 0!important}
 }
+/* laptops — the slider does not jump and every tab fits the first screen (owner 20.11).
+   Owner's laptop: 1920 px at 125 % Windows scale = 1536×704 in the browser, 672 with the admin bar. */
+@media(min-width:1001px){
+ /* every card as tall as the tallest one: the window keeps one height, nothing below moves when the tabs turn */
+ body.ss-wow #ss-app .ssx .track{align-items:stretch!important}
+ body.ss-wow #ss-app .ssx .card .left.fp{align-content:start!important}
+}
+@media(min-width:1001px) and (max-height:1000px){
+ /* hero: one line, no pill; the "What are you working on?" line stays for search engines and screen readers only */
+ body.ss-wow .ssw-hero{padding:4px 12px 2px!important}
+ body.ss-wow .ssw-hero .k{display:none!important}
+ body.ss-wow .ssw-hero .slg{font-size:28px!important;margin:0 auto!important}
+ body.ss-wow #ss-app .ssx{padding-top:6px!important;padding-bottom:4px!important}
+ body.ss-wow #ss-app .ssx h1.ssx-t{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;margin:0!important}
+ body.ss-wow #ss-app .ssx .tasks{margin-bottom:8px!important}
+ body.ss-wow #ss-app .ssx .tasks button{padding-top:8px!important;padding-bottom:8px!important}
+ body.ss-wow #ss-app .ssx .card{padding-top:10px!important;padding-bottom:10px!important}
+ body.ss-wow #ss-app .ssx .card .left>h2{margin-bottom:2px!important}
+ body.ss-wow #ss-app .ssx .card .left>.f:not(.row){margin:0 0 8px!important}
+ /* packs (Releasing / DJ set / Video): slim rows */
+ body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel{padding:8px 12px!important;margin-top:2px!important;gap:2px!important}
+ body.ss-wow #ss-app .ssx .ssw-rel .rl{gap:6px!important;margin-top:4px!important}
+ body.ss-wow #ss-app .ssx .ssw-rel .ri{padding:4px 10px!important;min-height:0!important}
+ body.ss-wow #ss-app .ssx .card .left>.acts:not(:has(~ .acts)),body.ss-wow #ss-app .ssx .card .left>.cta{padding-top:8px!important}
+ /* Just starting: no cover picture on short screens (as on phones) — Google / email start at the top */
+ body.ss-wow #ss-app .ssx .card .left.fp>.fp-cover{display:none!important}
+ body.ss-wow#ss-app .ssx .card .left.fp,#ss-app#ss-app .ssx .card .left.fp{row-gap:8px!important}
+ #ss-app#ss-app .ssx .card .left.fp>h2{grid-row:1!important}#ss-app#ss-app .ssx .card .left.fp>h2+p.d{grid-row:2!important}
+ #ss-app#ss-app .ssx .card .left.fp>.fp-list{grid-row:3 / span 2!important}#ss-app#ss-app .ssx .card .left.fp>.fp-links{grid-row:5!important}
+ #ss-app#ss-app .ssx .card .left.fp>div.acts{grid-row:1 / span 2!important;align-self:start!important}#ss-app#ss-app .ssx .card .left.fp>.fp-or{grid-row:3!important}
+ #ss-app#ss-app .ssx .card .left.fp>form{grid-row:4!important}#ss-app#ss-app .ssx .card .left.fp>.fp-note{grid-row:5!important}
+ /* buttons a little lower in height */
+ body.ss-wow #ss-app .ssx .card .left .cta,body.ss-wow #ss-app .ssx .card .left .gbtn,body.ss-wow #ss-app .ssx .card .left form.acts .inp{min-height:42px!important;height:42px!important}
+ body.ss-wow #ss-app .ssx .card .left.fp>.fp-or{margin:0!important}
+}
 @media(max-width:1000px){body.ss-wow #ss-app .ssx .card .left.hp{grid-template-columns:1fr!important;align-content:start!important}body.ss-wow #ss-app .ssx .card .left.hp>.hp-card{grid-column:1!important;grid-row:2!important;padding:16px}body.ss-wow #ss-app .ssx .hp-card b{font-size:19px}}
 @media(max-width:600px){body.ss-wow #ss-app .ssx .fz-tiles{gap:8px}body.ss-wow #ss-app .ssx .fz-t{padding:11px 12px;gap:12px}body.ss-wow #ss-app .ssx .fz-t .i{flex-basis:36px;width:36px;height:36px}body.ss-wow #ss-app .ssx .fz-t b{font-size:15px}body.ss-wow #ss-app .ssx .fz-t small{font-size:12.5px}body.ss-wow #ss-app .ssx .hp-card small{display:none}}
 /* owner 20.11 «туго листается, косо, всё съехало»: every row of choices wraps inside its own column — on a PC a long row
