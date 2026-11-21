@@ -1,0 +1,22 @@
+
+=== phone ===
+1_default /product/infinity/: {"cur":"EUR","sym":"€","n":16,"price":"€24.00 Original price was: €24.00. €12.00 Current price is: ","btn":true,"btnTxt":"€","mix":"Add mixing +€69 i","cookie":"—"}
+2_home /en/: {"cur":"EUR","sym":"€","n":16,"price":"","btn":true,"btnTxt":"€","mix":"Add mixing +$69i","cookie":"—"}
+  ссылка GBP: /en/?currency=GBP
+4_gbp /product/infinity/?currency=GBP: {"cur":"GBP","sym":"£","n":16,"price":"£21.00 Original price was: £21.00. £11.00 Current price is: ","btn":true,"btnTxt":"£","mix":"Add mixing +£58 i","cookie":"GBP"}
+5_gbp_next_page /product/intricate/: {"cur":"GBP","sym":"£","n":16,"price":"£21.00 Original price was: £21.00. £11.00 Current price is: ","btn":true,"btnTxt":"£","mix":"Add mixing +£58 i","cookie":"GBP"}
+6_gbp_home /en/: {"cur":"GBP","sym":"£","n":16,"price":"","btn":true,"btnTxt":"£","mix":"Add mixing +$69i","cookie":"GBP"}
+  корзина в GBP: Subtotal £11.00
+8_back_eur /product/infinity/?currency=EUR: {"cur":"EUR","sym":"€","n":16,"price":"€24.00 Original price was: €24.00. €12.00 Current price is: ","btn":true,"btnTxt":"€","mix":"Add mixing +€69 i","cookie":"EUR"}
+  ошибки JS: нет
+
+=== pc ===
+1_default /product/infinity/: {"cur":"EUR","sym":"€","n":16,"price":"€24.00 Original price was: €24.00. €12.00 Current price is: ","btn":true,"btnTxt":"€","mix":"Add mixing +€69 i","cookie":"—"}
+2_home /en/: {"cur":"EUR","sym":"€","n":16,"price":"","btn":true,"btnTxt":"€","mix":"Add mixing +$69i","cookie":"—"}
+  ссылка GBP: /en/?currency=GBP
+4_gbp /product/infinity/?currency=GBP: {"cur":"GBP","sym":"£","n":16,"price":"£21.00 Original price was: £21.00. £11.00 Current price is: ","btn":true,"btnTxt":"£","mix":"Add mixing +£58 i","cookie":"GBP"}
+5_gbp_next_page /product/intricate/: {"cur":"GBP","sym":"£","n":16,"price":"£21.00 Original price was: £21.00. £11.00 Current price is: ","btn":true,"btnTxt":"£","mix":"Add mixing +£58 i","cookie":"GBP"}
+6_gbp_home /en/: {"cur":"GBP","sym":"£","n":16,"price":"","btn":true,"btnTxt":"£","mix":"Add mixing +$69i","cookie":"GBP"}
+  корзина в GBP: Subtotal £11.00
+8_back_eur /product/infinity/?currency=EUR: {"cur":"EUR","sym":"€","n":16,"price":"€24.00 Original price was: €24.00. €12.00 Current price is: ","btn":true,"btnTxt":"€","mix":"Add mixing +€69 i","cookie":"EUR"}
+  ошибки JS: нет
