@@ -23,6 +23,17 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
       r.push('lightbox: ' + !!(await p.$('.pp-lb'))); await p.screenshot({ path: `page-out/${n}-lightbox.jpg`, type: 'jpeg', quality: 70 });
       await p.keyboard.press('Escape'); fs.writeFileSync(`page-out/${n}-check.txt`, r.join('\n'));
     }
+    if (url.includes('solid-sound.net')) { /* header: mini cart, favorites, currencies (22.11) */
+      const r = []; r.push('currencies: ' + await p.evaluate(() => ((window.SSCUR || {}).l || []).map(x => x[0]).join(',')));
+      r.push('header items: ' + await p.evaluate(() => [...document.querySelectorAll('#ssg .g-r-it .g-l')].map(x => x.textContent).join('|')));
+      if (n === 'desktop') {
+        const cart = await p.evaluateHandle(() => [...document.querySelectorAll('#ssg .g-r-it')].find(x => /cart/i.test((x.querySelector('.g-l') || {}).textContent || '')));
+        if (cart.asElement()) { await p.evaluate(() => scrollTo(0, 0)); await cart.asElement().hover(); await p.waitForTimeout(2500); r.push('mini cart: ' + await p.evaluate(() => { const m = document.getElementById('ss-mc'); return m ? (m.classList.contains('on') + ' | ' + m.innerText.replace(/\s+/g, ' ').slice(0, 120)) : 'none'; })); await p.screenshot({ path: `page-out/${n}-minicart.jpg`, type: 'jpeg', quality: 70 }); await p.mouse.move(5, 600); await p.waitForTimeout(600); }
+      }
+      const fav = await p.evaluateHandle((d) => d ? [...document.querySelectorAll('#ssg .g-r-it')].find(x => /favou?rites/i.test((x.querySelector('.g-l') || {}).textContent || '')) : [...document.querySelectorAll('#ssg-bar a')].find(x => /saved/i.test(x.textContent)), n === 'desktop');
+      if (fav.asElement()) { await fav.asElement().click(); await p.waitForTimeout(2500); r.push('favorites: url=' + p.url() + ' | ' + await p.evaluate(() => { const m = document.getElementById('ss-fv'); return m ? (m.classList.contains('on') + ' | ' + m.innerText.replace(/\s+/g, ' ').slice(0, 120)) : 'none'; })); await p.screenshot({ path: `page-out/${n}-favorites.jpg`, type: 'jpeg', quality: 70 }); }
+      fs.writeFileSync(`page-out/${n}-header.txt`, r.join('\n'));
+    }
     if (url.includes('solid-sound.net')) { /* what is at given points (debug of stray lines) */
       const pts = n === 'desktop' ? [[720, 437], [300, 470], [1300, 390]] : [[200, 394], [60, 405], [340, 384]];
       fs.writeFileSync(`page-out/${n}-points.txt`, JSON.stringify(await p.evaluate(P => P.map(([x, y]) => { scrollTo(0, 0); return [x, y, document.elementsFromPoint(x, y).slice(0, 6).map(e => e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + (typeof e.className === 'string' && e.className ? '.' + e.className.trim().split(/\s+/).slice(0, 3).join('.') : '') + ' ' + getComputedStyle(e).position)]; }), pts), null, 1));
