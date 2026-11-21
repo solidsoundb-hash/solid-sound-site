@@ -37,6 +37,8 @@ def media_in(h, base):
         u = urllib.parse.urljoin(base, html.unescape(m.group(1)))
         if MEDIA_RE.search(u) and 'wp-includes' not in u and '/plugins/' not in u and '/themes/' not in u:
             out.add(u.split('#')[0])
+    for m in re.finditer(r'(?:src|data-src|href)=["\']([^"\']*(?:youtube\.com|youtu\.be|vimeo\.com|soundcloud\.com|mixcloud\.com|drive\.google\.com|dropbox\.com)[^"\']*)["\']', h, re.I):
+        out.add('EMBED ' + html.unescape(m.group(1)))
     for m in re.finditer(r'url\(["\']?([^"\')]+)["\']?\)', h):
         u = urllib.parse.urljoin(base, m.group(1))
         if MEDIA_RE.search(u) and '/themes/' not in u:
@@ -137,6 +139,8 @@ def main():
         os.makedirs(md, exist_ok=True)
         got = 0
         for m in sorted(media):
+            if m.startswith('EMBED '):
+                continue
             fn = slug(urllib.parse.unquote(urllib.parse.urlsplit(m).path.rsplit('/', 1)[-1].rsplit('.', 1)[0])) + '.' + MEDIA_RE.search(m).group(1).lower()
             try:
                 data, _ = get(m, binary=True, limit=60_000_000)

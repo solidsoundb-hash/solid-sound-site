@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Rescue
-        run: python3 tools/old-sites.py $(tail -1 .github/old-sites.txt | grep -o 'subs:.*' | cut -d: -f2)
+        run: |
+          SUBS=$(tail -1 .github/old-sites.txt | sed 's/.*subs://')
+          python3 tools/old-sites.py $SUBS
       - name: Save to branch old-sites
         if: always()
         run: |
