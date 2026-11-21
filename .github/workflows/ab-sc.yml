@@ -1,0 +1,27 @@
+# Post-production before/after pairs from SoundCloud → home-page audio format (owner 21.11.2026).
+# Run: add a line to .github/ab-sc.txt. Result: branch ab-media (src/media/ab/*.mp3 + peaks.json) — checked, then merged.
+name: AB SoundCloud
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/ab-sc.txt"]
+permissions:
+  contents: write
+concurrency: ab-sc
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tools
+        run: sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg >/dev/null && pip install -q yt-dlp
+      - name: Make
+        run: python3 tools/ab-sc.py
+      - name: Save to branch ab-media
+        run: |
+          git config user.name ab-robot && git config user.email actions@users.noreply.github.com
+          git checkout -q -B ab-media
+          git add plugin/solid-sound-custom/src/media/ab && git commit -qm "ab: post-production pairs from SoundCloud"
+          git push -q -f origin ab-media
