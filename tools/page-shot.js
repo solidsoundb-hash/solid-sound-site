@@ -36,8 +36,8 @@ const DEV = [['pc', { viewport: { width: 1366, height: 768 }, userAgent: 'Mozill
     for (let hi = 0; hi < htmls.length; hi++) {
       const h = await p.evaluate(t => { const hs = [...document.querySelectorAll('h1,h2,h3')].filter(x => x.textContent.trim() === t); return hs.map(x => { let c = x; for (let i = 0; i < 4 && c.parentElement && c.parentElement !== document.body; i++) c = c.parentElement; return '<!-- path: ' + [...function* () { let e = x; while (e && e !== document.body) { yield e.tagName + (e.id ? '#' + e.id : '') + (e.className && typeof e.className === 'string' ? '.' + e.className.trim().split(/\s+/).join('.') : ''); e = e.parentElement; } }()].join(' < ') + ' -->\n' + c.outerHTML.slice(0, 20000); }).join('\n\n'); }, htmls[hi]).catch(e => 'error ' + e.message);
       fs.writeFileSync(`${OUT}/${slug}_html${hi + 1}.html`, h || 'not found');
-      const scripts = await p.evaluate(() => [...document.scripts].map(s => s.src || ('inline:' + s.textContent.slice(0, 80).replace(/\s+/g, ' '))).join('\n')).catch(() => '');
-      fs.writeFileSync(`${OUT}/${slug}_scripts.txt`, scripts);
+      const scripts = await p.evaluate(() => JSON.stringify([...document.scripts].map(s => s.src ? { src: s.src } : { type: s.type || '', code: s.textContent }))).catch(() => '[]');
+      fs.writeFileSync(`${OUT}/${slug}_scripts.json`, scripts);
     }
     md.push(`| ${p0} | ${dn === 'pc' ? 'ПК 1366' : 'A31 412×700'} | ${kb0} КБ / ${n0} | ${Math.max(res, Math.round(kb / 1024))} КБ | ${n} | ${yt} | ${errs.length ? errs.join(' / ') : '—'} | [экран](${slug}.jpg) · [целиком](${slug}_full.jpg) |`);
     await ctx.close();
