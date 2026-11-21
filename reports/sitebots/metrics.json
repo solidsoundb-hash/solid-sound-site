@@ -18,10 +18,10 @@
  "catalog_products": 8,
  "catalog_broken": 0,
  "catalog_incomplete": 8,
- "seo_pages": 110,
- "seo_red": 7,
- "seo_orange": 9,
- "seo_dup_titles": 7,
+ "seo_pages": 600,
+ "seo_red": 6,
+ "seo_orange": 71,
+ "seo_dup_titles": 18,
  "texts_typos": 27,
  "texts_cyrillic_pages": 0,
  "texts_same_desc": 0,
@@ -37,5 +37,8 @@
  "srv_backup_dirs": 1,
  "srv_orphans": 0,
  "srv_orphans_mb": 0,
- "at": "2026-11-21 19:46"
+ "at": "2026-11-21 20:59",
+ "seo_missing_sitemap": 51,
+ "seo_hreflang_bad": 0,
+ "seo_heavy_img": 0
 }

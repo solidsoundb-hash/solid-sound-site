@@ -11,7 +11,7 @@
 // What Google itself sees (indexing, queries, positions, real-visitor speed) — tools/bots/seo.js, needs GOOGLE_SA_JSON.
 'use strict';
 const { BASE, sleep, esc } = require('../bots/lib');
-const MAX = +process.env.SEO_MAX || 600;
+const MAX = +process.env.SEO_MAX || 900;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundBots/1.0';
 const LANGS = ['en', 'ua', 'de', 'fr', 'es', 'it', 'pt'];
 const UTIL = /\/(cart|checkout|my-account|store-manager|client-dashboard|add-product|wishlist|order-tracking|login|register|data-deletion|links|sitemap)\b/;
@@ -47,6 +47,7 @@ function pageLinks(html, from) {
   const out = []; for (const m of html.matchAll(/<a\b[^>]*\bhref\s*=\s*["']([^"'#]+)["']/gi)) {
     let u; try { u = new URL(dec(m[1]), from); } catch (e) { continue; }
     if (!/^(www\.)?solid-sound\.net$/.test(u.hostname) || !/^https?:$/.test(u.protocol)) continue;
+    if (/\/participant\//.test(u.pathname)) continue; // forum user profiles: not worth crawling
     if (/\/(wp-admin|wp-json|wp-content|wp-includes|feed|xmlrpc|wp-login)|\.(jpe?g|png|gif|webp|avif|svg|mp3|wav|zip|pdf|xml|css|js)$/i.test(u.pathname)) continue;
     out.push(u.href);
   } return out;
@@ -82,7 +83,7 @@ module.exports = async function seoFull() {
       if (!canon) I('🟠', 'нет canonical'); else if (P.canon !== P.u) I('🟠', 'canonical указывает на другую страницу');
       if (!h1) I('🟡', 'нет заголовка H1'); else if (h1 > 1) I('⚪', 'несколько H1');
       if (!og) I('🟡', 'нет картинки для соцсетей (og:image)');
-      if (words < 250 && !/\/(product)\//.test(P.u)) I('🟡', `мало текста (${words} слов) — «тонкая» страница`);
+      if (words < 250 && !/\/(product|community)\//.test(P.u) && !/\/(en|ua|de|fr|es|it|pt)\/$/.test(P.u) && P.u !== BASE + '/') I('🟡', `мало текста (${words} слов) — «тонкая» страница`);
       if (!P.inSm && P.canon === P.u) I('🟠', 'нет в карте сайта (Google найдёт её позже или не найдёт)');
     }
     // structured data
@@ -114,7 +115,10 @@ module.exports = async function seoFull() {
   for (const p of pages.values()) if (p.redirect && inbound[p.u]) { inbound[p.final] = inbound[p.final] || new Set(); inbound[p.u].forEach(f => inbound[p.final].add(f)); }
   const crawlDone = !queue.length;
   if (crawlDone) for (const p of live) if (p.inSm && !p.noindex && !(inbound[p.u] && [...inbound[p.u]].some(f => f !== p.u)) && !/\/(en|ua|de|fr|es|it|pt)\/$/.test(p.u)) p.issues.push(['🟡', 'сирота: ни одна страница сайта на неё не ссылается']);
-  for (const p of pages.values()) { if (p.redirect && inbound[p.u]) for (const f of [...inbound[p.u]].slice(0, 1)) { const fp = pages.get(f); if (fp) fp.issues.push([p.chain.length > 1 ? '🟠' : '🟡', `ссылка ведёт через переадресацию${p.chain.length > 1 ? ' (цепочка ' + p.chain.length + ' шагов)' : ''}: ${short(p.u)} → ${short(p.final)}`]); }
+  // failed pages: one more try after the crawl (the hosting drops requests under load)
+  for (const p of pages.values()) if (!p.st || p.st >= 500) { await sleep(5000); const r = await follow(p.u); if (r.st && r.st < 500) { p.st = r.st; p.issues = p.issues.filter(i => !/не открывается/.test(i[1])); if (norm(r.final) !== p.u) { p.redirect = true; p.final = norm(r.final); p.chain = r.chain; } } }
+  const redirLinks = [...pages.values()].filter(p => p.redirect && inbound[p.u]).map(p => [p.u, p.final, p.chain.length, inbound[p.u].size]).sort((a, b) => b[3] - a[3]);
+  for (const p of pages.values()) {
     if (p.redirect && p.inSm) p.issues.push(['🟠', 'в карте сайта адрес с переадресацией → ' + short(p.final)]);
     if ((!p.st || p.st >= 400) && inbound[p.u]) for (const f of [...inbound[p.u]].slice(0, 2)) { const fp = pages.get(f); if (fp) fp.issues.push(['🔴', `битая ссылка на ${short(p.u)} (${p.st || 'нет ответа'})`]); } }
   // E. hreflang: back-links, x-default, languages
@@ -155,7 +159,7 @@ module.exports = async function seoFull() {
   if (dupD.length) md += '### Одно описание на нескольких страницах\n' + dupD.slice(0, 10).map(([t, l]) => `- «${esc(t.slice(0, 70))}…» — ${l.length} стр.: ${l.slice(0, 4).map(short).join(', ')}`).join('\n') + '\n\n';
   if (!crawlDone) md += `_Обход остановлен на лимите ${MAX} страниц — «сироты» не считались (нужен полный обход)._\n\n`;
   md += '_Что видит сам Google (индекс, запросы, позиции, скорость у посетителей) — робот Search Console, ждёт ключ `GOOGLE_SA_JSON` (`docs/keys-todo.md`)._\n';
-  return { md, metrics: { seo_pages: pages.size, seo_red: sev('🔴'), seo_orange: sev('🟠'), seo_missing_sitemap: missing.length, seo_hreflang_bad: hlBad, seo_heavy_img: heavy.length, seo_dup_titles: dupT.length },
+  return { md, metrics: { seo_pages: pages.size, seo_red: sev('🔴'), seo_orange: sev('🟠'), seo_missing_sitemap: missing.length, seo_hreflang_bad: hlBad, seo_heavy_img: heavy.length, seo_redirect_links: redirLinks.length, seo_dup_titles: dupT.length },
     alerts: sev('🔴') ? [`SEO: ${sev('🔴')} серьёзных проблем (см. раздел SEO)`] : [] };
 };
 if (require.main === module) module.exports().then(r => console.log(r.md));

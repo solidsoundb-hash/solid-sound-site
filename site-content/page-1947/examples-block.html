@@ -1,5 +1,6 @@
 <style>
 .sabx{max-width:1200px;margin:30px auto 28px;padding:0 14px;font-family:"Exo 2",system-ui,sans-serif;scroll-margin-top:150px}
+.pr-sec .sabx{max-width:none;margin:30px 0 28px;padding:0}
 .sabx-hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px}
 .sabx h2{margin:0;font-size:30px;font-weight:700;line-height:1.15;display:flex;align-items:center;gap:14px;color:#fff}
 .sabx h2 span{flex:none;width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center}
@@ -31,10 +32,9 @@
 .sab.aft .sab-s i{left:50%;background:#F59E0B}
 .sab-s span{position:relative;display:flex;align-items:center;justify-content:center;font:700 13px "Exo 2",system-ui,sans-serif;letter-spacing:.06em;color:#94A3B8}
 .sab:not(.aft) .sab-s span:first-of-type{color:#fff}.sab.aft .sab-s span:last-of-type{color:#111}
-.sabx-gorow{display:flex;justify-content:center;margin:14px 0 0}
-.sabx-go{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;border-radius:10px;border:1px solid rgba(245,158,11,.6);background:rgba(245,158,11,.1);color:#F59E0B;font:700 15px "Exo 2",system-ui,sans-serif;cursor:pointer;white-space:nowrap}
-.sabx-go small{font:500 12.5px Roboto,sans-serif;color:#FCD34D}
-.sabx-go:hover{background:rgba(245,158,11,.2)}
+.pr-tabs .sabx-go{flex:1 0 auto;display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 14px;border-radius:10px;border:1px solid rgba(245,158,11,.6);background:rgba(245,158,11,.1);color:#F59E0B;font:inherit;cursor:pointer;white-space:nowrap}
+.pr-tabs .sabx-go b{font-size:14px;font-weight:700}.pr-tabs .sabx-go small{font-size:11.5px;color:#FCD34D}
+.pr-tabs .sabx-go:hover{background:rgba(245,158,11,.2)}
 @media(max-width:900px){.sabx-g{grid-template-columns:1fr}.sab{min-height:0}.sabx h2{font-size:24px}}
 </style>
 <section class="sabx" id="examples" hidden>
@@ -93,9 +93,10 @@ function place(){var sec=[].filter.call(document.querySelectorAll('#pr-top .pr-s
 place();p.hidden=false;
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.pr-tabs a'))requestAnimationFrame(function(){requestAnimationFrame(place)})});
 addEventListener('hashchange',function(){requestAnimationFrame(place)});
-/* «Our examples» — its own centred row under the service tabs */
-var tab=document.querySelector('a[role=tab][href^="#pr-"]'),bar=tab&&(tab.closest('[role=tablist]')||tab.parentElement);
-if(bar&&!document.querySelector('.sabx-go')){var row=document.createElement('div');row.className='sabx-gorow';row.innerHTML='<button type="button" class="sabx-go">▶ Our examples <small>before / after</small></button>';row.firstChild.onclick=function(){place();p.scrollIntoView({behavior:'smooth',block:'start'})};bar.parentNode.insertBefore(row,bar.nextSibling)}
+/* (owner 21.11) «Examples · before / after» inside the service tabs, between Remake and Custom production; it scrolls to the block */
+var tabs=[].slice.call(document.querySelectorAll('a[role=tab][href^="#pr-"]')),bar=tabs[0]&&(tabs[0].closest('[role=tablist]')||tabs[0].parentElement);
+if(bar&&!bar.querySelector('.sabx-go')){var go=document.createElement('button');go.type='button';go.className='sabx-go';go.innerHTML='<b>Examples</b><small>before / after</small>';go.onclick=function(){place();p.scrollIntoView({behavior:'smooth',block:'start'})};
+ var nx=tabs.filter(function(t){return /^\s*custom/i.test(t.textContent)})[0];if(nx&&nx.parentNode===bar)bar.insertBefore(go,nx);else bar.appendChild(go)}
 /* the old per-service before/after videos are replaced by this block */
 [].forEach.call(document.querySelectorAll('.pr-proof h3'),function(h){if(/^Hear before/.test(h.textContent.trim())){h.style.display='none';var x=h.nextElementSibling;if(x&&x.classList.contains('pp-ex'))x.style.display='none'}})}
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();

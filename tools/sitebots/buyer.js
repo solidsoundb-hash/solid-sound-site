@@ -43,8 +43,10 @@ async function walk(browser, name, d) {
     if (!n) throw new Error('товар не попал в корзину'); const tot = await p.locator('.order-total .amount, .wc-block-components-totals-footer-item .wc-block-components-totals-item__value').first().textContent().catch(() => '');
     return `товаров: ${n}, итого ${String(tot).trim()}`; });
   await step('Оформление (форма видна)', async () => { await p.goto(BASE + '/en/checkout/', { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await p.locator('form.checkout, .wc-block-checkout, #billing_email, input[type=email]').first().waitFor({ timeout: 30000 });
-    const pay = await p.locator('#payment, .wc-block-checkout__payment-method, iframe[name*="stripe" i], [id*="wcpay" i]').count(); return pay ? 'есть блок оплаты' : 'нет блока оплаты!'; });
+    await p.locator('form.checkout, .wc-block-checkout').first().waitFor({ state: 'attached', timeout: 30000 });
+    if (!await p.locator('#billing_email:visible, form.checkout input:visible, .wc-block-checkout input:visible').count()) throw new Error('форма оформления есть, но поля не видны');
+    const pay = await p.locator('#payment, .wc-block-checkout__payment-method, iframe[name*="stripe" i], [id*="wcpay" i]').count(); const ex = await p.locator('#wcpay-express-checkout-element, #wcpay-express-checkout-wrapper, [id*="amazon" i], .ppc-button-wrapper').count();
+    return (pay ? 'есть блок оплаты' : 'нет блока оплаты!') + (ex ? ', быстрые кнопки оплаты есть' : '') + '. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу'; });
   await ctx.close();
   return { name, steps, errs: [...new Set(errs)], broken };
 }

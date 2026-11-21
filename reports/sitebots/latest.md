@@ -1,20 +1,16 @@
-# Роботы-аналитики сайта — 2026-11-21 19:46 UTC
+# Роботы-аналитики сайта — 2026-11-21 20:59 UTC
 
-Запущены: 🧹 Мёртвый код (4 с), 🛒 Покупатель (74 с), 💶 Цены (48 с), 🎛 Товары (19 с), 🔎 SEO страниц (441 с), ✍️ Тексты (137 с), ♿ Доступность (264 с), ✉️ Письма (5 с), 🛡 Безопасность (61 с), 🗄 Сервер (60 с).
+Запущены: 🔎 SEO страниц (1751 с).
 
 ## ⚠️ Главное
 
-- Покупка ломается (компьютер) на шаге «Корзина»
-- Покупка ломается (Samsung A31) на шаге «Корзина»
-- SEO: 7 серьёзных проблем на страницах
-- Доступность: 2 критичных нарушений
-- Сервер: 1 опасных файлов открыто из интернета
+- SEO: 6 серьёзных проблем (см. раздел SEO)
 
 Для Claude: 🔴 — чинить сразу, 🟠 — в ближайшей правке, 🟡/⚪ — по возможности. Правило «скрины до и после» действует.
 
 ---
 
-## 🧹 Код: мёртвый код и ошибки
+## 🧹 Код: мёртвый код и ошибки _(прошлый запуск)_
 
 Проверено файлов: **87** (2112 КБ).
 
@@ -130,36 +126,36 @@
 
 ---
 
-## 🛒 Покупатель: путь до оформления заказа
+## 🛒 Покупатель: путь до оформления заказа _(прошлый запуск)_
 
 Робот проходит покупку как клиент (без оплаты). ❌ — здесь путь ломается, снимок в `reports/sitebots/shots/`.
 
-**компьютер** — ❌ сломано на шаге «Корзина»
+**компьютер** — ❌ сломано на шаге «Оформление (форма видна)»
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 5.7 с | ✅  |
-| Каталог | 5.0 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
-| Страница товара | 8.6 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
+| Главная | 4.3 с | ✅  |
+| Каталог | 2.7 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Страница товара | 1.9 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
 | Добавить в корзину | 4.3 с | ✅  |
-| Корзина | 5.2 с | ❌ page.goto: net::ERR_ABORTED at https://solid-sound.net/en/cart/ |
-| Оформление (форма видна) | — | пропущено |
+| Корзина | 4.7 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 31.8 с | ❌ locator.waitFor: Timeout 30000ms exceeded. |
 
-**Samsung A31** — ❌ сломано на шаге «Корзина»
+**Samsung A31** — ❌ сломано на шаге «Оформление (форма видна)»
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 3.2 с | ✅  |
-| Каталог | 5.8 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
-| Страница товара | 11.4 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
-| Добавить в корзину | 4.2 с | ✅  |
-| Корзина | 3.8 с | ❌ page.goto: net::ERR_ABORTED at https://solid-sound.net/en/cart/ |
-| Оформление (форма видна) | — | пропущено |
+| Главная | 2.7 с | ✅  |
+| Каталог | 2.1 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Страница товара | 1.8 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
+| Добавить в корзину | 4.3 с | ✅  |
+| Корзина | 4.5 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 31.8 с | ❌ locator.waitFor: Timeout 30000ms exceeded. |
 
 
 ---
 
-## 💶 Цены: одна цена везде
+## 💶 Цены: одна цена везде _(прошлый запуск)_
 
 Товаров: **8**, со скидкой в магазине: **7**, с расхождениями: **0**.
 
@@ -176,7 +172,7 @@
 
 ---
 
-## 🎛 Товары: всё ли на месте и открывается
+## 🎛 Товары: всё ли на месте и открывается _(прошлый запуск)_
 
 Товаров: **8**. Сломано (файл не открывается / нельзя купить): **0**. Неполных: **8**. Тексты и картинки для Google — в недельном отчёте `reports/weekly`.
 
@@ -193,51 +189,124 @@
 
 ---
 
-## 🔎 SEO: страницы глазами Google
+## 🔎 SEO: полная проверка глазами Google
 
-Проверено страниц из карты сайта: **110**. 🔴 7 · 🟠 9 · 🟡 44 · ⚪ 10
+Страниц обойдено: **600** (из карты сайта 97 + найдены по ссылкам), лимит 600. Картинок проверено: 120. 🔴 6 · 🟠 71 · 🟡 541 · ⚪ 373
 
-robots.txt: ✅ (карта сайта указана) · карта сайта: ✅ 110 адресов
+robots.txt: ✅ (карта сайта указана) · карта сайта: ✅ 97 адресов · языки в hreflang: de, en, es, fr, it, pt, uk, x-default
 
-| | Проблема | Страниц | Примеры |
+### Проблемы на страницах
+
+| | Проблема | Страниц | Где |
 |---|---|---|---|
-| 🔴 | закрыта от Google (noindex), а стоит в карте сайта | 7 | /en/cart/, /en/checkout/, /en/my-account/ |
-| 🟠 | в карте сайта адрес с переадресацией → /en/my-account/ | 2 | /en/store-manager/, /en/client-dashboard/ |
-| 🟠 | в карте сайта адрес с переадресацией → /en/sell/ | 2 | /en/vendor-membership/, /en/vendor-register/ |
-| 🟠 | в карте сайта адрес с переадресацией → /en/all-products/ | 1 | /en/shop/ |
-| 🟠 | в карте сайта адрес с переадресацией → /en/cart/ | 1 | /en/checkout/ |
-| 🟠 | в карте сайта адрес с переадресацией → /studio-calculator/?s=mixing | 1 | /en/services-calculator/ |
-| 🟠 | в карте сайта адрес с переадресацией → /studio-calculator/?s=mastering | 1 | /en/mastering-album-calculator/ |
-| 🟠 | в карте сайта адрес с переадресацией → /en/ | 1 | /en/forum-experimental/ |
-| 🟡 | нет ссылок на языковые версии (hreflang) | 31 | /en/all-products/, /en/privacy-policy/, /en/shop/ |
-| 🟡 | нет заголовка H1 | 6 | /en/cart/, /en/checkout/, /en/my-account/ |
-| 🟡 | заголовок короткий (18 зн.) | 3 | /en/cart/, /en/checkout/, /en/links/ |
-| 🟡 | заголовок длинный (67 зн., Google обрежет после ~60) | 3 | /en/wiki/how-much-do-djs-get-paid/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/ |
+| 🔴 | страница не открывается (нет ответа) | 3 | /es/product-tag/light/, /es/product-tag/reflective/, /es/product-tag/pitch/ |
+| 🔴 | битая ссылка на /es/product-tag/light/ (нет ответа) | 1 | /es/product/time-goes-fast-documentary-piano/ |
+| 🔴 | битая ссылка на /es/product-tag/reflective/ (нет ответа) | 1 | /es/product/time-goes-fast-documentary-piano/ |
+| 🔴 | битая ссылка на /es/product-tag/pitch/ (нет ответа) | 1 | /es/product/pitch/ |
+| 🟠 | нет в карте сайта (Google найдёт её позже или не найдёт) | 51 | /en/why-solid-sound/, /en/get-heard/, /ua/product/time-goes-fast-documentary-piano/, /ua/product/infinity/, /ua/product/intricate/, /ua/product/pitch/, /ua/product/melodic-techno-presets/, /ua/product/mutualism/ … |
+| 🟠 | canonical указывает на другую страницу | 17 | /en/community/say-hi/, /en/community/main-forum/, /en/community/main-forum/ideas-suggestions/, /en/participant/solid-sound/, /en/community/rate-my-track/, /en/community/ableton-help/, /en/community/sound-design-presets/, /en/community/collabs-vocals/ … |
+| 🟠 | ссылка ведёт через переадресацию | 2 | /en/all-products/, /en/all-products/ |
+| 🟡 | ссылка ведёт через переадресацию | 427 | /en/all-products/, /en/all-products/, /en/all-products/, /en/all-products/, /en/all-products/, /en/all-products/, /en/all-products/, /en/all-products/ … |
+| 🟡 | мало текста (151 слов) — «тонкая» страница | 52 | /en/contacts/, /en/presets/, /en/music/, /en/prices/, /en/free/, /en/legal-notice/, /en/, /ua/ … |
+| 🟡 | нет ссылок на языковые версии (hreflang) | 36 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/faq/, /en/forum/, /en/free-demo-feedback/, /en/prices/ … |
+| 🟡 | заголовок длинный (67 зн., Google обрежет после ~60) | 15 | /en/wiki/how-much-do-djs-get-paid/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/, /ua/product/time-goes-fast-documentary-piano/, /ua/product/melodic-techno-presets/, /de/product/time-goes-fast-documentary-piano/, /de/product/melodic-techno-presets/, /fr/product/time-goes-fast-documentary-piano/ … |
+| 🟡 | статья вики без разметки Article | 3 | /en/wiki/how-much-do-djs-get-paid/, /en/wiki/how-to-promote-yourself-as-a-dj/, /en/wiki/how-to-get-booked-as-a-dj/ |
+| 🟡 | описание короткое (12 зн.) | 3 | /en/community/recent/, /en/community/tags/, /en/community/ |
+| 🟡 | нет заголовка H1 | 2 | /en/participant/solid-sound/activity/, /en/participant/gressunit/activity/ |
+| 🟡 | FAQ без разметки FAQPage (вопросы могут показываться прямо в Google) | 1 | /en/faq/ |
 | 🟡 | описание длинное (193 зн.) | 1 | /en/services-prices/ |
-| ⚪ | нет рейтинга (звёзды в Google появятся только с отзывами) | 8 | /product/protos/, /product/kratos/, /product/infinity/ |
-| ⚪ | H1 несколько (2) | 2 | /en/all-products/, /en/shop/ |
+| ⚪ | картинок без размеров (width/height) | 161 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/contacts/, /en/faq/, /en/templates/, /en/presets/ … |
+| ⚪ | нет хлебных крошек (BreadcrumbList) | 99 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/contacts/, /en/faq/, /en/templates/, /en/presets/ … |
+| ⚪ | товар без рейтинга (звёзды появятся с отзывами) | 56 | /product/protos/, /product/kratos/, /product/infinity/, /product/intricate/, /product/mutualism/, /product/pitch/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/ … |
+| ⚪ | товар без бренда (brand) | 56 | /product/protos/, /product/kratos/, /product/infinity/, /product/intricate/, /product/mutualism/, /product/pitch/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/ … |
+| ⚪ | несколько H1 | 1 | /en/all-products/ |
+
+### 🟠 Нет в карте сайта (51)
+Открыты для Google, но не перечислены в карте сайта:
+- /en/why-solid-sound/
+- /en/get-heard/
+- /ua/product/time-goes-fast-documentary-piano/
+- /ua/product/infinity/
+- /ua/product/intricate/
+- /ua/product/pitch/
+- /ua/product/melodic-techno-presets/
+- /ua/product/mutualism/
+- /ua/product/kratos/
+- /ua/product/protos/
+- /de/product/time-goes-fast-documentary-piano/
+- /de/product/infinity/
+- /de/product/intricate/
+- /de/product/pitch/
+- /de/product/melodic-techno-presets/
+- /de/product/mutualism/
+- /de/product/kratos/
+- /de/product/protos/
+- /fr/product/time-goes-fast-documentary-piano/
+- /fr/product/infinity/
+- /fr/product/intricate/
+- /fr/product/pitch/
+- /fr/product/melodic-techno-presets/
+- /fr/product/mutualism/
+- /fr/product/kratos/
+- /fr/product/protos/
+- /pt/product/time-goes-fast-documentary-piano/
+- /pt/product/infinity/
+- /pt/product/intricate/
+- /pt/product/pitch/
+- /pt/product/melodic-techno-presets/
+- /pt/product/mutualism/
+- /pt/product/kratos/
+- /pt/product/protos/
+- /es/product/time-goes-fast-documentary-piano/
+- /es/product/infinity/
+- /es/product/intricate/
+- /es/product/pitch/
+- /es/product/melodic-techno-presets/
+- /es/product/mutualism/
+
+### Порядок в адресах
+- 🟠 http://www → https: http://www.solid-sound.net/en/faq/ → 301 https://www.solid-sound.net/en/faq/ (нужно 301 сразу на https://solid-sound.net/en/faq/)
+- 🟡 ссылки с параметром ?add-to-cart= на 78 страницах (например /en/all-products/) — Google видит дубли; закрыть такие адреса от индекса или убрать из ссылок
+
+### Картинки
+- Тяжелее 250 КБ: **0**
+- JPEG/PNG больше 60 КБ (в WebP были бы в 2–3 раза легче): **33**
 
 ### Один заголовок на нескольких страницах
-- «Ableton Templates, Serum Presets & Music / Solid Sound» — /en/all-products/, /en/shop/
-- «Cart – Solid Sound» — /en/cart/, /en/checkout/
-- «My Account – Solid Sound» — /en/my-account/, /en/store-manager/, /en/client-dashboard/
-- «Sell Your Music – Solid Sound» — /en/vendor-membership/, /en/vendor-register/, /en/sell/
-- «Studio Price Calculator – Mixing, Mastering, Remix / Solid Sound» — /en/services-calculator/, /en/mastering-album-calculator/
-- «Ableton Templates, Presets & Mixing/Mastering / Solid Sound» — /en/forum-experimental/, /en/, /ua/, /de/, /fr/, /pt/, /es/, /it/
+- «Music Production Forum / Solid Sound» — /en/forum/, /en/community/say-hi/, /en/community/main-forum/, /en/community/main-forum/ideas-suggestions/, /en/participant/solid-sound/, /en/community/rate-my-track/, /en/community/ableton-help/, /en/community/sound-design-presets/, /en/community/collabs-vocals/, /en/community/releasing-promo/, /en/community/lounge/, /en/participant/gressunit/, /en/community/recent/, /en/community/tags/, /en/community/, /en/community/main-category/, /en/participant/solid-sound/activity/, /en/participant/gressunit/activity/
 - «Solid Wiki – Solid Sound» — /en/wiki/, /ua/wiki-ua/, /de/wiki-de/, /fr/wiki-fr/, /pt/wiki-pt/, /es/wiki-es/, /it/wiki-it/
+- «Ableton Templates, Presets & Mixing/Mastering / Solid Sound» — /en/, /ua/, /de/, /fr/, /pt/, /es/, /it/
+- «Protos – Techno Ableton Live Template / Solid Sound» — /product/protos/, /de/product/protos/, /es/product/protos/, /it/product/protos/
+- «Kratos – Techno Ableton Live Template / Solid Sound» — /product/kratos/, /de/product/kratos/, /es/product/kratos/, /it/product/kratos/
+- «Infinity – Techno Ableton Live Template / Solid Sound» — /product/infinity/, /de/product/infinity/, /es/product/infinity/, /it/product/infinity/
+- «Intricate – Techno Ableton Live Template / Solid Sound» — /product/intricate/, /de/product/intricate/, /es/product/intricate/, /it/product/intricate/
+- «Mutualism – Techno Ableton Live Template / Solid Sound» — /product/mutualism/, /de/product/mutualism/, /es/product/mutualism/, /it/product/mutualism/
+- «Pitch – Techno Ableton Live Template / Solid Sound» — /product/pitch/, /de/product/pitch/, /es/product/pitch/, /it/product/pitch/
+- «Melodic Techno Presets – Melodic Techno Serum Presets / Solid Sound» — /product/melodic-techno-presets/, /es/product/melodic-techno-presets/, /it/product/melodic-techno-presets/
+- «Time Goes Fast Documentary Piano – Cinematic Royalty-Free Music / Solid Sound» — /product/time-goes-fast-documentary-piano/, /es/product/time-goes-fast-documentary-piano/, /it/product/time-goes-fast-documentary-piano/
+- «Infinity – Techno Template Ableton Live / Solid Sound» — /fr/product/infinity/, /pt/product/infinity/
+- «Intricate – Techno Template Ableton Live / Solid Sound» — /fr/product/intricate/, /pt/product/intricate/
+- «Pitch – Techno Template Ableton Live / Solid Sound» — /fr/product/pitch/, /pt/product/pitch/
+- «Melodic Techno Presets – Melodic Techno Presets Serum / Solid Sound» — /fr/product/melodic-techno-presets/, /pt/product/melodic-techno-presets/
 
 ### Одно описание на нескольких страницах
-- «All Solid Sound products in one place: royalty-free Ableton Live templ…» — 2 стр.: /en/all-products/, /en/shop/
-- «Your cart at Solid Sound: royalty-free Ableton templates, Serum preset…» — 2 стр.: /en/cart/, /en/checkout/
-- «Your Solid Sound account: orders, downloads and studio projects in one…» — 3 стр.: /en/my-account/, /en/store-manager/, /en/client-dashboard/
-- «Sell your Ableton templates, presets and sample packs on Solid Sound. …» — 3 стр.: /en/vendor-membership/, /en/vendor-register/, /en/sell/
-- «Instant prices for mixing, mastering (stereo, stem, multitrack), remix…» — 2 стр.: /en/services-calculator/, /en/mastering-album-calculator/
-- «Royalty-free Ableton Live templates, Serum presets and music for video…» — 7 стр.: /en/forum-experimental/, /en/, /ua/, /de/
+- «Royalty-free Ableton Live templates, Serum presets and music for video…» — 6 стр.: /en/, /ua/, /de/, /fr/
+- «Protos is a full-length techno template for Ableton Live 10, produced …» — 3 стр.: /product/protos/, /es/product/protos/, /it/product/protos/
+- «Kratos is a full-length dark techno template for Ableton Live 10, prod…» — 3 стр.: /product/kratos/, /es/product/kratos/, /it/product/kratos/
+- «Infinity is a full-length Ableton Live 11 template produced by Grenør.…» — 3 стр.: /product/infinity/, /es/product/infinity/, /it/product/infinity/
+- «Intricate is a full-length dark techno template for Ableton Live 11, p…» — 3 стр.: /product/intricate/, /es/product/intricate/, /it/product/intricate/
+- «Mutualism is a fresh take on dark techno, inspired by Adam Beyer and V…» — 3 стр.: /product/mutualism/, /es/product/mutualism/, /it/product/mutualism/
+- «Pitch is a techno template inspired by the legendary Dino Maggiorana. …» — 3 стр.: /product/pitch/, /es/product/pitch/, /it/product/pitch/
+- «Tech specs Presets pack: Serum Presets (*.fxp) Compatible: PC and Mac …» — 3 стр.: /product/melodic-techno-presets/, /es/product/melodic-techno-presets/, /it/product/melodic-techno-presets/
+- «"Time Goes Fast Documentary Piano" is a reflective and emotional piano…» — 3 стр.: /product/time-goes-fast-documentary-piano/, /es/product/time-goes-fast-documentary-piano/, /it/product/time-goes-fast-documentary-piano/
 
+_Обход остановлен на лимите 600 страниц — «сироты» не считались (нужен полный обход)._
+
+_Что видит сам Google (индекс, запросы, позиции, скорость у посетителей) — робот Search Console, ждёт ключ `GOOGLE_SA_JSON` (`docs/keys-todo.md`)._
 
 ---
 
-## ✍️ Тексты: опечатки и ошибки (английский)
+## ✍️ Тексты: опечатки и ошибки (английский) _(прошлый запуск)_
 
 Проверено: 12 страниц и 8 описаний товаров. Возможных ошибок: **27**.
 
@@ -274,7 +343,7 @@ robots.txt: ✅ (карта сайта указана) · карта сайта:
 
 ---
 
-## ♿ Доступность (контраст, подписи, клавиатура)
+## ♿ Доступность (контраст, подписи, клавиатура) _(прошлый запуск)_
 
 Проверено страниц: **18** (9 адресов × компьютер и A31). Правил нарушено: 🔴 2 · 🟠 4 · 🟡 2 · ⚪ 1
 
@@ -292,7 +361,7 @@ robots.txt: ✅ (карта сайта указана) · карта сайта:
 
 ---
 
-## ✉️ Письма: дойдут ли до клиента
+## ✉️ Письма: дойдут ли до клиента _(прошлый запуск)_
 
 | | Настройка | Состояние |
 |---|---|---|
@@ -306,7 +375,7 @@ robots.txt: ✅ (карта сайта указана) · карта сайта:
 
 ---
 
-## 🛡 Безопасность сайта снаружи
+## 🛡 Безопасность сайта снаружи _(прошлый запуск)_
 
 То, что видит любой посетитель или взломщик (без входа). Устаревшие плагины — в недельном отчёте `reports/weekly`.
 
@@ -323,53 +392,6 @@ robots.txt: ✅ (карта сайта указана) · карта сайта:
 
 ---
 
-## 🗄 Сервер: что лежит на хостинге и не нужно
+## 🗄 Сервер _(прошлый запуск)_
 
-Файлов: **461**, всего **10.2 МБ**. Робот только смотрит, ничего не удаляет.
-
-| Папка | Размер |
-|---|---|
-| `solid-sound.net/www` | 10.2 МБ |
-| `solid-sound.net/www/wp-content/uploads` | 0.0 МБ |
-| `solid-sound.net/www/wp-content/plugins` | 0.0 МБ |
-| `solid-sound.net/www/wp-content/themes` | 0.0 МБ |
-| `solid-sound.net/www/wp-content/cache` | 0.0 МБ |
-| `solid-sound.net/www/wp-content` | 0.0 МБ |
-| `solid-sound.net/_removed` | 0.0 МБ |
-| `solid-sound.net/landingpt` | 0.0 МБ |
-| `solid-sound.net/post` | 0.0 МБ |
-| `solid-sound.net/ssl` | 0.0 МБ |
-| `solid-sound.net/studio` | 0.0 МБ |
-| `solid-sound.net/templates` | 0.0 МБ |
-| `solid-sound.net/test` | 0.0 МБ |
-| `solid-sound.net/www_old` | 0.0 МБ |
-
-Загрузки по годам: 
-
-### 🔴 Опасные файлы, доступные из интернета (1)
-Копии базы, архивы, логи, копии wp-config — их может скачать кто угодно. Удалить или перенести выше папки www.
-
-- `/.htaccess.bak` — 0.0 МБ
-
-### 🟠 Папки старых копий (1)
-- `solid-sound.net/_removed` — 0.0 МБ
-
-### Самые большие файлы
-| Файл | Размер |
-|---|---|
-| `solid-sound.net/www/wp-includes/formatting.php` | 0.3 МБ |
-| `solid-sound.net/www/wp-includes/post.php` | 0.3 МБ |
-| `solid-sound.net/www/wp-includes/functions.php` | 0.3 МБ |
-| `solid-sound.net/www/wp-includes/media.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/class-wp-theme-json.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/class-wp-xmlrpc-server.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/class-wp-customize-manager.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/certificates/ca-bundle.crt` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/deprecated.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/general-template.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/user.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/taxonomy.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/ID3/module.audio-video.quicktime.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/class-wp-query.php` | 0.2 МБ |
-| `solid-sound.net/www/wp-includes/script-loader.php` | 0.2 МБ |
-
+🔴 Робот упал: spawnSync python3 ETIMEDOUT

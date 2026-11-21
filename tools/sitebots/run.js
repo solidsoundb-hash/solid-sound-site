@@ -11,11 +11,11 @@ const OUT = process.env.SITEBOTS_OUT || 'reports/sitebots';
 const BOTS = {
   code: ['🧹 Мёртвый код', () => require('./code')], buyer: ['🛒 Покупатель', () => require('./buyer')], prices: ['💶 Цены', () => require('./prices')],
   catalog: ['🎛 Товары', () => require('./catalog')], seo: ['🔎 SEO страниц', () => require('./seo-pages')], texts: ['✍️ Тексты', () => require('./texts')],
-  a11y: ['♿ Доступность', () => require('./a11y')], emails: ['✉️ Письма', () => require('./emails')], websec: ['🛡 Безопасность', () => require('./websec')],
+  a11y: ['♿ Доступность', () => require('./a11y')], emails: ['✉️ Письма', () => require('./emails')], websec: ['🛡 Безопасность', () => require('./websec')], cookies: ['🍪 Cookie/GDPR', () => require('./cookies')], health: ['🩺 Здоровье', () => require('./health')],
   files: ['🗄 Сервер', () => async () => {
     if (!process.env.FTP_HOST) return { md: '## 🗄 Сервер\n\n⏸ Нет доступа FTP (секреты FTP_HOST/USER/PASS).\n', metrics: {}, alerts: [] };
     let err = ''; let md = '';
-    try { md = execFileSync('python3', [path.join(__dirname, 'server_files.py')], { encoding: 'utf8', maxBuffer: 64 << 20, timeout: 40 * 60000, stdio: ['ignore', 'pipe', 'pipe'] }); }
+    try { md = execFileSync('python3', [path.join(__dirname, 'server_files.py')], { encoding: 'utf8', maxBuffer: 64 << 20, timeout: 32 * 60000, stdio: ['ignore', 'pipe', 'pipe'] }); }
     catch (e) { md = String(e.stdout || ''); err = String(e.stderr || e.message).split('\n').filter(Boolean).slice(-3).join(' '); }
     let metrics = {}; try { metrics = JSON.parse(fs.readFileSync(path.join(OUT, '.files-metrics.json'), 'utf8')); } catch (e) {}
     return { md: md || '## 🗄 Сервер\n\n🔴 Робот упал: ' + err + '\n', metrics, alerts: metrics.srv_risky ? [`Сервер: ${metrics.srv_risky} опасных файлов открыто из интернета`] : [] };
