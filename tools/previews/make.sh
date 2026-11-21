@@ -8,8 +8,9 @@ set -u
 mkdir -p out work
 IDS="${PREVIEW_IDS:-}"
 if [ -z "$IDS" ]; then
-  IDS=$(curl -s -A "Mozilla/5.0 SolidSoundBots/1.0" "https://solid-sound.net/wp-json/wc/store/v1/products?per_page=100" \
-    | grep -oE '(youtube(-nocookie)?\.com\\?/(embed\\?/|watch\?v=|shorts\\?/)|youtu\.be\\?/)[A-Za-z0-9_-]{11}' | grep -oE '[A-Za-z0-9_-]{11}$' | sort -u)
+  IDS=$( { curl -s -A "Mozilla/5.0 SolidSoundBots/1.0" "https://solid-sound.net/en/all-products/?nc=$RANDOM";
+           curl -s -A "Mozilla/5.0 SolidSoundBots/1.0" "https://solid-sound.net/wp-json/wc/store/v1/products?per_page=100"; } \
+    | grep -oE 'data-yt=\\?"[A-Za-z0-9_-]{11}|(youtube(-nocookie)?\.com\\?/(embed\\?/|watch\?v=|shorts\\?/)|youtu\.be\\?/)[A-Za-z0-9_-]{11}' | grep -oE '[A-Za-z0-9_-]{11}$' | sort -u)
 fi
 echo "videos: $IDS"
 for id in $IDS; do
