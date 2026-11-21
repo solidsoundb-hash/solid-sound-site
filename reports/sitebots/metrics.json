@@ -37,12 +37,19 @@
  "srv_backup_dirs": 1,
  "srv_orphans": 68,
  "srv_orphans_mb": 10,
- "at": "2026-11-21 23:25",
+ "at": "2026-11-21 23:26",
  "seo_missing_sitemap": 51,
  "seo_hreflang_bad": 0,
  "seo_heavy_img": 0,
  "gdpr_leaks_before": 2,
  "gdpr_leaks_reject": 2,
  "gdpr_banner": 1,
- "seo_redirect_links": 432
+ "seo_redirect_links": 432,
+ "health_core_changed": 0,
+ "health_plugins_changed": 0,
+ "health_uploads_php": 1,
+ "db_mb": 64.8,
+ "db_autoload_kb": 475,
+ "shop_failed_7d": 0,
+ "reviews_pending": 0
 }
