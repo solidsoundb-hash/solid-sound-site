@@ -10,3 +10,4 @@
 2026-11-21 https://solid-sound.net/en/services-prices/?v=3
 2026-11-21 https://solid-sound.net/en/all-products/
 2026-11-21 https://solid-sound.net/product/pitch/
+2026-11-21 https://solid-sound.net/en/all-products/?v=ns
