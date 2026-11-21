@@ -5631,6 +5631,7 @@ require_once __DIR__ . '/modules/yt-lite.php'; /* 20.11 speed: YouTube loads onl
 require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну шапку с подвалом»: home uses the shared header/footer (?ss_one=1 preview) */
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
+require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
 require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */
