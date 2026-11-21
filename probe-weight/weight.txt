@@ -1,0 +1,374 @@
+
+ТОВАР /product/infinity/ (заход 1): сервер 2417 мс | первая отрисовка 2928 мс | DOM готов 3210 мс | всё загружено 3642 мс | запросов 170 | вес 14696 КБ | HTML 47 КБ | элементов 1541
+
+ТОВАР /product/infinity/ (заход 2): сервер 1066 мс | первая отрисовка 1180 мс | DOM готов 1296 мс | всё загружено 1454 мс | запросов 170 | вес 14680 КБ | HTML 47 КБ | элементов 1541
+  по типам: ping 4 шт / 0 КБ · stylesheet 28 шт / 301 КБ · script 57 шт / 10304 КБ · image 13 шт / 94 КБ · font 4 шт / 234 КБ · document 12 шт / 2330 КБ · other 3 шт / 4 КБ · fetch 40 шт / 35 КБ · xhr 9 шт / 1378 КБ
+  по сайтам: solid-sound.net 65 · r.stripe.com 19 · js.stripe.com 16 · b.stripecdn.com 12 · play.google.com 11 · www.gstatic.com 8 · apay-us.amazon.com 5 · fonts.gstatic.com 3 · pay.google.com 3 · m.stripe.com 3 · newassets.hcaptcha.com 3 · fonts.googleapis.com 2 · m.stripe.network 2 · api.hcaptcha.com 2 · connect.facebook.net 1 · www.googletagmanager.com 1 · cdn.brevo.com 1 · cdn.jsdelivr.net 1 · sibautomation.com 1 · in-automate.brevo.com 1 · merchant-ui-api.stripe.com 1 · api.stripe.com 1 · www.google-analytics.com 1 · static-eu.payments-amazon.com 1 · static-na.payments-amazon.com 1 · m.media-amazon.com 1 · payments-eu.amazon.com 1 · hcaptcha.com 1 · 483223b188e9.w.hcaptcha.com 1 · 3e54c143f529.w.hcaptcha.com 1
+  самые тяжёлые:
+    2729 КБ script     https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    1840 КБ script     https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1559 КБ script     https://newassets.hcaptcha.com/c/14fd6936f5ef64ed36a7122dc0ae5da13e2d64ba405bbc6f499a3e17e8e98d0e/hsw.js
+    1370 КБ xhr        https://pay.google.com/gp/p/ui/pay
+     994 КБ document   https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/hcaptcha.html
+     994 КБ document   https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/hcaptcha.html
+     881 КБ script     https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     711 КБ script     https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit
+     355 КБ script     https://static-na.payments-amazon.com/checkout.js
+     268 КБ script     https://js.stripe.com/v3/?ver=3.0
+     244 КБ script     https://pay.google.com/gp/p/js/pay.js
+     193 КБ document   /product/infinity/
+     179 КБ script     https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW
+     173 КБ script     /wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js
+     151 КБ script     https://static-eu.payments-amazon.com/cPSPcheckout.js
+  скрипты:
+    2729 КБ https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    1840 КБ https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1559 КБ https://newassets.hcaptcha.com/c/14fd6936f5ef64ed36a7122dc0ae5da13e2d64ba405bbc6f499a3e17e8e98d0e/hsw.js
+     881 КБ https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     711 КБ https://hcaptcha.com/1/api.js
+     355 КБ https://static-na.payments-amazon.com/checkout.js
+     268 КБ https://js.stripe.com/v3/
+     244 КБ https://pay.google.com/gp/p/js/pay.js
+     179 КБ https://www.googletagmanager.com/gtag/js
+     173 КБ /wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js
+     151 КБ https://static-eu.payments-amazon.com/cPSPcheckout.js
+     128 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AffirmInContext~AfterpayInContext~AmazonPayButton~Arko
+      97 КБ https://connect.facebook.net/en_US/fbevents.js
+      86 КБ /wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      74 КБ https://js.stripe.com/v3/fingerprinted/js/stripe-cookies-342e5a3c90613ebd49e7001b6682f9f8.js
+      72 КБ /wp-includes/js/dist/vendor/lodash.min.js,qver=4.18.1.pagespeed.ce.Y6Gqd9MNhV.js
+      60 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      56 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-global.81b37f386f.js.pagespeed.ce.PWswWU-ogI.js
+      39 КБ /wp-content/plugins/woocommerce-payments/dist/product-details.js
+      36 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/AmazonPayButton.76e20ab8a153c2dd4751.bundle.js
+      34 КБ /wp-content/plugins/woocommerce-payments/dist/express-checkout.js
+      33 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      33 КБ https://js.stripe.com/v3/fingerprinted/js/consumerSchema-9ac44b5a5ed5f7287f3df221380b9f43.js
+      18 КБ /wp-content/plugins/solid-sound-custom/build/assets/ssb-js.e35f0dad8c.js+theme-player-js.868bec0162.js.pagespeed.jc.O_AQ
+      17 КБ https://cdn.jsdelivr.net/npm/meta-capi-param-builder-clientjs@1.3.2/dist/clientParamBuilder.bundle.js
+      16 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      15 КБ /wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js,qver=11.2.1.pagespeed.ce.hb336Y9ijA.js
+      14 КБ https://m.stripe.network/out-4.5.45.js
+      13 КБ /wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js,qver=11.2.1.pagespeed.ce.-vBUWr8nLG.js
+      12 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/GooglePay.2e6bc6931c639e3c935a.bundle.js
+      11 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/HCaptchaInvisible.876a237676b4519ae145.bundle.js
+      11 КБ /wp-includes/js/dist/html-entities.min.js,qver==a976ff3a0f00bc2999a3+vendor,_wp-polyfill.min.js,qver==3.15.0.pagespeed.j
+      11 КБ /wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js
+      10 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      10 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-foot-js.395fb5ab57.js.pagespeed.ce.ZsFbEWeHLB.js
+       9 КБ /wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js,qver=2.7.0-wc.11.2.1.pagespeed.ce.ziG0mxG
+       9 КБ /wp-includes/js/dist/a11y.min.js,qver==31c6cec5a4ff7aff483d+private-apis.min.js,qver==eb85f28c4c729bb4f002+url.min.js,qv
+       4 КБ /wp-includes/js/dist/dom-ready.min.js,qver==3fe927cab37bf38d6a23+hooks.min.js,qver==f0f188028580e8dc1255+i18n.min.js,qve
+       4 КБ /wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js,qver=11.2.1.pagespeed.ce.1oQ_qbbf0c.js
+       4 КБ /wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js,qver=11.2.1.pagespeed.ce.VQCXvdDyKH.js
+       4 КБ /wp-content/plugins/woocommerce,_assets,_js,_frontend,_order-attribution.min.js,qver==11.2.1+facebook-for-woocommerce,_a
+       4 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+       3 КБ https://cdn.brevo.com/js/sdk-loader.js
+       3 КБ /wp-content/plugins/facebook-for-woocommerce/assets/js/facebook-for-woocommerce-signals.js,qver=3.7.8.pagespeed.ce.yyxme
+       3 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-sbar-js.b22513e4b2.js.pagespeed.ce.SL20mBq0iY.js
+       3 КБ /wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js,qver=11.2.1.pagespeed.ce.c0IZNLaIBg.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js,qver=2.1.4-wc.11.2.1.pagespeed.ce.hLmIyI0u_-.js
+       2 КБ /wp-content/plugins/woocommerce-payments/dist/frontend-tracks.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-snd-js.f8664eb0fa.js+ss-ytb-js.0215a63b35.js.pagespeed.jc.1rq2-4p
+       1 КБ /wp-content/plugins/woocustomizer/assets/js/frontend.js,qver=2.6.6.pagespeed.ce.ZTipemLxC2.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/js-l1044.6a5c56488d.js.pagespeed.ce.YZ3nXDG-nt.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-goto-js.a15f61046a.js.pagespeed.ce.CT2Ys-xd_E.js
+       1 КБ https://js.stripe.com/v3/fingerprinted/js/m-outer-df5ee3b49f88025f22168cdfc5823764.js
+       0 КБ https://sibautomation.com/sa.js
+  стили:
+      72 КБ /wp-content/themes/Impreza/css/A.style.min.css,qver=8.7.pagespeed.cf.BEABbXGU5z.css
+      49 КБ /wp-content/themes/Impreza/common/css/plugins/woocommerce.min.css,qver=8.7.pagespeed.ce.e6hJQfE9DE.css
+      40 КБ https://js.stripe.com/v3/fingerprinted/css/elements-inner-express-checkout-72889007f10336bcf633effd93d29039.css
+      37 КБ /wp-content/plugins/solid-sound-custom/build/assets/theme-player-css.ab66663212.css.pagespeed.ce.XpS3X3d-9e.css
+      21 КБ https://fonts.googleapis.com/css
+      19 КБ /wp-content/plugins/woocommerce-payments/dist/blocks-checkout.css,qver=11.2.1.pagespeed.ce.GZvjWVxmV5.css
+       9 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-2610.a427e89833.css.pagespeed.ce.-kPioFH-Dw.css
+       8 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-pd3-css.13addbf2b7.css.pagespeed.ce.TI3x_ycuW7.css
+       7 КБ /wp-content/plugins/solid-sound-custom/build/assets/ssb-css.1d1521ff8c.css.pagespeed.ce.pF7WpZ4zVB.css
+       7 КБ https://fonts.googleapis.com/css2
+       5 КБ /wp-content/uploads/ss-css/8c70fb75d50398b9.css.pagespeed.ce.jHD7ddUDmL.css
+       4 КБ /wp-content/uploads/smile_fonts/Defaults/A.Defaults.css,qver=3.19.10.pagespeed.cf.gE8rGhmL9j.css
+       4 КБ /wp-content/uploads/ss-css/A.3af96b3042a02c1b.css.pagespeed.cf.k3G8lyr4zD.css
+       4 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-pd2-css.448b78a850.css.pagespeed.ce._590_-9atI.css
+       3 КБ /wp-content/plugins/woocustomizer/assets/css/A.frontend.css,qver=2.6.6.pagespeed.cf.gnRvhhR6VS.css
+       2 КБ /wp-content/uploads/ss-css/A.c6063fa0972cea5b.css.pagespeed.cf.OQiLmx99yU.css
+       1 КБ /wp-content/uploads/ss-css/A.741db46cfe144811.css.pagespeed.cf.uVkpRCZKuP.css
+       1 КБ /wp-content/uploads/ss-css/A.9a2162ef4aee0eaf.css.pagespeed.cf.OGtVvKHUXj.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/A.ss-pd-css.db98139894.css.pagespeed.cf.Rss-9qMsXo.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/A.ss-yt.253ca7ad96.css.pagespeed.cf.-cRe2pJOqy.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/A.ss-pd3-compact.63aff8845a.css.pagespeed.cf.e_vJ-O1mL9.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/A.css-l1015.86544766bc.css.pagespeed.cf.HoqeUbqtA3.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/A.ss-hero-wide.92fd8fd841.css.pagespeed.cf.QzTKvysM53.css
+       0 КБ /wp-content/plugins/solid-sound-custom/build/assets/A.ss-flags.25472b0e2e.css.pagespeed.cf.6BqHs1kuUT.css
+       0 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/AmazonPayButton.2c4194f0fb901f7dba5d.css
+       0 КБ /wp-content/plugins/woocommerce-payments/dist/A.product-details.css,qver=11.2.1.pagespeed.cf.9cHHC5xVIY.css
+       0 КБ /wp-content/plugins/woocommerce-payments/dist/A.express-checkout.css,qver=11.2.1.pagespeed.cf.2IhNKTtp1k.css
+       0 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/GooglePay.56e28c37fcaa691fdbfa.css
+
+КОРЗИНА /en/cart/ (заход 1): сервер 1033 мс | первая отрисовка 1496 мс | DOM готов 1744 мс | всё загружено 1984 мс | запросов 193 | вес 16717 КБ | HTML 60 КБ | элементов 1219
+
+КОРЗИНА /en/cart/ (заход 2): сервер 1042 мс | первая отрисовка 1224 мс | DOM готов 1294 мс | всё загружено 1325 мс | запросов 190 | вес 16190 КБ | HTML 60 КБ | элементов 1217
+  по типам: xhr 8 шт / 1377 КБ · stylesheet 24 шт / 743 КБ · script 79 шт / 11295 КБ · fetch 41 шт / 40 КБ · font 5 шт / 250 КБ · image 11 шт / 103 КБ · document 12 шт / 2356 КБ · media 2 шт / 17 КБ · other 3 шт / 7 КБ · ping 5 шт / 0 КБ
+  по сайтам: solid-sound.net 83 · r.stripe.com 17 · js.stripe.com 16 · b.stripecdn.com 12 · play.google.com 11 · www.gstatic.com 8 · apay-us.amazon.com 7 · fonts.gstatic.com 4 · m.stripe.com 3 · pay.google.com 3 · newassets.hcaptcha.com 3 · api.hcaptcha.com 2 · www.google-analytics.com 2 · fonts.googleapis.com 2 · m.stripe.network 2 · connect.facebook.net 1 · www.googletagmanager.com 1 · cdn.brevo.com 1 · cdn.jsdelivr.net 1 · sibautomation.com 1 · in-automate.brevo.com 1 · merchant-ui-api.stripe.com 1 · api.stripe.com 1 · static-eu.payments-amazon.com 1 · static-na.payments-amazon.com 1 · m.media-amazon.com 1 · payments-eu.amazon.com 1 · hcaptcha.com 1 · 147bd6d57029.w.hcaptcha.com 1 · c58cfa167800.w.hcaptcha.com 1
+  самые тяжёлые:
+    2729 КБ script     https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    1840 КБ script     https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1559 КБ script     https://newassets.hcaptcha.com/c/14fd6936f5ef64ed36a7122dc0ae5da13e2d64ba405bbc6f499a3e17e8e98d0e/hsw.js
+    1370 КБ xhr        https://pay.google.com/gp/p/ui/pay
+     994 КБ document   https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/hcaptcha.html
+     994 КБ document   https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/hcaptcha.html
+     881 КБ script     https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     803 КБ script     /wp-includes/js/zxcvbn.min.js
+     711 КБ script     https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit
+     410 КБ stylesheet /wp-content/themes/Impreza/css/style.min.css?ver=8.7
+     355 КБ script     https://static-na.payments-amazon.com/checkout.js
+     244 КБ script     https://pay.google.com/gp/p/js/pay.js
+     218 КБ document   /en/cart/
+     179 КБ script     https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW
+     173 КБ script     /wp-content/themes/Impreza/js/us.core.min.js?ver=8.7
+  скрипты:
+    2729 КБ https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    1840 КБ https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1559 КБ https://newassets.hcaptcha.com/c/14fd6936f5ef64ed36a7122dc0ae5da13e2d64ba405bbc6f499a3e17e8e98d0e/hsw.js
+     881 КБ https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     803 КБ /wp-includes/js/zxcvbn.min.js
+     711 КБ https://hcaptcha.com/1/api.js
+     355 КБ https://static-na.payments-amazon.com/checkout.js
+     244 КБ https://pay.google.com/gp/p/js/pay.js
+     179 КБ https://www.googletagmanager.com/gtag/js
+     173 КБ /wp-content/themes/Impreza/js/us.core.min.js
+     151 КБ https://static-eu.payments-amazon.com/cPSPcheckout.js
+     129 КБ /wp-includes/js/dist/vendor/react-dom.min.js
+     128 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AffirmInContext~AfterpayInContext~AmazonPayButton~Arko
+      97 КБ https://connect.facebook.net/en_US/fbevents.js
+      86 КБ /wp-includes/js/jquery/jquery.min.js
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      76 КБ /wp-content/plugins/woocommerce/assets/js/selectWoo/selectWoo.full.min.js
+      74 КБ /wp-content/plugins/wc-frontend-manager/assets/js/min/wcfm-script-core.js
+      74 КБ https://js.stripe.com/v3/fingerprinted/js/stripe-cookies-342e5a3c90613ebd49e7001b6682f9f8.js
+      72 КБ /wp-includes/js/dist/vendor/lodash.min.js
+      60 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      56 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-global.81b37f386f.js
+      41 КБ /wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js
+      39 КБ /wp-content/plugins/woocommerce-payments/dist/product-details.js
+      36 КБ /wp-includes/js/jquery/ui/datepicker.min.js
+      36 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/AmazonPayButton.76e20ab8a153c2dd4751.bundle.js
+      34 КБ /wp-content/plugins/woocommerce-payments/dist/express-checkout.js
+      33 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      33 КБ https://js.stripe.com/v3/fingerprinted/js/consumerSchema-9ac44b5a5ed5f7287f3df221380b9f43.js
+      29 КБ /wp-includes/js/dist/vendor/wp-polyfill.min.js
+      18 КБ /wp-includes/js/jquery/ui/core.min.js
+      17 КБ https://cdn.jsdelivr.net/npm/meta-capi-param-builder-clientjs@1.3.2/dist/clientParamBuilder.bundle.js
+      16 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      16 КБ /wp-content/plugins/woocommerce-payments/dist/cart.js
+      15 КБ /wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js
+      14 КБ /wp-content/plugins/solid-sound-custom/build/assets/ssb-js.e35f0dad8c.js
+      14 КБ https://m.stripe.network/out-4.5.45.js
+      12 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/GooglePay.2e6bc6931c639e3c935a.bundle.js
+      11 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/HCaptchaInvisible.876a237676b4519ae145.bundle.js
+      11 КБ /wp-content/plugins/official-facebook-pixel/js/facebook_signal.js
+      10 КБ /wp-includes/js/dist/vendor/react.min.js
+      10 КБ /wp-includes/js/dist/url.min.js
+      10 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      10 КБ /wp-content/plugins/facebook-for-woocommerce/assets/js/frontend/pixel-events.js
+      10 КБ /wp-content/plugins/woocommerce/assets/js/frontend/cart.min.js
+      10 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-foot-js.395fb5ab57.js
+       9 КБ /wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js
+       9 КБ /wp-content/plugins/wc-frontend-manager/includes/libs/jquery-blockui/jquery.blockUI.min.js
+       7 КБ /wp-includes/js/dist/api-fetch.min.js
+       6 КБ /wp-includes/js/dist/i18n.min.js
+       5 КБ /wp-includes/js/dist/hooks.min.js
+       4 КБ /wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js
+       4 КБ /wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js
+       4 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+       3 КБ /wp-content/plugins/woocommerce/assets/js/frontend/country-select.min.js
+       3 КБ https://cdn.brevo.com/js/sdk-loader.js
+       3 КБ /wp-content/plugins/facebook-for-woocommerce/assets/js/facebook-for-woocommerce-signals.js
+       3 КБ /wp-includes/js/dist/private-apis.min.js
+       3 КБ /wp-content/plugins/woocommerce/assets/js/frontend/address-i18n.min.js
+       3 КБ /wp-includes/js/dist/a11y.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/frontend/password-strength-meter.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js
+       2 КБ /wp-content/plugins/woocommerce-payments/dist/frontend-tracks.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-snd-js.f8664eb0fa.js
+       1 КБ /wp-content/plugins/woocustomizer/assets/js/frontend.js
+       1 КБ /wp-includes/js/dist/vendor/react-jsx-runtime.min.js
+       1 КБ /wp-admin/js/password-strength-meter.min.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/js-l1044.6a5c56488d.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-goto-js.a15f61046a.js
+       1 КБ /wp-includes/js/dist/html-entities.min.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-ytb-js.0215a63b35.js
+       1 КБ /wp-includes/js/dist/dom-ready.min.js
+       1 КБ https://js.stripe.com/v3/fingerprinted/js/m-outer-df5ee3b49f88025f22168cdfc5823764.js
+       0 КБ /wp-includes/js/zxcvbn-async.min.js
+       0 КБ https://js.stripe.com/v3/
+       0 КБ https://sibautomation.com/sa.js
+  стили:
+     410 КБ /wp-content/themes/Impreza/css/style.min.css
+      49 КБ /wp-content/themes/Impreza/common/css/plugins/woocommerce.min.css
+      40 КБ https://js.stripe.com/v3/fingerprinted/css/elements-inner-express-checkout-72889007f10336bcf633effd93d29039.css
+      37 КБ /wp-content/plugins/solid-sound-custom/build/assets/theme-player-css.ab66663212.css
+      29 КБ /wp-content/plugins/woocommerce/assets/css/jquery-ui/jquery-ui.min.css
+      27 КБ /wp-content/uploads/smile_fonts/Defaults/Defaults.css
+      24 КБ /wp-content/uploads/ss-css/c6063fa0972cea5b.css
+      22 КБ /wp-content/uploads/ss-css/3af96b3042a02c1b.css
+      21 КБ https://fonts.googleapis.com/css
+      19 КБ /wp-content/plugins/woocommerce-payments/dist/blocks-checkout.css
+      15 КБ /wp-content/plugins/woocustomizer/assets/css/frontend.css
+       9 КБ /wp-content/uploads/ss-css/741db46cfe144811.css
+       9 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-2610.a427e89833.css
+       7 КБ /wp-content/plugins/solid-sound-custom/build/assets/ssb-css.1d1521ff8c.css
+       7 КБ https://fonts.googleapis.com/css2
+       5 КБ /wp-content/uploads/ss-css/8c70fb75d50398b9.css
+       4 КБ /wp-content/uploads/ss-css/9a2162ef4aee0eaf.css
+       3 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-yt.253ca7ad96.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/css-l1015.86544766bc.css
+       1 КБ /wp-content/plugins/woocommerce-payments/dist/express-checkout.css
+       1 КБ /wp-content/plugins/woocommerce-payments/dist/product-details.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-flags.25472b0e2e.css
+       0 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/AmazonPayButton.2c4194f0fb901f7dba5d.css
+       0 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/GooglePay.56e28c37fcaa691fdbfa.css
+
+ОФОРМЛЕНИЕ /en/checkout/ (заход 1): сервер 1044 мс | первая отрисовка 1360 мс | DOM готов 1545 мс | всё загружено 1951 мс | запросов 245 | вес 25734 КБ | HTML 64 КБ | элементов 1657
+
+ОФОРМЛЕНИЕ /en/checkout/ (заход 2): сервер 1030 мс | первая отрисовка 1200 мс | DOM готов 1340 мс | всё загружено 1679 мс | запросов 245 | вес 25197 КБ | HTML 64 КБ | элементов 1655
+  по типам: fetch 66 шт / 96 КБ · ping 9 шт / 0 КБ · stylesheet 27 шт / 1597 КБ · script 87 шт / 18471 КБ · image 15 шт / 60 КБ · font 9 шт / 401 КБ · document 19 шт / 3166 КБ · media 2 шт / 17 КБ · other 3 шт / 7 КБ · xhr 8 шт / 1382 КБ
+  по сайтам: solid-sound.net 84 · r.stripe.com 38 · js.stripe.com 34 · b.stripecdn.com 12 · play.google.com 11 · fonts.gstatic.com 8 · www.gstatic.com 8 · apay-us.amazon.com 7 · accounts.google.com 6 · fonts.googleapis.com 4 · m.stripe.com 3 · pay.google.com 3 · newassets.hcaptcha.com 3 · www.google-analytics.com 2 · m.stripe.network 2 · merchant-ui-api.stripe.com 2 · api.stripe.com 2 · connect.facebook.net 1 · cdn.brevo.com 1 · www.googletagmanager.com 1 · cdn.jsdelivr.net 1 · sibautomation.com 1 · cdn.sift.com 1 · hexagon-analytics.com 1 · in-automate.brevo.com 1 · hcaptcha.com 1 · ce880c4de8ee.w.hcaptcha.com 1 · static-eu.payments-amazon.com 1 · static-na.payments-amazon.com 1 · m.media-amazon.com 1 · payments-eu.amazon.com 1 · 5a4f79eec4ed.w.hcaptcha.com 1 · api.hcaptcha.com 1
+  самые тяжёлые:
+    2729 КБ script     https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    2729 КБ script     https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    1840 КБ script     https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1840 КБ script     https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1559 КБ script     https://newassets.hcaptcha.com/c/14fd6936f5ef64ed36a7122dc0ae5da13e2d64ba405bbc6f499a3e17e8e98d0e/hsw.js
+    1370 КБ xhr        https://pay.google.com/gp/p/ui/pay
+     994 КБ document   https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/hcaptcha.html
+     994 КБ document   https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/hcaptcha.html
+     881 КБ script     https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     881 КБ script     https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     881 КБ script     https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     803 КБ script     /wp-includes/js/zxcvbn.min.js
+     711 КБ script     https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit
+     474 КБ stylesheet /wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.8.0
+     410 КБ stylesheet /wp-content/themes/Impreza/css/style.min.css?ver=8.7
+  скрипты:
+    2729 КБ https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    2729 КБ https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-495de1b4cd63738336f1fc0057b7b38e.js
+    1840 КБ https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1840 КБ https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-8ea606c890fb5bae9757ee11b3c6c730.js
+    1559 КБ https://newassets.hcaptcha.com/c/14fd6936f5ef64ed36a7122dc0ae5da13e2d64ba405bbc6f499a3e17e8e98d0e/hsw.js
+     881 КБ https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     881 КБ https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     881 КБ https://js.stripe.com/v3/fingerprinted/js/shared-a4f0bebf1486634d6991b242fd89f3a8.js
+     803 КБ /wp-includes/js/zxcvbn.min.js
+     711 КБ https://hcaptcha.com/1/api.js
+     355 КБ https://static-na.payments-amazon.com/checkout.js
+     273 КБ https://accounts.google.com/gsi/client
+     268 КБ https://js.stripe.com/v3/
+     244 КБ https://pay.google.com/gp/p/js/pay.js
+     179 КБ https://www.googletagmanager.com/gtag/js
+     173 КБ /wp-content/themes/Impreza/js/us.core.min.js
+     151 КБ https://static-eu.payments-amazon.com/cPSPcheckout.js
+     151 КБ https://js.stripe.com/v3/fingerprinted/js/8985-87cef400cbb3e87ed81310b3d58e361a.js
+     128 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AffirmInContext~AfterpayInContext~AmazonPayButton~Arko
+     118 КБ https://js.stripe.com/v3/fingerprinted/js/elements-inner-loader-ui-94c4054fbd3c9df2a0c9a014af000ae4.js
+      97 КБ /wp-content/plugins/woocommerce-payments/dist/checkout.js
+      97 КБ https://connect.facebook.net/en_US/fbevents.js
+      86 КБ /wp-includes/js/jquery/jquery.min.js
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      84 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/vendors~AddressAutocomplete~AffirmInContext~AfterpayInContext~
+      76 КБ /wp-content/plugins/woocommerce/assets/js/selectWoo/selectWoo.full.min.js
+      74 КБ /wp-content/plugins/wc-frontend-manager/assets/js/min/wcfm-script-core.js
+      74 КБ https://js.stripe.com/v3/fingerprinted/js/stripe-cookies-342e5a3c90613ebd49e7001b6682f9f8.js
+      74 КБ https://js.stripe.com/v3/fingerprinted/js/stripe-cookies-342e5a3c90613ebd49e7001b6682f9f8.js
+      72 КБ /wp-includes/js/dist/vendor/lodash.min.js
+      60 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      56 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-global.81b37f386f.js
+      41 КБ /wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js
+      36 КБ /wp-includes/js/jquery/ui/datepicker.min.js
+      36 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/AmazonPayButton.76e20ab8a153c2dd4751.bundle.js
+      34 КБ /wp-content/plugins/woocommerce-payments/dist/express-checkout.js
+      33 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      33 КБ https://js.stripe.com/v3/fingerprinted/js/consumerSchema-9ac44b5a5ed5f7287f3df221380b9f43.js
+      33 КБ https://js.stripe.com/v3/fingerprinted/js/consumerSchema-9ac44b5a5ed5f7287f3df221380b9f43.js
+      29 КБ /wp-includes/js/dist/vendor/wp-polyfill.min.js
+      21 КБ /wp-content/plugins/woocommerce/assets/js/frontend/checkout.min.js
+      19 КБ https://cdn.sift.com/s.js
+      18 КБ /wp-includes/js/jquery/ui/core.min.js
+      17 КБ https://cdn.jsdelivr.net/npm/meta-capi-param-builder-clientjs@1.3.2/dist/clientParamBuilder.bundle.js
+      16 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      15 КБ /wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js
+      14 КБ https://m.stripe.network/out-4.5.45.js
+      12 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/GooglePay.2e6bc6931c639e3c935a.bundle.js
+      11 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/HCaptchaInvisible.876a237676b4519ae145.bundle.js
+      11 КБ /wp-content/plugins/official-facebook-pixel/js/facebook_signal.js
+      10 КБ /wp-includes/js/dist/url.min.js
+      10 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+      10 КБ /wp-content/plugins/facebook-for-woocommerce/assets/js/frontend/pixel-events.js
+      10 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-foot-js.395fb5ab57.js
+       9 КБ /wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js
+       9 КБ /wp-content/plugins/wc-frontend-manager/includes/libs/jquery-blockui/jquery.blockUI.min.js
+       7 КБ /wp-includes/js/dist/api-fetch.min.js
+       6 КБ /wp-includes/js/dist/i18n.min.js
+       5 КБ /wp-includes/js/dist/hooks.min.js
+       4 КБ /wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js
+       4 КБ /wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js
+       4 КБ https://js.stripe.com/v3/fingerprinted/js/phone-numbers-lib-2089ee4099c9027f881d728d2871d136.js
+       4 КБ https://www.gstatic.com/_/mss/boq-payments-consumer/_/js/k=boq-payments-consumer.InstantbuyFrontendBuyflowPayframeUi.en_
+       3 КБ /wp-content/plugins/woocommerce/assets/js/frontend/country-select.min.js
+       3 КБ https://cdn.brevo.com/js/sdk-loader.js
+       3 КБ /wp-content/plugins/facebook-for-woocommerce/assets/js/facebook-for-woocommerce-signals.js
+       3 КБ /wp-includes/js/dist/private-apis.min.js
+       3 КБ /wp-content/plugins/woocommerce/assets/js/frontend/address-i18n.min.js
+       3 КБ /wp-content/plugins/woocommerce/assets/js/frontend/utils/custom-place-order-button.min.js
+       3 КБ /wp-includes/js/dist/a11y.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/frontend/tokenization-form.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/frontend/password-strength-meter.min.js
+       2 КБ /wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js
+       2 КБ /wp-content/plugins/woocommerce-payments/dist/frontend-tracks.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-snd-js.f8664eb0fa.js
+       1 КБ /wp-content/plugins/woocustomizer/assets/js/frontend.js
+       1 КБ /wp-admin/js/password-strength-meter.min.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/js-l1044.6a5c56488d.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-goto-js.a15f61046a.js
+       1 КБ /wp-includes/js/dist/html-entities.min.js
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-ytb-js.0215a63b35.js
+       1 КБ /wp-includes/js/dist/dom-ready.min.js
+       1 КБ https://js.stripe.com/v3/fingerprinted/js/m-outer-df5ee3b49f88025f22168cdfc5823764.js
+       0 КБ /wp-includes/js/zxcvbn-async.min.js
+       0 КБ https://sibautomation.com/sa.js
+  стили:
+     474 КБ /wp-content/plugins/js_composer/assets/css/js_composer.min.css
+     410 КБ /wp-content/themes/Impreza/css/style.min.css
+     369 КБ https://js.stripe.com/v3/fingerprinted/css/elements-inner-payment-d1b2dd11fb00bec1e382de784443eed2.css
+      49 КБ /wp-content/themes/Impreza/common/css/plugins/woocommerce.min.css
+      40 КБ https://js.stripe.com/v3/fingerprinted/css/elements-inner-express-checkout-72889007f10336bcf633effd93d29039.css
+      37 КБ /wp-content/plugins/solid-sound-custom/build/assets/theme-player-css.ab66663212.css
+      29 КБ /wp-content/plugins/woocommerce/assets/css/jquery-ui/jquery-ui.min.css
+      27 КБ /wp-content/uploads/smile_fonts/Defaults/Defaults.css
+      24 КБ /wp-content/uploads/ss-css/c6063fa0972cea5b.css
+      22 КБ /wp-content/uploads/ss-css/3af96b3042a02c1b.css
+      21 КБ https://fonts.googleapis.com/css
+      19 КБ /wp-content/plugins/woocommerce-payments/dist/blocks-checkout.css
+      15 КБ /wp-content/plugins/woocustomizer/assets/css/frontend.css
+      14 КБ https://js.stripe.com/v3/fingerprinted/css/elements-inner-loader-ui-a120ae3275bc0a8ce67f99e058740949.css
+       9 КБ /wp-content/uploads/ss-css/741db46cfe144811.css
+       9 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-2610.a427e89833.css
+       7 КБ https://fonts.googleapis.com/css2
+       5 КБ /wp-content/uploads/ss-css/8c70fb75d50398b9.css
+       5 КБ /wp-content/plugins/woocommerce-payments/dist/checkout.css
+       4 КБ /wp-content/uploads/ss-css/9a2162ef4aee0eaf.css
+       3 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-yt.253ca7ad96.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/css-l1015.86544766bc.css
+       1 КБ /wp-content/plugins/woocommerce-payments/dist/express-checkout.css
+       1 КБ /wp-content/plugins/solid-sound-custom/build/assets/ss-flags.25472b0e2e.css
+       1 КБ https://accounts.google.com/gsi/style
+       0 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/AmazonPayButton.2c4194f0fb901f7dba5d.css
+       0 КБ https://b.stripecdn.com/stripethirdparty-srv/assets/v37.5/GooglePay.56e28c37fcaa691fdbfa.css
