@@ -6870,6 +6870,7 @@ add_action( 'wp_head', function () {
 }, 1 );
 require_once __DIR__ . '/modules/new-slider.php';
 require_once __DIR__ . '/modules/push.php';
+require_once __DIR__ . '/modules/mini-cart.php';
 require_once __DIR__ . '/modules/all-products.php';
 require_once __DIR__ . '/modules/ranking.php';
 require_once __DIR__ . '/modules/social-login.php';
