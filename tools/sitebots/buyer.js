@@ -20,7 +20,11 @@ async function walk(browser, name, d) {
   const step = async (title, fn) => {
     if (broken) { steps.push([title, '—', 'пропущено']); return; }
     const t0 = Date.now(); let ok = true, note = '';
-    try { note = (await fn()) || ''; } catch (e) { ok = false; note = e.message.split('\n')[0].slice(0, 160); }
+    const busy = async () => /Service Unavailable|503 Service/i.test(await p.title().catch(() => '') + ' ' + await p.locator('h1').first().textContent({ timeout: 1000 }).catch(() => ''));
+    for (let a = 0; a < 2; a++) { ok = true; note = '';
+      try { note = (await fn()) || ''; } catch (e) { ok = false; note = e.message.split('\n')[0].slice(0, 160); }
+      if (!ok && await busy()) { note = 'сервер перегружен (503)' + (a ? ' и через 30 с тоже' : ''); if (!a) { await p.waitForTimeout(30000); continue; } }
+      break; }
     if (await blocked(p)) { ok = false; note = 'хостинг показал капчу (не ошибка сайта)'; }
     const s = ((Date.now() - t0) / 1000).toFixed(1);
     steps.push([title, s + ' с', (ok ? '✅ ' : '❌ ') + note]);
@@ -53,7 +57,8 @@ module.exports = async function buyer() {
     md += `**${r.name}** — ${r.broken ? '❌ сломано на шаге «' + r.broken + '»' : '✅ весь путь пройден'}\n\n| Шаг | Время | Итог |\n|---|---|---|\n` + r.steps.map(s => `| ${s.join(' | ')} |`).join('\n') + '\n\n';
     if (r.errs.length) md += 'Ошибки скриптов: ' + r.errs.map(e => '`' + e.replace(/`/g, "'") + '`').join(', ') + '\n\n';
   }
-  const bad = res.filter(r => r.broken && !/капчу/.test(r.steps.find(s => s[0] === r.broken)[2]));
-  return { md, metrics: { buyer_broken: bad.length, buyer_js_errors: res.reduce((a, r) => a + r.errs.length, 0) }, alerts: bad.map(r => `Покупка ломается (${r.name}) на шаге «${r.broken}»`) };
+  const bad = res.filter(r => r.broken && !/капчу|перегружен/.test(r.steps.find(s => s[0] === r.broken)[2]));
+  const busy = res.filter(r => r.broken && /перегружен/.test(r.steps.find(s => s[0] === r.broken)[2]));
+  return { md, metrics: { buyer_broken: bad.length, buyer_js_errors: res.reduce((a, r) => a + r.errs.length, 0) }, alerts: bad.map(r => `Покупка ломается (${r.name}) на шаге «${r.broken}»`).concat(busy.map(r => `Покупка: сервер не выдержал на шаге «${r.broken}» (${r.name}) — 503 дважды; если повторится без других роботов, это настоящая проблема хостинга`)) };
 };
 if (require.main === module) module.exports().then(r => console.log(r.md));

@@ -7,7 +7,7 @@
 - uploads not known to the WordPress media library (no attachment with that name) = candidates for cleanup.
 Needs the FTP secrets (FTP_HOST/USER/PASS). Output: Markdown to stdout, metrics to <SITEBOTS_OUT>/.files-metrics.json.
 """
-import json, os, posixpath, re, sys, time, urllib.request
+import ftplib, json, os, posixpath, re, sys, time, urllib.request
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from ftp_sync import connect  # noqa: E402
@@ -24,13 +24,42 @@ f = connect()
 entries = []  # (path, size, is_dir)
 
 
+errors = []
+
+
+def ls(path):
+    """-> [(name, {'type','size'})] via MLSD, else LIST (unix format); reconnects once on a dropped connection."""
+    global f
+    for attempt in range(2):
+        try:
+            try:
+                return list(f.mlsd(path))
+            except ftplib.error_perm:
+                rows = []
+                f.retrlines('LIST -a ' + path, rows.append)
+                out = []
+                for r in rows:
+                    m = re.match(r'^([dl-])[rwxsStT-]{9}\S*\s+\d+\s+\S+\s+\S+\s+(\d+)\s+\w+\s+\d+\s+[\d:]+\s+(.+)$', r)
+                    if m:
+                        name = m.group(3).split(' -> ')[0]
+                        out.append((name, {'type': 'dir' if m.group(1) == 'd' else 'file' if m.group(1) == '-' else 'link', 'size': m.group(2)}))
+                return out
+        except Exception as e:
+            if attempt:
+                errors.append(f'{path}: {str(e)[:80]}')
+                return []
+            try:
+                f.close()
+            except Exception:
+                pass
+            time.sleep(3)
+            f = connect()
+
+
 def walk(path, depth=0):
     if len(entries) > MAX_ENTRIES or depth > 12:
         return
-    try:
-        items = list(f.mlsd(path, facts=['type', 'size', 'modify']))
-    except Exception:
-        return
+    items = ls(path)
     for name, facts in items:
         if name in ('.', '..'):
             continue
@@ -64,7 +93,8 @@ for e in files:
     m = re.match(re.escape(WWW) + r'/wp-content/uploads/(\d{4})/', e[0])
     years[m.group(1) if m else ''] = years.get(m.group(1) if m else '', 0) + (e[1] if m else 0)
 
-risky = [e for e in files if RISKY.search(posixpath.basename(e[0])) and e[0].startswith(WWW + '/') and '/node_modules/' not in e[0]]
+risky = [e for e in files if RISKY.search(posixpath.basename(e[0])) and e[0].startswith(WWW + '/') and '/node_modules/' not in e[0] and not posixpath.basename(e[0]).startswith('.ht')]
+ht_copies = [e for e in files if posixpath.basename(e[0]).startswith('.ht') and RISKY.search(posixpath.basename(e[0]))]
 backups = [e for e in entries if e[2] and BACKUP_DIRS.match(posixpath.basename(e[0]))]
 big = sorted(files, key=lambda e: -e[1])[:15]
 
@@ -103,10 +133,12 @@ out = ['## 🗄 Сервер: что лежит на хостинге и не н
        '| Папка | Размер |', '|---|---|']
 for k, v in sorted(folders.items(), key=lambda kv: -kv[1])[:14]:
     out.append(f'| `{k}` | {mb(v)} |')
-out += ['', 'Загрузки по годам: ' + ', '.join(f'{y} — {mb(v)}' for y, v in sorted(years.items()) if y), '']
+out += ([f'⚠️ Не удалось прочитать папок: {len(errors)} (например `{errors[0]}`) — размеры могут быть занижены.'] if errors else []) + ['', 'Загрузки по годам: ' + ', '.join(f'{y} — {mb(v)}' for y, v in sorted(years.items()) if y), '']
 if risky:
     out += [f'### 🔴 Опасные файлы, доступные из интернета ({len(risky)})', 'Копии базы, архивы, логи, копии wp-config — их может скачать кто угодно. Удалить или перенести выше папки www.', '']
     out += [f'- `{e[0][len(WWW):]}` — {mb(e[1])}' for e in sorted(risky, key=lambda e: -e[1])[:30]] + ['']
+if ht_copies:
+    out += ['### 🟡 Копии .htaccess (сервер обычно не отдаёт .ht*, но лучше убрать)'] + [f'- `{e[0][len(ROOT):]}`' for e in ht_copies] + ['']
 if backups:
     out += [f'### 🟠 Папки старых копий ({len(backups)})'] + [f'- `{e[0]}` — {mb(size_under(e[0]))}' for e in backups] + ['']
 out += ['### Самые большие файлы', '| Файл | Размер |', '|---|---|'] + [f'| `{e[0]}` | {mb(e[1])} |' for e in big] + ['']
