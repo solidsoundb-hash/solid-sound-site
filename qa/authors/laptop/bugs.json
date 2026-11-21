@@ -1,89 +1,67 @@
 [
  {
-  "lvl": "🔴",
-  "page": "/wp-login.php",
-  "what": "Робот не смог войти",
-  "detail": "solid-sound"
- },
- {
-  "lvl": "🔴",
-  "page": "/en/store-manager/ss-add-product/",
-  "what": "Нет выбора формата",
-  "detail": "поле .ss-ap-format не найдено"
- },
- {
   "lvl": "🟠",
-  "page": "/en/store-manager/",
-  "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode. | Failed to load resource: the server responded wit",
-  "shot": "01_-en-store-manager-.jpg"
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "03_-en-store-manager-ss-add-product-err-Services.jpg"
  },
  {
   "lvl": "🟠",
   "page": "/en/store-manager/ss-add-product/",
   "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
+  "detail": "g is not defined | Failed to load resource: the server responded with a status of 503 ()",
   "shot": "02_-en-store-manager-ss-add-product-.jpg"
  },
  {
   "lvl": "🟠",
-  "page": "/en/store-manager/ss-products/",
-  "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
-  "shot": "03_-en-store-manager-ss-products-.jpg"
+  "page": "/en/store-manager/ss-settings/",
+  "what": "После нажатия «Products» — ошибка в коде",
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "09_-en-store-manager-ss-settings-err-Products.jpg"
  },
  {
   "lvl": "🟠",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
-  "shot": "04_-en-store-manager-ss-earnings-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-payouts/",
-  "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
-  "shot": "05_-en-store-manager-ss-payouts-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-reviews/",
-  "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
-  "shot": "06_-en-store-manager-ss-reviews-.jpg"
+  "page": "/en/store-manager/ss-settings/",
+  "what": "После нажатия «Services» — ошибка в коде",
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "10_-en-store-manager-ss-settings-err-Services.jpg"
  },
  {
   "lvl": "🟠",
   "page": "/en/store-manager/ss-settings/",
   "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
-  "shot": "07_-en-store-manager-ss-settings-.jpg"
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "08_-en-store-manager-ss-settings-.jpg"
  },
  {
   "lvl": "🟠",
-  "page": "/en/store-manager/ss-help/",
-  "what": "Ошибки в коде страницы",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode.",
-  "shot": "08_-en-store-manager-ss-help-.jpg"
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates: нет шага DAW",
+  "detail": ""
  },
  {
   "lvl": "🟠",
-  "page": "/en/sell/",
-  "what": "Технический текст на странице",
-  "detail": "[your_store]",
-  "shot": "09_-en-sell-.jpg"
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates: нет шага DAW",
+  "detail": ""
  },
  {
   "lvl": "🟠",
   "page": "/en/store-manager/ss-add-product/",
   "what": "Ошибки в коде при выборе формата/DAW",
-  "detail": "[GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' property from 'IdentityCredentialRequestOptions': The provided value 'widget' is not a valid enum value of type IdentityCredentialRequestOptionsMode."
+  "detail": "g is not defined"
  },
  {
   "lvl": "🟡",
-  "page": "/en/store-manager/",
+  "page": "/en/store-manager/ss-add-product/",
   "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /?wc-ajax=get_refreshed_fragments"
+  "detail": "503 /en/all-products/"
+ },
+ {
+  "lvl": "🟡",
+  "page": "/en/store-manager/ss-settings/",
+  "what": "Хостинг ответил 503 (перегружен)",
+  "detail": "503 /?wc-ajax=get_refreshed_fragments | 503 /en/services-prices/"
  }
 ]
