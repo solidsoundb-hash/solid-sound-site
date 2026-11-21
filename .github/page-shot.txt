@@ -15,3 +15,4 @@
 2026-11-21 12:37:44 before-buy-speed /product/infinity/ /en/cart/ /en/checkout/
 2026-11-21 12:47:45 after-buy-speed /product/infinity/ /en/cart/ /en/checkout/
 2026-11-21 12:54:42 before-ab-post /en/
+2026-11-21 14:32:26 before-currency /en/ /product/infinity/ /en/all-products/ /de/

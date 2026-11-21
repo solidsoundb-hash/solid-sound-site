@@ -2,7 +2,7 @@
 /**
  * (15.11.2026 owner) Creator space: the producer dashboard in the client-account look, "very advanced":
  * top tabs instead of the icon sidebar, stat tiles with 7-day sparklines and change vs the week before,
- * 30-day chart (earnings / sales / plays), Get started with a progress bar, payout progress to the $25 minimum,
+ * 30-day chart (earnings / sales / plays), Get started with a progress bar, payout progress to the €25 minimum,
  * best sellers (sales + plays), profile strength ring with what to add, products with status.
  * The OLD dashboard is kept: WooCommerce -> Solid Sound AI page has "Use the old creator dashboard", or open
  * /store-manager/?ss_cs=0 once. Data: WCFM commission table (sales/earnings per day), product counters
@@ -102,7 +102,7 @@ function ss_cs_data( $id ) {
 	$d['steps'] = array(
 		array( ! empty( $pr['gravatar'] ) && ( ! empty( $pr['shop_description'] ) || ! empty( $pr['banner'] ) ), 'Complete your profile', 'Photo, cover and a short bio build trust with buyers.', 'Edit profile', ss_cp_url( 'ss-settings' ) ),
 		array( (bool) $d['rows'], 'Add your first product', 'Upload files and an MP3 preview. We review it within 24 hours.', 'Add product', function_exists( 'ss_ep_url' ) ? ss_ep_url() : ss_cp_url( 'ss-add-product' ) ),
-		array( $d['pay_set'], 'Set up payouts', 'Add your PayPal email or bank so we can pay you monthly (from $25).', 'Set up payouts', ss_cp_url( 'ss-payouts' ) ),
+		array( $d['pay_set'], 'Set up payouts', 'Add your PayPal email or bank so we can pay you monthly (from €25).', 'Set up payouts', ss_cp_url( 'ss-payouts' ) ),
 		array( $d['all']['count'] > 0, 'Make your first sale', 'Share your profile page: in your bio, under videos, in Discord.', '', '' ),
 	);
 	$d['store'] = function_exists( 'wcfmmp_get_store_url' ) ? wcfmmp_get_store_url( $id ) : '';
@@ -133,7 +133,7 @@ function ss_cs_render() {
 	if ( ! is_array( $d ) ) { $d = ss_cs_data( $id ); set_transient( $ck, $d, 10 * MINUTE_IN_SECONDS ); }
 	$name = $u->first_name ? $u->first_name : $u->display_name;
 	$head = function ( $t, $i, $x = '' ) { return '<h2><span class="t">' . ss_cs_ic( $i ) . '</span>' . $t . $x . '</h2>'; };
-	$money = function ( $v ) { return '$' . number_format( (float) $v, 2 ); };
+	$money = function ( $v ) { return '€' . number_format( (float) $v, 2 ); };
 	$add = function_exists( 'ss_ep_url' ) ? ss_ep_url() : ss_cp_url( 'ss-add-product' );
 	$h = '<div id="ssd" class="ss-cs-d"><div class="top"><div><h1>Creator space <span class="ssa-role">Creator account</span></h1><p class="sub">' . ( $name ? 'Hi ' . esc_html( $name ) . '! ' : '' ) . 'Your products, sales and payouts.</p></div><div class="top-b">'
 		. ( $d['store'] ? '<a class="btn g" href="' . esc_url( $d['store'] ) . '">' . ss_cs_ic( 'user' ) . 'View my profile</a>' : '' )
@@ -181,7 +181,7 @@ function ss_cs_render() {
 	if ( $d['store'] ) $h .= '<section class="p">' . $head( 'Your profile page', 'link' ) . '<p class="sub" style="margin:0">Share it in your bio, under videos, in Discord — fans see only your products. Every sale from it counts.</p><div class="lnk"><input readonly value="' . esc_attr( $d['store'] ) . '" aria-label="Your profile page link"><button type="button" class="btn g ss-cs-copy">Copy</button></div></section>';
 	/* payouts */
 	$av = (float) $d['all']['available']; $pct = min( 100, $av / 25 * 100 );
-	$h .= '<section class="p">' . $head( 'Payouts', 'card' ) . '<div class="row"><div class="nm"><b>' . $money( $av ) . ( $av >= 25 ? ' available' : ' of $25.00' ) . '</b><small>' . ( $av >= 25 ? 'Ready for the next monthly payout' : 'Next payout when you reach $25 · monthly · PayPal or bank' ) . ( $d['all']['paid'] ? ' · paid so far ' . $money( $d['all']['paid'] ) : '' ) . '</small></div><a class="btn g" href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">' . ( $d['pay_set'] ? 'Payouts' : 'Set up payouts' ) . '</a></div><div class="pg"><i style="width:' . round( $pct ) . '%"></i></div></section>';
+	$h .= '<section class="p">' . $head( 'Payouts', 'card' ) . '<div class="row"><div class="nm"><b>' . $money( $av ) . ( $av >= 25 ? ' available' : ' of €25.00' ) . '</b><small>' . ( $av >= 25 ? 'Ready for the next monthly payout' : 'Next payout when you reach $25 · monthly · PayPal or bank' ) . ( $d['all']['paid'] ? ' · paid so far ' . $money( $d['all']['paid'] ) : '' ) . '</small></div><a class="btn g" href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">' . ( $d['pay_set'] ? 'Payouts' : 'Set up payouts' ) . '</a></div><div class="pg"><i style="width:' . round( $pct ) . '%"></i></div></section>';
 	/* best sellers */
 	$best = array_filter( $d['rows'], function ( $r ) { return 'publish' === $r['st']; } );
 	usort( $best, function ( $a, $b ) { return array( $b['q'], $b['plays'] ) <=> array( $a['q'], $a['plays'] ); } );
@@ -265,10 +265,10 @@ add_action( 'wp_footer', function () {
 function mount(){var t=document.getElementById('ss-cs-tpl'),c=document.getElementById('wcfm-content');if(!t||!c)return false;if(document.getElementById('ss-cs-wrap'))return true;c.insertBefore(t.content.cloneNode(true),c.firstChild);try{init()}catch(e){}document.body.classList.add('ss-cs-mounted');return true}
 function spark(svg){var v=(svg.getAttribute('data-v')||'').split(',').map(Number),w=120,hh=28,m=Math.max.apply(0,v)||1;svg.setAttribute('viewBox','0 0 '+w+' '+hh);svg.setAttribute('preserveAspectRatio','none');if(!v.length)return;var pts=v.map(function(x,i){return (i*w/Math.max(1,v.length-1)).toFixed(1)+','+(hh-2-(x/m)*(hh-6)).toFixed(1)});svg.innerHTML='<polyline points="0,'+hh+' '+pts.join(' ')+' '+w+','+hh+'" fill="rgba(245,158,11,.15)"/><polyline points="'+pts.join(' ')+'" fill="none" stroke="#F59E0B" stroke-width="1.8" vector-effect="non-scaling-stroke"/>'}
 function chart(ch){var S=JSON.parse(ch.getAttribute('data-series')),svg=ch.querySelector('svg'),tip=ch.querySelector('.tip'),cur='e',W=700,H=220,L=44,B=24,T=10,n=S.d.length;
- var fmt={e:function(x){return '$'+(+x).toFixed(2)},s:function(x){return x+' sale'+(x==1?'':'s')},p:function(x){return x+' play'+(x==1?'':'s')}};
+ var fmt={e:function(x){return '€'+(+x).toFixed(2)},s:function(x){return x+' sale'+(x==1?'':'s')},p:function(x){return x+' play'+(x==1?'':'s')}};
  function X(i){return L+i*(W-L-8)/(n-1)}
  function draw(k){cur=k;var v=S[k],m=Math.max.apply(0,v),st=k==='e'?5:1,top=Math.max(4*st,Math.ceil(m/(4*st))*4*st),Y=function(x){return T+(H-T-B)*(1-x/top)},g='';
-  for(var t=0;t<=4;t++){var val=top*t/4,yy=Y(val);g+='<line x1="'+L+'" x2="'+W+'" y1="'+yy+'" y2="'+yy+'" stroke="rgba(255,255,255,.07)"/><text x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end" font-size="11" fill="#94A3B8">'+(k==='e'?'$'+(+val.toFixed(2)):val)+'</text>'}
+  for(var t=0;t<=4;t++){var val=top*t/4,yy=Y(val);g+='<line x1="'+L+'" x2="'+W+'" y1="'+yy+'" y2="'+yy+'" stroke="rgba(255,255,255,.07)"/><text x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end" font-size="11" fill="#94A3B8">'+(k==='e'?'€'+(+val.toFixed(2)):val)+'</text>'}
   [0,10,20,n-1].forEach(function(i){g+='<text x="'+X(i)+'" y="'+(H-6)+'" text-anchor="'+(i===n-1?'end':(i===0?'start':'middle'))+'" font-size="11" fill="#94A3B8">'+(i===n-1?'Today':S.d[i].slice(5).replace('-','.'))+'</text>'});
   var pts=v.map(function(x,i){return X(i).toFixed(1)+','+Y(x).toFixed(1)}).join(' ');
   g+='<polygon points="'+X(0)+','+Y(0)+' '+pts+' '+X(n-1)+','+Y(0)+'" fill="rgba(245,158,11,.14)"/><polyline points="'+pts+'" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linejoin="round"/><circle cx="'+X(n-1)+'" cy="'+Y(v[n-1])+'" r="4.5" fill="#F59E0B"/><line class="hl" y1="'+T+'" y2="'+(H-B)+'" stroke="rgba(255,255,255,.25)" opacity="0"/>';

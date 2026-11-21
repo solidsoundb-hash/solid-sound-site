@@ -3,7 +3,7 @@
  * (19.11.2026 owner: «пройди все вкладки автора … что улучшить … как конкуренты, сделай ещё лучше»)
  * Creator sub-tabs (Products, Earnings, Payouts, Reviews, Profile, Help — rendered by ss_cp_render() in custom.php)
  * get the same look as the Creator space overview: page title + one-line subtitle + main action on the right,
- * one empty state for products, a clear payout status (method, balance to $25, next payout date),
+ * one empty state for products, a clear payout status (method, balance to €25, next payout date),
  * phone-friendly product list, live preview on Profile, search in Help. Overview and Add product are not touched here.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -20,7 +20,7 @@ function ss_ct_head( $s ) {
 	$H = array(
 		'ss-products' => array( 'My products', 'Everything you sell, with its status and what it earned.', array( 'Add product', $add, 'a' ) ),
 		'ss-earnings' => array( 'Earnings', 'Your share of every sale, month by month.', array( 'Payout settings', ss_cp_url( 'ss-payouts' ), '' ) ),
-		'ss-payouts'  => array( 'Payouts', 'We pay on the 1st of each month once your balance reaches $25.', null ),
+		'ss-payouts'  => array( 'Payouts', 'We pay on the 1st of each month once your balance reaches €25.', null ),
 		'ss-reviews'  => array( 'Reviews', 'What buyers say about your products. Reply to build trust.', null ),
 		'ss-settings' => array( 'Profile', 'Your public page: photo, cover, bio and where to listen.', $pub ? array( 'View my page ↗', $pub, '' ) : null ),
 		'ss-help'     => array( 'Help', 'Short answers about selling on Solid Sound.', array( 'Ask the team', '#chat', '' ) ),
@@ -49,8 +49,8 @@ function ss_ct_payout_status( $id, $mth, $pay ) {
 		$who = 'Bank transfer · •••• ' . substr( $n, -4 );
 	} else $who = '';
 	return '<div class="ssw-card sscp-ps"><div class="m"><span>Payout method</span>' . ( $who ? '<b>' . esc_html( $who ) . ' <i class="ok">Active</i></b>' : '<b class="no">Not set yet <i>Add one below so we can pay you</i></b>' ) . '</div>'
-		. '<div class="m"><span>Available now</span><b>' . wp_kses_post( ss_cp_money( $av ) ) . '<small> of $25</small></b><i class="bar"><i style="width:' . (int) $pct . '%"></i></i></div>'
-		. '<div class="m"><span>Next payout</span><b>' . esc_html( $next ) . '</b><small>' . ( $av >= 25 ? ( $who ? 'You will be paid on this day.' : 'Add a method to get paid.' ) : 'When your balance reaches $25.' ) . '</small></div></div>';
+		. '<div class="m"><span>Available now</span><b>' . wp_kses_post( ss_cp_money( $av ) ) . '<small> of €25</small></b><i class="bar"><i style="width:' . (int) $pct . '%"></i></i></div>'
+		. '<div class="m"><span>Next payout</span><b>' . esc_html( $next ) . '</b><small>' . ( $av >= 25 ? ( $who ? 'You will be paid on this day.' : 'Add a method to get paid.' ) : 'When your balance reaches €25.' ) . '</small></div></div>';
 }
 
 add_action( 'wp_head', function () {

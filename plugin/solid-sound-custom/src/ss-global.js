@@ -139,6 +139,7 @@ var css=[
 '#ssg .ss-mic.ss-live{animation:ssgPulse 1.2s ease-out infinite}@keyframes ssgPulse{0%{box-shadow:0 0 0 0 rgba(245,158,11,.65)}100%{box-shadow:0 0 0 10px rgba(245,158,11,0)}}',
 '#ssg .g-right{display:flex;align-items:center;gap:2px;margin-left:auto;flex:none}',
 '#ssg .g-lang{font-weight:700;font-size:13px;font-family:inherit;color:#fff;padding:0;border-radius:8px;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1);background:#131B2E;box-sizing:border-box}',
+'#ssg .g-cur{width:auto;min-width:40px;padding:0 8px}',
 '#ssg .g-lc,#ssg-sheet .g-lc{display:inline-block;min-width:28px;font-weight:800;color:#F59E0B}#ssg .g-dd a.cur{background:#1A2540;color:#F59E0B}.ss-flags{display:none!important}',
 '#ssg .g-cnt{position:absolute;top:0;right:10px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#F59E0B;color:#111;font-weight:800;font-size:10px;line-height:16px;font-family:inherit;text-align:center}',
 '#ssg .g-burger,#ssg .g-msign,#ssg .g-sbtn{display:none}',
@@ -235,18 +236,24 @@ D.querySelectorAll('.l-header a[hreflang], .l-header .lang-item a').forEach(func
 window.ssLangs=langs;
 var lang=lcode(D.documentElement.lang||'en');
 var cartN=0; var cq=D.querySelector('.l-header .w-cart-quantity'); if(cq) cartN=parseInt(cq.textContent,10)||0;
+/* (21.11 owner: «для каждой страны своя валюта … добавим переключатель») currency button next to the language one; list = WooPayments enabled currencies (window.SSCUR from modules/currency.php) */
+var CUR=(window.SSCUR&&SSCUR.l&&SSCUR.l.length>1)?SSCUR:null;
+function curUrl(c){ try{ var u=new URL(location.href); u.searchParams.set('currency',c); return u.pathname+u.search+u.hash; }catch(e){ return '?currency='+c; } }
+function curLinks(){ return CUR.l.map(function(x){ return tag('a',{href:curUrl(x[0]),'data-cur':x[0],rel:'nofollow','class':x[0]===CUR.c ? 'cur' : ''},tag('b',{'class':'g-lc'},x[1])+x[0]+' · '+x[2]); }).join(''); }
+var curHtml=CUR ? tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a g-lang g-cur','aria-haspopup':'true','aria-label':'Currency: '+CUR.c},CUR.s)+tag('div',{'class':'g-dd',style:'left:auto;right:0;min-width:210px;max-height:70vh;overflow:auto'},curLinks())) : '';
 var langHtml=langs.length>1 ? tag('div',{'class':'g-it g-r-it'},tag('button',{type:'button','class':'g-a g-lang','aria-haspopup':'true','aria-label':'Language'},lang)+tag('div',{'class':'g-dd',style:'left:auto;right:0;min-width:190px'},langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k,'class':l.t===lang ? 'cur' : ''},tag('b',{'class':'g-lc'},l.t)+l.n); }).join(''))) : tag('div',{'class':'g-it g-r-it'},tag('span',{'class':'g-a g-lang'},lang));
 var head=tag('div',{'class':'g-in'},
   tag('a',{'class':'g-logo',href:L+'/','aria-label':'Solid Sound home'},tag('svg',{viewBox:'0 0 341 230',role:'img','aria-hidden':'true'},tag('path',{fill:'#F59E0B','fill-rule':'evenodd',d:LOGO})))+
   tag('nav',{'class':'g-nav','aria-label':'Main'},navHtml())+
   tag('form',{role:'search',onsubmit:'return false'},ico(I.search,18)+tag('label',{'for':'top-q',style:'position:absolute;left:-9999px'},'Search')+tag('input',{id:'top-q',type:'search',enterkeyhint:'search',autocomplete:'off',placeholder:'Search'})+tag('span',{'class':'ss-ai',role:'button',tabindex:'0','aria-label':'AI search'},'AI')+tag('button',{type:'button','class':'g-b ss-mic','aria-label':'Voice search'},ico(I.mic,20))+tag('button',{type:'button','class':'g-b g-ref','aria-label':'Match by reference track',title:'Match by reference track'},ico(I.wave,20))+tag('button',{type:'button','class':'g-find'},'Find'))+
-  tag('div',{'class':'g-right'},langHtml+rItem(FAV)+tag('button',{type:'button','class':'g-sbtn','aria-label':'Search','aria-expanded':'false'},ico(I.search,20))+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
+  tag('div',{'class':'g-right'},langHtml+curHtml+rItem(FAV)+tag('button',{type:'button','class':'g-sbtn','aria-label':'Search','aria-expanded':'false'},ico(I.search,20))+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
 );
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
   NAV.forEach(function(n){ if(n.sub){ h+=tag('div',{'class':'s-g'},n.t)+n.sub.map(function(s){ return tag('a',{href:s[2]},ico(I[s[1]],20)+s[0].replace(/&/g,'and')); }).join(''); } });
   h+=tag('div',{'class':'s-g'},'More')+tag('a',{href:L+'/wiki/'},ico(I.wiki,20)+'Wiki')+tag('a',{href:L+'/forum/'},ico(I.forum,20)+'Forum')+tag('a',{href:L+'/why-solid-sound/'},ico(I.shield,20)+'Why Solid Sound')+tag('a',{href:L+'/get-heard/'},ico(I.mic,20)+'Get your set heard')+tag('a',{href:L+'/free/'},ico(I.free,20)+'Free pack')+tag('a',{href:L+'/sell/'},ico(I.sell,20)+'Sell your sounds')+tag('a',{href:ACC.h},ico(I.user,20)+ACC.t)+(!logged ? tag('a',{href:MYA+'?ss_tab=reg'},ico(I.user,20)+'Create account')+tag('a',{href:MYA+'?ss_tab=sell'},ico(I.sell,20)+'Become a vendor') : '')+(logged ? (VENDOR || ROLE==='admin' ? tag('a',{href:VND},ico(I.sell,20)+'Producer space') : '')+tag('a',{href:MYA+'orders/'},ico(I.cart,20)+'Purchases')+tag('a',{href:MYA+'edit-account/'},ico(I.doc,20)+'Settings')+tag('a',{href:window.ssLogout||MYA+'customer-logout/'},ico(I.signin,20)+'Log out') : '')+tag('a',{href:CART.h},ico(I.cart,20)+'Cart');
   if(langs.length>1) h+=tag('div',{'class':'s-g'},'Language')+langs.map(function(l){ return tag('a',{href:l.h,hreflang:l.k},tag('b',{'class':'g-lc'},l.t)+l.n); }).join('');
+  if(CUR) h+=tag('div',{'class':'s-g'},'Currency')+curLinks();
   return h+LT+'/div'+GT;
 }
 var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/sell/'],['Saved','fav',FAV.h]];
@@ -348,6 +355,8 @@ function wire(hd,sh){
     var sb=e.target.closest('.g-sbtn'); if(sb){ e.preventDefault(); msearch(!D.documentElement.classList.contains('ssg-msearch')); }
   });
   hd.querySelectorAll('.g-nav .g-it').forEach(function(it){ if(!it.querySelector('.g-dd')) return; var tm; it.addEventListener('mouseenter',function(){ if(matchMedia('(hover:hover)').matches){ clearTimeout(tm); hd.querySelectorAll('.g-it.open').forEach(function(x){ if(x!==it) x.classList.remove('open'); }); it.classList.add('open'); } }); it.addEventListener('mouseleave',function(){ it.dataset.clk=''; if(matchMedia('(hover:hover)').matches){ tm=setTimeout(function(){ it.classList.remove('open'); },180); } }); });
+  /* currency link: remember the choice (the page cache keeps one copy per currency) */
+  D.addEventListener('click',function(e){ var c=e.target.closest('a[data-cur]'); if(c) D.cookie='ss_cur='+c.getAttribute('data-cur')+';path=/;max-age=31536000;samesite=lax'; },true);
   D.addEventListener('click',function(e){ if(!e.target.closest('#ssg .g-it')) hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); });
   function msearch(on){ D.documentElement.classList.toggle('ssg-msearch',on); var sb=hd.querySelector('.g-sbtn'); if(sb){ sb.setAttribute('aria-expanded',on?'true':'false'); sb.setAttribute('aria-label',on?'Close search':'Search'); sb.innerHTML=ico(on?I.close:I.search,20); }
     if(on){ D.documentElement.style.setProperty('--ssg-ms-top',Math.max(8,Math.round(hd.getBoundingClientRect().bottom)+6)+'px'); var q=D.getElementById('top-q'); setTimeout(function(){ try{ q.focus(); }catch(x){} },30); } }
