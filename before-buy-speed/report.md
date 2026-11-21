@@ -1,10 +1,10 @@
-# Страницы до/после — before-buy-speed — 2026-11-21T12:38:13.370Z
+# Страницы до/после — before-buy-speed — 2026-11-21T12:43:44.416Z
 
 | Страница | Где | До действий: вес / запросов | Вес | Запросов | YouTube | Ошибки JS | Снимки |
 |---|---|---|---|---|---|---|---|
-| /product/infinity/ | ПК 1366 | 1051 КБ / 177 | 1145 КБ | 183 | 1 | — | [экран](product_infinity_pc.jpg) · [целиком](product_infinity_pc_full.jpg) |
-| /product/infinity/ | A31 412×700 | 1030 КБ / 174 | 1071 КБ | 179 | 1 | — | [экран](product_infinity_a31.jpg) · [целиком](product_infinity_a31_full.jpg) |
+| /product/infinity/ | ПК 1366 | 1145 КБ / 181 | 1145 КБ | 183 | 1 | — | [экран](product_infinity_pc.jpg) · [целиком](product_infinity_pc_full.jpg) |
+| /product/infinity/ | A31 412×700 | 1030 КБ / 173 | 1071 КБ | 178 | 1 | — | [экран](product_infinity_a31.jpg) · [целиком](product_infinity_a31_full.jpg) |
 | /en/cart/ | ПК 1366 | 966 КБ / 81 | 966 КБ | 82 | 0 | — | [экран](en_cart_pc.jpg) · [целиком](en_cart_pc_full.jpg) |
-| /en/cart/ | A31 412×700 | 966 КБ / 81 | 966 КБ | 81 | 0 | — | [экран](en_cart_a31.jpg) · [целиком](en_cart_a31_full.jpg) |
-| /en/checkout/ | ПК 1366 | 966 КБ / 82 | 966 КБ | 83 | 0 | — | [экран](en_checkout_pc.jpg) · [целиком](en_checkout_pc_full.jpg) |
-| /en/checkout/ | A31 412×700 | 966 КБ / 82 | 966 КБ | 82 | 0 | — | [экран](en_checkout_a31.jpg) · [целиком](en_checkout_a31_full.jpg) |
+| /en/cart/ | A31 412×700 | 584 КБ / 77 | 584 КБ | 77 | 0 | — | [экран](en_cart_a31.jpg) · [целиком](en_cart_a31_full.jpg) |
+| /en/checkout/ | ПК 1366 | 584 КБ / 78 | 584 КБ | 79 | 0 | — | [экран](en_checkout_pc.jpg) · [целиком](en_checkout_pc_full.jpg) |
+| /en/checkout/ | A31 412×700 | 584 КБ / 78 | 584 КБ | 78 | 0 | — | [экран](en_checkout_a31.jpg) · [целиком](en_checkout_a31_full.jpg) |
