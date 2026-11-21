@@ -1,0 +1,23 @@
+# Take an old sub-site off the air without deleting it: its folder goes to solid-sound.net/_removed/ (owner 21.11.2026).
+# Run: add «move <name>» (or «undo <name>-<date>») as the last line of .github/server-tidy.txt. Log: Actions → Server tidy.
+name: Server tidy
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/server-tidy.txt"]
+permissions:
+  contents: read
+concurrency: ftp-pull
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASS: ${{ secrets.FTP_PASS }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move
+        run: python3 tools/server-tidy.py $(tail -1 .github/server-tidy.txt | awk '{print $(NF-1), $NF}')
