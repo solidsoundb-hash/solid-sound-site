@@ -61,7 +61,7 @@ module.exports = async function seoPages() {
   const groups = {}; for (const [s, t, u] of all) { const k = s + ' ' + t.replace(/\(\d+ зн\.[^)]*\)|\d+/g, '#').replace(/: .*/, ''); (groups[k] = groups[k] || { s, t, u: [] }).u.push(u); }
   const order = { '🔴': 0, '🟠': 1, '🟡': 2, '⚪': 3 };
   md += '| | Проблема | Страниц | Примеры |\n|---|---|---|---|\n' + Object.values(groups).sort((a, b) => order[a.s] - order[b.s] || b.u.length - a.u.length)
-    .map(g => `| ${g.s} | ${esc(g.t)} | ${g.u.length} | ${g.u.slice(0, 3).map(u => u.replace(BASE, '')).join(', ')} |`).join('\n') + '\n\n';
+    .map(g => `| ${g.s} | ${esc(g.t)} | ${g.u.length} | ${g.u.slice(0, 8).map(u => u.replace(BASE, '')).join(', ')}${g.u.length > 8 ? ' …' : ''} |`).join('\n') + '\n\n';
   if (dupT.length) md += '### Один заголовок на нескольких страницах\n' + dupT.slice(0, 15).map(([t, l]) => `- «${esc(t)}» — ${l.map(u => u.replace(BASE, '')).join(', ')}`).join('\n') + '\n\n';
   if (dupD.length) md += '### Одно описание на нескольких страницах\n' + dupD.slice(0, 10).map(([t, l]) => `- «${esc(t.slice(0, 70))}…» — ${l.length} стр.: ${l.slice(0, 4).map(u => u.replace(BASE, '')).join(', ')}`).join('\n') + '\n\n';
   return { md, metrics: { seo_pages: pages.length, seo_red: sev('🔴'), seo_orange: sev('🟠'), seo_dup_titles: dupT.length }, alerts: sev('🔴') ? [`SEO: ${sev('🔴')} серьёзных проблем на страницах`] : [] };

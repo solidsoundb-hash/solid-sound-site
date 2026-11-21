@@ -350,3 +350,4 @@
 2026-11-21 18:22:20 Главная, Examples: убраны 4 звуковые пары пост-продакшна, Eco Techno, Ava Kedavra и вкладка Vocals (владелец «убрать то что на скринах»)
 2026-11-21T18:45:46Z services: client chats carousel + review cards
 2026-11-21T18:54:21Z services: chats carousel script without && (WordPress mangled it)
+2026-11-21T19:48:31Z SEO: служебные страницы и переадресации убраны из карты сайта (робот seo)
