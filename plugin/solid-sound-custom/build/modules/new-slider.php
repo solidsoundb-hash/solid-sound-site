@@ -51,6 +51,8 @@ function ss_ns_specs( $pid, $p, $fmt ) {
 	/* what only the description says (size, presets count, synth, format …) — when not already there */
 	foreach ( $o as $k => $v ) { $dup = false; foreach ( $full as $fk => $fv ) if ( 0 === strcasecmp( $fk, $k ) || ( 'DAW' === $k && isset( $full['DAW'] ) ) || ( 'Plugins' === $k && false !== stripos( $fk, 'plugin' ) ) || ( 'Works on' === $k && 'PC & Mac' === $fv ) ) $dup = true; if ( ! $dup ) $full[ $k ] = $v; }
 	if ( ! empty( $tx['Size'] ) && ! isset( $full[ $t3( 'l_size', 'Size' ) ] ) && ! isset( $full['Size'] ) ) $full[ $t3( 'l_size', 'Size' ) ] = $tx['Size'];
+	/* presets: «Synth: Serum v1.363» says more than «Plugins: Serum» — keep one, with the version */
+	if ( isset( $full['Synth'] ) ) foreach ( array_keys( $full ) as $fk ) if ( 'Synth' !== $fk && false !== stripos( $fk, 'plugin' ) ) { $syn = $full['Synth']; unset( $full['Synth'] ); $full[ $fk ] = $syn; $full = array( $fk => $syn ) + $full; break; }
 	return array_slice( $full ? $full : $o, 0, 10, true );
 }
 function ss_ns_terms( $pid, $tax, $n = 2 ) {
