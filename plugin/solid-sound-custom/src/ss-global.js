@@ -340,9 +340,16 @@ function promo(canvas,hd){
   canvas.insertBefore(p,hd);
   setInterval(function(){ var t=p.querySelector('.p-t'); if(t) t.textContent=promoLeft(); },60000);
 }
+/* (owner 21.11) on the home page Products / Services (and the phone bar's Shop / Studio) scroll to the home's own
+   templates (#shop) and services (#services) sections instead of leaving the page */
+function homeSec(h){ if(!h||!D.getElementById('ss-app')) return null; var id=/\/all-products\/?$/.test(h) ? 'shop' : /\/services-prices\/?$/.test(h) ? 'services' : ''; return id ? D.getElementById(id) : null; }
+function toSec(tg){ var off=(parseFloat(getComputedStyle(D.documentElement).getPropertyValue('--ssg-h'))||72)+8, y=Math.max(0,tg.getBoundingClientRect().top+window.pageYOffset-off);
+  try{ window.scrollTo({top:y,behavior:'smooth'}); }catch(x){ window.scrollTo(0,y); } }
 function wire(hd,sh){
+  D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('#ssg-bar a[href]'), tg=a&&homeSec(a.getAttribute('href')); if(tg){ e.preventDefault(); e.stopPropagation(); toSec(tg); } },true);
   hd.addEventListener('click',function(e){
-    var b=e.target.closest('.g-it > button.g-a');
+    var b=e.target.closest('.g-it > button.g-a'), hs=b&&homeSec(b.getAttribute('data-h'));
+    if(hs){ e.preventDefault(); toSec(hs); hd.querySelectorAll('.g-it.open').forEach(function(x){ x.classList.remove('open'); }); b.setAttribute('aria-expanded','false'); return; }
     if(b && b.getAttribute('data-h') && matchMedia('(hover:hover) and (pointer:fine)').matches){
       /* already on that page (e.g. Products on All products): scroll to the catalog instead of reloading the same page */
       if(isCur(b.getAttribute('data-h'))){ e.preventDefault(); var tg=D.querySelector('.sstb')||D.querySelector('.w-grid'), off=(parseFloat(getComputedStyle(D.documentElement).getPropertyValue('--ssg-h'))||72)+8;
