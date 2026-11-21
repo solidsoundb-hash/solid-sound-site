@@ -47,9 +47,39 @@ add_action( 'wp_head', function () {
 		'@context' => 'https://schema.org', '@type' => 'Service',
 		'name' => 'Online mixing & mastering', 'serviceType' => 'Audio mixing and mastering',
 		'provider' => array( '@type' => 'Organization', 'name' => 'Solid Sound', 'url' => home_url( '/' ) ),
-		'areaServed' => 'Worldwide', 'url' => $url,
+		'areaServed' => 'Worldwide', 'url' => $url, 'availableLanguage' => array( 'English', 'German', 'French', 'Spanish', 'Italian', 'Portuguese', 'Ukrainian' ),
 		'hasOfferCatalog' => array( '@type' => 'OfferCatalog', 'name' => 'Studio services',
-			'itemListElement' => array( $offer( 'Online mixing', 60 ), $offer( 'Mastering', 15 ) ) ),
+			/* 21.11: the current «from» prices of the page tabs (mid-segment prices of 21.11) */
+			'itemListElement' => array( $offer( 'Online mixing', 69 ), $offer( 'Mastering', 35 ), $offer( 'Mix + master bundle', 99 ), $offer( 'Remix', 190 ), $offer( 'Remake', 120 ), $offer( 'Custom production', 350 ), $offer( 'Post production (voice, ads, film)', 90 ), $offer( 'Release: cover art & distribution', 49 ) ) ),
 	);
 	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 4 );
+
+/* 21.11.2026 owner «поработать над SEO-выдачей»: breadcrumbs for Google (helps it see the sections → sitelinks, and shows
+   «solid-sound.net › All products › …» instead of a bare URL). Products: Home › All products › product; pages/posts: Home › page. */
+add_action( 'wp_head', function () {
+	if ( is_admin() || is_front_page() || is_404() || is_search() ) return;
+	if ( function_exists( 'is_wpforo_page' ) && is_wpforo_page() ) return;
+	$home  = function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' );
+	$items = array( array( 'Solid Sound', $home ) );
+	if ( function_exists( 'is_product' ) && is_product() ) {
+		$all = get_page_by_path( 'all-products' ); $aid = $all ? $all->ID : 0;
+		if ( $aid && function_exists( 'pll_get_post' ) && pll_get_post( $aid ) ) $aid = pll_get_post( $aid );
+		$items[] = array( 'All products', $aid ? get_permalink( $aid ) : home_url( '/all-products/' ) );
+		$items[] = array( wp_strip_all_tags( get_the_title() ), get_permalink() );
+	} elseif ( is_singular() ) {
+		$id = get_queried_object_id();
+		foreach ( array_reverse( get_post_ancestors( $id ) ) as $a ) $items[] = array( wp_strip_all_tags( get_the_title( $a ) ), get_permalink( $a ) );
+		$items[] = array( wp_strip_all_tags( get_the_title( $id ) ), get_permalink( $id ) );
+	} elseif ( is_tax() || is_category() || is_tag() ) {
+		$t = get_queried_object(); if ( ! $t || empty( $t->name ) ) return;
+		$l = get_term_link( $t ); if ( is_wp_error( $l ) ) return;
+		$items[] = array( $t->name, $l );
+	} else {
+		return;
+	}
+	$list = array();
+	foreach ( $items as $it ) if ( '' !== trim( (string) $it[0] ) ) $list[] = array( '@type' => 'ListItem', 'position' => count( $list ) + 1, 'name' => $it[0], 'item' => $it[1] );
+	if ( count( $list ) < 2 ) return;
+	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $list ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}, 5 );

@@ -356,3 +356,4 @@
 2026-11-21T22:36:27Z all products: What's new slider (one product per slide)
 2026-11-21T22:40:23Z all products slider: no old dates, clean 2-3 line description
 2026-11-21T22:45:34Z slider: video in cover, outline play; global: no stray price-strike line
+2026-11-21T22:51:45Z SEO: brand-first home title, Organization/WebSite extended, breadcrumbs, service prices, About page

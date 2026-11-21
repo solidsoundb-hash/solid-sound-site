@@ -561,7 +561,8 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 	/* key pages: slug => [title, description] */
 	function ss_seo_pages() {
 		return array(
-			'__front' => array( 'Ableton Templates, Presets & Mixing/Mastering | Solid Sound', 'Royalty-free Ableton Live templates, Serum presets and music for video. Learn by reverse engineering pro tracks or order online mixing & mastering.' ),
+			/* 21.11 owner «поработать над SEO-выдачей»: brand first (we compete with «Solid Sound Ann Arbor» on our own name), what we are, a price */
+			'__front' => array( 'Solid Sound — Ableton Templates, Serum Presets & Mixing Studio', 'Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.' ),
 			'templates' => array( 'Ableton Live Templates – Royalty-Free | Solid Sound', 'Royalty-free Ableton Live templates in techno and tech house. Fully mixed and mastered projects with native plugins – learn, remix and release.' ),
 			'presets' => array( 'Serum Presets & Sound Packs | Solid Sound', 'Serum presets for melodic techno and more. Ready-to-use sounds by Solid Sound – instant download, royalty-free.' ),
 			'music' => array( 'Royalty-Free Music for Video & Business | Solid Sound', 'Royalty-free music for videos, documentaries and business projects. Cinematic piano and more – instant download with a clear license.' ),
@@ -574,6 +575,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
 			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
+			'about' => array( 'About Solid Sound — Online Mixing Studio & Ableton Templates', 'Solid Sound is an online music production studio and marketplace since 2018: mixing, mastering, remix and custom production, plus royalty-free Ableton templates and Serum presets.' ),
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
 			'refund_returns' => array( 'Refund Policy for Digital Products | Solid Sound', 'Refund rules for Solid Sound digital downloads: Ableton templates, Serum presets and royalty-free music. When and how you can request a refund.' ),
@@ -652,7 +654,12 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 					'@type' => 'Organization',
 					'@id' => $home . '#organization',
 					'name' => 'Solid Sound',
+					'alternateName' => array( 'Solid Sound Studio', 'solid-sound.net' ),
+					'description' => 'Online music production studio and marketplace: mixing, mastering, remix and custom production for electronic music, plus royalty-free Ableton Live templates, Serum presets and music for video.',
 					'url' => $home,
+					'foundingDate' => '2018',
+					'areaServed' => 'Worldwide',
+					'knowsAbout' => array( 'Mixing', 'Mastering', 'Ableton Live', 'Techno', 'Melodic techno', 'Sound design', 'Music production' ),
 					'logo' => $logo ? $logo : null,
 					'sameAs' => array(
 						'https://www.instagram.com/solid.sound.studio',
@@ -665,6 +672,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 					'@type' => 'WebSite',
 					'@id' => $home . '#website',
 					'name' => 'Solid Sound',
+					'alternateName' => array( 'Solid Sound Studio', 'solid-sound.net' ),
 					'url' => $home,
 					'publisher' => array( '@id' => $home . '#organization' ),
 					'potentialAction' => array(
