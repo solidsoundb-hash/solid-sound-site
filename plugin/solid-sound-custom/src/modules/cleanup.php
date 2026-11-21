@@ -119,7 +119,7 @@ add_action( 'template_redirect', function () {
 function ss_sitemap_hidden_ids() {
 	static $ids = null; if ( null !== $ids ) return $ids;
 	$slugs = array( 'cart', 'checkout', 'my-account', 'store-manager', 'client-dashboard', 'vendor-membership', 'vendor-register', 'shop',
-		'services-calculator', 'mastering-album-calculator', 'forum-experimental', 'wishlist', 'order-tracking' );
+		'services-calculator', 'mastering-album-calculator', 'forum-experimental', 'wishlist', 'order-tracking', 'add-product', 'links' );
 	$ids = get_posts( array( 'post_type' => 'page', 'post_name__in' => $slugs, 'fields' => 'ids', 'numberposts' => -1, 'lang' => '', 'post_status' => 'publish', 'suppress_filters' => false ) );
 	if ( function_exists( 'wc_get_page_id' ) ) foreach ( array( 'cart', 'checkout', 'myaccount', 'shop' ) as $w ) { $i = (int) wc_get_page_id( $w ); if ( $i > 0 ) $ids[] = $i; }
 	if ( function_exists( 'pll_get_post_translations' ) ) foreach ( $ids as $i ) $ids = array_merge( $ids, array_values( (array) pll_get_post_translations( $i ) ) );
