@@ -360,3 +360,4 @@
 2026-11-21T22:53:28Z web push: forum replies, self-hosted
 2026-11-21T22:57:34Z seo: no duplicate breadcrumbs on products
 2026-11-21T22:59:50Z All products, What's new: видео в обложке целиком (16:9 на чёрном), кнопка ▶ без квадрата (владелец)
+2026-11-21T23:03:39Z What's new: ▶ крупнее (28 px, как на примере владельца)
