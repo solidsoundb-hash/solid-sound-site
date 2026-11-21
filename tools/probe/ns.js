@@ -15,6 +15,7 @@ const log = []; const L = (...a) => log.push(a.map(x => typeof x === 'string' ? 
       const btn = document.querySelector('.ssn-wv .ssw-btn'); const bs = btn ? getComputedStyle(btn) : null;
       return { cover: c ? [Math.round(c.getBoundingClientRect().width), Math.round(c.getBoundingClientRect().height)] : null, iframe: f ? { on: f.classList.contains('on'), w: Math.round(f.getBoundingClientRect().width), h: Math.round(f.getBoundingClientRect().height) } : null,
         btn: bs ? { bg: bs.backgroundColor, border: bs.borderTopWidth, radius: bs.borderRadius } : null }; }));
+    L(dn, 'specs', await p.evaluate(() => [...document.querySelectorAll('.ssn-s')].map(x => (x.querySelector('.ssn-t') || {}).textContent + ' → ' + [...x.querySelectorAll('.ssn-sp div')].map(d => d.textContent.replace(/\s+/g, ' ').trim()).join(' | '))));
     const box = await s.boundingBox().catch(() => null);
     await p.screenshot({ path: `${OUT}/${dn}-slider.png`, clip: box ? { x: 0, y: Math.max(0, box.y - 10), width: d.viewport.width, height: Math.min(box.height + 20, 900) } : undefined }).catch(() => p.screenshot({ path: `${OUT}/${dn}-slider.png` }));
     await ctx.close();
