@@ -80,7 +80,7 @@ function cards(){
     c.appendChild(box);
     /* (owner 15.11) "Add mixing" sits in the tag row, between TEMPLATE and YouTube -> every card has the same height */
     if(ok){var row=c.querySelector('.ssh-row'),acts=row&&row.querySelector('.ssh-acts');var mx=document.createElement('span');mx.className='ss-mixup ssh-mix';mx.setAttribute('role','checkbox');mx.setAttribute('aria-checked','false');mx.tabIndex=0;
-      mx.innerHTML='<i></i><span><span class="ssh-mx-add">Add </span>mixing <b>+$'+MIX+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';
+      mx.innerHTML='<i></i><span><span class="ssh-mx-add">Add </span>mixing <b>+'+M(MIX)+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';
       if(row&&acts)row.insertBefore(mx,acts);else box.insertBefore(mx,box.firstChild)}
   });
 }
