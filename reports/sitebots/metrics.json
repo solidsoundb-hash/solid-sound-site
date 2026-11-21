@@ -32,12 +32,12 @@
  "websec_red": 0,
  "websec_orange": 3,
  "websec_all": 10,
- "srv_total_mb": 1219,
- "srv_risky": 81,
+ "srv_total_mb": 1212,
+ "srv_risky": 0,
  "srv_backup_dirs": 1,
  "srv_orphans": 68,
  "srv_orphans_mb": 10,
- "at": "2026-11-21 23:26",
+ "at": "2026-11-21 23:53",
  "seo_missing_sitemap": 51,
  "seo_hreflang_bad": 0,
  "seo_heavy_img": 0,
@@ -47,9 +47,10 @@
  "seo_redirect_links": 432,
  "health_core_changed": 0,
  "health_plugins_changed": 0,
- "health_uploads_php": 1,
+ "health_uploads_php": 0,
  "db_mb": 64.8,
  "db_autoload_kb": 475,
  "shop_failed_7d": 0,
- "reviews_pending": 0
+ "reviews_pending": 0,
+ "forms_broken": 5
 }

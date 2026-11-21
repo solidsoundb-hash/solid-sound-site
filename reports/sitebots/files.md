@@ -1,13 +1,13 @@
 ## 🗄 Сервер: что лежит на хостинге и не нужно
 
-Файлов: **13231**, всего **1.19 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
+Файлов: **12420**, всего **1.18 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
 
 | Папка | Размер |
 |---|---|
-| `solid-sound.net/www` | 1.19 ГБ |
-| `solid-sound.net/www/wp-content` | 1.10 ГБ |
-| `solid-sound.net/www/wp-content/uploads` | 946.5 МБ |
-| `solid-sound.net/www/wp-content/plugins` | 87.0 МБ |
+| `solid-sound.net/www` | 1.18 ГБ |
+| `solid-sound.net/www/wp-content` | 1.09 ГБ |
+| `solid-sound.net/www/wp-content/uploads` | 946.6 МБ |
+| `solid-sound.net/www/wp-content/plugins` | 79.2 МБ |
 | `solid-sound.net/www/wp-content/themes` | 0.0 МБ |
 | `solid-sound.net/www/wp-content/cache` | 0.0 МБ |
 | `solid-sound.net/_removed` | 0.0 МБ |
@@ -18,42 +18,11 @@
 | `solid-sound.net/templates` | 0.0 МБ |
 | `solid-sound.net/test` | 0.0 МБ |
 | `solid-sound.net/www_old` | 0.0 МБ |
+⚠️ Не удалось прочитать папок: 6 (например `solid-sound.net/www/wp-includes/php-ai-client/src/Providers/Http/DTO: `) — размеры могут быть занижены.
 
 Загрузки по годам: 
 
-### 🔴 Опасные файлы, доступные из интернета (81)
-Копии базы, архивы, логи, копии wp-config — их может скачать кто угодно. Удалить или перенести выше папки www.
-
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-01-«скрыто».log` — 0.3 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-12-«скрыто».log` — 0.2 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-17-«скрыто».log` — 0.2 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-04-«скрыто».log` — 0.2 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-20-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-21-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-19-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-23-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-16-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-15-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-25-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-03-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-18-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-10-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-13-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-11-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-02-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-08-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-09-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-06-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-26-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-24-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-29-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-28-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-31-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-30-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-27-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-07-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-05-«скрыто».log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-14-«скрыто».log` — 0.1 МБ
+### ⚪ Логи и архивы закрыты от интернета (60): сервер отвечает 403 — опасности нет, место занимают (3.2 МБ)
 
 ### 🟡 Копии .htaccess (сервер обычно не отдаёт .ht*, но лучше убрать)
 - `/www/.htaccess.bak`
