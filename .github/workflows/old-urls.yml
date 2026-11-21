@@ -1,0 +1,25 @@
+# SEO: old addresses of the site since 2018 (Internet Archive) and how they open now (owner 21.11.2026).
+# Run: add a line to .github/old-urls.txt. Result: reports/seo/old-urls.md + .csv on main.
+name: Old URLs (SEO)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/old-urls.txt"]
+permissions:
+  contents: write
+concurrency: old-urls
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan
+        run: python3 tools/old-urls.py
+      - name: Save report
+        if: always()
+        run: |
+          git config user.name seo-robot && git config user.email actions@users.noreply.github.com
+          git add reports/seo && git commit -qm "seo: old urls $(date -u +%F)" || exit 0
+          for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
