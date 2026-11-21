@@ -102,6 +102,24 @@ def main():
                 seen[n][1] = max(seen[n][1], y)
     urls = sorted(seen)
     print('archive pages:', len(urls), flush=True)
+    sub = ['studio', 'post', 'templates', 'landingpt', 'test', 'www.studio', 'www.templates']
+    with open(f'{OUT}/subdomains.md', 'w') as f:
+        f.write('# Поддомены solid-sound.net — как открываются сейчас\n\n| Поддомен | Сейчас | Куда ведёт | Заголовок страницы |\n|---|---|---|---|\n')
+        for s in sub:
+            u = f'https://{s}.solid-sound.net/'
+            r = check(u)
+            title = ''
+            try:
+                req = urllib.request.Request(r[2], headers={'User-Agent': UA})
+                body = urllib.request.urlopen(req, timeout=30).read(60000).decode('utf-8', 'replace')
+                m = re.search(r'<title[^>]*>(.*?)</title>', body, re.S | re.I)
+                title = re.sub(r'\s+', ' ', m.group(1)).strip()[:80] if m else ''
+                noindex = 'noindex' in body.lower()
+                title += ' (noindex)' if noindex else ''
+            except Exception as e:  # noqa: BLE001
+                title = type(e).__name__
+            f.write(f'| {s} | {r[1]} | {r[2] if r[2] != u else ""} | {title} |\n')
+            print('sub', s, r[1], r[2], title, flush=True)
     res = []
     with cf.ThreadPoolExecutor(6) as ex:
         for i, r in enumerate(ex.map(check, urls)):
