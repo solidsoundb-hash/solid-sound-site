@@ -2,25 +2,25 @@
 
 Робот проходит покупку как клиент (без оплаты). ❌ — здесь путь ломается, снимок в `reports/sitebots/shots/`.
 
-**компьютер** — ❌ сломано на шаге «Корзина»
+**компьютер** — ❌ сломано на шаге «Оформление (форма видна)»
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 5.7 с | ✅  |
-| Каталог | 5.0 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
-| Страница товара | 8.6 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
+| Главная | 4.3 с | ✅  |
+| Каталог | 2.7 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Страница товара | 1.9 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
 | Добавить в корзину | 4.3 с | ✅  |
-| Корзина | 5.2 с | ❌ page.goto: net::ERR_ABORTED at https://solid-sound.net/en/cart/ |
-| Оформление (форма видна) | — | пропущено |
+| Корзина | 4.7 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 31.8 с | ❌ locator.waitFor: Timeout 30000ms exceeded. |
 
-**Samsung A31** — ❌ сломано на шаге «Корзина»
+**Samsung A31** — ❌ сломано на шаге «Оформление (форма видна)»
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 3.2 с | ✅  |
-| Каталог | 5.8 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
-| Страница товара | 11.4 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
-| Добавить в корзину | 4.2 с | ✅  |
-| Корзина | 3.8 с | ❌ page.goto: net::ERR_ABORTED at https://solid-sound.net/en/cart/ |
-| Оформление (форма видна) | — | пропущено |
+| Главная | 2.7 с | ✅  |
+| Каталог | 2.1 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Страница товара | 1.8 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
+| Добавить в корзину | 4.3 с | ✅  |
+| Корзина | 4.5 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 31.8 с | ❌ locator.waitFor: Timeout 30000ms exceeded. |
 

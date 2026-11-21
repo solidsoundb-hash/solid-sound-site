@@ -1,2 +1,3 @@
 at,a11y_critical,a11y_rules,a11y_serious,buyer_broken,buyer_js_errors,catalog_broken,catalog_incomplete,catalog_products,code_assets,code_consoleLog,code_css,code_deadJs,code_deadPhp,code_dup,code_interval,code_modules,code_noDefer,code_shadow,code_syntax,mail_dns_ok,prices_mismatch,prices_on_sale,prices_products,seo_dup_titles,seo_orange,seo_pages,seo_red,srv_backup_dirs,srv_orphans,srv_orphans_mb,srv_risky,srv_total_mb,texts_cyrillic_pages,texts_same_desc,texts_typos,websec_all,websec_orange,websec_red
 2026-11-21 19:46,2,9,4,2,0,0,8,8,0,1,37,0,3,26,16,0,2,0,0,3,0,7,8,7,9,110,7,1,0,0,1,10,0,0,27,10,3,0
+2026-11-21 20:29,2,9,4,2,0,0,8,8,0,1,37,0,3,26,16,0,2,0,0,3,0,7,8,7,9,110,7,1,0,0,1,10,0,0,27,10,3,0
