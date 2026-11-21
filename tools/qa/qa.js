@@ -684,7 +684,8 @@ async function eyesShot(page, url, dev) {
 // home on a phone: the whole "What are you working on?" block must be above the bottom bar for every card
 async function fitCheck(page, dev) {
   const res = await page.evaluate(async () => {
-    const r = document.querySelector('#ss-app .ssx'), nav = document.querySelector('#ss-app nav[aria-label="App"]');
+    const r = document.querySelector('#ss-app .ssx'); /* (21.11) the visible bottom bar: the shared #ssg-bar once the home's own nav is hidden (body.ss-one) */
+    const nav = [document.querySelector('#ssg-bar'), document.querySelector('#ss-app nav[aria-label="App"]')].find(n => n && n.getBoundingClientRect().height > 0);
     if (!r || !nav) return null; const out = [];
     const dots = r.querySelectorAll('.dots i');
     for (let i = 0; i < dots.length; i++) { dots[i].click(); await new Promise(z => setTimeout(z, 700)); out.push(Math.round(nav.getBoundingClientRect().top - r.getBoundingClientRect().bottom)); }

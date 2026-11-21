@@ -4,3 +4,7 @@
 2026-11-20 https://solid-sound.net/en/services-prices/
 2026-11-20 https://solid-sound.net/en/services-prices/
 2026-11-21 https://solid-sound.net/en/services-prices/
+2026-11-21 https://solid-sound.net/en/services-prices/
+2026-11-21 https://solid-sound.net/en/services-prices/
+2026-11-21 https://solid-sound.net/en/services-prices/?v=2
+2026-11-21 https://solid-sound.net/en/services-prices/?v=3

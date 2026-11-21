@@ -1,18 +1,56 @@
 {
  "mode": "full",
- "date": "2026-11-21T02:56:19.108Z",
+ "date": "2026-11-21T19:26:06.595Z",
  "stats": {
   "pages": 110,
-  "clicks": 776,
-  "sounds": 75,
-  "links": 568,
-  "blockedRequests": 41,
+  "clicks": 686,
+  "sounds": 69,
+  "links": 1232,
+  "blockedRequests": 48,
   "eyesTiles": 0,
   "eyesPages": 0,
-  "audioFiles": 33,
+  "audioFiles": 35,
   "robots": 20
  },
  "bugs": [
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/sell/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/sell/",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/11_006.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "critical",
+   "type": "http",
+   "title": "Страница /en/shop/ не открывается (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Сервер ответил ошибкой 503",
+   "sig": "http|/en/shop/",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/12_001.jpg",
+   "isNew": true
+  },
   {
    "sev": "major",
    "type": "kb-seo-canonical",
@@ -46,22 +84,67 @@
   },
   {
    "sev": "major",
-   "type": "sound-none",
-   "title": "Кнопка ▶ «Play Infinity» не запускает звук",
+   "type": "clickerr",
+   "title": "После нажатия «Services» — ошибка в коде",
+   "steps": [
+    "Открыть https://solid-sound.net/en/vendor-membership/",
+    "Нажать «Services»"
+   ],
+   "expected": "Без ошибок",
+   "actual": "Invalid or unexpected token",
+   "sig": "clickerr|Invalid or unexpected token",
+   "where": [
+    "/en/vendor-membership/",
+    "/en/vendor-register/",
+    "/en/forum/",
+    "/en/data-deletion/",
+    "/en/sitemap/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/13_005.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "clickerr",
+   "title": "После нажатия «Services» — ошибка в коде",
+   "steps": [
+    "Открыть https://solid-sound.net/en/legal-notice/",
+    "Нажать «Services»"
+   ],
+   "expected": "Без ошибок",
+   "actual": "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token",
+   "sig": "clickerr|Failed to execute 'appendChild' on 'Node': Invalid or unexpected token",
+   "where": [
+    "/en/legal-notice/",
+    "/en/wiki/how-to-promote-yourself-as-a-dj/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_023.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "sound-click",
+   "title": "Кнопку ▶ «Play Infinity» невозможно нажать (её что-то закрывает)",
    "steps": [
     "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Infinity»",
-    "Подождать 12 секунд"
+    "Нажать ▶ «Play Infinity»"
    ],
-   "expected": "Играет трек",
-   "actual": "Кнопка показывает «играет», но звука нет",
-   "sig": "sndnone|/en/|Play Infinity",
+   "expected": "Кнопка нажимается",
+   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
+   "sig": "sndclick|/en/|Play Infinity",
    "where": [
     "/en/"
    ],
    "devices": [
-    "компьютер",
-    "телефон"
+    "компьютер"
    ],
    "shot": "shots/10_005.jpg",
    "isNew": true
@@ -69,22 +152,158 @@
   {
    "sev": "major",
    "type": "sound-click",
-   "title": "Кнопку ▶ «?» невозможно нажать (её что-то закрывает)",
+   "title": "Кнопку ▶ «Play Kratos» невозможно нажать (её что-то закрывает)",
    "steps": [
     "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «?»"
+    "Нажать ▶ «Play Kratos»"
    ],
    "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Element is not attached to the DOM",
-   "sig": "sndclick|/en/|?",
+   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
+   "sig": "sndclick|/en/|Play Kratos",
    "where": [
     "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_006.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "fit",
+   "title": "Слайдер на главной не помещается на экране (телефон)",
+   "steps": [
+    "Открыть главную на телефоне",
+    "Пролистать карточки слайдера точками"
+   ],
+   "expected": "Весь блок «What are you working on?» виден над нижней панелью",
+   "actual": "Уходит под нижнюю панель: карточка 1 на 772px, карточка 2 на 772px, карточка 3 на 772px, карточка 4 на 772px, карточка 5 на 772px, карточка 6 на 772px, карточка 7 на 772px",
+   "sig": "fit|phone",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/10_009.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play Space Echo — client track» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать ▶ «Play Space Echo — client track»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.sab-p в sab-c)",
+   "sig": "sndicon|PlaySpaceEchoclientt|/en/services-prices/",
+   "where": [
+    "/en/services-prices/"
    ],
    "devices": [
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_006.jpg",
+   "shot": "shots/10_020.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play Feeling Good — client track» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать ▶ «Play Feeling Good — client track»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.sab-p в sab-c)",
+   "sig": "sndicon|PlayFeelingGoodclien|/en/services-prices/",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_021.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "sound-icon",
+   "title": "Кнопка «Play Escape — client track» не превращается в ⏸ (паузу), когда трек играет",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажать ▶ «Play Escape — client track»"
+   ],
+   "expected": "Значок меняется на ⏸",
+   "actual": "Трек играет, а на кнопке всё ещё ▶ (кнопка: button.sab-p в sab-c)",
+   "sig": "sndicon|PlayEscapeclienttrac|/en/services-prices/",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_022.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/sell/",
+   "sig": "res|503 /en/sell/",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "res",
+   "title": "Не загружается файл или ресурс на странице",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/"
+   ],
+   "expected": "Все файлы загружаются",
+   "actual": "503 /en/shop/",
+   "sig": "res|503 /en/shop/",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "",
+   "isNew": true
+  },
+  {
+   "sev": "major",
+   "type": "link404",
+   "title": "Битая ссылка: /en/shop/?currency=JPY (код 503)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/",
+    "Нажать ссылку на /en/shop/?currency=JPY"
+   ],
+   "expected": "Страница открывается",
+   "actual": "Ошибка 503. Ссылка есть на страницах: /en/shop/",
+   "sig": "link|/en/shop/?currency=JPY",
+   "where": [
+    "/en/shop/"
+   ],
+   "devices": [],
+   "shot": "",
    "isNew": true
   },
   {
@@ -109,45 +328,22 @@
   },
   {
    "sev": "major",
-   "type": "sound-none",
-   "title": "Кнопка ▶ «Play Infinity» не запускает звук",
+   "type": "fit",
+   "title": "Слайдер на главной не помещается на экране (Samsung A31)",
    "steps": [
-    "Открыть https://solid-sound.net/en/forum-experimental/",
-    "Нажать ▶ «Play Infinity»",
-    "Подождать 12 секунд"
+    "Открыть главную на телефоне",
+    "Пролистать карточки слайдера точками"
    ],
-   "expected": "Играет трек",
-   "actual": "Кнопка показывает «играет», но звука нет",
-   "sig": "sndnone|/en/forum-experimental/|Play Infinity",
+   "expected": "Весь блок «What are you working on?» виден над нижней панелью",
+   "actual": "Уходит под нижнюю панель: карточка 1 на 705px, карточка 2 на 705px, карточка 3 на 705px, карточка 4 на 705px, карточка 5 на 705px, карточка 6 на 705px, карточка 7 на 705px",
+   "sig": "fit|a31",
    "where": [
-    "/en/forum-experimental/"
+    "/en/"
    ],
    "devices": [
-    "компьютер",
-    "телефон"
+    "Samsung A31"
    ],
-   "shot": "shots/16_008.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «?» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/forum-experimental/",
-    "Нажать ▶ «?»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Element is not attached to the DOM",
-   "sig": "sndclick|/en/forum-experimental/|?",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/16_009.jpg",
+   "shot": "shots/18_007.jpg",
    "isNew": true
   },
   {
@@ -219,7 +415,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_003.jpg",
+   "shot": "shots/10_004.jpg",
    "isNew": false
   },
   {
@@ -238,7 +434,6 @@
     "/en/all-products/",
     "/en/contacts/",
     "/en/services-calculator/",
-    "/en/sell/",
     "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/shop/",
     "/en/mastering-album-calculator/",
@@ -274,13 +469,14 @@
    "type": "kb-a11y-dup-id",
    "title": "Одинаковые id у разных элементов",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/ (компьютер)",
-    "Где: templates"
+    "Открыть https://solid-sound.net/en/ (компьютер)",
+    "Где: top-q"
    ],
    "expected": "Уникальные id.",
    "actual": "Почему важно: Кнопки, якоря и подписи полей начинают работать не с тем элементом.",
    "sig": "kb|kb-a11y-dup-id|Одинаковые id у разных элементов",
    "where": [
+    "/en/",
     "/en/all-products/",
     "/en/presets/",
     "/en/sell/",
@@ -291,8 +487,15 @@
     "/en/my-account/",
     "/en/free-demo-feedback/",
     "/en/links/",
+    "/en/forum-experimental/",
     "/en/client-dashboard/",
     "/en/templates/",
+    "/ua/",
+    "/de/",
+    "/fr/",
+    "/pt/",
+    "/es/",
+    "/it/",
     "/en/my-account/edit-account/"
    ],
    "devices": [
@@ -300,40 +503,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_014.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-link-empty",
-   "title": "Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
-   "steps": [
-    "Открыть https://solid-sound.net/en/ (компьютер)",
-    "Где: a.ssp-cover «Open the product page»"
-   ],
-   "expected": "Настоящий адрес или кнопка с действием.",
-   "actual": "Почему важно: Человек нажимает — и ничего.",
-   "sig": "kb|kb-link-empty|Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
-   "where": [
-    "/en/",
-    "/en/forum/",
-    "/en/my-account/",
-    "/en/forum-experimental/",
-    "/en/client-dashboard/",
-    "/forum/",
-    "/ua/",
-    "/de/",
-    "/fr/",
-    "/pt/",
-    "/es/",
-    "/it/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон",
-    "Samsung A31"
-   ],
-   "shot": "shots/10_004.jpg",
+   "shot": "shots/10_003.jpg",
    "isNew": false
   },
   {
@@ -349,7 +519,6 @@
    "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
    "where": [
     "/en/",
-    "/en/sell/",
     "/en/vendor-membership/",
     "/en/vendor-register/",
     "/en/forum-experimental/",
@@ -420,8 +589,97 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_016.jpg",
+   "shot": "shots/10_018.jpg",
    "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-link-empty",
+   "title": "Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "steps": [
+    "Открыть https://solid-sound.net/en/forum/ (компьютер)",
+    "Где: a «Forums»"
+   ],
+   "expected": "Настоящий адрес или кнопка с действием.",
+   "actual": "Почему важно: Человек нажимает — и ничего.",
+   "sig": "kb|kb-link-empty|Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
+   "where": [
+    "/en/forum/",
+    "/en/my-account/",
+    "/en/client-dashboard/",
+    "/forum/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/14_008.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "kb-seo-desc",
+   "title": "Нет описания страницы (meta description)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/ (телефон)"
+   ],
+   "expected": "Описание 70–160 символов.",
+   "actual": "Описания нет. Почему важно: Google сам вырезает кусок текста — часто неудачный.",
+   "sig": "kb|kb-seo-desc|Нет описания страницы (meta description)",
+   "where": [
+    "/en/sell/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "телефон",
+    "компьютер"
+   ],
+   "shot": "shots/11_007.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "kb-seo-og",
+   "title": "Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/ (телефон)"
+   ],
+   "expected": "og:title + og:image 1200×630.",
+   "actual": "og:title: нет, og:image: нет. Почему важно: Ссылка в Telegram/Facebook/Instagram без картинки — по ней почти не кликают.",
+   "sig": "kb|kb-seo-og|Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
+   "where": [
+    "/en/sell/",
+    "/en/shop/"
+   ],
+   "devices": [
+    "телефон",
+    "компьютер"
+   ],
+   "shot": "shots/11_008.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "minor",
+   "type": "kb-perf-lcp-lazy",
+   "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/shop/ (телефон)",
+    "Где: xPitch_Title_PSD-200x200.jpg.pagespeed.ic.ahRYm-WLmX.webp"
+   ],
+   "expected": "Для первого экрана — без lazy, с fetchpriority=high.",
+   "actual": "Почему важно: Самая важная картинка появляется последней.",
+   "sig": "kb|kb-perf-lcp-lazy|Главная картинка первого экрана грузится «лениво» (loading=lazy)",
+   "where": [
+    "/en/shop/",
+    "/en/all-products/"
+   ],
+   "devices": [
+    "телефон",
+    "Samsung A31"
+   ],
+   "shot": "shots/12_012.jpg",
+   "isNew": true
   },
   {
    "sev": "minor",
@@ -446,648 +704,275 @@
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /all-products не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=EUR выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=EUR"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/all-products",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=EUR",
    "where": [
-    "/en/all-products/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /services-prices не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/services-prices/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/services-prices",
-   "where": [
-    "/en/services-prices/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /legal-notice не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/legal-notice/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/legal-notice",
-   "where": [
-    "/en/legal-notice/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /wiki/how-to-promote-yourself-as-a-dj не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/how-to-promote-yourself-as-a-dj/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/wiki/how-to-promote-yourself-as-a-dj",
-   "where": [
-    "/en/wiki/how-to-promote-yourself-as-a-dj/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /privacy-policy не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/privacy-policy/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/privacy-policy",
-   "where": [
-    "/en/privacy-policy/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /faq не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/faq/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/faq",
-   "where": [
-    "/en/faq/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /services-calculator не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/services-calculator/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: EN, UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/services-calculator",
-   "where": [
-    "/en/services-calculator/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /sell не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/sell",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /wiki/how-to-get-booked-as-a-dj не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/wiki/how-to-get-booked-as-a-dj/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/wiki/how-to-get-booked-as-a-dj",
-   "where": [
-    "/en/wiki/how-to-get-booked-as-a-dj/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /shop не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/shop",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
    "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /mastering-album-calculator не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=AUD выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/mastering-album-calculator/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=AUD"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: EN, UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/mastering-album-calculator",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=AUD",
    "where": [
-    "/en/mastering-album-calculator/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /creator-terms не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=CAD выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/creator-terms/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=CAD"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/creator-terms",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=CAD",
    "where": [
-    "/en/creator-terms/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /vendor-membership не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=DKK выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/vendor-membership/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=DKK"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/vendor-membership",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=DKK",
    "where": [
-    "/en/vendor-membership/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /free не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=HKD выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/free/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=HKD"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/free",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=HKD",
    "where": [
-    "/en/free/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /vendor-register не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=INR выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/vendor-register/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=INR"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/vendor-register",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=INR",
    "where": [
-    "/en/vendor-register/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /forum не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=JPY выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/forum/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=JPY"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/forum",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=JPY",
    "where": [
-    "/en/forum/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /data-deletion не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=NZD выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/data-deletion/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=NZD"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/data-deletion",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=NZD",
    "where": [
-    "/en/data-deletion/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /sitemap не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=NOK выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/sitemap/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=NOK"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/sitemap",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=NOK",
    "where": [
-    "/en/sitemap/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /add-product не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=PLN выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/add-product/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=PLN"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/add-product",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=PLN",
    "where": [
-    "/en/add-product/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /refund_returns не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=GBP выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/refund_returns/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=GBP"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/refund_returns",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=GBP",
    "where": [
-    "/en/refund_returns/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /license не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=ZAR выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/license/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=ZAR"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/license",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=ZAR",
    "where": [
-    "/en/license/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /prices не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=SEK выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/prices/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=SEK"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/prices",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=SEK",
    "where": [
-    "/en/prices/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /terms не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=CHF выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/terms/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=CHF"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/terms",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=CHF",
    "where": [
-    "/en/terms/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /wiki/how-much-do-djs-get-paid не переведена — переключатель языка выкидывает на главную",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=UAH выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/en/wiki/how-much-do-djs-get-paid/",
-    "Нажать на язык",
-    "Выбрать другой язык"
+    "Нажать ссылку на /en/forum-experimental/?currency=UAH"
    ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/wiki/how-much-do-djs-get-paid",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=UAH",
    "where": [
-    "/en/wiki/how-much-do-djs-get-paid/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
-   "type": "untranslated",
-   "title": "Страница на UA в основном не переведена (много английского текста)",
+   "type": "link2home",
+   "title": "Ссылка /en/forum-experimental/?currency=USD выкидывает на главную",
    "steps": [
-    "Открыть https://solid-sound.net/ua/"
+    "Нажать ссылку на /en/forum-experimental/?currency=USD"
    ],
-   "expected": "Текст на языке UA",
-   "actual": "Доля английских слов 10%, кириллицы 42%",
-   "sig": "untr|/ua/",
+   "expected": "Нужная страница",
+   "actual": "Перенаправляет на /en/",
+   "sig": "link2home|/en/forum-experimental/?currency=USD",
    "where": [
-    "/ua/"
+    "/en/forum-experimental/"
    ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/18_014.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "untranslated",
-   "title": "Страница на DE в основном не переведена (много английского текста)",
-   "steps": [
-    "Открыть https://solid-sound.net/de/"
-   ],
-   "expected": "Текст на языке DE",
-   "actual": "Доля английских слов 11%",
-   "sig": "untr|/de/",
-   "where": [
-    "/de/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/18_016.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "untranslated",
-   "title": "Страница на FR в основном не переведена (много английского текста)",
-   "steps": [
-    "Открыть https://solid-sound.net/fr/"
-   ],
-   "expected": "Текст на языке FR",
-   "actual": "Доля английских слов 9%",
-   "sig": "untr|/fr/",
-   "where": [
-    "/fr/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/18_018.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "untranslated",
-   "title": "Страница на PT в основном не переведена (много английского текста)",
-   "steps": [
-    "Открыть https://solid-sound.net/pt/"
-   ],
-   "expected": "Текст на языке PT",
-   "actual": "Доля английских слов 9%",
-   "sig": "untr|/pt/",
-   "where": [
-    "/pt/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/18_020.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "untranslated",
-   "title": "Страница на ES в основном не переведена (много английского текста)",
-   "steps": [
-    "Открыть https://solid-sound.net/es/"
-   ],
-   "expected": "Текст на языке ES",
-   "actual": "Доля английских слов 9%",
-   "sig": "untr|/es/",
-   "where": [
-    "/es/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/18_022.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "untranslated",
-   "title": "Страница на IT в основном не переведена (много английского текста)",
-   "steps": [
-    "Открыть https://solid-sound.net/it/"
-   ],
-   "expected": "Текст на языке IT",
-   "actual": "Доля английских слов 9%",
-   "sig": "untr|/it/",
-   "where": [
-    "/it/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/18_024.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "langmiss",
-   "title": "Страница /store-manager не переведена — переключатель языка выкидывает на главную",
-   "steps": [
-    "Открыть https://solid-sound.net/en/store-manager/",
-    "Нажать на язык",
-    "Выбрать другой язык"
-   ],
-   "expected": "Эта же страница на выбранном языке",
-   "actual": "Нет перевода на: UA, DE, FR, PT, ES, IT — открывается главная",
-   "sig": "langmiss|/store-manager",
-   "where": [
-    "/en/store-manager/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
+   "devices": [],
    "shot": "",
-   "isNew": false
+   "isNew": true
   },
   {
    "sev": "minor",
@@ -1298,48 +1183,32 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_011.jpg",
+   "shot": "shots/10_012.jpg",
    "isNew": false
   },
   {
    "sev": "check",
-   "type": "style-circle",
-   "title": "Круглая кнопка-значок «Previous» — нужна ли квадратная со скруглёнными углами?",
+   "type": "kb-perf-dom",
+   "title": "Слишком много элементов на странице (>3000)",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/"
+    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
-   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
-   "actual": "Круг (радиус 50px, размер 46px)",
-   "sig": "circle|Previous",
+   "expected": "Меньше вложенности, подгружать по частям.",
+   "actual": "Элементов: 3652. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3134. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3090. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
+    "/en/services-prices/",
     "/en/shop/"
    ],
    "devices": [
-    "компьютер"
+    "компьютер",
+    "телефон",
+    "Samsung A31"
    ],
-   "shot": "shots/10_009.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "style-circle",
-   "title": "Круглая кнопка-значок «Next» — нужна ли квадратная со скруглёнными углами?",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/"
-   ],
-   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
-   "actual": "Круг (радиус 50px, размер 46px)",
-   "sig": "circle|Next",
-   "where": [
-    "/en/all-products/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_010.jpg",
-   "isNew": false
+   "shot": "shots/10_015.jpg",
+   "isNew": false,
+   "more": 2
   },
   {
    "sev": "check",
@@ -1360,7 +1229,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_012.jpg",
+   "shot": "shots/10_013.jpg",
    "isNew": false
   },
   {
@@ -1382,31 +1251,8 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_013.jpg",
+   "shot": "shots/10_014.jpg",
    "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "kb-perf-dom",
-   "title": "Слишком много элементов на странице (>3000)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
-   ],
-   "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3577. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3560. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
-   "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
-   "where": [
-    "/en/all-products/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон",
-    "Samsung A31"
-   ],
-   "shot": "shots/10_015.jpg",
-   "isNew": false,
-   "more": 1
   },
   {
    "sev": "check",
@@ -1426,28 +1272,87 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_017.jpg",
+   "shot": "shots/10_019.jpg",
    "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Previous» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Previous",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_010.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Next» — нужна ли квадратная со скруглёнными углами?",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/"
+   ],
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 46px)",
+   "sig": "circle|Next",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_011.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "dead",
+   "title": "Кнопка «Previous» ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Previous»"
+   ],
+   "expected": "Что-то открывается/меняется",
+   "actual": "Ничего не происходит",
+   "sig": "dead|/en/all-products/|Previous",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_016.jpg",
+   "isNew": true
   },
   {
    "sev": "check",
    "type": "dead",
    "title": "Кнопка «Video» ничего не делает",
    "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
+    "Открыть https://solid-sound.net/en/all-products/",
     "Нажать «Video»"
    ],
    "expected": "Что-то открывается/меняется",
    "actual": "Ничего не происходит",
-   "sig": "dead|/en/shop/|Video",
+   "sig": "dead|/en/all-products/|Video",
    "where": [
-    "/en/shop/"
+    "/en/all-products/"
    ],
    "devices": [
+    "компьютер",
     "телефон"
    ],
-   "shot": "shots/12_013.jpg",
-   "isNew": false
+   "shot": "shots/10_017.jpg",
+   "isNew": true
   },
   {
    "sev": "check",
@@ -1504,7 +1409,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_015.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1544,7 +1449,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_019.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1564,7 +1469,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_021.jpg",
+   "shot": "shots/18_019.jpg",
    "isNew": false
   },
   {
@@ -1584,7 +1489,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_023.jpg",
+   "shot": "shots/18_020.jpg",
    "isNew": false
   },
   {
@@ -1604,7 +1509,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_025.jpg",
+   "shot": "shots/18_021.jpg",
    "isNew": false
   },
   {
@@ -1629,5 +1534,5 @@
   }
  ],
  "notChecked": [],
- "l10nSkipped": 0
+ "l10nSkipped": 48
 }

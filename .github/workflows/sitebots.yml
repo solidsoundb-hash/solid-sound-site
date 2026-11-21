@@ -1,0 +1,43 @@
+# SITE BOTS (owner 21.11.2026: «делай всех») — code analyst (dead code), buyer, prices, catalog, SEO pages, texts,
+# accessibility, e-mails, web security, server files. Report: reports/sitebots/latest.md (+ one file per bot).
+# Run: a line in .github/sitebots.txt — «<date> all» or bot names, e.g. «<date> code seo». Weekly: Sunday evening.
+name: Site bots
+on:
+  workflow_dispatch:
+    inputs:
+      bots: { description: "all или имена: code buyer prices catalog seo texts a11y emails websec files", default: all }
+  schedule:
+    - cron: "23 19 * * 0"   # Sunday 19:23 UTC — ready before the Monday main robot
+  push:
+    branches: [main]
+    paths: [".github/sitebots.txt"]
+permissions:
+  contents: write
+concurrency: { group: sitebots, cancel-in-progress: false }
+jobs:
+  bots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1 axe-core@4.10.2
+      - name: Which bots
+        run: |
+          B="${{ github.event.inputs.bots }}"
+          if [ "${{ github.event_name }}" = push ]; then B=$(tail -1 .github/sitebots.txt | tr ' ' '\n' | grep -E '^(all|code|buyer|prices|catalog|seo|texts|a11y|emails|websec|files)$' | tr '\n' ',' ); fi
+          echo "SITEBOTS=${B:-all}" >> $GITHUB_ENV
+      - name: Run
+        env:
+          PW_CHANNEL: chrome
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: node tools/sitebots/run.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=site-bots bash .github/save.sh "site bots: $(date -u +%FT%TZ)" reports/sitebots
