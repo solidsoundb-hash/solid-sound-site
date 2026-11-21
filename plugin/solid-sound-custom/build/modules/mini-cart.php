@@ -100,7 +100,7 @@ function hide(){clearTimeout(hideT);hideT=setTimeout(function(){if(P)P.classList
 function isFav(t){var it=t.closest?t.closest('#ssg .g-r-it'):null;if(it){var l=it.querySelector('.g-l');if(l?/favou?rites/i.test(l.textContent):false)return it}var bl=t.closest?t.closest('#ssg-bar a'):null;if(bl?/saved/i.test(bl.textContent):false)return bl;return null}
 if(hoverOk){document.addEventListener('mouseover',function(e){var a=isFav(e.target);if(a)show(a)});document.addEventListener('mouseout',function(e){var a=isFav(e.target);if(!a)return;var to=e.relatedTarget;if(to?(a.contains(to)||(P?P.contains(to):false)):false)return;hide()})}
 /* a tap / click on Favorites opens the list here (guests used to land on the login page) */
-document.addEventListener('click',function(e){var a=isFav(e.target);if(!a)return;if(e.metaKey||e.ctrlKey)return;e.preventDefault();if(P?P.classList.contains('on'):false){P.classList.remove('on');return}anchor=hoverOk?a:null;show(anchor)},true);
+document.addEventListener('click',function(e){var a=isFav(e.target);if(!a)return;if(e.metaKey||e.ctrlKey)return;e.preventDefault();if(hoverOk){show(a);return}if(P?P.classList.contains('on'):false){P.classList.remove('on');return}anchor=null;show(null)},true);
 document.addEventListener('click',function(e){if(!P||!P.classList.contains('on'))return;if(P.contains(e.target)||isFav(e.target))return;P.classList.remove('on')});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'?P:false)P.classList.remove('on')});
 addEventListener('scroll',function(){if(P?P.classList.contains('on'):false)place()},{passive:true});

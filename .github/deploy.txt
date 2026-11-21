@@ -367,3 +367,4 @@
 2026-11-21T23:23:35Z slider footer: heart, i, cart with price
 2026-11-21T23:25:32Z favorites panel (ajax), main currencies first
 2026-11-21T23:26:41Z slider: old price before the cart button
+2026-11-21T23:29:21Z favorites: click keeps the hover panel open
