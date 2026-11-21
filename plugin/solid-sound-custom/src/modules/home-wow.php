@@ -647,7 +647,7 @@ body.ss-wow #ss-app .ssx .dots{display:none!important}
 }
 </style>
 <script>(function(){
-var SSP=<?php echo wp_json_encode( function_exists( 'ss_pe_slider' ) ? ss_pe_slider() : array( 'mix' => 39, 'bundle' => 59, 'master' => 25, 'rework' => 109, 'live' => 39 ) ); ?>;
+var PRC=<?php echo wp_json_encode( function_exists( 'ss_pe_slider' ) ? ss_pe_slider() : array( 'mix' => 39, 'bundle' => 59, 'master' => 25, 'rework' => 109, 'live' => 39 ) ); ?>;
 var W=<?php echo wp_json_encode( $items ); ?>,H1=<?php echo wp_json_encode( sprintf( esc_html( $h1 ), '<span>Solid Sound</span>' ) ); ?>;
 var WHY=<?php $wi = function_exists( 'ss_why_items' ) ? ss_why_items() : array(); $wo = array(); foreach ( array( 'For producers & DJs', 'For creators who sell', 'Learn & connect' ) as $g ) { if ( empty( $wi[ $g ] ) ) continue; $wo[] = array( esc_html( $g ), array_map( function ( $x ) { $x[3] = esc_url( $x[3] ); return array_map( 'esc_html', $x ); }, $wi[ $g ] ) ); } echo wp_json_encode( $wo ); ?>,WHYU=<?php echo wp_json_encode( esc_url( home_url( '/en/why-solid-sound/' ) ) ); ?>;
 var TR=<?php echo wp_json_encode( array( 'lcr' => ss_home_t( 'Learn · Create · Release' ), 'cl' => ss_home_t( 'Closest to your choice' ), 'one' => ss_home_t( ' template matches' ), 'many' => ss_home_t( ' templates match' ), 'tap' => ss_home_t( ' — tap to listen' ) ) ); ?>;
@@ -718,11 +718,11 @@ function sides(ssx){var L=ssx.querySelectorAll('.card .left'),AB=window.SS_AB||[
  /* Finishing (owner 20.11 «вместо примеров в квадратике — описание каждой кнопки, под квадратиком кнопки на примеры и на услуги») */
  (function(left){if(!left||left.querySelector('.ssw-desc'))return;var acts=left.querySelector('.acts');
   var D={'free track review':['Not sure what it needs?','Free · 2–3 days','An engineer tells you what to fix first — written and video notes.'],
-   'rework in your project':['Arrangement not finished?','from €'+SSP.rework+' · 5–14 days','We finish it inside your own DAW: arrangement, sound, mix.'],
-   'mixing':['Ready to mix?','from €'+SSP.mix+' · 2–9 days','Your stems mixed by our engineers — balance, EQ, space. Stereo master included.'],
-   'mixing + mastering':['Want it all done?','from €'+SSP.bundle+' · 4–10 days','Mix, stem mastering, streaming + club masters, stems, instrumental and a 30-min call.'],
-   'mastering':['Mixed, needs a master?','from €'+SSP.master+' · 24–48 h','A loud, clean master for Spotify, Beatport and clubs.'],
-   'live video call':['Want to work live?','€'+SSP.live+' / 60 min','An engineer works on your track together with you, live.']};
+   'rework in your project':['Arrangement not finished?','from €'+PRC.rework+' · 5–14 days','We finish it inside your own DAW: arrangement, sound, mix.'],
+   'mixing':['Ready to mix?','from €'+PRC.mix+' · 2–9 days','Your stems mixed by our engineers — balance, EQ, space. Stereo master included.'],
+   'mixing + mastering':['Want it all done?','from €'+PRC.bundle+' · 4–10 days','Mix, stem mastering, streaming + club masters, stems, instrumental and a 30-min call.'],
+   'mastering':['Mixed, needs a master?','from €'+PRC.master+' · 24–48 h','A loud, clean master for Spotify, Beatport and clubs.'],
+   'live video call':['Want to work live?','€'+PRC.live+' / 60 min','An engineer works on your track together with you, live.']};
   var box=document.createElement('div');box.className='ssw-match ssw-desc';if(acts)left.insertBefore(box,acts);else left.appendChild(box);
   if(acts){var ex=document.createElement('a');ex.className='cta g';ex.href='#examples';ex.textContent='Hear examples';var g=acts.querySelector('a.cta.g');if(g)acts.replaceChild(ex,g);else acts.appendChild(ex);
    ex.addEventListener('click',function(e){var t=document.getElementById('examples');if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})}
