@@ -29,7 +29,8 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
     }
     if (n === 'desktop') {
       const t = await p.evaluate(() => [...document.querySelectorAll('h1,h2,h3,h4,[class*=price],a.button,button,.btn')].filter(e => e.offsetParent && e.innerText.trim()).map(e => e.tagName + ': ' + e.innerText.trim().replace(/\s+/g, ' ').slice(0, 160)).join('\n'));
-      fs.writeFileSync('page-out/text.txt', url + '\n\n' + t + '\n\n---- full text ----\n' + (await p.evaluate(() => document.body.innerText)).slice(0, 60000));
+      const hd = await p.evaluate(() => 'TITLE: ' + document.title + '\nDESC: ' + ((document.querySelector('meta[name=description]') || {}).content || '') + '\nLD: ' + [...document.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent.slice(0, 600)).join('\n    '));
+      fs.writeFileSync('page-out/text.txt', url + '\n' + hd + '\n\n' + t + '\n\n---- full text ----\n' + (await p.evaluate(() => document.body.innerText)).slice(0, 60000));
     }
   }
   await b.close();
