@@ -24,3 +24,4 @@
 2026-11-21 18:29:57 full-2111 /en/ /en/all-products/ /product/infinity/ /en/services-prices/ /en/cart/
 2026-11-21 18:35:02 sp-examples-after /en/services-prices/ click=▶_Our_examples
 2026-11-21 18:47:52 sp-examples-v2 /en/services-prices/ click=▶_Our_examples
+2026-11-21 18:50:50 sp-examples-v3 /en/services-prices/ html=Examples
