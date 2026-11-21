@@ -7,6 +7,7 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   for (const [n, o] of [['desktop', { viewport: { width: 1440, height: 900 } }], ['phone', { viewport: { width: 390, height: 844 }, isMobile: true }]]) {
     const p = await (await b.newContext({ ...o, locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' })).newPage();
+    const errs = []; p.on('pageerror', e => errs.push(e.message));
     await p.goto(url, { waitUntil: 'networkidle', timeout: 120000 }).catch(() => {});
     await p.waitForTimeout(3000);
     for (let y = 0; y < 20; y++) { await p.mouse.wheel(0, 1200); await p.waitForTimeout(250); } await p.evaluate(() => scrollTo(0, 0));
@@ -14,6 +15,7 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
     if (url.includes('solid-sound.net') && await p.$('.pp-c')) { /* our client-chats carousel: images, arrows, big view (21.11) */
       const st = () => p.evaluate(() => { const c = document.querySelector('#pr-mixing .pp-ch'), h = c.previousElementSibling; return { n: h.querySelector('.pp-n').textContent, pv: h.querySelector('.pp-pv').disabled, imgs: [...c.querySelectorAll('img')].map(i => i.naturalWidth).join(',') }; });
       const r = [JSON.stringify(await st())];
+      r.push('errors: ' + JSON.stringify(errs)); r.push('script: ' + await p.evaluate(() => { const s = [...document.scripts].find(x => x.textContent.includes('pp-lb')); return s ? s.type + ' | ' + s.textContent.slice(s.textContent.indexOf('function init'), s.textContent.indexOf('function init') + 400) : 'none'; }));
       await p.$eval('#pr-mixing .pp-sh', e => { e.scrollIntoView(); scrollBy(0, -120); }); await p.waitForTimeout(1500);
       await p.screenshot({ path: `page-out/${n}-chats.jpg`, type: 'jpeg', quality: 70 });
       await p.click('#pr-mixing .pp-nx').catch(e => r.push('nx ' + e.message)); await p.waitForTimeout(1200); r.push(JSON.stringify(await st()));
