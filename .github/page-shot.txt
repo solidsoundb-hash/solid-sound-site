@@ -12,3 +12,4 @@
 2026-11-21 08:26:38 before-prices-mid /en/services-prices/ /studio-calculator/ /en/
 2026-11-21 08:30:36 after-prices-mid /en/services-prices/ /studio-calculator/ /en/
 2026-11-21 12:35:53 before-buy-speed /product/infinity/ /en/cart/ /en/checkout/
+2026-11-21 12:37:44 before-buy-speed /product/infinity/ /en/cart/ /en/checkout/

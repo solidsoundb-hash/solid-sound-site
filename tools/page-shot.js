@@ -7,7 +7,7 @@ const line = fs.readFileSync('.github/page-shot.txt', 'utf8').trim().split('\n')
 const paths = line.filter(x => x.startsWith('/')), label = (line.find(x => !x.startsWith('/') && !/^\d/.test(x)) || 'shot').replace(/[^\w-]/g, '');
 const OUT = 'page-shot/' + label; fs.mkdirSync(OUT, { recursive: true });
 const S = 'https://solid-sound.net';
-const DEV = [['pc', { viewport: { width: 1366, height: 768 } }], ['a31', { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' }]];
+const DEV = [['pc', { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' }], ['a31', { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' }]];
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const md = ['# Страницы до/после — ' + label + ' — ' + new Date().toISOString(), '', '| Страница | Где | До действий: вес / запросов | Вес | Запросов | YouTube | Ошибки JS | Снимки |', '|---|---|---|---|---|---|---|---|'];
