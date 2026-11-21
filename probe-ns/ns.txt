@@ -1,0 +1,2 @@
+pc {"cover":[300,300],"iframe":{"on":true,"w":300,"h":169},"btn":{"bg":"rgba(0, 0, 0, 0)","border":"0px","radius":"50%"}}
+a31 {"cover":[108,108],"iframe":{"on":true,"w":108,"h":61},"btn":{"bg":"rgba(0, 0, 0, 0)","border":"0px","radius":"50%"}}
