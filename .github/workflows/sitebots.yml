@@ -5,7 +5,7 @@ name: Site bots
 on:
   workflow_dispatch:
     inputs:
-      bots: { description: "all или имена: code buyer prices catalog seo texts a11y emails websec files", default: all }
+      bots: { description: "all или имена: code buyer prices catalog seo texts a11y emails websec cookies files", default: all }
   schedule:
     - cron: "23 19 * * 0"   # Sunday 19:23 UTC — ready before the Monday main robot
   push:
@@ -27,7 +27,7 @@ jobs:
       - name: Which bots
         run: |
           B="${{ github.event.inputs.bots }}"
-          if [ "${{ github.event_name }}" = push ]; then B=$(tail -1 .github/sitebots.txt | tr ' ' '\n' | grep -E '^(all|code|buyer|prices|catalog|seo|texts|a11y|emails|websec|files)$' | tr '\n' ',' ); fi
+          if [ "${{ github.event_name }}" = push ]; then B=$(tail -1 .github/sitebots.txt | tr ' ' '\n' | grep -E '^(all|code|buyer|prices|catalog|seo|texts|a11y|emails|websec|cookies|files)$' | tr '\n' ',' ); fi
           echo "SITEBOTS=${B:-all}" >> $GITHUB_ENV
       - name: Run
         env:

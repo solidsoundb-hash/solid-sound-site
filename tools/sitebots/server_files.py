@@ -15,6 +15,9 @@ from ftp_sync import connect  # noqa: E402
 ROOT = 'solid-sound.net'
 WWW = ROOT + '/www'
 MAX_ENTRIES = 120000
+BUDGET = time.time() + 22 * 60  # stop walking after 22 min (the whole job has a time limit)
+SKIP_DIRS = {'node_modules', '.git', 'vendor', 'cache', 'wc-logs', 'languages', 'fonts', 'lib', 'libs', 'assets', 'dist', 'build'}
+stopped = False
 RISKY = re.compile(r'(\.sql(\.gz)?|\.bak|\.old|\.orig|~|\.swp|\.log|\.tar(\.gz)?|\.tgz|\.7z|\.rar|wp-config.*\.(txt|php\.\w+)|phpinfo\.php|\.env|adminer.*\.php)$', re.I)
 BACKUP_DIRS = re.compile(r'^(_removed|ai1wm-backups|updraft|backups?|backup-.*|wpvividbackups|backwpup.*|duplicator.*|wp-snapshots|cache-old)$', re.I)
 THUMB = re.compile(r'-\d+x\d+(?=\.\w+$)|-scaled(?=\.\w+$)|-rotated(?=\.\w+$)')
@@ -57,7 +60,11 @@ def ls(path):
 
 
 def walk(path, depth=0):
+    global stopped
     if len(entries) > MAX_ENTRIES or depth > 12:
+        return
+    if time.time() > BUDGET:
+        stopped = True
         return
     items = ls(path)
     for name, facts in items:
@@ -65,14 +72,19 @@ def walk(path, depth=0):
             continue
         p = posixpath.join(path, name)
         if facts.get('type') == 'dir':
+            if p == UPL and globals().get('done_upl'):
+                continue
             entries.append((p, 0, True))
-            if name in ('node_modules', '.git'):
+            if name in SKIP_DIRS and '/plugins/' in p or name in ('node_modules', '.git'):
                 continue
             walk(p, depth + 1)
         elif facts.get('type') == 'file':
             entries.append((p, int(facts.get('size') or 0), False))
 
 
+UPL = WWW + '/wp-content/uploads'
+walk(UPL, 3)  # uploads first: that is where the junk is
+done_upl = True
 walk(ROOT)
 files = [e for e in entries if not e[2]]
 total = sum(e[1] for e in files)
@@ -129,7 +141,7 @@ if api_ok and known:
 orphans.sort(key=lambda e: -e[1])
 
 out = ['## 🗄 Сервер: что лежит на хостинге и не нужно', '',
-       f'Файлов: **{len(files)}**, всего **{mb(total)}**' + (' (обход остановлен на лимите — показано не всё)' if len(entries) > MAX_ENTRIES else '') + '. Робот только смотрит, ничего не удаляет.', '',
+       f'Файлов: **{len(files)}**, всего **{mb(total)}**' + (' (обход остановлен на лимите — показано не всё)' if len(entries) > MAX_ENTRIES or stopped else '') + '. Робот только смотрит, ничего не удаляет.', '',
        '| Папка | Размер |', '|---|---|']
 for k, v in sorted(folders.items(), key=lambda kv: -kv[1])[:14]:
     out.append(f'| `{k}` | {mb(v)} |')
