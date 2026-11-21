@@ -86,3 +86,12 @@ add_action( 'wp_print_scripts', function () {
 	if ( ! function_exists( 'ss_cs_ok' ) || ! ss_cs_ok() || false === strpos( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), 'ss-add-product' ) ) return;
 	foreach ( array( 'wp-tinymce', 'wp-tinymce-root', 'wp-tinymce-lists' ) as $h ) wp_dequeue_script( $h );
 }, 3 );
+
+/* (21.11 owner: «цель — первые продажи», weight robot tools/probe/weight.js) WordPress's password-strength checker zxcvbn
+   (~800 KB of script) was loaded on product and cart pages only because the header's sign-in window has a register form.
+   Not loaded there now; registration still works (the strength hint is only a hint). Checkout and My Account keep it. */
+add_action( 'wp_print_scripts', function () {
+	if ( is_admin() || ! function_exists( 'is_product' ) ) return;
+	if ( ! ( is_product() || is_cart() || is_shop() || is_product_taxonomy() ) ) return;
+	foreach ( array( 'wc-password-strength-meter', 'password-strength-meter', 'zxcvbn-async' ) as $h ) wp_dequeue_script( $h );
+}, 20 );
