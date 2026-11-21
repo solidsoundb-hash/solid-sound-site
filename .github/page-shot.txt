@@ -22,3 +22,4 @@
 2026-11-21 18:13:52 after-ab-post3 /en/ click=Film_·_Ads_·_Video
 2026-11-21 18:26:35 sp-examples /en/services-prices/ html=Examples
 2026-11-21 18:29:57 full-2111 /en/ /en/all-products/ /product/infinity/ /en/services-prices/ /en/cart/
+2026-11-21 18:35:02 sp-examples-after /en/services-prices/ click=▶_Our_examples
