@@ -1,0 +1,117 @@
+# Архив интернета: что сохранено о solid-sound.net
+
+Всего записей: 80
+
+## По годам
+- 2004: 1
+- 2010: 11
+- 2012: 1
+- 2013: 1
+- 2019: 3
+- 2020: 1
+- 2023: 2
+- 2025: 60
+
+## Поддомены
+- studio.solid-sound.net: 57
+- solid-sound.net: 11
+- www.solid-sound.net: 5
+- post.solid-sound.net: 4
+- landingpt.solid-sound.net: 1
+- www.studio.solid-sound.net: 1
+- www.templates.solid-sound.net: 1
+
+## Типы
+- warc/revisit: 24
+- text/html: 17
+- image/png: 13
+- text/css: 7
+- image/gif: 6
+- application/javascript: 5
+- application/json: 4
+- image/jpeg: 1
+- unk: 1
+- text/plain: 1
+- text/xml: 1
+
+## Все записи (адрес · год · код)
+- http://www.solid-sound.net/robots.txt · 2004 · 200
+- http://solid-sound.net/ · 2010 · 302
+- http://solid-sound.net/index.html · 2010 · 200
+- http://solid-sound.net/favicon.ico · 2010 · 404
+- http://solid-sound.net/src/Logo.png · 2010 · 200
+- http://solid-sound.net/style.css · 2010 · 200
+- http://solid-sound.net/src/footer_back.gif · 2010 · 200
+- http://solid-sound.net/src/content_up_back.gif · 2010 · 200
+- http://solid-sound.net/src/button_up_back.gif · 2010 · 200
+- http://solid-sound.net/src/right.gif · 2010 · 200
+- http://solid-sound.net/src/header.gif · 2010 · 200
+- http://solid-sound.net/src/left.gif · 2010 · 200
+- http://www.solid-sound.net/productions/xl/1987%20-%20Moon%2044-xl.jpg · 2012 · 200
+- http://www.solid-sound.net:80/impr.html · 2013 · 200
+- http://post.solid-sound.net/ · 2019 · 200
+- http://post.solid-sound.net/test/ · 2019 · 200
+- http://post.solid-sound.net/services/ · 2019 · 200
+- http://www.solid-sound.net/productions/xl/2004%20-%20Zucker-xl.jpg · 2020 · 200
+- http://www.studio.solid-sound.net/ · 2023 · -
+- http://www.templates.solid-sound.net/ · 2023 · 301
+- http://landingpt.solid-sound.net/ · 2025 · 503
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/de.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/en.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/fr.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/ko.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/zh-CN.png · 2025 · 200
+- http://studio.solid-sound.net/wp-content/uploads/2018/02/4118.jpg · 2025 · 301
+- http://studio.solid-sound.net/wp-content/uploads/2022/01/4118.jpg · 2025 · 301
+- https://studio.solid-sound.net/.png · 2025 · -
+- https://studio.solid-sound.net/.svg · 2025 · 404
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/pl.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/flags/16/ru.png · 2025 · 200
+- https://studio.solid-sound.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/jquery/jquery.min.js?ver=3.7.1 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/wp-emoji-release.min.js?ver=6.7.2 · 2025 · -
+- http://post.solid-sound.net/wp-content/uploads/2020/07/%D0%9C%D0%BE%D0%BD%D1%82%D0%B0%D0%B6%D0%BD%D0%B0%D1%8F-%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C-0_3.png · 2025 · 301
+- https://studio.solid-sound.net/wp-content/themes/Divi-4.4.6-4/core/admin/js/common.js?ver=4.4.6 · 2025 · -
+- https://studio.solid-sound.net/wp-content/themes/Divi-4.4.6-4/core/admin/js/es6-promise.auto.min.js?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-content/themes/Divi-4.4.6-4/core/admin/js/recaptcha.js?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-content/themes/Divi-4.4.6-4/js/custom.unified.js?ver=4.4.6 · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/google-drive-wp-media/js/justifiedGallery.js?ver=2.4.4 · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/google-drive-wp-media/js/lightbox.js?ver=2.4.4 · 2025 · -
+- https://studio.solid-sound.net/wp-content/plugins/google-drive-wp-media/js/script.js?ver=2.4.4 · 2025 · 200
+- https://studio.solid-sound.net/xmlrpc.php · 2025 · 405
+- https://studio.solid-sound.net/wp-content/plugins/gtranslate/gtranslate-style16.css?ver=6.7.2 · 2025 · 200
+- https://studio.solid-sound.net/wp-includes/css/dist/block-library/style.min.css?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-content/plugins/google-drive-wp-media/css/images.css?ver=6.7.2 · 2025 · 200
+- https://studio.solid-sound.net/wp-content/plugins/google-drive-wp-media/css/lightbox.css?ver=6.7.2 · 2025 · 200
+- https://studio.solid-sound.net/wp-content/themes/Divi-4.4.6-4/style.css?ver=4.4.6 · 2025 · 200
+- https://studio.solid-sound.net/wp-includes/css/dashicons.min.css?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-content/plugins/google-drive-wp-media/css/justifiedGallery.css?ver=6.7.2 · 2025 · 200
+- https://studio.solid-sound.net/wp-json/ · 2025 · 200
+- https://studio.solid-sound.net/xmlrpc.php?rsd= · 2025 · 200
+- https://studio.solid-sound.net/wp-content/uploads/2018/06/cropped-Favicion-4_4040-32x32.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/uploads/2018/06/cropped-Favicion-4_4040-180x180.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/uploads/2018/06/cropped-Favicion-4_4040-192x192.png · 2025 · 200
+- https://studio.solid-sound.net/wp-content/et-cache/3392/et-core-unified-3392-17433508442732.min.css · 2025 · 200
+- https://studio.solid-sound.net/wp-content/uploads/2018/06/cropped-Favicion-4_4040-270x270.png · 2025 · 200
+- https://studio.solid-sound.net/wp-admin/authorize-application.php · 2025 · 302
+- https://studio.solid-sound.net/wp-content/uploads/2018/06/cropped-Favicion-4_4040.png · 2025 · 200
+- https://studio.solid-sound.net/wp-json/.*/S.* · 2025 · 404
+- https://studio.solid-sound.net/wp-json/oembed/1.0 · 2025 · 200
+- https://studio.solid-sound.net/wp-json/oembed/oembed/1.0 · 2025 · 404
+- https://studio.solid-sound.net/wp-login.php?redirect_to=https%3A%2F%2Fstudio.solid-sound.net%2Fwp-admin%2Fauthorize-application.php&reauth=1 · 2025 · 200
+- https://studio.solid-sound.net/wp-admin/js/password-strength-meter.min.js?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/clipboard.min.js?ver=2.0.11 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/underscore.min.js?ver=1.13.7 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/wp-util.min.js?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/zxcvbn-async.min.js?ver=1.0 · 2025 · 200
+- https://studio.solid-sound.net/wp-includes/js/zxcvbn.min.js · 2025 · -
+- https://studio.solid-sound.net/wp-admin/css/forms.min.css?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-admin/css/l10n.min.css?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-admin/css/login.min.css?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-admin/js/user-profile.min.js?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/css/buttons.min.css?ver=6.7.2 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/dist/a11y.min.js?ver=3156534cc54473497e14 · 2025 · -
+- https://studio.solid-sound.net/wp-includes/js/dist/dom-ready.min.js?ver=f77871ff7694fffea381 · 2025 · 200
+- http://www.solid-sound.net/productions/xl/1992%20-%20Bellheim-xl.jpg · 2025 · 301
