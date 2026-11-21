@@ -1,0 +1,472 @@
+{
+ "rows": [
+  {
+   "p": "/de/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Ableton Templates, Presets & Mixing/Mastering | Solid Sound"
+  },
+  {
+   "p": "/de/kontakt/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Kontakt | Solid Sound"
+  },
+  {
+   "p": "/de/vorlagen/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Ableton Live Templates – lizenzfrei | Solid Sound"
+  },
+  {
+   "p": "/de/wiki-de/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 5,
+   "title": "Solid Wiki Solid Sound"
+  },
+  {
+   "p": "/de/wiki-de/audio-interface-fuer-gesangsaufnahmen-de/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 3,
+   "title": "Audio-Interface für Gesangsaufnahmen Solid Sound"
+  },
+  {
+   "p": "/de/wiki-de/so-machst-du-saubere-vocals-zu-hause-3-mikrofon-regeln-die-einen/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 4,
+   "title": "Mikrofontechnik für Gesang Solid Sound"
+  },
+  {
+   "p": "/de/wiki-de/symmetrische-unsymmetrische-kabel-de/",
+   "hl": "de-DE",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 3,
+   "title": "Symmetrische vs. unsymmetrische Kabel Solid Sound"
+  },
+  {
+   "p": "/es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Ableton Templates, Presets & Mixing/Mastering | Solid Sound"
+  },
+  {
+   "p": "/es/contacts-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Contacto | Solid Sound"
+  },
+  {
+   "p": "/es/music-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Música libre de royalties para vídeos y empresas | Solid Sound"
+  },
+  {
+   "p": "/es/presets-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Presets de Serum y sound packs | Solid Sound"
+  },
+  {
+   "p": "/es/templates-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Plantillas de Ableton Live libres de royalties | Solid Sound"
+  },
+  {
+   "p": "/es/wiki-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Solid Wiki Solid Sound"
+  },
+  {
+   "p": "/es/wiki-es/auriculares-cerrados-para-grabar-voz-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Auriculares cerrados para grabar voz Solid Sound"
+  },
+  {
+   "p": "/es/wiki-es/cables-balanceados-no-balanceados-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Cables balanceados y no balanceados: XLR, TRS y TS Solid Sound"
+  },
+  {
+   "p": "/es/wiki-es/como-grabar-voces-limpias-en-casa-3-reglas-de-microfono-que-superan/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Técnica de micrófono para voz Solid Sound"
+  },
+  {
+   "p": "/es/wiki-es/interfaz-de-audio-para-grabar-voz-es/",
+   "hl": "es-ES",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Interfaz de audio para grabar voz Solid Sound"
+  },
+  {
+   "p": "/fr/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Ableton Templates, Presets & Mixing/Mastering | Solid Sound"
+  },
+  {
+   "p": "/fr/contact/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Contact | Solid Sound"
+  },
+  {
+   "p": "/fr/modeles/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Templates Ableton Live libres de droits | Solid Sound"
+  },
+  {
+   "p": "/fr/musique/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Musique libre de droits pour vidéos & entreprises | Solid Sound"
+  },
+  {
+   "p": "/fr/prereglages/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Presets Serum & sound packs | Solid Sound"
+  },
+  {
+   "p": "/fr/wiki-fr/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Solid Wiki Solid Sound"
+  },
+  {
+   "p": "/fr/wiki-fr/cables-symetriques-asymetriques-fr/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Câbles symétriques et asymétriques Solid Sound"
+  },
+  {
+   "p": "/fr/wiki-fr/casque-ferme-pour-enregistrer-la-voix-fr/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 2,
+   "title": "Casque fermé pour enregistrer la voix Solid Sound"
+  },
+  {
+   "p": "/fr/wiki-fr/comment-enregistrer-des-voix-propres-a-la-maison-3-regles-de-micro/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Technique micro pour la voix Solid Sound"
+  },
+  {
+   "p": "/fr/wiki-fr/interface-audio-pour-enregistrer-la-voix-fr/",
+   "hl": "fr-FR",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 1,
+   "title": "Interface audio pour enregistrer la voix Solid Sound"
+  },
+  {
+   "p": "/it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 25,
+   "title": "Ableton Templates, Presets & Mixing/Mastering | Solid Sound"
+  },
+  {
+   "p": "/it/contacts-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 8,
+   "title": "Contatti | Solid Sound"
+  },
+  {
+   "p": "/it/music-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 7,
+   "title": "Musica royalty-free per video e aziende | Solid Sound"
+  },
+  {
+   "p": "/it/presets-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 6,
+   "title": "Preset per Serum e sound pack | Solid Sound"
+  },
+  {
+   "p": "/it/templates-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 3,
+   "title": "Template Ableton Live royalty-free | Solid Sound"
+  },
+  {
+   "p": "/it/wiki-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Solid Wiki Solid Sound"
+  },
+  {
+   "p": "/it/wiki-it/cavi-bilanciati-sbilanciati-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 1,
+   "title": "Cavi bilanciati e sbilanciati Solid Sound"
+  },
+  {
+   "p": "/it/wiki-it/come-registrare-voci-pulite-a-casa-3-regole-per-il-microfono-che/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 2,
+   "title": "Tecnica microfonica per la voce Solid Sound"
+  },
+  {
+   "p": "/it/wiki-it/cuffie-chiuse-per-registrare-la-voce-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 2,
+   "title": "Cuffie chiuse per registrare la voce Solid Sound"
+  },
+  {
+   "p": "/it/wiki-it/interfaccia-audio-per-registrare-la-voce-it/",
+   "hl": "it-IT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 1,
+   "title": "Interfaccia audio per registrare la voce Solid Sound"
+  },
+  {
+   "p": "/pt/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Ableton Templates, Presets & Mixing/Mastering | Solid Sound"
+  },
+  {
+   "p": "/pt/contactos/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Contactos | Solid Sound"
+  },
+  {
+   "p": "/pt/modelos/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Templates Ableton Live livres de royalties | Solid Sound"
+  },
+  {
+   "p": "/pt/musica/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Música livre de royalties para vídeos e empresas | Solid Sound"
+  },
+  {
+   "p": "/pt/predefinicoes/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Presets Serum e sound packs | Solid Sound"
+  },
+  {
+   "p": "/pt/wiki-pt/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Solid Wiki Solid Sound"
+  },
+  {
+   "p": "/pt/wiki-pt/auscultadores-fechados-para-gravar-voz-pt/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Auscultadores fechados para gravar voz Solid Sound"
+  },
+  {
+   "p": "/pt/wiki-pt/cabos-balanceados-nao-balanceados-pt/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Cabos balanceados e não balanceados: XLR, TRS e TS Solid Sound"
+  },
+  {
+   "p": "/pt/wiki-pt/como-gravar-vocais-limpos-em-casa-3-regras-de-microfone-que-superam/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Técnica de microfone para voz Solid Sound"
+  },
+  {
+   "p": "/pt/wiki-pt/interface-de-audio-para-gravar-voz-pt/",
+   "hl": "pt-PT",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Interface de áudio para gravar voz Solid Sound"
+  },
+  {
+   "p": "/ua/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Ableton Templates, Presets & Mixing/Mastering | Solid Sound"
+  },
+  {
+   "p": "/ua/kontakty/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Контакти | Solid Sound"
+  },
+  {
+   "p": "/ua/muzyka/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Музика без роялті для відео та бізнесу | Solid Sound"
+  },
+  {
+   "p": "/ua/presety/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Пресети Serum і саунд-паки | Solid Sound"
+  },
+  {
+   "p": "/ua/shablony/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Шаблони Ableton Live без роялті | Solid Sound"
+  },
+  {
+   "p": "/ua/wiki-ua/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Solid Wiki Solid Sound"
+  },
+  {
+   "p": "/ua/wiki-ua/audiointerfeis-dlia-zapysu-vokalu-ua/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Аудіоінтерфейс для запису вокалу Solid Sound"
+  },
+  {
+   "p": "/ua/wiki-ua/balansni-nebalansni-kabeli-ua/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Балансні та небалансні кабелі: XLR, TRS і TS Solid Sound"
+  },
+  {
+   "p": "/ua/wiki-ua/iak-zapysaty-chystyi-vokal-udoma-3-pravyla-mikrofona/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Техніка роботи з мікрофоном Solid Sound"
+  },
+  {
+   "p": "/ua/wiki-ua/zakryti-navushnyky-dlia-zapysu-vokalu-ua/",
+   "hl": "uk",
+   "alts": 8,
+   "sw": 0,
+   "enPct": 0,
+   "title": "Закриті навушники для запису вокалу Solid Sound"
+  }
+ ],
+ "probs": {
+  "open": [
+   "| /de/musik/ | 503 |",
+   "| /de/voreinstellungen/ | 503 |",
+   "| /de/wiki-de/geschlossene-kopfhoerer-gesangsaufnahmen-de/ | 503 |"
+  ],
+  "lang": [],
+  "hreflang": [],
+  "switcher": [],
+  "english": [],
+  "menu": []
+ }
+}
