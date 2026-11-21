@@ -44,8 +44,8 @@ def main():
             sys.exit(f'refused: {name} is not in ALLOWED')
         if name not in dirs:
             sys.exit(f'{name}: no such folder (already moved?)')
-        b, n = size(c, posixpath.join(ROOT, name))
-        print(f'{name}: {n} files, {b / 1e6:.1f} MB')
+        top_d, top_f = c.run(listing, posixpath.join(ROOT, name))  # quick look only: a full size count over FTP takes too long
+        print(f'{name}: top level {len(top_d)} folders, {len(top_f)} files: {", ".join(sorted(top_d + top_f)[:20])}')
         if '_removed' not in dirs:
             c.f.mkd(posixpath.join(ROOT, '_removed'))
         dst = posixpath.join(ROOT, '_removed', f'{name}-{dt.date.today():%Y-%m-%d}')
