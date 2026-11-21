@@ -1,0 +1,103 @@
+<style>
+.sabx{max-width:1200px;margin:30px auto 28px;padding:0 14px;font-family:"Exo 2",system-ui,sans-serif;scroll-margin-top:150px}
+.sabx-hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px}
+.sabx h2{margin:0;font-size:30px;font-weight:700;line-height:1.15;display:flex;align-items:center;gap:14px;color:#fff}
+.sabx h2 span{flex:none;width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center}
+.sabx-pg{display:flex;align-items:center;gap:10px;color:#94A3B8;font:600 13px Roboto,sans-serif}
+.sabx-pg button{width:44px;height:44px;border-radius:6px;border:1px solid rgba(255,255,255,.1);background:#131B2E;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.sabx-pg button:disabled{opacity:.4;cursor:default}
+.sabx-t{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:14px}
+.sabx-t::-webkit-scrollbar{display:none}
+.sabx-t button{flex:none;min-height:40px;padding:0 16px;border-radius:6px;border:1px solid rgba(255,255,255,.08);background:#131B2E;color:#fff;font:700 14px "Exo 2",system-ui,sans-serif;cursor:pointer}
+.sabx-t button[aria-selected=true]{border-color:#F59E0B;background:rgba(245,158,11,.14);color:#F59E0B}
+.sabx-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sab{background:#131B2E;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:250px}
+.sab[hidden]{display:none}
+.sab-h{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.sab-h b{display:block;font-size:16px;line-height:1.25;color:#fff}
+.sab-h small{display:block;margin-top:4px;font:400 13px/1.55 Roboto,sans-serif;color:#94A3B8}
+.sab-h em{flex:none;font:700 11px/1 "Exo 2",system-ui,sans-serif;letter-spacing:.08em;padding:4px 6px;color:#CBD5E1;font-style:normal}
+.sab iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000;margin-top:auto}
+.sab-ab{margin-top:auto}
+.sab-c{display:flex;align-items:center;gap:10px}
+.sab-p{flex:none;width:44px;height:44px;border-radius:6px;border:0;background:#F59E0B;color:#111;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.sab-p .pa,.sab.on .sab-p .pl{display:none}.sab.on .sab-p .pa{display:block}
+.sab-w{position:relative;flex:1;min-width:0;height:44px;cursor:pointer}
+.sab-w i{position:absolute;inset:0;background-size:100% 100%;background-repeat:no-repeat}
+.sab-w .x{clip-path:inset(0 calc(100% - var(--p,0%)) 0 0)}
+.sab-w .a,.sab.aft .sab-w .b{display:none}.sab.aft .sab-w .a{display:block}
+.sab-s{position:relative;display:grid;grid-template-columns:1fr 1fr;width:100%;height:46px;margin-top:10px;padding:4px;box-sizing:border-box;border-radius:6px;border:1px solid rgba(255,255,255,.08);background:#0B1220;cursor:pointer;font:inherit}
+.sab-s i{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:4px;background:#2A3754;transition:left .2s ease,background .2s ease}
+.sab.aft .sab-s i{left:50%;background:#F59E0B}
+.sab-s span{position:relative;display:flex;align-items:center;justify-content:center;font:700 13px "Exo 2",system-ui,sans-serif;letter-spacing:.06em;color:#94A3B8}
+.sab:not(.aft) .sab-s span:first-of-type{color:#fff}.sab.aft .sab-s span:last-of-type{color:#111}
+.sabx-gorow{display:flex;justify-content:center;margin:14px 0 0}
+.sabx-go{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;border-radius:10px;border:1px solid rgba(245,158,11,.6);background:rgba(245,158,11,.1);color:#F59E0B;font:700 15px "Exo 2",system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.sabx-go small{font:500 12.5px Roboto,sans-serif;color:#FCD34D}
+.sabx-go:hover{background:rgba(245,158,11,.2)}
+@media(max-width:900px){.sabx-g{grid-template-columns:1fr}.sab{min-height:0}.sabx h2{font-size:24px}}
+</style>
+<section class="sabx" id="examples" hidden>
+<div class="sabx-hd"><h2><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 12h2M6 8v8M10 4v16M14 7v10M18 10v4M22 12h0"/></svg></span>Examples</h2>
+<div class="sabx-pg"><span class="sabx-n">1 / 1</span><button type="button" class="sabx-pv" aria-label="Previous examples"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="sabx-nx" aria-label="Next examples"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
+<div class="sabx-t" role="tablist" aria-label="Examples"><button role="tab" aria-selected="true" data-g="">All</button><button role="tab" aria-selected="false" data-g="mix">Mixing</button><button role="tab" aria-selected="false" data-g="master">Mastering</button><button role="tab" aria-selected="false" data-g="video">Film · Ads · Video</button></div>
+<div class="sabx-g"></div>
+</section>
+<script>
+(function(){
+/* (owner 21.11) the same Examples block as on the home page; a «Our examples» button in the service tabs scrolls here */
+var B='https://solid-sound.net/wp-content/plugins/solid-sound-custom/build/media/ab/',Y='https://www.youtube-nocookie.com/embed/',R=7.5,cur=null,pg=0,flt='';
+var D=[
+["Space Echo — client track","mix","Before / after","Demo turned into a wide, punchy, label-ready mix","mixing-example-anouch-space-echo.mp3","FA=<J:8M::H?=AI9:L;7L:>DE9;K;8L:;HA9?L;7M;:K=9CF;:L<8USH","RULNUSFWRJTTLQSOJVSGVSJQUMMSRHXTGSTLOSQGWSITUKQSOKVTIFON"],
+["Feeling Good — client track","master","Before / after","Loudness and glue without killing the dynamics","mixing-cases-feeling-good.mp3",";98:<74=75:<88=75<<77=56=76:<98=64<<59<87=87;:76=56<99GU","DDXJARP@GWGFWICNUG@XHCSOFHUE?WGCLR@HXGCTMDLVD=O@9<;43311"],
+["Escape — client track","mix","Before / after","Warmth and depth with outboard gear","mixing-example-escape.mp3","5776HIFFMHEHKEAKFCBNHFJJDDLGCGLEEKIGENHDJIE@LECEMFFKHGFL","GCIIFJUMHIXJFPQDAVJBGXIHSQDFVKBKUEFTNIGVIFMSD@VJABWJHRRF"],
+["Kick and bass — client track","mix","Before / after","Kick and bass working together","02-example-before-after.mp3","1485;@:;DA9BE;>F?9CC:@F=<EA:CE:<E?;DD:?F<<EB8CD9?F?<DB7;",":34APFEWO?SUEHXMEUSDNWKIWNBRUDJXICWSAPWGFWNBRR@CI@9<8221"],
+["In My Mind — client track","mix","Before / after","Sound design that makes transitions huge","example-in-my-mind.mp3",":>;8?=7<?89@=5=?7:@;8?=7<@98?<7>?6:@98>?5<?89@<7>?7;@;=X","RDOVDEVJCQR<KVEBSN@OTDEVLAQS>KSFDUM>NSBFSE=HE:<=64421111"],
+["THE WAY — trailer","video","Film · Ads · Video","Full trailer sound: design, Foley, music and mix","zjc437O4ODc"],
+["Film & ads showreel","video","Film · Ads · Video","Sound design, Foley, music and mix","lpjlnxQxvAY"],
+["Sound for TV & ads","video","Film · Ads · Video","Sound for film, TV and ads","vYIh0YHw33A"],
+["Sound design for video","video","Film · Ads · Video","Atmospheres, effects and final mix","SEFtbYJUvvo"],
+["Audio cleanup & restoration","video","Film · Ads · Video","Cleanup, restoration and mix","AoHIenCHQY4"]];
+function wave(s,c){for(var p='',v=0;v<s.length;v++){var y=Math.max(2,s.charCodeAt(v)-48);p+='<rect x="'+v*5+'" y="'+(44-y)/2+'" width="3" height="'+y+'" rx="1.5"/>'}return'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+s.length*5+' 44" preserveAspectRatio="none" fill="'+c+'">'+p+'</svg>')+'")'}
+function card(d){
+var c=document.createElement('article');c.className='sab';c.dataset.g=d[1];var yt=d[1]==='video',t=d[0];
+c.innerHTML='<div class="sab-h"><div><b>'+t+'</b><small>'+d[2]+' · '+d[3]+'</small></div><em>'+(yt?'VIDEO':'A/B')+'</em></div>';
+if(yt){c.dataset.yt=d[4];return c}
+var m=new Audio();m.preload='none';m.src=B+d[4];
+c.insertAdjacentHTML('beforeend','<div class="sab-ab"><div class="sab-c"><button type="button" class="sab-p" aria-label="Play '+t+'"><svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><svg class="pa" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></button><div class="sab-w" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i class="b"></i><i class="a"></i><i class="b x"></i><i class="a x"></i></div></div><button type="button" class="sab-s" role="switch" aria-checked="false" aria-label="Before or after — '+t+'"><i aria-hidden="true"></i><span>BEFORE</span><span>AFTER</span></button></div>');
+var w=c.querySelector('.sab-w'),ii=w.querySelectorAll('i');
+ii[0].style.backgroundImage=wave(d[5],'#3A4766');ii[1].style.backgroundImage=wave(d[6],'#3A4766');ii[2].style.backgroundImage=wave(d[5],'#F59E0B');ii[3].style.backgroundImage=wave(d[6],'#F59E0B');
+function aft(){return c.classList.contains('aft')}
+function play(off){if(cur&&cur!==m)cur.pause();cur=m;var go=function(){m.currentTime=(aft()?R:0)+(off||0);var p=m.play();p&&p.catch&&p.catch(function(){})};m.readyState>=1?go():(m.preload='auto',m.addEventListener('loadedmetadata',go,{once:true}),m.load())}
+m.addEventListener('timeupdate',function(){var x=m.currentTime,a=aft();if(a){if(x<R-.05||x>=2*R-.25)m.currentTime=x=R}else if(x>=R-.1)m.currentTime=x=0;var p=Math.max(0,Math.min(100,(a?x-R:x)/R*100));w.style.setProperty('--p',p+'%');w.setAttribute('aria-valuenow',Math.round(p))});
+m.addEventListener('play',function(){c.classList.add('on')});m.addEventListener('pause',function(){c.classList.remove('on')});
+c.querySelector('.sab-p').onclick=function(){if(!m.paused){m.pause();return}play((m.currentTime||0)%R)};
+w.onclick=function(e){var r=w.getBoundingClientRect();play(Math.max(0,Math.min(R-.2,(e.clientX-r.left)/r.width*R)))};
+var s=c.querySelector('.sab-s');s.onclick=function(){var a=!aft();c.classList.toggle('aft',a);s.setAttribute('aria-checked',a?'true':'false');if(!m.paused){var o=(m.currentTime||0)%R;m.currentTime=(a?R:0)+o}else play(0);try{window.gtag&&gtag('event','ab_switch',{item_name:t,state:a?'after':'before',source:'services'})}catch(x){}};
+c._m=m;return c}
+function init(){var p=document.getElementById('examples');if(!p||p.dataset.done)return;p.dataset.done=1;
+var g=p.querySelector('.sabx-g'),all=D.map(card),n=p.querySelector('.sabx-n'),pv=p.querySelector('.sabx-pv'),nx=p.querySelector('.sabx-nx');
+function per(){return innerWidth<=900?1:3}
+function show(){var l=all.filter(function(c){return !flt||c.dataset.g===flt}),k=per(),pages=Math.max(1,Math.ceil(l.length/k));pg=Math.max(0,Math.min(pg,pages-1));
+ if(cur&&!cur.paused)cur.pause();g.textContent='';l.slice(pg*k,pg*k+k).forEach(function(c){if(c.dataset.yt&&!c.querySelector('iframe'))c.insertAdjacentHTML('beforeend','<iframe src="'+Y+c.dataset.yt+'" title="'+c.querySelector('b').textContent+'" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>');g.appendChild(c)});
+ n.textContent=(pg+1)+' / '+pages;pv.disabled=pg===0;nx.disabled=pg>=pages-1}
+pv.onclick=function(){pg--;show()};nx.onclick=function(){pg++;show()};
+var lw=innerWidth;addEventListener('resize',function(){if(innerWidth!==lw){lw=innerWidth;show()}},{passive:true});
+p.querySelectorAll('.sabx-t button').forEach(function(b){b.onclick=function(){p.querySelectorAll('.sabx-t button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});flt=b.dataset.g;pg=0;show()}});
+var sx=0;g.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});g.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50){if(d<0&&!nx.disabled){pg++;show()}else if(d>0&&!pv.disabled){pg--;show()}}},{passive:true});
+show();
+/* (owner 21.11) the block sits right after the price table of the open service (before its reviews) */
+function place(){var sec=[].filter.call(document.querySelectorAll('#pr-top .pr-sec'),function(x){return x.offsetParent!==null})[0];
+ if(sec){var pf=sec.querySelector('.pr-proof');if(pf){if(p.nextElementSibling!==pf)sec.insertBefore(p,pf)}else if(p.parentNode!==sec||sec.lastElementChild!==p)sec.appendChild(p)}
+ else{var faq=document.querySelector('#pr-top .pr-faq');if(faq&&p.nextElementSibling!==faq)faq.parentNode.insertBefore(p,faq)}}
+place();p.hidden=false;
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.pr-tabs a'))requestAnimationFrame(function(){requestAnimationFrame(place)})});
+addEventListener('hashchange',function(){requestAnimationFrame(place)});
+/* «Our examples» — its own centred row under the service tabs */
+var tab=document.querySelector('a[role=tab][href^="#pr-"]'),bar=tab&&(tab.closest('[role=tablist]')||tab.parentElement);
+if(bar&&!document.querySelector('.sabx-go')){var row=document.createElement('div');row.className='sabx-gorow';row.innerHTML='<button type="button" class="sabx-go">▶ Our examples <small>before / after</small></button>';row.firstChild.onclick=function(){place();p.scrollIntoView({behavior:'smooth',block:'start'})};bar.parentNode.insertBefore(row,bar.nextSibling)}
+/* the old per-service before/after videos are replaced by this block */
+[].forEach.call(document.querySelectorAll('.pr-proof h3'),function(h){if(/^Hear before/.test(h.textContent.trim())){h.style.display='none';var x=h.nextElementSibling;if(x&&x.classList.contains('pp-ex'))x.style.display='none'}})}
+document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
+})();
+</script>
