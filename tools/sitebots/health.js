@@ -20,7 +20,7 @@ module.exports = async function health() {
     const chat = await p.locator('.ssb-fab, [class*="telegram" i], #tidio-chat, [aria-label*="chat" i]').count();
     ext.push([chat ? '✅' : '🟠', 'Кнопка чата на главной', chat ? 'есть' : 'не найдена']);
     await p.goto(BASE + '/en/my-account/', { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {}); await p.waitForTimeout(2500);
-    const g = await p.locator('text=/Continue with Google|Sign in with Google/i, iframe[src*="accounts.google.com"], .nsl-button-google, [class*="google" i][class*="login" i]').count();
+    const g = (await p.getByText(/Continue with Google|Sign in with Google/i).count()) + (await p.locator('iframe[src*="accounts.google.com"], .nsl-button-google, [class*="google" i][class*="login" i], [id*="g_id" i]').count());
     ext.push([g ? '✅' : '🟡', 'Вход через Google (кабинет)', g ? 'кнопка есть' : 'кнопка не найдена']);
   } catch (e) { ext.push(['⚪', 'Внешние сервисы', 'не проверено: ' + e.message.slice(0, 60)]); }
   /* admin: server health */
@@ -45,8 +45,10 @@ module.exports = async function health() {
     const pl = Object.entries(H.plugins || {}); const bad = pl.filter(([, v]) => (v.changed || []).length || (v.missing || []).length); const skip = pl.filter(([, v]) => v.skip);
     md.push(bad.length ? `🔴 Плагины с изменёнными файлами: ${bad.map(([k, v]) => `**${k}** ${v.v} (${(v.changed || []).length} изменено: ${(v.changed || []).slice(0, 3).join(', ')})`).join('; ')}` : `✅ Плагины с wordpress.org (${pl.length - skip.length}): файлы совпадают с оригиналом`);
     if (skip.length) md.push(`⚪ Не проверены (платные/не с wordpress.org): ${skip.map(([k]) => k).join(', ')}`);
-    md.push((H.uploads_php || []).length ? `🔴 PHP-файлы в папке загрузок (так прячут вирусы): ${H.uploads_php.slice(0, 10).map(f => '`' + f + '`').join(', ')}` : '✅ В загрузках нет PHP-файлов', '');
-    if (chg + unk || bad.length || (H.uploads_php || []).length) alerts.push('Здоровье: изменённые/лишние файлы — возможный взлом, проверить срочно');
+    const KNOWN = /^\/smile_fonts\/[^/]+\/charmap\.php$/; /* Ultimate Addons icon fonts — a known plugin file */
+    const upBad = (H.uploads_php || []).filter(f => !KNOWN.test(f)), upKnown = (H.uploads_php || []).filter(f => KNOWN.test(f));
+    md.push(upBad.length ? `🔴 PHP-файлы в папке загрузок (так прячут вирусы): ${upBad.slice(0, 10).map(f => '`' + f + '`').join(', ')}` : '✅ В загрузках нет чужих PHP-файлов' + (upKnown.length ? ` (${upKnown.length} известный файл плагина Ultimate Addons — шрифты иконок)` : ''), '');
+    if (chg + unk || bad.length || upBad.length) alerts.push('Здоровье: изменённые/лишние файлы — возможный взлом, проверить срочно');
     const d = H.db || {};
     md.push('### База данных', '', `Размер **${d.total_mb} МБ**, таблиц ${d.table_count}. Самые большие: ${(d.tables || []).slice(0, 5).map(t => `${t.t.replace(/^[a-z0-9]+_/i, '')} ${t.mb} МБ`).join(', ')}.`, '');
     const rows = [
@@ -65,7 +67,7 @@ module.exports = async function health() {
     if (!gws.length) alerts.push('Магазин: не включён ни один способ оплаты');
     if ((s.orders_7d || {}).failed > 2) alerts.push(`Магазин: ${s.orders_7d.failed} неудачных оплат за неделю`);
     if (s.reviews_pending) alerts.push(`Отзывы: ${s.reviews_pending} ждут проверки`);
-    Object.assign(metrics, { health_core_changed: chg + unk, health_plugins_changed: bad.length, health_uploads_php: (H.uploads_php || []).length, db_mb: d.total_mb, db_autoload_kb: d.autoload_kb, shop_failed_7d: (s.orders_7d || {}).failed || 0, reviews_pending: s.reviews_pending || 0 });
+    Object.assign(metrics, { health_core_changed: chg + unk, health_plugins_changed: bad.length, health_uploads_php: upBad.length, db_mb: d.total_mb, db_autoload_kb: d.autoload_kb, shop_failed_7d: (s.orders_7d || {}).failed || 0, reviews_pending: s.reviews_pending || 0 });
   }
   md.push('### Внешние сервисы', '', '| | Что | Итог |', '|---|---|---|', ...ext.map(e => `| ${e.join(' | ')} |`), '');
   return { md: md.join('\n'), metrics, alerts };

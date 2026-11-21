@@ -24,36 +24,36 @@
 ### 🔴 Опасные файлы, доступные из интернета (81)
 Копии базы, архивы, логи, копии wp-config — их может скачать кто угодно. Удалить или перенести выше папки www.
 
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-01-1d5efedf99f4f1f8d6bda1026afcd804.log` — 0.3 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-12-c85c8c9fae478dabcd34183a9205e941.log` — 0.2 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-17-86f1294a30a0daa67305c444ee8b4cc2.log` — 0.2 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-04-be96e5a96fdb8adbbb82642e427563c0.log` — 0.2 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-20-5ad5c69e7856c9594be2ca57d5681bee.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-21-4ce36ccfd6a550b18c99a5f65157b978.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-19-6d3cf20df245d5b2aa6550ab4fee02dc.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-23-942005ddb0da1c49e4b9b8be84e55737.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-16-b7e3cb1d68185e9f159fc2c0c1677e28.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-15-36b6b1a06c37335a318bafd8daef2c4b.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-25-839aea4fddea39ce5338ac869e938448.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-03-f30349640a138418fd63bf869a555b02.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-18-7de32de93f7b49717bfc7dd6badd4616.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-10-1faf327aed993730a94b6af0a7f188be.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-13-1f933ebcc55076ddbbe2666bf4b5d1ed.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-11-e4b007e99321f0a21436df133016aa98.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-02-0862d77def66b73eb1913df99ce1b369.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-08-374a307d0bc28a3c6ea01a2e6f4e8d29.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-09-88cc3b9b7c4e8f7db315fff03a495948.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-06-b22bcbe091a371c14ed834487b8ac9b3.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-26-5b5ef8f9f36d13fdb1b7c59075340246.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-24-1371aae29947f5c7aba28667219b98e8.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-29-dfcedbdb0c3931991d679faf87bf2efe.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-28-25f5e9a5d8cf1a4a0f82b3c24f6edfe0.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-31-d91c47d5f31a2ebac9739be0f05719aa.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-30-0ccd3cfd3645d68fa2d78f073135c13a.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-10-27-bfb2561016e9c41ddd87edc5d6e3cd09.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-07-201abeee73b85ae6709009a28004cc79.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-05-4a50bd4b74007af680075b375f761beb.log` — 0.1 МБ
-- `/wp-content/uploads/wc-logs/woopayments-2026-11-14-08cfa39b37d042c30129b01ebbe163a5.log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-01-«скрыто».log` — 0.3 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-12-«скрыто».log` — 0.2 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-17-«скрыто».log` — 0.2 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-04-«скрыто».log` — 0.2 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-20-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-21-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-19-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-23-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-16-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-15-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-25-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-03-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-18-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-10-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-13-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-11-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-02-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-08-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-09-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-06-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-26-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-24-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-29-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-28-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-31-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-30-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-10-27-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-07-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-05-«скрыто».log` — 0.1 МБ
+- `/wp-content/uploads/wc-logs/woopayments-2026-11-14-«скрыто».log` — 0.1 МБ
 
 ### 🟡 Копии .htaccess (сервер обычно не отдаёт .ht*, но лучше убрать)
 - `/www/.htaccess.bak`
