@@ -63,10 +63,7 @@ add_action( 'wp_head', function () {
 	$home  = function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' );
 	$items = array( array( 'Solid Sound', $home ) );
 	if ( function_exists( 'is_product' ) && is_product() ) {
-		$all = get_page_by_path( 'all-products' ); $aid = $all ? $all->ID : 0;
-		if ( $aid && function_exists( 'pll_get_post' ) && pll_get_post( $aid ) ) $aid = pll_get_post( $aid );
-		$items[] = array( 'All products', $aid ? get_permalink( $aid ) : home_url( '/all-products/' ) );
-		$items[] = array( wp_strip_all_tags( get_the_title() ), get_permalink() );
+		return; /* WooCommerce already prints a better one: Home › Templates › product */
 	} elseif ( is_singular() ) {
 		$id = get_queried_object_id();
 		foreach ( array_reverse( get_post_ancestors( $id ) ) as $a ) $items[] = array( wp_strip_all_tags( get_the_title( $a ) ), get_permalink( $a ) );
