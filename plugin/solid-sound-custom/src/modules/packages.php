@@ -112,14 +112,70 @@ function ss_pk_css() {
 /* (owner 20.11 «у нас есть Services & Prices в меню») one page: the menu's Services & Prices (page 1947) shows the package cards on top
    and its own detailed comparison tables (new prices) below; /production-services/ redirects there */
 function ss_pk_sp_url() { $u = get_permalink( 1947 ); return $u ? $u : home_url( '/services-prices/' ); }
+
+/* (owner 21.11 «сегодня отзывы с примерами — на них строим ценник») proof under the tables: before/after videos + client words */
+function ss_pk_proof_data() {
+	$U = 'https://solid-sound.net/wp-content/uploads/';
+	$ex = array(
+		'e1' => array( 'Space Echo', 'Demo turned into a wide, punchy, label-ready mix', 'mp4', $U . 'Mixing-Example-Anouch-Space-Echo.mp4' ),
+		'e4' => array( 'Escape', 'Warmth and depth with outboard gear', 'mp4', $U . 'Mixing-Example-Escape.mp4' ),
+		'e5' => array( 'Kick and bass', 'Kick and bass working together', 'mp4', $U . '02-Example-Before-After.mp4' ),
+		'e6' => array( 'In My Mind', 'Sound design that makes transitions huge', 'mp4', $U . 'Example-In-My-Mind.mp4' ),
+		'e3' => array( 'Eco Techno', 'Vocal tuning, compression and space', 'mp4', $U . 'Mixing-Example-Anouch-Eco-Techno.mp4' ),
+		'e2' => array( 'Feeling Good', 'Loudness and glue without killing the dynamics', 'mp4', $U . 'Mixing-Cases-Feeling-Good.mp4' ),
+		'e7' => array( 'Ava Kedavra', 'Mud and rumble removed, tight low end', 'mp4', $U . 'Mixing-Example-AVA-KEDAVRA.mp4.mp4' ),
+		'p1' => array( 'Film & ads showreel', 'Sound design, Foley, music and mix', 'yt', 'lpjlnxQxvAY' ),
+		'p2' => array( 'Sound for TV & ads', 'Sound for film, TV and ads', 'yt', 'vYIh0YHw33A' ),
+		'p3' => array( 'Sound design for video', 'Atmospheres, effects and final mix', 'yt', 'SEFtbYJUvvo' ),
+		'p4' => array( 'Audio cleanup & restoration', 'Cleanup, restoration and mix', 'yt', 'AoHIenCHQY4' ),
+	);
+	$rv = array(
+		'marco'  => array( 'I’ve had time to listen to it in the car and now in the studio. It’s just perfect. It’s exactly as I wanted it.', 'Marco L.', 'DJ & producer · mixing & mastering' ),
+		'paul'   => array( 'Just listened to the radio edit and it is perfect. Good job. I have just signed the last track you worked on. There is more job coming.', 'Paul T.', 'producer · 2nd order' ),
+		'hector' => array( 'It is very good. The kick is very good.', 'Hector M.', 'artist · came by recommendation' ),
+	);
+	$by = array(
+		'mixing'    => array( array( 'e1', 'e4', 'e5', 'e6', 'e3' ), array( 'marco', 'hector' ) ),
+		'mastering' => array( array( 'e2', 'e7' ), array( 'marco', 'paul' ) ),
+		'bundle'    => array( array( 'e1', 'e2', 'e6' ), array( 'marco', 'paul' ) ),
+		'post'      => array( array( 'p1', 'p2', 'p3', 'p4' ), array() ),
+	);
+	return array( $ex, $rv, $by );
+}
+function ss_pk_proof( $html ) {
+	list( $ex, $rv, $by ) = ss_pk_proof_data();
+	foreach ( $by as $id => $pick ) {
+		$b = '<div class="pr-proof"><h3>Hear before <em>→</em> after</h3><div class="pp-ex">';
+		foreach ( $pick[0] as $k ) { $e = $ex[ $k ];
+			$thumb = 'yt' === $e[2] ? ' style="background-image:url(https://i.ytimg.com/vi/' . esc_attr( $e[3] ) . '/hqdefault.jpg)"' : '';
+			$b .= '<button type="button" class="pp-v" data-k="' . esc_attr( $e[2] ) . '" data-s="' . esc_attr( $e[3] ) . '"><span class="pp-p"' . $thumb . '><i>▶</i></span><b>' . esc_html( $e[0] ) . '</b><small>' . esc_html( $e[1] ) . '</small></button>'; }
+		$b .= '</div>';
+		if ( $pick[1] ) { $b .= '<h3>What clients <em>say</em></h3><div class="pp-rv">'; foreach ( $pick[1] as $k ) { $r = $rv[ $k ]; $b .= '<figure><blockquote>“' . esc_html( $r[0] ) . '”</blockquote><figcaption><b>' . esc_html( $r[1] ) . '</b> · ' . esc_html( $r[2] ) . '</figcaption></figure>'; } $b .= '</div>'; }
+		$b .= '</div>';
+		$html = preg_replace_callback( '#(<section class="pr-sec" id="pr-' . $id . '".*?)(</section>)#s', function ( $m ) use ( $b ) { return $m[1] . $b . $m[2]; }, $html, 1 );
+	}
+	return $html;
+}
+function ss_pk_proof_css() {
+	return '.pr-proof{margin:26px 0 0}.pr-proof h3{margin:0 0 12px;color:#fff;font:800 20px/1.2 "Exo 2",sans-serif;text-align:center}.pr-proof h3 em{font-style:normal;color:#F5A400}.pr-proof h3:not(:first-child){margin-top:26px}'
+		. '.pp-ex{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}.pp-v{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:0 0 12px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0f1729;color:#E2E8F0;text-align:left;cursor:pointer;overflow:hidden;font:inherit}'
+		. '.pp-v:hover{border-color:rgba(245,164,0,.5)}.pp-p{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:16/9;background:#111827 center/cover;margin-bottom:6px}.pp-p i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#F5A400;color:#111;font-style:normal;font-size:18px;padding-left:3px}'
+		. '.pp-v b,.pp-v small{padding:0 12px}.pp-v b{color:#fff;font:700 15px "Exo 2",sans-serif}.pp-v small{color:#94A3B8;font-size:13px;line-height:1.4}.pp-v video,.pp-v iframe{width:100%;aspect-ratio:16/9;border:0;display:block;margin-bottom:6px;background:#000}'
+		. '.pp-rv{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.pp-rv figure{margin:0;padding:16px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0f1729}.pp-rv blockquote{margin:0;color:#E2E8F0;font:400 15px/1.55 Roboto,sans-serif}.pp-rv figcaption{margin-top:10px;color:#94A3B8;font-size:13px}.pp-rv figcaption b{color:#F5A400}';
+}
+function ss_pk_proof_js() {
+	/* a video loads only when tapped (the page stays fast) */
+	return "<script>document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.pp-v');if(!b||b.dataset.on)return;b.dataset.on=1;var p=b.querySelector('.pp-p'),k=b.dataset.k,s=b.dataset.s,el;if(k==='yt'){el=document.createElement('iframe');el.src='https://www.youtube-nocookie.com/embed/'+s+'?autoplay=1';el.allow='autoplay; encrypted-media; fullscreen';el.allowFullscreen=true}else{el=document.createElement('video');el.src=s;el.controls=true;el.autoplay=true;el.playsInline=true}p.replaceWith(el)});</script>";
+}
 add_filter( 'the_content', function ( $c ) {
 	if ( ! is_page( 1947 ) || ! in_the_loop() || ! is_main_query() ) return $c;
 	$new = include __DIR__ . '/services-prices-html.php';
 	if ( is_string( $new ) && $new && function_exists( 'ss_pe_table' ) ) $new = ss_pe_table( $new ); /* prices follow demand */
+	if ( is_string( $new ) && $new ) $new = ss_pk_proof( $new ); /* before/after + client words under the tables */
 	if ( is_string( $new ) && $new ) $c = preg_replace( '#\[us_html\].*?\[/us_html\]#s', '[us_html]' . base64_encode( rawurlencode( $new ) ) . '[/us_html]', $c, 1 );
 	$css = ss_pk_css() . '.sspk.top{padding-bottom:0}.sspk.top .trust{margin-top:0}';
 	$trust = '<div class="sspk top"><ul class="trust"><li>50 / 50 payment</li><li>100 % copyright yours</li><li>Timed comments on every demo</li><li>Project files in your DAW</li><li>Free mastering demo</li><li>Loyal clients keep their prices</li></ul></div>';
-	return '<style>' . $css . '</style>' . $c; /* tables only (owner 20.11: Release as a table too, no tiles) */
+	return '<style>' . $css . ss_pk_proof_css() . '</style>' . $c . ss_pk_proof_js(); /* tables + proof (owner 21.11) */
 }, 5 );
 add_action( 'template_redirect', function () {
 	if ( ! ss_pk_path_ok() ) return;
