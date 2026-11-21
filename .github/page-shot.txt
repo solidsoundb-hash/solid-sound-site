@@ -18,3 +18,5 @@
 2026-11-21 14:32:26 before-currency /en/ /product/infinity/ /en/all-products/ /de/
 2026-11-21 14:39:00 after-currency /en/ /product/infinity/ /en/all-products/ /de/
 2026-11-21 18:08:52 before-ab-post2 /en/
+2026-11-21 18:12:28 after-ab-post2 /en/
+2026-11-21 18:13:52 after-ab-post3 /en/ click=Film_·_Ads_·_Video
