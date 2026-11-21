@@ -1,0 +1,30 @@
+# Hosting statistics from the server's access logs (owner 21.11.2026). Anonymous summary only — the repo is public.
+# Run: add a line to .github/hosting-stats.txt (or wait for Monday). Result: reports/hosting/latest.md on main.
+name: Hosting stats
+on:
+  workflow_dispatch:
+  schedule: [{ cron: "37 5 * * 1" }]
+  push:
+    branches: [main]
+    paths: [".github/hosting-stats.txt"]
+permissions:
+  contents: write
+concurrency: hosting-stats
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASS: ${{ secrets.FTP_PASS }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q maxminddb==2.6.2
+      - name: Read logs
+        run: python3 tools/hosting-stats.py 30
+      - name: Save report
+        run: |
+          git config user.name hosting-stats && git config user.email actions@users.noreply.github.com
+          git add reports/hosting && git commit -qm "hosting stats: $(date -u +%F)" || exit 0
+          for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
