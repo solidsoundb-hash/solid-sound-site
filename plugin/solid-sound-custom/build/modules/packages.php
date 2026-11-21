@@ -140,6 +140,9 @@ function ss_pk_proof_data() {
 		'bundle'    => array( array( 'e1', 'e2', 'e6' ), array( 'marco', 'paul' ) ),
 		'post'      => array( array( 'p1', 'p2', 'p3', 'p4' ), array() ),
 	);
+	/* real chat screenshots from the Free feedback page («Client Cases»): M1 = Marco, H1 = Hector, A1 = a third client */
+	$chats = array( 'mixing' => array( 'M1' => 6, 'H1' => 5 ), 'mastering' => array( 'A1' => 2, 'M1' => 6 ), 'bundle' => array( 'M1' => 6, 'A1' => 2 ) );
+	foreach ( $chats as $id => $sets ) { $by[ $id ][2] = array(); foreach ( $sets as $p => $n ) for ( $i = 1; $i <= $n; $i++ ) $by[ $id ][2][] = $U . $p . '_' . $i . '.jpg'; }
 	return array( $ex, $rv, $by );
 }
 function ss_pk_proof( $html ) {
@@ -150,6 +153,7 @@ function ss_pk_proof( $html ) {
 			$thumb = 'yt' === $e[2] ? ' style="background-image:url(https://i.ytimg.com/vi/' . esc_attr( $e[3] ) . '/hqdefault.jpg)"' : '';
 			$b .= '<button type="button" class="pp-v" data-k="' . esc_attr( $e[2] ) . '" data-s="' . esc_attr( $e[3] ) . '"><span class="pp-p"' . $thumb . '><i>▶</i></span><b>' . esc_html( $e[0] ) . '</b><small>' . esc_html( $e[1] ) . '</small></button>'; }
 		$b .= '</div>';
+		if ( ! empty( $pick[2] ) ) { $b .= '<h3>Real messages <em>from clients</em></h3><div class="pp-ch">'; foreach ( $pick[2] as $u ) $b .= '<a href="' . esc_url( $u ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $u ) . '" alt="Message from a client" loading="lazy" decoding="async" width="180" height="320"></a>'; $b .= '</div>'; }
 		if ( $pick[1] ) { $b .= '<h3>What clients <em>say</em></h3><div class="pp-rv">'; foreach ( $pick[1] as $k ) { $r = $rv[ $k ]; $b .= '<figure><blockquote>“' . esc_html( $r[0] ) . '”</blockquote><figcaption><b>' . esc_html( $r[1] ) . '</b> · ' . esc_html( $r[2] ) . '</figcaption></figure>'; } $b .= '</div>'; }
 		$b .= '</div>';
 		$html = preg_replace_callback( '#(<section class="pr-sec" id="pr-' . $id . '".*?)(</section>)#s', function ( $m ) use ( $b ) { return $m[1] . $b . $m[2]; }, $html, 1 );
@@ -161,7 +165,7 @@ function ss_pk_proof_css() {
 		. '.pp-ex{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}.pp-v{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:0 0 12px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0f1729;color:#E2E8F0;text-align:left;cursor:pointer;overflow:hidden;font:inherit}'
 		. '.pp-v:hover{border-color:rgba(245,164,0,.5)}.pp-p{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:16/9;background:#111827 center/cover;margin-bottom:6px}.pp-p i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#F5A400;color:#111;font-style:normal;font-size:18px;padding-left:3px}'
 		. '.pp-v b,.pp-v small{padding:0 12px}.pp-v b{color:#fff;font:700 15px "Exo 2",sans-serif}.pp-v small{color:#94A3B8;font-size:13px;line-height:1.4}.pp-v video,.pp-v iframe{width:100%;aspect-ratio:16/9;border:0;display:block;margin-bottom:6px;background:#000}'
-		. '.pp-rv{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.pp-rv figure{margin:0;padding:16px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0f1729}.pp-rv blockquote{margin:0;color:#E2E8F0;font:400 15px/1.55 Roboto,sans-serif}.pp-rv figcaption{margin-top:10px;color:#94A3B8;font-size:13px}.pp-rv figcaption b{color:#F5A400}';
+		. '.pp-ch{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}.pp-ch a{flex:none;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}.pp-ch img{display:block;width:160px;height:280px;object-fit:cover;object-position:top}.pp-rv{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.pp-rv figure{margin:0;padding:16px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0f1729}.pp-rv blockquote{margin:0;color:#E2E8F0;font:400 15px/1.55 Roboto,sans-serif}.pp-rv figcaption{margin-top:10px;color:#94A3B8;font-size:13px}.pp-rv figcaption b{color:#F5A400}';
 }
 function ss_pk_proof_js() {
 	/* a video loads only when tapped (the page stays fast) */
