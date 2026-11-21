@@ -147,42 +147,42 @@ return array(
   'id' => null
  ),
  'home-app' => array(
-  'f' => 'home-app.61bab6d803.js',
+  'f' => 'home-app.ea6d497e6a.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-de' => array(
-  'f' => 'home-app-de.a56783d598.js',
+  'f' => 'home-app-de.d9a81d11a9.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-es' => array(
-  'f' => 'home-app-es.8b7fea4a0a.js',
+  'f' => 'home-app-es.38660daf39.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-fr' => array(
-  'f' => 'home-app-fr.75f49b5523.js',
+  'f' => 'home-app-fr.f07525eb2d.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-it' => array(
-  'f' => 'home-app-it.3e8f74c32a.js',
+  'f' => 'home-app-it.ff4a4fe0ad.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-pt' => array(
-  'f' => 'home-app-pt.974a6ccc34.js',
+  'f' => 'home-app-pt.5890d189f5.js',
   't' => 'js',
   'id' => null
  ),
  'home-app-ua' => array(
-  'f' => 'home-app-ua.e17cadb5bc.js',
+  'f' => 'home-app-ua.454960955c.js',
   't' => 'js',
   'id' => null
  ),
  'ss-global' => array(
-  'f' => 'ss-global.81b37f386f.js',
+  'f' => 'ss-global.9c5d2e5993.js',
   't' => 'js',
   'id' => null
  ),

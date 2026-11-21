@@ -1,6 +1,6 @@
 <?php
 /**
- * (15.11.2026 owner) "Add custom mixing by our engineer (+$65)" — the checkbox from the home page cards,
+ * (15.11.2026 owner) "Add custom mixing by our engineer" (+€69 = Mixing Start in the studio calculator, in the visitor's currency since 21.11) — the checkbox from the home page cards,
  * now on every template: catalog rows (/all-products/, search, categories) and the template's own page.
  * Ticking it changes the price on the buy button at once ($13 -> $78). Buying with it ticked puts the template
  * in the cart (Store API, same as the home page) and opens the mixing calculator, where the mix is ordered.
@@ -35,13 +35,13 @@ add_action( 'wp_footer', function () {
 .single-product .ss-mixup{width:100%;margin:0 0 12px!important;padding:10px 0 0!important}
 </style>
 <script>(function(){
-var PRICES=<?php echo wp_json_encode( home_url( '/en/services-prices/' ) ); ?>,MIX=65,CALC=<?php echo wp_json_encode( home_url( '/studio-calculator/?s=mixing' ) ); ?>,API=<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,TPL=<?php echo $tpl ? 'true' : 'false'; ?>;
+var PRICES=<?php echo wp_json_encode( home_url( '/en/services-prices/' ) ); ?>,MIX=window.SSMIX||<?php echo function_exists( 'ss_mix_addon_price' ) ? (int) ss_mix_addon_price() : 69; ?>,M=function(v){return window.ssMoney?window.ssMoney(v):'€'+v},MIXC=function(){var C=window.SSCUR||{},x=MIX*(C.r||1);return x>0?Math.ceil(x-1e-6):0},CALC=<?php echo wp_json_encode( home_url( '/studio-calculator/?s=mixing' ) ); ?>,API=<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,TPL=<?php echo $tpl ? 'true' : 'false'; ?>;
 var nonce=null,busy=false,CIC='<svg class="ss-cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>';function bt(b,t){b.innerHTML=CIC;b.appendChild(document.createTextNode(t))}
-function lab(){var l=document.createElement('label');l.className='ss-mixup';l.innerHTML='<input type="checkbox"><span>Add mixing <b>+$'+MIX+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';return l}
-function price(el,on){ /* "$13" / "Buy · $13" -> +$65 while ticked */
-  if(!el)return;var tn=[].filter.call(el.childNodes,function(n){return n.nodeType===3&&/\$/.test(n.nodeValue)}).pop();if(!tn)return;
+function lab(){var l=document.createElement('label');l.className='ss-mixup';l.innerHTML='<input type="checkbox"><span>Add mixing <b>+'+M(MIX)+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';return l}
+function price(el,on){ /* "€12" / "Buy · €12" -> + the mixing price (in the visitor's currency) while ticked; (21.11) any currency sign */
+  if(!el)return;var tn=[].filter.call(el.childNodes,function(n){return n.nodeType===3&&/\d/.test(n.nodeValue)}).pop();if(!tn)return;
   if(el.dataset.mx0==null)el.dataset.mx0=tn.nodeValue;var t=el.dataset.mx0;
-  tn.nodeValue=on?t.replace(/\$\s?(\d+(?:[.,]\d+)?)/,function(m,n){var v=parseFloat(n.replace(',','.'))+MIX;return '$'+(v%1?v.toFixed(2):v)}):t;
+  tn.nodeValue=on?t.replace(/(\d[\d\s\u00a0]*(?:[.,]\d{1,2})?)(?!.*\d)/,function(m,n){var v=parseFloat(n.replace(/[\s\u00a0]/g,'').replace(',','.'))+MIXC();return (v%1?v.toFixed(2):String(v))+(/\s$/.test(m)?' ':'')}):t;
 }
 function getNonce(){return fetch(API,{credentials:'include',headers:{Accept:'application/json'}}).then(function(r){nonce=r.headers.get('Nonce')||r.headers.get('X-WC-Store-API-Nonce')||nonce;return r.json()})}
 function add(pid){return fetch(API+'/add-item',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json',Accept:'application/json',Nonce:nonce||''},body:JSON.stringify({id:+pid,quantity:1})}).then(function(r){return r.json()})}
@@ -80,7 +80,7 @@ function cards(){
     c.appendChild(box);
     /* (owner 15.11) "Add mixing" sits in the tag row, between TEMPLATE and YouTube -> every card has the same height */
     if(ok){var row=c.querySelector('.ssh-row'),acts=row&&row.querySelector('.ssh-acts');var mx=document.createElement('span');mx.className='ss-mixup ssh-mix';mx.setAttribute('role','checkbox');mx.setAttribute('aria-checked','false');mx.tabIndex=0;
-      mx.innerHTML='<i></i><span><span class="ssh-mx-add">Add </span>mixing <b>+$'+MIX+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';
+      mx.innerHTML='<i></i><span><span class="ssh-mx-add">Add </span>mixing <b>+'+M(MIX)+'</b></span><span class="ss-mixup-p" role="link" tabindex="0" title="Standard Mixing by our engineer — see prices" aria-label="Standard Mixing — see prices">i</span>';
       if(row&&acts)row.insertBefore(mx,acts);else box.insertBefore(mx,box.firstChild)}
   });
 }

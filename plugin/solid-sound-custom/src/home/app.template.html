@@ -762,17 +762,17 @@ class Component extends DCLogic {
       { kind: 'lead', chips: [{ i: 'M4 4h16v16H4zM4 9h16M9 9v11', l: 'Ableton template' }, { i: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2', l: 'Serum presets' }, { i: 'M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z', l: 'Free mix audit' }], kicker: 'FREE STARTER PACK', kBg: 'rgba(16,185,129,0.15)', kFg: '#34D399',
         title: 'Your tracks sound dull and quiet? Hear a [commercial sound] — [free].',
         sub: 'Get the Solid Starter Pack: a full Ableton template with stock plugins, Serum presets and a coupon for a free audio audit of your mix by our engineer.',
-        cardBg: '#1b1b1b', cardCover: 'Starter Pack', cardTag: 'FREE', cardTitle: 'Solid Starter Pack', oldPrice: '', newPrice: '$0', cardText: 'Template + presets + free mix audit coupon. Hit play to hear it.', cardCta: 'What’s inside →', cardHref: 'https://solid-sound.net/en/free/' },
+        cardBg: '#1b1b1b', cardCover: 'Starter Pack', cardTag: 'FREE', cardTitle: 'Solid Starter Pack', oldPrice: '', newPrice: (window.ssMoney?window.ssMoney(0):"€"+0), cardText: 'Template + presets + free mix audit coupon. Hit play to hear it.', cardCta: 'What’s inside →', cardHref: 'https://solid-sound.net/en/free/' },
       { kind: 'cta', chips: [{ i: 'M4 4h16v16H4zM4 9h16M9 9v11', l: 'Pro template' }, { i: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2', l: 'Preset pack' }, { i: 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6', l: 'Mix by our engineer' }], kicker: 'TEMPLATE + MIX BUNDLE', kBg: '#F59E0B', kFg: '#111',
         title: 'Your next Spotify release, [done for you]. [40% off].',
         sub: 'Stop collecting demos. Each bundle: a pro track template, a preset pack and a custom mix of your version by our engineer.',
         cta: 'See turnkey bundles', href: '#services', timer: false,
-        cardBg: '#1b1670', cardCover: 'Bundle', cardTag: 'PRODUCT + SERVICE', cardTitle: 'Template + presets + mixing', oldPrice: '€96', newPrice: '€58', cardText: 'Mutualism template + Melodic Techno Presets + mixing of your track.', cardCta: 'Add bundle to cart · €58', cardHref: '#shop' },
+        cardBg: '#1b1670', cardCover: 'Bundle', cardTag: 'PRODUCT + SERVICE', cardTitle: 'Template + presets + mixing', oldPrice: (window.ssMoney?window.ssMoney(96):"€"+96), newPrice: (window.ssMoney?window.ssMoney(58):"€"+58), cardText: 'Mutualism template + Melodic Techno Presets + mixing of your track.', cardCta: 'Add bundle to cart · €58', cardHref: '#shop' },
       { kind: 'cta', chips: [{ i: 'M20 12l-8 8-9-9V3h8zM7.5 7.5h.01', l: '−50% templates' }, { i: 'M20 12l-8 8-9-9V3h8zM7.5 7.5h.01', l: '−50% presets' }, { i: 'M13 2L4 14h7l-1 8 9-12h-7z', l: 'Mix in 3 days' }], kicker: 'BLACK MONTH', kBg: '#F59E0B', kFg: '#111',
         title: 'Studio sound at [half price].',
         sub: '−50% on all Ableton templates and Serum presets + priority mixing queue: 3 days instead of 7.',
         cta: 'Get 50% off', href: '#shop', timer: true,
-        cardBg: '#3a1414', cardCover: 'Black Month', cardTag: '−50%', cardTitle: 'All templates & presets', oldPrice: '$26', newPrice: '$13', cardText: 'Every Ableton template and Serum bank, half price.', cardCta: 'Shop the sale →', cardHref: '#shop' }
+        cardBg: '#3a1414', cardCover: 'Black Month', cardTag: '−50%', cardTitle: 'All templates & presets', oldPrice: (window.ssMoney?window.ssMoney(24):"€"+24), newPrice: (window.ssMoney?window.ssMoney(12):"€"+12), cardText: 'Every Ableton template and Serum bank, half price.', cardCta: 'Shop the sale →', cardHref: '#shop' }
     ];
     var slide = slides[s.slide];
     var titleOf = function (x) { return x.title.split(/(\[[^\]]+\])/).filter(function (t) { return t; }).map(function (t) { var hl = t.charAt(0) === '['; return { t: hl ? t.slice(1, -1) : t, st: hl ? 'color: #F59E0B; white-space: nowrap' : '' }; }); };
@@ -799,14 +799,14 @@ class Component extends DCLogic {
     var heroWave = self.bars(3 + s.slide * 17, isM ? 36 : 48).map(function (h, i, a) { return { h: Math.round(h * 0.7) + 'px', c: s.heroPlay && i < a.length * 0.35 ? '#F59E0B' : '#4a4f73' }; });
 
     var catalog = [
-      { id: 'infinity', name: 'Infinity', t: 'templates', genre: 'Techno', sub: 'Beatport Top 10', meta: '130 BPM · Key Am · 5:21', tags: ['Ableton Live 11'], bpm: 130, key: 'Am', live: 11, price: 26, bg: '#2b2b2b', badge: 'Beatport Top 10', fy: true, href: 'https://solid-sound.net/templates' },
-      { id: 'mutualism', name: 'Mutualism', t: 'templates', genre: 'Dark Techno', sub: 'Dark Techno', meta: '128 BPM · Key G · 6:06', tags: ['Ableton Live 11'], bpm: 128, key: 'G', live: 11, price: 26, bg: '#1b1b1b', badge: 'Best seller', fy: true, href: 'https://solid-sound.net/templates' },
-      { id: 'mtp', name: 'Melodic Techno Presets', t: 'presets', genre: 'Melodic Techno', sub: 'Serum bank', meta: 'Serum preset bank', tags: ['Serum'], bpm: 0, key: '', live: 0, price: 10, bg: '#1b1670', badge: '', fy: true, href: 'https://solid-sound.net/presets' },
-      { id: 'protos', name: 'Protos', t: 'templates', genre: 'Techno', sub: 'Techno', meta: '128 BPM · Key Bm · 3:49 · ★ 5.0', tags: ['Ableton Live 10'], bpm: 128, key: 'Bm', live: 10, price: 26, bg: '#5a3a14', badge: '', fy: true, href: 'https://solid-sound.net/templates' },
-      { id: 'pitch', name: 'Pitch', t: 'templates', genre: 'Techno', sub: 'Techno', meta: '130 BPM · Key Bm · 7:30', tags: ['Ableton Live 11'], bpm: 130, key: 'Bm', live: 11, price: 26, bg: '#2a2a9c', badge: 'New', fy: false, href: 'https://solid-sound.net/templates' },
-      { id: 'intricate', name: 'Intricate', t: 'templates', genre: 'Dark Techno', sub: 'No external plugins', meta: '130 BPM · Key Am · 7:34', tags: ['Ableton Live 11', 'Stock plugins'], bpm: 130, key: 'Am', live: 11, price: 26, bg: '#1d1d1d', badge: '', fy: false, href: 'https://solid-sound.net/templates' },
-      { id: 'kratos', name: 'Kratos', t: 'templates', genre: 'Techno', sub: 'Techno', meta: '128 BPM · 6:46 · ★ 5.0', tags: ['Ableton Live 10'], bpm: 128, key: '', live: 10, price: 26, bg: '#3a1414', badge: '', fy: false, href: 'https://solid-sound.net/templates' },
-      { id: 'tgf', name: 'Time Goes Fast', t: 'music', genre: 'Cinematic', sub: 'Documentary piano', meta: 'Key Am · 2:49', tags: ['WAV', 'Royalty-free'], bpm: 0, key: 'Am', live: 0, price: 17, bg: '#3a2a10', badge: '', fy: false, href: 'https://solid-sound.net/music' }
+      { id: 'infinity', name: 'Infinity', t: 'templates', genre: 'Techno', sub: 'Beatport Top 10', meta: '130 BPM · Key Am · 5:21', tags: ['Ableton Live 11'], bpm: 130, key: 'Am', live: 11, price: 24, bg: '#2b2b2b', badge: 'Beatport Top 10', fy: true, href: 'https://solid-sound.net/templates' },
+      { id: 'mutualism', name: 'Mutualism', t: 'templates', genre: 'Dark Techno', sub: 'Dark Techno', meta: '128 BPM · Key G · 6:06', tags: ['Ableton Live 11'], bpm: 128, key: 'G', live: 11, price: 24, bg: '#1b1b1b', badge: 'Best seller', fy: true, href: 'https://solid-sound.net/templates' },
+      { id: 'mtp', name: 'Melodic Techno Presets', t: 'presets', genre: 'Melodic Techno', sub: 'Serum bank', meta: 'Serum preset bank', tags: ['Serum'], bpm: 0, key: '', live: 0, price: 9, bg: '#1b1670', badge: '', fy: true, href: 'https://solid-sound.net/presets' },
+      { id: 'protos', name: 'Protos', t: 'templates', genre: 'Techno', sub: 'Techno', meta: '128 BPM · Key Bm · 3:49 · ★ 5.0', tags: ['Ableton Live 10'], bpm: 128, key: 'Bm', live: 10, price: 24, bg: '#5a3a14', badge: '', fy: true, href: 'https://solid-sound.net/templates' },
+      { id: 'pitch', name: 'Pitch', t: 'templates', genre: 'Techno', sub: 'Techno', meta: '130 BPM · Key Bm · 7:30', tags: ['Ableton Live 11'], bpm: 130, key: 'Bm', live: 11, price: 24, bg: '#2a2a9c', badge: 'New', fy: false, href: 'https://solid-sound.net/templates' },
+      { id: 'intricate', name: 'Intricate', t: 'templates', genre: 'Dark Techno', sub: 'No external plugins', meta: '130 BPM · Key Am · 7:34', tags: ['Ableton Live 11', 'Stock plugins'], bpm: 130, key: 'Am', live: 11, price: 24, bg: '#1d1d1d', badge: '', fy: false, href: 'https://solid-sound.net/templates' },
+      { id: 'kratos', name: 'Kratos', t: 'templates', genre: 'Techno', sub: 'Techno', meta: '128 BPM · 6:46 · ★ 5.0', tags: ['Ableton Live 10'], bpm: 128, key: '', live: 10, price: 24, bg: '#3a1414', badge: '', fy: false, href: 'https://solid-sound.net/templates' },
+      { id: 'tgf', name: 'Time Goes Fast', t: 'music', genre: 'Cinematic', sub: 'Documentary piano', meta: 'Key Am · 2:49', tags: ['WAV', 'Royalty-free'], bpm: 0, key: 'Am', live: 0, price: 15, bg: '#3a2a10', badge: '', fy: false, href: 'https://solid-sound.net/music' }
     ];
     var typeTabs = [['foryou', 'For you'], ['all', 'All'], ['templates', 'Templates'], ['presets', 'Presets'], ['music', 'Music']].map(function (x) {
       var on = s.type === x[0];
@@ -829,7 +829,7 @@ class Component extends DCLogic {
     var cardStyle = (isM ? 'flex: 0 0 64%; scroll-snap-align: start; ' : '') + 'display: flex; flex-direction: column; padding: 8px; border-radius: 14px; background: #131B2E; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); min-width: 0';
     var playingItem = null;
     catalog.forEach(function (c) { if (c.id === s.playing) playingItem = c; });
-    var MIX_USD = 65;
+    var MIX_USD = window.SSMIX || 69; /* euro: same as Mixing Start in the studio calculator */
     var products = catalog.filter(match).slice(0, 4).map(function (c) {
       var mix = !!s.mix[c.id], flipped = !!s.flipped[c.id], fav = !!s.fav[c.id], playing = s.playing === c.id;
       var isTpl = c.t === 'templates';
@@ -839,7 +839,7 @@ class Component extends DCLogic {
         hasBadge: !!c.badge, badge: c.badge,
         fav: fav, favFill: fav ? '#F59E0B' : 'none', favStroke: fav ? '#F59E0B' : '#ffffff',
         playing: playing, notPlaying: !playing, playLabel: (playing ? 'Pause ' : 'Play ') + c.name + ' preview',
-        buyLabel: 'Add to cart · $' + (c.price + (mix ? MIX_USD : 0)),
+        buyLabel: 'Add to cart · ' + (window.ssMoney?window.ssMoney((c.price + (mix ? MIX_USD : 0))):"€"+(c.price + (mix ? MIX_USD : 0))),
         buyBg: '#F59E0B', buyFg: '#111',
         front: !flipped, back: flipped, hasDemo: false /* owner 19.11: «трай фор фри убери» */, demoText: 'Get the full ' + (c.t === 'templates' ? 'Ableton project ' : '') + c.name + ' free. Enter your email — we’ll send the download link right away.', demoTitle: 'free', upsellD: isTpl && !isM, mix: mix,
         inCart: !!(s.inCart || {})[c.id], notInCart: !(s.inCart || {})[c.id],
@@ -1054,7 +1054,7 @@ class Component extends DCLogic {
       searchPhNow: s.mic ? 'Listening… say what you need' : (isM ? 'Search sounds, services…' : 'Search or describe: “dark techno template, 130 BPM, like Anyma + mastering”'),
       trustItems: (function () { var all = [slide.kind === 'lead' ? ['M20 6L9 17l-5-5', 'No payment'] : ['M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4', 'Secure checkout'], ['M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z', 'Royalty-free'], ['M12 3v12M7 10l5 5 5-5M4 21h16', 'Instant download'], ['M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM8.5 14L7 22l5-3 5 3-1.5-8', '13+ years in sound']]; return (isM ? all.slice(1) : all).map(function (x) { return { i: x[0], l: x[1] }; }); })(),
       trustLine: isM ? 'Royalty-free · Instant download · 13+ years' : 'No payment, just your email · Royalty-free · Instant download · 13+ years in sound',
-      mixUsd: 65, mixLabel: 'Add mixing +$65',
+      mixUsd: window.SSMIX || 69, mixLabel: 'Add mixing' + ' +' + (window.ssMoney?window.ssMoney((window.SSMIX || 69)):"€"+(window.SSMIX || 69)),
       cSvcTabs: cSvcTabs, cPkgs: cPkgs, cPkgCols: isM ? 1 : 3, cExCols: isM ? 1 : 2, cExtras: cExtras, cLines: cLines,
       cExTitle: (cDef.qty ? '3' : '2') + ' · EXTRAS',
       cHasStems: !!cDef.stems, cStems: cSt, cStemsMin: cDef.stems ? cDef.stems.min : 0, cStemsTitle: cDef.stems ? cDef.stems.title : '',

@@ -1581,9 +1581,9 @@ function ss_sell_page() {
 	<div class="sssell-big"><div class="n">85%</div><div class="l">to you for every sale</div><div class="s">Founding Creator rate &middot; first 20 producers &middot; locked for 12 months<br>Standard rate: 70%</div></div>
 </section>
 <div class="sssell-stats">
-	<div class="sssell-stat"><b>$0</b><span>listing fees</span></div>
+	<div class="sssell-stat"><b>€0</b><span>listing fees</span></div>
 	<div class="sssell-stat"><b>24 h</b><span>application review</span></div>
-	<div class="sssell-stat"><b>$25</b><span>minimum payout</span></div>
+	<div class="sssell-stat"><b>€25</b><span>minimum payout</span></div>
 	<div class="sssell-stat"><b>Non-exclusive</b><span>sell anywhere else too</span></div>
 </div>
 
@@ -6900,6 +6900,7 @@ require_once __DIR__ . '/modules/ajax-cart.php';
 require_once __DIR__ . '/modules/forum-help.php';
 require_once __DIR__ . '/modules/free-hub.php';
 require_once __DIR__ . '/modules/get-heard.php'; /* 19.11 owner: «Get heard» + «Why Solid Sound» */
+require_once __DIR__ . '/modules/currency.php'; /* 21.11 owner: store in EUR, each country its currency + switcher in the header */
 require_once __DIR__ . '/modules/site-stats.php'; /* 21.11 owner: own private site counter (Tools → Site stats) */
 require_once __DIR__ . '/modules/prof.php'; /* 19.11 owner: speed — probe only with ?ss_prof=1 */
 require_once __DIR__ . '/modules/adaptive.php'; /* 19.11 owner: strong devices load the next page ahead, weak ones nothing extra */
