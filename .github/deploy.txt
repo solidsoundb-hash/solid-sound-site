@@ -354,3 +354,4 @@
 2026-11-21T20:04:31Z SEO: /add-product/ и /links/ (noindex) убраны из карты сайта
 2026-11-21T22:33:11Z ss-health: ежедневная проверка файлов и базы (только чтение) для робота «Здоровье»
 2026-11-21T22:36:27Z all products: What's new slider (one product per slide)
+2026-11-21T22:40:23Z all products slider: no old dates, clean 2-3 line description
