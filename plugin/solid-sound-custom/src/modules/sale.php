@@ -68,3 +68,10 @@ add_action( 'woocommerce_single_product_summary', function () {
 	if ( ! $product || ! ss_sale_on() || ! ss_sale_applies( $product ) ) return;
 	echo '<div class="ss-bm" style="margin:-4px 0 12px;font-size:13px;color:#F59E0B;font-weight:700">Black Month −50% · until 30 November</div>';
 }, 11 );
+
+/* owner 21.11.2026: «убери полоску глобально, чтобы я её никогда больше не видел» — the old price's decorative strike
+   (del::before/::after, absolutely positioned) could stretch across the whole screen when its del had no positioned parent.
+   Everywhere: a plain line-through on the old price, no pseudo-element lines. */
+add_action( 'wp_head', function () {
+	echo '<style id="ss-del-fix">del{position:relative;text-decoration:line-through!important}del::before,del::after{content:none!important;display:none!important}</style>';
+}, 99 );

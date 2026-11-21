@@ -23,6 +23,10 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
       r.push('lightbox: ' + !!(await p.$('.pp-lb'))); await p.screenshot({ path: `page-out/${n}-lightbox.jpg`, type: 'jpeg', quality: 70 });
       await p.keyboard.press('Escape'); fs.writeFileSync(`page-out/${n}-check.txt`, r.join('\n'));
     }
+    if (url.includes('solid-sound.net')) { /* what is at given points (debug of stray lines) */
+      const pts = n === 'desktop' ? [[720, 437], [300, 470], [1300, 390]] : [[200, 394], [60, 405], [340, 384]];
+      fs.writeFileSync(`page-out/${n}-points.txt`, JSON.stringify(await p.evaluate(P => P.map(([x, y]) => { scrollTo(0, 0); return [x, y, document.elementsFromPoint(x, y).slice(0, 6).map(e => e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + (typeof e.className === 'string' && e.className ? '.' + e.className.trim().split(/\s+/).slice(0, 3).join('.') : '') + ' ' + getComputedStyle(e).position)]; }), pts), null, 1));
+    }
     if (n === 'desktop') {
       const t = await p.evaluate(() => [...document.querySelectorAll('h1,h2,h3,h4,[class*=price],a.button,button,.btn')].filter(e => e.offsetParent && e.innerText.trim()).map(e => e.tagName + ': ' + e.innerText.trim().replace(/\s+/g, ' ').slice(0, 160)).join('\n'));
       fs.writeFileSync('page-out/text.txt', url + '\n\n' + t + '\n\n---- full text ----\n' + (await p.evaluate(() => document.body.innerText)).slice(0, 60000));
