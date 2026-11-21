@@ -1,0 +1,37 @@
+# Clean preview videos for the «What's new» slider (owner 22.11.2026: «без ютубовских кнопок, чистое видео после обложки»).
+# Run: a line in .github/previews.txt («<date>» = new videos only; add «force» to redo all, or YouTube ids to redo those).
+# Result: wp-content/uploads/ss-previews/<youtube-id>.mp4 on the site (tools/previews/make.sh), list in the run summary.
+name: Preview videos
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/previews.txt"]
+permissions:
+  contents: read
+concurrency: { group: previews, cancel-in-progress: false }
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASS: ${{ secrets.FTP_PASS }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          pip install -q -U yt-dlp
+      - name: Make
+        run: |
+          L=$(tail -1 .github/previews.txt)
+          echo "$L" | grep -qw force && export FORCE=1
+          IDS=$(echo "$L" | tr ' ' '\n' | grep -E '^[A-Za-z0-9_-]{11}$' | tr '\n' ' ')
+          [ -n "$IDS" ] && export PREVIEW_IDS="$IDS" FORCE=1
+          bash tools/previews/make.sh | tee make.log
+          { echo '### Ролики для слайдера'; echo '```'; cat make.log; echo '```'; } >> $GITHUB_STEP_SUMMARY
+      - name: Upload to the site
+        run: |
+          if ls out/*.mp4 >/dev/null 2>&1; then python3 tools/ftp_sync.py upload out solid-sound.net/www/wp-content/uploads/ss-previews; else echo "nothing to upload"; fi
