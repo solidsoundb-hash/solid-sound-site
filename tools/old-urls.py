@@ -18,7 +18,7 @@ DROP_Q = re.compile(r'^(utm_|fbclid|gclid|yclid|mc_|ref$|srsltid|_ga|ss_)', re.I
 
 
 def cdx(host):
-    q = urllib.parse.urlencode({'url': host + '/*', 'output': 'json', 'fl': 'original,statuscode,timestamp', 'filter': 'mimetype:text/html', 'collapse': 'urlkey', 'limit': '20000'})
+    q = urllib.parse.urlencode({'url': host, 'matchType': 'domain', 'output': 'json', 'fl': 'original,statuscode,timestamp,mimetype', 'collapse': 'urlkey', 'limit': '50000'})
     for i in range(4):
         try:
             with urllib.request.urlopen('https://web.archive.org/cdx/search/cdx?' + q, timeout=120) as r:
@@ -71,8 +71,26 @@ def check(u):
 
 def main():
     seen = {}
-    for host in ('solid-sound.net', 'www.solid-sound.net'):
-        for orig, st, ts in cdx(host):
+    raw = cdx('solid-sound.net')
+    years, hosts, mimes = {}, {}, {}
+    for orig, st, ts, mt in raw:
+        years[ts[:4]] = years.get(ts[:4], 0) + 1
+        h = urllib.parse.urlsplit(orig).hostname or '?'
+        hosts[h] = hosts.get(h, 0) + 1
+        mimes[mt] = mimes.get(mt, 0) + 1
+    print('archive raw:', len(raw), '| years', sorted(years.items()), '| hosts', sorted(hosts.items(), key=lambda x: -x[1])[:15], '| types', sorted(mimes.items(), key=lambda x: -x[1])[:8], flush=True)
+    os.makedirs(OUT, exist_ok=True)
+    with open(f'{OUT}/archive-overview.md', 'w') as f:
+        f.write('# Архив интернета: что сохранено о solid-sound.net\n\n')
+        f.write(f'Всего записей: {len(raw)}\n\n## По годам\n' + '\n'.join(f'- {y}: {n}' for y, n in sorted(years.items())) + '\n\n')
+        f.write('## Поддомены\n' + '\n'.join(f'- {h}: {n}' for h, n in sorted(hosts.items(), key=lambda x: -x[1])) + '\n\n')
+        f.write('## Типы\n' + '\n'.join(f'- {m}: {n}' for m, n in sorted(mimes.items(), key=lambda x: -x[1])[:15]) + '\n\n')
+        f.write('## Все записи (адрес · год · код)\n' + '\n'.join(f'- {o} · {t[:4]} · {s}' for o, s, t, m in sorted(raw, key=lambda r: r[2])[:600]) + '\n')
+    for orig, st, ts, mt in raw:
+            if mt and 'html' not in mt:
+                continue
+            if (urllib.parse.urlsplit(orig).hostname or '').replace('www.', '') != 'solid-sound.net':
+                continue
             if SKIP.search(urllib.parse.urlsplit(orig).path + ('?' + urllib.parse.urlsplit(orig).query if urllib.parse.urlsplit(orig).query else '')):
                 continue
             n = norm(orig)
