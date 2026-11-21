@@ -30,7 +30,28 @@ function ss_ns_specs( $pid, $p, $fmt ) {
 		if ( 'templates' === $fmt ) { $e = ss_ns_terms( $pid, 'external-plugin', 2 ); $o['Plugins'] = $e ? implode( ', ', $e ) : 'Native only'; }
 		if ( 'music' === $fmt ) { $mo = $at( 'pa_mood' ); if ( $mo ) $o['Mood'] = $mo; $o['License'] = 'Royalty-free'; }
 	}
-	return array_slice( $o, 0, 5, true );
+	/* (owner 22.11: «нужна полная инфа — размер, версия DAW и т. д. — как на странице продукта») the same tech specs as the
+	   product page (custom.php «product page v3»): version, plugins, OS, then every visible product attribute */
+	$full = array(); $t3 = function ( $k, $d ) { return function_exists( 'ss_pd3_t' ) ? ss_pd3_t( $k ) : $d; }; $tp = function ( $k, $d ) { return function_exists( 'ss_pd_t' ) ? ss_pd_t( $k ) : $d; };
+	if ( in_array( $fmt, array( 'templates', 'presets' ), true ) && function_exists( 'ss_pd_terms' ) ) {
+		$v = wp_list_pluck( ss_pd_terms( $pid, 'product-version' ), 'name' ); natsort( $v );
+		if ( $v && 'templates' === $fmt ) $full['DAW'] = reset( $v ) . ' (' . $tp( 'orlater', 'or later' ) . ')';
+		if ( function_exists( 'ss_pd_plugins' ) ) { $pl = ss_pd_plugins( $pid ); $full[ $tp( 'plugins', 'Plugins' ) ] = ( ( function_exists( 'ss_pd_native' ) && ss_pd_native( $pid ) ) || ! $pl ) ? 'No external plugins' : implode( ', ', $pl ); }
+		$full[ $tp( 'os', 'Works on' ) ] = 'PC & Mac';
+	}
+	$lm = array( 'audio' => array( 'l_audio', 'Audio tracks' ), 'midi' => array( 'l_midi', 'MIDI tracks' ), 'send' => array( 'l_send', 'Return tracks' ), 'return' => array( 'l_send', 'Return tracks' ), 'bpm' => array( 'l_bpm', 'BPM' ), 'key' => array( 'l_key', 'Key' ), 'length' => array( 'l_len', 'Length' ), 'size' => array( 'l_size', 'Size' ) );
+	foreach ( $p->get_attributes() as $a ) {
+		if ( ! $a->get_visible() ) continue;
+		$val = $a->is_taxonomy() ? implode( ', ', wc_get_product_terms( $pid, $a->get_name(), array( 'fields' => 'names' ) ) ) : implode( ', ', $a->get_options() );
+		if ( '' === trim( $val ) ) continue;
+		$label = wc_attribute_label( $a->get_name() ); $lab = ucfirst( strtolower( $label ) );
+		foreach ( $lm as $kw => $lk ) if ( false !== stripos( $label, $kw ) ) { $lab = $t3( $lk[0], $lk[1] ); break; }
+		$full[ $lab ] = $val;
+	}
+	/* what only the description says (size, presets count, synth, format …) — when not already there */
+	foreach ( $o as $k => $v ) { $dup = false; foreach ( $full as $fk => $fv ) if ( 0 === strcasecmp( $fk, $k ) || ( 'DAW' === $k && isset( $full['DAW'] ) ) || ( 'Plugins' === $k && false !== stripos( $fk, 'plugin' ) ) || ( 'Works on' === $k && 'PC & Mac' === $fv ) ) $dup = true; if ( ! $dup ) $full[ $k ] = $v; }
+	if ( ! empty( $tx['Size'] ) && ! isset( $full[ $t3( 'l_size', 'Size' ) ] ) && ! isset( $full['Size'] ) ) $full[ $t3( 'l_size', 'Size' ) ] = $tx['Size'];
+	return array_slice( $full ? $full : $o, 0, 10, true );
 }
 function ss_ns_terms( $pid, $tax, $n = 2 ) {
 	$t = wp_get_post_terms( $pid, $tax, array( 'fields' => 'names' ) ); return is_wp_error( $t ) ? array() : array_slice( $t, 0, $n );
@@ -103,7 +124,7 @@ function ss_ns_render() {
 .ssn-dots{display:flex;justify-content:center;gap:6px;margin-top:10px}.ssn-dots button{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:rgba(255,255,255,.22);cursor:pointer;transition:width .3s,background .3s}.ssn-dots button[aria-selected=true]{width:24px;background:#E09900}
 @media(max-width:1100px){.ssn{max-width:none}}
 @media(max-width:700px){.ssn-s{grid-template-columns:108px minmax(0,1fr);gap:10px 12px;padding:12px}.ssn-b{display:contents}.ssn-cov{grid-column:1;grid-row:1/3}.ssn-top{grid-column:2;grid-row:1;align-self:end}.ssn-t{grid-column:2;grid-row:2;align-self:start;font-size:19px!important}
-.ssn-ch,.ssn-d,.ssn-sp,.ssn-wv,.ssn-f{grid-column:1/-1}.ssn-sp{grid-template-columns:1fr 1fr;padding:8px 0!important}.ssn-sp dd{font-size:13.5px}.ssn-sp div:nth-child(n+5){display:none}.ssn-cart{width:40px}.ssn-ch span{font-size:12px;padding:4px 8px}.ssn-d{font-size:14px!important;-webkit-line-clamp:2;max-height:3.1em}.ssn-pr{font-size:20px}.ssn-f{gap:8px}.ssn-f button,.ssn-f a{height:40px;padding:0 14px;font-size:14px!important}.ssn-more{display:none!important}.ssn-n{display:none}.ssn-nav button{width:36px;height:36px}.ssn-age{display:none}}
+.ssn-ch,.ssn-d,.ssn-sp,.ssn-wv,.ssn-f{grid-column:1/-1}.ssn-sp{grid-template-columns:1fr 1fr;padding:8px 0!important}.ssn-sp dd{font-size:13.5px}.ssn-cart{width:40px}.ssn-ch span{font-size:12px;padding:4px 8px}.ssn-d{font-size:14px!important;-webkit-line-clamp:2;max-height:3.1em}.ssn-pr{font-size:20px}.ssn-f{gap:8px}.ssn-f button,.ssn-f a{height:40px;padding:0 14px;font-size:14px!important}.ssn-more{display:none!important}.ssn-n{display:none}.ssn-nav button{width:36px;height:36px}.ssn-age{display:none}}
 html.ss-lite .ssn-tr{scroll-behavior:auto}html.ss-lite .ssn-cov img{transition:none}
 </style>
 <script>(function(){var R=document.getElementById('ssn');if(!R)return;var T=R.querySelector('.ssn-tr'),S=[].slice.call(T.children),D=[].slice.call(R.querySelectorAll('.ssn-dots button')),N=R.querySelector('.ssn-n'),cur=0,hold=0,tm;
