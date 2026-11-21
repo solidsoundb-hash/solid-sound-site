@@ -7,7 +7,7 @@ const OUT = process.env.PROBE_OUT || 'probe-buy'; fs.mkdirSync(OUT, { recursive:
 const SITE = 'https://solid-sound.net';
 const DEV = {
   phone: { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' },
-  pc: { viewport: { width: 1366, height: 768 } },
+  pc: { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' }, // headless UA gets 403 from the host
 };
 const log = []; const L = (...a) => { const s = a.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join(' '); log.push(s); console.log(s); };
 const T = () => Date.now();
@@ -20,13 +20,14 @@ const T = () => Date.now();
     const p = await ctx.newPage(); const errs = [];
     p.on('pageerror', e => errs.push(e.message.slice(0, 140)));
     const shot = n => p.screenshot({ path: `${OUT}/${dev}_${n}.jpg`, type: 'jpeg', quality: 60 }).catch(() => {});
-    const go = async (path, n) => { const t = T(); const r = await p.goto(SITE + path, { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(e => null); await p.waitForTimeout(3000); L(`${n}: ${path} → ${r ? r.status() : 'ERR'} за ${((T() - t) / 1000).toFixed(1)} с`); await shot(n); return r; };
+    const go = async (path, n) => { const t = T(); const r = await p.goto(SITE + path, { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(e => null); const cc = await p.$('.ss-cc-no'); if (cc && await cc.isVisible().catch(() => false)) { await cc.click().catch(() => {}); L('  (cookie-баннер: нажал Reject non-essential)'); } await p.waitForTimeout(3000); L(`${n}: ${path} → ${r ? r.status() : 'ERR'} за ${((T() - t) / 1000).toFixed(1)} с`); await shot(n); return r; };
 
     // 1. product
     await go('/product/infinity/', '1_product');
     const price = await p.$eval('.summary .price, .product .price', e => e.innerText.replace(/\s+/g, ' ').trim()).catch(() => '—');
     L('  цена на товаре:', price);
-    const playBtn = await p.$('.ssp-play, [aria-label*="Play" i], .mejs-play button, button[class*="play"]');
+    L('  кнопки play:', await p.evaluate(() => [...document.querySelectorAll('button, [role=button]')].filter(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]')).slice(0, 4).map(e => (e.getAttribute('aria-label') || '') + ' .' + String(e.className).slice(0, 40))));
+    const playBtn = await p.evaluateHandle(() => [...document.querySelectorAll('button, [role=button]')].find(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]') && e.getBoundingClientRect().height > 0) || null).then(h => h.asElement());
     if (playBtn) {
       await playBtn.click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(3500);
       const playing = await p.evaluate(() => [...document.querySelectorAll('audio,video')].some(a => !a.paused && a.currentTime > 0.2));
