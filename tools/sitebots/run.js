@@ -11,7 +11,7 @@ const OUT = process.env.SITEBOTS_OUT || 'reports/sitebots';
 const BOTS = {
   code: ['🧹 Мёртвый код', () => require('./code')], buyer: ['🛒 Покупатель', () => require('./buyer')], prices: ['💶 Цены', () => require('./prices')],
   catalog: ['🎛 Товары', () => require('./catalog')], seo: ['🔎 SEO страниц', () => require('./seo-pages')], texts: ['✍️ Тексты', () => require('./texts')],
-  a11y: ['♿ Доступность', () => require('./a11y')], emails: ['✉️ Письма', () => require('./emails')], websec: ['🛡 Безопасность', () => require('./websec')], cookies: ['🍪 Cookie/GDPR', () => require('./cookies')], health: ['🩺 Здоровье', () => require('./health')],
+  a11y: ['♿ Доступность', () => require('./a11y')], emails: ['✉️ Письма', () => require('./emails')], websec: ['🛡 Безопасность', () => require('./websec')], cookies: ['🍪 Cookie/GDPR', () => require('./cookies')], health: ['🩺 Здоровье', () => require('./health')], forms: ['📝 Формы', () => require('./forms')],
   files: ['🗄 Сервер', () => async () => {
     if (!process.env.FTP_HOST) return { md: '## 🗄 Сервер\n\n⏸ Нет доступа FTP (секреты FTP_HOST/USER/PASS).\n', metrics: {}, alerts: [] };
     let err = ''; let md = '';
