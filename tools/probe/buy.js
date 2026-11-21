@@ -17,6 +17,7 @@ const T = () => Date.now();
     L(`\n=== ${dev} ===`);
     const ctx = await b.newContext({ ...opt, locale: 'en-US' });
     await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
+    await ctx.addInitScript(() => { window.__media = []; const o = HTMLMediaElement.prototype.play; HTMLMediaElement.prototype.play = function () { window.__media.push(this); return o.apply(this, arguments); }; });
     const p = await ctx.newPage(); const errs = [];
     p.on('pageerror', e => errs.push(e.message.slice(0, 140)));
     const shot = n => p.screenshot({ path: `${OUT}/${dev}_${n}.jpg`, type: 'jpeg', quality: 60 }).catch(() => {});
@@ -27,12 +28,12 @@ const T = () => Date.now();
     const price = await p.$eval('.summary .price, .product .price', e => e.innerText.replace(/\s+/g, ' ').trim()).catch(() => '—');
     L('  цена на товаре:', price);
     L('  кнопки play:', await p.evaluate(() => [...document.querySelectorAll('button, [role=button]')].filter(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]')).slice(0, 4).map(e => (e.getAttribute('aria-label') || '') + ' .' + String(e.className).slice(0, 40))));
-    const playBtn = await p.evaluateHandle(() => [...document.querySelectorAll('button, [role=button]')].find(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]') && e.getBoundingClientRect().height > 0) || null).then(h => h.asElement());
+    const playBtn = (await p.$('.ssp-play:visible, .ssp-b.ssp-play')) || await p.evaluateHandle(() => [...document.querySelectorAll('button, [role=button]')].find(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]') && e.getBoundingClientRect().height > 0) || null).then(h => h.asElement());
     if (playBtn) {
       await playBtn.click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(3500);
-      const playing = await p.evaluate(() => [...document.querySelectorAll('audio,video')].some(a => !a.paused && a.currentTime > 0.2));
-      L('  звук после ▶:', playing ? 'играет ✅' : 'НЕ играет ❌');
-      await p.evaluate(() => document.querySelectorAll('audio,video').forEach(a => a.pause()));
+      const playing = await p.evaluate(() => [...document.querySelectorAll('audio,video'), ...window.__media].some(a => !a.paused && a.currentTime > 0.2));
+      L('  звук после ▶:', playing ? 'играет ✅' : 'НЕ играет ❌', await p.evaluate(() => window.__media.map(a => (a.currentSrc || a.src || '').split('/').pop() + ' t=' + a.currentTime.toFixed(1) + (a.error ? ' err' + a.error.code : '')).slice(0, 3)));
+      await p.evaluate(() => [...document.querySelectorAll('audio,video'), ...window.__media].forEach(a => a.pause()));
     } else L('  кнопка ▶ не найдена');
     const add = await p.$('.single_add_to_cart_button');
     if (!add) { L('  кнопки Add to cart нет ❌'); }
@@ -60,7 +61,8 @@ const T = () => Date.now();
     await p.waitForTimeout(4000); await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2)); await shot('5_checkout_pay');
     // 4. empty cart
     await go('/en/cart/', '6_cart_clean');
-    for (let i = 0; i < 5; i++) { const r = await p.$('.cart_item a.remove, a.remove, .wc-block-cart-item__remove-link'); if (!r) break; await r.click().catch(() => {}); await p.waitForTimeout(3000); }
+    for (let i = 0; i < 5; i++) { try { const r = await p.$('.cart_item a.remove, a.remove, .wc-block-cart-item__remove-link'); if (!r) break; await Promise.all([p.waitForLoadState('domcontentloaded').catch(() => {}), r.click().catch(() => {})]); await p.waitForTimeout(3000); } catch (e) { await p.waitForTimeout(3000); } }
+    L('  корзина после ×:', await p.$$eval('.cart_item', x => x.length).catch(() => '?'), 'позиций');
     // 5. services
     await go('/studio-calculator/', '7_calc');
     const calc = await p.evaluate(() => ({ svc: document.querySelectorAll('[data-s]').length, euros: (document.body.innerText.match(/€\s?\d+/g) || []).slice(0, 6), form: !!document.querySelector('form[action*="admin-post"] input[name=email], input[name=email]') }));
