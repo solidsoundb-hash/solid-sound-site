@@ -10,13 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function ss_srch_services() {
 	$c = home_url( '/studio-calculator/?s=' );
 	return array(
-		array( 'Mixing (+ mastering)', 'mixing mix mixdown stems balance mastering', $c . 'mixing', 'from €60' ),
-		array( 'Mastering — stereo, stem, multitrack, album', 'mastering master loudness album stem multitrack', $c . 'mastering', 'from €15' ),
-		array( 'Release Ready pack', 'release spotify beatport label distribution master', $c . 'release', 'from €109' ),
-		array( 'Remix', 'remix club radio dj extended', $c . 'remix', 'from €150' ),
+		array( 'Mixing (+ mastering)', 'mixing mix mixdown stems balance mastering', $c . 'mixing', 'from €69' ),
+		array( 'Mastering — stereo, stem, multitrack, album', 'mastering master loudness album stem multitrack', $c . 'mastering', 'from €35' ),
+		array( 'Release Ready pack', 'release spotify beatport label distribution master', $c . 'release', 'from €99' ),
+		array( 'Remix', 'remix club radio dj extended', $c . 'remix', 'from €190' ),
 		array( 'Remake', 'remake cover recreate reference', $c . 'remake', 'from €120' ),
-		array( 'Custom production', 'custom production ghost producer track', $c . 'ghost', 'from €300' ),
-		array( 'Track review & co-producing', 'feedback review co-production coaching lesson', $c . 'copro', 'from €40' ),
+		array( 'Custom production', 'custom production ghost producer track', $c . 'ghost', 'from €350' ),
+		array( 'Track review & co-producing', 'feedback review co-production coaching lesson', $c . 'copro', 'from €29' ),
 		array( 'Post production: video, podcast, film', 'video podcast film youtube dialogue sound design ads reels foley', $c . 'post', 'from €40' ),
 	);
 }
