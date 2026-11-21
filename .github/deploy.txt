@@ -368,3 +368,4 @@
 2026-11-21T23:25:32Z favorites panel (ajax), main currencies first
 2026-11-21T23:26:41Z slider: old price before the cart button
 2026-11-21T23:29:21Z favorites: click keeps the hover panel open
+2026-11-21T23:30:17Z GDPR: скрипт Meta Pixel грузится только после «Accept all» (после Reject в Meta ничего не уходит)
