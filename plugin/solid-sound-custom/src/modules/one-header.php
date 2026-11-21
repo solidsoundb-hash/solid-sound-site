@@ -3,13 +3,14 @@
  * (20.11.2026 owner: «а что, одну шапку нельзя с подвалом?») The home page uses the SAME header, footer and phone bottom bar as
  * every other page (src/ss-global.js + modules/footer.php) instead of its own copies inside the home app — one place to change,
  * nothing differs any more (the Forum icon, the language button…).
- * Preview first: add ?ss_one=1 to the home address. For everyone: option ss_one_header = 1 (after the owner's «да»).
+ * ON for everyone since 21.11 (owner: «делаем всё как ты говоришь», preview checked on 5 screens). Old home header: ?ss_one=0;
+ * back for good: option ss_one_header = 0.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ss_one_on() {
 	static $on = null;
-	if ( null === $on ) $on = function_exists( 'ss_home_is_app_page' ) && ss_home_is_app_page() && ( get_option( 'ss_one_header' ) || ! empty( $_GET['ss_one'] ) );
+	if ( null === $on ) $on = function_exists( 'ss_home_is_app_page' ) && ss_home_is_app_page() && ( isset( $_GET['ss_one'] ) ? '0' !== $_GET['ss_one'] : '0' !== (string) get_option( 'ss_one_header', '1' ) );
 	return $on;
 }
 add_filter( 'body_class', function ( $c ) { if ( ss_one_on() ) $c[] = 'ss-one'; return $c; } );
