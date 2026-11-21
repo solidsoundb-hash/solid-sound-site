@@ -11,6 +11,16 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
     await p.waitForTimeout(3000);
     for (let y = 0; y < 20; y++) { await p.mouse.wheel(0, 1200); await p.waitForTimeout(250); } await p.evaluate(() => scrollTo(0, 0));
     await p.screenshot({ path: `page-out/${n}.jpg`, type: 'jpeg', quality: 60, fullPage: true }).catch(() => {});
+    if (url.includes('solid-sound.net') && await p.$('.pp-c')) { /* our client-chats carousel: images, arrows, big view (21.11) */
+      const st = () => p.evaluate(() => { const c = document.querySelector('#pr-mixing .pp-ch'), h = c.previousElementSibling; return { n: h.querySelector('.pp-n').textContent, pv: h.querySelector('.pp-pv').disabled, imgs: [...c.querySelectorAll('img')].map(i => i.naturalWidth).join(',') }; });
+      const r = [JSON.stringify(await st())];
+      await p.$eval('#pr-mixing .pp-sh', e => { e.scrollIntoView(); scrollBy(0, -120); }); await p.waitForTimeout(1500);
+      await p.screenshot({ path: `page-out/${n}-chats.jpg`, type: 'jpeg', quality: 70 });
+      await p.click('#pr-mixing .pp-nx').catch(e => r.push('nx ' + e.message)); await p.waitForTimeout(1200); r.push(JSON.stringify(await st()));
+      await p.click('#pr-mixing .pp-c >> nth=1').catch(e => r.push('card ' + e.message)); await p.waitForTimeout(1200);
+      r.push('lightbox: ' + !!(await p.$('.pp-lb'))); await p.screenshot({ path: `page-out/${n}-lightbox.jpg`, type: 'jpeg', quality: 70 });
+      await p.keyboard.press('Escape'); fs.writeFileSync(`page-out/${n}-check.txt`, r.join('\n'));
+    }
     if (n === 'desktop') {
       const t = await p.evaluate(() => [...document.querySelectorAll('h1,h2,h3,h4,[class*=price],a.button,button,.btn')].filter(e => e.offsetParent && e.innerText.trim()).map(e => e.tagName + ': ' + e.innerText.trim().replace(/\s+/g, ' ').slice(0, 160)).join('\n'));
       fs.writeFileSync('page-out/text.txt', url + '\n\n' + t + '\n\n---- full text ----\n' + (await p.evaluate(() => document.body.innerText)).slice(0, 60000));
