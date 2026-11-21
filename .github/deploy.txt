@@ -359,3 +359,4 @@
 2026-11-21T22:51:45Z SEO: brand-first home title, Organization/WebSite extended, breadcrumbs, service prices, About page
 2026-11-21T22:53:28Z web push: forum replies, self-hosted
 2026-11-21T22:57:34Z seo: no duplicate breadcrumbs on products
+2026-11-21T22:59:50Z All products, What's new: видео в обложке целиком (16:9 на чёрном), кнопка ▶ без квадрата (владелец)
