@@ -142,7 +142,7 @@ function ss_pk_proof_data() {
 	);
 	/* real chat screenshots from the Free feedback page («Client Cases»): M1 = Marco, H1 = Hector, A1 = a third client */
 	$chats = array( 'mixing' => array( 'M1' => 6, 'H1' => 5 ), 'mastering' => array( 'A1' => 2, 'M1' => 6 ), 'bundle' => array( 'M1' => 6, 'A1' => 2 ) );
-	foreach ( $chats as $id => $sets ) { $by[ $id ][2] = array(); foreach ( $sets as $p => $n ) for ( $i = 1; $i <= $n; $i++ ) $by[ $id ][2][] = $U . $p . '_' . $i . '.jpg'; }
+	foreach ( $chats as $id => $sets ) { $by[ $id ][2] = array(); foreach ( $sets as $p => $n ) for ( $i = 1; $i <= $n; $i++ ) $by[ $id ][2][] = $U . $p . '_' . $i . ( 'H1' === $p && 1 === $i ? 'b' : '' ) . '.jpg'; }
 	return array( $ex, $rv, $by );
 }
 function ss_pk_proof( $html ) {
@@ -185,3 +185,6 @@ add_action( 'template_redirect', function () {
 	if ( ! ss_pk_path_ok() ) return;
 	wp_safe_redirect( ss_pk_sp_url(), 301 ); exit;
 }, 1 );
+
+/* owner's e-mail hidden on the H1_1 chat screenshot (21.11.2026) — everywhere it is used, e.g. the Free feedback page */
+add_filter( 'the_content', function ( $c ) { return false === strpos( $c, 'H1_1' ) ? $c : preg_replace( '~/H1_1(-\d+x\d+)?\.jpg~', '/H1_1b.jpg', $c ); }, 30 );
