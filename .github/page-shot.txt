@@ -10,3 +10,4 @@
 2026-11-20 21:42:24 before-contacts /pt/contactos/ /ua/kontakty/
 2026-11-20 21:45:56 after-contacts /pt/contactos/ /ua/kontakty/
 2026-11-21 08:26:38 before-prices-mid /en/services-prices/ /studio-calculator/ /en/
+2026-11-21 08:30:36 after-prices-mid /en/services-prices/ /studio-calculator/ /en/
