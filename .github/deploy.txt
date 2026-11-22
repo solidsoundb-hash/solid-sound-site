@@ -371,3 +371,4 @@
 2026-11-21T23:30:17Z GDPR: скрипт Meta Pixel грузится только после «Accept all» (после Reject в Meta ничего не уходит)
 2026-11-21T23:33:45Z slider: thin pause, prices without .00; panels close faster
 2026-11-21T23:34:56Z mini cart/favorites open instantly (prefetch)
+2026-11-22 09:49:08 Новый секрет WP Super Cache (старый утёк в публичный репозиторий 20.11), один раз — владелец «да»

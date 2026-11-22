@@ -1,3 +1,4 @@
 # Known, already handled finding (20.11.2026): WP Super Cache secret in an old pulled copy — file removed from the repo,
-# robot no longer pulls it; the secret is to be changed on the server (owner). Remove this line after the change.
+# robot no longer pulls it. 22.11.2026: the secret was changed on the server (modules/wpsc-secret.php) — the value in that
+# old commit is dead; the line stays so the history scan does not flag a secret that no longer works.
 d8cea24e7c562cb2bc4dd38070960701ff4896ac:live/wp-content/wp-cache-config.php:generic-api-key:10

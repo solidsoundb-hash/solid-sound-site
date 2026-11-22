@@ -5630,6 +5630,7 @@ require_once __DIR__ . '/modules/ajax-cart.php';
 require_once __DIR__ . '/modules/forum-help.php';
 require_once __DIR__ . '/modules/free-hub.php';
 require_once __DIR__ . '/modules/get-heard.php'; /* 19.11 owner: «Get heard» + «Why Solid Sound» */
+require_once __DIR__ . '/modules/wpsc-secret.php'; /* 22.11 owner: new WP Super Cache secret (old one leaked to the public repo), once */
 require_once __DIR__ . '/modules/currency.php'; /* 21.11 owner: store in EUR, each country its currency + switcher in the header */
 require_once __DIR__ . '/modules/site-stats.php'; /* 21.11 owner: own private site counter (Tools → Site stats) */
 require_once __DIR__ . '/modules/prof.php'; /* 19.11 owner: speed — probe only with ?ss_prof=1 */
