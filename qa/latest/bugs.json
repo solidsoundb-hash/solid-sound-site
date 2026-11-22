@@ -1,12 +1,12 @@
 {
  "mode": "full",
- "date": "2026-11-21T19:26:06.595Z",
+ "date": "2026-11-22T02:55:34.949Z",
  "stats": {
-  "pages": 110,
-  "clicks": 686,
-  "sounds": 69,
-  "links": 1232,
-  "blockedRequests": 48,
+  "pages": 86,
+  "clicks": 570,
+  "sounds": 54,
+  "links": 973,
+  "blockedRequests": 38,
   "eyesTiles": 0,
   "eyesPages": 0,
   "audioFiles": 35,
@@ -14,179 +14,68 @@
  },
  "bugs": [
   {
-   "sev": "critical",
-   "type": "http",
-   "title": "Страница /en/sell/ не открывается (код 503)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Сервер ответил ошибкой 503",
-   "sig": "http|/en/sell/",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/11_006.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "critical",
-   "type": "http",
-   "title": "Страница /en/shop/ не открывается (код 503)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Сервер ответил ошибкой 503",
-   "sig": "http|/en/shop/",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/12_001.jpg",
-   "isNew": true
-  },
-  {
    "sev": "major",
    "type": "kb-seo-canonical",
    "title": "Canonical указывает на другую страницу или на http",
    "steps": [
-    "Открыть https://solid-sound.net/en/services-calculator/ (компьютер)"
+    "Открыть https://solid-sound.net/forum/ (Samsung A31)"
    ],
    "expected": "canonical = адрес самой страницы, https.",
-   "actual": "Указано: https://solid-sound.net/studio-calculator/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую).",
+   "actual": "Указано: https://solid-sound.net/en/forum/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую).",
    "sig": "kb|kb-seo-canonical|Canonical указывает на другую страницу или на http",
    "where": [
-    "/en/services-calculator/",
-    "/en/shop/",
-    "/en/mastering-album-calculator/",
-    "/en/vendor-membership/",
-    "/en/checkout/",
-    "/en/vendor-register/",
-    "/en/forum-experimental/",
-    "/en/client-dashboard/",
     "/forum/",
     "/en/my-account/orders/",
     "/en/my-account/edit-account/"
    ],
    "devices": [
+    "Samsung A31",
     "компьютер",
-    "телефон",
-    "Samsung A31"
+    "телефон"
    ],
-   "shot": "shots/11_003.jpg",
+   "shot": "shots/18_011.jpg",
+   "isNew": false
+  },
+  {
+   "sev": "major",
+   "type": "kb-mob-covered",
+   "title": "Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/ (телефон)",
+    "Где: a.ssn-cart.add_to_cart_button «Add Time Goes Fast Documentary Piano to » ← закрывает div#ssp.ssp.is-open «Audio player»"
+   ],
+   "expected": "Сдвинуть плавающие элементы или добавить отступ снизу.",
+   "actual": "Почему важно: Нажимается не кнопка, а то, что её закрывает.",
+   "sig": "kb|kb-mob-covered|Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
+   "where": [
+    "/en/all-products/",
+    "/en/free-demo-feedback/"
+   ],
+   "devices": [
+    "телефон"
+   ],
+   "shot": "shots/10_012.jpg",
    "isNew": false
   },
   {
    "sev": "major",
    "type": "clickerr",
-   "title": "После нажатия «Services» — ошибка в коде",
+   "title": "После нажатия «Product 3» — ошибка в коде",
    "steps": [
-    "Открыть https://solid-sound.net/en/vendor-membership/",
-    "Нажать «Services»"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать «Product 3»"
    ],
    "expected": "Без ошибок",
-   "actual": "Invalid or unexpected token",
-   "sig": "clickerr|Invalid or unexpected token",
+   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
+   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
    "where": [
-    "/en/vendor-membership/",
-    "/en/vendor-register/",
-    "/en/forum/",
-    "/en/data-deletion/",
-    "/en/sitemap/"
+    "/en/all-products/"
    ],
    "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/13_005.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "clickerr",
-   "title": "После нажатия «Services» — ошибка в коде",
-   "steps": [
-    "Открыть https://solid-sound.net/en/legal-notice/",
-    "Нажать «Services»"
-   ],
-   "expected": "Без ошибок",
-   "actual": "Failed to execute 'appendChild' on 'Node': Invalid or unexpected token",
-   "sig": "clickerr|Failed to execute 'appendChild' on 'Node': Invalid or unexpected token",
-   "where": [
-    "/en/legal-notice/",
-    "/en/wiki/how-to-promote-yourself-as-a-dj/",
-    "/en/free/",
-    "/en/wiki/closed-back-headphones-for-recording/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_023.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Infinity» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Infinity»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Infinity",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_005.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Kratos» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Kratos»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Kratos",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_006.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "fit",
-   "title": "Слайдер на главной не помещается на экране (телефон)",
-   "steps": [
-    "Открыть главную на телефоне",
-    "Пролистать карточки слайдера точками"
-   ],
-   "expected": "Весь блок «What are you working on?» виден над нижней панелью",
-   "actual": "Уходит под нижнюю панель: карточка 1 на 772px, карточка 2 на 772px, карточка 3 на 772px, карточка 4 на 772px, карточка 5 на 772px, карточка 6 на 772px, карточка 7 на 772px",
-   "sig": "fit|phone",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
+    "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_009.jpg",
+   "shot": "shots/10_010.jpg",
    "isNew": true
   },
   {
@@ -207,8 +96,8 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/10_020.jpg",
-   "isNew": true
+   "shot": "shots/14_007.jpg",
+   "isNew": false
   },
   {
    "sev": "major",
@@ -227,8 +116,8 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_021.jpg",
-   "isNew": true
+   "shot": "shots/14_008.jpg",
+   "isNew": false
   },
   {
    "sev": "major",
@@ -247,104 +136,8 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/10_022.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "res",
-   "title": "Не загружается файл или ресурс на странице",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/"
-   ],
-   "expected": "Все файлы загружаются",
-   "actual": "503 /en/sell/",
-   "sig": "res|503 /en/sell/",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "res",
-   "title": "Не загружается файл или ресурс на странице",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/"
-   ],
-   "expected": "Все файлы загружаются",
-   "actual": "503 /en/shop/",
-   "sig": "res|503 /en/shop/",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "link404",
-   "title": "Битая ссылка: /en/shop/?currency=JPY (код 503)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/",
-    "Нажать ссылку на /en/shop/?currency=JPY"
-   ],
-   "expected": "Страница открывается",
-   "actual": "Ошибка 503. Ссылка есть на страницах: /en/shop/",
-   "sig": "link|/en/shop/?currency=JPY",
-   "where": [
-    "/en/shop/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "kb-mob-covered",
-   "title": "Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/free-demo-feedback/ (телефон)",
-    "Где: button «Get free feedback» ← закрывает a.gfree «Free»"
-   ],
-   "expected": "Сдвинуть плавающие элементы или добавить отступ снизу.",
-   "actual": "Почему важно: Нажимается не кнопка, а то, что её закрывает.",
-   "sig": "kb|kb-mob-covered|Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
-   "where": [
-    "/en/free-demo-feedback/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/15_010.jpg",
+   "shot": "shots/14_009.jpg",
    "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "fit",
-   "title": "Слайдер на главной не помещается на экране (Samsung A31)",
-   "steps": [
-    "Открыть главную на телефоне",
-    "Пролистать карточки слайдера точками"
-   ],
-   "expected": "Весь блок «What are you working on?» виден над нижней панелью",
-   "actual": "Уходит под нижнюю панель: карточка 1 на 705px, карточка 2 на 705px, карточка 3 на 705px, карточка 4 на 705px, карточка 5 на 705px, карточка 6 на 705px, карточка 7 на 705px",
-   "sig": "fit|a31",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "Samsung A31"
-   ],
-   "shot": "shots/18_007.jpg",
-   "isNew": true
   },
   {
    "sev": "minor",
@@ -352,7 +145,7 @@
    "title": "Скрипты в <head> без defer/async — тормозят показ страницы",
    "steps": [
     "Открыть https://solid-sound.net/en/ (компьютер)",
-    "Где: https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"
+    "Где: https://solid-sound.net/wp-content/plugins/solid-sound-custom/build/assets/js-l1023.d70a254c40.js; https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"
    ],
    "expected": "defer (правило проекта в CLAUDE.md).",
    "actual": "Почему важно: Браузер ждёт скачивания скрипта, страница белая.",
@@ -360,45 +153,34 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/contacts/",
-    "/en/presets/",
-    "/en/services-prices/",
-    "/en/legal-notice/",
-    "/en/wiki/how-to-promote-yourself-as-a-dj/",
-    "/en/privacy-policy/",
-    "/en/faq/",
-    "/en/services-calculator/",
-    "/en/sell/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/wiki/how-to-get-booked-as-a-dj/",
-    "/en/shop/",
-    "/en/mastering-album-calculator/",
-    "/en/creator-terms/",
-    "/en/wiki/audio-interface-for-vocals/",
-    "/en/cart/",
-    "/en/vendor-membership/",
     "/en/music/",
-    "/en/free/",
-    "/en/wiki/closed-back-headphones-for-recording/",
-    "/en/checkout/",
-    "/en/vendor-register/",
-    "/en/forum/",
     "/en/data-deletion/",
     "/en/sitemap/",
-    "/en/my-account/",
-    "/en/add-product/",
-    "/en/free-demo-feedback/",
+    "/en/privacy-policy/",
+    "/en/forum/",
     "/en/wiki/",
     "/en/refund_returns/",
-    "/en/links/",
-    "/en/forum-experimental/",
+    "/en/free-demo-feedback/",
     "/en/wiki/record-clean-vocals-at-home/",
-    "/en/client-dashboard/",
+    "/en/wiki/how-much-do-djs-get-paid/",
     "/en/license/",
-    "/en/templates/",
     "/en/prices/",
     "/en/terms/",
-    "/en/wiki/how-much-do-djs-get-paid/",
+    "/en/wiki/how-to-promote-yourself-as-a-dj/",
+    "/en/contacts/",
+    "/en/services-prices/",
+    "/en/legal-notice/",
+    "/en/wiki/how-to-get-booked-as-a-dj/",
+    "/en/faq/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/about/",
+    "/en/templates/",
+    "/en/creator-terms/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/presets/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/product/infinity/",
     "/forum/",
     "/ua/",
@@ -407,6 +189,7 @@
     "/pt/",
     "/es/",
     "/it/",
+    "/en/my-account/",
     "/en/my-account/orders/",
     "/en/my-account/edit-account/"
    ],
@@ -432,22 +215,16 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/contacts/",
-    "/en/services-calculator/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/shop/",
-    "/en/mastering-album-calculator/",
-    "/en/creator-terms/",
-    "/en/vendor-membership/",
-    "/en/wiki/closed-back-headphones-for-recording/",
-    "/en/vendor-register/",
-    "/en/forum/",
     "/en/sitemap/",
-    "/en/my-account/",
-    "/en/forum-experimental/",
+    "/en/forum/",
     "/en/wiki/record-clean-vocals-at-home/",
-    "/en/client-dashboard/",
+    "/en/contacts/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/about/",
     "/en/templates/",
+    "/en/creator-terms/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/product/infinity/",
     "/forum/",
     "/ua/",
@@ -455,13 +232,14 @@
     "/fr/",
     "/pt/",
     "/es/",
-    "/it/"
+    "/it/",
+    "/en/my-account/"
    ],
    "devices": [
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_007.jpg",
+   "shot": "shots/10_005.jpg",
    "isNew": false
   },
   {
@@ -478,24 +256,18 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/presets/",
-    "/en/sell/",
-    "/en/shop/",
-    "/en/vendor-membership/",
     "/en/music/",
-    "/en/vendor-register/",
-    "/en/my-account/",
     "/en/free-demo-feedback/",
-    "/en/links/",
-    "/en/forum-experimental/",
-    "/en/client-dashboard/",
+    "/en/sell/",
     "/en/templates/",
+    "/en/presets/",
     "/ua/",
     "/de/",
     "/fr/",
     "/pt/",
     "/es/",
     "/it/",
+    "/en/my-account/",
     "/en/my-account/edit-account/"
    ],
    "devices": [
@@ -519,10 +291,8 @@
    "sig": "kb|kb-mob-font|Слишком мелкий текст на телефоне (меньше 12 px)",
    "where": [
     "/en/",
-    "/en/vendor-membership/",
-    "/en/vendor-register/",
-    "/en/forum-experimental/",
     "/en/prices/",
+    "/en/sell/",
     "/ua/",
     "/de/",
     "/fr/",
@@ -534,7 +304,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_008.jpg",
+   "shot": "shots/10_006.jpg",
    "isNew": false
   },
   {
@@ -551,7 +321,6 @@
    "where": [
     "/en/",
     "/en/free-demo-feedback/",
-    "/en/forum-experimental/",
     "/ua/",
     "/de/",
     "/fr/",
@@ -580,16 +349,15 @@
    "sig": "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу",
    "where": [
     "/en/all-products/",
-    "/en/presets/",
-    "/en/shop/",
     "/en/music/",
-    "/en/templates/"
+    "/en/templates/",
+    "/en/presets/"
    ],
    "devices": [
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_018.jpg",
+   "shot": "shots/10_011.jpg",
    "isNew": false
   },
   {
@@ -605,8 +373,6 @@
    "sig": "kb|kb-link-empty|Ссылка-пустышка: href=\"#\" или пусто, ничего не происходит",
    "where": [
     "/en/forum/",
-    "/en/my-account/",
-    "/en/client-dashboard/",
     "/forum/"
    ],
    "devices": [
@@ -614,365 +380,8 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/14_008.jpg",
+   "shot": "shots/11_003.jpg",
    "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "kb-seo-desc",
-   "title": "Нет описания страницы (meta description)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/ (телефон)"
-   ],
-   "expected": "Описание 70–160 символов.",
-   "actual": "Описания нет. Почему важно: Google сам вырезает кусок текста — часто неудачный.",
-   "sig": "kb|kb-seo-desc|Нет описания страницы (meta description)",
-   "where": [
-    "/en/sell/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "телефон",
-    "компьютер"
-   ],
-   "shot": "shots/11_007.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "kb-seo-og",
-   "title": "Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/ (телефон)"
-   ],
-   "expected": "og:title + og:image 1200×630.",
-   "actual": "og:title: нет, og:image: нет. Почему важно: Ссылка в Telegram/Facebook/Instagram без картинки — по ней почти не кликают.",
-   "sig": "kb|kb-seo-og|Нет картинки/заголовка для превью в соцсетях (og:image, og:title)",
-   "where": [
-    "/en/sell/",
-    "/en/shop/"
-   ],
-   "devices": [
-    "телефон",
-    "компьютер"
-   ],
-   "shot": "shots/11_008.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "kb-perf-lcp-lazy",
-   "title": "Главная картинка первого экрана грузится «лениво» (loading=lazy)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/shop/ (телефон)",
-    "Где: xPitch_Title_PSD-200x200.jpg.pagespeed.ic.ahRYm-WLmX.webp"
-   ],
-   "expected": "Для первого экрана — без lazy, с fetchpriority=high.",
-   "actual": "Почему важно: Самая важная картинка появляется последней.",
-   "sig": "kb|kb-perf-lcp-lazy|Главная картинка первого экрана грузится «лениво» (loading=lazy)",
-   "where": [
-    "/en/shop/",
-    "/en/all-products/"
-   ],
-   "devices": [
-    "телефон",
-    "Samsung A31"
-   ],
-   "shot": "shots/12_012.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "kb-seo-h1",
-   "title": "Нет главного заголовка H1 или их несколько",
-   "steps": [
-    "Открыть https://solid-sound.net/en/add-product/ (компьютер)"
-   ],
-   "expected": "Ровно один видимый H1.",
-   "actual": "Видимых H1: 0. Почему важно: Google и экранные дикторы по H1 понимают, о чём страница.",
-   "sig": "kb|kb-seo-h1|Нет главного заголовка H1 или их несколько",
-   "where": [
-    "/en/add-product/",
-    "/en/links/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_006.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=EUR выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=EUR"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=EUR",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=AUD выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=AUD"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=AUD",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=CAD выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=CAD"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=CAD",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=DKK выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=DKK"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=DKK",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=HKD выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=HKD"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=HKD",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=INR выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=INR"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=INR",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=JPY выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=JPY"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=JPY",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=NZD выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=NZD"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=NZD",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=NOK выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=NOK"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=NOK",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=PLN выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=PLN"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=PLN",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=GBP выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=GBP"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=GBP",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=ZAR выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=ZAR"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=ZAR",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=SEK выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=SEK"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=SEK",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=CHF выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=CHF"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=CHF",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=UAH выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=UAH"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=UAH",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "link2home",
-   "title": "Ссылка /en/forum-experimental/?currency=USD выкидывает на главную",
-   "steps": [
-    "Нажать ссылку на /en/forum-experimental/?currency=USD"
-   ],
-   "expected": "Нужная страница",
-   "actual": "Перенаправляет на /en/",
-   "sig": "link2home|/en/forum-experimental/?currency=USD",
-   "where": [
-    "/en/forum-experimental/"
-   ],
-   "devices": [],
-   "shot": "",
-   "isNew": true
   },
   {
    "sev": "minor",
@@ -1107,50 +516,40 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/contacts/",
-    "/en/presets/",
-    "/en/services-prices/",
-    "/en/legal-notice/",
-    "/en/wiki/how-to-promote-yourself-as-a-dj/",
-    "/en/privacy-policy/",
-    "/en/faq/",
-    "/en/services-calculator/",
-    "/en/sell/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/wiki/how-to-get-booked-as-a-dj/",
-    "/en/shop/",
-    "/en/store-manager/",
-    "/en/mastering-album-calculator/",
-    "/en/creator-terms/",
-    "/en/wiki/audio-interface-for-vocals/",
-    "/en/cart/",
-    "/en/vendor-membership/",
     "/en/music/",
-    "/en/free/",
-    "/en/wiki/closed-back-headphones-for-recording/",
-    "/en/checkout/",
-    "/en/vendor-register/",
-    "/en/forum/",
     "/en/data-deletion/",
     "/en/sitemap/",
-    "/en/my-account/",
-    "/en/add-product/",
-    "/en/free-demo-feedback/",
+    "/en/privacy-policy/",
+    "/en/forum/",
     "/en/wiki/",
     "/en/refund_returns/",
-    "/en/links/",
-    "/en/forum-experimental/",
+    "/en/free-demo-feedback/",
     "/en/wiki/record-clean-vocals-at-home/",
-    "/en/client-dashboard/",
+    "/en/wiki/how-much-do-djs-get-paid/",
     "/en/license/",
-    "/en/templates/",
     "/en/prices/",
     "/en/terms/",
-    "/en/wiki/how-much-do-djs-get-paid/",
+    "/en/wiki/how-to-promote-yourself-as-a-dj/",
+    "/en/contacts/",
+    "/en/services-prices/",
+    "/en/legal-notice/",
+    "/en/wiki/how-to-get-booked-as-a-dj/",
+    "/en/faq/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
+    "/en/about/",
+    "/en/templates/",
+    "/en/creator-terms/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/presets/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/product/infinity/",
     "/forum/",
+    "/en/my-account/",
     "/en/my-account/orders/",
-    "/en/my-account/edit-account/"
+    "/en/my-account/edit-account/",
+    "/en/store-manager/"
    ],
    "devices": [
     "компьютер",
@@ -1172,10 +571,9 @@
    "sig": "circle|+",
    "where": [
     "/en/all-products/",
-    "/en/presets/",
-    "/en/shop/",
     "/en/music/",
     "/en/templates/",
+    "/en/presets/",
     "/product/infinity/"
    ],
    "devices": [
@@ -1183,7 +581,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_012.jpg",
+   "shot": "shots/10_007.jpg",
    "isNew": false
   },
   {
@@ -1194,42 +592,39 @@
     "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
    "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3652. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3134. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3090. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "actual": "Элементов: 3736. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
    "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
-    "/en/services-prices/",
-    "/en/shop/"
+    "/en/services-prices/"
    ],
    "devices": [
     "компьютер",
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_015.jpg",
-   "isNew": false,
-   "more": 2
+   "shot": "shots/10_009.jpg",
+   "isNew": false
   },
   {
    "sev": "check",
-   "type": "style-odd",
-   "title": "Кнопка «Video» скруглена не так, как остальные",
+   "type": "style-circle",
+   "title": "Круглая кнопка-значок «Watch video» — нужна ли квадратная со скруглёнными углами?",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/"
+    "Открыть https://solid-sound.net/en/templates/"
    ],
-   "expected": "Скругление углов 8–12px",
-   "actual": "Радиус 0px",
-   "sig": "odd|Video",
+   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
+   "actual": "Круг (радиус 50px, размер 30px)",
+   "sig": "circle|Watch video",
    "where": [
-    "/en/all-products/",
-    "/en/shop/"
+    "/en/templates/",
+    "/en/presets/"
    ],
    "devices": [
     "компьютер",
-    "телефон",
-    "Samsung A31"
+    "телефон"
    ],
-   "shot": "shots/10_013.jpg",
+   "shot": "shots/16_002.jpg",
    "isNew": false
   },
   {
@@ -1243,116 +638,15 @@
    "actual": "Радиус 0px",
    "sig": "odd|Watch video",
    "where": [
-    "/en/all-products/",
-    "/en/shop/"
+    "/en/all-products/"
    ],
    "devices": [
     "компьютер",
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_014.jpg",
+   "shot": "shots/10_008.jpg",
    "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "style-circle",
-   "title": "Круглая кнопка-значок «Watch video» — нужна ли квадратная со скруглёнными углами?",
-   "steps": [
-    "Открыть https://solid-sound.net/en/presets/"
-   ],
-   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
-   "actual": "Круг (радиус 50px, размер 30px)",
-   "sig": "circle|Watch video",
-   "where": [
-    "/en/presets/",
-    "/en/templates/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/10_019.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "style-circle",
-   "title": "Круглая кнопка-значок «Previous» — нужна ли квадратная со скруглёнными углами?",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/"
-   ],
-   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
-   "actual": "Круг (радиус 50px, размер 46px)",
-   "sig": "circle|Previous",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_010.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "style-circle",
-   "title": "Круглая кнопка-значок «Next» — нужна ли квадратная со скруглёнными углами?",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/"
-   ],
-   "expected": "Квадратная кнопка со скруглёнными углами 8–12px",
-   "actual": "Круг (радиус 50px, размер 46px)",
-   "sig": "circle|Next",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_011.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "check",
-   "type": "dead",
-   "title": "Кнопка «Previous» ничего не делает",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Previous»"
-   ],
-   "expected": "Что-то открывается/меняется",
-   "actual": "Ничего не происходит",
-   "sig": "dead|/en/all-products/|Previous",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_016.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "check",
-   "type": "dead",
-   "title": "Кнопка «Video» ничего не делает",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Video»"
-   ],
-   "expected": "Что-то открывается/меняется",
-   "actual": "Ничего не происходит",
-   "sig": "dead|/en/all-products/|Video",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/10_017.jpg",
-   "isNew": true
   },
   {
    "sev": "check",
@@ -1370,7 +664,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/15_007.jpg",
+   "shot": "shots/12_003.jpg",
    "isNew": false
   },
   {
@@ -1389,8 +683,48 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/15_008.jpg",
+   "shot": "shots/12_004.jpg",
    "isNew": false
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Marco L.» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 18px",
+   "sig": "odd|Marco L.",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/14_004.jpg",
+   "isNew": true
+  },
+  {
+   "sev": "check",
+   "type": "style-odd",
+   "title": "Кнопка «Hector M.» скруглена не так, как остальные",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/"
+   ],
+   "expected": "Скругление углов 8–12px",
+   "actual": "Радиус 18px",
+   "sig": "odd|Hector M.",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/14_005.jpg",
+   "isNew": true
   },
   {
    "sev": "check",
@@ -1409,7 +743,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_016.jpg",
+   "shot": "shots/18_013.jpg",
    "isNew": false
   },
   {
@@ -1429,7 +763,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_017.jpg",
+   "shot": "shots/18_014.jpg",
    "isNew": false
   },
   {
@@ -1449,7 +783,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_018.jpg",
+   "shot": "shots/18_015.jpg",
    "isNew": false
   },
   {
@@ -1469,7 +803,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_019.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1489,7 +823,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_020.jpg",
+   "shot": "shots/18_017.jpg",
    "isNew": false
   },
   {
@@ -1509,7 +843,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/18_021.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1534,5 +868,5 @@
   }
  ],
  "notChecked": [],
- "l10nSkipped": 48
+ "l10nSkipped": 44
 }
