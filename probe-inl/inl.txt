@@ -1,0 +1,289 @@
+==== /en/faq/ 200 157060
+<script id="ss-ga4">
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+(function(){var ok=/(?:^|;\s*)ss_consent=yes/.test(document.cookie);
+gtag('consent','default',{analytics_storage:ok?'granted':'denied',ad_storage:ok?'granted':'denied',ad_user_data:ok?'granted':'denied',ad_personalization:ok?'granted':'denied',wait_for_update:500});
+var ID="G-4J1F7EGCCW",CUR="EUR",VI=null;
+if(ID){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);gtag('js',new Date());gtag('config',ID);if(VI)gtag('event','view_item',{currency:CUR,value:VI.price,items:[VI]})}
+function ev(n,p){try{if(ID)gtag('event',n,p||{})}catch(e){}}
+function px(n,p,c){try{if(window.fbq)fbq(c?'trackCustom':'track',n,p||{})}catch(e){}}
+window.ssTrack=ev;
+/* consent banner click → update */
+document.addEventListener('click'
+----
+<script id="facebook-signal-js-extra">
+var facebookSignalConfig = {"cookieName":"wc_facebook_signals_state","ajaxUrl":"https://solid-sound.net/wp-admin/admin-ajax.php","signalsAction":"fbpix_set_pixel_signals","signalsNonce":"b4c5555c35"};
+//# sourceURL=facebook-signal-js-extra
+</script>
+----
+<script id="facebook-signal-js" src="https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"></script>
+----
+<script type='text/javascript'>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+</script>
+----
+<script type='text/javascript'>
+    fbq('track', 'PageView', []);
+  </script>
+----
+<script type="text/javascript" src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
+----
+<script type="text/javascript">
+  window.Brevo = window.Brevo || [];
+  window.Brevo.push(['init', {"client_key":"jimlbi17ti9he469i4jq30hm","email_id":null,"push":{"customDomain":"https:\/\/solid-sound.net\/wp-content\/plugins\/mailin\/"},"service_worker_url":"sw.js?key=${key}","frame_url":"brevo-frame.html"}]);
+</script>
+----
+<script type="text/javascript">
+				window.__wc_fb_page_generated = 1795340981;
+				!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+					n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+					document,'script','https://connect.facebook.net/en_US/fbevents.js');
+			</script>
+----
+<script type="text/javascript">
+
+				window.FacebookSignals = window.FacebookSignals || {
+	_held: false,
+	_releasing: false,
+	_pixelInitialized: false,
+	_pixelId: null,
+	_pixelUserInfo: {},
+	_pixelOptions: {},
+	_pendingPixelEvents: [],
+	_queue: [],
+	_config: {},
+	_attribution: {},
+	_seenEventIds: {},
+	_fbclid: (function() {
+		try {
+			var m = window.location.search.match(/[?&]fbclid=([^&]*)/);
+			return m ? decodeURIComponent(m[1]) : null;
+		} catch(e) { return null; }
+	})(),
+
+	init: function(config) {
+		config = config || {};
+		this._config = config;
+		this._attribution = config.attribution || {};
+
+		var cookieState = this._getCookie('wc_facebook_signals_state');
+		this._held = cookieState ? cookieState === 'held' : !!config.held;
+
+		this._fbclid = this._fbclid || null;
+
+		if (typeof fbq === 'function') {
+			fbq('consent', this._held ? 'revoke' : 'grant');
+		}
+
+		try {
+			var raw = wind
+----
+<noscript><style>.wpb_animate_when_almost_visible{opacity:1}</style></noscript>
+----
+<script id="wc-facebook-signals-js-extra">
+var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/admin-ajax.php","nonce":"8fc448d0c2","action":"wc_facebook_update_signals_state"};
+//# sourceURL=wc-facebook-signals-js-extra
+</script>
+----
+<script id="wc-facebook-signals-js" src="https://solid-sound.net/wp-content/plugins/facebook-for-woocommerce/assets/js/facebook-for-woocommerce-signals.js,qver=3.7.8.pagespeed.ce.yyxmeBxtJY.js"></script>
+----
+<script src="https://solid-sound.net/wp-content/plugins/woocommerce,_assets,_js,_frontend,_order-attribution.min.js,qver==11.2.1+facebook-for-woocommerce,_assets,_js,_frontend,_pixel-events.js,qver==3.7.8.pagespeed.jc.5dcTug-WrY.js"></script>
+----
+<script id="facebook-capi-param-builder-js-after">
+(function() {
+					var processParams = function() {
+						if (typeof clientParamBuilder !== "undefined" && !/(?:^|;\s*)wc_facebook_signals_state=held(?:;|$)/.test(document.cookie)) {
+							clientParamBuilder.processAndCollectAllParams(window.location.href);
+						}
+					};
+					if (typeof clientParamBuilder !== "undefined") {
+						processParams();
+						return;
+					}
+					var fallbackScript = document.createElement("script");
+					fallbackScript.src = "https:\/\/unpkg.com\/meta-capi-param-builder-clientjs@1.3.2\/dist\/clientParamBuilder.bundle.js";
+					fallbackScript.onload = processParams;
+					document.head.appendChild(fallbackScript);
+				}());
+//# sourceURL=facebook-capi-param-builder-js-after
+</script>
+----
+<script id="facebook-for-woocommerce-inline-js-after">
+/* WooCommerce Facebook Integration Event Tracking */
+fbq('set', 'agent', (function(){var a='woocommerce_0-11.2.1-3.7.8';if(window.__wc_fb_page_generated&&(Math.floor(Date.now()/1000)-window.__wc_fb_page_generated)>1800){a=a.replace(/(\d+\.\d+\.\d+)/,'$1_c');}return a;})(), '344368324189550');
+window.wcFacebookPixelFiredEvents = window.wcFacebookPixelFiredEvents || {};
+if (!window.wcFacebookPixelFiredEvents["31f0b199-39df-48fb-8f6c-84b5325260e5"]) {
+window.wcFacebookPixelFiredEvents["31f0b199-39df-48fb-8f6c-84b5325260e5"] = true;
+var isStale = window.__wc_fb_page_generated && (Math.floor(Date.now()/1000) - window.__wc_fb_page_generated) > 1800;
+if (window.FacebookSignals && typeof window.FacebookSignals.trackEvent === 'function') {
+	window.FacebookSignals.trackEvent('PageView', {
+    "source": "woocommerce_0",
+    "version": "11.2.1"
+----
+<script id="ss-ld-js">(function(){var A=null,pid=null,max=0,dur=0,sent=true,url="https:\/\/solid-sound.net\/wp-admin\/admin-ajax.php?action=ss_ld";
+function send(){if(sent||!pid||!dur||max<2)return;sent=true;var p=Math.max(0,Math.min(100,Math.round(max/dur*100)));var d=new FormData();d.append('pid',pid);d.append('p',p);d.append('d',Math.round(dur));try{navigator.sendBeacon(url,d)}catch(e){}}
+function hook(){var S=window.ssPlayer;if(!S||!S.audio)return false;A=S.audio;
+ A.addEventListener('play',function(){var id=S.pid();if(id!==pid){send();pid=id;max=A.currentTime||0;sent=false}});
+ A.addEventListener('timeupdate',function(){if(A.duration&&isFinite(A.duration))dur=A.duration;if(A.currentTime>max)max=A.currentTime});
+ A.addEventListener('ended',function(){max=dur||max;send()});
+ window.addEventListener('pagehide',send);document.addEventListener('visibilitychange',function(){if(document.vi
+----
+==== /product/infinity/ 200 217929
+<script id="ss-ga4">
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+(function(){var ok=/(?:^|;\s*)ss_consent=yes/.test(document.cookie);
+gtag('consent','default',{analytics_storage:ok?'granted':'denied',ad_storage:ok?'granted':'denied',ad_user_data:ok?'granted':'denied',ad_personalization:ok?'granted':'denied',wait_for_update:500});
+var ID="G-4J1F7EGCCW",CUR="EUR",VI={"item_id":"338","item_name":"Infinity","price":12};
+if(ID){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);gtag('js',new Date());gtag('config',ID);if(VI)gtag('event','view_item',{currency:CUR,value:VI.price,items:[VI]})}
+function ev(n,p){try{if(ID)gtag('event',n,p||{})}catch(e){}}
+function px(n,p,c){try{if(window.fbq)fbq(c?'trackCustom':'track',n,p||{})}catch(e){}}
+window.ssTrack=ev;
+/* consent banner clic
+----
+<script id="facebook-signal-js-extra">
+var facebookSignalConfig = {"cookieName":"wc_facebook_signals_state","ajaxUrl":"https://solid-sound.net/wp-admin/admin-ajax.php","signalsAction":"fbpix_set_pixel_signals","signalsNonce":"b4c5555c35"};
+//# sourceURL=facebook-signal-js-extra
+</script>
+----
+<script id="facebook-signal-js" src="https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"></script>
+----
+<script type='text/javascript'>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+</script>
+----
+<script type='text/javascript'>
+    fbq('track', 'PageView', []);
+  </script>
+----
+<script type="text/javascript" src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
+----
+<script type="text/javascript">
+  window.Brevo = window.Brevo || [];
+  window.Brevo.push(['init', {"client_key":"jimlbi17ti9he469i4jq30hm","email_id":null,"push":{"customDomain":"https:\/\/solid-sound.net\/wp-content\/plugins\/mailin\/"},"service_worker_url":"sw.js?key=${key}","frame_url":"brevo-frame.html"}]);
+</script>
+----
+<script type="text/javascript">
+				window.__wc_fb_page_generated = 1795340984;
+				!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+					n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+					document,'script','https://connect.facebook.net/en_US/fbevents.js');
+			</script>
+----
+<script type="text/javascript">
+
+				window.FacebookSignals = window.FacebookSignals || {
+	_held: false,
+	_releasing: false,
+	_pixelInitialized: false,
+	_pixelId: null,
+	_pixelUserInfo: {},
+	_pixelOptions: {},
+	_pendingPixelEvents: [],
+	_queue: [],
+	_config: {},
+	_attribution: {},
+	_seenEventIds: {},
+	_fbclid: (function() {
+		try {
+			var m = window.location.search.match(/[?&]fbclid=([^&]*)/);
+			return m ? decodeURIComponent(m[1]) : null;
+		} catch(e) { return null; }
+	})(),
+
+	init: function(config) {
+		config = config || {};
+		this._config = config;
+		this._attribution = config.attribution || {};
+
+		var cookieState = this._getCookie('wc_facebook_signals_state');
+		this._held = cookieState ? cookieState === 'held' : !!config.held;
+
+		this._fbclid = this._fbclid || null;
+
+		if (typeof fbq === 'function') {
+			fbq('consent', this._held ? 'revoke' : 'grant');
+		}
+
+		try {
+			var raw = wind
+----
+<noscript><style>.wpb_animate_when_almost_visible{opacity:1}</style></noscript>
+----
+<script id="wc-facebook-signals-js-extra">
+var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/admin-ajax.php","nonce":"8fc448d0c2","action":"wc_facebook_update_signals_state"};
+//# sourceURL=wc-facebook-signals-js-extra
+</script>
+----
+<script id="wc-facebook-signals-js" src="https://solid-sound.net/wp-content/plugins/facebook-for-woocommerce/assets/js/facebook-for-woocommerce-signals.js,qver=3.7.8.pagespeed.ce.yyxmeBxtJY.js"></script>
+----
+<script src="https://solid-sound.net/wp-content/plugins/woocommerce,_assets,_js,_frontend,_order-attribution.min.js,qver==11.2.1+facebook-for-woocommerce,_assets,_js,_frontend,_pixel-events.js,qver==3.7.8.pagespeed.jc.5dcTug-WrY.js"></script>
+----
+<script id="facebook-capi-param-builder-js-after">
+(function() {
+					var processParams = function() {
+						if (typeof clientParamBuilder !== "undefined" && !/(?:^|;\s*)wc_facebook_signals_state=held(?:;|$)/.test(document.cookie)) {
+							clientParamBuilder.processAndCollectAllParams(window.location.href);
+						}
+					};
+					if (typeof clientParamBuilder !== "undefined") {
+						processParams();
+						return;
+					}
+					var fallbackScript = document.createElement("script");
+					fallbackScript.src = "https:\/\/unpkg.com\/meta-capi-param-builder-clientjs@1.3.2\/dist\/clientParamBuilder.bundle.js";
+					fallbackScript.onload = processParams;
+					document.head.appendChild(fallbackScript);
+				}());
+//# sourceURL=facebook-capi-param-builder-js-after
+</script>
+----
+<script id="facebook-for-woocommerce-inline-js-after">
+/* WooCommerce Facebook Integration Event Tracking */
+fbq('set', 'agent', (function(){var a='woocommerce_0-11.2.1-3.7.8';if(window.__wc_fb_page_generated&&(Math.floor(Date.now()/1000)-window.__wc_fb_page_generated)>1800){a=a.replace(/(\d+\.\d+\.\d+)/,'$1_c');}return a;})(), '344368324189550');
+window.wcFacebookPixelFiredEvents = window.wcFacebookPixelFiredEvents || {};
+if (!window.wcFacebookPixelFiredEvents["60f573e8-e2b1-4121-a9d0-b5d8fc472726"]) {
+window.wcFacebookPixelFiredEvents["60f573e8-e2b1-4121-a9d0-b5d8fc472726"] = true;
+var isStale = window.__wc_fb_page_generated && (Math.floor(Date.now()/1000) - window.__wc_fb_page_generated) > 1800;
+if (window.FacebookSignals && typeof window.FacebookSignals.trackEvent === 'function') {
+	window.FacebookSignals.trackEvent('PageView', {
+    "source": "woocommerce_0",
+    "version": "11.2.1"
+----
+<script>(function(){var A="https:\/\/solid-sound.net\/wp-admin\/admin-ajax.php";
+function mount(){var t=document.getElementById('ss-kd-tpl');if(!t||document.querySelector('.ss-kd'))return;var at=document.querySelector('.ss-desc3')||document.querySelector('form.cart');if(!at)return;var n=t.content.firstElementChild.cloneNode(true);at.parentNode.insertBefore(n,at.nextSibling);wire(n)}
+function send(box,t,m){var f=new FormData();f.append('action','ss_kd_give');f.append('p',box.dataset.p);f.append('t',t);if(m)f.append('m',m);return fetch(A,{method:'POST',body:f,credentials:'same-origin'}).then(function(r){return r.json()})}
+function wire(box){var ok=box.querySelector('.ok'),mb=box.querySelector('.m'),last='';
+ box.addEventListener('click',function(e){var b=e.target.closest('.ss-kd-b');if(b){last=b.dataset.t;if(!b.classList.contains('on'))b.classList.add('on');send(box,last).then(function(j){
+----
+<script>(function(){
+var CART='<svg class="ss-cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>';
+var IMG="https:\/\/solid-sound.net\/wp-content\/uploads\/Infinity_Logo_JPG-150x150.jpg";
+function icon(b){if(!b||b.querySelector('.ss-cic'))return;b.insertAdjacentHTML('afterbegin',CART)}
+function init(){
+  var btn=document.querySelector('form.cart .single_add_to_cart_button');if(!btn)return false;
+  icon(btn);
+  var t=(document.querySelector('.product_title,h1')||{}).textContent||'';
+  var pr=document.querySelector('.summary .price, .ss-buyrow .price');
+  var bar=document.createElement('div');bar.className='ss-sb';bar.setAttribute('aria-hidden','true');
+  bar.innerHTML=(IMG?'<img src="'+IMG+'" alt="" width="44" height="44">':'')+'<span class="ss-sb-t"><b></b><s
+----
+<script id="ss-ld-js">(function(){var A=null,pid=null,max=0,dur=0,sent=true,url="https:\/\/solid-sound.net\/wp-admin\/admin-ajax.php?action=ss_ld";
+function send(){if(sent||!pid||!dur||max<2)return;sent=true;var p=Math.max(0,Math.min(100,Math.round(max/dur*100)));var d=new FormData();d.append('pid',pid);d.append('p',p);d.append('d',Math.round(dur));try{navigator.sendBeacon(url,d)}catch(e){}}
+function hook(){var S=window.ssPlayer;if(!S||!S.audio)return false;A=S.audio;
+ A.addEventListener('play',function(){var id=S.pid();if(id!==pid){send();pid=id;max=A.currentTime||0;sent=false}});
+ A.addEventListener('timeupdate',function(){if(A.duration&&isFinite(A.duration))dur=A.duration;if(A.currentTime>max)max=A.currentTime});
+ A.addEventListener('ended',function(){max=dur||max;send()});
+ window.addEventListener('pagehide',send);document.addEventListener('visibilitychange',function(){if(document.vi
+----
