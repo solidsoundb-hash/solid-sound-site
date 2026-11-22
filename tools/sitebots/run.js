@@ -22,6 +22,8 @@ const BOTS = {
   }],
 };
 (async () => {
+  /* smoke (22.11 team rule: a new robot first runs small): 1–5 pages per robot, a few minutes */
+  if (process.env.SITEBOTS_SMOKE === '1') { process.env.SEO_MAX = process.env.SEO_MAX || '5'; }
   fs.mkdirSync(path.join(OUT, 'history'), { recursive: true });
   const want = (process.env.SITEBOTS || 'all').split(/[\s,]+/).filter(Boolean); const names = want.includes('all') ? Object.keys(BOTS) : want.filter(n => BOTS[n]);
   const res = [];
