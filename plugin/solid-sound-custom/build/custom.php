@@ -561,7 +561,8 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 	/* key pages: slug => [title, description] */
 	function ss_seo_pages() {
 		return array(
-			'__front' => array( 'Ableton Templates, Presets & Mixing/Mastering | Solid Sound', 'Royalty-free Ableton Live templates, Serum presets and music for video. Learn by reverse engineering pro tracks or order online mixing & mastering.' ),
+			/* 21.11 owner «поработать над SEO-выдачей»: brand first (we compete with «Solid Sound Ann Arbor» on our own name), what we are, a price */
+			'__front' => array( 'Solid Sound — Ableton Templates, Serum Presets & Mixing Studio', 'Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.' ),
 			'templates' => array( 'Ableton Live Templates – Royalty-Free | Solid Sound', 'Royalty-free Ableton Live templates in techno and tech house. Fully mixed and mastered projects with native plugins – learn, remix and release.' ),
 			'presets' => array( 'Serum Presets & Sound Packs | Solid Sound', 'Serum presets for melodic techno and more. Ready-to-use sounds by Solid Sound – instant download, royalty-free.' ),
 			'music' => array( 'Royalty-Free Music for Video & Business | Solid Sound', 'Royalty-free music for videos, documentaries and business projects. Cinematic piano and more – instant download with a clear license.' ),
@@ -574,6 +575,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
 			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
+			'about' => array( 'About Solid Sound — Online Mixing Studio & Ableton Templates', 'Solid Sound is an online music production studio and marketplace since 2018: mixing, mastering, remix and custom production, plus royalty-free Ableton templates and Serum presets.' ),
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
 			'refund_returns' => array( 'Refund Policy for Digital Products | Solid Sound', 'Refund rules for Solid Sound digital downloads: Ableton templates, Serum presets and royalty-free music. When and how you can request a refund.' ),
@@ -652,7 +654,12 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 					'@type' => 'Organization',
 					'@id' => $home . '#organization',
 					'name' => 'Solid Sound',
+					'alternateName' => array( 'Solid Sound Studio', 'solid-sound.net' ),
+					'description' => 'Online music production studio and marketplace: mixing, mastering, remix and custom production for electronic music, plus royalty-free Ableton Live templates, Serum presets and music for video.',
 					'url' => $home,
+					'foundingDate' => '2018',
+					'areaServed' => 'Worldwide',
+					'knowsAbout' => array( 'Mixing', 'Mastering', 'Ableton Live', 'Techno', 'Melodic techno', 'Sound design', 'Music production' ),
 					'logo' => $logo ? $logo : null,
 					'sameAs' => array(
 						'https://www.instagram.com/solid.sound.studio',
@@ -665,6 +672,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 					'@type' => 'WebSite',
 					'@id' => $home . '#website',
 					'name' => 'Solid Sound',
+					'alternateName' => array( 'Solid Sound Studio', 'solid-sound.net' ),
 					'url' => $home,
 					'publisher' => array( '@id' => $home . '#organization' ),
 					'potentialAction' => array(
@@ -1012,12 +1020,8 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 	function ss_consent_head() {
 		if ( is_admin() ) return;
 		?>
-<script>
-/* Load Meta Pixel base first, then revoke consent until the visitor accepts. Plugin snippets reuse this fbq. */
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c!=='yes')fbq('consent','revoke');})();
-</script>
-<?php ss_asset('css-l1015'); ?>
+<?php ss_asset('js-l1023'); ?>
+<?php ss_asset('css-l1023'); ?>
 		<?php
 	}
 	add_action( 'wp_head', 'ss_consent_head', -1000 );
@@ -1031,7 +1035,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 <p>We use essential cookies to run this site (cart, login, checkout). With your permission we also use marketing cookies (Meta Pixel) to measure and improve our ads.<?php if ( $pp ) : ?> <a href="<?php echo esc_url( $pp ); ?>">Privacy Policy</a><?php endif; ?></p>
 <div class="ss-cc-row"><button type="button" class="ss-cc-no">Reject non-essential</button><button type="button" class="ss-cc-yes">Accept all</button></div>
 </div>
-<?php ss_asset('js-l1044'); ?>
+<?php ss_asset('js-l1055'); ?>
 		<?php
 	}
 	add_action( 'wp_footer', 'ss_consent_footer', 5 );
@@ -1291,7 +1295,7 @@ function ss_sell_page() {
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1486'); ?>
+<?php ss_asset('css-l1497'); ?>
 
 <section class="sssell-hero">
 	<div>
@@ -1696,7 +1700,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 /* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
-<?php ss_asset('js-l2175'); ?>
+<?php ss_asset('js-l2186'); ?>
 <?php }, 40 );
 
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */
@@ -1733,7 +1737,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2212'); ?>
+<?php ss_asset('js-l2223'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3851,7 +3855,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4702'); ?>
+<?php ss_asset('js-l4713'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4532,7 +4536,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5777'); ?>
+<?php ss_asset('css-l5788'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5111,7 +5115,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6390'); ?>
+<?php ss_asset('css-l6401'); ?>
 		<?php
 		return ob_get_clean();
 	}
@@ -5584,6 +5588,8 @@ add_action( 'wp_head', function () {
 	echo '<script>window.ssRole=' . wp_json_encode( $role ) . ';window.ssLogout=' . wp_json_encode( $out ) . ';</script>';
 }, 1 );
 require_once __DIR__ . '/modules/new-slider.php';
+require_once __DIR__ . '/modules/push.php';
+require_once __DIR__ . '/modules/mini-cart.php';
 require_once __DIR__ . '/modules/all-products.php';
 require_once __DIR__ . '/modules/ranking.php';
 require_once __DIR__ . '/modules/social-login.php';

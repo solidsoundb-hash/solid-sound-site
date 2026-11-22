@@ -356,3 +356,18 @@
 2026-11-21T22:36:27Z all products: What's new slider (one product per slide)
 2026-11-21T22:40:23Z all products slider: no old dates, clean 2-3 line description
 2026-11-21T22:45:34Z slider: video in cover, outline play; global: no stray price-strike line
+2026-11-21T22:51:45Z SEO: brand-first home title, Organization/WebSite extended, breadcrumbs, service prices, About page
+2026-11-21T22:53:28Z web push: forum replies, self-hosted
+2026-11-21T22:57:34Z seo: no duplicate breadcrumbs on products
+2026-11-21T22:59:50Z All products, What's new: видео в обложке целиком (16:9 на чёрном), кнопка ▶ без квадрата (владелец)
+2026-11-21T23:03:39Z What's new: ▶ крупнее (28 px, как на примере владельца)
+2026-11-21T23:13:48Z What's new: полные характеристики, как на странице товара (владелец)
+2026-11-21T23:17:00Z What's new: у пресетов один пункт Plugins с версией (без повтора Synth)
+2026-11-21T23:22:08Z mini cart on hover
+2026-11-21T23:23:35Z slider footer: heart, i, cart with price
+2026-11-21T23:25:32Z favorites panel (ajax), main currencies first
+2026-11-21T23:26:41Z slider: old price before the cart button
+2026-11-21T23:29:21Z favorites: click keeps the hover panel open
+2026-11-21T23:30:17Z GDPR: скрипт Meta Pixel грузится только после «Accept all» (после Reject в Meta ничего не уходит)
+2026-11-21T23:33:45Z slider: thin pause, prices without .00; panels close faster
+2026-11-21T23:34:56Z mini cart/favorites open instantly (prefetch)

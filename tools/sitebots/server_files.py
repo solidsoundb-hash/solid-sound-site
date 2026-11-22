@@ -7,7 +7,7 @@
 - uploads not known to the WordPress media library (no attachment with that name) = candidates for cleanup.
 Needs the FTP secrets (FTP_HOST/USER/PASS). Output: Markdown to stdout, metrics to <SITEBOTS_OUT>/.files-metrics.json.
 """
-import ftplib, json, os, posixpath, re, sys, time, urllib.request
+import ftplib, json, os, posixpath, re, sys, time, urllib.error, urllib.parse, urllib.request
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from ftp_sync import connect  # noqa: E402
@@ -106,6 +106,26 @@ for e in files:
     years[m.group(1) if m else ''] = years.get(m.group(1) if m else '', 0) + (e[1] if m else 0)
 
 risky = [e for e in files if RISKY.search(posixpath.basename(e[0])) and e[0].startswith(WWW + '/') and '/node_modules/' not in e[0] and not posixpath.basename(e[0]).startswith('.ht')]
+def web_open(path):
+    """HEAD the public address of a file under www: True = anyone can download it."""
+    for _ in range(3):
+        try:
+            req = urllib.request.Request('https://solid-sound.net' + urllib.parse.quote(path), method='HEAD', headers={'User-Agent': UA})
+            return urllib.request.urlopen(req, timeout=30).status == 200
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                time.sleep(20); continue
+            return False
+        except Exception:
+            return False
+    return False
+
+
+open_risky, closed_risky = [], []
+for e in sorted(risky, key=lambda e: -e[1])[:60]:
+    (open_risky if web_open(e[0][len(WWW):]) else closed_risky).append(e)
+    time.sleep(1.5)
+risky = open_risky
 ht_copies = [e for e in files if posixpath.basename(e[0]).startswith('.ht') and RISKY.search(posixpath.basename(e[0]))]
 backups = [e for e in entries if e[2] and BACKUP_DIRS.match(posixpath.basename(e[0]))]
 big = sorted(files, key=lambda e: -e[1])[:15]
@@ -140,6 +160,8 @@ if api_ok and known:
             orphans.append(e)
 orphans.sort(key=lambda e: -e[1])
 
+HIDE = re.compile(r'-[0-9a-f]{20,}(?=\.\w+$)')  # random parts of names (logs, private files) protect them — never print them in the public repo
+show = lambda p: HIDE.sub('-«скрыто»', p)
 out = ['## 🗄 Сервер: что лежит на хостинге и не нужно', '',
        f'Файлов: **{len(files)}**, всего **{mb(total)}**' + (' (обход остановлен на лимите — показано не всё)' if len(entries) > MAX_ENTRIES or stopped else '') + '. Робот только смотрит, ничего не удаляет.', '',
        '| Папка | Размер |', '|---|---|']
@@ -148,18 +170,20 @@ for k, v in sorted(folders.items(), key=lambda kv: -kv[1])[:14]:
 out += ([f'⚠️ Не удалось прочитать папок: {len(errors)} (например `{errors[0]}`) — размеры могут быть занижены.'] if errors else []) + ['', 'Загрузки по годам: ' + ', '.join(f'{y} — {mb(v)}' for y, v in sorted(years.items()) if y), '']
 if risky:
     out += [f'### 🔴 Опасные файлы, доступные из интернета ({len(risky)})', 'Копии базы, архивы, логи, копии wp-config — их может скачать кто угодно. Удалить или перенести выше папки www.', '']
-    out += [f'- `{e[0][len(WWW):]}` — {mb(e[1])}' for e in sorted(risky, key=lambda e: -e[1])[:30]] + ['']
+    out += [f'- `{show(e[0][len(WWW):])}` — {mb(e[1])}' for e in sorted(risky, key=lambda e: -e[1])[:30]] + ['']
+if closed_risky:
+    out += [f'### ⚪ Логи и архивы закрыты от интернета ({len(closed_risky)}): сервер отвечает 403 — опасности нет, место занимают ({mb(sum(e[1] for e in closed_risky))})', '']
 if ht_copies:
     out += ['### 🟡 Копии .htaccess (сервер обычно не отдаёт .ht*, но лучше убрать)'] + [f'- `{e[0][len(ROOT):]}`' for e in ht_copies] + ['']
 if backups:
     out += [f'### 🟠 Папки старых копий ({len(backups)})'] + [f'- `{e[0]}` — {mb(size_under(e[0]))}' for e in backups] + ['']
-out += ['### Самые большие файлы', '| Файл | Размер |', '|---|---|'] + [f'| `{e[0]}` | {mb(e[1])} |' for e in big] + ['']
+out += ['### Самые большие файлы', '| Файл | Размер |', '|---|---|'] + [f'| `{show(e[0])}` | {mb(e[1])} |' for e in big] + ['']
 if not api_ok:
     out += ['⏸ Медиатека не ответила — сравнение загрузок с медиатекой пропущено.', '']
 elif orphans:
     out += [f'### 🟡 Загрузки, которых нет в медиатеке ({len(orphans)} файлов, {mb(sum(e[1] for e in orphans))})',
             'Кандидаты на удаление: файл лежит в uploads, но в медиатеке WordPress такого нет. Перед удалением — проверить поиском по сайту.', '']
-    out += [f'- `{e[0][len(WWW + "/wp-content/uploads/"):]}` — {mb(e[1])}' for e in orphans[:40]] + ([f'- … и ещё {len(orphans) - 40}'] if len(orphans) > 40 else []) + ['']
+    out += [f'- `{show(e[0][len(WWW + "/wp-content/uploads/"):])}` — {mb(e[1])}' for e in orphans[:40]] + ([f'- … и ещё {len(orphans) - 40}'] if len(orphans) > 40 else []) + ['']
 print('\n'.join(out))
 _m = ({'srv_total_mb': round(total / 1048576), 'srv_risky': len(risky), 'srv_backup_dirs': len(backups), 'srv_orphans': len(orphans), 'srv_orphans_mb': round(sum(e[1] for e in orphans) / 1048576)})
 _o = os.environ.get('SITEBOTS_OUT', 'reports/sitebots')

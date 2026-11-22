@@ -1,5 +1,5 @@
 {
- "date": "2026-11-17",
+ "date": "2026-11-22",
  "ran": [
   "products",
   "competitors",
@@ -9,7 +9,7 @@
  "metrics": {
   "products": 8,
   "products_with_issues": 8,
-  "plugins_outdated": 18,
+  "plugins_outdated": 19,
   "plugins_vulnerable": 0
  }
 }

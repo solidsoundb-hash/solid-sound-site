@@ -6,3 +6,4 @@
 2026-11-16 11:49:15 verify after deploy 101
 2026-11-16 12:04:52 verify after deploy 102
 2026-11-16 12:15:38 verify after deploy 102 (rerun)
+2026-11-22 06:41:08 ночной полный прогон (владелец)

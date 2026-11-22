@@ -19,7 +19,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 async function visit(browser, choice) {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, userAgent: UA, locale: 'fr-FR', timezoneId: 'Europe/Paris' });
   const p = await ctx.newPage(); const hits = []; let phase = 'до выбора';
-  p.on('request', r => { const u = r.url(); for (const [n, re] of TRACK) if (re.test(u)) hits.push([phase, n, u.slice(0, 90)]); for (const [n, re] of SCRIPTS) if (re.test(u)) hits.push([phase, n, '']); });
+  p.on('request', r => { const u = r.url(); for (const [n, re] of TRACK) if (re.test(u)) hits.push([phase, n === 'Google Analytics' && /[?&]gcs=G100/.test(u) ? 'GA без cookie (режим согласия Google — допустимо)' : n, u.slice(0, 90)]); for (const [n, re] of SCRIPTS) if (re.test(u)) hits.push([phase, n, '']); });
   const out = { banner: null, reopen: null, cookies: [] };
   for (const [i, path] of PAGES.entries()) {
     await p.goto(BASE + path, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {}); await p.waitForTimeout(3500);
@@ -38,7 +38,9 @@ module.exports = async function cookies() {
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const none = await visit(browser, null), no = await visit(browser, 'no'), yes = await visit(browser, 'yes'); await browser.close();
   if (none.blocked) return { md: '## 🍪 Cookie и GDPR\n\n⏸ Хостинг показал капчу — не проверено.\n', metrics: {}, alerts: [] };
-  const sent = (r, ph) => [...new Set(r.hits.filter(h => h[0] === ph && h[2]).map(h => h[1]))];
+  const ok = n => /режим согласия/.test(n);
+  const sent = (r, ph) => [...new Set(r.hits.filter(h => h[0] === ph && h[2] && !ok(h[1])).map(h => h[1]))];
+  const pings = [...new Set([none, no].flatMap(r => r.hits.filter(h => ok(h[1])).map(h => h[1])))];
   const scr = (r, ph) => [...new Set(r.hits.filter(h => h[0] === ph && !h[2]).map(h => h[1]))];
   const before = [...new Set([...sent(none, 'до выбора'), ...sent(no, 'до выбора'), ...sent(yes, 'до выбора')])];
   const afterNo = sent(no, 'после «Reject»'), afterYes = sent(yes, 'после «Accept all»');
@@ -48,6 +50,7 @@ module.exports = async function cookies() {
   R.push([afterNo.length ? '🔴' : '✅', '«Reject non-essential» — ничего не уходит', afterNo.length ? 'всё равно уходят: ' + afterNo.join(', ') : 'да']);
   R.push([afterYes.includes('Meta Pixel') ? '✅' : '🟠', '«Accept all» — пиксель Meta работает', afterYes.length ? 'уходят: ' + afterYes.join(', ') : 'после согласия ничего не ушло — реклама не меряется']);
   R.push([no.reopen ? '✅' : '🟡', '«Cookie settings» в подвале снова открывает выбор', no.reopen ? 'да' : 'нет']);
+  if (pings.length) R.push(['🟡', 'Google Analytics до согласия', 'шлёт обезличенные сигналы без cookie (gcs=G100) — так работает режим согласия Google, в ЕС обычно допустимо; строже — грузить GA только после «Accept»']);
   if (none.cookies.length) R.push(['🟡', 'Сторонние cookie до выбора', none.cookies.join(', ')]);
   if (before.length || afterNo.length) alerts.push('GDPR: данные уходят без согласия (' + [...before, ...afterNo].join(', ') + ') — риск штрафа в ЕС');
   if (!none.banner) alerts.push('GDPR: нет баннера согласия');

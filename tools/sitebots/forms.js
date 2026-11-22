@@ -29,7 +29,10 @@ module.exports = async function forms() {
     try {
       await p.goto(BASE + path, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {}); await p.waitForTimeout(2500);
       if (/Захищена сторінка/.test(await p.title())) { rows.push([name, path, '⏸', 'капча хостинга — не проверено']); await p.close(); continue; }
-      let form = p.locator(sel).first(); if (/input\[name="action"\]/.test(sel)) form = form.locator('xpath=ancestor::form');
+      /* the page's own form: not the header search (#ssg) / any search form — the one with the most fields */
+      const pick = async () => { const all = p.locator(sel).locator('xpath=self::form|ancestor-or-self::form').filter({ hasNot: p.locator('input[type=search], input[name=s]') });
+        let best = null, bn = -1; for (const f of await all.all()) { if (await f.evaluate(e => !!e.closest('#ssg, #ssg-sheet, header, [role=search]'))) continue; const n = await f.locator('input:not([type=hidden]), textarea, select').count(); if (n > bn) { bn = n; best = f; } } return best || p.locator(sel).first(); };
+      let form = await pick();
       if (!await form.count()) { rows.push([name, path, '🔴', 'формы на странице нет']); broken++; await p.close(); continue; }
       const fields = await form.locator('input:not([type=hidden]):not([name=website]), textarea, select').count();
       const vis = await form.locator('input:visible, textarea:visible, select:visible').count();
@@ -48,7 +51,7 @@ module.exports = async function forms() {
       }
       if (SEND && vis && hasBtn) {
         await p.goto(BASE + path, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {}); await p.waitForTimeout(2000);
-        form = p.locator(sel).first(); if (/input\[name="action"\]/.test(sel)) form = form.locator('xpath=ancestor::form');
+        form = await pick();
         for (const el of await form.locator('input:visible, textarea:visible, select:visible').all()) {
           const t = (await el.getAttribute('type') || '').toLowerCase(), n = ((await el.getAttribute('name')) || '') + ' ' + ((await el.getAttribute('placeholder')) || '');
           if (await el.evaluate(e => e.tagName) === 'SELECT') { await el.selectOption({ index: 1 }).catch(() => {}); continue; }
