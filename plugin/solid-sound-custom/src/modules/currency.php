@@ -131,6 +131,9 @@ add_action( 'wp_head', function () {
 			foreach ( (array) $mc->get_enabled_currencies() as $code => $o ) $cur['l'][] = array( $code, $sym( $o->get_symbol() ), method_exists( $o, 'get_name' ) ? html_entity_decode( (string) $o->get_name() ) : $code );
 		} catch ( \Throwable $e ) {}
 	}
+	/* owner 22.11: «хочу в начале видеть основные валюты» — main ones first, then the rest A–Z */
+	$main = array( 'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'CHF' );
+	usort( $cur['l'], function ( $a, $b ) use ( $main ) { $x = array_search( $a[0], $main, true ); $y = array_search( $b[0], $main, true ); $x = false === $x ? 99 : $x; $y = false === $y ? 99 : $y; return $x === $y ? strcmp( $a[0], $b[0] ) : $x - $y; } );
 	$cur['b'] = function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : 'EUR';
 	$en = wp_list_pluck( $cur['l'], 0 );
 	?>

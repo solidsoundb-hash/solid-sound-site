@@ -561,7 +561,8 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 	/* key pages: slug => [title, description] */
 	function ss_seo_pages() {
 		return array(
-			'__front' => array( 'Ableton Templates, Presets & Mixing/Mastering | Solid Sound', 'Royalty-free Ableton Live templates, Serum presets and music for video. Learn by reverse engineering pro tracks or order online mixing & mastering.' ),
+			/* 21.11 owner «поработать над SEO-выдачей»: brand first (we compete with «Solid Sound Ann Arbor» on our own name), what we are, a price */
+			'__front' => array( 'Solid Sound — Ableton Templates, Serum Presets & Mixing Studio', 'Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.' ),
 			'templates' => array( 'Ableton Live Templates – Royalty-Free | Solid Sound', 'Royalty-free Ableton Live templates in techno and tech house. Fully mixed and mastered projects with native plugins – learn, remix and release.' ),
 			'presets' => array( 'Serum Presets & Sound Packs | Solid Sound', 'Serum presets for melodic techno and more. Ready-to-use sounds by Solid Sound – instant download, royalty-free.' ),
 			'music' => array( 'Royalty-Free Music for Video & Business | Solid Sound', 'Royalty-free music for videos, documentaries and business projects. Cinematic piano and more – instant download with a clear license.' ),
@@ -574,6 +575,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
 			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
+			'about' => array( 'About Solid Sound — Online Mixing Studio & Ableton Templates', 'Solid Sound is an online music production studio and marketplace since 2018: mixing, mastering, remix and custom production, plus royalty-free Ableton templates and Serum presets.' ),
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
 			'refund_returns' => array( 'Refund Policy for Digital Products | Solid Sound', 'Refund rules for Solid Sound digital downloads: Ableton templates, Serum presets and royalty-free music. When and how you can request a refund.' ),
@@ -652,7 +654,12 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 					'@type' => 'Organization',
 					'@id' => $home . '#organization',
 					'name' => 'Solid Sound',
+					'alternateName' => array( 'Solid Sound Studio', 'solid-sound.net' ),
+					'description' => 'Online music production studio and marketplace: mixing, mastering, remix and custom production for electronic music, plus royalty-free Ableton Live templates, Serum presets and music for video.',
 					'url' => $home,
+					'foundingDate' => '2018',
+					'areaServed' => 'Worldwide',
+					'knowsAbout' => array( 'Mixing', 'Mastering', 'Ableton Live', 'Techno', 'Melodic techno', 'Sound design', 'Music production' ),
 					'logo' => $logo ? $logo : null,
 					'sameAs' => array(
 						'https://www.instagram.com/solid.sound.studio',
@@ -665,6 +672,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 					'@type' => 'WebSite',
 					'@id' => $home . '#website',
 					'name' => 'Solid Sound',
+					'alternateName' => array( 'Solid Sound Studio', 'solid-sound.net' ),
 					'url' => $home,
 					'publisher' => array( '@id' => $home . '#organization' ),
 					'potentialAction' => array(
@@ -1013,9 +1021,12 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 		if ( is_admin() ) return;
 		?>
 <script>
-/* Load Meta Pixel base first, then revoke consent until the visitor accepts. Plugin snippets reuse this fbq. */
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c!=='yes')fbq('consent','revoke');})();
+/* Meta Pixel: the fbq queue exists at once (plugin snippets see it and do not load their own copy), but the Meta script
+   itself loads ONLY after «Accept all» (22.11.2026, robot «Cookie/GDPR»: with the script loaded early, the two Meta plugins
+   still sent /tr after «Reject»). Until then every call just waits in the queue; after Reject nothing is ever sent. */
+!function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
+window.ssFbLoad=function(){if(window.ssFbLoaded)return;window.ssFbLoaded=1;var t=document.createElement('script');t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(t,s)};
+(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes')window.ssFbLoad();else fbq('consent','revoke');})();
 </script>
 <style>.l-cookie{display:none!important}
 .ss-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;max-width:560px;margin:0 auto;background:#16141f;color:#dfe3ee;border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.55);padding:18px 18px 16px;font-size:14px;line-height:1.5}
@@ -1049,7 +1060,7 @@ body.ssp-open .ss-cc{bottom:88px}
 var box=document.getElementById('ss-cc');if(!box)return;
 function set(v){var d=new Date();d.setTime(d.getTime()+180*864e5);document.cookie='ss_consent='+v+';expires='+d.toUTCString()+';path=/;SameSite=Lax'+(location.protocol==='https:'?';Secure':'');window.ssConsent=v}
 function hide(){box.hidden=true}
-box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');fbq('track','PageView')}});
+box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}});
 box.querySelector('.ss-cc-no').addEventListener('click',function(){set('no');hide();if(window.fbq)fbq('consent','revoke')});
 if(!window.ssConsent)box.hidden=false;
 /* "Cookie settings" link in the footer to change the choice later */
@@ -6860,6 +6871,9 @@ add_action( 'wp_head', function () {
 	$out  = is_user_logged_in() && function_exists( 'wc_logout_url' ) ? wc_logout_url() : '';
 	echo '<script>window.ssRole=' . wp_json_encode( $role ) . ';window.ssLogout=' . wp_json_encode( $out ) . ';</script>';
 }, 1 );
+require_once __DIR__ . '/modules/new-slider.php';
+require_once __DIR__ . '/modules/push.php';
+require_once __DIR__ . '/modules/mini-cart.php';
 require_once __DIR__ . '/modules/all-products.php';
 require_once __DIR__ . '/modules/ranking.php';
 require_once __DIR__ . '/modules/social-login.php';
@@ -6908,6 +6922,7 @@ require_once __DIR__ . '/modules/yt-lite.php'; /* 20.11 speed: YouTube loads onl
 require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну шапку с подвалом»: home uses the shared header/footer (?ss_one=1 preview) */
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
+require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
 require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */

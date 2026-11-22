@@ -2,13 +2,6 @@
  {
   "lvl": "🟠",
   "page": "/en/store-manager/",
-  "what": "После нажатия «?» — ошибка в коде",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "02_-en-store-manager-err-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/",
   "what": "Ошибки в коде страницы",
   "detail": "Failed to load resource: the server responded with a status of 503 ()",
   "shot": "01_-en-store-manager-.jpg"
@@ -16,37 +9,23 @@
  {
   "lvl": "🟠",
   "page": "/en/store-manager/ss-add-product/",
+  "what": "После нажатия «👁 Preview» — ошибка в коде",
+  "detail": "An invalid form control with name='product_name' is not focusable. | An invalid form control with name='product_description' is not focusable. | An invalid form control with name='product_price' is not focusable.",
+  "shot": "03_-en-store-manager-ss-add-product-err-Preview.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "После нажатия «No files yet? Fill it in by hand →» — ошибка в коде",
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "04_-en-store-manager-ss-add-product-err-No-files-yet-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
   "what": "Ошибки в коде страницы",
-  "detail": "g is not defined",
-  "shot": "03_-en-store-manager-ss-add-product-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "После нажатия «Questions? Ask here» — ошибка в коде",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "06_-en-store-manager-ss-earnings-err-Questions-Ask-he.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "Ошибки в коде страницы",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "05_-en-store-manager-ss-earnings-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-reviews/",
-  "what": "После нажатия «Open the product page» — ошибка в коде",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "09_-en-store-manager-ss-reviews-err-Open-the-product-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-reviews/",
-  "what": "Ошибки в коде страницы",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "08_-en-store-manager-ss-reviews-.jpg"
+  "detail": "g is not defined | An invalid form control with name='product_name' is not focusable. | An invalid form control with name='product_description' is not focusable. | An invalid form control with name='product_price' is not focusable. | Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "02_-en-store-manager-ss-add-product-.jpg"
  },
  {
   "lvl": "🟠",
@@ -69,42 +48,35 @@
  {
   "lvl": "🟡",
   "page": "/en/store-manager/",
-  "what": "Мелкие кнопки для пальца (<24px)",
-  "detail": "? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20",
-  "shot": "01_-en-store-manager-.jpg"
- },
- {
-  "lvl": "🟡",
-  "page": "/en/store-manager/",
   "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /en/store-manager/ss-products/"
+  "detail": "503 /en/store-manager/"
  },
  {
   "lvl": "🟡",
   "page": "/en/store-manager/ss-add-product/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20",
-  "shot": "03_-en-store-manager-ss-add-product-.jpg"
+  "shot": "02_-en-store-manager-ss-add-product-.jpg"
+ },
+ {
+  "lvl": "🟡",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Хостинг ответил 503 (перегружен)",
+  "detail": "503 /en/store-manager/ss-products/"
  },
  {
   "lvl": "🟡",
   "page": "/en/store-manager/ss-products/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20",
-  "shot": "04_-en-store-manager-ss-products-.jpg"
+  "shot": "05_-en-store-manager-ss-products-.jpg"
  },
  {
   "lvl": "🟡",
   "page": "/en/store-manager/ss-earnings/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20",
-  "shot": "05_-en-store-manager-ss-earnings-.jpg"
- },
- {
-  "lvl": "🟡",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /en/store-manager/ss-payouts/"
+  "shot": "06_-en-store-manager-ss-earnings-.jpg"
  },
  {
   "lvl": "🟡",
@@ -122,36 +94,30 @@
  },
  {
   "lvl": "🟡",
-  "page": "/en/store-manager/ss-reviews/",
-  "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /?wc-ajax=get_refreshed_fragments"
- },
- {
-  "lvl": "🟡",
   "page": "/en/store-manager/ss-settings/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "Set up payouts → 113×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20",
-  "shot": "10_-en-store-manager-ss-settings-.jpg"
+  "shot": "09_-en-store-manager-ss-settings-.jpg"
  },
  {
   "lvl": "🟡",
   "page": "/en/store-manager/ss-help/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "Ask the team 85×17; Creator terms 91×17; Templates 170×20; Presets 170×20; Music 170×20; Free 170×20",
-  "shot": "11_-en-store-manager-ss-help-.jpg"
+  "shot": "10_-en-store-manager-ss-help-.jpg"
  },
  {
   "lvl": "🟡",
   "page": "/en/sell/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20; ? 20×20",
-  "shot": "12_-en-sell-.jpg"
+  "shot": "11_-en-sell-.jpg"
  },
  {
   "lvl": "🟡",
   "page": "/creator-guidelines/",
   "what": "Мелкие кнопки для пальца (<24px)",
   "detail": "Templates 170×20; Presets 170×20; Music 170×20; Free 170×20; Services & Prices 170×20; Become a vendor 170×20",
-  "shot": "13_-creator-guidelines-.jpg"
+  "shot": "12_-creator-guidelines-.jpg"
  }
 ]

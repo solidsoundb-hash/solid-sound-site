@@ -113,9 +113,22 @@ add_action( 'template_redirect', function () {
 	$m = ss_cleanup_dupes();
 	if ( isset( $m[ $p ] ) ) { wp_safe_redirect( home_url( $m[ $p ] ), 301 ); exit; }
 }, 1 );
+/* 4. (21.11.2026 SEO robot, tools/sitebots/seo-pages.js) pages Google must not get from the sitemap: closed to Google
+ *    (noindex: cart, checkout, account, store manager) or redirecting elsewhere (old shop / calculators / vendor pages).
+ *    All languages (Polylang translations). The pages keep working; only the sitemap stops listing them. */
+function ss_sitemap_hidden_ids() {
+	static $ids = null; if ( null !== $ids ) return $ids;
+	$slugs = array( 'cart', 'checkout', 'my-account', 'store-manager', 'client-dashboard', 'vendor-membership', 'vendor-register', 'shop',
+		'services-calculator', 'mastering-album-calculator', 'forum-experimental', 'wishlist', 'order-tracking', 'add-product', 'links' );
+	$ids = get_posts( array( 'post_type' => 'page', 'post_name__in' => $slugs, 'fields' => 'ids', 'numberposts' => -1, 'lang' => '', 'post_status' => 'publish', 'suppress_filters' => false ) );
+	if ( function_exists( 'wc_get_page_id' ) ) foreach ( array( 'cart', 'checkout', 'myaccount', 'shop' ) as $w ) { $i = (int) wc_get_page_id( $w ); if ( $i > 0 ) $ids[] = $i; }
+	if ( function_exists( 'pll_get_post_translations' ) ) foreach ( $ids as $i ) $ids = array_merge( $ids, array_values( (array) pll_get_post_translations( $i ) ) );
+	return $ids = array_values( array_unique( array_filter( array_map( 'intval', $ids ) ) ) );
+}
 add_filter( 'wp_sitemaps_posts_query_args', function ( $a, $type ) {
 	if ( 'page' !== $type ) return $a;
 	$ids = array_filter( array_map( function ( $p ) { return url_to_postid( home_url( $p ) ); }, array_keys( ss_cleanup_dupes() ) ) );
+	$ids = array_merge( $ids, ss_sitemap_hidden_ids() );
 	if ( $ids ) $a['post__not_in'] = array_merge( isset( $a['post__not_in'] ) ? (array) $a['post__not_in'] : array(), $ids );
 	return $a;
 }, 10, 2 );

@@ -1,15 +1,15 @@
-# Creator area audit 2026-11-20T22:27:56.667Z
+# Creator area audit 2026-11-22T06:41:28.306Z
 
 ## phone
-- /en/store-manager/ → HTTP 200 · height 4288px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
+- /en/store-manager/ → HTTP 200 · height 4294px · [phone_en_store_manager.jpg](phone_en_store_manager.jpg)
     - at 330: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
     - at 345: div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap < div#wcfm-content
     - at 360: p.sub < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
-- /en/store-manager/ss-products/ → HTTP 200 · height 3112px · [phone_en_store_manager_ss_products.jpg](phone_en_store_manager_ss_products.jpg)
-    - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-    - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-add-product/ → HTTP 200 · height 2116px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
+- /en/store-manager/ss-products/ → HTTP 503 · height 2121px · [phone_en_store_manager_ss_products.jpg](phone_en_store_manager_ss_products.jpg)
+    - at 330: html
+    - at 345: html
+    - at 360: html
+- /en/store-manager/ss-add-product/ → HTTP 200 · height 2122px · [phone_en_store_manager_ss_add_product.jpg](phone_en_store_manager_ss_add_product.jpg)
     - JS: g is not defined
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
@@ -25,7 +25,7 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
-- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 2116px · [phone_en_store_manager_ss_add_product_ss_ff3_1.jpg](phone_en_store_manager_ss_add_product_ss_ff3_1.jpg)
+- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 2122px · [phone_en_store_manager_ss_add_product_ss_ff3_1.jpg](phone_en_store_manager_ss_add_product_ss_ff3_1.jpg)
     - JS: g is not defined
     - at 330: div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse < div#wcfm-content
     - at 345: h2 < div.ss-wm-top < form#solid-sound-upload-form.ss-ds-nofmt.ss-ready < div.wcfm-collapse-content < div#wcfm_ss_add_product.collapse.wcfm-collapse
@@ -41,38 +41,38 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [phone_add_your_own.jpg](phone_add_your_own.jpg)
-- /en/store-manager/ss-earnings/ → HTTP 200 · height 2322px · [phone_en_store_manager_ss_earnings.jpg](phone_en_store_manager_ss_earnings.jpg)
+- /en/store-manager/ss-earnings/ → HTTP 200 · height 2328px · [phone_en_store_manager_ss_earnings.jpg](phone_en_store_manager_ss_earnings.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-payouts/ → HTTP 200 · height 2657px · [phone_en_store_manager_ss_payouts.jpg](phone_en_store_manager_ss_payouts.jpg)
+- /en/store-manager/ss-payouts/ → HTTP 200 · height 2663px · [phone_en_store_manager_ss_payouts.jpg](phone_en_store_manager_ss_payouts.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-reviews/ → HTTP 200 · height 1536px · [phone_en_store_manager_ss_reviews.jpg](phone_en_store_manager_ss_reviews.jpg)
+- /en/store-manager/ss-reviews/ → HTTP 200 · height 1543px · [phone_en_store_manager_ss_reviews.jpg](phone_en_store_manager_ss_reviews.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-settings/ → HTTP 200 · height 4070px · [phone_en_store_manager_ss_settings.jpg](phone_en_store_manager_ss_settings.jpg)
+- /en/store-manager/ss-settings/ → HTTP 200 · height 4076px · [phone_en_store_manager_ss_settings.jpg](phone_en_store_manager_ss_settings.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/store-manager/ss-help/ → HTTP 200 · height 1925px · [phone_en_store_manager_ss_help.jpg](phone_en_store_manager_ss_help.jpg)
+- /en/store-manager/ss-help/ → HTTP 200 · height 1932px · [phone_en_store_manager_ss_help.jpg](phone_en_store_manager_ss_help.jpg)
     - at 330: h1 < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 345: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
     - at 360: p < div < div.sscp-top < div.collapse.wcfm-collapse < div#wcfm-content
-- /en/my-account/ → HTTP 200 · height 2946px · [phone_en_my_account.jpg](phone_en_my_account.jpg)
+- /en/my-account/ → HTTP 200 · height 2952px · [phone_en_my_account.jpg](phone_en_my_account.jpg)
     - at 330: p.sub < div < div.top < div#ssd < div.woocommerce-MyAccount-content
     - at 345: span.ssa-bonus < p.sub < div < div.top < div#ssd
     - at 360: div.top < div#ssd < div.woocommerce-MyAccount-content < div.woocommerce < div.wpb_wrapper
-- /sell/ → HTTP 200 · height 4288px · [phone_sell.jpg](phone_sell.jpg)
+- /sell/ → HTTP 200 · height 4294px · [phone_sell.jpg](phone_sell.jpg)
     - at 330: h1 < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
     - at 345: div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap < div#wcfm-content
     - at 360: p.sub < div < div.top < div#ssd.ss-cs-d < div#ss-cs-wrap
 ## desktop
-- /en/store-manager/ → HTTP 200 · height 2651px · [desktop_en_store_manager.jpg](desktop_en_store_manager.jpg)
-- /en/store-manager/ss-products/ → HTTP 200 · height 1910px · [desktop_en_store_manager_ss_products.jpg](desktop_en_store_manager_ss_products.jpg)
-- /en/store-manager/ss-add-product/ → HTTP 200 · height 1453px · [desktop_en_store_manager_ss_add_product.jpg](desktop_en_store_manager_ss_add_product.jpg)
+- /en/store-manager/ → HTTP 200 · height 2676px · [desktop_en_store_manager.jpg](desktop_en_store_manager.jpg)
+- /en/store-manager/ss-products/ → HTTP 200 · height 1936px · [desktop_en_store_manager_ss_products.jpg](desktop_en_store_manager_ss_products.jpg)
+- /en/store-manager/ss-add-product/ → HTTP 200 · height 1478px · [desktop_en_store_manager_ss_add_product.jpg](desktop_en_store_manager_ss_add_product.jpg)
     - JS: g is not defined
     - form.class=ss-ds-nofmt ss-ready data={"ssap":"1","aic":"1","kd":"1","zf":"1","pv":"1","ff":"1","ssds":"1"}
     - div.ss-ff-card.ss-ff-c1 display=block
@@ -85,12 +85,12 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
 - open form before: [desktop_add_open_before.jpg](desktop_add_open_before.jpg)
-    - DOM .ss-ap-genre:  <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="product-genre" data-allow_null="0" data-nonce="cf9d094bb0"> <div class="acf-actions -hover"> <a href="#" class="acf-icon -plus acf-js-tooltip small" data-name="add" title="Add New Product Genres" aria-label="Add New Product Genres"></a> </div> <input type="hidden" name="acf[field_683f5d5f8537b]" style=""><div class="categorychecklist-holder"> <ul class="acf-checkbox-list acf-bl" role="group" aria-labelledby="acf-field_683f5d5f8537b-label"> <li data-id="123"><input type="checkbox" name="acf[field_683f5d5f8537b][]" value="123" style=""> <span>Tech House</span></li> <li data-id="122"><input type="checkbox" name="acf[field_683f5d5f8537b][]" value="122" style=""> <span>Techno</span></li> <li data-id="141"><input type="checkbox" name="acf[field_683f5d5f8537b][]" value="141" style=""> <span>Melodic Techno</span>
-    - DOM .ss-ap-ext:  <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="external-plugin" data-allow_null="1" data-nonce="1b98dc021a"> <div class="acf-actions -hover"> <a href="#" class="acf-icon -plus acf-js-tooltip small" data-name="add" title="Add New External Plugin" aria-label="Add New External Plugin"></a> </div> <input type="hidden" name="acf[field_683f4a2fa9df4]" style=""><div class="categorychecklist-holder"> <ul class="acf-checkbox-list acf-bl" role="group" aria-labelledby="acf-field_683f4a2fa9df4-label"> <li data-id="130"><input type="checkbox" name="acf[field_683f4a2fa9df4][]" value="130" style=""> <span>No External Plugins</span></li> <li data-id="131"><input type="checkbox" name="acf[field_683f4a2fa9df4][]" value="131" style=""> <span>Serum</span></li> </ul> </div> </div> 
-    - AI cover: button visible=true, after 3 s → preview NOT shown, pictures 0; messages: The free AI limit for today is used up — please try again tomorrow, or drop your own cover. [admin: AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (23e81979-b987-44cb-9cd9-23b1e12c]
+    - DOM .ss-ap-genre:  <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="product-genre" data-allow_null="0" data-nonce="3adbe91b14"> <div class="acf-actions -hover"> <a href="#" class="acf-icon -plus acf-js-tooltip small" data-name="add" title="Add New Product Genres" aria-label="Add New Product Genres"></a> </div> <input type="hidden" name="acf[field_683f5d5f8537b]" style=""><div class="categorychecklist-holder"> <ul class="acf-checkbox-list acf-bl" role="group" aria-labelledby="acf-field_683f5d5f8537b-label"> <li data-id="123"><input type="checkbox" name="acf[field_683f5d5f8537b][]" value="123" style=""> <span>Tech House</span></li> <li data-id="122"><input type="checkbox" name="acf[field_683f5d5f8537b][]" value="122" style=""> <span>Techno</span></li> <li data-id="141"><input type="checkbox" name="acf[field_683f5d5f8537b][]" value="141" style=""> <span>Melodic Techno</span>
+    - DOM .ss-ap-ext:  <div class="acf-taxonomy-field" data-save="1" data-ftype="checkbox" data-taxonomy="external-plugin" data-allow_null="1" data-nonce="da15257001"> <div class="acf-actions -hover"> <a href="#" class="acf-icon -plus acf-js-tooltip small" data-name="add" title="Add New External Plugin" aria-label="Add New External Plugin"></a> </div> <input type="hidden" name="acf[field_683f4a2fa9df4]" style=""><div class="categorychecklist-holder"> <ul class="acf-checkbox-list acf-bl" role="group" aria-labelledby="acf-field_683f4a2fa9df4-label"> <li data-id="130"><input type="checkbox" name="acf[field_683f4a2fa9df4][]" value="130" style=""> <span>No External Plugins</span></li> <li data-id="131"><input type="checkbox" name="acf[field_683f4a2fa9df4][]" value="131" style=""> <span>Serum</span></li> </ul> </div> </div> 
+    - AI cover: button visible=true, after 10 s → preview shown, pictures 3; messages: Tap a background, edit the text, then “Use this cover”. AI covers left today: 30.
     - [desktop_ai_cover.jpg](desktop_ai_cover.jpg)
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
-- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1453px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
+- /en/store-manager/ss-add-product/?ss_ff3=1 → HTTP 200 · height 1478px · [desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg](desktop_en_store_manager_ss_add_product_ss_ff3_1.jpg)
     - JS: g is not defined
     - form.class=ss-ds-nofmt ss-ready data={"ssap":"1","aic":"1","kd":"1","zf":"1","pv":"1","ff":"1","ssds":"1"}
     - div.ss-ff-card.ss-ff-c1 display=block
@@ -103,11 +103,11 @@
     - input.ss-wm-hidden display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - span.ss-wm-alt display=none ← #solid-sound-upload-form:not(:has(.ss-ap-format input:checked)) .ss-wm-body > :not(.ss-ap-format):not(.ss-ap-daw):not(.ss-ap-version):not(.ss-wm-drop):not(.ss-w | #solid-sound-upload-form.ss-ds-nofmt .ss-wm-body > :not(.ss-ap-format):not(.ss-wm-drop):not(.ss-wm-files):not(#ss-ff-st):not(#ss-zf):not(.ss-ff-c1):not(.ss-ff-c
     - "Add your own" window: [desktop_add_your_own.jpg](desktop_add_your_own.jpg)
-- /en/store-manager/ss-earnings/ → HTTP 200 · height 1446px · [desktop_en_store_manager_ss_earnings.jpg](desktop_en_store_manager_ss_earnings.jpg)
-- /en/store-manager/ss-payouts/ → HTTP 200 · height 1697px · [desktop_en_store_manager_ss_payouts.jpg](desktop_en_store_manager_ss_payouts.jpg)
-- /en/store-manager/ss-reviews/ → HTTP 200 · height 1151px · [desktop_en_store_manager_ss_reviews.jpg](desktop_en_store_manager_ss_reviews.jpg)
-- /en/store-manager/ss-settings/ → HTTP 200 · height 2753px · [desktop_en_store_manager_ss_settings.jpg](desktop_en_store_manager_ss_settings.jpg)
-- /en/store-manager/ss-help/ → HTTP 200 · height 1521px · [desktop_en_store_manager_ss_help.jpg](desktop_en_store_manager_ss_help.jpg)
-- /en/my-account/ → HTTP 200 · height 1909px · [desktop_en_my_account.jpg](desktop_en_my_account.jpg)
-- /sell/ → HTTP 200 · height 2651px · [desktop_sell.jpg](desktop_sell.jpg)
-- Fingerprints: Your shop currency USD does not match with Amazon payment region Euro Region. Amazon Pay will not be available. Please use a seller account from the appropiate region.
+- /en/store-manager/ss-earnings/ → HTTP 200 · height 1471px · [desktop_en_store_manager_ss_earnings.jpg](desktop_en_store_manager_ss_earnings.jpg)
+- /en/store-manager/ss-payouts/ → HTTP 200 · height 1722px · [desktop_en_store_manager_ss_payouts.jpg](desktop_en_store_manager_ss_payouts.jpg)
+- /en/store-manager/ss-reviews/ → HTTP 200 · height 1176px · [desktop_en_store_manager_ss_reviews.jpg](desktop_en_store_manager_ss_reviews.jpg)
+- /en/store-manager/ss-settings/ → HTTP 200 · height 2778px · [desktop_en_store_manager_ss_settings.jpg](desktop_en_store_manager_ss_settings.jpg)
+- /en/store-manager/ss-help/ → HTTP 200 · height 1546px · [desktop_en_store_manager_ss_help.jpg](desktop_en_store_manager_ss_help.jpg)
+- /en/my-account/ → HTTP 200 · height 1935px · [desktop_en_my_account.jpg](desktop_en_my_account.jpg)
+- /sell/ → HTTP 200 · height 2676px · [desktop_sell.jpg](desktop_sell.jpg)
+- Fingerprints: Get Your wpForo Addon Licenses Directly in Your Dashboard
