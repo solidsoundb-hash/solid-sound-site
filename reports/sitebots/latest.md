@@ -1,35 +1,39 @@
-# Роботы-аналитики сайта — 2026-11-22 08:43 UTC
+# Роботы-аналитики сайта — 2026-11-22 21:13 UTC
 
-Запущены: 📝 Формы (106 с).
+Запущены: 🧹 Мёртвый код (5 с), 🛒 Покупатель (39 с), 💶 Цены (24 с), 🎛 Товары (16 с), 🔎 SEO страниц (1799 с), ✍️ Тексты (134 с), ♿ Доступность (251 с), ✉️ Письма (4 с), 🛡 Безопасность (59 с), 🍪 Cookie/GDPR (88 с), 🩺 Здоровье (36 с), 📝 Формы (107 с), 🗄 Сервер (1442 с).
 
 ## ⚠️ Главное
 
+- Доступность: 2 критичных нарушений
 - Формы: 1 не работают
 
 Для Claude: 🔴 — чинить сразу, 🟠 — в ближайшей правке, 🟡/⚪ — по возможности. Правило «скрины до и после» действует.
 
 ---
 
-## 🧹 Код: мёртвый код и ошибки _(прошлый запуск)_
+## 🧹 Код: мёртвый код и ошибки
 
-Проверено файлов: **91** (2180 КБ).
+Проверено файлов: **94** (2265 КБ).
 
 | Проверка | Найдено |
 |---|---|
 | 🔴 Ошибки синтаксиса | 0 |
 | 🔴 Глобальное имя перекрыто (как баг с плеером 21.11) | 0 |
-| 🟠 Модули, которые не подключены | 0 |
+| 🟠 Модули, которые не подключены | 1 |
 | 🟠 Файлы сборки, которые никто не грузит | 0 |
 | 🟡 PHP-функции без вызовов | 3 |
 | 🟡 JS-функции без вызовов | 0 |
-| 🟡 Наши CSS-классы, которых нет в разметке | 37 |
+| 🟡 Наши CSS-классы, которых нет в разметке | 38 |
 | 🟡 setInterval (правило: только MutationObserver/rAF) | 17 |
 | 🟡 Скрипты без defer | 2 |
 | ⚪ console.log в коде | 1 |
 | ⚪ Повторы кода (6+ одинаковых строк) | 26 |
 
+### 🟠 Модули не подключены (мёртвые файлы)
+- `modules/i18n-dict-de.php`
+
 ### 🟡 PHP-функции, которые нигде не вызываются
-- `plugin/solid-sound-custom/src/custom.php:6850` — ss_is_vendor_user()
+- `plugin/solid-sound-custom/src/custom.php:6860` — ss_is_vendor_user()
 - `plugin/solid-sound-custom/src/modules/account.php:18` — ss_acc_is_vendor_only()
 - `plugin/solid-sound-custom/src/modules/packages.php:51` — ss_pk_html()
 
@@ -67,6 +71,7 @@
 - `.ss-wm-send`
 - `.ss-ap-send`
 - `.ssw-sub`
+- `.ss-tmp`
 - `.ssg-tri-btn`
 - `.ssw-rate`
 - `.ss-hide`
@@ -76,10 +81,10 @@
 - `plugin/solid-sound-custom/src/account/dashboard.js:134` — `setInterval(function(){ var ta=D.querySelector('#ssb textarea, .ssb-in textarea'); n++; if`
 - `plugin/solid-sound-custom/src/custom.php:2003` — `setInterval(ss,1500);apply();`
 - `plugin/solid-sound-custom/src/custom.php:2630` — `setInterval(fix,600);})();</script>`
-- `plugin/solid-sound-custom/src/custom.php:4737` — `setInterval(upd,600);document.addEventListener('ssp:state',upd);`
-- `plugin/solid-sound-custom/src/custom.php:4962` — `setInterval(function(){if(!document.body.contains(root)||over||document.hidden||Date.now()`
-- `plugin/solid-sound-custom/src/custom.php:5433` — `setInterval(lift,800);addEventListener('resize',lift);`
-- `plugin/solid-sound-custom/src/custom.php:6182` — `setInterval(function(){if(wrapSSP()||++tries>40)clearInterval(iv)},500)}}`
+- `plugin/solid-sound-custom/src/custom.php:4747` — `setInterval(upd,600);document.addEventListener('ssp:state',upd);`
+- `plugin/solid-sound-custom/src/custom.php:4972` — `setInterval(function(){if(!document.body.contains(root)||over||document.hidden||Date.now()`
+- `plugin/solid-sound-custom/src/custom.php:5443` — `setInterval(lift,800);addEventListener('resize',lift);`
+- `plugin/solid-sound-custom/src/custom.php:6192` — `setInterval(function(){if(wrapSSP()||++tries>40)clearInterval(iv)},500)}}`
 - `plugin/solid-sound-custom/src/home/app.template.html:669` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 1000);`
 - `plugin/solid-sound-custom/src/home/app.template.html:670` — `setInterval(function () {`
 - `plugin/solid-sound-custom/src/home/patches.js:69` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 60000);").join("this._cd`
@@ -87,47 +92,47 @@
 - `plugin/solid-sound-custom/src/home/patches.js:70` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 1000);").join("this._cd `
 - `plugin/solid-sound-custom/src/home/patches.js:70` — `setInterval(function () { var L = self.cd(), S = self.cd(true), n = document.querySelector`
 - `plugin/solid-sound-custom/src/modules/new-slider.php:146` — `setInterval(function(){if(document.hidden)return;if(Date.now()<hold)return;if(R.querySelec`
-- `plugin/solid-sound-custom/src/ss-global.js:341` — `setInterval(function(){ var t=p.querySelector('.p-t'); if(t) t.textContent=promoLeft(); },`
-- `plugin/solid-sound-custom/src/ss-global.js:388` — `setInterval(playIcons,800);`
-- `plugin/solid-sound-custom/src/ss-global.js:433` — `setInterval(paint,700); window.addEventListener('resize',function(){ paint(true); },{passi`
+- `plugin/solid-sound-custom/src/ss-global.js:343` — `setInterval(function(){ var t=p.querySelector('.p-t'); if(t) t.textContent=promoLeft(); },`
+- `plugin/solid-sound-custom/src/ss-global.js:390` — `setInterval(playIcons,800);`
+- `plugin/solid-sound-custom/src/ss-global.js:435` — `setInterval(paint,700); window.addEventListener('resize',function(){ paint(true); },{passi`
 
 ### 🟡 Скрипты без defer
 - `plugin/solid-sound-custom/src/modules/prices.php:14`
 - `plugin/solid-sound-custom/src/modules/prices.php:15`
 
 ### ⚪ Повторы кода
-- `plugin/solid-sound-custom/src/audio/ss-audio.js:269` = `plugin/solid-sound-custom/src/custom.php:3277`
+- `plugin/solid-sound-custom/src/audio/ss-audio.js:269` = `plugin/solid-sound-custom/src/custom.php:3287`
 - `plugin/solid-sound-custom/src/modules/home-wow.php:239` = `plugin/solid-sound-custom/src/modules/home-wow.php:250`
-- `plugin/solid-sound-custom/src/home/ai-search.js:2` = `plugin/solid-sound-custom/src/ss-global.js:391`
-- `plugin/solid-sound-custom/src/home/ai-search.js:8` = `plugin/solid-sound-custom/src/ss-global.js:397`
-- `plugin/solid-sound-custom/src/home/ai-search.js:18` = `plugin/solid-sound-custom/src/ss-global.js:406`
-- `plugin/solid-sound-custom/src/home/ai-search.js:43` = `plugin/solid-sound-custom/src/ss-global.js:435`
-- `plugin/solid-sound-custom/src/home/ai-search.js:49` = `plugin/solid-sound-custom/src/ss-global.js:441`
-- `plugin/solid-sound-custom/src/home/ai-search.js:55` = `plugin/solid-sound-custom/src/ss-global.js:447`
-- `plugin/solid-sound-custom/src/home/ai-search.js:61` = `plugin/solid-sound-custom/src/ss-global.js:453`
-- `plugin/solid-sound-custom/src/home/ai-search.js:67` = `plugin/solid-sound-custom/src/ss-global.js:459`
-- `plugin/solid-sound-custom/src/home/ai-search.js:73` = `plugin/solid-sound-custom/src/ss-global.js:465`
-- `plugin/solid-sound-custom/src/home/ai-search.js:87` = `plugin/solid-sound-custom/src/ss-global.js:479`
-- `plugin/solid-sound-custom/src/home/ai-search.js:96` = `plugin/solid-sound-custom/src/ss-global.js:488`
-- `plugin/solid-sound-custom/src/home/ai-search.js:102` = `plugin/solid-sound-custom/src/ss-global.js:494`
-- `plugin/solid-sound-custom/src/home/ai-search.js:108` = `plugin/solid-sound-custom/src/ss-global.js:500`
+- `plugin/solid-sound-custom/src/home/ai-search.js:2` = `plugin/solid-sound-custom/src/ss-global.js:393`
+- `plugin/solid-sound-custom/src/home/ai-search.js:8` = `plugin/solid-sound-custom/src/ss-global.js:399`
+- `plugin/solid-sound-custom/src/home/ai-search.js:18` = `plugin/solid-sound-custom/src/ss-global.js:408`
+- `plugin/solid-sound-custom/src/home/ai-search.js:43` = `plugin/solid-sound-custom/src/ss-global.js:437`
+- `plugin/solid-sound-custom/src/home/ai-search.js:49` = `plugin/solid-sound-custom/src/ss-global.js:443`
+- `plugin/solid-sound-custom/src/home/ai-search.js:55` = `plugin/solid-sound-custom/src/ss-global.js:449`
+- `plugin/solid-sound-custom/src/home/ai-search.js:61` = `plugin/solid-sound-custom/src/ss-global.js:455`
+- `plugin/solid-sound-custom/src/home/ai-search.js:67` = `plugin/solid-sound-custom/src/ss-global.js:461`
+- `plugin/solid-sound-custom/src/home/ai-search.js:73` = `plugin/solid-sound-custom/src/ss-global.js:467`
+- `plugin/solid-sound-custom/src/home/ai-search.js:87` = `plugin/solid-sound-custom/src/ss-global.js:481`
+- `plugin/solid-sound-custom/src/home/ai-search.js:96` = `plugin/solid-sound-custom/src/ss-global.js:490`
+- `plugin/solid-sound-custom/src/home/ai-search.js:102` = `plugin/solid-sound-custom/src/ss-global.js:496`
+- `plugin/solid-sound-custom/src/home/ai-search.js:108` = `plugin/solid-sound-custom/src/ss-global.js:502`
 - … и ещё 11
 
 ### Самые большие файлы
 | Файл | КБ | Строк |
 |---|---|---|
-| `plugin/solid-sound-custom/src/custom.php` | 644 | 6942 |
+| `plugin/solid-sound-custom/src/custom.php` | 645 | 6953 |
 | `plugin/solid-sound-custom/src/home/app.template.html` | 130 | 1139 |
 | `plugin/solid-sound-custom/src/modules/home-wow.php` | 103 | 807 |
-| `plugin/solid-sound-custom/src/ss-global.js` | 70 | 627 |
+| `plugin/solid-sound-custom/src/modules/i18n-dict-de.php` | 71 | 967 |
+| `plugin/solid-sound-custom/src/ss-global.js` | 71 | 629 |
 | `plugin/solid-sound-custom/src/modules/services-prices-html.php` | 69 | 33 |
 | `plugin/solid-sound-custom/src/modules/files-first.php` | 55 | 358 |
 | `plugin/solid-sound-custom/src/theme/player.js` | 52 | 611 |
-| `plugin/solid-sound-custom/src/home/home.js` | 51 | 563 |
 
 ---
 
-## 🛒 Покупатель: путь до оформления заказа _(прошлый запуск)_
+## 🛒 Покупатель: путь до оформления заказа
 
 Робот проходит покупку как клиент (без оплаты). ❌ — здесь путь ломается, снимок в `reports/sitebots/shots/`.
 
@@ -135,28 +140,28 @@
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 3.2 с | ✅  |
-| Каталог | 2.5 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Главная | 4.2 с | ✅  |
+| Каталог | 2.7 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
 | Страница товара | 1.9 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
-| Добавить в корзину | 4.1 с | ✅  |
-| Корзина | 4.3 с | ✅ товаров: 1, итого €15.00 |
-| Оформление (форма видна) | 1.7 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
+| Добавить в корзину | 4.2 с | ✅  |
+| Корзина | 4.4 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 1.8 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
 
 **Samsung A31** — ✅ весь путь пройден
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 2.4 с | ✅  |
-| Каталог | 2.7 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Главная | 2.7 с | ✅  |
+| Каталог | 3.0 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
 | Страница товара | 2.1 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
 | Добавить в корзину | 4.1 с | ✅  |
-| Корзина | 4.5 с | ✅ товаров: 1, итого €15.00 |
-| Оформление (форма видна) | 1.6 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
+| Корзина | 4.4 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 1.9 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
 
 
 ---
 
-## 💶 Цены: одна цена везде _(прошлый запуск)_
+## 💶 Цены: одна цена везде
 
 Товаров: **8**, со скидкой в магазине: **7**, с расхождениями: **0**.
 
@@ -173,7 +178,7 @@
 
 ---
 
-## 🎛 Товары: всё ли на месте и открывается _(прошлый запуск)_
+## 🎛 Товары: всё ли на месте и открывается
 
 Товаров: **8**. Сломано (файл не открывается / нельзя купить): **0**. Неполных: **8**. Тексты и картинки для Google — в недельном отчёте `reports/weekly`.
 
@@ -190,9 +195,9 @@
 
 ---
 
-## 🔎 SEO: полная проверка глазами Google _(прошлый запуск)_
+## 🔎 SEO: полная проверка глазами Google
 
-Страниц обойдено: **598** (из карты сайта 98 + найдены по ссылкам). Картинок проверено: 120. 🔴 0 · 🟠 65 · 🟡 103 · ⚪ 287
+Страниц обойдено: **605** (из карты сайта 98 + найдены по ссылкам). Картинок проверено: 120. 🔴 0 · 🟠 65 · 🟡 103 · ⚪ 287
 
 robots.txt: ✅ (карта сайта указана) · карта сайта: ✅ 98 адресов · языки в hreflang: de, en, es, fr, it, pt, uk, x-default
 
@@ -299,7 +304,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## ✍️ Тексты: опечатки и ошибки (английский) _(прошлый запуск)_
+## ✍️ Тексты: опечатки и ошибки (английский)
 
 Проверено: 12 страниц и 8 описаний товаров. Возможных ошибок: **27**.
 
@@ -312,7 +317,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 | books | Possible agreement error | book | /en/get-heard/, /en/wiki/ | …ed at clubs and festivals Who books, when they book, and the mess… |
 | Sølid | Spelling mistake | Solid / Slid | /en/terms/, /en/legal-notice/ | …olid-sound.net is operated by Sølid Søund Studio, Cannes, France … |
 | Søund | Spelling mistake | Sound | /en/terms/, /en/legal-notice/ | …ound.net is operated by Sølid Søund Studio, Cannes, France (detai… |
-| Presets Preset | You’ve repeated a verb. Did you mean to only write one of them? | Presets / Preset | /en/all-products/ | …inematic · 1 3 Melodic Techno Presets Preset · Melodic Techno · 1 1 Melodi… |
+| Presets Preset | You’ve repeated a verb. Did you mean to only write one of them? | Presets / Preset | /en/all-products/ | …inematic · 2 3 Melodic Techno Presets Preset · Melodic Techno · 1 1 Melodi… |
 | services Services | Word repetition | services | /en/services-prices/ | …s / Solid Sound Online studio services Services & Prices Professional sound r… |
 | Multiband | Spelling mistake | — | /en/services-prices/ | …tion (corrective and tonal) ✓ Multiband compression for dynamics cont… |
 | Kedavra | Spelling mistake | Kadabra | /en/services-prices/ | …ut killing the dynamics ▶ Ava Kedavra Mud and rumble removed, tight… |
@@ -336,7 +341,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## ♿ Доступность (контраст, подписи, клавиатура) _(прошлый запуск)_
+## ♿ Доступность (контраст, подписи, клавиатура)
 
 Проверено страниц: **18** (9 адресов × компьютер и A31). Правил нарушено: 🔴 2 · 🟠 4 · 🟡 2 · ⚪ 1
 
@@ -354,7 +359,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## ✉️ Письма: дойдут ли до клиента _(прошлый запуск)_
+## ✉️ Письма: дойдут ли до клиента
 
 | | Настройка | Состояние |
 |---|---|---|
@@ -368,7 +373,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## 🛡 Безопасность сайта снаружи _(прошлый запуск)_
+## 🛡 Безопасность сайта снаружи
 
 То, что видит любой посетитель или взломщик (без входа). Устаревшие плагины — в недельном отчёте `reports/weekly`.
 
@@ -385,7 +390,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## 🍪 Cookie и GDPR: новый посетитель из ЕС _(прошлый запуск)_
+## 🍪 Cookie и GDPR: новый посетитель из ЕС
 
 Страницы: /en/, /product/infinity/, /en/all-products/. Отслеживаются запросы, которые отправляют данные (Meta, Google, TikTok, Hotjar, Clarity, LinkedIn).
 
@@ -401,9 +406,9 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## 🩺 Здоровье: файлы, база, магазин, внешние сервисы _(прошлый запуск)_
+## 🩺 Здоровье: файлы, база, магазин, внешние сервисы
 
-Проверено на сервере за 14.3 с, WordPress 7.1.5.
+Проверено на сервере за 15.8 с, WordPress 7.1.5.
 
 ### Подмена файлов (признаки взлома)
 
@@ -414,7 +419,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ### База данных
 
-Размер **64.8 МБ**, таблиц 149. Самые большие: posts 29.7 МБ, usermeta 6.9 МБ, mwai_mcp_changes 5.5 МБ, options 4.9 МБ, actionscheduler_actions 4.4 МБ.
+Размер **65.7 МБ**, таблиц 149. Самые большие: posts 30.5 МБ, usermeta 6.9 МБ, mwai_mcp_changes 5.5 МБ, options 4.9 МБ, actionscheduler_actions 4.4 МБ.
 
 | | Что | Сколько |
 |---|---|---|
@@ -422,14 +427,14 @@ _Что видит сам Google (индекс, запросы, позиции, 
 | ✅ | Ревизии страниц | 1369 |
 | ✅ | Пустые черновики | 0 |
 | ✅ | В корзине | 6 |
-| ✅ | Просроченные временные записи | 354 из 2142 |
+| ✅ | Просроченные временные записи | 254 из 1746 |
 | ✅ | Мусорные поля без записей | 1 |
 | ✅ | Спам/удалённые комментарии | 2 |
-| ✅ | Старые фоновые задачи (Action Scheduler) | 7634 |
+| ✅ | Старые фоновые задачи (Action Scheduler) | 7690 |
 | ✅ | Упавшие фоновые задачи | 22 |
 | ✅ | Фоновые задачи, застрявшие >1 ч | 0 |
 | ✅ | Просроченные задания WP-Cron | 0 |
-| ✅ | Сессии корзин | 445 |
+| ✅ | Сессии корзин | 471 |
 
 ### Магазин и отзывы
 
@@ -460,16 +465,16 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## 🗄 Сервер: что лежит на хостинге и не нужно _(прошлый запуск)_
+## 🗄 Сервер: что лежит на хостинге и не нужно
 
-Файлов: **13133**, всего **1.19 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
+Файлов: **11365**, всего **1.17 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
 
 | Папка | Размер |
 |---|---|
-| `solid-sound.net/www` | 1.19 ГБ |
-| `solid-sound.net/www/wp-content` | 1.10 ГБ |
-| `solid-sound.net/www/wp-content/uploads` | 946.6 МБ |
-| `solid-sound.net/www/wp-content/plugins` | 86.7 МБ |
+| `solid-sound.net/www` | 1.17 ГБ |
+| `solid-sound.net/www/wp-content` | 1.08 ГБ |
+| `solid-sound.net/www/wp-content/uploads` | 946.5 МБ |
+| `solid-sound.net/www/wp-content/plugins` | 68.6 МБ |
 | `solid-sound.net/www/wp-content/themes` | 0.0 МБ |
 | `solid-sound.net/www/wp-content/cache` | 0.0 МБ |
 | `solid-sound.net/_removed` | 0.0 МБ |
@@ -480,11 +485,11 @@ _Что видит сам Google (индекс, запросы, позиции, 
 | `solid-sound.net/templates` | 0.0 МБ |
 | `solid-sound.net/test` | 0.0 МБ |
 | `solid-sound.net/www_old` | 0.0 МБ |
-⚠️ Не удалось прочитать папок: 3 (например `solid-sound.net/www/wp-includes/build/routes/fonts-home: [Errno 111] Connection refused`) — размеры могут быть занижены.
+⚠️ Не удалось прочитать папок: 5 (например `solid-sound.net/www/wp-includes/php-ai-client/third-party/Http: [Errno 111] Connection refused`) — размеры могут быть занижены.
 
 Загрузки по годам: 
 
-### ⚪ Логи и архивы закрыты от интернета (60): сервер отвечает 403 — опасности нет, место занимают (3.2 МБ)
+### ⚪ Логи и архивы закрыты от интернета (60): сервер отвечает 403 — опасности нет, место занимают (3.1 МБ)
 
 ### 🟡 Копии .htaccess (сервер обычно не отдаёт .ht*, но лучше убрать)
 - `/www/.htaccess.bak`
