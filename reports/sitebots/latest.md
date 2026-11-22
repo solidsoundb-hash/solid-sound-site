@@ -1,18 +1,19 @@
-# Роботы-аналитики сайта — 2026-11-21 23:53 UTC
+# Роботы-аналитики сайта — 2026-11-22 00:57 UTC
 
-Запущены: 🩺 Здоровье (43 с), 📝 Формы (39 с), 🗄 Сервер (1447 с).
+Запущены: 🧹 Мёртвый код (4 с), 🛒 Покупатель (36 с), 💶 Цены (24 с), 🎛 Товары (16 с), 🔎 SEO страниц (1756 с), ✍️ Тексты (133 с), ♿ Доступность (247 с), ✉️ Письма (4 с), 🛡 Безопасность (57 с), 🍪 Cookie/GDPR (82 с), 🩺 Здоровье (34 с), 📝 Формы (34 с), 🗄 Сервер (1442 с).
 
 ## ⚠️ Главное
 
+- Доступность: 2 критичных нарушений
 - Формы: 5 не работают
 
 Для Claude: 🔴 — чинить сразу, 🟠 — в ближайшей правке, 🟡/⚪ — по возможности. Правило «скрины до и после» действует.
 
 ---
 
-## 🧹 Код: мёртвый код и ошибки _(прошлый запуск)_
+## 🧹 Код: мёртвый код и ошибки
 
-Проверено файлов: **87** (2112 КБ).
+Проверено файлов: **91** (2180 КБ).
 
 | Проверка | Найдено |
 |---|---|
@@ -23,13 +24,13 @@
 | 🟡 PHP-функции без вызовов | 3 |
 | 🟡 JS-функции без вызовов | 0 |
 | 🟡 Наши CSS-классы, которых нет в разметке | 37 |
-| 🟡 setInterval (правило: только MutationObserver/rAF) | 16 |
+| 🟡 setInterval (правило: только MutationObserver/rAF) | 17 |
 | 🟡 Скрипты без defer | 2 |
 | ⚪ console.log в коде | 1 |
 | ⚪ Повторы кода (6+ одинаковых строк) | 26 |
 
 ### 🟡 PHP-функции, которые нигде не вызываются
-- `plugin/solid-sound-custom/src/custom.php:6839` — ss_is_vendor_user()
+- `plugin/solid-sound-custom/src/custom.php:6850` — ss_is_vendor_user()
 - `plugin/solid-sound-custom/src/modules/account.php:18` — ss_acc_is_vendor_only()
 - `plugin/solid-sound-custom/src/modules/packages.php:51` — ss_pk_html()
 
@@ -74,18 +75,19 @@
 
 ### 🟡 setInterval
 - `plugin/solid-sound-custom/src/account/dashboard.js:134` — `setInterval(function(){ var ta=D.querySelector('#ssb textarea, .ssb-in textarea'); n++; if`
-- `plugin/solid-sound-custom/src/custom.php:1992` — `setInterval(ss,1500);apply();`
-- `plugin/solid-sound-custom/src/custom.php:2619` — `setInterval(fix,600);})();</script>`
-- `plugin/solid-sound-custom/src/custom.php:4726` — `setInterval(upd,600);document.addEventListener('ssp:state',upd);`
-- `plugin/solid-sound-custom/src/custom.php:4951` — `setInterval(function(){if(!document.body.contains(root)||over||document.hidden||Date.now()`
-- `plugin/solid-sound-custom/src/custom.php:5422` — `setInterval(lift,800);addEventListener('resize',lift);`
-- `plugin/solid-sound-custom/src/custom.php:6171` — `setInterval(function(){if(wrapSSP()||++tries>40)clearInterval(iv)},500)}}`
+- `plugin/solid-sound-custom/src/custom.php:2003` — `setInterval(ss,1500);apply();`
+- `plugin/solid-sound-custom/src/custom.php:2630` — `setInterval(fix,600);})();</script>`
+- `plugin/solid-sound-custom/src/custom.php:4737` — `setInterval(upd,600);document.addEventListener('ssp:state',upd);`
+- `plugin/solid-sound-custom/src/custom.php:4962` — `setInterval(function(){if(!document.body.contains(root)||over||document.hidden||Date.now()`
+- `plugin/solid-sound-custom/src/custom.php:5433` — `setInterval(lift,800);addEventListener('resize',lift);`
+- `plugin/solid-sound-custom/src/custom.php:6182` — `setInterval(function(){if(wrapSSP()||++tries>40)clearInterval(iv)},500)}}`
 - `plugin/solid-sound-custom/src/home/app.template.html:669` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 1000);`
 - `plugin/solid-sound-custom/src/home/app.template.html:670` — `setInterval(function () {`
 - `plugin/solid-sound-custom/src/home/patches.js:69` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 60000);").join("this._cd`
 - `plugin/solid-sound-custom/src/home/patches.js:69` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 1000);")`
 - `plugin/solid-sound-custom/src/home/patches.js:70` — `setInterval(function () { self.setState({ tick: Date.now() }); }, 1000);").join("this._cd `
 - `plugin/solid-sound-custom/src/home/patches.js:70` — `setInterval(function () { var L = self.cd(), S = self.cd(true), n = document.querySelector`
+- `plugin/solid-sound-custom/src/modules/new-slider.php:146` — `setInterval(function(){if(document.hidden)return;if(Date.now()<hold)return;if(R.querySelec`
 - `plugin/solid-sound-custom/src/ss-global.js:341` — `setInterval(function(){ var t=p.querySelector('.p-t'); if(t) t.textContent=promoLeft(); },`
 - `plugin/solid-sound-custom/src/ss-global.js:388` — `setInterval(playIcons,800);`
 - `plugin/solid-sound-custom/src/ss-global.js:433` — `setInterval(paint,700); window.addEventListener('resize',function(){ paint(true); },{passi`
@@ -95,7 +97,7 @@
 - `plugin/solid-sound-custom/src/modules/prices.php:15`
 
 ### ⚪ Повторы кода
-- `plugin/solid-sound-custom/src/audio/ss-audio.js:269` = `plugin/solid-sound-custom/src/custom.php:3266`
+- `plugin/solid-sound-custom/src/audio/ss-audio.js:269` = `plugin/solid-sound-custom/src/custom.php:3277`
 - `plugin/solid-sound-custom/src/modules/home-wow.php:239` = `plugin/solid-sound-custom/src/modules/home-wow.php:250`
 - `plugin/solid-sound-custom/src/home/ai-search.js:2` = `plugin/solid-sound-custom/src/ss-global.js:391`
 - `plugin/solid-sound-custom/src/home/ai-search.js:8` = `plugin/solid-sound-custom/src/ss-global.js:397`
@@ -115,7 +117,7 @@
 ### Самые большие файлы
 | Файл | КБ | Строк |
 |---|---|---|
-| `plugin/solid-sound-custom/src/custom.php` | 643 | 6927 |
+| `plugin/solid-sound-custom/src/custom.php` | 644 | 6942 |
 | `plugin/solid-sound-custom/src/home/app.template.html` | 130 | 1139 |
 | `plugin/solid-sound-custom/src/modules/home-wow.php` | 103 | 807 |
 | `plugin/solid-sound-custom/src/ss-global.js` | 70 | 627 |
@@ -126,7 +128,7 @@
 
 ---
 
-## 🛒 Покупатель: путь до оформления заказа _(прошлый запуск)_
+## 🛒 Покупатель: путь до оформления заказа
 
 Робот проходит покупку как клиент (без оплаты). ❌ — здесь путь ломается, снимок в `reports/sitebots/shots/`.
 
@@ -134,28 +136,28 @@
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 2.8 с | ✅  |
-| Каталог | 2.2 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
-| Страница товара | 2.2 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
+| Главная | 3.2 с | ✅  |
+| Каталог | 2.5 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Страница товара | 1.9 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
 | Добавить в корзину | 4.1 с | ✅  |
-| Корзина | 4.6 с | ✅ товаров: 1, итого €15.00 |
+| Корзина | 4.3 с | ✅ товаров: 1, итого €15.00 |
 | Оформление (форма видна) | 1.7 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
 
 **Samsung A31** — ✅ весь путь пройден
 
 | Шаг | Время | Итог |
 |---|---|---|
-| Главная | 3.4 с | ✅  |
-| Каталог | 2.4 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
-| Страница товара | 2.0 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
-| Добавить в корзину | 4.2 с | ✅  |
-| Корзина | 4.2 с | ✅ товаров: 1, итого €15.00 |
-| Оформление (форма видна) | 1.7 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
+| Главная | 2.4 с | ✅  |
+| Каталог | 2.7 с | ✅ первый товар: /product/time-goes-fast-documentary-piano/ |
+| Страница товара | 2.1 с | ✅ Time Goes Fast Documentary Piano – Cinematic Royalty-Free Mu |
+| Добавить в корзину | 4.1 с | ✅  |
+| Корзина | 4.5 с | ✅ товаров: 1, итого €15.00 |
+| Оформление (форма видна) | 1.6 с | ✅ есть блок оплаты, быстрые кнопки оплаты есть. Саму оплату робот не делает — проходит ли она, видно только по реальному заказу |
 
 
 ---
 
-## 💶 Цены: одна цена везде _(прошлый запуск)_
+## 💶 Цены: одна цена везде
 
 Товаров: **8**, со скидкой в магазине: **7**, с расхождениями: **0**.
 
@@ -172,7 +174,7 @@
 
 ---
 
-## 🎛 Товары: всё ли на месте и открывается _(прошлый запуск)_
+## 🎛 Товары: всё ли на месте и открывается
 
 Товаров: **8**. Сломано (файл не открывается / нельзя купить): **0**. Неполных: **8**. Тексты и картинки для Google — в недельном отчёте `reports/weekly`.
 
@@ -189,36 +191,31 @@
 
 ---
 
-## 🔎 SEO: полная проверка глазами Google _(прошлый запуск)_
+## 🔎 SEO: полная проверка глазами Google
 
-Страниц обойдено: **597** (из карты сайта 97 + найдены по ссылкам). Картинок проверено: 120. 🔴 2 · 🟠 66 · 🟡 102 · ⚪ 366
+Страниц обойдено: **598** (из карты сайта 98 + найдены по ссылкам). Картинок проверено: 120. 🔴 0 · 🟠 65 · 🟡 103 · ⚪ 287
 
-robots.txt: ✅ (карта сайта указана) · карта сайта: ✅ 97 адресов · языки в hreflang: de, en, es, fr, it, pt, uk, x-default
+robots.txt: ✅ (карта сайта указана) · карта сайта: ✅ 98 адресов · языки в hreflang: de, en, es, fr, it, pt, uk, x-default
 
 ### Проблемы на страницах
 
 | | Проблема | Страниц | Где |
 |---|---|---|---|
-| 🔴 | битая ссылка на /fr/product-tag/inspirational/ (404) | 1 | /fr/product/time-goes-fast-documentary-piano/ |
-| 🔴 | страница не открывается (404) | 1 | /fr/product-tag/inspirational/ |
 | 🟠 | нет в карте сайта (Google найдёт её позже или не найдёт) | 51 | /en/why-solid-sound/, /en/get-heard/, /ua/product/time-goes-fast-documentary-piano/, /ua/product/infinity/, /ua/product/intricate/, /ua/product/pitch/, /ua/product/melodic-techno-presets/, /ua/product/mutualism/ … |
 | 🟠 | canonical указывает на другую страницу | 13 | /en/community/say-hi/, /en/community/main-forum/, /en/community/main-forum/ideas-suggestions/, /en/community/rate-my-track/, /en/community/ableton-help/, /en/community/sound-design-presets/, /en/community/collabs-vocals/, /en/community/releasing-promo/ … |
-| 🟠 | нет описания (description) | 1 | /pt/contactos/ |
-| 🟡 | нет ссылок на языковые версии (hreflang) | 32 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/faq/, /en/forum/, /en/free-demo-feedback/, /en/prices/ … |
+| 🟡 | нет ссылок на языковые версии (hreflang) | 33 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/faq/, /en/forum/, /en/free-demo-feedback/, /en/prices/ … |
 | 🟡 | мало текста (151 слов) — «тонкая» страница | 31 | /en/contacts/, /en/presets/, /en/music/, /en/prices/, /en/free/, /en/legal-notice/, /ua/presety/, /ua/muzyka/ … |
 | 🟡 | заголовок длинный (67 зн., Google обрежет после ~60) | 15 | /en/wiki/how-much-do-djs-get-paid/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/, /ua/product/time-goes-fast-documentary-piano/, /ua/product/melodic-techno-presets/, /de/product/time-goes-fast-documentary-piano/, /de/product/melodic-techno-presets/, /fr/product/time-goes-fast-documentary-piano/ … |
 | 🟡 | сирота | 14 | /en/prices/, /en/sitemap/, /ua/kontakty/, /ua/wiki-ua/, /de/kontakt/, /de/wiki-de/, /fr/contact/, /fr/wiki-fr/ … |
 | 🟡 | статья вики без разметки Article | 3 | /en/wiki/how-much-do-djs-get-paid/, /en/wiki/how-to-promote-yourself-as-a-dj/, /en/wiki/how-to-get-booked-as-a-dj/ |
 | 🟡 | описание короткое (12 зн.) | 3 | /en/community/recent/, /en/community/tags/, /en/community/ |
+| 🟡 | описание длинное (193 зн.) | 2 | /en/services-prices/, /en/about/ |
 | 🟡 | FAQ без разметки FAQPage (вопросы могут показываться прямо в Google) | 1 | /en/faq/ |
-| 🟡 | описание длинное (193 зн.) | 1 | /en/services-prices/ |
-| 🟡 | нет картинки для соцсетей (og:image) | 1 | /pt/contactos/ |
-| ⚪ | картинок без размеров (width/height) | 157 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/contacts/, /en/faq/, /en/templates/, /en/presets/ … |
-| ⚪ | нет хлебных крошек (BreadcrumbList) | 95 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/contacts/, /en/faq/, /en/templates/, /en/presets/ … |
+| ⚪ | картинок без размеров (width/height) | 158 | /en/all-products/, /en/privacy-policy/, /en/refund_returns/, /en/license/, /en/contacts/, /en/faq/, /en/templates/, /en/presets/ … |
 | ⚪ | товар без рейтинга (звёзды появятся с отзывами) | 56 | /product/protos/, /product/kratos/, /product/infinity/, /product/intricate/, /product/mutualism/, /product/pitch/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/ … |
 | ⚪ | товар без бренда (brand) | 56 | /product/protos/, /product/kratos/, /product/infinity/, /product/intricate/, /product/mutualism/, /product/pitch/, /product/melodic-techno-presets/, /product/time-goes-fast-documentary-piano/ … |
+| ⚪ | нет хлебных крошек (BreadcrumbList) | 16 | /en/forum/, /en/why-solid-sound/, /en/get-heard/, /en/community/say-hi/, /en/community/main-forum/, /en/community/main-forum/ideas-suggestions/, /en/community/rate-my-track/, /en/community/ableton-help/ … |
 | ⚪ | несколько H1 | 1 | /en/all-products/ |
-| ⚪ | нет hreflang x-default | 1 | /pt/contactos/ |
 
 ### 🟠 Нет в карте сайта (51)
 Открыты для Google, но не перечислены в карте сайта:
@@ -274,7 +271,7 @@ robots.txt: ✅ (карта сайта указана) · карта сайта:
 ### Один заголовок на нескольких страницах
 - «Music Production Forum / Solid Sound» — /en/forum/, /en/community/say-hi/, /en/community/main-forum/, /en/community/main-forum/ideas-suggestions/, /en/community/rate-my-track/, /en/community/ableton-help/, /en/community/sound-design-presets/, /en/community/collabs-vocals/, /en/community/releasing-promo/, /en/community/lounge/, /en/community/recent/, /en/community/tags/, /en/community/, /en/community/main-category/
 - «Solid Wiki – Solid Sound» — /en/wiki/, /ua/wiki-ua/, /de/wiki-de/, /fr/wiki-fr/, /pt/wiki-pt/, /es/wiki-es/, /it/wiki-it/
-- «Ableton Templates, Presets & Mixing/Mastering / Solid Sound» — /en/, /ua/, /de/, /fr/, /pt/, /es/, /it/
+- «Solid Sound — Ableton Templates, Serum Presets & Mixing Studio» — /en/, /ua/, /de/, /fr/, /pt/, /es/, /it/
 - «Protos – Techno Ableton Live Template / Solid Sound» — /product/protos/, /de/product/protos/, /es/product/protos/, /it/product/protos/
 - «Kratos – Techno Ableton Live Template / Solid Sound» — /product/kratos/, /de/product/kratos/, /es/product/kratos/, /it/product/kratos/
 - «Infinity – Techno Ableton Live Template / Solid Sound» — /product/infinity/, /de/product/infinity/, /es/product/infinity/, /it/product/infinity/
@@ -289,7 +286,7 @@ robots.txt: ✅ (карта сайта указана) · карта сайта:
 - «Melodic Techno Presets – Melodic Techno Presets Serum / Solid Sound» — /fr/product/melodic-techno-presets/, /pt/product/melodic-techno-presets/
 
 ### Одно описание на нескольких страницах
-- «Royalty-free Ableton Live templates, Serum presets and music for video…» — 6 стр.: /en/, /ua/, /de/, /fr/
+- «Online mixing & mastering studio and marketplace: royalty-free Ableton…» — 7 стр.: /en/, /ua/, /de/, /fr/
 - «Protos is a full-length techno template for Ableton Live 10, produced …» — 3 стр.: /product/protos/, /es/product/protos/, /it/product/protos/
 - «Kratos is a full-length dark techno template for Ableton Live 10, prod…» — 3 стр.: /product/kratos/, /es/product/kratos/, /it/product/kratos/
 - «Infinity is a full-length Ableton Live 11 template produced by Grenør.…» — 3 стр.: /product/infinity/, /es/product/infinity/, /it/product/infinity/
@@ -303,7 +300,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## ✍️ Тексты: опечатки и ошибки (английский) _(прошлый запуск)_
+## ✍️ Тексты: опечатки и ошибки (английский)
 
 Проверено: 12 страниц и 8 описаний товаров. Возможных ошибок: **27**.
 
@@ -340,16 +337,16 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## ♿ Доступность (контраст, подписи, клавиатура) _(прошлый запуск)_
+## ♿ Доступность (контраст, подписи, клавиатура)
 
 Проверено страниц: **18** (9 адресов × компьютер и A31). Правил нарушено: 🔴 2 · 🟠 4 · 🟡 2 · ⚪ 1
 
 | | Что не так | Элементов | Страниц | Пример (где искать) |
 |---|---|---|---|---|
-| 🔴 | неполная ARIA-структура | 4 | 4 | `.tasks` |
+| 🔴 | неполная ARIA-структура | 6 | 6 | `.tasks` |
 | 🔴 | поле формы без подписи | 2 | 2 | `#sc-range` |
 | 🟠 | текст плохо читается (мало контраста с фоном) | 18 | 18 | `.ss-cc-open` |
-| 🟠 | кнопка внутри кнопки/ссылки | 16 | 6 | `.ssw-match[role="button"]` |
+| 🟠 | кнопка внутри кнопки/ссылки | 4 | 4 | `.ssw-match[role="button"]` |
 | 🟠 | прокручиваемый блок недоступен с клавиатуры | 4 | 2 | `ol[data-dc-tpl="691"]` |
 | 🟠 | Links must be distinguishable without relying on color | 2 | 2 | `.muted > a` |
 | 🟡 | часть текста вне разметки областей | 90 | 18 | `.p-b` |
@@ -358,7 +355,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## ✉️ Письма: дойдут ли до клиента _(прошлый запуск)_
+## ✉️ Письма: дойдут ли до клиента
 
 | | Настройка | Состояние |
 |---|---|---|
@@ -372,7 +369,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## 🛡 Безопасность сайта снаружи _(прошлый запуск)_
+## 🛡 Безопасность сайта снаружи
 
 То, что видит любой посетитель или взломщик (без входа). Устаревшие плагины — в недельном отчёте `reports/weekly`.
 
@@ -389,24 +386,25 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ---
 
-## 🍪 Cookie и GDPR: новый посетитель из ЕС _(прошлый запуск)_
+## 🍪 Cookie и GDPR: новый посетитель из ЕС
 
 Страницы: /en/, /product/infinity/, /en/all-products/. Отслеживаются запросы, которые отправляют данные (Meta, Google, TikTok, Hotjar, Clarity, LinkedIn).
 
 | | Проверка | Итог |
 |---|---|---|
 | ✅ | Баннер согласия показывается новому посетителю | да |
-| 🔴 | До выбора данные не уходят | уходят: Google Analytics, Meta Pixel |
-| 🔴 | «Reject non-essential» — ничего не уходит | всё равно уходят: Meta Pixel, Google Analytics |
+| ✅ | До выбора данные не уходят | ничего не уходит (скрипты грузятся: Google tag (скрипт) — это допустимо, если они ждут согласия; лучше грузить после) |
+| ✅ | «Reject non-essential» — ничего не уходит | да |
 | ✅ | «Accept all» — пиксель Meta работает | уходят: Meta Pixel, Google Analytics |
 | ✅ | «Cookie settings» в подвале снова открывает выбор | да |
+| 🟡 | Google Analytics до согласия | шлёт обезличенные сигналы без cookie (gcs=G100) — так работает режим согласия Google, в ЕС обычно допустимо; строже — грузить GA только после «Accept» |
 | 🟡 | Сторонние cookie до выбора | _fbp (.solid-sound.net), sbjs_migrations (.solid-sound.net), sbjs_current_add (.solid-sound.net), sbjs_first_add (.solid-sound.net), sbjs_current (.solid-sound.net), sbjs_first (.solid-sound.net), sbjs_udata (.solid-sound.net), sbjs_session (.solid-sound.net), __cf_bm (.brevo.com), sib_cuid (.solid-sound.net) |
 
 ---
 
 ## 🩺 Здоровье: файлы, база, магазин, внешние сервисы
 
-Проверено на сервере за 13.1 с, WordPress 7.1.5.
+Проверено на сервере за 14.3 с, WordPress 7.1.5.
 
 ### Подмена файлов (признаки взлома)
 
@@ -421,18 +419,18 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 | | Что | Сколько |
 |---|---|---|
-| ✅ | Автозагрузка (грузится на КАЖДОЙ странице) | 475 КБ (норма до ~500) |
+| ✅ | Автозагрузка (грузится на КАЖДОЙ странице) | 478 КБ (норма до ~500) |
 | ✅ | Ревизии страниц | 1369 |
 | ✅ | Пустые черновики | 0 |
 | ✅ | В корзине | 6 |
-| ✅ | Просроченные временные записи | 348 из 2070 |
+| ✅ | Просроченные временные записи | 354 из 2142 |
 | ✅ | Мусорные поля без записей | 1 |
 | ✅ | Спам/удалённые комментарии | 2 |
-| ✅ | Старые фоновые задачи (Action Scheduler) | 7619 |
+| ✅ | Старые фоновые задачи (Action Scheduler) | 7634 |
 | ✅ | Упавшие фоновые задачи | 22 |
 | ✅ | Фоновые задачи, застрявшие >1 ч | 0 |
 | ✅ | Просроченные задания WP-Cron | 0 |
-| ✅ | Сессии корзин | 377 |
+| ✅ | Сессии корзин | 445 |
 
 ### Магазин и отзывы
 
@@ -465,14 +463,14 @@ _Что видит сам Google (индекс, запросы, позиции, 
 
 ## 🗄 Сервер: что лежит на хостинге и не нужно
 
-Файлов: **12420**, всего **1.18 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
+Файлов: **13133**, всего **1.19 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
 
 | Папка | Размер |
 |---|---|
-| `solid-sound.net/www` | 1.18 ГБ |
-| `solid-sound.net/www/wp-content` | 1.09 ГБ |
+| `solid-sound.net/www` | 1.19 ГБ |
+| `solid-sound.net/www/wp-content` | 1.10 ГБ |
 | `solid-sound.net/www/wp-content/uploads` | 946.6 МБ |
-| `solid-sound.net/www/wp-content/plugins` | 79.2 МБ |
+| `solid-sound.net/www/wp-content/plugins` | 86.7 МБ |
 | `solid-sound.net/www/wp-content/themes` | 0.0 МБ |
 | `solid-sound.net/www/wp-content/cache` | 0.0 МБ |
 | `solid-sound.net/_removed` | 0.0 МБ |
@@ -483,7 +481,7 @@ _Что видит сам Google (индекс, запросы, позиции, 
 | `solid-sound.net/templates` | 0.0 МБ |
 | `solid-sound.net/test` | 0.0 МБ |
 | `solid-sound.net/www_old` | 0.0 МБ |
-⚠️ Не удалось прочитать папок: 6 (например `solid-sound.net/www/wp-includes/php-ai-client/src/Providers/Http/DTO: `) — размеры могут быть занижены.
+⚠️ Не удалось прочитать папок: 3 (например `solid-sound.net/www/wp-includes/build/routes/fonts-home: [Errno 111] Connection refused`) — размеры могут быть занижены.
 
 Загрузки по годам: 
 
