@@ -1,0 +1,69 @@
+diff --git a/plugin/solid-sound-custom/src/custom.php b/plugin/solid-sound-custom/src/custom.php
+index 87884c79..31ccd233 100644
+--- a/plugin/solid-sound-custom/src/custom.php
++++ b/plugin/solid-sound-custom/src/custom.php
+@@ -1026,7 +1026,9 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
+    still sent /tr after «Reject»). Until then every call just waits in the queue; after Reject nothing is ever sent. */
+ !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
+ window.ssFbLoad=function(){if(window.ssFbLoaded)return;window.ssFbLoaded=1;var t=document.createElement('script');t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(t,s)};
+-(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes')window.ssFbLoad();else fbq('consent','revoke');})();
++/* (22.11) scripts printed frozen until consent (modules/consent-gate.php: Brevo tracker) run here once the visitor agreed */
++window.ssConsentRun=function(){if(window.ssConsentRan)return;window.ssConsentRan=1;[].forEach.call(document.querySelectorAll('script[type="text/plain"][data-ss-consent]'),function(o){var s=document.createElement('script');for(var i=0;i<o.attributes.length;i++){var a=o.attributes[i];if(a.name!=='type'&&a.name!=='data-ss-consent')s.setAttribute(a.name,a.value)}if(!o.src)s.text=o.text;o.parentNode.replaceChild(s,o)})};
++(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes'){window.ssFbLoad();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.ssConsentRun);else window.ssConsentRun()}else fbq('consent','revoke');})();
+ </script>
+ <style>.l-cookie{display:none!important}
+ .ss-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;max-width:560px;margin:0 auto;background:#16141f;color:#dfe3ee;border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.55);padding:18px 18px 16px;font-size:14px;line-height:1.5}
+@@ -1060,7 +1062,7 @@ body.ssp-open .ss-cc{bottom:88px}
+ var box=document.getElementById('ss-cc');if(!box)return;
+ function set(v){var d=new Date();d.setTime(d.getTime()+180*864e5);document.cookie='ss_consent='+v+';expires='+d.toUTCString()+';path=/;SameSite=Lax'+(location.protocol==='https:'?';Secure':'');window.ssConsent=v}
+ function hide(){box.hidden=true}
+-box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}});
++box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}if(window.ssConsentRun)window.ssConsentRun()});
+ box.querySelector('.ss-cc-no').addEventListener('click',function(){set('no');hide();if(window.fbq)fbq('consent','revoke')});
+ if(!window.ssConsent)box.hidden=false;
+ /* "Cookie settings" link in the footer to change the choice later */
+@@ -6924,6 +6926,7 @@ require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну ша
+ require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
+ require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
+ require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
++require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
+ require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
+ require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
+ require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */
+diff --git a/plugin/solid-sound-custom/src/modules/consent-gate.php b/plugin/solid-sound-custom/src/modules/consent-gate.php
+new file mode 100644
+index 00000000..b4d45a67
+--- /dev/null
++++ b/plugin/solid-sound-custom/src/modules/consent-gate.php
+@@ -0,0 +1,31 @@
++<?php
++/**
++ * (22.11.2026 owner via «Задачи»: «Meta — оставить Facebook for WooCommerce, второй убрать»; «Brevo — трекер только после Accept»)
++ * 1) Brevo web tracker (cdn.brevo.com sdk-loader + Brevo.push init → sibautomation sa.js): printed as type="text/plain"
++ *    data-ss-consent — the browser does not run it; the consent script (custom.php ss_consent_*) runs it only when the
++ *    visitor has ss_consent=yes or presses «Accept all». Page cache is fine: the HTML is the same for everyone.
++ * 2) «Official Facebook Pixel» (Meta pixel for WordPress) — a second copy of Meta next to Facebook for WooCommerce: its
++ *    code is removed from the page (one pixel, no double PageView). To remove it for good: WP admin → Plugins → deactivate.
++ * Off: option ss_consent_gate_off = 1 (everything prints as before).
++ */
++if ( ! defined( 'ABSPATH' ) ) exit;
++
++function ss_cg_filter( $h ) {
++	if ( false === stripos( $h, '</html>' ) ) return $h;
++	/* 1) Brevo: freeze until consent */
++	$h = preg_replace( '#<script\b(?=[^>]*\bsrc=["\']https://cdn\.brevo\.com/js/sdk-loader\.js)([^>]*?)\btype=["\']text/javascript["\']#i', '<script$1type="text/plain" data-ss-consent="1"', $h );
++	$h = preg_replace( '#<script\b(?![^>]*type=)(?=[^>]*\bsrc=["\']https://cdn\.brevo\.com/js/sdk-loader\.js)#i', '<script type="text/plain" data-ss-consent="1"', $h );
++	$h = preg_replace( '#<script type=["\']text/javascript["\']>(\s*window\.Brevo\s*=\s*window\.Brevo\s*\|\|)#', '<script type="text/plain" data-ss-consent="1">$1', $h );
++	/* 2) Official Facebook Pixel plugin: its signal script, its own base code and its PageView */
++	$h = preg_replace( '#<script id="facebook-signal-js-extra">.*?</script>\s*#s', '', $h );
++	$h = preg_replace( '#<script id="facebook-signal-js"[^>]*></script>\s*#', '', $h );
++	$h = preg_replace( "#<script type='text/javascript'>\s*!function\(f,b,e,v,n,t,s\)\{if\(f\.fbq\)return;.*?fbevents\.js'\);\s*</script>\s*#s", '', $h );
++	$h = preg_replace( "#<script type='text/javascript'>\s*fbq\('track', 'PageView', \[\]\);\s*</script>\s*#", '', $h );
++	$h = preg_replace( '#<noscript>\s*<img[^>]+facebook\.com/tr\?id=[^>]+>\s*</noscript>\s*#i', '', $h );
++	return $h;
++}
++add_action( 'template_redirect', function () {
++	if ( is_admin() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || get_option( 'ss_consent_gate_off' ) ) return;
++	if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'GET' !== $_SERVER['REQUEST_METHOD'] ) return;
++	ob_start( 'ss_cg_filter' );
++}, 1 );
