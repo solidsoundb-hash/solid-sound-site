@@ -2,7 +2,8 @@
 // checker, only the public site text is sent), Cyrillic left on English pages, and products sharing the same description.
 'use strict';
 const { BASE, get, sleep, esc } = require('../bots/lib');
-const PAGES = ['/en/', '/en/all-products/', '/en/services-prices/', '/en/why-solid-sound/', '/en/faq/', '/en/free/', '/en/sell/', '/en/get-heard/', '/en/studio-calculator/', '/en/terms/', '/en/legal-notice/', '/en/wiki/'];
+const PAGES_ALL = ['/en/', '/en/all-products/', '/en/services-prices/', '/en/why-solid-sound/', '/en/faq/', '/en/free/', '/en/sell/', '/en/get-heard/', '/en/studio-calculator/', '/en/terms/', '/en/legal-notice/', '/en/wiki/'];
+const PAGES = process.env.SITEBOTS_SMOKE === '1' ? PAGES_ALL.slice(0, 1) : PAGES_ALL;
 // our words the dictionary does not know
 const OK = /^(ableton|serum|bpm|daw|grenor|grenør|solid|kratos|protos|infinity|intricate|mutualism|vst|wav|midi|stems?|presets?|mixdown|edm|techno|vocals?|beatport|spotify|youtube|tiktok|instagram|soundcloud|sidechain|eq|lufs|fx|synths?|plugins?|royalty|gmbh|stripe|paypal|wiki|ua|faq|dj|djs|vat|ai|mp3|zip|vocoder|arp|arps|pluck|plucks|reese|hihats?|kickdrum|subbass|melodic|dubstep|trance|hardstyle|livestream|patreon|wishlist|checkout|vendor|vendors|remix|remixes|remake|co-producing|mastering|ozone|fabfilter|xfer)$/i;
 

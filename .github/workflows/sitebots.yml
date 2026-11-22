@@ -29,6 +29,7 @@ jobs:
           B="${{ github.event.inputs.bots }}"
           if [ "${{ github.event_name }}" = push ]; then B=$(tail -1 .github/sitebots.txt | tr ' ' '\n' | grep -E '^(all|code|buyer|prices|catalog|seo|texts|a11y|emails|websec|cookies|health|forms|files)$' | tr '\n' ',' ); fi
           echo "SITEBOTS=${B:-all}" >> $GITHUB_ENV
+          if [ "${{ github.event_name }}" = push ] && tail -1 .github/sitebots.txt | grep -qw smoke; then echo "SITEBOTS_SMOKE=1" >> $GITHUB_ENV; fi
           if [ "${{ github.event_name }}" = push ] && tail -1 .github/sitebots.txt | grep -qw forms-send; then echo "FORMS_SEND=1" >> $GITHUB_ENV; echo "SITEBOTS=forms" >> $GITHUB_ENV; fi
       - name: Run
         env:
