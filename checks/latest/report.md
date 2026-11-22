@@ -1,11 +1,11 @@
-# Site check 2026-11-22T06:41:34.181Z
+# Site check 2026-11-22T08:02:04.916Z
 
 ## guest · phone
 - /en/ → HTTP 200 · inline 261 KB · player files · [guest_phone_en.jpg](guest_phone_en.jpg)
 - /en/my-account/ → HTTP 200 · ⚠ 1 console errors · inline 136 KB · player files · [guest_phone_en_my_account.jpg](guest_phone_en_my_account.jpg)
     - console: [GSI_LOGGER]: FedCM get() rejects with TypeError: Failed to execute 'get' on 'CredentialsContainer': Failed to read the 'identity' property from 'CredentialRequestOptions': Failed to read the 'mode' p
-- /product/infinity/ → HTTP 503 · inline 0 KB · [guest_phone_product_infinity.jpg](guest_phone_product_infinity.jpg)
-- /en/all-products/ → HTTP 503 · inline 0 KB · [guest_phone_en_all_products.jpg](guest_phone_en_all_products.jpg)
+- /product/infinity/ → HTTP 200 · inline 148 KB · player files · [guest_phone_product_infinity.jpg](guest_phone_product_infinity.jpg)
+- /en/all-products/ → HTTP 200 · inline 130 KB · player files · [guest_phone_en_all_products.jpg](guest_phone_en_all_products.jpg)
 - /en/vendor-register/ → HTTP 200 · inline 175 KB · player files · [guest_phone_en_vendor_register.jpg](guest_phone_en_vendor_register.jpg)
 - /sell/ → HTTP 200 · inline 175 KB · player files · [guest_phone_sell.jpg](guest_phone_sell.jpg)
 ## guest · desktop
@@ -26,7 +26,7 @@
 - /en/my-account/edit-address/ → HTTP 200 · inline 213 KB · player files · [user_phone_en_my_account_edit_address.jpg](user_phone_en_my_account_edit_address.jpg)
 ## user · desktop
 - logged in: true
-- /en/ → HTTP 503 · inline 0 KB · [user_desktop_en.jpg](user_desktop_en.jpg)
+- /en/ → HTTP 200 · inline 287 KB · player files · [user_desktop_en.jpg](user_desktop_en.jpg)
 - /en/my-account/ → HTTP 200 · inline 153 KB · player files · [user_desktop_en_my_account.jpg](user_desktop_en_my_account.jpg)
 - /en/my-account/orders/ → HTTP 200 · inline 153 KB · player files · [user_desktop_en_my_account_orders.jpg](user_desktop_en_my_account_orders.jpg)
 - /en/my-account/edit-account/ → HTTP 200 · inline 153 KB · player files · [user_desktop_en_my_account_edit_account.jpg](user_desktop_en_my_account_edit_account.jpg)
