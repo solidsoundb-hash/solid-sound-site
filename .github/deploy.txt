@@ -372,3 +372,4 @@
 2026-11-21T23:33:45Z slider: thin pause, prices without .00; panels close faster
 2026-11-21T23:34:56Z mini cart/favorites open instantly (prefetch)
 2026-11-22 09:49:08 Новый секрет WP Super Cache (старый утёк в публичный репозиторий 20.11), один раз — владелец «да»
+2026-11-22 09:51:28 Секрет WP Super Cache: смена строки в wp-cache-config.php напрямую (функций WPSC на страницах нет) — владелец «да»
