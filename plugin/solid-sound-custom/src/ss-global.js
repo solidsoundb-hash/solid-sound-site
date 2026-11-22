@@ -60,6 +60,8 @@ var LG=(location.pathname.match(/^[/](ua|de|fr|pt|es|it)(?=[/]|$)/)||[])[1]||'';
 function tr(h){ if(!LG||!h) return h; var M=window.ssTrMap||{}; var k=h.split('#')[0].replace(/[/]$/,''), hs=h.indexOf('#')>-1 ? h.slice(h.indexOf('#')) : '';
   if(M[k]) return M[k]+hs; if(M[S+k.replace(/^https?:[/][/][^/]+/,'')]) return M[S+k.replace(/^https?:[/][/][^/]+/,'')]+hs;
   var p=k.replace(/^https?:[/][/][^/]+/,''); if(/^[/](en[/])?(product|product-category|shop|cart|checkout|my-account)([/]|$)/.test(p)) return S+'/'+LG+p.replace(/^[/]en/,'')+'/'+hs;
+  /* (22.11) pages translated on the server (modules/i18n-pages.php) — only languages switched on there (window.ssVPL) */
+  if((window.ssVPL||[]).indexOf(LG)>-1 && /^[/](en[/])?(all-products|services-prices|studio-calculator|services-calculator|mastering-album-calculator|free|sell|faq|why-solid-sound|get-heard|free-demo-feedback|terms|refund_returns|license|privacy-policy|legal-notice|about|creator-terms)([/?]|$)/.test(p)) return S+'/'+LG+p.replace(/^[/]en/,'')+(/[?]/.test(p)?'':'/')+hs;
   if(p===''||p==='/en'||p==='/') return S+'/'+LG+'/'+hs; return h; }
 var NAV=[
   {t:'Home',i:'home',h:L+'/'},
@@ -246,7 +248,7 @@ var head=tag('div',{'class':'g-in'},
   tag('a',{'class':'g-logo',href:L+'/','aria-label':'Solid Sound home'},tag('svg',{viewBox:'0 0 341 230',role:'img','aria-hidden':'true'},tag('path',{fill:'#F59E0B','fill-rule':'evenodd',d:LOGO})))+
   tag('nav',{'class':'g-nav','aria-label':'Main'},navHtml())+
   tag('form',{role:'search',onsubmit:'return false'},ico(I.search,18)+tag('label',{'for':'top-q',style:'position:absolute;left:-9999px'},'Search')+tag('input',{id:'top-q',type:'search',enterkeyhint:'search',autocomplete:'off',placeholder:'Search'})+tag('span',{'class':'ss-ai',role:'button',tabindex:'0','aria-label':'AI search'},'AI')+tag('button',{type:'button','class':'g-b ss-mic','aria-label':'Voice search'},ico(I.mic,20))+tag('button',{type:'button','class':'g-b g-ref','aria-label':'Match by reference track',title:'Match by reference track'},ico(I.wave,20))+tag('button',{type:'button','class':'g-find'},'Find'))+
-  tag('div',{'class':'g-right'},langHtml+curHtml+rItem(FAV)+tag('button',{type:'button','class':'g-sbtn','aria-label':'Search','aria-expanded':'false'},ico(I.search,20))+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
+  tag('div',{'class':'g-right'},langHtml+curHtml+rItem(FAV,'','g-r-fav')+tag('button',{type:'button','class':'g-sbtn','aria-label':'Search','aria-expanded':'false'},ico(I.search,20))+rItem(CART,cartN ? tag('span',{'class':'g-cnt'},String(cartN)) : '','g-r-cart')+accItem()+tag('a',{'class':'g-msign',href:ACC.h,'aria-label':ACC.t},ico(I.signin,22))+tag('button',{type:'button','class':'g-burger','aria-label':'Main menu','aria-expanded':'false'},ico(I.menu,22)))
 );
 function sheetHtml(){
   var h=tag('div',{'class':'s-bg'})+LT+'div class="s-p" role="dialog" aria-label="Menu"'+GT+tag('div',{'class':'s-h'},'Menu'+tag('button',{type:'button','class':'s-x','aria-label':'Close menu'},ico(I.close,20)));
@@ -258,15 +260,15 @@ function sheetHtml(){
 }
 var BAR=[['Home','home',L+'/'],['Shop','grid',L+'/all-products/'],['Studio','serv',L+'/services-prices/'],['Free','free',L+'/free/'],['Sell','sell',L+'/sell/'],['Saved','fav',FAV.h]];
 if(LG) BAR.forEach(function(b){ b[2]=tr(b[2]); });
-var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')},ico(I[b[1]],22)+b[0]); }).join('');
+var barHtml=BAR.map(function(b){ return tag('a',{href:b[2],'class':((b[0]!=='Saved' ? (isCur(b[2]) || (b[0]==='Shop' && inSec('Products')) || (b[0]==='Studio' && inSec('Services'))) : false) ? 'cur' : '')+(b[0]==='Free' ? ' gfree' : '')+(b[0]==='Saved' ? ' gsaved' : '')},ico(I[b[1]],22)+b[0]); }).join('');
 
 /* (13.11.2026) keep the cart badge (header + bottom bar) in sync when WooCommerce updates the mini-cart via AJAX */
 window.ssCartPaint=cartPaint;
 function cartPaint(n){
-  var hd=D.getElementById('ssg'); if(hd){ var c=hd.querySelector('.g-right .g-cnt'), a=[].slice.call(hd.querySelectorAll('.g-right .g-r-it')).filter(function(x){return /cart/i.test((x.querySelector('.g-l')||{}).textContent||'');})[0];
+  var hd=D.getElementById('ssg'); if(hd){ var c=hd.querySelector('.g-right .g-cnt'), a=[].slice.call(hd.querySelectorAll('.g-right .g-r-it')).filter(function(x){return x.classList.contains('g-r-cart')||/cart/i.test((x.querySelector('.g-l')||{}).textContent||'');})[0];
     if(!c && n>0 && a){ c=D.createElement('span'); c.className='g-cnt'; a.querySelector('.g-a').appendChild(c); }
     if(c){ if(n>0){ c.textContent=String(n); c.style.display=''; } else c.style.display='none'; } }
-  var bl=[].slice.call(D.querySelectorAll('#ssg-bar a')).filter(function(x){return /cart/i.test(x.textContent);})[0];
+  var bl=[].slice.call(D.querySelectorAll('#ssg-bar a')).filter(function(x){return /[/]cart/.test(x.getAttribute('href')||'')||/cart/i.test(x.textContent);})[0];
   if(bl){ var bc=bl.querySelector('.g-barcnt'); if(!bc && n>0){ bc=D.createElement('span'); bc.className='g-barcnt'; bl.appendChild(bc); } if(bc){ bc.textContent=n>0?String(n):''; bc.style.display=n>0?'':'none'; } }
   try{ localStorage.setItem('ss_cart_n', String(n)); }catch(e){}
 }
