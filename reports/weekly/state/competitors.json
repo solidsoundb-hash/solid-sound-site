@@ -1539,6 +1539,61 @@
   }
  },
  "Cymatics": {
+  "opal-drum-loops": {
+   "t": "Opal - Drum Loops",
+   "p": 0,
+   "cmp": 0
+  },
+  "waves-melodic-melody-loops-free": {
+   "t": "Waves - Melodic Melody Loops",
+   "p": 0,
+   "cmp": 0
+  },
+  "mystery-sample-pack-2024-black-friday-edition-free": {
+   "t": "Mystery Sample Pack - 2024 Black Friday Edition",
+   "p": 0,
+   "cmp": 0
+  },
+  "sawz-pro": {
+   "t": "SAWZ Pro",
+   "p": 27,
+   "cmp": 0
+  },
+  "sawz": {
+   "t": "SAWZ",
+   "p": 15,
+   "cmp": 0
+  },
+  "golden-hour-pro": {
+   "t": "GOLDEN HOUR - Early Access Bundle",
+   "p": 47,
+   "cmp": 0
+  },
+  "golden-hour": {
+   "t": "GOLDEN HOUR",
+   "p": 37,
+   "cmp": 0
+  },
+  "morph-pro": {
+   "t": "MORPH Pro",
+   "p": 25,
+   "cmp": 0
+  },
+  "morph": {
+   "t": "MORPH",
+   "p": 0,
+   "cmp": 0
+  },
+  "xray-pro": {
+   "t": "XRAY Pro",
+   "p": 25,
+   "cmp": 0
+  },
+  "xray": {
+   "t": "XRAY",
+   "p": 0,
+   "cmp": 0
+  },
   "seasons-hip-hop-guitars-free": {
    "t": "Seasons - Hip Hop Guitars",
    "p": 0,
@@ -2731,61 +2786,6 @@
   },
   "gems-vol-6-future-rnb-melodies": {
    "t": "Gems Vol. 6 - Future RnB Melodies",
-   "p": 0,
-   "cmp": 0
-  },
-  "electric-hihat-loops-midi-1": {
-   "t": "Electric - Hihat Loops & MIDI",
-   "p": 0,
-   "cmp": 0
-  },
-  "gems-vol-19-various-melodies": {
-   "t": "Gems Vol 19 - Various Melodies",
-   "p": 0,
-   "cmp": 0
-  },
-  "lofiguitar-loops-vol-1": {
-   "t": "Lofi - Guitar Loops Vol. 1",
-   "p": 0,
-   "cmp": 0
-  },
-  "frostbite-drum-loops": {
-   "t": "Frostbite - Drum Loops",
-   "p": 0,
-   "cmp": 0
-  },
-  "hyperion-melody-collection": {
-   "t": "Hyperion - Melody Collection",
-   "p": 0,
-   "cmp": 0
-  },
-  "rift-tonal-ambience": {
-   "t": "Rift - Tonal Ambience",
-   "p": 0,
-   "cmp": 0
-  },
-  "cosmos-edm-drum-kit-1": {
-   "t": "Cosmos - EDM Drum Kit",
-   "p": 0,
-   "cmp": 0
-  },
-  "cascade-vocal-loops": {
-   "t": "Cascade - Vocal Loops",
-   "p": 0,
-   "cmp": 0
-  },
-  "panic-trap-midi": {
-   "t": "Panic - Trap MIDI",
-   "p": 0,
-   "cmp": 0
-  },
-  "lethal-808-samples-1": {
-   "t": "Lethal - 808 Samples",
-   "p": 0,
-   "cmp": 0
-  },
-  "halo": {
-   "t": "HALO",
    "p": 0,
    "cmp": 0
   }
