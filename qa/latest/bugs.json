@@ -1,15 +1,41 @@
 {
  "mode": "full",
- "date": "2026-11-22T07:58:28.006Z",
+ "date": "2026-11-23T00:08:49.256Z",
  "stats": {
   "pages": 86,
-  "clicks": 570,
+  "clicks": 515,
   "sounds": 54,
-  "links": 600,
-  "blockedRequests": 40,
-  "audioFiles": 27
+  "links": 973,
+  "blockedRequests": 39,
+  "eyesTiles": 0,
+  "eyesPages": 0,
+  "audioFiles": 35,
+  "robots": 20
  },
  "bugs": [
+  {
+   "sev": "major",
+   "type": "kb-seo-canonical",
+   "title": "Canonical указывает на другую страницу или на http",
+   "steps": [
+    "Открыть https://solid-sound.net/forum/ (Samsung A31)"
+   ],
+   "expected": "canonical = адрес самой страницы, https.",
+   "actual": "Указано: https://solid-sound.net/en/forum/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую).",
+   "sig": "kb|kb-seo-canonical|Canonical указывает на другую страницу или на http",
+   "where": [
+    "/forum/",
+    "/en/my-account/orders/",
+    "/en/my-account/edit-account/"
+   ],
+   "devices": [
+    "Samsung A31",
+    "компьютер",
+    "телефон"
+   ],
+   "shot": "shots/18_011.jpg",
+   "isNew": false
+  },
   {
    "sev": "major",
    "type": "kb-mob-covered",
@@ -23,98 +49,12 @@
    "sig": "kb|kb-mob-covered|Важную кнопку закрывает что-то сверху (чат, плеер, баннер)",
    "where": [
     "/en/all-products/",
-    "/en/templates/",
     "/en/free-demo-feedback/"
    ],
    "devices": [
-    "телефон",
-    "компьютер"
-   ],
-   "shot": "shots/014.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "major",
-   "type": "kb-seo-canonical",
-   "title": "Canonical указывает на другую страницу или на http",
-   "steps": [
-    "Открыть https://solid-sound.net/forum/ (Samsung A31)"
-   ],
-   "expected": "canonical = адрес самой страницы, https.",
-   "actual": "Указано: https://solid-sound.net/en/forum/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую). · Указано: https://solid-sound.net/en/my-account/ Почему важно: Google решит, что это копия, и покажет другую страницу (ил",
-   "sig": "kb|kb-seo-canonical|Canonical указывает на другую страницу или на http",
-   "where": [
-    "/forum/",
-    "/en/my-account/orders/",
-    "/en/my-account/edit-account/"
-   ],
-   "devices": [
-    "Samsung A31",
-    "компьютер",
     "телефон"
    ],
-   "shot": "shots/024.jpg",
-   "isNew": false,
-   "more": 1
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Infinity» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Infinity»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Infinity",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/005.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Kratos» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Kratos»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Kratos",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/006.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "clickerr",
-   "title": "После нажатия «Film · Ads · Video» — ошибка в коде",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать «Film · Ads · Video»"
-   ],
-   "expected": "Без ошибок",
-   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/007.jpg",
+   "shot": "shots/10_011.jpg",
    "isNew": false
   },
   {
@@ -135,7 +75,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/021.jpg",
+   "shot": "shots/14_007.jpg",
    "isNew": false
   },
   {
@@ -155,7 +95,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/022.jpg",
+   "shot": "shots/14_008.jpg",
    "isNew": false
   },
   {
@@ -175,7 +115,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/023.jpg",
+   "shot": "shots/14_009.jpg",
    "isNew": false
   },
   {
@@ -192,34 +132,34 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/privacy-policy/",
-    "/en/refund_returns/",
-    "/en/license/",
-    "/en/contacts/",
-    "/en/faq/",
-    "/en/templates/",
-    "/en/presets/",
     "/en/music/",
-    "/en/forum/",
-    "/en/free-demo-feedback/",
-    "/en/prices/",
-    "/en/services-prices/",
-    "/en/sell/",
-    "/en/creator-terms/",
-    "/en/free/",
     "/en/data-deletion/",
-    "/en/wiki/",
-    "/en/wiki/record-clean-vocals-at-home/",
-    "/en/terms/",
-    "/en/legal-notice/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/wiki/audio-interface-for-vocals/",
-    "/en/wiki/closed-back-headphones-for-recording/",
     "/en/sitemap/",
+    "/en/privacy-policy/",
+    "/en/forum/",
+    "/en/wiki/",
+    "/en/refund_returns/",
+    "/en/free-demo-feedback/",
+    "/en/wiki/record-clean-vocals-at-home/",
     "/en/wiki/how-much-do-djs-get-paid/",
+    "/en/license/",
+    "/en/prices/",
+    "/en/terms/",
     "/en/wiki/how-to-promote-yourself-as-a-dj/",
+    "/en/contacts/",
+    "/en/services-prices/",
+    "/en/legal-notice/",
     "/en/wiki/how-to-get-booked-as-a-dj/",
+    "/en/faq/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/about/",
+    "/en/templates/",
+    "/en/creator-terms/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/presets/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/product/infinity/",
     "/forum/",
     "/ua/",
@@ -237,7 +177,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/004.jpg",
+   "shot": "shots/10_004.jpg",
    "isNew": false
   },
   {
@@ -254,16 +194,16 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/contacts/",
-    "/en/templates/",
-    "/en/forum/",
-    "/en/sell/",
-    "/en/creator-terms/",
-    "/en/wiki/record-clean-vocals-at-home/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/wiki/closed-back-headphones-for-recording/",
     "/en/sitemap/",
+    "/en/forum/",
+    "/en/wiki/record-clean-vocals-at-home/",
+    "/en/contacts/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/about/",
+    "/en/templates/",
+    "/en/creator-terms/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/product/infinity/",
     "/forum/",
     "/ua/",
@@ -278,7 +218,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/008.jpg",
+   "shot": "shots/10_005.jpg",
    "isNew": false
   },
   {
@@ -295,11 +235,11 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/templates/",
-    "/en/presets/",
     "/en/music/",
     "/en/free-demo-feedback/",
     "/en/sell/",
+    "/en/templates/",
+    "/en/presets/",
     "/ua/",
     "/de/",
     "/fr/",
@@ -314,7 +254,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/003.jpg",
+   "shot": "shots/10_003.jpg",
    "isNew": false
   },
   {
@@ -343,7 +283,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/009.jpg",
+   "shot": "shots/10_006.jpg",
    "isNew": false
   },
   {
@@ -372,7 +312,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/002.jpg",
+   "shot": "shots/10_002.jpg",
    "isNew": false
   },
   {
@@ -388,104 +328,15 @@
    "sig": "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу",
    "where": [
     "/en/all-products/",
+    "/en/music/",
     "/en/templates/",
-    "/en/presets/",
-    "/en/music/"
+    "/en/presets/"
    ],
    "devices": [
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/013.jpg",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "ears-clip",
-   "title": "Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ у трека «Infinity_Tech_House_128Kbps.mp3»"
-   ],
-   "expected": "Пики ниже 0 дБ",
-   "actual": "Пик 0 дБ при средней громкости -8.1 дБ",
-   "sig": "ears-clip|Infinity_Tech_House_128Kbps.mp3",
-   "where": [
-    "/en/",
-    "/en/all-products/",
-    "/en/templates/",
-    "/product/infinity/"
-   ],
-   "devices": [
-    "звук"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "ears-clip",
-   "title": "Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ у трека «Intricate_Dark-Techno_128kbps.mp3»"
-   ],
-   "expected": "Пики ниже 0 дБ",
-   "actual": "Пик 0 дБ при средней громкости -8.4 дБ",
-   "sig": "ears-clip|Intricate_Dark-Techno_128kbps.mp3",
-   "where": [
-    "/en/",
-    "/en/all-products/",
-    "/en/templates/"
-   ],
-   "devices": [
-    "звук"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "ears-clip",
-   "title": "Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ у трека «Pitch_128_kbps.mp3»"
-   ],
-   "expected": "Пики ниже 0 дБ",
-   "actual": "Пик 0 дБ при средней громкости -8.3 дБ",
-   "sig": "ears-clip|Pitch_128_kbps.mp3",
-   "where": [
-    "/en/",
-    "/en/all-products/",
-    "/en/templates/"
-   ],
-   "devices": [
-    "звук"
-   ],
-   "shot": "",
-   "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "ears-clip",
-   "title": "Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ у трека «Kratos_Dark_Techno_128kbps.mp3»"
-   ],
-   "expected": "Пики ниже 0 дБ",
-   "actual": "Пик 0 дБ при средней громкости -7.9 дБ",
-   "sig": "ears-clip|Kratos_Dark_Techno_128kbps.mp3",
-   "where": [
-    "/en/",
-    "/en/all-products/",
-    "/en/templates/"
-   ],
-   "devices": [
-    "звук"
-   ],
-   "shot": "",
+   "shot": "shots/10_010.jpg",
    "isNew": false
   },
   {
@@ -508,236 +359,128 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/016.jpg",
+   "shot": "shots/11_003.jpg",
    "isNew": false
   },
   {
    "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на UA (компьютер) частично не переведено",
+   "type": "ears-clip",
+   "title": "Превью «02-After.mp3» может хрипеть (перегруз)",
    "steps": [
-    "Открыть https://solid-sound.net/ua/"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ у трека «02-After.mp3»"
    ],
-   "expected": "Все пункты меню на UA",
-   "actual": "На английском: Products, All products, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell",
-   "sig": "menutr|desktop|ua",
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.9 дБ",
+   "sig": "ears-clip|02-After.mp3",
    "where": [
-    "/ua/"
+    "/en/all-products/"
    ],
    "devices": [
-    "компьютер"
+    "звук"
    ],
-   "shot": "shots/026.jpg",
+   "shot": "",
    "isNew": true
   },
   {
    "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на UA (телефон) частично не переведено",
+   "type": "ears-start",
+   "title": "Превью «01-Before.mp3» начинается с тишины (4.4 с)",
    "steps": [
-    "Открыть https://solid-sound.net/ua/"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ у трека «01-Before.mp3»"
    ],
-   "expected": "Все пункты меню на UA",
-   "actual": "На английском: Shop, Studio, Sell, Saved",
-   "sig": "menutr|phone|ua",
+   "expected": "Музыка с первой секунды — покупатель слушает 2–3 секунды",
+   "actual": "Первые 4.4 с тишина",
+   "sig": "ears-start|01-Before.mp3",
    "where": [
-    "/ua/"
+    "/en/all-products/"
    ],
    "devices": [
-    "телефон"
+    "звук"
    ],
-   "shot": "shots/027.jpg",
+   "shot": "",
    "isNew": true
   },
   {
    "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на DE (компьютер) частично не переведено",
+   "type": "ears-clip",
+   "title": "Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз)",
    "steps": [
-    "Открыть https://solid-sound.net/de/"
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажать ▶ у трека «Pitch_128_kbps.mp3»"
    ],
-   "expected": "Все пункты меню на DE",
-   "actual": "На английском: Products, All products, Templates, Presets, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell",
-   "sig": "menutr|desktop|de",
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.3 дБ",
+   "sig": "ears-clip|Pitch_128_kbps.mp3",
    "where": [
-    "/de/"
+    "/en/all-products/"
    ],
    "devices": [
-    "компьютер"
+    "звук"
    ],
-   "shot": "shots/029.jpg",
-   "isNew": true
+   "shot": "",
+   "isNew": false
   },
   {
    "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на DE (телефон) частично не переведено",
+   "type": "ears-clip",
+   "title": "Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз)",
    "steps": [
-    "Открыть https://solid-sound.net/de/"
+    "Открыть https://solid-sound.net/?p=338",
+    "Нажать ▶ у трека «Infinity_Tech_House_128Kbps.mp3»"
    ],
-   "expected": "Все пункты меню на DE",
-   "actual": "На английском: Shop, Studio, Sell, Saved",
-   "sig": "menutr|phone|de",
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.1 дБ",
+   "sig": "ears-clip|Infinity_Tech_House_128Kbps.mp3",
    "where": [
-    "/de/"
+    "/?p=338"
    ],
    "devices": [
-    "телефон"
+    "звук"
    ],
-   "shot": "shots/030.jpg",
-   "isNew": true
+   "shot": "",
+   "isNew": false
   },
   {
    "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на FR (компьютер) частично не переведено",
+   "type": "ears-clip",
+   "title": "Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз)",
    "steps": [
-    "Открыть https://solid-sound.net/fr/"
+    "Открыть https://solid-sound.net/?p=340",
+    "Нажать ▶ у трека «Intricate_Dark-Techno_128kbps.mp3»"
    ],
-   "expected": "Все пункты меню на FR",
-   "actual": "На английском: Products, All products, Templates, Presets, Services, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell",
-   "sig": "menutr|desktop|fr",
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -8.4 дБ",
+   "sig": "ears-clip|Intricate_Dark-Techno_128kbps.mp3",
    "where": [
-    "/fr/"
+    "/?p=340"
    ],
    "devices": [
-    "компьютер"
+    "звук"
    ],
-   "shot": "shots/032.jpg",
-   "isNew": true
+   "shot": "",
+   "isNew": false
   },
   {
    "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на FR (телефон) частично не переведено",
+   "type": "ears-clip",
+   "title": "Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз)",
    "steps": [
-    "Открыть https://solid-sound.net/fr/"
+    "Открыть https://solid-sound.net/?p=61",
+    "Нажать ▶ у трека «Kratos_Dark_Techno_128kbps.mp3»"
    ],
-   "expected": "Все пункты меню на FR",
-   "actual": "На английском: Shop, Studio, Sell, Saved",
-   "sig": "menutr|phone|fr",
+   "expected": "Пики ниже 0 дБ",
+   "actual": "Пик 0 дБ при средней громкости -7.9 дБ",
+   "sig": "ears-clip|Kratos_Dark_Techno_128kbps.mp3",
    "where": [
-    "/fr/"
+    "/?p=61"
    ],
    "devices": [
-    "телефон"
+    "звук"
    ],
-   "shot": "shots/033.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на PT (компьютер) частично не переведено",
-   "steps": [
-    "Открыть https://solid-sound.net/pt/"
-   ],
-   "expected": "Все пункты меню на PT",
-   "actual": "На английском: Products, All products, Templates, Presets, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell",
-   "sig": "menutr|desktop|pt",
-   "where": [
-    "/pt/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/035.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на PT (телефон) частично не переведено",
-   "steps": [
-    "Открыть https://solid-sound.net/pt/"
-   ],
-   "expected": "Все пункты меню на PT",
-   "actual": "На английском: Shop, Studio, Sell, Saved",
-   "sig": "menutr|phone|pt",
-   "where": [
-    "/pt/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/036.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на ES (компьютер) частично не переведено",
-   "steps": [
-    "Открыть https://solid-sound.net/es/"
-   ],
-   "expected": "Все пункты меню на ES",
-   "actual": "На английском: Home, Products, All products, Templates, Presets, Music, Services, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, Reviews, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Privacy Policy, Legal Notice, Sell",
-   "sig": "menutr|desktop|es",
-   "where": [
-    "/es/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/038.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на ES (телефон) частично не переведено",
-   "steps": [
-    "Открыть https://solid-sound.net/es/"
-   ],
-   "expected": "Все пункты меню на ES",
-   "actual": "На английском: Home, Shop, Studio, Sell, Saved",
-   "sig": "menutr|phone|es",
-   "where": [
-    "/es/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/039.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на IT (компьютер) частично не переведено",
-   "steps": [
-    "Открыть https://solid-sound.net/it/"
-   ],
-   "expected": "Все пункты меню на IT",
-   "actual": "На английском: Home, Products, All products, Templates, Presets, Music, Services, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, Reviews, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Privacy Policy, Legal Notice, Sell",
-   "sig": "menutr|desktop|it",
-   "where": [
-    "/it/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/041.jpg",
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "menutr",
-   "title": "Меню на IT (телефон) частично не переведено",
-   "steps": [
-    "Открыть https://solid-sound.net/it/"
-   ],
-   "expected": "Все пункты меню на IT",
-   "actual": "На английском: Home, Shop, Studio, Sell, Saved",
-   "sig": "menutr|phone|it",
-   "where": [
-    "/it/"
-   ],
-   "devices": [
-    "телефон"
-   ],
-   "shot": "shots/042.jpg",
-   "isNew": true
+   "shot": "",
+   "isNew": false
   },
   {
    "sev": "check",
@@ -752,34 +495,34 @@
    "where": [
     "/en/",
     "/en/all-products/",
-    "/en/privacy-policy/",
-    "/en/refund_returns/",
-    "/en/license/",
-    "/en/contacts/",
-    "/en/faq/",
-    "/en/templates/",
-    "/en/presets/",
     "/en/music/",
-    "/en/forum/",
-    "/en/free-demo-feedback/",
-    "/en/prices/",
-    "/en/services-prices/",
-    "/en/sell/",
-    "/en/creator-terms/",
-    "/en/free/",
     "/en/data-deletion/",
-    "/en/wiki/",
-    "/en/wiki/record-clean-vocals-at-home/",
-    "/en/terms/",
-    "/en/legal-notice/",
-    "/en/wiki/balanced-vs-unbalanced-cables/",
-    "/en/wiki/audio-interface-for-vocals/",
-    "/en/wiki/closed-back-headphones-for-recording/",
     "/en/sitemap/",
+    "/en/privacy-policy/",
+    "/en/forum/",
+    "/en/wiki/",
+    "/en/refund_returns/",
+    "/en/free-demo-feedback/",
+    "/en/wiki/record-clean-vocals-at-home/",
     "/en/wiki/how-much-do-djs-get-paid/",
+    "/en/license/",
+    "/en/prices/",
+    "/en/terms/",
     "/en/wiki/how-to-promote-yourself-as-a-dj/",
+    "/en/contacts/",
+    "/en/services-prices/",
+    "/en/legal-notice/",
     "/en/wiki/how-to-get-booked-as-a-dj/",
+    "/en/faq/",
+    "/en/sell/",
+    "/en/wiki/balanced-vs-unbalanced-cables/",
     "/en/about/",
+    "/en/templates/",
+    "/en/creator-terms/",
+    "/en/wiki/audio-interface-for-vocals/",
+    "/en/presets/",
+    "/en/free/",
+    "/en/wiki/closed-back-headphones-for-recording/",
     "/product/infinity/",
     "/forum/",
     "/en/my-account/",
@@ -792,7 +535,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/001.jpg",
+   "shot": "shots/10_001.jpg",
    "isNew": false
   },
   {
@@ -807,9 +550,9 @@
    "sig": "circle|+",
    "where": [
     "/en/all-products/",
+    "/en/music/",
     "/en/templates/",
     "/en/presets/",
-    "/en/music/",
     "/product/infinity/"
    ],
    "devices": [
@@ -817,7 +560,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/010.jpg",
+   "shot": "shots/10_007.jpg",
    "isNew": false
   },
   {
@@ -828,7 +571,7 @@
     "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
    ],
    "expected": "Меньше вложенности, подгружать по частям.",
-   "actual": "Элементов: 3736. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3231. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3187. Почему важно: Телефон тормозит при прокрутке и нажатиях. · Элементов: 3715. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
+   "actual": "Элементов: 3736. Почему важно: Телефон тормозит при прокрутке и нажатиях.",
    "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
    "where": [
     "/en/all-products/",
@@ -839,9 +582,8 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/012.jpg",
-   "isNew": false,
-   "more": 3
+   "shot": "shots/10_009.jpg",
+   "isNew": false
   },
   {
    "sev": "check",
@@ -861,7 +603,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/015.jpg",
+   "shot": "shots/16_002.jpg",
    "isNew": false
   },
   {
@@ -882,7 +624,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/011.jpg",
+   "shot": "shots/10_008.jpg",
    "isNew": false
   },
   {
@@ -901,7 +643,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/017.jpg",
+   "shot": "shots/12_003.jpg",
    "isNew": false
   },
   {
@@ -920,7 +662,7 @@
    "devices": [
     "компьютер"
    ],
-   "shot": "shots/018.jpg",
+   "shot": "shots/12_004.jpg",
    "isNew": false
   },
   {
@@ -940,7 +682,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/019.jpg",
+   "shot": "shots/14_004.jpg",
    "isNew": false
   },
   {
@@ -960,7 +702,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/020.jpg",
+   "shot": "shots/14_005.jpg",
    "isNew": false
   },
   {
@@ -980,7 +722,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/025.jpg",
+   "shot": "shots/18_013.jpg",
    "isNew": false
   },
   {
@@ -1000,7 +742,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/028.jpg",
+   "shot": "shots/18_014.jpg",
    "isNew": false
   },
   {
@@ -1020,7 +762,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/031.jpg",
+   "shot": "shots/18_015.jpg",
    "isNew": false
   },
   {
@@ -1040,7 +782,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/034.jpg",
+   "shot": "shots/18_016.jpg",
    "isNew": false
   },
   {
@@ -1060,7 +802,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/037.jpg",
+   "shot": "shots/18_017.jpg",
    "isNew": false
   },
   {
@@ -1080,7 +822,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/040.jpg",
+   "shot": "shots/18_018.jpg",
    "isNew": false
   },
   {
@@ -1100,7 +842,7 @@
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/043.jpg",
+   "shot": "shots/19_005.jpg",
    "isNew": false
   }
  ],
