@@ -61,7 +61,7 @@ const look = (p) => p.evaluate(() => {
     if (!vis(e) || e.closest('#wpadminbar,.ssp,svg,[aria-hidden=true]')) continue;
     const r = e.getBoundingClientRect();
     if (r.right > vw + 2 && r.width < vw && out.length < 6 && !clipped(e) && getComputedStyle(e).position !== 'fixed') out.push(d(e) + ` (правый край ${Math.round(r.right)} при экране ${vw})`);
-    if (!e.children.length && (e.textContent || '').trim().length > 2 && e.scrollWidth > e.clientWidth + 2 && e.clientWidth > 0) { const s = getComputedStyle(e); if (s.overflow !== 'visible' && s.textOverflow !== 'ellipsis' && cut.length < 6) cut.push(d(e)); }
+    if (!e.children.length && (e.textContent || '').trim().length > 2 && e.scrollWidth > e.clientWidth + 2 && e.clientWidth > 2 && r.height > 2) { const s = getComputedStyle(e); const srOnly = /screen-reader|sr-only|visually-hidden|ss-h1x/.test(typeof e.className === 'string' ? e.className : '') || (s.clip && s.clip !== 'auto') || s.clipPath !== 'none'; if (!srOnly && s.overflow !== 'visible' && s.textOverflow !== 'ellipsis' && cut.length < 6) cut.push(d(e)); }
   }
   document.querySelectorAll('img').forEach(i => { if (i.complete && i.naturalWidth === 0 && vis(i) && img.length < 5 && !/data:/.test(i.currentSrc || i.src)) img.push((i.currentSrc || i.src).split('/').pop().slice(0, 50)); });
   return { sideways: document.documentElement.scrollWidth > vw + 2, sw: document.documentElement.scrollWidth, out, cut, img, text: (document.body.innerText || '').trim().length };
@@ -104,9 +104,9 @@ async function partBrowsers() {
       // the menu: the bottom bar / header buttons answer
       if (u === '/en/') {
         const menu = p.locator('#ssg-bar button:visible, #ssg button[aria-expanded]:visible').first();
-        if (await menu.count().catch(() => 0)) { const before = await p.evaluate(() => document.body.innerText.length).catch(() => 0); await menu.click({ timeout: 4000 }).catch(() => {}); await p.waitForTimeout(800);
-          const after = await p.evaluate(() => document.body.innerText.length).catch(() => 0); const exp = await menu.getAttribute('aria-expanded').catch(() => null);
-          if (before === after && exp !== 'true' && p.url().startsWith(SITE + u)) bug({ sev: 'major', type: 'plus-menu', sig: `plus-menu|${eng}`, title: `${device}: кнопка меню ничего не делает`, where: u, device, steps: [`Открыть ${SITE}${u} в ${device}`, 'Нажать первую кнопку меню'], expected: 'Меню открывается или переходит на страницу', actual: 'Ничего не изменилось', shot: await shot(p, `${eng}_menu`) }); }
+        if (await menu.count().catch(() => 0)) { const before = await p.evaluate(() => document.body.innerText.length).catch(() => 0); await menu.click({ timeout: 4000 }).catch(() => {}); await p.waitForLoadState('load', { timeout: 8000 }).catch(() => {}); await p.waitForTimeout(2500); /* on a PC «Products» goes to the catalog page */
+          const after = await p.evaluate(() => document.body.innerText.length).catch(() => 0); const exp = await menu.getAttribute('aria-expanded').catch(() => 'gone'); const open = await p.evaluate(() => !!document.querySelector('#ssg .g-it.open, .ssg-msearch')).catch(() => true);
+          if (before === after && exp !== 'true' && exp !== 'gone' && !open && p.url().replace(/[?#].*$/, '') === SITE + u) bug({ sev: 'major', type: 'plus-menu', sig: `plus-menu|${eng}`, title: `${device}: кнопка меню ничего не делает`, where: u, device, steps: [`Открыть ${SITE}${u} в ${device}`, 'Нажать первую кнопку меню'], expected: 'Меню открывается или переходит на страницу', actual: 'Ничего не изменилось', shot: await shot(p, `${eng}_menu`) }); }
       }
       errBugs(errs, u, device, eng, sh);
       await p.close();
@@ -130,6 +130,7 @@ async function partKeys(browser) {
         const name = (e.tagName.toLowerCase() + ' «' + (e.getAttribute('aria-label') || e.innerText || e.value || e.name || '').trim().replace(/\s+/g, ' ').slice(0, 30) + '»');
         const ring = (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0) || (s.boxShadow && s.boxShadow !== 'none');
         const seen = r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth && s.visibility !== 'hidden' && +s.opacity > 0.05;
+        const lab = e.labels && e.labels[0]; if (!seen && lab) { const q = lab.getBoundingClientRect(); if (q.width > 1 && q.height > 1) return { name, ring: true, seen: true, key: name + Math.round(q.top + scrollY) }; } /* custom checkbox: the box is hidden, its label shows */
         return { name, ring, seen, key: name + Math.round(r.top + scrollY) + 'x' + Math.round(r.left) }; }).catch(() => null);
       if (!f) continue;
       if (f.key === last) { if (++same >= 3) { trap = f.name; break; } } else { same = 0; moved++; }
