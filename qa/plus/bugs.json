@@ -1,0 +1,17 @@
+{
+ "mode": "full",
+ "date": "2026-11-23T07:12:48.630Z",
+ "stats": {
+  "pages": 0,
+  "clicks": 0,
+  "sounds": 0,
+  "links": 0,
+  "blockedRequests": 0,
+  "robots": 0
+ },
+ "bugs": [],
+ "notChecked": [
+  "Робот plus не прислал отчёт"
+ ],
+ "l10nSkipped": 0
+}
