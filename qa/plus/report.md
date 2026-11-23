@@ -1,27 +1,46 @@
-# Автотестировщик — отчёт 2026-11-23 07:37 UTC (полная проверка)
+# Автотестировщик — отчёт 2026-11-23 07:58 UTC (полная проверка)
 
-Проверено: страниц 0, кнопок 0, кнопок звука 0, файлов звука 0, ссылок 0, роботов 1, плюс-проверок (Safari/Firefox, клавиатура, хаос, вчера↔сегодня, экраны) 22. Время: 0 мин.
-Найдено: 🔴 Критично 0 · 🟠 Важно 2 · 🟡 Мелочь 0 · ⚪ Проверить глазами 0
+Проверено: страниц 0, кнопок 0, кнопок звука 0, файлов звука 0, ссылок 0, роботов 2, плюс-проверок (Safari/Firefox, клавиатура, хаос, вчера↔сегодня, экраны) 106. Время: 0 мин.
+Найдено: 🔴 Критично 0 · 🟠 Важно 1 · 🟡 Мелочь 4 · ⚪ Проверить глазами 0
 
 Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.
 
-## 🟠 Важно (2)
+## 🟠 Важно (1)
 
-### 1. Ошибка скрипта в Safari iPhone: «Button failed to load, iconName = invalid-placard, layoutTraits = [Adw»
-- **Где:** https://solid-sound.net/en/all-products/, https://solid-sound.net/product/infinity/ (Safari iPhone)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ (Safari iPhone)
+### 1. Ошибка скрипта в Safari iPhone: «ResizeObserver loop completed with undelivered notifications.»
+- **Где:** https://solid-sound.net/en/ (Safari iPhone)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/ (Safari iPhone)
 - **Ожидалось:** Без ошибок скриптов
-- **На деле:** Button failed to load, iconName = invalid-placard, layoutTraits = [AdwaitaLayoutTraits Inline], src = data:image/png;base64,
-- **Скриншот:** [shots/1_002_webkit_en_all_products_.jpg](shots/1_002_webkit_en_all_products_.jpg)
+- **На деле:** ResizeObserver loop completed with undelivered notifications.
+- **Скриншот:** [shots/2_001_webkit_en_.jpg](shots/2_001_webkit_en_.jpg)
 
-### 2. Firefox ПК: кнопка меню ничего не делает
-- **Где:** https://solid-sound.net/en/ (Firefox ПК)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/ в Firefox ПК 2) Нажать первую кнопку меню
-- **Ожидалось:** Меню открывается или переходит на страницу
-- **На деле:** Ничего не изменилось
-- **Скриншот:** [shots/1_013_firefox_menu.jpg](shots/1_013_firefox_menu.jpg)
+## 🟡 Мелочь (4)
 
-## Не удалось проверить (1)
+### 2. Не видно, где фокус клавиатуры (нет рамки)
+- **Где:** https://solid-sound.net/en/ (Клавиатура)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/ 2) Нажимать Tab
+- **Ожидалось:** У кнопки в фокусе видна рамка
+- **На деле:** input «»; input «BPM»; input «on»
+- **Скриншот:** [shots/1_001_keys_en_.jpg](shots/1_001_keys_en_.jpg)
 
-- Робот plus не прислал отчёт
+### 3. Не видно, где фокус клавиатуры (нет рамки)
+- **Где:** https://solid-sound.net/en/studio-calculator/ (Клавиатура)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/studio-calculator/ 2) Нажимать Tab
+- **Ожидалось:** У кнопки в фокусе видна рамка
+- **На деле:** input «»; input «12»; input «on»
+- **Скриншот:** [shots/1_005_keys_en_studio_calculator_.jpg](shots/1_005_keys_en_studio_calculator_.jpg)
+
+### 4. Tab попадает на невидимые элементы
+- **Где:** https://solid-sound.net/en/sell/ (Клавиатура)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/sell/ 2) Нажимать Tab
+- **Ожидалось:** Фокус только на видимых кнопках
+- **На деле:** input «Ableton templates»; input «Other DAW templates»; input «Synth presets»; input «Sample packs»; input «MIDI»
+- **Скриншот:** [shots/1_007_keys_en_sell_.jpg](shots/1_007_keys_en_sell_.jpg)
+
+### 5. Не видно, где фокус клавиатуры (нет рамки)
+- **Где:** https://solid-sound.net/en/sell/ (Клавиатура)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/sell/ 2) Нажимать Tab
+- **Ожидалось:** У кнопки в фокусе видна рамка
+- **На деле:** input «»; input «first_name»; input «last_name»; input «user_email»; input «store_name»
+- **Скриншот:** [shots/1_007_keys_en_sell_.jpg](shots/1_007_keys_en_sell_.jpg)
 
