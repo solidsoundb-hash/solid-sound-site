@@ -203,6 +203,8 @@ function collect() {
     // (20.11) a button that only scrolls UNDER a sticky / fixed header or toolbar at the top is not covered — scrolling brings it out
     const stuck = (n) => { for (let k = 0; n && k < 8; k++, n = n.parentElement) { const p = getComputedStyle(n).position; if (p === 'sticky' || p === 'fixed') return n; } return null; };
     const st = top && stuck(top); if (st && st.getBoundingClientRect().top < vh * 0.25 && y < st.getBoundingClientRect().bottom + 2) return;
+    // (23.11) the same for a bar fixed at the BOTTOM (audio player, sticky buy) when the page leaves room for it below — scrolling brings the button out
+    if (st && st.getBoundingClientRect().top > vh * 0.6 && parseFloat(getComputedStyle(document.body).paddingBottom) >= st.getBoundingClientRect().height - 4) return;
     if (top && top !== e && !e.contains(top) && !top.contains(e)) f.covered.push(desc(e) + ' ← закрывает ' + desc(top));
   });
   // fixed panels height
@@ -246,7 +248,7 @@ function check(f, ctx) {
   if (f.desc === null || f.desc.length < 50) add('seo-desc', f.desc === null ? 'Описания нет.' : `Слишком короткое: «${f.desc}».`, [], p);
   if (f.h1.length !== 1) add('seo-h1', `Видимых H1: ${f.h1.length}${f.h1.length ? ' (' + f.h1.join(' | ') + ')' : ''}.`, [], p);
   if (/noindex/i.test(f.robots) && MUST_INDEX.test(p)) add('seo-noindex', `robots: «${f.robots.trim()}».`, [], p);
-  if (f.canonical) { try { const c = new URL(f.canonical); if (c.protocol !== 'https:' || (c.pathname.replace(/\/$/, '') !== p.replace(/\/$/, '') && !/[?&](s|page|orderby)=/.test(String(ctx.url || '')))) add('seo-canonical', `Указано: ${f.canonical}`, [], p); } catch (e) {} }
+  if (f.canonical) { try { const c = new URL(f.canonical); if (c.protocol !== 'https:' || (c.pathname.replace(/\/$/, '') !== p.replace(/\/$/, '') && c.pathname.replace(/\/$/, '') !== '/en' + p.replace(/\/$/, '') /* 23.11: /forum/ → /en/forum/ is the main copy, right */ && !/[?&](s|page|orderby)=/.test(String(ctx.url || '')))) add('seo-canonical', `Указано: ${f.canonical}`, [], p); } catch (e) {} }
   if (!f.ogImage || !f.ogTitle) add('seo-og', `og:title: ${f.ogTitle ? 'есть' : 'нет'}, og:image: ${f.ogImage ? 'есть' : 'нет'}.`, [], p);
   if (f.ldBroken) add('seo-ld-broken', `Сломанных блоков: ${f.ldBroken}.`, [], p);
   if (f.isProduct && !f.hasProductLd) add('seo-product-ld', '', [], p);

@@ -5655,6 +5655,7 @@ require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plug
 require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */
 require_once __DIR__ . '/modules/speed-lite.php'; /* 19.11 owner: speed — no hidden Tidio (1 MB) while the Telegram chat works */
 require_once __DIR__ . '/modules/speed-diet.php'; /* 19.11 owner: «повырезать, чем не пользуемся» — wpForo only on forum pages, no AI Engine / Duplicate Post on page views */
+require_once __DIR__ . '/modules/qa-fixes.php'; /* 23.11 night QA report: account canonical, A/B play buttons say Pause */
 require_once __DIR__ . '/modules/smart-search.php'; /* 19.11 owner: smart search (code first, Cloudflare AI optional) */
 require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public creator page /store/<slug>/ */
 require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-tabs look + payouts status + profile preview */
