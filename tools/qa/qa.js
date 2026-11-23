@@ -637,7 +637,7 @@ function writeReport(final = true) {
   const mins = Math.round((Date.now() - T0) / 60000);
   const L = [];
   L.push(`# Автотестировщик — отчёт ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (${FULL ? 'полная проверка' : SMOKE ? 'короткая проверка после выкладки' : 'ежедневная проверка'})${final ? '' : ' — ⏳ проверка ещё идёт, отчёт неполный'}`, '');
-  L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, файлов звука ${stats.audioFiles || 0}, ссылок ${stats.links}${stats.eyesTiles ? `, нейросеть-глаза: страниц ${stats.eyesPages || 0}, кусков ${stats.eyesTiles}` : ''}${stats.robots ? `, роботов ${stats.robots}` : ''}. Время: ${mins} мин.`);
+  L.push(`Проверено: страниц ${stats.pages}, кнопок ${stats.clicks}, кнопок звука ${stats.sounds}, файлов звука ${stats.audioFiles || 0}, ссылок ${stats.links}${stats.eyesTiles ? `, нейросеть-глаза: страниц ${stats.eyesPages || 0}, кусков ${stats.eyesTiles}` : ''}${stats.robots ? `, роботов ${stats.robots}${stats.plusChecks ? `, плюс-проверок (Safari/Firefox, клавиатура, хаос, вчера↔сегодня, экраны) ${stats.plusChecks}` : ''}` : ''}. Время: ${mins} мин.`);
   if (l10nSkipped) L.push(`Переводы не проверялись (владелец 17.11: сначала сайт на английском) — пропущено замечаний: ${l10nSkipped}.`);
   L.push(`Найдено: ${SEV.critical} ${cnt('critical')} · ${SEV.major} ${cnt('major')} · ${SEV.minor} ${cnt('minor')} · ${SEV.check} ${cnt('check')}` + (prevSigs ? ` · новых ${list.filter(b => b.isNew).length} · исправлено с прошлого раза ${fixed.length}` : ''), '');
   L.push('Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.', '');

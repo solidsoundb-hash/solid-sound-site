@@ -1,0 +1,35 @@
+# QA «plus» on its own (23.11): Safari + Firefox, keyboard, chaos tester, yesterday-vs-today, odd screens — tools/qa/plus.js.
+# Every night it also runs inside the QA swarm (qa/latest/report.md). Alone: a line in .github/qa-plus.txt → report qa/plus/report.md.
+# One robot at a time on the site (hosting limit). Read-only.
+name: QA plus
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/qa-plus.txt"]
+permissions:
+  contents: write
+concurrency: { group: qa-plus, cancel-in-progress: false }
+jobs:
+  plus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1 && npx playwright install --with-deps webkit firefox > /dev/null
+      - name: Plus robots
+        timeout-minutes: 130
+        env: { PW_CHANNEL: chrome, PLUS_OUT: qa/sw/plus, PLUS_BUDGET_MIN: "120" }
+        run: node tools/qa/plus.js
+      - name: One report
+        if: always()
+        env: { QA_MODE: full, QA_OUT: qa/plus, QA_NOHIST: "1" }
+        run: |
+          mkdir -p qa/plus && QA_MERGE=qa/sw/plus node tools/qa/qa.js
+          if [ -d qa/sw/plus/base ]; then mkdir -p qa/visual/base && cp qa/sw/plus/base/*.png qa/visual/base/ 2>/dev/null || true; fi
+          rm -rf qa/sw
+      - name: Save
+        if: always()
+        run: BOT_NAME=qa-plus bash .github/save.sh "QA plus: $(date -u +%FT%TZ)" qa
