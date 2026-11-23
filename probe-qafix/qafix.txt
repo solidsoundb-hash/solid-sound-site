@@ -1,0 +1,16 @@
+
+=== phone ===
+Каталог, чат: справа ✅ (до правого края 16 px)
+Каталог, шрифт сортировки: 16px
+Цены, кнопка A/B: до «Play Space Echo — client track» → после нажатия «Pause Space Echo — client track», aria-pressed=true ✅
+Кабинет /en/my-account/orders/: canonical https://solid-sound.net/en/my-account/orders/ · robots max-image-preview:large, noindex, follow ✅
+Кабинет /en/my-account/edit-account/: canonical https://solid-sound.net/en/my-account/edit-account/ · robots max-image-preview:large, noindex, follow ✅
+Главная, цвет невыбранных пунктов пакета: rgb(143, 155, 177) ✅
+
+=== pc ===
+Каталог, чат: справа ✅ (до правого края 20 px)
+Каталог, шрифт сортировки: 14px
+Цены, кнопка A/B: до «Play Space Echo — client track» → после нажатия «Pause Space Echo — client track», aria-pressed=true ✅
+Кабинет /en/my-account/orders/: canonical https://solid-sound.net/en/my-account/orders/ · robots max-image-preview:large, noindex, follow ✅
+Кабинет /en/my-account/edit-account/: canonical https://solid-sound.net/en/my-account/edit-account/ · robots max-image-preview:large, noindex, follow ✅
+Главная, цвет невыбранных пунктов пакета: rgb(143, 155, 177) ✅
