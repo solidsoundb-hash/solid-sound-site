@@ -40,7 +40,7 @@ async function ctxFor(browser, opt) {
 function watchErrors(p, list) {
   p.on('pageerror', e => list.push(String(e && e.message || e).slice(0, 160)));
   p.on('console', m => { if (m.type() !== 'error') return; const t = m.text(); const u = (m.location() || {}).url || '';
-    if (/Failed to load resource|net::ERR|ERR_FAILED|blocked|CORS|favicon|youtube|ytimg|Content Security/i.test(t)) return;
+    if (/Failed to load resource|net::ERR|ERR_FAILED|blocked|CORS|favicon|youtube|ytimg|Content Security|Button failed to load|invalid-placard|Adwaita/i.test(t)) return; /* the last three: Safari (WebKit on Linux) about its own media-control icons */
     if (u && !/solid-sound\.net/.test(u)) return; list.push(t.slice(0, 160)); });
 }
 async function open(p, u) {
@@ -104,9 +104,10 @@ async function partBrowsers() {
       // the menu: the bottom bar / header buttons answer
       if (u === '/en/') {
         const menu = p.locator('#ssg-bar button:visible, #ssg button[aria-expanded]:visible').first();
-        if (await menu.count().catch(() => 0)) { const before = await p.evaluate(() => document.body.innerText.length).catch(() => 0); await menu.click({ timeout: 4000 }).catch(() => {}); await p.waitForLoadState('load', { timeout: 8000 }).catch(() => {}); await p.waitForTimeout(2500); /* on a PC «Products» goes to the catalog page */
+        if (await menu.count().catch(() => 0)) { const before = await p.evaluate(() => document.body.innerText.length).catch(() => 0), y0 = await p.evaluate(() => scrollY).catch(() => 0); await menu.click({ timeout: 4000 }).catch(() => {}); await p.waitForLoadState('load', { timeout: 8000 }).catch(() => {}); await p.waitForTimeout(2500); /* on a PC «Products» goes to the catalog page */
           const after = await p.evaluate(() => document.body.innerText.length).catch(() => 0); const exp = await menu.getAttribute('aria-expanded').catch(() => 'gone'); const open = await p.evaluate(() => !!document.querySelector('#ssg .g-it.open, .ssg-msearch')).catch(() => true);
-          if (before === after && exp !== 'true' && exp !== 'gone' && !open && p.url().replace(/[?#].*$/, '') === SITE + u) bug({ sev: 'major', type: 'plus-menu', sig: `plus-menu|${eng}`, title: `${device}: кнопка меню ничего не делает`, where: u, device, steps: [`Открыть ${SITE}${u} в ${device}`, 'Нажать первую кнопку меню'], expected: 'Меню открывается или переходит на страницу', actual: 'Ничего не изменилось', shot: await shot(p, `${eng}_menu`) }); }
+          const y1 = await p.evaluate(() => scrollY).catch(() => 0); /* on the home page «Products» scrolls to its section */
+          if (Math.abs(y1 - y0) < 50 && before === after && exp !== 'true' && exp !== 'gone' && !open && p.url().replace(/[?#].*$/, '') === SITE + u) bug({ sev: 'major', type: 'plus-menu', sig: `plus-menu|${eng}`, title: `${device}: кнопка меню ничего не делает`, where: u, device, steps: [`Открыть ${SITE}${u} в ${device}`, 'Нажать первую кнопку меню'], expected: 'Меню открывается или переходит на страницу', actual: 'Ничего не изменилось', shot: await shot(p, `${eng}_menu`) }); }
       }
       errBugs(errs, u, device, eng, sh);
       await p.close();

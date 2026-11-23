@@ -22,7 +22,9 @@ jobs:
       - name: Safari (iPhone) and Firefox — in Playwright's own image (all their system libraries are there; 23.11 the runner lacked them)
         timeout-minutes: 50
         continue-on-error: true
-        run: docker run --rm -v "$PWD":/w -w /w -e PLUS_PARTS=browsers -e PLUS_OUT=qa/sw/plus-b -e PLUS_BUDGET_MIN=40 mcr.microsoft.com/playwright:v1.49.1-noble bash -c "npm i --no-save playwright@1.49.1 > /dev/null 2>&1 && node tools/qa/plus.js"
+        run: |
+          docker run --rm -v "$PWD":/w -w /w -e PLUS_PARTS=browsers -e PLUS_OUT=qa/sw/plus-b -e PLUS_BUDGET_MIN=40 mcr.microsoft.com/playwright:v1.49.1-noble bash -c "npm i --no-save playwright@1.49.1 > /dev/null 2>&1 && node tools/qa/plus.js" || echo "Safari/Firefox robot failed"
+          sudo chown -R $USER qa/sw || true   # the image runs as root
       - name: Keyboard, chaos, yesterday-vs-today, screens (Chrome)
         timeout-minutes: 90
         env: { PW_CHANNEL: chrome, PLUS_PARTS: "keys,monkey,visual,shapes", PLUS_OUT: qa/sw/plus, PLUS_BUDGET_MIN: "80" }
