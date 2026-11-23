@@ -1,264 +1,213 @@
-# Автотестировщик — отчёт 2026-11-23 00:08 UTC (полная проверка)
+# Автотестировщик — отчёт 2026-11-23 16:28 UTC (полная проверка)
 
-Проверено: страниц 86, кнопок 515, кнопок звука 54, файлов звука 35, ссылок 973, роботов 20. Время: 42 мин.
-Переводы не проверялись (владелец 17.11: сначала сайт на английском) — пропущено замечаний: 44.
-Найдено: 🔴 Критично 0 · 🟠 Важно 5 · 🟡 Мелочь 13 · ⚪ Проверить глазами 16 · новых 2 · исправлено с прошлого раза 15
+Проверено: страниц 76, кнопок 570, кнопок звука 54, файлов звука 27, ссылок 0. Время: 117 мин.
+Переводы не проверялись (владелец 17.11: сначала сайт на английском) — пропущено замечаний: 43.
+Найдено: 🔴 Критично 0 · 🟠 Важно 12 · 🟡 Мелочь 12 · ⚪ Проверить глазами 0 · новых 14 · исправлено с прошлого раза 9
 
 Для Claude: каждый пункт — задача. Исправить → выложить → бот перепроверит сам. Пункты «Проверить глазами» — возможные ложные срабатывания, решать по скриншоту.
 
-## 🟠 Важно (5)
+## 🟠 Важно (12)
 
-### 1. Canonical указывает на другую страницу или на http
-- **Где:** https://solid-sound.net/forum/, https://solid-sound.net/en/my-account/orders/, https://solid-sound.net/en/my-account/edit-account/ (Samsung A31, компьютер, телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/forum/ (Samsung A31)
-- **Ожидалось:** canonical = адрес самой страницы, https.
-- **На деле:** Указано: https://solid-sound.net/en/forum/ Почему важно: Google решит, что это копия, и покажет другую страницу (или никакую).
-- **Скриншот:** [shots/18_011.jpg](shots/18_011.jpg)
-
-### 2. Важную кнопку закрывает что-то сверху (чат, плеер, баннер)
-- **Где:** https://solid-sound.net/en/all-products/, https://solid-sound.net/en/free-demo-feedback/ (телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ (телефон) 2) Где: a.ssn-cart.add_to_cart_button «Add Time Goes Fast Documentary Piano to » ← закрывает div#ssp.ssp.is-open «Audio player»
-- **Ожидалось:** Сдвинуть плавающие элементы или добавить отступ снизу.
-- **На деле:** Почему важно: Нажимается не кнопка, а то, что её закрывает.
-- **Скриншот:** [shots/10_011.jpg](shots/10_011.jpg)
-
-### 3. Кнопка «Play Space Echo — client track» не превращается в ⏸ (паузу), когда трек играет
-- **Где:** https://solid-sound.net/en/services-prices/ (компьютер, телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/services-prices/ 2) Нажать ▶ «Play Space Echo — client track»
-- **Ожидалось:** Значок меняется на ⏸
-- **На деле:** Трек играет, а на кнопке всё ещё ▶ (кнопка: button.sab-p в sab-c)
-- **Скриншот:** [shots/14_007.jpg](shots/14_007.jpg)
-
-### 4. Кнопка «Play Feeling Good — client track» не превращается в ⏸ (паузу), когда трек играет
-- **Где:** https://solid-sound.net/en/services-prices/ (компьютер)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/services-prices/ 2) Нажать ▶ «Play Feeling Good — client track»
-- **Ожидалось:** Значок меняется на ⏸
-- **На деле:** Трек играет, а на кнопке всё ещё ▶ (кнопка: button.sab-p в sab-c)
-- **Скриншот:** [shots/14_008.jpg](shots/14_008.jpg)
-
-### 5. Кнопка «Play Escape — client track» не превращается в ⏸ (паузу), когда трек играет
-- **Где:** https://solid-sound.net/en/services-prices/ (компьютер)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/services-prices/ 2) Нажать ▶ «Play Escape — client track»
-- **Ожидалось:** Значок меняется на ⏸
-- **На деле:** Трек играет, а на кнопке всё ещё ▶ (кнопка: button.sab-p в sab-c)
-- **Скриншот:** [shots/14_009.jpg](shots/14_009.jpg)
-
-## 🟡 Мелочь (13)
-
-### 6. Скрипты в <head> без defer/async — тормозят показ страницы
-- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/music/, https://solid-sound.net/en/data-deletion/, https://solid-sound.net/en/sitemap/, https://solid-sound.net/en/privacy-policy/ и ещё 35 (компьютер, телефон, Samsung A31)
+### 1. Скрипты в <head> без defer/async — тормозят показ страницы (висит 16 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/privacy-policy/, https://solid-sound.net/en/refund_returns/, https://solid-sound.net/en/license/, https://solid-sound.net/en/contacts/ и ещё 32 (компьютер, телефон, Samsung A31)
 - **Шаги:** 1) Открыть https://solid-sound.net/en/ (компьютер) 2) Где: https://solid-sound.net/wp-content/plugins/solid-sound-custom/build/assets/js-l1023.d70a254c40.js; https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js
 - **Ожидалось:** defer (правило проекта в CLAUDE.md).
 - **На деле:** Почему важно: Браузер ждёт скачивания скрипта, страница белая.
-- **Скриншот:** [shots/10_004.jpg](shots/10_004.jpg)
+- **Скриншот:** [shots/003.jpg](shots/003.jpg)
 
-### 7. Кнопки/ссылки слишком маленькие для пальца
-- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/sitemap/, https://solid-sound.net/en/forum/, https://solid-sound.net/en/wiki/record-clean-vocals-at-home/, https://solid-sound.net/en/contacts/ и ещё 15 (телефон, Samsung A31)
+### 2. Кнопки/ссылки слишком маленькие для пальца (висит 16 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/contacts/, https://solid-sound.net/en/templates/, https://solid-sound.net/en/forum/, https://solid-sound.net/en/sell/ и ещё 14 (телефон, Samsung A31)
 - **Шаги:** 1) Открыть https://solid-sound.net/en/ (телефон) 2) Где: input 18×18; button «Page 1» 24×8; button «Page 2» 8×8; button «Page 3» 8×8; button «Page 4» 8×8
 - **Ожидалось:** Увеличить зону нажатия (padding).
 - **На деле:** Почему важно: Промахиваются и жмут соседнюю кнопку. Норма — 44×44 px (Apple), 48 px (Google).
-- **Скриншот:** [shots/10_005.jpg](shots/10_005.jpg)
+- **Скриншот:** [shots/004.jpg](shots/004.jpg)
 
-### 8. Одинаковые id у разных элементов
-- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/music/, https://solid-sound.net/en/free-demo-feedback/, https://solid-sound.net/en/sell/, https://solid-sound.net/en/templates/ и ещё 9 (компьютер, телефон, Samsung A31)
+### 3. Одинаковые id у разных элементов (висит 16 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/templates/, https://solid-sound.net/en/presets/, https://solid-sound.net/en/music/, https://solid-sound.net/en/free-demo-feedback/ и ещё 7 (компьютер, телефон, Samsung A31)
 - **Шаги:** 1) Открыть https://solid-sound.net/en/ (компьютер) 2) Где: top-q
 - **Ожидалось:** Уникальные id.
 - **На деле:** Почему важно: Кнопки, якоря и подписи полей начинают работать не с тем элементом.
-- **Скриншот:** [shots/10_003.jpg](shots/10_003.jpg)
+- **Скриншот:** [shots/002.jpg](shots/002.jpg)
 
-### 9. Слишком мелкий текст на телефоне (меньше 12 px)
+### 4. Слишком мелкий текст на телефоне (меньше 12 px) (висит 16 проверок подряд)
 - **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/prices/, https://solid-sound.net/en/sell/, https://solid-sound.net/ua/, https://solid-sound.net/de/, https://solid-sound.net/fr/ и ещё 3 (телефон, Samsung A31)
 - **Шаги:** 1) Открыть https://solid-sound.net/en/ (телефон) 2) Где: em.ss-more «+3 more» 0px
 - **Ожидалось:** Минимум 12–13 px для подписей, 15–16 для текста.
 - **На деле:** Почему важно: Нечитаемо без увеличения.
-- **Скриншот:** [shots/10_006.jpg](shots/10_006.jpg)
+- **Скриншот:** [shots/005.jpg](shots/005.jpg)
 
-### 10. Текст плохо читается: слишком бледный на фоне
-- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/free-demo-feedback/, https://solid-sound.net/ua/, https://solid-sound.net/de/, https://solid-sound.net/fr/, https://solid-sound.net/pt/ и ещё 2 (компьютер, телефон, Samsung A31)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/ (компьютер) 2) Где: em «BPM & key map» 3.8:1; em «Ableton live set (stems)» 3.8:1; em «Mix / mixtape mastering» 3.8:1; em «Transition tools» 3.8:1; em «Echo / room sound» 3.8:1
-- **Ожидалось:** Контраст не ниже 4.5:1 (мелкий текст).
-- **На деле:** Почему важно: На телефоне на улице такой текст не видно.
-- **Скриншот:** [shots/10_002.jpg](shots/10_002.jpg)
-
-### 11. Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу
-- **Где:** https://solid-sound.net/en/all-products/, https://solid-sound.net/en/music/, https://solid-sound.net/en/templates/, https://solid-sound.net/en/presets/ (телефон, Samsung A31)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ (телефон) 2) Где: select#us_grid_order_1 «Sort products» 14px
-- **Ожидалось:** font-size: 16px у полей ввода на телефоне.
-- **На деле:** Почему важно: При нажатии на поле страница «прыгает» и съезжает — раздражает на оформлении заказа.
-- **Скриншот:** [shots/10_010.jpg](shots/10_010.jpg)
-
-### 12. Ссылка-пустышка: href="#" или пусто, ничего не происходит
+### 5. Ссылка-пустышка: href="#" или пусто, ничего не происходит (висит 16 проверок подряд)
 - **Где:** https://solid-sound.net/en/forum/, https://solid-sound.net/forum/ (компьютер, телефон, Samsung A31)
 - **Шаги:** 1) Открыть https://solid-sound.net/en/forum/ (компьютер) 2) Где: a «Forums»
 - **Ожидалось:** Настоящий адрес или кнопка с действием.
 - **На деле:** Почему важно: Человек нажимает — и ничего.
-- **Скриншот:** [shots/11_003.jpg](shots/11_003.jpg)
+- **Скриншот:** [shots/011.jpg](shots/011.jpg)
 
-### 13. Превью «02-After.mp3» может хрипеть (перегруз) 🆕
-- **Где:** https://solid-sound.net/en/all-products/ (звук)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ 2) Нажать ▶ у трека «02-After.mp3»
-- **Ожидалось:** Пики ниже 0 дБ
-- **На деле:** Пик 0 дБ при средней громкости -8.9 дБ
+### 6. Текст плохо читается: слишком бледный на фоне (висит 14 проверок подряд)
+- **Где:** https://solid-sound.net/en/free-demo-feedback/ (компьютер, телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер) 2) Где: a.btn «GET A FREE DEMO FEEDBACK» 1.2:1
+- **Ожидалось:** Контраст не ниже 4.5:1 (мелкий текст).
+- **На деле:** Почему важно: На телефоне на улице такой текст не видно.
+- **Скриншот:** [shots/014.jpg](shots/014.jpg)
 
-### 14. Превью «01-Before.mp3» начинается с тишины (4.4 с) 🆕
-- **Где:** https://solid-sound.net/en/all-products/ (звук)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ 2) Нажать ▶ у трека «01-Before.mp3»
-- **Ожидалось:** Музыка с первой секунды — покупатель слушает 2–3 секунды
-- **На деле:** Первые 4.4 с тишина
-
-### 15. Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз)
-- **Где:** https://solid-sound.net/en/all-products/ (звук)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ 2) Нажать ▶ у трека «Pitch_128_kbps.mp3»
-- **Ожидалось:** Пики ниже 0 дБ
-- **На деле:** Пик 0 дБ при средней громкости -8.3 дБ
-
-### 16. Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз)
-- **Где:** https://solid-sound.net/?p=338 (звук)
-- **Шаги:** 1) Открыть https://solid-sound.net/?p=338 2) Нажать ▶ у трека «Infinity_Tech_House_128Kbps.mp3»
+### 7. Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз) (висит 13 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/templates/, https://solid-sound.net/product/infinity/ (звук)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/ 2) Нажать ▶ у трека «Infinity_Tech_House_128Kbps.mp3»
 - **Ожидалось:** Пики ниже 0 дБ
 - **На деле:** Пик 0 дБ при средней громкости -8.1 дБ
 
-### 17. Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз)
-- **Где:** https://solid-sound.net/?p=340 (звук)
-- **Шаги:** 1) Открыть https://solid-sound.net/?p=340 2) Нажать ▶ у трека «Intricate_Dark-Techno_128kbps.mp3»
+### 8. Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз) (висит 13 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/templates/ (звук)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/ 2) Нажать ▶ у трека «Intricate_Dark-Techno_128kbps.mp3»
 - **Ожидалось:** Пики ниже 0 дБ
 - **На деле:** Пик 0 дБ при средней громкости -8.4 дБ
 
-### 18. Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз)
-- **Где:** https://solid-sound.net/?p=61 (звук)
-- **Шаги:** 1) Открыть https://solid-sound.net/?p=61 2) Нажать ▶ у трека «Kratos_Dark_Techno_128kbps.mp3»
+### 9. Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз) (висит 13 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/templates/ (звук)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/ 2) Нажать ▶ у трека «Pitch_128_kbps.mp3»
+- **Ожидалось:** Пики ниже 0 дБ
+- **На деле:** Пик 0 дБ при средней громкости -8.3 дБ
+
+### 10. Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз) (висит 13 проверок подряд)
+- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/templates/ (звук)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/ 2) Нажать ▶ у трека «Kratos_Dark_Techno_128kbps.mp3»
 - **Ожидалось:** Пики ниже 0 дБ
 - **На деле:** Пик 0 дБ при средней громкости -7.9 дБ
 
-## ⚪ Проверить глазами (16)
+### 11. После нажатия «Product 4» — ошибка в коде 🆕
+- **Где:** https://solid-sound.net/en/all-products/ (компьютер)
+- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ 2) Нажать «Product 4»
+- **Ожидалось:** Без ошибок
+- **На деле:** console: Permissions policy violation: compute-pressure is not allowed in this document.
+- **Скриншот:** [shots/009.jpg](shots/009.jpg)
 
-### 19. Круглая кнопка-значок «Questions? Ask here» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/en/, https://solid-sound.net/en/all-products/, https://solid-sound.net/en/music/, https://solid-sound.net/en/data-deletion/, https://solid-sound.net/en/sitemap/, https://solid-sound.net/en/privacy-policy/ и ещё 30 (компьютер, телефон, Samsung A31)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/10_001.jpg](shots/10_001.jpg)
+### 12. После запуска другого трека прежняя кнопка всё ещё показывает ⏸ 🆕
+- **Где:** https://solid-sound.net/en/services-prices/ (компьютер)
+- **Шаги:** 1) Нажать ▶ «Play Space Echo — client track» 2) Нажать ▶ «Play Feeling Good — client track»
+- **Ожидалось:** «Play Space Echo — client track» снова показывает ▶
+- **На деле:** Показывает ⏸, хотя этот трек не играет
+- **Скриншот:** [shots/017.jpg](shots/017.jpg)
 
-### 20. Круглая кнопка-значок «+» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/en/all-products/, https://solid-sound.net/en/music/, https://solid-sound.net/en/templates/, https://solid-sound.net/en/presets/, https://solid-sound.net/product/infinity/ (компьютер, телефон, Samsung A31)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 30px)
-- **Скриншот:** [shots/10_007.jpg](shots/10_007.jpg)
+## 🟡 Мелочь (12)
 
-### 21. Слишком много элементов на странице (>3000)
-- **Где:** https://solid-sound.net/en/all-products/, https://solid-sound.net/en/services-prices/ (компьютер, телефон, Samsung A31)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/ (компьютер)
-- **Ожидалось:** Меньше вложенности, подгружать по частям.
-- **На деле:** Элементов: 3736. Почему важно: Телефон тормозит при прокрутке и нажатиях.
-- **Скриншот:** [shots/10_009.jpg](shots/10_009.jpg)
-
-### 22. Круглая кнопка-значок «Watch video» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/en/templates/, https://solid-sound.net/en/presets/ (компьютер, телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/templates/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 30px)
-- **Скриншот:** [shots/16_002.jpg](shots/16_002.jpg)
-
-### 23. Кнопка «Watch video» скруглена не так, как остальные
-- **Где:** https://solid-sound.net/en/all-products/ (компьютер, телефон, Samsung A31)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/all-products/
-- **Ожидалось:** Скругление углов 8–12px
-- **На деле:** Радиус 0px
-- **Скриншот:** [shots/10_008.jpg](shots/10_008.jpg)
-
-### 24. Круглая кнопка-значок «❮» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/en/free-demo-feedback/ (компьютер)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/free-demo-feedback/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 50px)
-- **Скриншот:** [shots/12_003.jpg](shots/12_003.jpg)
-
-### 25. Круглая кнопка-значок «❯» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/en/free-demo-feedback/ (компьютер)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/free-demo-feedback/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 50px)
-- **Скриншот:** [shots/12_004.jpg](shots/12_004.jpg)
-
-### 26. Кнопка «Marco L.» скруглена не так, как остальные
-- **Где:** https://solid-sound.net/en/services-prices/ (компьютер, телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/services-prices/
-- **Ожидалось:** Скругление углов 8–12px
-- **На деле:** Радиус 18px
-- **Скриншот:** [shots/14_004.jpg](shots/14_004.jpg)
-
-### 27. Кнопка «Hector M.» скруглена не так, как остальные
-- **Где:** https://solid-sound.net/en/services-prices/ (компьютер, телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/services-prices/
-- **Ожидалось:** Скругление углов 8–12px
-- **На деле:** Радиус 18px
-- **Скриншот:** [shots/14_005.jpg](shots/14_005.jpg)
-
-### 28. Круглая кнопка-значок «Є питання? Пишіть» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/ua/ (компьютер, телефон)
+### 13. Меню на UA (компьютер) частично не переведено 🆕
+- **Где:** https://solid-sound.net/ua/ (компьютер)
 - **Шаги:** 1) Открыть https://solid-sound.net/ua/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/18_013.jpg](shots/18_013.jpg)
+- **Ожидалось:** Все пункты меню на UA
+- **На деле:** На английском: Products, All products, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell
+- **Скриншот:** [shots/019.jpg](shots/019.jpg)
 
-### 29. Круглая кнопка-значок «Fragen? Hier fragen» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/de/ (компьютер, телефон)
+### 14. Меню на UA (телефон) частично не переведено 🆕
+- **Где:** https://solid-sound.net/ua/ (телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/ua/
+- **Ожидалось:** Все пункты меню на UA
+- **На деле:** На английском: Shop, Studio, Sell, Saved
+- **Скриншот:** [shots/020.jpg](shots/020.jpg)
+
+### 15. Меню на DE (компьютер) частично не переведено 🆕
+- **Где:** https://solid-sound.net/de/ (компьютер)
 - **Шаги:** 1) Открыть https://solid-sound.net/de/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/18_014.jpg](shots/18_014.jpg)
+- **Ожидалось:** Все пункты меню на DE
+- **На деле:** На английском: Products, All products, Templates, Presets, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell
+- **Скриншот:** [shots/022.jpg](shots/022.jpg)
 
-### 30. Круглая кнопка-значок «Une question ? Demande ici» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/fr/ (компьютер, телефон)
+### 16. Меню на DE (телефон) частично не переведено 🆕
+- **Где:** https://solid-sound.net/de/ (телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/de/
+- **Ожидалось:** Все пункты меню на DE
+- **На деле:** На английском: Shop, Studio, Sell, Saved
+- **Скриншот:** [shots/023.jpg](shots/023.jpg)
+
+### 17. Меню на FR (компьютер) частично не переведено 🆕
+- **Где:** https://solid-sound.net/fr/ (компьютер)
 - **Шаги:** 1) Открыть https://solid-sound.net/fr/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/18_015.jpg](shots/18_015.jpg)
+- **Ожидалось:** Все пункты меню на FR
+- **На деле:** На английском: Products, All products, Templates, Presets, Services, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell
+- **Скриншот:** [shots/025.jpg](shots/025.jpg)
 
-### 31. Круглая кнопка-значок «Dúvidas? Pergunte aqui» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/pt/ (компьютер, телефон)
+### 18. Меню на FR (телефон) частично не переведено 🆕
+- **Где:** https://solid-sound.net/fr/ (телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/fr/
+- **Ожидалось:** Все пункты меню на FR
+- **На деле:** На английском: Shop, Studio, Sell, Saved
+- **Скриншот:** [shots/026.jpg](shots/026.jpg)
+
+### 19. Меню на PT (компьютер) частично не переведено 🆕
+- **Где:** https://solid-sound.net/pt/ (компьютер)
 - **Шаги:** 1) Открыть https://solid-sound.net/pt/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/18_016.jpg](shots/18_016.jpg)
+- **Ожидалось:** Все пункты меню на PT
+- **На деле:** На английском: Products, All products, Templates, Presets, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Legal Notice, Sell
+- **Скриншот:** [shots/028.jpg](shots/028.jpg)
 
-### 32. Круглая кнопка-значок «¿Dudas? Pregunta aquí» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/es/ (компьютер, телефон)
+### 20. Меню на PT (телефон) частично не переведено 🆕
+- **Где:** https://solid-sound.net/pt/ (телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/pt/
+- **Ожидалось:** Все пункты меню на PT
+- **На деле:** На английском: Shop, Studio, Sell, Saved
+- **Скриншот:** [shots/029.jpg](shots/029.jpg)
+
+### 21. Меню на ES (компьютер) частично не переведено 🆕
+- **Где:** https://solid-sound.net/es/ (компьютер)
 - **Шаги:** 1) Открыть https://solid-sound.net/es/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/18_017.jpg](shots/18_017.jpg)
+- **Ожидалось:** Все пункты меню на ES
+- **На деле:** На английском: Home, Products, All products, Templates, Presets, Music, Services, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, Reviews, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Privacy Policy, Legal Notice, Sell
+- **Скриншот:** [shots/031.jpg](shots/031.jpg)
 
-### 33. Круглая кнопка-значок «Domande? Chiedi qui» — нужна ли квадратная со скруглёнными углами?
-- **Где:** https://solid-sound.net/it/ (компьютер, телефон)
+### 22. Меню на ES (телефон) частично не переведено 🆕
+- **Где:** https://solid-sound.net/es/ (телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/es/
+- **Ожидалось:** Все пункты меню на ES
+- **На деле:** На английском: Home, Shop, Studio, Sell, Saved
+- **Скриншот:** [shots/032.jpg](shots/032.jpg)
+
+### 23. Меню на IT (компьютер) частично не переведено 🆕
+- **Где:** https://solid-sound.net/it/ (компьютер)
 - **Шаги:** 1) Открыть https://solid-sound.net/it/
-- **Ожидалось:** Квадратная кнопка со скруглёнными углами 8–12px
-- **На деле:** Круг (радиус 50px, размер 56px)
-- **Скриншот:** [shots/18_018.jpg](shots/18_018.jpg)
+- **Ожидалось:** Все пункты меню на IT
+- **На деле:** На английском: Home, Products, All products, Templates, Presets, Music, Services, Services and Prices, Mixing and Mastering Calculator, Mastering Album Calculator, Get your set heard, Examples, Reviews, How it works, Forum, Why Solid Sound, Common Questions, Contact Us, Terms of Sale, Refund Policy, License Agreement, Privacy Policy, Legal Notice, Sell
+- **Скриншот:** [shots/034.jpg](shots/034.jpg)
 
-### 34. Страница весит больше 3 МБ
-- **Где:** https://solid-sound.net/en/my-account/edit-account/ (компьютер, телефон)
-- **Шаги:** 1) Открыть https://solid-sound.net/en/my-account/edit-account/ (компьютер)
-- **Ожидалось:** Смотреть, что самое тяжёлое.
-- **На деле:** Скачано 3.1 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.
-- **Скриншот:** [shots/19_005.jpg](shots/19_005.jpg)
+### 24. Меню на IT (телефон) частично не переведено 🆕
+- **Где:** https://solid-sound.net/it/ (телефон)
+- **Шаги:** 1) Открыть https://solid-sound.net/it/
+- **Ожидалось:** Все пункты меню на IT
+- **На деле:** На английском: Home, Shop, Studio, Sell, Saved
+- **Скриншот:** [shots/035.jpg](shots/035.jpg)
 
-## ✅ Исправлено с прошлой проверки (15)
+## 🔇 Не показано — робот помнит, что это не баг или отложено (15)
 
-- Кнопку ▶ «Play Infinity» невозможно нажать (её что-то закрывает)
-- Кнопку ▶ «Play Kratos» невозможно нажать (её что-то закрывает)
-- После нажатия «Film · Ads · Video» — ошибка в коде
-- Меню на UA (компьютер) частично не переведено
-- Меню на UA (телефон) частично не переведено
-- Меню на DE (компьютер) частично не переведено
-- Меню на DE (телефон) частично не переведено
-- Меню на FR (компьютер) частично не переведено
-- Меню на FR (телефон) частично не переведено
-- Меню на PT (компьютер) частично не переведено
-- Меню на PT (телефон) частично не переведено
-- Меню на ES (компьютер) частично не переведено
-- Меню на ES (телефон) частично не переведено
-- Меню на IT (компьютер) частично не переведено
-- Меню на IT (телефон) частично не переведено
+Память: `qa/learned.json` (как пополнять — `docs/bots.md`).
+
+- Круглая кнопка-значок «Questions? Ask here» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+- Круглая кнопка-значок «+» — нужна ли квадратная со скруглёнными углами? — отложено на 14 дней (повторяется 16 проверок подряд)
+- Кнопка «Watch video» скруглена не так, как остальные — отложено на 14 дней (повторяется 14 проверок подряд)
+- Слишком много элементов на странице (>3000) — отложено на 14 дней (повторяется 14 проверок подряд)
+- Круглая кнопка-значок «Watch video» — нужна ли квадратная со скруглёнными углами? — отложено на 14 дней (повторяется 14 проверок подряд)
+- Круглая кнопка-значок «❮» — нужна ли квадратная со скруглёнными углами? — не баг: стрелки листания отзывов — круглые по дизайну
+- Круглая кнопка-значок «❯» — нужна ли квадратная со скруглёнными углами? — не баг: стрелки листания отзывов — круглые по дизайну
+- Кнопка «Marco L.» скруглена не так, как остальные — не баг: это аватарки авторов отзывов, а не кнопки
+- Кнопка «Hector M.» скруглена не так, как остальные — не баг: это аватарки авторов отзывов, а не кнопки
+- Круглая кнопка-значок «Є питання? Пишіть» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+- Круглая кнопка-значок «Fragen? Hier fragen» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+- Круглая кнопка-значок «Une question ? Demande ici» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+- Круглая кнопка-значок «Dúvidas? Pergunte aqui» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+- Круглая кнопка-значок «¿Dudas? Pregunta aquí» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+- Круглая кнопка-значок «Domande? Chiedi qui» — нужна ли квадратная со скруглёнными углами? — не баг: кнопка чата круглая по дизайну (как у всех чатов)
+
+## ✅ Исправлено с прошлой проверки (9)
+
+- Canonical указывает на другую страницу или на http
+- Важную кнопку закрывает что-то сверху (чат, плеер, баннер)
+- Кнопка «Play Space Echo — client track» не превращается в ⏸ (паузу), когда трек играет
+- Кнопка «Play Feeling Good — client track» не превращается в ⏸ (паузу), когда трек играет
+- Кнопка «Play Escape — client track» не превращается в ⏸ (паузу), когда трек играет
+- Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу
+- Превью «02-After.mp3» может хрипеть (перегруз)
+- Превью «01-Before.mp3» начинается с тишины (4.4 с)
+- Страница весит больше 3 МБ
+
+## Не удалось проверить (2)
+
+- Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation
+- Проверка остановлена по времени — часть ссылок/входов не проверена
 

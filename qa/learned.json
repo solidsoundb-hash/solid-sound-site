@@ -1,10 +1,64 @@
 {
  "notBug": [
-  { "type": "style-circle", "re": "circle\\|(Questions\\? Ask here|Є питання|Fragen\\? Hier|Une question|Dúvidas|¿Dudas|Domande)", "why": "кнопка чата круглая по дизайну (как у всех чатов)", "by": "Claude", "date": "2026-11-23" },
-  { "type": "style-circle", "re": "circle\\|(❮|❯)", "why": "стрелки листания отзывов — круглые по дизайну", "by": "Claude", "date": "2026-11-23" },
-  { "type": "style-odd", "re": "odd\\|(Marco L\\.|Hector M\\.)", "why": "это аватарки авторов отзывов, а не кнопки", "by": "Claude", "date": "2026-11-23" }
+  {
+   "type": "style-circle",
+   "re": "circle\\|(Questions\\? Ask here|Є питання|Fragen\\? Hier|Une question|Dúvidas|¿Dudas|Domande)",
+   "why": "кнопка чата круглая по дизайну (как у всех чатов)",
+   "by": "Claude",
+   "date": "2026-11-23"
+  },
+  {
+   "type": "style-circle",
+   "re": "circle\\|(❮|❯)",
+   "why": "стрелки листания отзывов — круглые по дизайну",
+   "by": "Claude",
+   "date": "2026-11-23"
+  },
+  {
+   "type": "style-odd",
+   "re": "odd\\|(Marco L\\.|Hector M\\.)",
+   "why": "это аватарки авторов отзывов, а не кнопки",
+   "by": "Claude",
+   "date": "2026-11-23"
+  }
  ],
- "auto": [],
- "sleeps": {},
- "fixed": {}
+ "auto": [
+  {
+   "sig": "circle|+",
+   "until": "2026-12-07",
+   "why": "«проверить глазами» 16 проверок подряд — робот отложил сам"
+  },
+  {
+   "sig": "odd|Watch video",
+   "until": "2026-12-07",
+   "why": "«проверить глазами» 14 проверок подряд — робот отложил сам"
+  },
+  {
+   "sig": "kb|kb-perf-dom|Слишком много элементов на странице (>3000)",
+   "until": "2026-12-07",
+   "why": "«проверить глазами» 14 проверок подряд — робот отложил сам"
+  },
+  {
+   "sig": "circle|Watch video",
+   "until": "2026-12-07",
+   "why": "«проверить глазами» 14 проверок подряд — робот отложил сам"
+  }
+ ],
+ "sleeps": {
+  "circle|+": 1,
+  "odd|Watch video": 1,
+  "kb|kb-perf-dom|Слишком много элементов на странице (>3000)": 1,
+  "circle|Watch video": 1
+ },
+ "fixed": {
+  "kb|kb-seo-canonical|Canonical указывает на другую страницу или на http": "2026-11-23",
+  "kb|kb-mob-covered|Важную кнопку закрывает что-то сверху (чат, плеер, баннер)": "2026-11-23",
+  "sndicon|PlaySpaceEchoclientt|/en/services-prices/": "2026-11-23",
+  "sndicon|PlayFeelingGoodclien|/en/services-prices/": "2026-11-23",
+  "sndicon|PlayEscapeclienttrac|/en/services-prices/": "2026-11-23",
+  "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу": "2026-11-23",
+  "ears-clip|02-After.mp3": "2026-11-23",
+  "ears-start|01-Before.mp3": "2026-11-23",
+  "kb|kb-perf-weight|Страница весит больше 3 МБ": "2026-11-23"
+ }
 }
