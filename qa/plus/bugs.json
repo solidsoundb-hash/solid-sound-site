@@ -1,17 +1,344 @@
 {
  "mode": "full",
- "date": "2026-11-23T07:12:48.630Z",
+ "date": "2026-11-23T07:32:04.187Z",
  "stats": {
   "pages": 0,
   "clicks": 0,
   "sounds": 0,
   "links": 0,
   "blockedRequests": 0,
-  "robots": 0
+  "plusChecks": 95,
+  "robots": 1
  },
- "bugs": [],
+ "bugs": [
+  {
+   "sev": "major",
+   "type": "plus-menu",
+   "sig": "plus-menu|firefox",
+   "title": "Firefox ПК: кнопка меню ничего не делает",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ в Firefox ПК",
+    "Нажать первую кнопку меню"
+   ],
+   "expected": "Меню открывается или переходит на страницу",
+   "actual": "Ничего не изменилось",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Firefox ПК"
+   ],
+   "shot": "shots/1_002_firefox_menu.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-cut",
+   "sig": "plus-cut|/en/|span.screen-reader-text «— ABLETON TEMPLATES, PRESETS A»",
+   "title": "Текст обрезан (Firefox ПК)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (Firefox ПК)"
+   ],
+   "expected": "Текст виден целиком или с «…»",
+   "actual": "span.screen-reader-text «— ABLETON TEMPLATES, PRESETS A»",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Firefox ПК",
+    "телефон 360",
+    "телефон боком",
+    "планшет",
+    "ноутбук 1024",
+    "монитор 2560"
+   ],
+   "shot": "shots/1_001_firefox_en_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-cut",
+   "sig": "plus-cut|/product/infinity/|span.screen-reader-text «Original price was: €24.00.»",
+   "title": "Текст обрезан (Firefox ПК)",
+   "steps": [
+    "Открыть https://solid-sound.net/product/infinity/ (Firefox ПК)"
+   ],
+   "expected": "Текст виден целиком или с «…»",
+   "actual": "span.screen-reader-text «Original price was: €24.00.»; span.screen-reader-text «Current price is: €12.00.»; span.screen-reader-text «Original price was: €24.00.»; span.screen-reader-text «Current price is: €12.00.»; span.screen-reader-text «Original price was: €24.00.»; span.screen-reader-text «Current price is: €12.00.»",
+   "where": [
+    "/product/infinity/"
+   ],
+   "devices": [
+    "Firefox ПК",
+    "телефон 360",
+    "телефон боком",
+    "планшет",
+    "ноутбук 1024",
+    "монитор 2560"
+   ],
+   "shot": "shots/1_004_firefox_product_infinity_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-cut",
+   "sig": "plus-cut|/en/sell/|label.screen-reader-text «First Name»",
+   "title": "Текст обрезан (Firefox ПК)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/ (Firefox ПК)"
+   ],
+   "expected": "Текст виден целиком или с «…»",
+   "actual": "label.screen-reader-text «First Name»; label.screen-reader-text «Last Name»; label.screen-reader-text «What do you make?»; label.screen-reader-text «Link to your work»; label.screen-reader-text «Second link (optional)»; label.screen-reader-text «Anything we should know?»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Firefox ПК",
+    "телефон 360",
+    "телефон боком",
+    "планшет",
+    "ноутбук 1024",
+    "монитор 2560"
+   ],
+   "shot": "shots/1_008_firefox_en_sell_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-cut",
+   "sig": "plus-cut|/en/cart/|h1.ss-h1x «Cart»",
+   "title": "Текст обрезан (Firefox ПК)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/cart/ (Firefox ПК)"
+   ],
+   "expected": "Текст виден целиком или с «…»",
+   "actual": "h1.ss-h1x «Cart»",
+   "where": [
+    "/en/cart/"
+   ],
+   "devices": [
+    "Firefox ПК"
+   ],
+   "shot": "shots/1_011_firefox_en_cart_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-cut",
+   "sig": "plus-cut|/en/my-account/|h1.ss-h1x «My Account»",
+   "title": "Текст обрезан (Firefox ПК)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/my-account/ (Firefox ПК)"
+   ],
+   "expected": "Текст виден целиком или с «…»",
+   "actual": "h1.ss-h1x «My Account»; span.screen-reader-text «Required»; span.screen-reader-text «Required»",
+   "where": [
+    "/en/my-account/"
+   ],
+   "devices": [
+    "Firefox ПК"
+   ],
+   "shot": "shots/1_012_firefox_en_my_account_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_013_keys_en_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/all-products/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/all-products/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_014_keys_en_all_products_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/product/infinity/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/product/infinity/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/product/infinity/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_015_keys_product_infinity_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/services-prices/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/services-prices/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/services-prices/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_016_keys_en_services_prices_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/studio-calculator/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/studio-calculator/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/studio-calculator/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_017_keys_en_studio_calculator_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/faq/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/faq/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/faq/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_018_keys_en_faq_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-hidden",
+   "sig": "plus-fh|/en/sell/",
+   "title": "Tab попадает на невидимые элементы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажимать Tab"
+   ],
+   "expected": "Фокус только на видимых кнопках",
+   "actual": "input «Ableton templates»; input «Other DAW templates»; input «Synth presets»; input «Sample packs»; input «MIDI»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_019_keys_en_sell_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/sell/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_019_keys_en_sell_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/wiki/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/wiki/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "a «BLACK MONTH −50% on all Ableto»; a «Solid Sound home»; a «Home»; button «Products»; button «Services»",
+   "where": [
+    "/en/wiki/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_020_keys_en_wiki_.jpg",
+   "streak": 1,
+   "isNew": false
+  }
+ ],
  "notChecked": [
-  "Робот plus не прислал отчёт"
+  "Safari iPhone: браузер не запустился (browserType.launch: \n╔══════════════════════════════════════)"
  ],
  "l10nSkipped": 0
 }
