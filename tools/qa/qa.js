@@ -628,7 +628,8 @@ function writeReport(final = true) {
   const mainOut = path.resolve(OUT) === path.resolve('qa/latest');
   const prevFile = mainOut ? path.join(OUT, '..', 'previous-bugs.json') : path.join(OUT, 'previous-bugs.json');
   let prev = null; try { prev = JSON.parse(fs.readFileSync(prevFile, 'utf8')); } catch (e) {}
-  const list = [...bugs.values()].sort((a, b) => SEV_ORDER.indexOf(a.sev) - SEV_ORDER.indexOf(b.sev) || b.where.length - a.where.length);
+  const muted = [];
+  const list = learn([...bugs.values()], mainOut && final, muted).sort((a, b) => SEV_ORDER.indexOf(a.sev) - SEV_ORDER.indexOf(b.sev) || (b.streak || 0) - (a.streak || 0) || b.where.length - a.where.length);
   const prevSigs = prev && prev.mode === MODE ? new Set(prev.bugs.map(b => b.sig)) : null;
   list.forEach(b => { b.isNew = prevSigs ? !prevSigs.has(b.sig) : false; });
   const fixed = prevSigs ? prev.bugs.filter(b => !bugs.has(b.sig)) : [];
@@ -655,6 +656,7 @@ function writeReport(final = true) {
     }
   }
   if (!list.length) L.push('Ошибок не найдено. ✅', '');
+  if (muted.length) { L.push(`## 🔇 Не показано — робот помнит, что это не баг или отложено (${muted.length})`, '', 'Память: `qa/learned.json` (как пополнять — `docs/bots.md`).', ''); muted.slice(0, 40).forEach(x => L.push(`- ${x.title} — ${x.why}`)); L.push(''); }
   if (fixed.length) { L.push(`## ✅ Исправлено с прошлой проверки (${fixed.length})`, ''); fixed.slice(0, 40).forEach(b => L.push(`- ${b.title}`)); L.push(''); }
   if (notChecked.length) { L.push(`## Не удалось проверить (${notChecked.length})`, ''); [...new Set(notChecked)].slice(0, 60).forEach(x => L.push(`- ${x}`)); L.push(''); }
   fs.writeFileSync(path.join(OUT, 'report.md'), L.join('\n') + '\n');
@@ -669,6 +671,46 @@ function writeReport(final = true) {
     fs.writeFileSync(path.join(H, 'bugs.json'), JSON.stringify(json, null, 1));
   } catch (e) { console.error('history', e.message); }
   console.log(L.slice(0, 4).join('\n'));
+}
+
+/* ---------------------------------------------------------------- memory (owner 23.11: «чтобы боты самообучались»)
+ qa/learned.json — what the robot has learnt between runs (kept in the repo, the swarm saves the qa/ folder):
+  notBug[]  — «не баг», written by Claude/owner after looking at the screenshot: {type?, sig?, re?, why, by, date, until?} → never shown again
+  auto[]    — «проверить глазами» seen 5 runs in a row: put to sleep for 14 days by the robot itself; after 2 sleeps it is not
+              slept again but raised to 🟡 «реши: баг или исключение» (so nothing hangs for ever silently)
+  fixed{}   — sig → date it disappeared; if it comes back within 30 days it is marked «↩ вернулся» and is at least 🟠
+ Every bug also gets .streak = in how many runs in a row (same mode) it has been seen; a 🟡 seen 10+ runs in a row becomes 🟠. */
+function learn(all, save, muted) {
+  const F = path.join('qa', 'learned.json'); let M = { notBug: [], auto: [], sleeps: {}, fixed: {} };
+  try { M = Object.assign(M, JSON.parse(fs.readFileSync(F, 'utf8'))); } catch (e) {}
+  const now = Date.now(), day = (t) => new Date(t).toISOString().slice(0, 10);
+  let runs = []; const H = path.join('qa', 'history');
+  try { runs = fs.readdirSync(H).filter(d => d.endsWith('-' + MODE)).sort().slice(-15).map(d => { try { return new Set(JSON.parse(fs.readFileSync(path.join(H, d, 'bugs.json'), 'utf8')).bugs.map(b => b.sig)); } catch (e) { return null; } }).filter(Boolean); } catch (e) {}
+  all.forEach(b => { let n = 1; for (let i = runs.length - 1; i >= 0 && runs[i].has(b.sig); i--) n++; b.streak = n; });
+  const txt = (b) => [b.title, b.actual, (b.where || []).join(' '), b.sig].join(' ');
+  const live = (r) => !r.until || Date.parse(r.until) > now;
+  const hit = (r, b) => live(r) && (!r.type || r.type === b.type) && (!r.sig || r.sig === b.sig) && (!r.re || new RegExp(r.re, 'i').test(txt(b)));
+  M.auto = M.auto.filter(live);
+  const out = [];
+  for (const b of all) {
+    const nb = M.notBug.find(r => hit(r, b)); if (nb) { muted.push({ title: b.title, why: 'не баг: ' + nb.why }); continue; }
+    const au = M.auto.find(r => r.sig === b.sig); if (au) { muted.push({ title: b.title, why: `отложено до ${au.until} (${au.why})` }); continue; }
+    if (b.sev === 'check' && b.streak >= 5) {
+      const k = M.sleeps[b.sig] || 0;
+      if (k < 2) { M.sleeps[b.sig] = k + 1; M.auto.push({ sig: b.sig, until: day(now + 14 * 864e5), why: `«проверить глазами» ${b.streak} проверок подряд — робот отложил сам` }); muted.push({ title: b.title, why: 'отложено на 14 дней (повторяется ' + b.streak + ' проверок подряд)' }); continue; }
+      b.sev = 'minor'; b.title += ' — висит месяц: Claude, реши — исправить или записать «не баг» в qa/learned.json';
+    }
+    if (b.sev === 'minor' && b.streak >= 10) { b.sev = 'major'; b.title += ` (висит ${b.streak} проверок подряд)`; }
+    if (M.fixed[b.sig] && now - Date.parse(M.fixed[b.sig]) < 30 * 864e5) { b.title = '↩ вернулся после исправления: ' + b.title; if (b.sev === 'minor' || b.sev === 'check') b.sev = 'major'; }
+    out.push(b);
+  }
+  if (save) {
+    const cur = new Set(all.map(b => b.sig));
+    if (runs.length) for (const sg of runs[runs.length - 1]) if (!cur.has(sg)) M.fixed[sg] = day(now);
+    for (const sg of Object.keys(M.fixed)) if (cur.has(sg) || now - Date.parse(M.fixed[sg]) > 30 * 864e5) delete M.fixed[sg];
+    try { fs.writeFileSync(F, JSON.stringify(M, null, 1) + '\n'); } catch (e) { console.error('learned', e.message); }
+  }
+  return out;
 }
 
 /* ---------------------------------------------------------------- eyes + fit */

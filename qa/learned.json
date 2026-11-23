@@ -1,0 +1,10 @@
+{
+ "notBug": [
+  { "type": "style-circle", "re": "circle\\|(Questions\\? Ask here|Є питання|Fragen\\? Hier|Une question|Dúvidas|¿Dudas|Domande)", "why": "кнопка чата круглая по дизайну (как у всех чатов)", "by": "Claude", "date": "2026-11-23" },
+  { "type": "style-circle", "re": "circle\\|(❮|❯)", "why": "стрелки листания отзывов — круглые по дизайну", "by": "Claude", "date": "2026-11-23" },
+  { "type": "style-odd", "re": "odd\\|(Marco L\\.|Hector M\\.)", "why": "это аватарки авторов отзывов, а не кнопки", "by": "Claude", "date": "2026-11-23" }
+ ],
+ "auto": [],
+ "sleeps": {},
+ "fixed": {}
+}
