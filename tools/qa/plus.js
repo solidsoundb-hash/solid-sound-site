@@ -40,7 +40,7 @@ async function ctxFor(browser, opt) {
 function watchErrors(p, list) {
   p.on('pageerror', e => list.push(String(e && e.message || e).slice(0, 160)));
   p.on('console', m => { if (m.type() !== 'error') return; const t = m.text(); const u = (m.location() || {}).url || '';
-    if (/Failed to load resource|net::ERR|ERR_FAILED|blocked|CORS|favicon|youtube|ytimg|Content Security|Button failed to load|invalid-placard|Adwaita/i.test(t)) return; /* the last three: Safari (WebKit on Linux) about its own media-control icons */
+    if (/Failed to load resource|net::ERR|ERR_FAILED|blocked|CORS|favicon|youtube|ytimg|Content Security|Button failed to load|invalid-placard|Adwaita|ResizeObserver loop/i.test(t)) return; /* the last three: Safari (WebKit on Linux) about its own media-control icons */
     if (u && !/solid-sound\.net/.test(u)) return; list.push(t.slice(0, 160)); });
 }
 async function open(p, u) {
@@ -130,9 +130,10 @@ async function partKeys(browser) {
         const r = e.getBoundingClientRect(), s = getComputedStyle(e);
         const name = (e.tagName.toLowerCase() + ' «' + (e.getAttribute('aria-label') || e.innerText || e.value || e.name || '').trim().replace(/\s+/g, ' ').slice(0, 30) + '»');
         const ring = (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0) || (s.boxShadow && s.boxShadow !== 'none');
+        let ring2 = ring; if (!ring && /^(INPUT|SELECT|TEXTAREA)$/.test(e.tagName)) { const f1 = s.borderColor + s.backgroundColor; e.blur(); const f0 = getComputedStyle(e).borderColor + getComputedStyle(e).backgroundColor; e.focus({ preventScroll: true }); ring2 = f1 !== f0; } /* fields show focus by the border colour */
         const seen = r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth && s.visibility !== 'hidden' && +s.opacity > 0.05;
-        const lab = e.labels && e.labels[0]; if (!seen && lab) { const q = lab.getBoundingClientRect(); if (q.width > 1 && q.height > 1) return { name, ring: true, seen: true, key: name + Math.round(q.top + scrollY) }; } /* custom checkbox: the box is hidden, its label shows */
-        return { name, ring, seen, key: name + Math.round(r.top + scrollY) + 'x' + Math.round(r.left) }; }).catch(() => null);
+        const lab = (e.labels && e.labels[0]) || e.closest('label') || (/^(checkbox|radio)$/.test(e.type) ? e.parentElement : null); if (!seen && lab) { const q = lab.getBoundingClientRect(); if (q.width > 1 && q.height > 1) return { name, ring: true, seen: true, key: name + Math.round(q.top + scrollY) }; } /* custom checkbox: the box is hidden, its label shows */
+        return { name, ring: ring2, seen, key: name + Math.round(r.top + scrollY) + 'x' + Math.round(r.left) }; }).catch(() => null);
       if (!f) continue;
       if (f.key === last) { if (++same >= 3) { trap = f.name; break; } } else { same = 0; moved++; }
       last = f.key;
