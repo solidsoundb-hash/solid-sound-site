@@ -32,4 +32,5 @@ jobs:
           rm -rf qa/sw
       - name: Save
         if: always()
-        run: BOT_NAME=qa-plus bash .github/save.sh "QA plus: $(date -u +%FT%TZ)" qa
+        run: |
+          BOT_NAME=qa-plus bash .github/save.sh "QA plus: $(date -u +%FT%TZ)" qa
