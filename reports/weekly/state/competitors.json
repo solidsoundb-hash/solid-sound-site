@@ -140,6 +140,11 @@
    "p": 2,
    "cmp": 0
   },
+  "melodic-techno-ableton-template": {
+   "t": "MELODIC TECHNO (ABLETON TEMPLATE)",
+   "p": 15,
+   "cmp": 0
+  },
   "toolroom-inspired-template": {
    "t": "Toolroom Inspired Template",
    "p": 15,
@@ -188,11 +193,6 @@
   "vocal-house-vol1": {
    "t": "Vocal House Vol1",
    "p": 10,
-   "cmp": 0
-  },
-  "melodic-techno-ableton-template": {
-   "t": "MELODIC TECHNO (ABLETON TEMPLATE)",
-   "p": 15,
    "cmp": 0
   },
   "morph-drift-phonk-ableton-template": {

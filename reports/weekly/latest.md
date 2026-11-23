@@ -1,4 +1,4 @@
-# Еженедельный отчёт ботов — 2026-11-22
+# Еженедельный отчёт ботов — 2026-11-23
 
 Что делать: ⚠️ и 💡 — задачи; ⏸ — бот ждёт доступа (см. `docs/bots.md`). Скорость — `speed/latest.md`, баги — `qa/latest/report.md`.
 
@@ -25,18 +25,17 @@
 - **Production Music Live**: товаров 250, цены 24.9–997 (медиана 57), со скидкой 17
   - без изменений
 - **Cymatics**: товаров 250, цены 1–297 (медиана 25), со скидкой 16
-  - 🆕 новые: [Opal - Drum Loops](https://cymatics.fm/products/opal-drum-loops) (0), [Waves - Melodic Melody Loops](https://cymatics.fm/products/waves-melodic-melody-loops-free) (0), [Mystery Sample Pack - 2024 Black Friday Edition](https://cymatics.fm/products/mystery-sample-pack-2024-black-friday-edition-free) (0), [SAWZ Pro](https://cymatics.fm/products/sawz-pro) (27), [SAWZ](https://cymatics.fm/products/sawz) (15), [GOLDEN HOUR - Early Access Bundle](https://cymatics.fm/products/golden-hour-pro) (47), [GOLDEN HOUR](https://cymatics.fm/products/golden-hour) (37), [MORPH Pro](https://cymatics.fm/products/morph-pro) (25) и ещё 3
-  - убрали: 11
+  - без изменений
 
 _Для решения: если конкуренты массово снижают цены или запускают акцию — подумать о своей акции или бандле._
 
 ## 📅 Акции и поводы на ближайшие 5 недель
 
-- **27.11** — Black Friday — главная распродажа года (готовить за 2 недели: баннер, письма, соцсети) (через 5 дн.)
-- **30.11** — Cyber Monday (через 8 дн.)
-- **01.12** — Старт «Black Month» / Cyber Monday (через 9 дн.)
-- **15.12** — Подарки к Рождеству — сертификаты, бандлы (через 23 дн.)
-- **26.12** — Boxing Day / итоги года — распродажа остатков (через 34 дн.)
+- **27.11** — Black Friday — главная распродажа года (готовить за 2 недели: баннер, письма, соцсети) (через 4 дн.)
+- **30.11** — Cyber Monday (через 7 дн.)
+- **01.12** — Старт «Black Month» / Cyber Monday (через 8 дн.)
+- **15.12** — Подарки к Рождеству — сертификаты, бандлы (через 22 дн.)
+- **26.12** — Boxing Day / итоги года — распродажа остатков (через 33 дн.)
 
 Сейчас на сайте акция: «SALE».
 
