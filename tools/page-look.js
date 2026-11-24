@@ -39,6 +39,10 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
       const pts = n === 'desktop' ? [[720, 437], [300, 470], [1300, 390]] : [[200, 394], [60, 405], [340, 384]];
       fs.writeFileSync(`page-out/${n}-points.txt`, JSON.stringify(await p.evaluate(P => P.map(([x, y]) => { scrollTo(0, 0); return [x, y, document.elementsFromPoint(x, y).slice(0, 6).map(e => e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + (typeof e.className === 'string' && e.className ? '.' + e.className.trim().split(/\s+/).slice(0, 3).join('.') : '') + ' ' + getComputedStyle(e).position)]; }), pts), null, 1));
     }
+    if (n === 'phone' && url.includes('solid-sound.net')) { /* (24.11) mobile menu: language/currency collapsed */
+      const bu = await p.$('#ssg .g-burger'); if (bu) { await bu.click(); await p.waitForTimeout(800); await p.evaluate(() => { const s = document.querySelector('#ssg-sheet .s-p'); if (s) s.scrollTop = 99999; }); await p.screenshot({ path: 'page-out/phone-menu.jpg', type: 'jpeg', quality: 70 });
+        const d = await p.$$('#ssg-sheet details.s-dd summary'); if (d.length) { await d[d.length - 1].click(); await p.waitForTimeout(400); await p.evaluate(() => { const s = document.querySelector('#ssg-sheet .s-p'); if (s) s.scrollTop = 99999; }); await p.screenshot({ path: 'page-out/phone-menu-open.jpg', type: 'jpeg', quality: 70 }); } }
+    }
     if (n === 'desktop') {
       const t = await p.evaluate(() => [...document.querySelectorAll('h1,h2,h3,h4,[class*=price],a.button,button,.btn')].filter(e => e.offsetParent && e.innerText.trim()).map(e => e.tagName + ': ' + e.innerText.trim().replace(/\s+/g, ' ').slice(0, 160)).join('\n'));
       const hd = await p.evaluate(() => 'TITLE: ' + document.title + '\nDESC: ' + ((document.querySelector('meta[name=description]') || {}).content || '') + '\nLD: ' + [...document.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent.slice(0, 600)).join('\n    '));
