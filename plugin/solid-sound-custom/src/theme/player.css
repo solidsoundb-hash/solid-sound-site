@@ -375,3 +375,5 @@ body.ssp-open .w-toplink{bottom:90px!important}
 .ssf-bar.state_desktop .ssf-chips .w-filter-item-values{width:min(380px,calc(100vw - 40px))!important}
 
 .w-grid.layout_195 .ss-price-hidden{display:none!important}
+/* 23.11 QA: on phones the sort list is 16 px — iPhone does not zoom the page when it is tapped */
+@media(max-width:760px){.w-order select,.sstb .w-order select{font-size:16px!important}}

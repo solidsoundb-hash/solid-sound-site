@@ -1,13 +1,13 @@
 ## 🗄 Сервер: что лежит на хостинге и не нужно
 
-Файлов: **13133**, всего **1.19 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
+Файлов: **11365**, всего **1.17 ГБ** (обход остановлен на лимите — показано не всё). Робот только смотрит, ничего не удаляет.
 
 | Папка | Размер |
 |---|---|
-| `solid-sound.net/www` | 1.19 ГБ |
-| `solid-sound.net/www/wp-content` | 1.10 ГБ |
-| `solid-sound.net/www/wp-content/uploads` | 946.6 МБ |
-| `solid-sound.net/www/wp-content/plugins` | 86.7 МБ |
+| `solid-sound.net/www` | 1.17 ГБ |
+| `solid-sound.net/www/wp-content` | 1.08 ГБ |
+| `solid-sound.net/www/wp-content/uploads` | 946.5 МБ |
+| `solid-sound.net/www/wp-content/plugins` | 68.6 МБ |
 | `solid-sound.net/www/wp-content/themes` | 0.0 МБ |
 | `solid-sound.net/www/wp-content/cache` | 0.0 МБ |
 | `solid-sound.net/_removed` | 0.0 МБ |
@@ -18,11 +18,11 @@
 | `solid-sound.net/templates` | 0.0 МБ |
 | `solid-sound.net/test` | 0.0 МБ |
 | `solid-sound.net/www_old` | 0.0 МБ |
-⚠️ Не удалось прочитать папок: 3 (например `solid-sound.net/www/wp-includes/build/routes/fonts-home: [Errno 111] Connection refused`) — размеры могут быть занижены.
+⚠️ Не удалось прочитать папок: 5 (например `solid-sound.net/www/wp-includes/php-ai-client/third-party/Http: [Errno 111] Connection refused`) — размеры могут быть занижены.
 
 Загрузки по годам: 
 
-### ⚪ Логи и архивы закрыты от интернета (60): сервер отвечает 403 — опасности нет, место занимают (3.2 МБ)
+### ⚪ Логи и архивы закрыты от интернета (60): сервер отвечает 403 — опасности нет, место занимают (3.1 МБ)
 
 ### 🟡 Копии .htaccess (сервер обычно не отдаёт .ht*, но лучше убрать)
 - `/www/.htaccess.bak`

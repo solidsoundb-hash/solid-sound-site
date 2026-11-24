@@ -61,7 +61,7 @@ function show(a){clearTimeout(hideT);anchor=a;panel();document.querySelectorAll(
 /* ready before the hover: fetch once after the page settles (only when the cart is not empty) */
 function pre(){if(cnt()>0)setTimeout(function(){if(!C)load().catch(function(){})},1200)}if(document.readyState==='complete')pre();else addEventListener('load',pre);
 function hide(){clearTimeout(hideT);hideT=setTimeout(function(){if(P)P.classList.remove('on')},160)}
-function cartLink(t){var it=t.closest?t.closest('#ssg .g-r-it,.l-header .w-cart'):null;if(!it)return null;if(it.closest('#ss-mc'))return null;if(it.classList.contains('g-r-it')){var l=it.querySelector('.g-l');if(!/cart/i.test(l?l.textContent:''))return null}return it}
+function cartLink(t){var it=t.closest?t.closest('#ssg .g-r-it,.l-header .w-cart'):null;if(!it)return null;if(it.closest('#ss-mc'))return null;if(it.classList.contains('g-r-it')&&!it.classList.contains('g-r-cart')){var l=it.querySelector('.g-l');if(!/cart/i.test(l?l.textContent:''))return null}return it}
 document.addEventListener('mouseover',function(e){var a=cartLink(e.target);if(a)show(a)});
 document.addEventListener('mouseout',function(e){var a=cartLink(e.target);if(!a)return;var to=e.relatedTarget;if(to&&(a.contains(to)||(P&&P.contains(to))))return;hide()});
 addEventListener('scroll',function(){if(P&&P.classList.contains('on'))place()},{passive:true});addEventListener('resize',function(){if(P)place()});
@@ -76,7 +76,7 @@ function setIds(a){try{localStorage.setItem('ss_liked',JSON.stringify(a))}catch(
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function dec(s){var d=document.createElement('textarea');d.innerHTML=String(s||'').replace(/<[^>]+>/g,'');return d.value}
 function money(v,c){var m=+(c.currency_minor_unit||2),n=(+v)/Math.pow(10,m);return (c.currency_prefix||'')+(n%1?n.toFixed(m):String(Math.round(n)))+(c.currency_suffix||'')}
-function favItem(){var it=[].slice.call(document.querySelectorAll('#ssg .g-r-it')).filter(function(x){var l=x.querySelector('.g-l');return l?/favou?rites/i.test(l.textContent):false})[0];return it||null}
+function favItem(){var it=document.querySelector('#ssg .g-r-fav')||[].slice.call(document.querySelectorAll('#ssg .g-r-it')).filter(function(x){var l=x.querySelector('.g-l');return l?/favou?rites/i.test(l.textContent):false})[0];return it||null}
 function badge(){var it=favItem(),n=ids().length;if(!it)return;var a=it.querySelector('.g-a')||it,b=a.querySelector('.ss-fvn');if(!b){if(!n)return;b=document.createElement('span');b.className='ss-fvn';a.style.position='relative';a.appendChild(b)}b.textContent=n;b.style.display=n?'':'none'}
 function panel(){if(P)return P;P=document.createElement('div');P.id='ss-fv';P.className='ss-dd';P.setAttribute('role','dialog');P.setAttribute('aria-label','Favorites');document.body.appendChild(P);
  P.addEventListener('mouseenter',function(){clearTimeout(hideT)});P.addEventListener('mouseleave',function(){if(hoverOk)hide()});
@@ -101,7 +101,7 @@ function add(b){if(b.classList.contains('ok'))return;b.textContent='…';
 function show(a){clearTimeout(hideT);anchor=a;panel();document.querySelectorAll('.ss-dd.on').forEach(function(o){if(o!==P)o.classList.remove('on')});if(!P.classList.contains('on')){var a2=ids();if(!a2.length)paint([]);else if(FL?FK===a2.join(','):false)paint(FL);else{P.innerHTML='<div class="ld">Loading…</div>';place()}P.classList.add('on');load().catch(function(){if(!FL)paint([])})}else place()}
 function pre(){if(hoverOk?ids().length:0)setTimeout(function(){if(!FL)load().catch(function(){})},1500)}if(document.readyState==='complete')pre();else addEventListener('load',pre);
 function hide(){clearTimeout(hideT);hideT=setTimeout(function(){if(P)P.classList.remove('on')},160)}
-function isFav(t){var it=t.closest?t.closest('#ssg .g-r-it'):null;if(it){var l=it.querySelector('.g-l');if(l?/favou?rites/i.test(l.textContent):false)return it}var bl=t.closest?t.closest('#ssg-bar a'):null;if(bl?/saved/i.test(bl.textContent):false)return bl;return null}
+function isFav(t){var it=t.closest?t.closest('#ssg .g-r-it'):null;if(it){if(it.classList.contains('g-r-fav'))return it;var l=it.querySelector('.g-l');if(l?/favou?rites/i.test(l.textContent):false)return it}var bl=t.closest?t.closest('#ssg-bar a'):null;if(bl?(bl.classList.contains('gsaved')||/saved/i.test(bl.textContent)):false)return bl;return null}
 if(hoverOk){document.addEventListener('mouseover',function(e){var a=isFav(e.target);if(a)show(a)});document.addEventListener('mouseout',function(e){var a=isFav(e.target);if(!a)return;var to=e.relatedTarget;if(to?(a.contains(to)||(P?P.contains(to):false)):false)return;hide()})}
 /* a tap / click on Favorites opens the list here (guests used to land on the login page) */
 document.addEventListener('click',function(e){var a=isFav(e.target);if(!a)return;if(e.metaKey||e.ctrlKey)return;e.preventDefault();if(hoverOk){show(a);return}if(P?P.classList.contains('on'):false){P.classList.remove('on');return}anchor=null;show(null)},true);

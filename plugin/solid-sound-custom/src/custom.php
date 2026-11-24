@@ -1026,7 +1026,9 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
    still sent /tr after «Reject»). Until then every call just waits in the queue; after Reject nothing is ever sent. */
 !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
 window.ssFbLoad=function(){if(window.ssFbLoaded)return;window.ssFbLoaded=1;var t=document.createElement('script');t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(t,s)};
-(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes')window.ssFbLoad();else fbq('consent','revoke');})();
+/* (22.11) scripts printed frozen until consent (modules/consent-gate.php: Brevo tracker) run here once the visitor agreed */
+window.ssConsentRun=function(){if(window.ssConsentRan)return;window.ssConsentRan=1;[].forEach.call(document.querySelectorAll('script[type="text/plain"][data-ss-consent]'),function(o){var s=document.createElement('script');for(var i=0;i<o.attributes.length;i++){var a=o.attributes[i];if(a.name!=='type'&&a.name!=='data-ss-consent')s.setAttribute(a.name,a.value)}if(!o.src)s.text=o.text;o.parentNode.replaceChild(s,o)})};
+(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes'){window.ssFbLoad();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.ssConsentRun);else window.ssConsentRun()}else fbq('consent','revoke');})();
 </script>
 <style>.l-cookie{display:none!important}
 .ss-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;max-width:560px;margin:0 auto;background:#16141f;color:#dfe3ee;border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.55);padding:18px 18px 16px;font-size:14px;line-height:1.5}
@@ -1060,7 +1062,7 @@ body.ssp-open .ss-cc{bottom:88px}
 var box=document.getElementById('ss-cc');if(!box)return;
 function set(v){var d=new Date();d.setTime(d.getTime()+180*864e5);document.cookie='ss_consent='+v+';expires='+d.toUTCString()+';path=/;SameSite=Lax'+(location.protocol==='https:'?';Secure':'');window.ssConsent=v}
 function hide(){box.hidden=true}
-box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}});
+box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}if(window.ssConsentRun)window.ssConsentRun()});
 box.querySelector('.ss-cc-no').addEventListener('click',function(){set('no');hide();if(window.fbq)fbq('consent','revoke')});
 if(!window.ssConsent)box.hidden=false;
 /* "Cookie settings" link in the footer to change the choice later */
@@ -2862,7 +2864,7 @@ fix(document.body);new MutationObserver(function(ms){ms.forEach(function(m){[].f
 if ( ! function_exists( 'ss_untr_ctx' ) ) {
 	function ss_untr_ctx() {
 		if ( is_admin() ) return false;
-		if ( is_singular( 'product' ) ) return true;
+		if ( is_singular( 'product' ) || ! empty( $GLOBALS['ss_vp'] ) || ( function_exists( 'ss_vp_is_page' ) && ss_vp_is_page() ) ) return true;
 		return function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() );
 	}
 	add_action( 'template_redirect', function () {
@@ -2973,13 +2975,22 @@ add_action( 'admin_init', function () {
 if ( ! function_exists( 'ss_lang_url' ) ) {
 	$GLOBALS['ss_forced_lang'] = '';
 	$GLOBALS['ss_req_path']    = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '/';
-	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#^/(ua|de|fr|pt|es|it)(/(?:product|product-category|product-tag|shop|cart|checkout|my-account)(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) {
+	$GLOBALS['ss_vp']          = false;
+	require_once __DIR__ . '/modules/i18n-pages.php';
+	/* (22.11 «Копирайтер») pages without a Polylang copy, served on /<lang>/<slug>/ = the English page translated on the server
+	   (modules/i18n-pages.php). Only languages that already have a dictionary — the rest keep going to English. */
+	if ( isset( $_SERVER['REQUEST_URI'] ) && function_exists( 'ss_vp_langs' ) && preg_match( '#^/(' . implode( '|', ss_vp_langs() ) . ')(/(?:' . ss_vp_slugs() . ')(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) {
+		$GLOBALS['ss_vp'] = $ssm[1];
+	}
+	if ( isset( $_SERVER['REQUEST_URI'] ) && ( $GLOBALS['ss_vp'] || preg_match( '#^/(ua|de|fr|pt|es|it)(/(?:product|product-category|product-tag|shop|cart|checkout|my-account)(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) ) {
 		$GLOBALS['ss_forced_lang'] = $ssm[1];
 		$GLOBALS['ss_req_path']    = $ssm[2];
 		$_SERVER['REQUEST_URI']    = $ssm[2];
 	}
 	function ss_lang_url( $slug ) {
 		$p = preg_replace( '#[?&]ss_lang=[^&]*#', '', $GLOBALS['ss_req_path'] );
+		$p = preg_replace( '#^/en(?=/)#', '', $p );
+		if ( function_exists( 'ss_vp_url' ) && null !== ( $vu = ss_vp_url( $slug, $p ) ) ) return $vu;
 		return untrailingslashit( get_option( 'home' ) ) . ( 'en' === $slug ? '' : '/' . $slug ) . $p;
 	}
 	function ss_add_prefix( $url ) {
@@ -2997,6 +3008,7 @@ if ( ! function_exists( 'ss_lang_url' ) ) {
 	add_filter( 'term_link', function ( $url, $term, $tax ) { return in_array( $tax, array( 'product_cat', 'product_tag' ), true ) || 0 === strpos( $tax, 'pa_' ) ? ss_add_prefix( $url ) : $url; }, 99, 3 );
 	add_filter( 'page_link', function ( $url, $id ) {
 		if ( ! function_exists( 'wc_get_page_id' ) ) return $url;
+		if ( function_exists( 'ss_vp_page_ids' ) && in_array( (int) $id, ss_vp_page_ids(), true ) && in_array( function_exists( 'pll_current_language' ) ? pll_current_language() : '', ss_vp_langs(), true ) ) return ss_add_prefix( $url );
 		return in_array( (int) $id, array( wc_get_page_id( 'cart' ), wc_get_page_id( 'checkout' ), wc_get_page_id( 'myaccount' ), wc_get_page_id( 'shop' ) ), true ) ? ss_add_prefix( $url ) : $url;
 	}, 99, 2 );
 }
@@ -6924,11 +6936,13 @@ require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну ша
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
 require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
+require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
 require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */
 require_once __DIR__ . '/modules/speed-lite.php'; /* 19.11 owner: speed — no hidden Tidio (1 MB) while the Telegram chat works */
 require_once __DIR__ . '/modules/speed-diet.php'; /* 19.11 owner: «повырезать, чем не пользуемся» — wpForo only on forum pages, no AI Engine / Duplicate Post on page views */
+require_once __DIR__ . '/modules/qa-fixes.php'; /* 23.11 night QA report: account canonical, A/B play buttons say Pause */
 require_once __DIR__ . '/modules/smart-search.php'; /* 19.11 owner: smart search (code first, Cloudflare AI optional) */
 require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public creator page /store/<slug>/ */
 require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-tabs look + payouts status + profile preview */

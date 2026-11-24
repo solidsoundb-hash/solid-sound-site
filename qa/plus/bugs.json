@@ -1,0 +1,121 @@
+{
+ "mode": "full",
+ "date": "2026-11-23T07:58:32.910Z",
+ "stats": {
+  "pages": 0,
+  "clicks": 0,
+  "sounds": 0,
+  "links": 0,
+  "blockedRequests": 0,
+  "plusChecks": 106,
+  "robots": 2
+ },
+ "bugs": [
+  {
+   "sev": "major",
+   "type": "plus-js",
+   "sig": "plus-js|webkit|ResizeObserver loop completed with undelivered not",
+   "title": "Ошибка скрипта в Safari iPhone: «ResizeObserver loop completed with undelivered notifications.»",
+   "steps": [
+    "Открыть https://solid-sound.net/en/ (Safari iPhone)"
+   ],
+   "expected": "Без ошибок скриптов",
+   "actual": "ResizeObserver loop completed with undelivered notifications.",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Safari iPhone"
+   ],
+   "shot": "shots/2_001_webkit_en_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "input «»; input «BPM»; input «on»",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_001_keys_en_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/studio-calculator/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/studio-calculator/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "input «»; input «12»; input «on»",
+   "where": [
+    "/en/studio-calculator/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_005_keys_en_studio_calculator_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-hidden",
+   "sig": "plus-fh|/en/sell/",
+   "title": "Tab попадает на невидимые элементы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажимать Tab"
+   ],
+   "expected": "Фокус только на видимых кнопках",
+   "actual": "input «Ableton templates»; input «Other DAW templates»; input «Synth presets»; input «Sample packs»; input «MIDI»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_007_keys_en_sell_.jpg",
+   "streak": 1,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/sell/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "input «»; input «first_name»; input «last_name»; input «user_email»; input «store_name»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/1_007_keys_en_sell_.jpg",
+   "streak": 1,
+   "isNew": false
+  }
+ ],
+ "notChecked": [],
+ "l10nSkipped": 0
+}

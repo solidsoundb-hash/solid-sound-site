@@ -137,8 +137,41 @@ jobs:
         if: always()
         with: { name: "e-${{ matrix.src }}", path: "qa/sw/e-${{ matrix.src }}", retention-days: 7 }
 
+  plus:
+    # (23.11 owner «досоздай всех ботов… универсальный тестировщик») what the others did not cover — tools/qa/plus.js:
+    # Safari (iPhone) + Firefox, keyboard only, chaos tester, yesterday-vs-today pictures, odd screen shapes
+    needs: [go, extras]
+    if: always() && needs.go.outputs.run == '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - { name: y0, parts: "browsers" }   # runs in Playwright's own image (Safari needs its libraries)
+          - { name: y1, parts: "keys,monkey" }
+          - { name: y2, parts: "visual,shapes" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Robot ${{ matrix.name }} (${{ matrix.parts }})
+        timeout-minutes: 110
+        env: { PW_CHANNEL: chrome, PLUS_PARTS: "${{ matrix.parts }}", PLUS_OUT: "qa/sw/${{ matrix.name }}", PLUS_BUDGET_MIN: "95" }
+        run: |
+          if [ "${{ matrix.parts }}" = browsers ]; then
+            docker run --rm -v "$PWD":/w -w /w -e PLUS_PARTS=browsers -e PLUS_OUT=qa/sw/${{ matrix.name }} -e PLUS_BUDGET_MIN=95 mcr.microsoft.com/playwright:v1.49.1-noble bash -c "npm i --no-save playwright@1.49.1 > /dev/null 2>&1 && node tools/qa/plus.js" || echo "Safari/Firefox robot failed"
+            sudo chown -R $USER qa/sw || true
+          else node tools/qa/plus.js; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "${{ matrix.name }}", path: "qa/sw/${{ matrix.name }}", retention-days: 7 }
+
   merge:
-    needs: [go, pages, extras, eyes]
+    needs: [go, pages, extras, eyes, plus]
     if: "!cancelled() && needs.go.outputs.run == '1'"   # a stopped run must not overwrite the last good report
     runs-on: ubuntu-latest
     steps:
@@ -155,6 +188,8 @@ jobs:
           D=$(ls -d qa/sw/*/ | sed 's#/$##' | paste -sd, -)
           echo "robots: $D"
           mkdir -p qa/latest && QA_MERGE="$D" node tools/qa/qa.js
+          # the chaos/visual robot's small pictures become tomorrow's «yesterday»
+          if [ -d qa/sw/y2/base ]; then mkdir -p qa/visual/base && cp qa/sw/y2/base/*.png qa/visual/base/ 2>/dev/null || true; fi
           rm -rf qa/sw
       - name: Save the report in the repo
         run: |

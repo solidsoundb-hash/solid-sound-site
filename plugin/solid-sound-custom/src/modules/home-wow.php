@@ -645,6 +645,8 @@ body.ss-wow #ss-app .ssx .card .left>.ssw-match.ssw-rel.ssw-vd .rl .ri{padding:5
 body.ss-wow #ss-app .ssx{padding-top:8px!important}body.ss-wow #ss-app .ssx h1.ssx-t{margin:0 0 6px!important}
 body.ss-wow #ss-app .ssx .dots{display:none!important}
 }
+/* 23.11 QA: unselected package items were 3.8:1 on the dark card — now readable (≥ 5:1), selected stay white */
+body.ss-wow #ss-app .ssx .ssw-rel .ri:not(.on){color:#8F9BB1}
 </style>
 <script>(function(){
 var PRC=<?php echo wp_json_encode( function_exists( 'ss_pe_slider' ) ? ss_pe_slider() : array( 'mix' => 39, 'bundle' => 59, 'master' => 25, 'rework' => 109, 'live' => 39 ) ); ?>;

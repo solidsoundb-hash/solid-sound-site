@@ -1035,7 +1035,7 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
 <p>We use essential cookies to run this site (cart, login, checkout). With your permission we also use marketing cookies (Meta Pixel) to measure and improve our ads.<?php if ( $pp ) : ?> <a href="<?php echo esc_url( $pp ); ?>">Privacy Policy</a><?php endif; ?></p>
 <div class="ss-cc-row"><button type="button" class="ss-cc-no">Reject non-essential</button><button type="button" class="ss-cc-yes">Accept all</button></div>
 </div>
-<?php ss_asset('js-l1055'); ?>
+<?php ss_asset('js-l1057'); ?>
 		<?php
 	}
 	add_action( 'wp_footer', 'ss_consent_footer', 5 );
@@ -1295,7 +1295,7 @@ function ss_sell_page() {
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1497'); ?>
+<?php ss_asset('css-l1499'); ?>
 
 <section class="sssell-hero">
 	<div>
@@ -1700,7 +1700,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 /* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
-<?php ss_asset('js-l2186'); ?>
+<?php ss_asset('js-l2188'); ?>
 <?php }, 40 );
 
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */
@@ -1737,7 +1737,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2223'); ?>
+<?php ss_asset('js-l2225'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -2315,7 +2315,7 @@ fix(document.body);new MutationObserver(function(ms){ms.forEach(function(m){[].f
 if ( ! function_exists( 'ss_untr_ctx' ) ) {
 	function ss_untr_ctx() {
 		if ( is_admin() ) return false;
-		if ( is_singular( 'product' ) ) return true;
+		if ( is_singular( 'product' ) || ! empty( $GLOBALS['ss_vp'] ) || ( function_exists( 'ss_vp_is_page' ) && ss_vp_is_page() ) ) return true;
 		return function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() );
 	}
 	add_action( 'template_redirect', function () {
@@ -2426,13 +2426,22 @@ add_action( 'admin_init', function () {
 if ( ! function_exists( 'ss_lang_url' ) ) {
 	$GLOBALS['ss_forced_lang'] = '';
 	$GLOBALS['ss_req_path']    = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '/';
-	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#^/(ua|de|fr|pt|es|it)(/(?:product|product-category|product-tag|shop|cart|checkout|my-account)(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) {
+	$GLOBALS['ss_vp']          = false;
+	require_once __DIR__ . '/modules/i18n-pages.php';
+	/* (22.11 «Копирайтер») pages without a Polylang copy, served on /<lang>/<slug>/ = the English page translated on the server
+	   (modules/i18n-pages.php). Only languages that already have a dictionary — the rest keep going to English. */
+	if ( isset( $_SERVER['REQUEST_URI'] ) && function_exists( 'ss_vp_langs' ) && preg_match( '#^/(' . implode( '|', ss_vp_langs() ) . ')(/(?:' . ss_vp_slugs() . ')(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) {
+		$GLOBALS['ss_vp'] = $ssm[1];
+	}
+	if ( isset( $_SERVER['REQUEST_URI'] ) && ( $GLOBALS['ss_vp'] || preg_match( '#^/(ua|de|fr|pt|es|it)(/(?:product|product-category|product-tag|shop|cart|checkout|my-account)(?:/|\?|$).*)$#', $_SERVER['REQUEST_URI'], $ssm ) ) ) {
 		$GLOBALS['ss_forced_lang'] = $ssm[1];
 		$GLOBALS['ss_req_path']    = $ssm[2];
 		$_SERVER['REQUEST_URI']    = $ssm[2];
 	}
 	function ss_lang_url( $slug ) {
 		$p = preg_replace( '#[?&]ss_lang=[^&]*#', '', $GLOBALS['ss_req_path'] );
+		$p = preg_replace( '#^/en(?=/)#', '', $p );
+		if ( function_exists( 'ss_vp_url' ) && null !== ( $vu = ss_vp_url( $slug, $p ) ) ) return $vu;
 		return untrailingslashit( get_option( 'home' ) ) . ( 'en' === $slug ? '' : '/' . $slug ) . $p;
 	}
 	function ss_add_prefix( $url ) {
@@ -2450,6 +2459,7 @@ if ( ! function_exists( 'ss_lang_url' ) ) {
 	add_filter( 'term_link', function ( $url, $term, $tax ) { return in_array( $tax, array( 'product_cat', 'product_tag' ), true ) || 0 === strpos( $tax, 'pa_' ) ? ss_add_prefix( $url ) : $url; }, 99, 3 );
 	add_filter( 'page_link', function ( $url, $id ) {
 		if ( ! function_exists( 'wc_get_page_id' ) ) return $url;
+		if ( function_exists( 'ss_vp_page_ids' ) && in_array( (int) $id, ss_vp_page_ids(), true ) && in_array( function_exists( 'pll_current_language' ) ? pll_current_language() : '', ss_vp_langs(), true ) ) return ss_add_prefix( $url );
 		return in_array( (int) $id, array( wc_get_page_id( 'cart' ), wc_get_page_id( 'checkout' ), wc_get_page_id( 'myaccount' ), wc_get_page_id( 'shop' ) ), true ) ? ss_add_prefix( $url ) : $url;
 	}, 99, 2 );
 }
@@ -3855,7 +3865,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4713'); ?>
+<?php ss_asset('js-l4725'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4536,7 +4546,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5788'); ?>
+<?php ss_asset('css-l5800'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5115,7 +5125,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6401'); ?>
+<?php ss_asset('css-l6413'); ?>
 		<?php
 		return ob_get_clean();
 	}
@@ -5640,11 +5650,13 @@ require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну ша
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
 require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
+require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
 require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */
 require_once __DIR__ . '/modules/speed-lite.php'; /* 19.11 owner: speed — no hidden Tidio (1 MB) while the Telegram chat works */
 require_once __DIR__ . '/modules/speed-diet.php'; /* 19.11 owner: «повырезать, чем не пользуемся» — wpForo only on forum pages, no AI Engine / Duplicate Post on page views */
+require_once __DIR__ . '/modules/qa-fixes.php'; /* 23.11 night QA report: account canonical, A/B play buttons say Pause */
 require_once __DIR__ . '/modules/smart-search.php'; /* 19.11 owner: smart search (code first, Cloudflare AI optional) */
 require_once __DIR__ . '/modules/creator-profile.php'; /* 19.11 owner: public creator page /store/<slug>/ */
 require_once __DIR__ . '/modules/creator-tabs.php'; /* 19.11 owner: creator sub-tabs look + payouts status + profile preview */

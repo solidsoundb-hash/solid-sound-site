@@ -17,7 +17,9 @@ add_action( 'wp_head', function () {
 	if ( is_admin() ) return;
 	echo '<style id="ss-polish">'
 		. 'button.cta,button.go,button.ssf-btn,.ssf button,.ssfb-f button,form.ssf-form button{border-radius:10px!important}'
-		. '@media(min-width:1000px){body:has(.add_to_cart_button) .ssb{left:20px;right:auto}body:has(.add_to_cart_button) .ssb-panel{left:0;right:auto}}'
+		/* 23.11 owner: «чат слева, а нужно справа» — the chat stays bottom-right on the catalog too (was moved left 19.11) */
+		/* 23.11 keyboard robot: no visible focus in the header and on buttons — an amber ring, only for keyboard users (:focus-visible) */
+		. 'html body :is(a,button,summary,[role=button],[role=tab],[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid #F59E0B!important;outline-offset:2px!important}'
 		. '@media(max-width:767px){select[name=orderby],select[name=order],.w-filter select,.w-filter input{font-size:16px!important}}'
 		. '</style>';
 }, 90 );
