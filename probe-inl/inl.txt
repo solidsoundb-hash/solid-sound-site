@@ -1,4 +1,4 @@
-==== /en/faq/ 200 157060
+==== /en/faq/ 200 155993
 <script id="ss-ga4">
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 (function(){var ok=/(?:^|;\s*)ss_consent=yes/.test(document.cookie);
@@ -11,34 +11,15 @@ window.ssTrack=ev;
 /* consent banner click → update */
 document.addEventListener('click'
 ----
-<script id="facebook-signal-js-extra">
-var facebookSignalConfig = {"cookieName":"wc_facebook_signals_state","ajaxUrl":"https://solid-sound.net/wp-admin/admin-ajax.php","signalsAction":"fbpix_set_pixel_signals","signalsNonce":"b4c5555c35"};
-//# sourceURL=facebook-signal-js-extra
-</script>
+<script type="text/plain" data-ss-consent="1" src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
 ----
-<script id="facebook-signal-js" src="https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"></script>
-----
-<script type='text/javascript'>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-</script>
-----
-<script type='text/javascript'>
-    fbq('track', 'PageView', []);
-  </script>
-----
-<script type="text/javascript" src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
-----
-<script type="text/javascript">
+<script type="text/plain" data-ss-consent="1">
   window.Brevo = window.Brevo || [];
   window.Brevo.push(['init', {"client_key":"jimlbi17ti9he469i4jq30hm","email_id":null,"push":{"customDomain":"https:\/\/solid-sound.net\/wp-content\/plugins\/mailin\/"},"service_worker_url":"sw.js?key=${key}","frame_url":"brevo-frame.html"}]);
 </script>
 ----
 <script type="text/javascript">
-				window.__wc_fb_page_generated = 1795340981;
+				window.__wc_fb_page_generated = 1795497346;
 				!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 					n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 					n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -87,7 +68,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 <noscript><style>.wpb_animate_when_almost_visible{opacity:1}</style></noscript>
 ----
 <script id="wc-facebook-signals-js-extra">
-var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/admin-ajax.php","nonce":"8fc448d0c2","action":"wc_facebook_update_signals_state"};
+var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/admin-ajax.php","nonce":"666847bebe","action":"wc_facebook_update_signals_state"};
 //# sourceURL=wc-facebook-signals-js-extra
 </script>
 ----
@@ -118,8 +99,8 @@ var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/a
 /* WooCommerce Facebook Integration Event Tracking */
 fbq('set', 'agent', (function(){var a='woocommerce_0-11.2.1-3.7.8';if(window.__wc_fb_page_generated&&(Math.floor(Date.now()/1000)-window.__wc_fb_page_generated)>1800){a=a.replace(/(\d+\.\d+\.\d+)/,'$1_c');}return a;})(), '344368324189550');
 window.wcFacebookPixelFiredEvents = window.wcFacebookPixelFiredEvents || {};
-if (!window.wcFacebookPixelFiredEvents["31f0b199-39df-48fb-8f6c-84b5325260e5"]) {
-window.wcFacebookPixelFiredEvents["31f0b199-39df-48fb-8f6c-84b5325260e5"] = true;
+if (!window.wcFacebookPixelFiredEvents["689ae3e5-0eba-4b78-9546-49f91ead33fa"]) {
+window.wcFacebookPixelFiredEvents["689ae3e5-0eba-4b78-9546-49f91ead33fa"] = true;
 var isStale = window.__wc_fb_page_generated && (Math.floor(Date.now()/1000) - window.__wc_fb_page_generated) > 1800;
 if (window.FacebookSignals && typeof window.FacebookSignals.trackEvent === 'function') {
 	window.FacebookSignals.trackEvent('PageView', {
@@ -134,7 +115,7 @@ function hook(){var S=window.ssPlayer;if(!S||!S.audio)return false;A=S.audio;
  A.addEventListener('ended',function(){max=dur||max;send()});
  window.addEventListener('pagehide',send);document.addEventListener('visibilitychange',function(){if(document.vi
 ----
-==== /product/infinity/ 200 217929
+==== /product/infinity/ 200 216833
 <script id="ss-ga4">
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 (function(){var ok=/(?:^|;\s*)ss_consent=yes/.test(document.cookie);
@@ -146,34 +127,15 @@ function px(n,p,c){try{if(window.fbq)fbq(c?'trackCustom':'track',n,p||{})}catch(
 window.ssTrack=ev;
 /* consent banner clic
 ----
-<script id="facebook-signal-js-extra">
-var facebookSignalConfig = {"cookieName":"wc_facebook_signals_state","ajaxUrl":"https://solid-sound.net/wp-admin/admin-ajax.php","signalsAction":"fbpix_set_pixel_signals","signalsNonce":"b4c5555c35"};
-//# sourceURL=facebook-signal-js-extra
-</script>
+<script type="text/plain" data-ss-consent="1" src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
 ----
-<script id="facebook-signal-js" src="https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"></script>
-----
-<script type='text/javascript'>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-</script>
-----
-<script type='text/javascript'>
-    fbq('track', 'PageView', []);
-  </script>
-----
-<script type="text/javascript" src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
-----
-<script type="text/javascript">
+<script type="text/plain" data-ss-consent="1">
   window.Brevo = window.Brevo || [];
   window.Brevo.push(['init', {"client_key":"jimlbi17ti9he469i4jq30hm","email_id":null,"push":{"customDomain":"https:\/\/solid-sound.net\/wp-content\/plugins\/mailin\/"},"service_worker_url":"sw.js?key=${key}","frame_url":"brevo-frame.html"}]);
 </script>
 ----
 <script type="text/javascript">
-				window.__wc_fb_page_generated = 1795340984;
+				window.__wc_fb_page_generated = 1795497350;
 				!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 					n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 					n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -222,7 +184,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 <noscript><style>.wpb_animate_when_almost_visible{opacity:1}</style></noscript>
 ----
 <script id="wc-facebook-signals-js-extra">
-var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/admin-ajax.php","nonce":"8fc448d0c2","action":"wc_facebook_update_signals_state"};
+var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/admin-ajax.php","nonce":"666847bebe","action":"wc_facebook_update_signals_state"};
 //# sourceURL=wc-facebook-signals-js-extra
 </script>
 ----
@@ -253,8 +215,8 @@ var wc_facebook_signals_params = {"ajax_url":"https://solid-sound.net/wp-admin/a
 /* WooCommerce Facebook Integration Event Tracking */
 fbq('set', 'agent', (function(){var a='woocommerce_0-11.2.1-3.7.8';if(window.__wc_fb_page_generated&&(Math.floor(Date.now()/1000)-window.__wc_fb_page_generated)>1800){a=a.replace(/(\d+\.\d+\.\d+)/,'$1_c');}return a;})(), '344368324189550');
 window.wcFacebookPixelFiredEvents = window.wcFacebookPixelFiredEvents || {};
-if (!window.wcFacebookPixelFiredEvents["60f573e8-e2b1-4121-a9d0-b5d8fc472726"]) {
-window.wcFacebookPixelFiredEvents["60f573e8-e2b1-4121-a9d0-b5d8fc472726"] = true;
+if (!window.wcFacebookPixelFiredEvents["1e487799-fe8f-48b3-b9db-23760bd641a7"]) {
+window.wcFacebookPixelFiredEvents["1e487799-fe8f-48b3-b9db-23760bd641a7"] = true;
 var isStale = window.__wc_fb_page_generated && (Math.floor(Date.now()/1000) - window.__wc_fb_page_generated) > 1800;
 if (window.FacebookSignals && typeof window.FacebookSignals.trackEvent === 'function') {
 	window.FacebookSignals.trackEvent('PageView', {
