@@ -11,7 +11,7 @@ const TRACK = [
   ['Meta Pixel', /facebook\.com\/tr|facebook\.com\/privacy_sandbox|connect\.facebook\.net\/signals/],
   ['Google Analytics', /google-analytics\.com\/(g\/)?collect|analytics\.google\.com\/g\/collect|\/g\/collect\?/],
   ['Google Ads', /googleadservices\.com\/pagead|google\.com\/pagead|doubleclick\.net/],
-  ['TikTok', /analytics\.tiktok\.com\/api/], ['Hotjar', /hotjar\.(com|io)/], ['Clarity', /clarity\.ms\/collect/], ['LinkedIn', /px\.ads\.linkedin/],
+  ['TikTok', /analytics\.tiktok\.com\/api/], ['Hotjar', /hotjar\.(com|io)/], ['Clarity', /clarity\.ms\/collect/], ['Brevo', /sibautomation\.com|in-automate\.brevo\.com|cdn\.brevo\.com\/js\/sdk-loader/], ['LinkedIn', /px\.ads\.linkedin/],
 ];
 const SCRIPTS = [['Meta Pixel (скрипт)', /connect\.facebook\.net\/.*fbevents/], ['Google tag (скрипт)', /googletagmanager\.com\/gtag\/js/], ['TikTok (скрипт)', /analytics\.tiktok\.com\/i18n/]];
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
