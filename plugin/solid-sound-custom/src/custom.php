@@ -1026,7 +1026,9 @@ if ( ! function_exists( 'ss_consent_head' ) ) {
    still sent /tr after «Reject»). Until then every call just waits in the queue; after Reject nothing is ever sent. */
 !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
 window.ssFbLoad=function(){if(window.ssFbLoaded)return;window.ssFbLoaded=1;var t=document.createElement('script');t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(t,s)};
-(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes')window.ssFbLoad();else fbq('consent','revoke');})();
+/* (22.11) scripts printed frozen until consent (modules/consent-gate.php: Brevo tracker) run here once the visitor agreed */
+window.ssConsentRun=function(){if(window.ssConsentRan)return;window.ssConsentRan=1;[].forEach.call(document.querySelectorAll('script[type="text/plain"][data-ss-consent]'),function(o){var s=document.createElement('script');for(var i=0;i<o.attributes.length;i++){var a=o.attributes[i];if(a.name!=='type'&&a.name!=='data-ss-consent')s.setAttribute(a.name,a.value)}if(!o.src)s.text=o.text;o.parentNode.replaceChild(s,o)})};
+(function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes'){window.ssFbLoad();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.ssConsentRun);else window.ssConsentRun()}else fbq('consent','revoke');})();
 </script>
 <style>.l-cookie{display:none!important}
 .ss-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;max-width:560px;margin:0 auto;background:#16141f;color:#dfe3ee;border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.55);padding:18px 18px 16px;font-size:14px;line-height:1.5}
@@ -1060,7 +1062,7 @@ body.ssp-open .ss-cc{bottom:88px}
 var box=document.getElementById('ss-cc');if(!box)return;
 function set(v){var d=new Date();d.setTime(d.getTime()+180*864e5);document.cookie='ss_consent='+v+';expires='+d.toUTCString()+';path=/;SameSite=Lax'+(location.protocol==='https:'?';Secure':'');window.ssConsent=v}
 function hide(){box.hidden=true}
-box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}});
+box.querySelector('.ss-cc-yes').addEventListener('click',function(){var was=window.ssConsent;set('yes');hide();if(window.fbq&&was!=='yes'){fbq('consent','grant');if(window.ssFbLoad)window.ssFbLoad();fbq('track','PageView')}if(window.ssConsentRun)window.ssConsentRun()});
 box.querySelector('.ss-cc-no').addEventListener('click',function(){set('no');hide();if(window.fbq)fbq('consent','revoke')});
 if(!window.ssConsent)box.hidden=false;
 /* "Cookie settings" link in the footer to change the choice later */
@@ -6934,6 +6936,7 @@ require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну ша
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
 require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
+require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
 require_once __DIR__ . '/modules/daw-steps.php'; /* 19.11 owner: Add Product — Format → DAW → only that DAW's versions */
