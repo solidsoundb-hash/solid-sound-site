@@ -22,6 +22,8 @@ function ss_cg_filter( $h ) {
 	$h = preg_replace( "#<script type='text/javascript'>\s*!function\(f,b,e,v,n,t,s\)\{if\(f\.fbq\)return;.*?fbevents\.js'\);\s*</script>\s*#s", '', $h );
 	$h = preg_replace( "#<script type='text/javascript'>\s*fbq\('track', 'PageView', \[\]\);\s*</script>\s*#", '', $h );
 	$h = preg_replace( '#<noscript>\s*<img[^>]+facebook\.com/tr\?id=[^>]+>\s*</noscript>\s*#i', '', $h );
+	/* its FacebookSignal.init/initPixel call (24.11: left alone it threw «FacebookSignal is not defined» — the library is removed above) */
+	$h = preg_replace( "#<script type='text/javascript'>\s*FacebookSignal\.init\(.*?</script>\s*#s", '', $h );
 	return $h;
 }
 add_action( 'template_redirect', function () {
