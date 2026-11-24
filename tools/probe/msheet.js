@@ -11,6 +11,7 @@ const log = []; const L = (...a) => log.push(a.join(' '));
     await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
     const p = await ctx.newPage(); p.on('pageerror', e => L('JS ERROR', path, e.message.slice(0, 200)));
     await p.goto('https://solid-sound.net' + path + '?ms=' + Date.now(), { waitUntil: 'networkidle', timeout: 120000 }).catch(() => {}); await p.waitForTimeout(2500);
+    await p.getByText('Reject non-essential', { exact: true }).first().click({ timeout: 4000 }).catch(() => {}); await p.waitForTimeout(400);
     const s = path.replace(/\W+/g, '_') + h;
     try { await p.locator('#ssg .g-burger').first().click({ timeout: 8000 }); await p.waitForTimeout(900);
       await p.evaluate(() => { const sp = document.querySelector('#ssg-sheet .s-p'); if (sp) sp.scrollTop = sp.scrollHeight; }); await p.waitForTimeout(400);
