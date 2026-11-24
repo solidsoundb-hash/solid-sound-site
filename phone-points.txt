@@ -1,0 +1,38 @@
+[
+ [
+  200,
+  394,
+  [
+   "article.ssn-s static",
+   "div.ssn-tr static",
+   "div#ssn.ssn static",
+   "div.ssh-in static",
+   "div.l-section-h.i-cf relative",
+   "section.l-section.ssh relative"
+  ]
+ ],
+ [
+  60,
+  405,
+  [
+   "article.ssn-s static",
+   "div.ssn-tr static",
+   "div#ssn.ssn static",
+   "div.ssh-in static",
+   "div.l-section-h.i-cf relative",
+   "section.l-section.ssh relative"
+  ]
+ ],
+ [
+  340,
+  384,
+  [
+   "article.ssn-s static",
+   "div.ssn-tr static",
+   "div#ssn.ssn static",
+   "div.ssh-in static",
+   "div.l-section-h.i-cf relative",
+   "section.l-section.ssh relative"
+  ]
+ ]
+]

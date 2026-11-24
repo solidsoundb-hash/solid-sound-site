@@ -1,0 +1,4 @@
+currencies: USD,EUR,GBP,CAD,AUD,CHF,DKK,HKD,INR,JPY,NOK,NZD,PLN,SEK,UAH,ZAR
+header items: Favorites|Cart|Sign in
+fvlog: ["16085 ev mouseover path","16097:ss-dd on     at eval (eval at evaluate (:234:30), <anonymous>:1:190) /     at Array.forEach (<anonymous>) /     at MutationObserver.observe.attributes (eval at evaluate (:234:30), <anonymous>:1:60)","16100 ev click path"]
+favorites: url=https://solid-sound.net/en/all-products/ | true | No favorites yet. Tap ♡ on any product to save it here. Browse products

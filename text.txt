@@ -1,0 +1,550 @@
+https://solid-sound.net/en/all-products/
+TITLE: Ableton Templates, Serum Presets & Music | Solid Sound
+DESC: All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.
+LD: {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Solid Sound","item":"https://solid-sound.net/en/"},{"@type":"ListItem","position":2,"name":"All products","item":"https://solid-sound.net/en/all-products/"}]}
+
+BUTTON: Products
+BUTTON: Services
+BUTTON: FAQ
+BUTTON: Find
+BUTTON: EN
+BUTTON: €
+BUTTON: Sign in
+H1: Turn Your Ideas into Solid Sound
+H2: What’s new
+BUTTON: ‹
+BUTTON: ›
+H3: Time Goes Fast Documentary Piano
+BUTTON: +
+BUTTON: 2
+H3: Melodic Techno Presets
+BUTTON: +
+BUTTON: 1
+H3: Pitch
+BUTTON: +
+H3: Mutualism
+BUTTON: +
+H3: Intricate
+BUTTON: +
+H3: Infinity
+BUTTON: +
+BUTTON: 1
+H3: Kratos
+BUTTON: +
+H3: Protos
+BUTTON: +
+BUTTON: All
+BUTTON: Templates
+BUTTON: Presets
+BUTTON: Music
+BUTTON: Play All
+H2: Time Goes Fast Documentary Piano
+A: €15
+BUTTON: 2
+BUTTON: +
+H2: Melodic Techno Presets
+A: €4.50
+BUTTON: 1
+BUTTON: +
+H2: Pitch
+A: €12
+BUTTON: +
+H2: Mutualism
+A: €12
+BUTTON: +
+H2: Intricate
+A: €12
+BUTTON: +
+H2: Infinity
+A: €12
+BUTTON: 1
+BUTTON: +
+H2: Kratos
+A: €12
+BUTTON: +
+H2: Protos
+A: €12
+BUTTON: +
+H2: FROM SOLID WIKI
+BUTTON: Reject non-essential
+BUTTON: Accept all
+
+---- full text ----
+BLACK MONTH
+−50% on all Ableton templates & Serum presets · ends in 6d 17h 39m
+Shop the sale →
+Home
+Products
+Services
+Wiki
+Forum
+FAQ
+Free
+Sell
+Search
+AI
+Find
+EN
+€
+Favorites
+Cart
+Sign in
+Turn Your Ideas into Solid Sound
+
+Ableton templates · Presets · Mixing & Mastering
+Royalty-free
+Instant download
+after payment
+Secure payment
+
+What’s new
+2 / 8
+‹
+›
+NEW
+MUSIC
+Time Goes Fast Documentary Piano
+Cinematic
+
+"Time Goes Fast Documentary Piano" is a reflective and emotional piano composition that captures the fleeting nature of time.
+
+LENGTH
+2:49
+LICENSE
+Royalty-free
++
+0:00
+2:49
+2
+i
+€15
+NEW
+PRESETS
+Melodic Techno Presets
+Melodic Techno
+
+The Solid Sound Melodic Techno Serum Preset Collection contains 4 professionally designed sounds that lift your track from the very first notes. Load them into Serum by Xfer Records and start creating.
+
+PLUGINS
+Serum v1.363 (or higher)
+COMPATIBLE
+PC & Mac
+PRESETS
+4
+FORMAT
+Serum Presets (*.fxp)
+SIZE
+1 MB
++
+0:00
+0:36
+1
+i
+€9
+€4.50
+NEW
+TEMPLATE
+Pitch
+Techno
+
+Pitch is a techno template inspired by the legendary Dino Maggiorana. Use it to learn professional techniques and tricks built entirely with native Ableton plugins.
+
+DAW
+Ableton Live 11 (or later)
+PLUGINS
+No external plugins
+COMPATIBLE
+PC & Mac
+AUDIO TRACKS
+3
+MIDI TRACKS
+17
+RETURN TRACKS
+2
+BPM
+130
+KEY
+Bm
+LENGTH
+7:30
+SIZE
+15.9 MB
++
+0:00
+7:30
+i
+€24
+€12
+NEW
+TEMPLATE
+Mutualism
+Techno
+
+Mutualism is a fresh take on dark techno, inspired by Adam Beyer and Vitaly Mc'lay. Driving drums, a deep bass line and sharp percussive shots create a dark, hypnotic atmosphere.
+
+DAW
+Ableton Live 11 (or later)
+PLUGINS
+No external plugins
+COMPATIBLE
+PC & Mac
+AUDIO TRACKS
+3
+MIDI TRACKS
+15
+RETURN TRACKS
+2
+KEY
+G
+LENGTH
+06:06
++
+0:00
+6:05
+i
+€24
+€12
+NEW
+TEMPLATE
+Intricate
+Techno
+
+Intricate is a full-length dark techno template for Ableton Live 11, produced by Grenør. It uses native Ableton plugins only, including FM synthesis for the kick and hi-hats.
+
+DAW
+Ableton Live 11 (or later)
+PLUGINS
+No external plugins
+COMPATIBLE
+PC & Mac
+AUDIO TRACKS
+3
+MIDI TRACKS
+31
+RETURN TRACKS
+2
+BPM
+130
+KEY
+G
+LENGTH
+07:34
++
+0:00
+7:34
+i
+€24
+€12
+NEW
+TEMPLATE
+Infinity
+Techno
+
+Infinity is a full-length Ableton Live 11 template produced by Grenør. This driving 130 BPM track in A minor is built with native Ableton plugins only, so no external plugins are needed.
+
+DAW
+Ableton Live 11 (or later)
+PLUGINS
+No external plugins
+COMPATIBLE
+PC & Mac
+AUDIO TRACKS
+0
+MIDI TRACKS
+14
+RETURN TRACKS
+2
+BPM
+130
+KEY
+Am
+LENGTH
+05:21
++
+0:00
+5:21
+1
+i
+€24
+€12
+NEW
+TEMPLATE
+Kratos
+Techno
+
+Kratos is a full-length dark techno template for Ableton Live 10, produced by Grenør. Built with native Ableton plugins only, it is easy to customize: learn how the sound is made, then reshape it into your own track.
+
+DAW
+Ableton Live 10 (or later)
+PLUGINS
+No external plugins
+COMPATIBLE
+PC & Mac
+AUDIO TRACKS
+4
+MIDI TRACKS
+34
+RETURN TRACKS
+2
+BPM
+128
+LENGTH
+06:46
++
+0:00
+6:46
+i
+€24
+€12
+NEW
+TEMPLATE
+Protos
+Techno
+
+Protos is a full-length techno template for Ableton Live 10, produced by Grenør. Built with native Ableton plugins only, it is packed with samples and polyrhythmic, syncopated grooves made for the dance floor.
+
+DAW
+Ableton Live 10 (or later)
+PLUGINS
+No external plugins
+COMPATIBLE
+PC & Mac
+AUDIO TRACKS
+4
+MIDI TRACKS
+16
+RETURN TRACKS
+3
+BPM
+128
+LENGTH
+03:49
++
+0:00
+3:49
+i
+€24
+€12
+
+BEST PRODUCTS
+All
+Templates
+Presets
+Music
+1
+Mutualism
+TEMPLATE
+· Techno
+2
+Time Goes Fast Documentary Piano
+MUSIC
+· Cinematic
+3
+Melodic Techno Presets
+PRESET
+· Melodic Techno
+Play All
+8 items
+Newest
+Top Sellers
+Popular
+Highest Price ▲
+Lowest Price ▼
+Templates
+Presets
+Reconstructed Templates
+Music
+Product Versions
+Additional Plugins
+Genres
+Root key
+BPM
+LENGTH
+Tag
+Time Goes Fast Documentary Piano
+GENRE:
+Cinematic
+LENGTH:
+2:49
+KEY:
+Am
+€15
+2
++
+0:00
+2:49
+Melodic Techno Presets
+GENRE:
+Melodic Techno
+€4.50
+1
++
+0:00
+0:36
+Serum
+Pitch
+GENRE:
+Techno
+DAW:
+Ableton Live 11
+BPM:
+130
+LENGTH:
+7:30
+KEY:
+Bm
+€12
++
+0:00
+7:30
+No External Plugins
+Add mixing +€69
+i
+Mutualism
+GENRE:
+Techno
+DAW:
+Ableton Live 11
+BPM:
+128
+LENGTH:
+06:06
+KEY:
+G
+€12
++
+0:00
+6:05
+No External Plugins
+Add mixing +€69
+i
+Intricate
+GENRE:
+Techno
+DAW:
+Ableton Live 11
+BPM:
+130
+LENGTH:
+07:34
+KEY:
+G
+€12
++
+0:00
+7:34
+No External Plugins
+Add mixing +€69
+i
+Infinity
+GENRE:
+Techno
+DAW:
+Ableton Live 11
+BPM:
+130
+LENGTH:
+05:21
+KEY:
+Am
+€12
+1
++
+0:00
+5:21
+No External Plugins
+Add mixing +€69
+i
+Kratos
+GENRE:
+Techno
+DAW:
+Ableton Live 10
+BPM:
+128
+LENGTH:
+06:46
+€12
++
+0:00
+6:46
+No External Plugins
+Add mixing +€69
+i
+Protos
+GENRE:
+Techno
+DAW:
+Ableton Live 10
+BPM:
+128
+LENGTH:
+03:49
+KEY:
+Bm
+€12
++
+0:00
+3:49
+No External Plugins
+Add mixing +€69
+i
+FROM SOLID WIKI
+
+Free recording and mixing guides from our studio.
+
+Vocal Mic Technique: 3 Rules for Clean Vocals at Home
+Read the guide →
+Audio Interface for Recording Vocals: Gain, 48V, Latency
+Read the guide →
+Closed-Back Headphones for Recording Vocals
+Read the guide →
+Balanced vs Unbalanced Cables: XLR, TRS and TS
+Read the guide →
+
+All guides in Solid Wiki →
+
+Products
+Templates
+Presets
+Music
+Free
+Services
+Services & Prices
+Mixing & Mastering Calculator
+Mastering Album Calculator
+Become a vendor
+Community
+About us
+Why Solid Sound
+Get your set heard
+Forum
+Wiki
+FAQ
+Contact us
+Secure checkout
+Faulty file? Fix, replacement or refund within 30 days. Services: cancel within 14 days.
+VISA
+MASTERCARD
+APPLE PAY
+GOOGLE PAY
+STRIPE
+Follow us
+© 2026 Solid Sound
+Terms of Sale
+Privacy Policy
+Refund Policy
+License Agreement
+Legal Notice
+Cookie settings
+We value your privacy
+
+We use essential cookies to run this site (cart, login, checkout). With your permission we also use marketing cookies (Meta Pixel) to measure and improve our ads. Privacy Policy
+
+Reject non-essential
+Accept all
+Your cart is empty.
+Browse products
+No favorites yet.
+Tap ♡ on any product to save it here.
+Browse products

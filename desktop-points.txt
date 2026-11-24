@@ -1,0 +1,38 @@
+[
+ [
+  720,
+  437,
+  [
+   "p.ssn-d static",
+   "div.ssn-b static",
+   "article.ssn-s static",
+   "div.ssn-tr static",
+   "div#ssn.ssn static",
+   "div.ssh-in static"
+  ]
+ ],
+ [
+  300,
+  470,
+  [
+   "img.wp-image-1099 static",
+   "a.ssn-cov.has-yt relative",
+   "article.ssn-s static",
+   "div.ssn-tr static",
+   "div#ssn.ssn static",
+   "div.ssh-in static"
+  ]
+ ],
+ [
+  1300,
+  390,
+  [
+   "div.ssh-in static",
+   "div.l-section-h.i-cf relative",
+   "section.l-section.ssh relative",
+   "div#ss-old-hero static",
+   "main#page-content.l-main static",
+   "div.l-canvas.type_wide static"
+  ]
+ ]
+]
