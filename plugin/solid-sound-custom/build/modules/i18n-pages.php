@@ -37,6 +37,13 @@ function ss_vp_dict( $l ) {
 /* language of any page that is one of ours: /de/<slug>/ (virtual) */
 add_filter( 'pll_check_canonical_url', function ( $u ) { return ss_vp_is_page() ? false : $u; }, 99 );
 add_filter( 'redirect_canonical', function ( $u ) { return ss_vp_is_page() ? false : $u; }, 99 );
+/* (24.11, live check: /de/services-prices/ → 301 /en/ «x-redirect-by: Polylang») Polylang compares the page language (en) with the
+   current one (de) on 'wp' and redirects — pages are translatable, products are not, so /de/product/ never hit it. Off for our pages. */
+add_action( 'wp', function () {
+	if ( ! ss_vp_is_page() || ! function_exists( 'PLL' ) ) return;
+	$p = PLL();
+	if ( isset( $p->choose_lang ) && is_object( $p->choose_lang ) ) remove_action( 'wp', array( $p->choose_lang, 'check_language_code_in_url' ) );
+}, 1 );
 
 /* SEO: the page in every switched-on language */
 function ss_vp_path() { return preg_replace( '#\?.*$#', '', preg_replace( '#^/(en|' . implode( '|', ss_vp_langs() ) . ')(?=/)#', '', (string) ( $_SERVER['REQUEST_URI'] ?? '/' ) ) ); }
