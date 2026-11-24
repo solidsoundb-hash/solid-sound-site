@@ -12,7 +12,6 @@
  * Prices, product names and brands are never in the dictionaries.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-if ( function_exists( 'ss_vp_langs' ) ) return;
 
 function ss_vp_langs() { return array( 'de' ); }
 function ss_vp_slugs() { return 'all-products|services-prices|studio-calculator|services-calculator|mastering-album-calculator|free|sell|faq|why-solid-sound|get-heard|free-demo-feedback|terms|refund_returns|license|privacy-policy|legal-notice|about|creator-terms'; }
@@ -35,14 +34,20 @@ function ss_vp_dict( $l ) {
 }
 
 /* language of any page that is one of ours: /de/<slug>/ (virtual) */
-add_filter( 'pll_check_canonical_url', function ( $u ) { return ss_vp_is_page() ? false : $u; }, 99 );
-add_filter( 'redirect_canonical', function ( $u ) { return ss_vp_is_page() ? false : $u; }, 99 );
+add_filter( 'pll_check_canonical_url', function ( $u ) { return ss_vp_keep_lang() ? false : $u; }, 99 );
+add_filter( 'redirect_canonical', function ( $u ) { return ss_vp_keep_lang() ? false : $u; }, 99 );
 /* (24.11, live check: /de/services-prices/ → 301 /en/ «x-redirect-by: Polylang») Polylang compares the page language (en) with the
    current one (de) on 'wp' and redirects — pages are translatable, products are not, so /de/product/ never hit it. Off for our pages. */
+/* Same for /de/cart/, /de/checkout/, /de/my-account/ (WooCommerce pages are translatable pages too → they went to /en/). */
+function ss_vp_keep_lang() {
+	if ( ss_vp_is_page() ) return true;
+	$f = (string) ( $GLOBALS['ss_forced_lang'] ?? '' );
+	return '' !== $f && in_array( $f, ss_vp_langs(), true ) && preg_match( '#^/(cart|checkout|my-account)(/|\?|$)#', (string) ( $GLOBALS['ss_req_path'] ?? '' ) );
+}
 add_action( 'wp', function () {
-	if ( ! ss_vp_is_page() || ! function_exists( 'PLL' ) ) return;
+	if ( ! ss_vp_keep_lang() || ! function_exists( 'PLL' ) ) return;
 	$p = PLL();
-	if ( isset( $p->choose_lang ) && is_object( $p->choose_lang ) ) remove_action( 'wp', array( $p->choose_lang, 'check_language_code_in_url' ) );
+	if ( isset( $p->choose_lang ) && is_object( $p->choose_lang ) ) { remove_action( 'wp', array( $p->choose_lang, 'check_language_code_in_url' ) ); remove_action( 'template_redirect', array( $p->choose_lang, 'check_language_code_in_url' ) ); }
 }, 1 );
 
 /* SEO: the page in every switched-on language */
