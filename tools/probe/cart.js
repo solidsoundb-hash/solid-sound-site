@@ -4,6 +4,8 @@
 const { chromium } = require('playwright'); const fs = require('fs');
 const OUT = process.env.PROBE_OUT || 'probe-cart'; fs.mkdirSync(OUT, { recursive: true });
 const SITE = 'https://solid-sound.net';
+/* preview mode: last line of .github/probe.txt ends with «preview» → inject tools/probe/cart-inject.json (new CSS + JS) */
+let INJ = null; try { if (/preview/.test(fs.readFileSync('.github/probe.txt', 'utf8').trim().split('\n').pop()) || process.env.PREVIEW) INJ = JSON.parse(fs.readFileSync('tools/probe/cart-inject.json', 'utf8')); } catch (e) { /* no preview */ }
 const A31 = { isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' };
 const DEV = {
   a31_700: { ...A31, viewport: { width: 412, height: 700 } },
@@ -15,7 +17,7 @@ const log = []; const L = (...a) => { const s = a.join(' '); log.push(s); consol
 (async () => {
   const b = await chromium.launch();
   let product = '';
-  for (const [dev, o] of Object.entries(DEV)) {
+  for (const [dev, o] of Object.entries(DEV).filter(([k]) => !process.env.DEVS || process.env.DEVS.split(',').includes(k))) {
     const { lite, ...opt } = o;
     const ctx = await b.newContext({ ...opt, locale: 'en-US' });
     const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message.slice(0, 140)));
@@ -30,6 +32,7 @@ const log = []; const L = (...a) => { const s = a.join(' '); log.push(s); consol
       await p.goto(SITE + '/en/cart/', { waitUntil: 'domcontentloaded', timeout: 60000 });
       await p.waitForSelector('.woocommerce-cart-form, .wc-block-cart, .cart-empty', { timeout: 30000 });
       if (lite) await p.evaluate(() => document.documentElement.classList.add('ss-lite'));
+      if (INJ) { await p.addStyleTag({ content: INJ.css }); await p.evaluate(js => { (0, eval)('(function(){' + js + '})()'); }, INJ.js); } // preview of the fix before deploy
       await p.waitForTimeout(2500);
       await p.screenshot({ path: `${OUT}/${dev}.jpg`, type: 'jpeg', quality: 65 });
       await p.screenshot({ path: `${OUT}/${dev}-full.jpg`, type: 'jpeg', quality: 55, fullPage: true });
