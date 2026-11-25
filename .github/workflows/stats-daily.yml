@@ -20,6 +20,8 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/stats-daily/exam.js
       - run: npm i --no-save playwright@1.49.1
       - name: Read Solid Stats and orders
         env:

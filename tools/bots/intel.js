@@ -124,6 +124,13 @@ async function bestsellers(shop) {
   }
   return [];
 }
+// News score: null = not our niche; otherwise the sum of keyword weights (learned weights from memory win). Exam: intel/exam.json
+function scoreNews(text) {
+  const t = String(text).toLowerCase();
+  if (!CFG.niche.some(w => t.includes(w))) return null;
+  let score = 0; for (const [k, w] of Object.entries(Object.assign({}, CFG.keywords, mem.keywords))) if (t.includes(k)) score += w;
+  return score;
+}
 function parseFeed(xml) {
   const items = []; const re = /<(item|entry)[\s>][\s\S]*?<\/\1>/g; let m;
   while ((m = re.exec(xml))) {
@@ -198,8 +205,7 @@ async function feedsSection(list) {
       if (!it.link || !isNew('f:' + it.link)) continue;
       const text = (it.title + ' ' + it.text).toLowerCase();
       // score by keywords (weights learn from the owner's / Claude's feedback)
-      if (!CFG.niche.some(w => text.includes(w))) continue; // not our niche (guitars, gear…) — skip
-      let score = 0; for (const [k, w] of Object.entries(Object.assign({}, CFG.keywords, mem.keywords))) if (text.includes(k)) score += w;
+      const score = scoreNews(text); if (score === null) continue; // not our niche (guitars, gear…) — skip
       countGenres(text, 1);
       for (const l of (it.text.match(/https?:\/\/[^\s"'<)]+/g) || [])) noteDomain(l, f.id);
       if (score > 0) fresh.push({ ...it, score });
@@ -322,6 +328,7 @@ async function probe() {
 }
 
 // ---------- main ----------
+if (require.main !== module) { module.exports = { scoreNews, parseFeed }; return; }
 (async () => {
   if (MODE === 'probe') return probe();
   if (!mem.watch.length) mem.watch = CFG.shops.map(s => ({ ...s }));

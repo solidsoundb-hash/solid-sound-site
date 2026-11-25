@@ -5,7 +5,7 @@
 // Robots are not people: sessions with time zone "Other: UTC" are our GitHub robots → shown apart.
 'use strict';
 const fs = require('fs');
-const { chromium } = require('playwright');
+
 const S = 'https://solid-sound.net';
 const OUT = 'reports/analyst';
 const DAYS = +(process.env.DAYS || 30);
@@ -17,8 +17,10 @@ const isCheckout = (p) => /\/checkout\/?$/.test(p);
 const isThanks = (p) => /order-received/.test(p);
 const top = (o, n) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => `${k} ${v}`).join(', ');
 
+if (require.main !== module) { module.exports = { isProduct, isCart, isCheckout, isThanks }; return; }
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
+  const { chromium } = require('playwright');
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const ctx = await browser.newContext({ locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' }); /* (25.11 tester) «HeadlessChrome» gets 403 from the host */ const page = await ctx.newPage();
   let data = null, err = '';

@@ -23,7 +23,10 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/intel/exam.js
       - name: Scout
+        if: always()
         env:
           BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
         run: |

@@ -1,0 +1,12 @@
+[
+ {"p": "/en/product/infinity-melodic-techno/", "want": "product"},
+ {"p": "/de/product/kratos/", "want": "product"},
+ {"p": "/en/cart/", "want": "cart"},
+ {"p": "/fr/cart", "want": "cart"},
+ {"p": "/en/checkout/", "want": "checkout"},
+ {"p": "/en/checkout/order-received/123/", "want": "thanks"},
+ {"p": "/en/products/", "want": "none"},
+ {"p": "/en/cart-help/", "want": "none"},
+ {"p": "/en/my-account/", "want": "none"},
+ {"p": "/en/", "want": "none"}
+]

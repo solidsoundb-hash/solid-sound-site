@@ -1,0 +1,73 @@
+{
+ "news": [
+  {
+   "t": "Live 13 Introduces Step Sequencer, Drum Synth, ARA 2 & New Racks",
+   "want": "top"
+  },
+  {
+   "t": "Loopmasters announces Black Friday sale with sample discounts and Loopcloud subscription offers",
+   "want": "top"
+  },
+  {
+   "t": "Free Ableton Live template: melodic techno project file with stems",
+   "want": "top"
+  },
+  {
+   "t": "Ghost production for EDM: how labels buy finished tracks",
+   "want": "top"
+  },
+  {
+   "t": "Top 10 Plugin Boutique Black Friday deals for $10 or less",
+   "want": "top"
+  },
+  {
+   "t": "Online mixing and mastering: what does it cost in 2026?",
+   "want": "top"
+  },
+  {
+   "t": "Ableton Live Workflow Guide: From First Idea to Finished Arrangement",
+   "want": "keep"
+  },
+  {
+   "t": "I've checked out all 77 items in Fender's Black Friday sale",
+   "want": "skip"
+  },
+  {
+   "t": "Joe Satriani on the crazy late-night session that saved his 80s classic",
+   "want": "skip"
+  },
+  {
+   "t": "Gibson Les Paul Standard review: still the benchmark?",
+   "want": "skip"
+  },
+  {
+   "t": "Best guitar pedals of the year",
+   "want": "skip"
+  },
+  {
+   "t": "Fender guitar plugin bundle on sale",
+   "want": "notop"
+  },
+  {
+   "t": "How to Easily Change & Edit Pitch In Garageband",
+   "want": "notop"
+  },
+  {
+   "t": "Ableton Live 13 beta: what's new for producers",
+   "want": "top"
+  }
+ ],
+ "feed": {
+  "xml": "<rss><channel><item><title><![CDATA[Live 13 &#038; New Racks]]></title><link>https://example.org/a</link><pubDate>Tue, 25 Nov 2026</pubDate><description>Tom&#039;s &amp; more</description></item><entry><title>Atom item</title><link href=\"https://example.org/b\"/><updated>2026-11-25</updated></entry></channel></rss>",
+  "want": [
+   {
+    "title": "Live 13 & New Racks",
+    "link": "https://example.org/a"
+   },
+   {
+    "title": "Atom item",
+    "link": "https://example.org/b"
+   }
+  ]
+ }
+}

@@ -205,7 +205,9 @@
   "pedal": -2,
   "drummer": -2,
   "vinyl": -1,
-  "headphones": -1
+  "headphones": -1,
+  "live 13": 5,
+  "live 12": 3
  },
  "queries": [
   "ableton project templates",
@@ -282,6 +284,8 @@
   "beat",
   "stems",
   "splice",
-  "ghost produc"
+  "ghost produc",
+  "live 13",
+  "live 12"
  ]
 }
