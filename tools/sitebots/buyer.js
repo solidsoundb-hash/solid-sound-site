@@ -12,6 +12,7 @@ const DEV = {
 };
 const blocked = async p => /Захищена сторінка/.test(await p.title().catch(() => ''));
 
+let SHOTS = false; try { SHOTS = /shots/.test(fs.readFileSync('.github/buy-night.txt', 'utf8').trim().split('\n').pop()); } catch (e) { /* no file */ }
 async function walk(browser, name, d) {
   const ctx = await browser.newContext({ ...d, locale: 'en-US' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
@@ -30,6 +31,13 @@ async function walk(browser, name, d) {
     else if (!ok && n429 > c429) note += ' — хостинг ограничил частоту запросов (429), сервер перегружен, не ошибка сайта';
     const s = ((Date.now() - t0) / 1000).toFixed(1);
     steps.push([title, s + ' с', (ok ? '✅ ' : '❌ ') + note]);
+    if (SHOTS && ok && /Корзина|Оформление/.test(title)) { // «shots» in .github/buy-night.txt: pictures of cart and checkout (Analyst 25.11)
+      fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true }); const dn = name === 'компьютер' ? 'pc' : 'a31', sl = /Корзина/.test(title) ? 'cart' : 'checkout';
+      await p.evaluate(() => scrollTo(0, 0)).catch(() => {});
+      await p.screenshot({ path: path.join(OUT, 'shots', `step-${sl}-${dn}.jpg`), type: 'jpeg', quality: 60 }).catch(() => {});
+      await p.screenshot({ path: path.join(OUT, 'shots', `step-${sl}-${dn}-full.jpg`), type: 'jpeg', quality: 50, fullPage: true }).catch(() => {});
+      steps.push([title + ' — ошибки JS', '', errs.length ? errs.slice(-3).join(' · ') : 'нет']);
+    }
     if (!ok) { broken = title; fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true }); await p.screenshot({ path: path.join(OUT, 'shots', `buyer-${name === 'компьютер' ? 'pc' : 'a31'}.png`) }).catch(() => {}); }
   };
   let product = '';
