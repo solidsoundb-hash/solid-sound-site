@@ -1,10 +1,16 @@
 {
  "last": {
+  "pages": "ok",
   "eur": "ok",
   "seller": "warn",
   "withdrawal": "ok",
+  "refund30": "ok",
+  "law": "ok",
+  "payouts": "ok",
   "mediator": "warn",
-  "checkbox": "ok"
+  "cancel": "warn",
+  "checkbox": "ok",
+  "footer": "ok"
  },
  "runs": [
   {
@@ -13,6 +19,13 @@
    "warn": 2,
    "ok": 3,
    "only": "terms"
+  },
+  {
+   "day": "2026-11-25",
+   "bad": 0,
+   "warn": 3,
+   "ok": 8,
+   "only": ""
   }
  ],
  "noise": []
