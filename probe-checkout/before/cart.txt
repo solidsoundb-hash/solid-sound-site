@@ -1,0 +1,648 @@
+product https://solid-sound.net/product/time-goes-fast-documentary-piano/
+
+=== a31_700 ===
+vh: 700
+html: ss-strong ssg-on
+body: wp-singular page-template-default page page-id-33 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top woocommerce theme-Imprez
+.ss-gsi-co: top 112 h 116 w 370  pos static
+.woocommerce-form-login-toggle: top 314 h 56 w 370  pos static
+.woocommerce-form-coupon-toggle: top 391 h 56 w 370  pos static
+.woocommerce-billing-fields: top 468 h 307 w 370  pos static
+#billing_first_name, #billing_email: top 545 h 41 w 370  pos static
+#place_order: top 1640 h 32 w 368  pos relative
+#order_review: top 896 h 801 w 412  pos sticky
+.checkout-button: нет
+.wc-proceed-to-checkout: нет
+.cart_totals: нет
+.coupon: нет
+button[name=update_cart]: нет
+.woocommerce-cart-form: нет
+.cart-collaterals: нет
+#ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 505 h 119 w 396  pos fixed
+#ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 646 h 54 w 412  pos fixed
+.ss-bonus, [class*=bonus]: top 244 h 54 w 370  pos static
+dom: div.wcpay-express-checkout-wrapper
+  div#wcpay-express-checkout-element
+    div.blockUI
+    div.blockUI.blockOverlay
+    div.blockUI.blockMsg.blockElement
+  wc-order-attribution-inputs#wcpay-express-checkout__order-attribution-inputs
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+  p#wcpay-express-checkout-button-separator
+div#customer_details.col2-set
+  div.col-1
+    div.woocommerce-billing-fields
+      h3
+      div.woocommerce-billing-fields__field-wrapper
+        p#billing_first_name_field.form-row.form-row-wide.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_first_name.input-text
+        p#billing_country_field.form-row.form-row-wide.address-field.update_totals_on_change.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            select#billing_country.country_to_state.country_select.select2-hidden-accessible
+            span.select2.select2-container.select2-container--default
+            noscript
+        p#billing_email_field.form-row.form-row-wide.validate-required.validate-email
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_email.input-text
+    div.woocommerce-account-fields
+      p.form-row.form-row-wide.create-account.woocommerce-validated
+        label.woocommerce-form__label.woocommerce-form__label-for-checkbox.checkbox
+          input#createaccount.woocommerce-form__input.woocommerce-form__input-checkbox.input-checkbox
+          span
+      div.create-account
+        p#account_password_field.form-row.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper.password-input
+            input#account_password.input-text
+            button.show-password-input
+        div.clear
+  div.col-2
+    div.woocommerce-shipping-fields
+    div.woocommerce-additional-fields
+h3#order_review_heading
+div#order_review.woocommerce-checkout-review-order
+  table.shop_table.woocommerce-checkout-review-order-table
+    thead
+      tr
+        th.product-name
+        th.product-total
+    tbody
+      tr.cart_item
+        td.product-name
+          strong.product-quantity
+        td.product-total
+          span.woocommerce-Price-amount.amount
+            bdi
+    tfoot
+      tr.cart-subtotal
+        th
+        td
+          span.woocommerce-Price-amount.amount
+            bdi
+      tr.order-total
+        th
+        td
+          strong
+            span.woocommerce-Price-amount.amount
+  div#payment.woocommerce-checkout-payment
+    ul.wc_payment_methods.payment_methods.methods
+      li.wc_payment_method.payment_method_woocommerce_payments.theme--night
+        input#payment_method_woocommerce_payments.input-radio
+        label
+          div.payment-methods--logos
+            div
+        div.payment_box.payment_method_woocommerce_payments
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_bancontact.theme--night
+        input#payment_method_woocommerce_payments_bancontact.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_bancontact
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_eps.theme--night
+        input#payment_method_woocommerce_payments_eps.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_eps
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_ideal.theme--night
+        input#payment_method_woocommerce_payments_ideal.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_ideal
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_multibanco.theme--night
+        input#payment_method_woocommerce_payments_multibanco.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_multibanco
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_klarna.theme--night
+        input#payment_method_woocommerce_payments_klarna.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_klarna
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_p24.theme--night
+        input#payment_method_woocommerce_payments_p24.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_p24
+          div.wcpay-upe-form
+            fieldse
+fixed: header#ssg. top 34 h 57 | div#order_review.woocommerce-checkout-review-order top 896 h 801 | div#ss-cc.ss-cc top 505 h 119 | nav#ssg-bar. top 646 h 54 | div#ssp.ssp top 643 h 64
+a31_700: JS errors: 0
+
+=== a31_780 ===
+vh: 780
+html: ss-strong ssg-on
+body: wp-singular page-template-default page page-id-33 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top woocommerce theme-Imprez
+.ss-gsi-co: top 112 h 116 w 370  pos static
+.woocommerce-form-login-toggle: top 314 h 56 w 370  pos static
+.woocommerce-form-coupon-toggle: top 391 h 56 w 370  pos static
+.woocommerce-billing-fields: top 587 h 307 w 370  pos static
+#billing_first_name, #billing_email: top 663 h 41 w 370  pos static
+#place_order: top 1758 h 32 w 368  pos relative
+#order_review: top 1015 h 801 w 412  pos sticky
+.checkout-button: нет
+.wc-proceed-to-checkout: нет
+.cart_totals: нет
+.coupon: нет
+button[name=update_cart]: нет
+.woocommerce-cart-form: нет
+.cart-collaterals: нет
+#ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 585 h 119 w 396  pos fixed
+#ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 726 h 54 w 412  pos fixed
+.ss-bonus, [class*=bonus]: top 244 h 54 w 370  pos static
+dom: div.wcpay-express-checkout-wrapper
+  div#wcpay-express-checkout-element.StripeElement.is-ready
+    div.__PrivateStripeElement
+      iframe
+  wc-order-attribution-inputs#wcpay-express-checkout__order-attribution-inputs
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+  p#wcpay-express-checkout-button-separator
+div#customer_details.col2-set
+  div.col-1
+    div.woocommerce-billing-fields
+      h3
+      div.woocommerce-billing-fields__field-wrapper
+        p#billing_first_name_field.form-row.form-row-wide.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_first_name.input-text
+        p#billing_country_field.form-row.form-row-wide.address-field.update_totals_on_change.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            select#billing_country.country_to_state.country_select.select2-hidden-accessible
+            span.select2.select2-container.select2-container--default
+            noscript
+        p#billing_email_field.form-row.form-row-wide.validate-required.validate-email
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_email.input-text
+    div.woocommerce-account-fields
+      p.form-row.form-row-wide.create-account.woocommerce-validated
+        label.woocommerce-form__label.woocommerce-form__label-for-checkbox.checkbox
+          input#createaccount.woocommerce-form__input.woocommerce-form__input-checkbox.input-checkbox
+          span
+      div.create-account
+        p#account_password_field.form-row.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper.password-input
+            input#account_password.input-text
+            button.show-password-input
+        div.clear
+  div.col-2
+    div.woocommerce-shipping-fields
+    div.woocommerce-additional-fields
+h3#order_review_heading
+div#order_review.woocommerce-checkout-review-order
+  table.shop_table.woocommerce-checkout-review-order-table
+    thead
+      tr
+        th.product-name
+        th.product-total
+    tbody
+      tr.cart_item
+        td.product-name
+          strong.product-quantity
+        td.product-total
+          span.woocommerce-Price-amount.amount
+            bdi
+    tfoot
+      tr.cart-subtotal
+        th
+        td
+          span.woocommerce-Price-amount.amount
+            bdi
+      tr.order-total
+        th
+        td
+          strong
+            span.woocommerce-Price-amount.amount
+  div#payment.woocommerce-checkout-payment
+    ul.wc_payment_methods.payment_methods.methods
+      li.wc_payment_method.payment_method_woocommerce_payments.theme--night
+        input#payment_method_woocommerce_payments.input-radio
+        label
+          div.payment-methods--logos
+            div
+        div.payment_box.payment_method_woocommerce_payments
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_bancontact.theme--night
+        input#payment_method_woocommerce_payments_bancontact.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_bancontact
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_eps.theme--night
+        input#payment_method_woocommerce_payments_eps.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_eps
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_ideal.theme--night
+        input#payment_method_woocommerce_payments_ideal.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_ideal
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_multibanco.theme--night
+        input#payment_method_woocommerce_payments_multibanco.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_multibanco
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_klarna.theme--night
+        input#payment_method_woocommerce_payments_klarna.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_klarna
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_p24.theme--night
+        input#payment_method_woocommerce_payments_p24.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_p24
+          div.wcpay-upe-form
+            fieldset.wc-payment-for
+fixed: header#ssg. top 34 h 57 | div#order_review.woocommerce-checkout-review-order top 1015 h 801 | div#ss-cc.ss-cc top 585 h 119 | nav#ssg-bar. top 726 h 54 | div#ssp.ssp top 723 h 64
+a31_780: JS errors: 0
+
+=== a31_lite ===
+vh: 780
+html: ss-strong ssg-on ss-lite
+body: wp-singular page-template-default page page-id-33 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top woocommerce theme-Imprez
+.ss-gsi-co: top 112 h 116 w 370  pos static
+.woocommerce-form-login-toggle: top 314 h 56 w 370  pos static
+.woocommerce-form-coupon-toggle: top 391 h 56 w 370  pos static
+.woocommerce-billing-fields: top 479 h 307 w 370  pos static
+#billing_first_name, #billing_email: top 556 h 41 w 370  pos static
+#place_order: top 1651 h 32 w 368  pos relative
+#order_review: top 907 h 801 w 412  pos sticky
+.checkout-button: нет
+.wc-proceed-to-checkout: нет
+.cart_totals: нет
+.coupon: нет
+button[name=update_cart]: нет
+.woocommerce-cart-form: нет
+.cart-collaterals: нет
+#ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 585 h 119 w 396  pos fixed
+#ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 726 h 54 w 412  pos fixed
+.ss-bonus, [class*=bonus]: top 244 h 54 w 370  pos static
+dom: div.wcpay-express-checkout-wrapper
+  div#wcpay-express-checkout-element.StripeElement
+    div.__PrivateStripeElement
+      iframe
+  wc-order-attribution-inputs#wcpay-express-checkout__order-attribution-inputs
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+  p#wcpay-express-checkout-button-separator
+div#customer_details.col2-set
+  div.col-1
+    div.woocommerce-billing-fields
+      h3
+      div.woocommerce-billing-fields__field-wrapper
+        p#billing_first_name_field.form-row.form-row-wide.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_first_name.input-text
+        p#billing_country_field.form-row.form-row-wide.address-field.update_totals_on_change.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            select#billing_country.country_to_state.country_select.select2-hidden-accessible
+            span.select2.select2-container.select2-container--default
+            noscript
+        p#billing_email_field.form-row.form-row-wide.validate-required.validate-email
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_email.input-text
+    div.woocommerce-account-fields
+      p.form-row.form-row-wide.create-account.woocommerce-validated
+        label.woocommerce-form__label.woocommerce-form__label-for-checkbox.checkbox
+          input#createaccount.woocommerce-form__input.woocommerce-form__input-checkbox.input-checkbox
+          span
+      div.create-account
+        p#account_password_field.form-row.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper.password-input
+            input#account_password.input-text
+            button.show-password-input
+        div.clear
+  div.col-2
+    div.woocommerce-shipping-fields
+    div.woocommerce-additional-fields
+h3#order_review_heading
+div#order_review.woocommerce-checkout-review-order
+  table.shop_table.woocommerce-checkout-review-order-table
+    thead
+      tr
+        th.product-name
+        th.product-total
+    tbody
+      tr.cart_item
+        td.product-name
+          strong.product-quantity
+        td.product-total
+          span.woocommerce-Price-amount.amount
+            bdi
+    tfoot
+      tr.cart-subtotal
+        th
+        td
+          span.woocommerce-Price-amount.amount
+            bdi
+      tr.order-total
+        th
+        td
+          strong
+            span.woocommerce-Price-amount.amount
+  div#payment.woocommerce-checkout-payment
+    ul.wc_payment_methods.payment_methods.methods
+      li.wc_payment_method.payment_method_woocommerce_payments.theme--night
+        input#payment_method_woocommerce_payments.input-radio
+        label
+          div.payment-methods--logos
+            div
+        div.payment_box.payment_method_woocommerce_payments
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_bancontact.theme--night
+        input#payment_method_woocommerce_payments_bancontact.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_bancontact
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_eps.theme--night
+        input#payment_method_woocommerce_payments_eps.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_eps
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_ideal.theme--night
+        input#payment_method_woocommerce_payments_ideal.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_ideal
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_multibanco.theme--night
+        input#payment_method_woocommerce_payments_multibanco.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_multibanco
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_klarna.theme--night
+        input#payment_method_woocommerce_payments_klarna.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_klarna
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_p24.theme--night
+        input#payment_method_woocommerce_payments_p24.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_p24
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+    div
+fixed: header#ssg. top 34 h 57 | div#order_review.woocommerce-checkout-review-order top 907 h 801 | div#ss-cc.ss-cc top 585 h 119 | nav#ssg-bar. top 726 h 54 | div#ssp.ssp top 723 h 64
+a31_lite: JS errors: 0
+
+=== pc ===
+vh: 768
+html: ss-strong no-touch ssg-on
+body: wp-singular page-template-default page page-id-33 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top state_default woocommerc
+.ss-gsi-co: top 173 h 116 w 1318  pos static
+.woocommerce-form-login-toggle: top 375 h 60 w 1318  pos static
+.woocommerce-form-coupon-toggle: top 459 h 60 w 1318  pos static
+.woocommerce-billing-fields: top 543 h 338 w 633  pos static
+#billing_first_name, #billing_email: top 627 h 47 w 633  pos static
+#place_order: top 1286 h 32 w 130  pos relative
+#order_review: top 594 h 757 w 633  pos sticky
+.checkout-button: нет
+.wc-proceed-to-checkout: нет
+.cart_totals: нет
+.coupon: нет
+button[name=update_cart]: нет
+.woocommerce-cart-form: нет
+.cart-collaterals: нет
+#ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 566 h 187 w 560  pos fixed
+#ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 0 h 0 w 0 (скрыт) pos static
+.ss-bonus, [class*=bonus]: top 305 h 54 w 1318  pos static
+dom: div.wcpay-express-checkout-wrapper
+  div#wcpay-express-checkout-element
+    div.blockUI
+    div.blockUI.blockOverlay
+    div.blockUI.blockMsg.blockElement
+  wc-order-attribution-inputs#wcpay-express-checkout__order-attribution-inputs
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+    input
+  p#wcpay-express-checkout-button-separator
+div#customer_details.col2-set
+  div.col-1
+    div.woocommerce-billing-fields
+      h3
+      div.woocommerce-billing-fields__field-wrapper
+        p#billing_first_name_field.form-row.form-row-wide.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_first_name.input-text
+        p#billing_country_field.form-row.form-row-wide.address-field.update_totals_on_change.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            select#billing_country.country_to_state.country_select.select2-hidden-accessible
+            span.select2.select2-container.select2-container--default
+            noscript
+        p#billing_email_field.form-row.form-row-wide.validate-required.validate-email
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper
+            input#billing_email.input-text
+    div.woocommerce-account-fields
+      p.form-row.form-row-wide.create-account.woocommerce-validated
+        label.woocommerce-form__label.woocommerce-form__label-for-checkbox.checkbox
+          input#createaccount.woocommerce-form__input.woocommerce-form__input-checkbox.input-checkbox
+          span
+      div.create-account
+        p#account_password_field.form-row.validate-required
+          label.required_field
+            span.required
+          span.woocommerce-input-wrapper.password-input
+            input#account_password.input-text
+            button.show-password-input
+        div.clear
+  div.col-2
+    div.woocommerce-shipping-fields
+    div.woocommerce-additional-fields
+h3#order_review_heading
+div#order_review.woocommerce-checkout-review-order
+  table.shop_table.woocommerce-checkout-review-order-table
+    thead
+      tr
+        th.product-name
+        th.product-total
+    tbody
+      tr.cart_item
+        td.product-name
+          strong.product-quantity
+        td.product-total
+          span.woocommerce-Price-amount.amount
+            bdi
+    tfoot
+      tr.cart-subtotal
+        th
+        td
+          span.woocommerce-Price-amount.amount
+            bdi
+      tr.order-total
+        th
+        td
+          strong
+            span.woocommerce-Price-amount.amount
+  div#payment.woocommerce-checkout-payment
+    ul.wc_payment_methods.payment_methods.methods
+      li.wc_payment_method.payment_method_woocommerce_payments.theme--night
+        input#payment_method_woocommerce_payments.input-radio
+        label
+          div.payment-methods--logos
+            div
+        div.payment_box.payment_method_woocommerce_payments
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_bancontact.theme--night
+        input#payment_method_woocommerce_payments_bancontact.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_bancontact
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_eps.theme--night
+        input#payment_method_woocommerce_payments_eps.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_eps
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_ideal.theme--night
+        input#payment_method_woocommerce_payments_ideal.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_ideal
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_multibanco.theme--night
+        input#payment_method_woocommerce_payments_multibanco.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_multibanco
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_klarna.theme--night
+        input#payment_method_woocommerce_payments_klarna.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_klarna
+          div.wcpay-upe-form
+            fieldset.wc-payment-form
+      li.wc_payment_method.payment_method_woocommerce_payments_p24.theme--night
+        input#payment_method_woocommerce_payments_p24.input-radio
+        label
+          img
+        div.payment_box.payment_method_woocommerce_payments_p24
+          div.wcpay-upe-form
+            fieldse
+fixed: header#ssg. top 36 h 73 | div#order_review.woocommerce-checkout-review-order top 594 h 757 | div#ss-cc.ss-cc top 566 h 187 | div#ssp.ssp top 775 h 72
+pc: JS errors: 0
