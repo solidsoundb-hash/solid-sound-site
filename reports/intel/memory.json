@@ -1,0 +1,5956 @@
+{
+ "version": 1,
+ "seen": {
+  "p:https://scrapsaudio.com/products/nox-gamedev-essentials-vol-2-extended-pack-416-game-sfx": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tabiz-loopsaint-hip-hop-melodies-amp-midis": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cathedral-vj-loop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ryhthm-city-vj-loop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/city-lights-vj-loop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/blsro-bochka-kicks-sample-pack-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/blsro-kicks-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/blsro-bochka-kicks-vol-4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fast-custom-composition-of-any-kind": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-bass-ghost-club-sample-pack-vol-4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vocal-house-vol1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-vocal-chain-template-pro-tools": "2026-11-25",
+  "p:https://scrapsaudio.com/products/have-to-go": "2026-11-25",
+  "p:https://scrapsaudio.com/products/enemigo-funk": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ace-aura-flp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kapis-tech-formula-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/escapism-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-gypersonic-sounds-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-troniksat-sfx-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-minimal-drums-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-presets-majed-salih-vital-rise": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-cyber-drums-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-phonk-destruction": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-1010-kicks": "2026-11-25",
+  "p:https://scrapsaudio.com/products/newage-house-drop-bv": "2026-11-25",
+  "p:https://scrapsaudio.com/products/nyx-tech-house-drop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/modern-tech-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-vocal-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/modern-tech-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/zurna-tech-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/essential-guitars-vol-01": "2026-11-25",
+  "p:https://scrapsaudio.com/products/miami-san-pacho-matroda-tech-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/get-down-low": "2026-11-25",
+  "p:https://scrapsaudio.com/products/variety-pack-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/come-over": "2026-11-25",
+  "p:https://scrapsaudio.com/products/friendly-loops": "2026-11-25",
+  "p:https://scrapsaudio.com/products/machina-drumloops-kit": "2026-11-25",
+  "p:https://scrapsaudio.com/products/arcane-x-huntrix-revenant": "2026-11-25",
+  "p:https://scrapsaudio.com/products/try-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ocean-express": "2026-11-25",
+  "p:https://scrapsaudio.com/products/️-pimienta-trap-drums": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-bass-ghost-club-vol-3-tech-house-latin-tech": "2026-11-25",
+  "p:https://scrapsaudio.com/products/modern-afro-house-construction-kits-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/psytrance-template-astrix-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sandstorm-hardstyle-bootleg": "2026-11-25",
+  "p:https://scrapsaudio.com/products/edm-drop-vocals-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/honeyglow-riddim": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sombra": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sleepless": "2026-11-25",
+  "p:https://scrapsaudio.com/products/choir-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ultimate-kick-roland-tr-808-and-tr-909-kick-collection": "2026-11-25",
+  "p:https://scrapsaudio.com/products/orbital-arps-680-synth-arpeggio-loops": "2026-11-25",
+  "p:https://scrapsaudio.com/products/acapella-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/electric-whispers": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vital-leads-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/konetl-bass-house-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-techno-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-schranz-bundle-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-cinematic-metal-impacts": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-10": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-8": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-9": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-7": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-6": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-5": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-3": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kicks-bundle-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-raw-kick-sample-bundle-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/original-game-music-composition": "2026-11-25",
+  "p:https://scrapsaudio.com/products/minimal-deep-tech-ableton-template-project-chris-stussy-kolter-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/minimal-deep-tech-ableton-template-project-chris-stussy-kolter": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2025-schranz-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hard-industrial-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/micah-baxter-inspired-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ragie-ban-inspired-tech-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rawthentic-inspired-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rendher-inspired-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slugg-inspired-tech-house-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/solid-grooves-inspired-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sosa-coco-inspired-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tony-romera-inspired-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/toolroom-inspired-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/white-off-inspired-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fisher-type-drop-tech-house-ableton-template-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/morph-drift-phonk-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/at-ease-lofi-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/deadmau5-is-pretty-cool": "2026-11-25",
+  "p:https://scrapsaudio.com/products/eclipse-electro-step": "2026-11-25",
+  "p:https://scrapsaudio.com/products/waterpark-blues": "2026-11-25",
+  "p:https://scrapsaudio.com/products/crazy-straw": "2026-11-25",
+  "p:https://scrapsaudio.com/products/yoyo": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feel-it": "2026-11-25",
+  "p:https://scrapsaudio.com/products/clouds-passing": "2026-11-25",
+  "p:https://scrapsaudio.com/products/all-i-want": "2026-11-25",
+  "p:https://scrapsaudio.com/products/peace-of-mind": "2026-11-25",
+  "p:https://scrapsaudio.com/products/memphis-rap-vocals": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sad-reverb-guitars-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/spring-reverb-guitars": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sad-reverb-guitars": "2026-11-25",
+  "p:https://scrapsaudio.com/products/impacto": "2026-11-25",
+  "p:https://scrapsaudio.com/products/classico": "2026-11-25",
+  "p:https://scrapsaudio.com/products/captura": "2026-11-25",
+  "p:https://scrapsaudio.com/products/basal": "2026-11-25",
+  "p:https://scrapsaudio.com/products/eutimia": "2026-11-25",
+  "p:https://scrapsaudio.com/products/alegro": "2026-11-25",
+  "p:https://scrapsaudio.com/products/aura": "2026-11-25",
+  "p:https://scrapsaudio.com/products/nox-electro": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dimensao": "2026-11-25",
+  "p:https://scrapsaudio.com/products/abismo": "2026-11-25",
+  "p:https://scrapsaudio.com/products/abrigo": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hardstyle-bootleg": "2026-11-25",
+  "p:https://scrapsaudio.com/products/no-time-to-die-hardstyle-bootleg": "2026-11-25",
+  "p:https://scrapsaudio.com/products/suave": "2026-11-25",
+  "p:https://scrapsaudio.com/products/visao": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feitico": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mingal": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cirkular": "2026-11-25",
+  "p:https://scrapsaudio.com/products/light-as-a-feather": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kallyn-color-bass-vol-2-demo-flp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/color-bass-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/space": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-veles-sounds": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-liquavra-drums": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-techno-maxhina": "2026-11-25",
+  "p:https://scrapsaudio.com/products/medievil-music-elektrodar-techno-rage": "2026-11-25",
+  "p:https://scrapsaudio.com/products/midnightnox": "2026-11-25",
+  "p:https://scrapsaudio.com/products/edm-enigma": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vibey-tapes-preset-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vibey-tapes-free-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/free-3d-skull-visual": "2026-11-25",
+  "p:https://scrapsaudio.com/products/future-type-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pharrell-type-beat-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mr-beast-type-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-techno-vol-4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-techno-vol-3": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slap-house-brazillian-bass-vol-4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pharrell-type-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/future-bass-vol-3": "2026-11-25",
+  "p:https://scrapsaudio.com/products/future-bass-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-dubstep-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/modern-tech-house-vol-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/try": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sweat-love": "2026-11-25",
+  "p:https://scrapsaudio.com/products/nas": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bloody-assasin": "2026-11-25",
+  "p:https://scrapsaudio.com/products/laid-back": "2026-11-25",
+  "p:https://scrapsaudio.com/products/guiro-galore": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-melodic-dubstep-color-bass-fl-studio-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/psy-trance": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-techno-collection": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-bass-ghost-house-sample-pack-vol-2-minimal-deep-tech-tech-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stems-for-dance-dee-r": "2026-11-25",
+  "p:https://scrapsaudio.com/products/flp-how-to-james-hype-byor-fisher-tech-house-fl-studio-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lil-guitar-sad-guitar-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/noxone-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/future-bass": "2026-11-25",
+  "p:https://scrapsaudio.com/products/phonk-ableton-template-stems-midi": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-dubstep-ableton-template-stems-midi": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-techno-ableton-template-stems-midi": "2026-11-25",
+  "p:https://scrapsaudio.com/products/modern-tech-house-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/soothe2-colour-bass-patch": "2026-11-25",
+  "p:https://scrapsaudio.com/products/squirrel-gun-flp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/promise-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rizzness-on-ten": "2026-11-25",
+  "p:https://scrapsaudio.com/products/afrobeat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/quanta": "2026-11-25",
+  "p:https://scrapsaudio.com/products/serum-uptempo-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vocal-trap-full-ableton-project-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rebelion-city-lights-leads-kick-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-vocal-uplifting-trance": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mercenary": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mutilator-punch-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/funky-nights": "2026-11-25",
+  "p:https://scrapsaudio.com/products/no-signal": "2026-11-25",
+  "p:https://scrapsaudio.com/products/loco-loco": "2026-11-25",
+  "p:https://scrapsaudio.com/products/acid-in-the-house-house-template-for-ableton-live-logic-pro-x-cubase-and-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/african-soul-deep-progressive-template-for-ableton-live-cubase-fl-studio-and-logic-pro-x": "2026-11-25",
+  "p:https://scrapsaudio.com/products/finding-a-way": "2026-11-25",
+  "p:https://scrapsaudio.com/products/producer-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-riddim-starter-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/krushy-mayhem": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kicks-like-atmozfears-devin-wild-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cheapskate-budget-bangers": "2026-11-25",
+  "p:https://scrapsaudio.com/products/neon-tunnel-free-vj-loop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mixing-records": "2026-11-25",
+  "p:https://scrapsaudio.com/products/neon-cube-visual-vj-loop-animation": "2026-11-25",
+  "p:https://scrapsaudio.com/products/monster-eye-visual-vj-loop-animation": "2026-11-25",
+  "p:https://scrapsaudio.com/products/red-skull-visual-animation-vj-loop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dom-dolla-tutorial": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bastile-pompeii-audien-remix-fl-studio-remake-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/intents-anthem-into-the-wild-lead-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/regrets": "2026-11-25",
+  "p:https://scrapsaudio.com/products/gated-kicks-like-warface-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pa-romper": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slap-house-brazillian-bass-template-complete-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bring-me-somebody": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-stars": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-melodic-house-flp-with-royalty-free-vocals": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-color-bass-flp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/road-trip": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tita-lau-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/zatox-my-life-leads-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/quilt-trap-horrorcore": "2026-11-25",
+  "p:https://scrapsaudio.com/products/groovzilla-afrobeats-drums-percussions": "2026-11-25",
+  "p:https://scrapsaudio.com/products/alomo-house-vibes": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-minimal-tech-samples-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/d-sturb-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pajane-inspired-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kiss": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hiphop-drake-type-beat-w-switch-up-sicko-mode-type": "2026-11-25",
+  "p:https://scrapsaudio.com/products/trap": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pop-tropical-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/jon-daviz-walk-with-it": "2026-11-25",
+  "p:https://scrapsaudio.com/products/futuristic-raw-kicks-like-deezl-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/adrenalize-far-from-home-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/suprovot": "2026-11-25",
+  "p:https://scrapsaudio.com/products/let-go-love-ones-hands": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kick-collection": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mind-yearn-with-time": "2026-11-25",
+  "p:https://scrapsaudio.com/products/plusfeedback": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mixing-and-mastering": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ghost-plusbeatz": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fatd-proq3-presets-for-samples": "2026-11-25",
+  "p:https://scrapsaudio.com/products/free-for-profit-don-toliver-x-travis-scott-days-before-bandit": "2026-11-25",
+  "p:https://scrapsaudio.com/products/memorizing": "2026-11-25",
+  "p:https://scrapsaudio.com/products/shoke-inspired-style-template-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-straikerz-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/neroz-e-m-p-kick-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/with-me": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-club": "2026-11-25",
+  "p:https://scrapsaudio.com/products/san-pacho-inspired-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bomber": "2026-11-25",
+  "p:https://scrapsaudio.com/products/zatox-the-purge-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/how-to-rich-flex": "2026-11-25",
+  "p:https://scrapsaudio.com/products/wheats-detlef-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fallon-hellbent-inspired-latin-tech-house-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/i-will-be-a-custom-beat-multigenre-producer-for-your-song": "2026-11-25",
+  "p:https://scrapsaudio.com/products/create-a-house-track-in-ableton-in-20-minutes": "2026-11-25",
+  "p:https://scrapsaudio.com/products/progressive-house-lost-original-mix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/francisco-panesso-edm-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/reggaeton-beat-pop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/francisco-panesso-hip-hop-beat-boom-bap": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rooler-move-2-da-beat-kick-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/foreword": "2026-11-25",
+  "p:https://scrapsaudio.com/products/barrio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bumpa": "2026-11-25",
+  "p:https://scrapsaudio.com/products/go-somewhere": "2026-11-25",
+  "p:https://scrapsaudio.com/products/flow-cushion": "2026-11-25",
+  "p:https://scrapsaudio.com/products/custom-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ghost-producer": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-house-of-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/wade-tutorial": "2026-11-25",
+  "p:https://scrapsaudio.com/products/connected": "2026-11-25",
+  "p:https://scrapsaudio.com/products/house-music-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/trance-uplifting-drop-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/avi8-heartless-leads-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/detlef-issues-inspired-ableton-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/on-the-ground-original-samples-from-james-hype": "2026-11-25",
+  "p:https://scrapsaudio.com/products/eli-brown-be-the-one-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/eli-brown-be-the-one-ableton-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/modules-bass-bootcamp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/circuit-breakers-modules-dnb-toolkit": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-project-in-style-of-repopulate-mars-experts-only-real-m": "2026-11-25",
+  "p:https://scrapsaudio.com/products/nox-audios": "2026-11-25",
+  "p:https://scrapsaudio.com/products/horror-for-vital-by-anton-what": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mastering": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mixing-service": "2026-11-25",
+  "p:https://scrapsaudio.com/products/genesi-everything-you-have-done-meduza-edit-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/genesi-everything-you-have-done-meduza-edit-ableton-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/minimal-glitch-generator-ableton-rack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/godcore-screech-project-the-geminizers-warface": "2026-11-25",
+  "p:https://scrapsaudio.com/products/david-guetta-bebe-rexha-im-good-blue-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/deep-house-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/techno-track-1-from-sweden": "2026-11-25",
+  "p:https://scrapsaudio.com/products/trance-track-1-from-sweden": "2026-11-25",
+  "p:https://scrapsaudio.com/products/edm1-from-sweden": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dbstf-primal-energy-leads-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dark-smile": "2026-11-25",
+  "p:https://scrapsaudio.com/products/james-hype-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/david-guetta-bebe-rexha-im-good-blue-ableton-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/audien-drifting-away-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vasto-gated-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dark-side": "2026-11-25",
+  "p:https://scrapsaudio.com/products/shut-it-down": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rumba": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sonny-foder-mk-inspired-ableton-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/i-will-be-your-music-producer": "2026-11-25",
+  "p:https://scrapsaudio.com/products/95bpm-jump-rope-visualizer": "2026-11-25",
+  "p:https://scrapsaudio.com/products/entered": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slap-house-brazillian-bass-drop-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/run-it-up": "2026-11-25",
+  "p:https://scrapsaudio.com/products/michael-bibi-endor-inspired-tech-house-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/switch-type-beat-old-school-guitar": "2026-11-25",
+  "p:https://scrapsaudio.com/products/record-player": "2026-11-25",
+  "p:https://scrapsaudio.com/products/too-late-for-mama-slow": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bring-me-to-life": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cryex-leads-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/love-me-too": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tell-me": "2026-11-25",
+  "p:https://scrapsaudio.com/products/calma-brazil": "2026-11-25",
+  "p:https://scrapsaudio.com/products/nuhuh": "2026-11-25",
+  "p:https://scrapsaudio.com/products/new-jazz-type-beat-cant-blame-u": "2026-11-25",
+  "p:https://scrapsaudio.com/products/new-jazz-type-beat-lovely": "2026-11-25",
+  "p:https://scrapsaudio.com/products/new-jazz-type-beat-body": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pop-break": "2026-11-25",
+  "p:https://scrapsaudio.com/products/too-late-for-mama": "2026-11-25",
+  "p:https://scrapsaudio.com/products/risk": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slamm": "2026-11-25",
+  "p:https://scrapsaudio.com/products/beat-making": "2026-11-25",
+  "p:https://scrapsaudio.com/products/its-not-you": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ultra-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-grooves": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slap-house-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sensory-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/power-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ibiza-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hard-house-anthems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dark-bass-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-punch": "2026-11-25",
+  "p:https://scrapsaudio.com/products/on-fire": "2026-11-25",
+  "p:https://scrapsaudio.com/products/park-secret-moody-indie-guitar-loops-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/park-secret-funky-indie-guitar-loops-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mix-and-master-in-rap-pop-and-hiphop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/produce-you-a-hard-techno-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/awake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/armored-bass-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/6ix-strings": "2026-11-25",
+  "p:https://scrapsaudio.com/products/send-my-regards": "2026-11-25",
+  "p:https://scrapsaudio.com/products/was-it-even-real": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hard-times-vol-1-by-blsro-rave-industrial-techno-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bunnydance-vol-1-by-blsro-hard-rave-samples": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-avance-horror-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-like-fisher-flp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-like-fisher": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bookings-only": "2026-11-25",
+  "p:https://scrapsaudio.com/products/element-gated-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/drake-travis-scott-type-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/baby-keem-type-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/afro-beats": "2026-11-25",
+  "p:https://scrapsaudio.com/products/scrapped-house-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2024-schranz-rave-techno-sample-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pro-vocal-mixing-mastering": "2026-11-25",
+  "p:https://scrapsaudio.com/products/magia": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hard-rain-oldschool-hiphop-melancholic": "2026-11-25",
+  "p:https://scrapsaudio.com/products/be-free": "2026-11-25",
+  "p:https://scrapsaudio.com/products/2000-tech-house-sounds": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pop-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/slap-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/synthwave": "2026-11-25",
+  "p:https://scrapsaudio.com/products/how-to-make-a-deep-tech-bass-in-serum": "2026-11-25",
+  "p:https://scrapsaudio.com/products/d-block-s-te-fan-style-mid-intro-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/midle": "2026-11-25",
+  "p:https://scrapsaudio.com/products/60-jazzy-piano-bass-lofi-sample-midi-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tate-mcrae-greedy-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lofi-midi-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/melodic-techno-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-serum-presets-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-dancefloor": "2026-11-25",
+  "p:https://scrapsaudio.com/products/brejcha-techno-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/8-pm": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dee-r-vocal-fx-ableton-rack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/afro-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/yoku-color-bass-essentials": "2026-11-25",
+  "p:https://scrapsaudio.com/products/chapter-v-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cant-sleep": "2026-11-25",
+  "p:https://scrapsaudio.com/products/deep-house-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cyberpunk-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dance": "2026-11-25",
+  "p:https://scrapsaudio.com/products/never-stop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feels-like": "2026-11-25",
+  "p:https://scrapsaudio.com/products/addicted": "2026-11-25",
+  "p:https://scrapsaudio.com/products/without-you": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tutorial-making-dub-in-arrangement-view-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/eyes-on-me": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vroom-vroom": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kruelty-screech-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dual-damage-high-pitched-gated-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/italian-swag": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lil-nas-x-type-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/flp-professional-tech-house-mau-p-john-summit-hugel": "2026-11-25",
+  "p:https://scrapsaudio.com/products/regain-dominate-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/patience-exclusive-beat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-song-feedback": "2026-11-25",
+  "p:https://scrapsaudio.com/products/1-on-1-coaching-session": "2026-11-25",
+  "p:https://scrapsaudio.com/products/big-bass": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stem-mastering-hybrid-analog-meets-digital": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stereo-mastering-hybrid-analog-meets-digital": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sparkz-gated-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/spact-time": "2026-11-25",
+  "p:https://scrapsaudio.com/products/invu-synthpop-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/d-sturb-sound-of-the-thunder-lead-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/simulation-leads-remake-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sub-zero-project-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/atmozfears-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kruelty-kick-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/riot-shift-machinery-kick": "2026-11-25",
+  "p:https://scrapsaudio.com/products/we-can-find-a-way": "2026-11-25",
+  "p:https://scrapsaudio.com/products/i-got-it-original-mix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/free-flp-calvin-harris-sam-smith-desire-sparty-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/alone-melodic-techno-afterlife-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/la-noche-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mahoya": "2026-11-25",
+  "p:https://scrapsaudio.com/products/caliginous": "2026-11-25",
+  "p:https://scrapsaudio.com/products/da-heat": "2026-11-25",
+  "p:https://scrapsaudio.com/products/adjuzt-kick": "2026-11-25",
+  "p:https://scrapsaudio.com/products/wait-for-me": "2026-11-25",
+  "p:https://scrapsaudio.com/products/nicky-romero-jonas-blue-all-you-need-is-love-festival-editfl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/miss-you": "2026-11-25",
+  "p:https://scrapsaudio.com/products/in-the-music": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ruff-x-deity-anthems-of-olympus-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/drum-and-bass-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/music-mastering-mix-review-services": "2026-11-25",
+  "p:https://scrapsaudio.com/products/future-bass-track-skrillex-jaron-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/swarm-intelligence-production-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dont-stop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cinnamon-melodic-house-techno": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lollipop-ableton-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-bass-ghost-house-sample-pack-vol-1-tech-minimal-bass-house": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tutorial-dub-steppas-2-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/repopulate-mars-ableton-10-tech-house-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/give-me-a-break-vinyl-hip-hop-break-loops": "2026-11-25",
+  "p:https://scrapsaudio.com/products/making-beats-moving-feet": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ringtone-edm": "2026-11-25",
+  "p:https://scrapsaudio.com/products/throw-dat-phonk-ableton-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/contraband-phonk-ableton-project-file-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/space-laces-phone-tap-cheapskate-remix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/let-me": "2026-11-25",
+  "p:https://scrapsaudio.com/products/jungala-tech-house-ableton-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/track-feedback-with-kyle-zuck": "2026-11-25",
+  "p:https://scrapsaudio.com/products/one-on-one-with-kyle-zuck": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-dnb-archive-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-juice-800-sub-special": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-awakening": "2026-11-25",
+  "p:https://scrapsaudio.com/products/echos-of-the-future": "2026-11-25",
+  "p:https://scrapsaudio.com/products/in-your-head-first-half": "2026-11-25",
+  "p:https://scrapsaudio.com/products/live-track-feedback-by-galactor": "2026-11-25",
+  "p:https://scrapsaudio.com/products/love-like-this-kpop-garage": "2026-11-25",
+  "p:https://scrapsaudio.com/products/one-on-one-zoom-studio-session": "2026-11-25",
+  "p:https://scrapsaudio.com/products/track-feedback-by-dave-summit": "2026-11-25",
+  "p:https://scrapsaudio.com/products/mixing-and-mastering-with-dave-summit": "2026-11-25",
+  "p:https://scrapsaudio.com/products/edm-future-bass-pop-track-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/spooky-club-banger-music-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hiphop-soul-pop-type-beat-3-thoughts": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hiphop-soul-pop-type-beat-2-fake-love": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hiphop-soul-type-beat-highway": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hiphop-drill-pop-type-beat-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/liquid-drum-and-bass": "2026-11-25",
+  "p:https://scrapsaudio.com/products/zalghouta": "2026-11-25",
+  "p:https://scrapsaudio.com/products/arajaka": "2026-11-25",
+  "p:https://scrapsaudio.com/products/uro-tra-h-feat-ogaquafina-1f2f-cashew-remix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lektrique-all-fl-patchers-bundle": "2026-11-25",
+  "p:https://scrapsaudio.com/products/clublionx-kagura-project-visualizer-v1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fl-studio-washout-rack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/wtf-flp-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fl-studio-erosion-patcher": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fl-studio-master-rack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fl-studio-vocal-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lektrique-fl-production-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ableton-vocal-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ableton-production-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/yoku-color-bass-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kavinsky-nightcall-single-spark-remix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-drum-and-bass-flp-with-vocals": "2026-11-25",
+  "p:https://scrapsaudio.com/products/neuro-dnb-synth-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/scream-verb-hk": "2026-11-25",
+  "p:https://scrapsaudio.com/products/raptures-me-times-two-ft-moav-flp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/doodles": "2026-11-25",
+  "p:https://scrapsaudio.com/products/angry-house-legacy-preset-pack-serum": "2026-11-25",
+  "p:https://scrapsaudio.com/products/reverb-delay-sidechain-cd": "2026-11-25",
+  "p:https://scrapsaudio.com/products/big-lead-brightener-yh": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feeling-like-zo": "2026-11-25",
+  "p:https://scrapsaudio.com/products/make-it-right-nj": "2026-11-25",
+  "p:https://scrapsaudio.com/products/promise-wh": "2026-11-25",
+  "p:https://scrapsaudio.com/products/the-avance-sub-ableton-rack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/avance-sample-pack-vol-1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/grl-gvng-style-of-xg": "2026-11-25",
+  "p:https://scrapsaudio.com/products/diamond-qo": "2026-11-25",
+  "p:https://scrapsaudio.com/products/i-like-it": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vangorian-serum-preset-pack-vol-1-vy": "2026-11-25",
+  "p:https://scrapsaudio.com/products/gurgly": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kanye-west-no-more-parties-in-la-ryans-mix-sv": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ear-candy-filter": "2026-11-25",
+  "p:https://scrapsaudio.com/products/street-king-ft-king-marino": "2026-11-25",
+  "p:https://scrapsaudio.com/products/let-it-drop-xz": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bananza-0z": "2026-11-25",
+  "p:https://scrapsaudio.com/products/axwell-tremolo-trick-6c": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kep1er케플러-wa-da-da-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/get-this-party-started-xw": "2026-11-25",
+  "p:https://scrapsaudio.com/products/running-4q": "2026-11-25",
+  "p:https://scrapsaudio.com/products/track-in-1-hour-pt-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/track-in-1-hour": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lollipop-89": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ateez에이티즈-bouncy-k-hot-chilli-peppers-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/wild-jd": "2026-11-25",
+  "p:https://scrapsaudio.com/products/take-you-high-9n": "2026-11-25",
+  "p:https://scrapsaudio.com/products/david-guetta-titanium-ft-sia-single-spark-remix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/deep-house-selected-style-project": "2026-11-25",
+  "p:https://scrapsaudio.com/products/serum-madness-gz": "2026-11-25",
+  "p:https://scrapsaudio.com/products/blamblam-jw": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lying-in-my-bed": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kumbo-aa": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fleet-riddim-ft-dmvu": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sandbox-colour-bass-flp-5v": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sandbox-colour-bass-flp-extension-pack": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stonebank-like-uk-hardcore-flp-mo": "2026-11-25",
+  "p:https://scrapsaudio.com/products/deadmau5-kaskade-i-remember-john-summit-remix-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cinema-1p": "2026-11-25",
+  "p:https://scrapsaudio.com/products/all-i-want-5m": "2026-11-25",
+  "p:https://scrapsaudio.com/products/no-sleep-xn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/country-synthwave-fj": "2026-11-25",
+  "p:https://scrapsaudio.com/products/from-the-burn-xy": "2026-11-25",
+  "p:https://scrapsaudio.com/products/yesu-kn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feel-it-ku": "2026-11-25",
+  "p:https://scrapsaudio.com/products/yoku-see-it-through": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dont-worry-about-it": "2026-11-25",
+  "p:https://scrapsaudio.com/products/telefuck-2v": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-be-somethingflp-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/3000-gz": "2026-11-25",
+  "p:https://scrapsaudio.com/products/7000-db": "2026-11-25",
+  "p:https://scrapsaudio.com/products/switchback-phonk-ableton-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pitch-modulated-fm-growl-of": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fisher-like-tech-house-beat-y7": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-selected-style-deep-house-project-t2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/camelphat-your-mind-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/eternity-uw": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kream-style-flp-kb": "2026-11-25",
+  "p:https://scrapsaudio.com/products/blackpink-yeah-yeah-yeah-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/skrillex-xena-shards-remix": "2026-11-25",
+  "p:https://scrapsaudio.com/products/swerve-pt": "2026-11-25",
+  "p:https://scrapsaudio.com/products/resemblance-wu": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-set-intro": "2026-11-25",
+  "p:https://scrapsaudio.com/products/secret-number시크릿넘버-odyssey-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/waiting-outside-8r": "2026-11-25",
+  "p:https://scrapsaudio.com/products/caffiene-jn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/tech-house-start-project-d9": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stupid-kid": "2026-11-25",
+  "p:https://scrapsaudio.com/products/akuma-phonk-ableton-project-file": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stay-kl": "2026-11-25",
+  "p:https://scrapsaudio.com/products/acid-breaker-6k": "2026-11-25",
+  "p:https://scrapsaudio.com/products/el-loco": "2026-11-25",
+  "p:https://scrapsaudio.com/products/downlow-i4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/gravity-i6": "2026-11-25",
+  "p:https://scrapsaudio.com/products/up-and-down-xf": "2026-11-25",
+  "p:https://scrapsaudio.com/products/colours-cx": "2026-11-25",
+  "p:https://scrapsaudio.com/products/phonkie-lx": "2026-11-25",
+  "p:https://scrapsaudio.com/products/hard-dancecore-template-4w": "2026-11-25",
+  "p:https://scrapsaudio.com/products/socotra-x3": "2026-11-25",
+  "p:https://scrapsaudio.com/products/groovy-tech-house-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pargoy-z0": "2026-11-25",
+  "p:https://scrapsaudio.com/products/professional-future-bass-pop": "2026-11-25",
+  "p:https://scrapsaudio.com/products/freaky-sm": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pandoras-box-kda-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stark-yf": "2026-11-25",
+  "p:https://scrapsaudio.com/products/monster-brass-ol": "2026-11-25",
+  "p:https://scrapsaudio.com/products/edm": "2026-11-25",
+  "p:https://scrapsaudio.com/products/no-rest-revealed-style-track": "2026-11-25",
+  "p:https://scrapsaudio.com/products/your-body": "2026-11-25",
+  "p:https://scrapsaudio.com/products/little-closer-cp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/i-want-to-tell-u-hr": "2026-11-25",
+  "p:https://scrapsaudio.com/products/90s-piano-house-ql": "2026-11-25",
+  "p:https://scrapsaudio.com/products/moth-to-a-flame-remake-flp-xa": "2026-11-25",
+  "p:https://scrapsaudio.com/products/vigorous-rp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rave-revival-o2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sweep-beat-3": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sweep-beat-2": "2026-11-25",
+  "p:https://scrapsaudio.com/products/sweep-beat-tp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fl-studio-template-for-house-music-david-fritz-edition": "2026-11-25",
+  "p:https://scrapsaudio.com/products/how-to-make-a-rolling-fx-loop-with-abletons-stock-plugins": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-dream-of-you-flp-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/timmy-trumpet-diamonds-fl-studio-remake": "2026-11-25",
+  "p:https://scrapsaudio.com/products/beautiful-nightmares-c6": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fiesta-tech-house-ableton-template-toolroom-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dont-be-scared": "2026-11-25",
+  "p:https://scrapsaudio.com/products/jungle-tech-house-ableton-template-biscits-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/jungle-tech-house-fl-studio-template-biscits-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/flower-power-fl-studio-template-boris-brejcha-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/flower-power-ableton-template-boris-brejcha-style-yu": "2026-11-25",
+  "p:https://scrapsaudio.com/products/groove-tech-house-fl-studio-template-eli-brown-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/groove-tech-house-ableton-template-eli-brown-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/techno-magic-ableton-template-boris-brejcha-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/techno-magic-fl-studio-template-boris-brejcha-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fiesta-tech-house-fl-studio-template-toolroom-style": "2026-11-25",
+  "p:https://scrapsaudio.com/products/topic-chain-my-heart-remake-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/topic-chain-my-heart-remake-ableton": "2026-11-25",
+  "p:https://scrapsaudio.com/products/images-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/images-ableton": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dream-ship-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dream-ship-ableton": "2026-11-25",
+  "p:https://scrapsaudio.com/products/regard-ride-it-remake-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/regard-ride-it-remake-ableton": "2026-11-25",
+  "p:https://scrapsaudio.com/products/summer-in-love-ableton": "2026-11-25",
+  "p:https://scrapsaudio.com/products/summer-in-love-fl-studio": "2026-11-25",
+  "p:https://scrapsaudio.com/products/all-i-need-ableton-template-ka": "2026-11-25",
+  "p:https://scrapsaudio.com/products/all-i-need-fl-studio-template": "2026-11-25",
+  "p:https://scrapsaudio.com/products/something-mw": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feel-the-love-t4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/smoke-ms": "2026-11-25",
+  "p:https://scrapsaudio.com/products/african-rain-jx": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-just-like-you-als-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/bright-city-lights-fq": "2026-11-25",
+  "p:https://scrapsaudio.com/products/old-skool-gz": "2026-11-25",
+  "p:https://scrapsaudio.com/products/freedom-of-speech-8d": "2026-11-25",
+  "p:https://scrapsaudio.com/products/banging-weird-vibe-gq": "2026-11-25",
+  "p:https://scrapsaudio.com/products/all-you-gotta-do-hr": "2026-11-25",
+  "p:https://scrapsaudio.com/products/cloonee-style-template-3w": "2026-11-25",
+  "p:https://scrapsaudio.com/products/marco-carola-style-template-ll": "2026-11-25",
+  "p:https://scrapsaudio.com/products/rave-thing-habstrakt-style-eu": "2026-11-25",
+  "p:https://scrapsaudio.com/products/decrypted-nd": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-bounce-house-flp-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-rapture-flp-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/chord-stab-v5": "2026-11-25",
+  "p:https://scrapsaudio.com/products/white-noise-riser-mc": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-you-i-als-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/legacy-nobody-else-als-stems": "2026-11-25",
+  "p:https://scrapsaudio.com/products/organ-sound-up": "2026-11-25",
+  "p:https://scrapsaudio.com/products/pitch-modulation-womp-yt": "2026-11-25",
+  "p:https://scrapsaudio.com/products/up-riser-demo-ss": "2026-11-25",
+  "p:https://scrapsaudio.com/products/donk-sound-yi": "2026-11-25",
+  "p:https://scrapsaudio.com/products/garage-womp-bass-sh": "2026-11-25",
+  "p:https://scrapsaudio.com/products/reece-bass-rumble-m8": "2026-11-25",
+  "p:https://scrapsaudio.com/products/parabellum-ht": "2026-11-25",
+  "p:https://scrapsaudio.com/products/stand-up-1o": "2026-11-25",
+  "p:https://scrapsaudio.com/products/somnium-ht": "2026-11-25",
+  "p:https://scrapsaudio.com/products/over-and-over-style-gn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kawaii-future-bass-with-cubase-zx": "2026-11-25",
+  "p:https://scrapsaudio.com/products/then-what-gn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/creativity-eg": "2026-11-25",
+  "p:https://scrapsaudio.com/products/roots-of-house-music-cz": "2026-11-25",
+  "p:https://scrapsaudio.com/products/burial-wukah-remix-midi-pack-ly": "2026-11-25",
+  "p:https://scrapsaudio.com/products/take-a-flight-n9": "2026-11-25",
+  "p:https://scrapsaudio.com/products/burial-midi-pack-mt": "2026-11-25",
+  "p:https://scrapsaudio.com/products/beyond-borders-rd": "2026-11-25",
+  "p:https://scrapsaudio.com/products/plain-fields": "2026-11-25",
+  "p:https://scrapsaudio.com/products/thrilling-saga-kp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/secrets-of-the-unknown-bu": "2026-11-25",
+  "p:https://scrapsaudio.com/products/just-lofi-vibes-rk": "2026-11-25",
+  "p:https://scrapsaudio.com/products/dont-give-up": "2026-11-25",
+  "p:https://scrapsaudio.com/products/canary-wharf-fn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kukuona-uy": "2026-11-25",
+  "p:https://scrapsaudio.com/products/feet-on-fire-vp": "2026-11-25",
+  "p:https://scrapsaudio.com/products/gabbs-q0": "2026-11-25",
+  "p:https://scrapsaudio.com/products/add-milk-6f": "2026-11-25",
+  "p:https://scrapsaudio.com/products/burning-in-my-soul-fj": "2026-11-25",
+  "p:https://scrapsaudio.com/products/never-let-me-go-yb": "2026-11-25",
+  "p:https://scrapsaudio.com/products/ultimate-battle-w6": "2026-11-25",
+  "p:https://scrapsaudio.com/products/anarchy-sc": "2026-11-25",
+  "p:https://scrapsaudio.com/products/like-that-so": "2026-11-25",
+  "p:https://scrapsaudio.com/products/i-should-have-known-n1": "2026-11-25",
+  "p:https://scrapsaudio.com/products/long-distance-deep-house-w6": "2026-11-25",
+  "p:https://scrapsaudio.com/products/alright-at": "2026-11-25",
+  "p:https://scrapsaudio.com/products/better-with-you-ft": "2026-11-25",
+  "p:https://scrapsaudio.com/products/here-we-go-again-9i": "2026-11-25",
+  "p:https://scrapsaudio.com/products/disco-feeling-ar": "2026-11-25",
+  "p:https://scrapsaudio.com/products/twist-lh": "2026-11-25",
+  "p:https://scrapsaudio.com/products/abanico-bx": "2026-11-25",
+  "p:https://scrapsaudio.com/products/on-my-mind-s4": "2026-11-25",
+  "p:https://scrapsaudio.com/products/let-it-whip-l9": "2026-11-25",
+  "p:https://scrapsaudio.com/products/lies-to-be-told-4d": "2026-11-25",
+  "p:https://scrapsaudio.com/products/back-to-the-funk-6e": "2026-11-25",
+  "p:https://scrapsaudio.com/products/fire-fire-fire-7m": "2026-11-25",
+  "p:https://scrapsaudio.com/products/welcome-to-the-jungle-py": "2026-11-25",
+  "p:https://scrapsaudio.com/products/shut-up-tn": "2026-11-25",
+  "p:https://scrapsaudio.com/products/whos-the-master": "2026-11-25",
+  "p:https://scrapsaudio.com/products/wish-for-un": "2026-11-25",
+  "p:https://scrapsaudio.com/products/no-hablo-espanol": "2026-11-25",
+  "p:https://scrapsaudio.com/products/heartbeat-eb": "2026-11-25",
+  "p:https://scrapsaudio.com/products/believe-in-music-an": "2026-11-25",
+  "p:https://scrapsaudio.com/products/kuff-ho": "2026-11-25",
+  "p:https://scrapsaudio.com/products/jammin": "2026-11-25",
+  "p:https://scrapsaudio.com/products/house-head-xt": "2026-11-25",
+  "b:scrapsaudio.com:Track in 1 Hour|The Juice (800 Sub Special)|Liquid Drum and Bass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-vol-7-full-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ableton-creative-toolkit": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-meridian": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-dubstep-sound-pack-stardust": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-sound-pack-sunset-vibes-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-progressive-house-vol-2-sound-pack-grains": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-8-sample-pack-afro-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/indie-dance-sound-pack-surge": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-percussive-sound-pack-savanna-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/progressive-house-sound-pack-mainstage-edm-vibes": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-afro-tech-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-8-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/timeless-vol-4-sound-pack-electronic-classics": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-rising": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-deep-progressive-house-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-percussive-sound-pack-savanna": "2026-11-25",
+  "p:https://productionmusiclive.com/products/indie-dance-sound-pack-shift": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-indie-dance-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/breaks-vol-2-sound-pack-flux": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-7-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-sound-pack-bloom": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-deep-house-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-presets-dimensions-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/trance-vol-2-sound-pack-unity": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-trance-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-gift-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-low-end-kick-bass-setup": "2026-11-25",
+  "p:https://productionmusiclive.com/products/sub-37-vol-2-full-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-10-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-presets-feelings-vol-3": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-presets-bass-pack-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-bundle-signature-sounds": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-sound-pack-voltage": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-bundle-signature-sounds": "2026-11-25",
+  "p:https://productionmusiclive.com/products/kicks-sample-pack-vol-3": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-progressive-house-sound-pack-particles": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-6-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-tech-house-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-sound-pack-drift": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-7-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-timeless-melodic-techno-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/timeless-vol-3-sound-pack-electronic-classics": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-sound-pack-vol-5": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-and-trance-diva-presets-by-aiyn-zahev-vol-3": "2026-11-25",
+  "p:https://productionmusiclive.com/products/retro-house-sound-pack-zara": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-melodic-house-start-to-finish-academy-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-5-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-year-edition-2026": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-eclipse": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-techno-track-from-start-to-finish-pml406": "2026-11-25",
+  "p:https://productionmusiclive.com/products/live-set-start-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-becoming-monolink": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-techno-vol-2-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/breakbeat-sound-pack-motion": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-vol-6-full-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-sound-pack-afterglow": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-monument": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-bundle-signature-sounds": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-bundle-signature-sounds": "2026-11-25",
+  "p:https://productionmusiclive.com/products/dub-techno-sound-pack-flow": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-presets-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-4-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organic-house-sound-pack-woodlands": "2026-11-25",
+  "p:https://productionmusiclive.com/products/trance-hard-dance-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-sample-pack-sounds-from-the-cape": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-afro-house-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-sound-pack-vol-4": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-afro-house-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-advanced-sound-design-with-serum-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/timeless-vol-2-sound-pack-electronic-classics": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-melodic-progressive-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-sound-pack-fragments": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-house-track-from-start-to-finish-pml379": "2026-11-25",
+  "p:https://productionmusiclive.com/products/midi-complete-pack-preset-bundle-upsells": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diva-presets-deep-melodics-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diva-presets-deep-melodics-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-sound-pack-pulse": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-underground-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-sound-pack-energy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-techno-track-from-start-to-finish-pml374": "2026-11-25",
+  "p:https://productionmusiclive.com/products/x-upgrade-course-plan": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-3-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-classic-house-start-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-serum-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-techno-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-techno-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-mesmerize": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-9-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-2-presets-feelings-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/kicks-sample-pack-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/trance-sound-pack-eternity": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-bass-house-sound-pack-vibes": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-vol-2-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/arrangement-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/minimal-melodic-techno-sound-pack-voyager": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-sound-pack-beyond-life": "2026-11-25",
+  "p:https://productionmusiclive.com/products/house-sound-pack-fun-times": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-sound-pack-vol-3": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-year-edition-2025": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-collectors-edition-2024": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-mystique": "2026-11-25",
+  "p:https://productionmusiclive.com/products/moon-rocks-ableton-techno-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-dynamics-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-berlin-2010s-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/progressive-melodic-techno-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-axon-terminals-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-analog-rooms-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/timeless-vol-1-sound-pack-electronic-classics": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-house-sound-pack-reflections": "2026-11-25",
+  "p:https://productionmusiclive.com/products/acoustic-melodic-house-themes-vol-5": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-sound-pack-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-6-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-sound-pack-mirage": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-5-sample-pack-afro-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-4-sample-pack-tech-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/cercle-sounds-vol-4-diva-preset-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-afro-house-start-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-tech-house-academy-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/inner-glow-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/afro-house-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/infinite-dreams-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-vol-5-full-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-techno-start-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocalized-vol-2-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-3-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/kick-sample-pack-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-beginner-to-advanced-start-to-finish-in-ableton-live-12": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ableton-live-presets-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-8-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-production-kit-twilight-rhythms": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-and-trance-diva-presets-by-aiyn-zahev-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-melodic-techno-start-to-finish-academy-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-melodic-house-feelings": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-bass-pack-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/antithesis-techno-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-julia-borelli-mixing-and-mastering": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-year-edition-2024": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-collectors-edition-2023": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-super-flu": "2026-11-25",
+  "p:https://productionmusiclive.com/products/acoustic-melodic-house-themes-vol-4": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-production-pack-radiation": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-modern-melodic-techno-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-serum-sound-design-modern-melodic-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-organic-house-track-from-start-to-finish-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-vol-4-full-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/fl-full-bundle-by-pml-upsells": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-production-pack-overdrive": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ultra-progressive-house-edm-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-preset-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-collection-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-techno-presets-vol-3": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-organic-sample-pack-by-fejka": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-sound-design-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-start-to-finish-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-masterclass-start-to-finish-with-fab-massimo": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-essentials-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/percussive-house-vol-2-organic-samples-loops": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diva-presets-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-and-trance-diva-presets-by-aiyn-zahev": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diva-preset-bundle-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organic-house-diva-presets-by-yannek-maunz": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocalized-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-2-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-mastering-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-mixing-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/super-flu-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/acoustic-melodic-house-themes-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/acoustic-melodic-house-themes-vol-3": "2026-11-25",
+  "p:https://productionmusiclive.com/products/midi-pack-melodic-house-white-glow": "2026-11-25",
+  "p:https://productionmusiclive.com/products/music-theory-for-melodic-techno-and-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-melodic-techno-start-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-7-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organic-sounds-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-vol-3-full-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/uk-house-actual-life": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-melodic-house-start-to-finish-academy": "2026-11-25",
+  "p:https://productionmusiclive.com/products/stil-vor-talent-x-pml-artist-pack-oliver-koletzki": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-collectors-edition-2022": "2026-11-25",
+  "p:https://productionmusiclive.com/products/jonas-saalbach-loops-song-starters-melodic-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-bound-to-divide-laurent-laiment-vocal-hooks": "2026-11-25",
+  "p:https://productionmusiclive.com/products/artist-kicks-vol-2-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/peak-time-techno-vol-2-samples-by-weska": "2026-11-25",
+  "p:https://productionmusiclive.com/products/dreams-vol-2-melodic-house-techno-serum-presets-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/bass-lab-serum-bass-presets-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-year-2022": "2026-11-25",
+  "p:https://productionmusiclive.com/products/music-streaming-masterclass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/cercle-sounds-vol-3-diva-preset-pack-for-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-bundle-year-2023": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-learn-sound-design-with-arturia-pigments": "2026-11-25",
+  "p:https://productionmusiclive.com/products/acoustic-melodic-house-themes-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/jimi-jules-x-pml-artist-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-jimi-jules": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-vibes": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-essentials": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-ultra": "2026-11-25",
+  "p:https://productionmusiclive.com/products/mixing-start-to-finish-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vocals-vol-1-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/dimensions-serum-presets-melodic-techno-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/inner-lights-melodic-house-midi-pack-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/midi-pack-chord-vibes": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-vol-2-full-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-techno-track-from-start-to-finish-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-percussive-house-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/main-stage-techno-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/become-one-melodic-techno-ableton-template-by-solanca": "2026-11-25",
+  "p:https://productionmusiclive.com/products/substances-melodic-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/full-bundle-fl-by-pml": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-start-to-finish-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/peak-time-bunker-vol-1-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vital-preset-pack-melodic-house-by-furcloud": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-organic-house-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tim-engelhardt-production-pack-melodic-techno-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-start-to-finish-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-cioz-how-to-remix-diplo-damian-lazarus-jungle-don-t-be-afraid": "2026-11-25",
+  "p:https://productionmusiclive.com/products/beginners-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/together-again-melodic-house-ableton-template-by-solanca": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/getting-away-breakbeat-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/centuries-modern-melodic-techno-ableton-template-by-dahu": "2026-11-25",
+  "p:https://productionmusiclive.com/products/stil-vor-talent-x-pml-artist-pack-vol-2-polaroit": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vital-presets-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vital-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vital-presets-afterlight-melodic-deep-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-creative-sound-design-with-the-moog-sub37": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-producer-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/full-melodic-house-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/full-melodic-techno-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-6-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/la-pianista-classic-house-ableton-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/touch-classic-house-ableton-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-music-production-in-ableton-live": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vital-presets-boiler-production": "2026-11-25",
+  "p:https://productionmusiclive.com/products/samples-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diva-preset-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/miombo-peak-time-festival-track-laroz-sam-shure-cowbell-dub": "2026-11-25",
+  "p:https://productionmusiclive.com/products/woodlands-vol-2-organic-house-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/sub-37-techno-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diablo-future-house-logic-pro-x-serum-template-by-the-producer-tutor": "2026-11-25",
+  "p:https://productionmusiclive.com/products/mantra-psy-trance-logic-pro-x-serum-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/odyssey-melodic-techno-ableton-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-vital-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/artist-kicks-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/visions-melodic-house-diva-presets-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/dreams-melodic-house-serum-presets-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/purity-melodic-house-serum-presets-by-bound-to-divide": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-house-for-vital": "2026-11-25",
+  "p:https://productionmusiclive.com/products/balloon-melodic-techno-logic-pro-x-serum-template-by-the-producer-tutor": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organic-melodic-diva-presets-by-felix-raphael": "2026-11-25",
+  "p:https://productionmusiclive.com/products/darkside-high-tech-minimal-techno-logic-pro-x-massive-template-by-the-producer-tutor": "2026-11-25",
+  "p:https://productionmusiclive.com/products/purple-diver-high-tech-minimal-techno-logic-pro-x-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/lo-fi-house-masterclass-with-misc-inc": "2026-11-25",
+  "p:https://productionmusiclive.com/products/jonas-saalbach-masterclass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/acoustic-melodic-house-themes": "2026-11-25",
+  "p:https://productionmusiclive.com/products/stil-vor-talent-x-pml-artist-pack-vol-1-cioz": "2026-11-25",
+  "p:https://productionmusiclive.com/products/decades-modern-melodic-techno-ableton-template-by-dahu": "2026-11-25",
+  "p:https://productionmusiclive.com/products/mastering-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/drill-course-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organic-house-essentials": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-everything-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ben-bohmer-master-class": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-how-i-built-my-home-studio": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-preset-pack-innerbloom": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-techno-pack-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/how-to-make-a-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/empire-of-afterlife-melodic-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/desert-ethereal-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-house-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/repro-5-preset-pack-analog-melodic": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-house-track-from-start-to-finish-vol-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/percussive-house-samples-loops-by-florian-busse": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-melodic-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-midi-pack-vol-2-melodies-arpeggios-arps-plucks-and-more": "2026-11-25",
+  "p:https://productionmusiclive.com/products/getting-the-most-out-of-logic-pro-x-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/organica-full-ableton-production-suite": "2026-11-25",
+  "p:https://productionmusiclive.com/products/peak-time-techno-samples-by-weska": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diva-presets-by-tim-engelhardt": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pigments-preset-pack-deep-progressive-by-tim-engelhardt": "2026-11-25",
+  "p:https://productionmusiclive.com/products/nils-hoffmann-production-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-sounds-ableton-wavetable-preset-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/beginners-course-ableton-live-11-making-a-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/equinox-progressive-melodic-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/attila-hanak-courses-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/bound-to-divide-sound-pack-melodic-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-5-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/percussive-afro-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/midnight-punch-drums-for-melodic-house-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/woodlands-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-drum-pack-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/academy-bundle-electronic-music-production-in-ableton-live": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pro-bundle-ableton-techno-producer": "2026-11-25",
+  "p:https://productionmusiclive.com/products/hard-trap-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/chord-progressions-theory-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/full-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tim-engelhardt-production-pack-melodic-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/bound-to-divide-diva-preset-pack-for-melodic-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/interstellar-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ufb-sample-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/clouds-melodic-deep-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/vintage-house-sample-pack-drum-samples-instruments": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-deep-ableton-production-pack-by-francois-rengere": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-u-he-diva-sound-design": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ableton-session-view-masterclass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masquerade-pack-high-tech-minimal-techno-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-melodic-house-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ableton-beginners-class": "2026-11-25",
+  "p:https://productionmusiclive.com/products/production-session-vol-1-start-to-finish-course-melodic-progressive-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-from-start-to-finish-course-in-ableton-live": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ben-bohmer-style-melodic-deep-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/mixing-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/cercle-sounds-vol-2-diva-preset-pack-for-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/dark-techno-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/hard-trap-from-start-to-finish-in-ableton": "2026-11-25",
+  "p:https://productionmusiclive.com/products/mixing-and-mastering-courses": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-masterclass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-4": "2026-11-25",
+  "p:https://productionmusiclive.com/products/analog-meets-digital": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/instant-inspiration-course": "2026-11-25",
+  "p:https://productionmusiclive.com/products/summer-vibes-v1-sample-pack-fl-version": "2026-11-25",
+  "p:https://productionmusiclive.com/products/beginner-course-in-fl": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tech-house-drums-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-melodic-house-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/sunset-vibes-melodic-house-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/anjuna-vibes-melodic-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/analog-techno-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-bundle-vol-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-pack-deep-tech-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/dark-textures-and-soundscapes-for-techno-deep-underground-sample-pack-for-ambience-by-pml": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-x-techno-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/plurality-techno-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/good-intentions-synthwave-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-diva-preset-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/push-2-masterclass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/the-best-trap-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/groove-course": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-3-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-high-tech-minimal-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/diablo-edm-ableton-live-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/right-now-fl-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/trap-fl-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/fl-house-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/van-burn-ableton-edm-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/smack-edm-trap-samples-and-presets": "2026-11-25",
+  "p:https://productionmusiclive.com/products/progressive-house-fl-project-file": "2026-11-25",
+  "p:https://productionmusiclive.com/products/analog-techno-synth-shots-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/how-to-mix-a-track-with-the-best-plugins-available": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-pack-comino": "2026-11-25",
+  "p:https://productionmusiclive.com/products/full-future-bass-pop-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/darkside-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/full-techno-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/mixing-tools-and-default-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/harmony-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/masterclass-mixing-mastering-a-future-bass-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-techno-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/arrangement-course": "2026-11-25",
+  "p:https://productionmusiclive.com/products/amelie-dark-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/godzin-bass-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/classic-state-of-trance-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-midi-pack-melodies-arpeggios-arps-plucks-and-more": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-melodic-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-drums-drum-sample-pack-optional-ableton-project": "2026-11-25",
+  "p:https://productionmusiclive.com/products/techno-kickdrums-vol-1-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-vol-1-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/trap-production-pack-samples-instruments-midis-drum-kits": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-v2-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/shipwrecked-future-bass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/marshmallow-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tropical-show-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/edm-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/kshmir-edm-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/psytrance-mantra-loops-and-samples": "2026-11-25",
+  "p:https://productionmusiclive.com/products/psytrance-mantra-vini-vici-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/voorn-style-ableton-house-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/best-trap-presets-for-massive": "2026-11-25",
+  "p:https://productionmusiclive.com/products/summer-vibes-pop-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/summer-vibes-v1-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/shaker-loops": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-pop-track-from-start-to-finish-chainsmoking-style": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-how-to-write-melodies": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-mixing-masterclass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-analog-melodic-techno-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-arturia-mini-v3-how-to-sound-design": "2026-11-25",
+  "p:https://productionmusiclive.com/products/karmac-charged-trap": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-arturia-mini-v3-sound-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/calvin-slides-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/midi-chord-progression-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/oneeyedking-ethereal-techno-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-doubler-tool-rack-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-track-from-start-to-finish-beginners-2017": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pre-sale-mastering-a-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/default-template-for-techno": "2026-11-25",
+  "p:https://productionmusiclive.com/products/edm-spinning-it-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/progressive-house-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-trap-midi-pack-melodies-chords-percussions": "2026-11-25",
+  "p:https://productionmusiclive.com/products/analog-moods-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/something-just-dropped-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-sylenth1-sound-design": "2026-11-25",
+  "p:https://productionmusiclive.com/products/chain-closers-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/everything-pack-all-sounds-all-courses": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-serum-sound-design": "2026-11-25",
+  "p:https://productionmusiclive.com/products/complete-courses-bundle": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-2-drum-sample-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/midi-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-future-pop-moombahton": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-boiler-production-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/bass-house-jauzz-styled-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-producing-a-track-from-start-to-finish-beginners": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-massive-sound-design": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-mixing-a-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-harmony-and-chord-progressions": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/course-deep-house-track-from-start-to-finish": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-track-start-to-finish-ableton": "2026-11-25",
+  "p:https://productionmusiclive.com/products/chill-waters-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/lose-myself-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/ibiza-deep-pack-7-templates-massive-preset-pack-midi": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-vol-5-future-chill": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-drums-code": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-boiler-production": "2026-11-25",
+  "p:https://productionmusiclive.com/products/lunacy-trap-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/floor-control-techno-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/flumed-you-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-vol-10-future-beat": "2026-11-25",
+  "p:https://productionmusiclive.com/products/premium-house-loops-optional-midis-optional-ableton-template-racks": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-big-pack-8-templates-presets-midis-samples": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tropical-house-pack-4-templates-2-preset-packs": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pronto-trap-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/smoked-chains-down-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-margerita-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-moan-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-bass-riot-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/san-ho-low-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/do-think-oshii-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/about-you-o-desza-styled-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/o-desza-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/sa-je-future-bass-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/lazer-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/neon-future-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-techno-francois-giants-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tropical-winds-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/first-trap-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/escape-progressive-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/catch-deep-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/illusions-progressive-house-trance-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/belonged-x-deep-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/felix-deep-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/summer-deep-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-house-bass-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/start-to-finish-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pill-in-ibiza-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/fast-car-tropical-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tropical-cuts-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/future-life-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/heldens-future-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/black-nights-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/big-room-edm-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/live-dj-start-fx-rack-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/live-dj-start-fx-rack-ableton-template1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/pml-default-template-mixing-tools": "2026-11-25",
+  "p:https://productionmusiclive.com/products/i-see-fire-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/tropical-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/melodic-deep-house-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/blau-edm-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/hello-piano-ballad-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/carmack-styled-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/flumed-tennis-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/flumed-style-ableton-template": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-vol-4-future-bass-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-vol-3-tropical-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-vol-2-tropical-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/sylenth1-presets-vol-1-pml-future-essentials": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-vol-9-progressive-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-full-presets-pack": "2026-11-25",
+  "p:https://productionmusiclive.com/products/serum-presets-vol-1-future-bass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-vol-7-tropical-house-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/copy-of-massive-presets-vol-6-future-house-2": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-vol-4-tropical-house-1": "2026-11-25",
+  "p:https://productionmusiclive.com/products/copy-of-massive-presets-vol-2-chillstep-edm": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-vol-1-deep-house": "2026-11-25",
+  "p:https://productionmusiclive.com/products/massive-presets-vol-8-future-bass": "2026-11-25",
+  "p:https://productionmusiclive.com/products/deep-premium-vol-1-drum-sample-pack-ableton-project-midis": "2026-11-25",
+  "f:https://www.musicradar.com/artists/joe-satriani-on-the-crazy-late-night-session-that-saved-flying-in-a-blue-dream": "2026-11-25",
+  "f:https://www.musicradar.com/artists/justin-timberlake-reveals-one-of-the-secrets-of-sexybacks-success-sloppy-out-of-tune-guitars": "2026-11-25",
+  "f:https://www.musicradar.com/artists/guitarists/graham-coxon-reveals-his-musical-limitations-i-wish-i-was-good-at-piano-i-wish-id-kept-up-with-my-saxophone": "2026-11-25",
+  "f:https://www.musicradar.com/music-tech/izotopes-nectar-5-introduces-a-clever-new-way-to-add-effects-to-vocals-one-word-at-a-time": "2026-11-25",
+  "f:https://www.musicradar.com/guitars/electric-guitars/patina-ps7-review": "2026-11-25",
+  "f:https://www.musicradar.com/artists/bands/no-more-rooftop-gigs-new-beatles-at-savile-row-attraction-to-have-noise-restrictions-on-its-roof": "2026-11-25",
+  "f:https://www.musicradar.com/artists/motley-crue-guitarist-and-kiss-superfan-john-5-on-what-made-ace-frehley-great": "2026-11-25",
+  "f:https://www.musicradar.com/artists/myself-panned-to-the-left-and-james-gadson-to-the-right-one-of-those-moments-you-dream-of-dangelos-collaborators-open-up-on-surprise-new-song-kamikazi-which-features-in-gta-vi": "2026-11-25",
+  "f:https://www.musicradar.com/artists/bands/right-now-it-feels-like-the-right-thing-to-do-for-sure-dave-grohl-says-the-foo-fighters-will-take-a-break-once-theyve-finished-their-current-tour": "2026-11-25",
+  "f:https://www.musicradar.com/artists/it-wasnt-really-music-it-was-like-people-trying-to-play-music-in-a-very-noisy-manner-stuart-epps-tells-us-about-his-first-encounter-with-twisted-sister": "2026-11-25",
+  "f:https://www.musicradar.com/artists/how-bob-dylan-stuck-it-to-the-new-york-folk-scene-with-one-song-many-took-it-personally": "2026-11-25",
+  "f:https://www.musicradar.com/artists/its-a-really-nasty-looking-guitar-with-all-these-pointy-angles-its-not-something-anybody-would-want-to-pick-up-unless-you-were-really-brave-rock-icon-lita-ford-on-her-go-to-guitar-and-her-new-dark-fairytale-concept-album": "2026-11-25",
+  "f:https://www.musicradar.com/artists/to-us-hes-up-there-with-brian-wilson-paul-mccartney-and-prince-justice-say-that-one-take-man-michael-mcdonald-lived-up-to-the-legend-when-they-collaborated-with-him-on-their-gta-vi-song-starting-from-zero": "2026-11-25",
+  "f:https://www.musicradar.com/guitars/guitar-amps/the-only-drug-ive-taken-is-music-and-i-cant-get-away-from-it-terry-marshall-on-why-he-has-no-current-plans-for-retirement": "2026-11-25",
+  "f:https://www.musicradar.com/music-tech/sonicwares-cydrums-puts-its-weird-wavetable-drum-engine-in-an-eight-track-groovebox": "2026-11-25",
+  "f:https://www.musicradar.com/music-tech/studio-monitors/eve-audio-exo-28-review": "2026-11-25",
+  "f:https://www.musicradar.com/artists/singers-songwriters/joe-jackson-disclosed-something-to-my-dad-that-the-world-doesnt-know-about-everybody-said-the-osmonds-are-copying-the-jacksons-actually-it-was-just-the-opposite-donny-osmond-says-he-and-his-brothers-were-the-first-boy-band": "2026-11-25",
+  "f:https://www.musicradar.com/artists/people-foolishly-think-its-the-swing-on-the-mpc-but-its-not-prince-fatty-on-the-secret-behind-j-dillas-genius-beats": "2026-11-25",
+  "f:https://www.musicradar.com/artists/i-was-contemplating-whether-or-not-id-say-this-but-i-thought-i-would-come-clean-olivia-rodrigo-reveals-the-name-of-her-teen-jack-white-fan-account-as-she-covers-a-much-loved-2001-white-stripes-song-for-third-man-records": "2026-11-25",
+  "f:https://www.musicradar.com/artists/producers-engineers/i-couldnt-bear-to-look-and-thought-bloody-hell-this-is-embarrassing-eltons-going-to-totally-blow-it-here-but-the-audience-started-going-bananas-we-speak-to-storied-producer-stuart-epps-who-recalls-elton-johns-breakthrough-moment": "2026-11-25",
+  "f:https://www.musicradar.com/artists/drummers/they-stole-a-decade-of-my-life-and-my-effort-and-eur230-000-from-my-pocket-el-estepario-siberiano-threatens-legal-action-against-ai-scalpers-and-wants-your-advice": "2026-11-25",
+  "f:https://www.musicradar.com/artists/my-head-was-spinning-every-time-i-listened-to-it-or-sang-it-its-like-wed-climbed-the-mountain-how-progressive-rock-legends-yes-created-their-majestic-magnum-opus-digging-into-jazz-classical-and-a-little-eastern-mysticism": "2026-11-25",
+  "f:https://www.musicradar.com/artists/i-recorded-almost-70-tracks-in-two-months-how-lockdown-turmoil-studio-setbacks-and-a-14-year-old-vst-inspired-john-talabots-new-album-as-or": "2026-11-25",
+  "f:https://www.musicradar.com/artists/singles-albums/watch-a-new-video-for-the-beatles-classic-in-my-life": "2026-11-25",
+  "f:https://www.musicradar.com/artists/the-war-on-drugs-spend-years-on-records-sometimes-there-are-90-versions-of-a-song-but-it-can-be-the-first-one-where-the-spark-stuck-the-war-on-drugs-robbie-bennett-shares-the-high-bar-the-band-have-when-it-comes-to-finishing-songs": "2026-11-25",
+  "f:https://www.musicradar.com/artists/danzig-mother-glenn-danzig-john-christ-the-making-of-a-metal-anthem": "2026-11-25",
+  "f:https://www.musicradar.com/guitars/bass-guitars/if-he-really-wanted-to-keep-it-politically-neutral-he-shouldnt-have-macklemore-out-there-rems-mike-mills-on-why-the-ed-sheeran-thing-was-a-disaster": "2026-11-25",
+  "f:https://www.musicradar.com/artists/singers-songwriters/if-you-cant-defeat-it-you-have-to-join-it-peter-gabriel-makes-his-stance-on-ai-clear": "2026-11-25",
+  "f:https://www.musicradar.com/music-tech/sampleradar-475-free-drum-n-bass-essentials-samples": "2026-11-25",
+  "f:https://www.musicradar.com/artists/producers-engineers/grammy-winning-producer-cirkut-is-auctioning-off-a-once-in-a-lifetime-studio-session-with-himself-and-songwriter-madison-love": "2026-11-25",
+  "f:https://www.musicradar.com/artists/bands/quiz-she-really-going-out-with-him-its-musicradars-quiz-of-the-week-31": "2026-11-25",
+  "f:https://www.musicradar.com/music-tech/midi-controllers/alphatheta-slab-review": "2026-11-25",
+  "f:https://www.musicradar.com/artists/when-i-sing-the-killing-moon-i-know-there-isnt-a-band-in-the-world-whos-got-a-song-anywhere-near-that-how-echo-and-the-bunnymen-created-an-ethereal-80s-classic": "2026-11-25",
+  "f:https://www.musicradar.com/artists/singers-songwriters/who-remembers-when-noel-gallagher-walked-into-that-random-girls-studio-session-because-he-liked-how-it-sounded-i-do-because-it-was-me-young-singer-songwriters-session-gatecrashed-by-oasis-guitarist": "2026-11-25",
+  "f:https://www.musicradar.com/music-industry/streaming-sharing/worried-what-your-spotify-wrapped-is-going-to-say-about-your-taste-in-music-its-not-too-late-to-game-the-algorithm": "2026-11-25",
+  "f:https://www.musicradar.com/guitars/electric-guitars/ive-checked-out-all-77-items-in-fenders-black-friday-sale-but-its-the-rarities-and-exclusives-that-have-caught-my-eye": "2026-11-25",
+  "f:https://www.musicradar.com/artists/justice-and-michael-mcdonalds-new-gta-vi-song-sounds-like-a-yamaha-cp-70-drenched-yacht-rock-ode-to-an-80s-genesis-banger": "2026-11-25",
+  "f:https://www.musicradar.com/artists/drummers/how-he-enters-and-exits-fills-is-different-from-any-other-drummer-ive-played-with-theres-a-push-and-pull-theres-so-much-power-pearl-jam-bassist-jeff-ament-on-his-preferred-pick-to-be-the-bands-next-full-time-drummer": "2026-11-25",
+  "f:https://www.musicradar.com/artists/singers-songwriters/we-just-sat-in-a-room-and-did-our-best-one-afternoon-and-it-is-the-gift-that-just-keeps-on-giving-ella-langley-and-choosin-texas-dominate-at-the-cmas-as-taylor-swift-performs-at-the-ceremony-for-the-first-time-in-13-years": "2026-11-25",
+  "f:https://www.musicradar.com/artists/how-the-beatles-abbey-road-inspired-billy-joels-masterpiece-i-dont-think-i-could-do-a-show-without-performing-that-song": "2026-11-25",
+  "n:I’ve checked out all 77 items in Fender’s Black Friday sale, but it’s the rarities and exclusives that have caught my eye (MusicRadar)": "2026-11-25"
+ },
+ "shops": {
+  "scrapsaudio.com": {
+   "nox-gamedev-essentials-vol-2-extended-pack-416-game-sfx": [
+    11,
+    0
+   ],
+   "tabiz-loopsaint-hip-hop-melodies-amp-midis": [
+    9,
+    0
+   ],
+   "cathedral-vj-loop": [
+    25,
+    0
+   ],
+   "ryhthm-city-vj-loop": [
+    25,
+    0
+   ],
+   "city-lights-vj-loop": [
+    25,
+    0
+   ],
+   "blsro-bochka-kicks-sample-pack-vol-1": [
+    25,
+    0
+   ],
+   "blsro-kicks-vol-2": [
+    25,
+    0
+   ],
+   "blsro-bochka-kicks-vol-4": [
+    25,
+    0
+   ],
+   "fast-custom-composition-of-any-kind": [
+    200,
+    0
+   ],
+   "the-bass-ghost-club-sample-pack-vol-4": [
+    15,
+    0
+   ],
+   "vocal-house-vol1": [
+    10,
+    0
+   ],
+   "professional-vocal-chain-template-pro-tools": [
+    500,
+    0
+   ],
+   "have-to-go": [
+    20,
+    0
+   ],
+   "enemigo-funk": [
+    249,
+    0
+   ],
+   "ace-aura-flp": [
+    6,
+    0
+   ],
+   "kapis-tech-formula-sample-pack": [
+    5,
+    0
+   ],
+   "escapism-vol-1": [
+    0,
+    0
+   ],
+   "medievil-music-elektrodar-gypersonic-sounds-sample-pack": [
+    10,
+    0
+   ],
+   "medievil-music-elektrodar-troniksat-sfx-sample-pack": [
+    3,
+    0
+   ],
+   "medievil-music-elektrodar-minimal-drums-sample-pack": [
+    3,
+    0
+   ],
+   "medievil-music-presets-majed-salih-vital-rise": [
+    1,
+    0
+   ],
+   "medievil-music-elektrodar-cyber-drums-sample-pack": [
+    3,
+    0
+   ],
+   "medievil-music-phonk-destruction": [
+    5,
+    0
+   ],
+   "medievil-music-elektrodar-1010-kicks": [
+    10,
+    0
+   ],
+   "newage-house-drop-bv": [
+    5,
+    10
+   ],
+   "nyx-tech-house-drop": [
+    4.99,
+    15
+   ],
+   "modern-tech-house": [
+    5,
+    10
+   ],
+   "melodic-vocal-house": [
+    3,
+    6
+   ],
+   "modern-tech-2": [
+    4,
+    10
+   ],
+   "zurna-tech-house": [
+    4,
+    8
+   ],
+   "essential-guitars-vol-01": [
+    15,
+    0
+   ],
+   "miami-san-pacho-matroda-tech-house": [
+    280,
+    0
+   ],
+   "get-down-low": [
+    200,
+    0
+   ],
+   "variety-pack-vol-1": [
+    6,
+    0
+   ],
+   "come-over": [
+    20,
+    0
+   ],
+   "friendly-loops": [
+    3,
+    0
+   ],
+   "machina-drumloops-kit": [
+    5,
+    0
+   ],
+   "arcane-x-huntrix-revenant": [
+    20,
+    0
+   ],
+   "try-1": [
+    120,
+    0
+   ],
+   "ocean-express": [
+    120,
+    0
+   ],
+   "️-pimienta-trap-drums": [
+    15,
+    0
+   ],
+   "the-bass-ghost-club-vol-3-tech-house-latin-tech": [
+    15,
+    0
+   ],
+   "modern-afro-house-construction-kits-vol-1": [
+    10,
+    0
+   ],
+   "psytrance-template-astrix-style": [
+    20,
+    0
+   ],
+   "sandstorm-hardstyle-bootleg": [
+    10,
+    0
+   ],
+   "edm-drop-vocals-vol-1": [
+    10,
+    0
+   ],
+   "honeyglow-riddim": [
+    20,
+    0
+   ],
+   "sombra": [
+    30,
+    0
+   ],
+   "sleepless": [
+    30,
+    0
+   ],
+   "choir-1": [
+    20,
+    0
+   ],
+   "ultimate-kick-roland-tr-808-and-tr-909-kick-collection": [
+    5,
+    0
+   ],
+   "orbital-arps-680-synth-arpeggio-loops": [
+    10,
+    0
+   ],
+   "acapella-sample-pack": [
+    10,
+    0
+   ],
+   "electric-whispers": [
+    12,
+    0
+   ],
+   "vital-leads-project-file": [
+    10,
+    0
+   ],
+   "konetl-bass-house-sample-pack": [
+    20,
+    0
+   ],
+   "melodic-techno-ableton-template": [
+    15,
+    0
+   ],
+   "2025-schranz-bundle-vol-2": [
+    30,
+    0
+   ],
+   "2025-cinematic-metal-impacts": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-10": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-8": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-9": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-7": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-6": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-5": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-4": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-3": [
+    20,
+    0
+   ],
+   "2025-raw-kicks-bundle-vol-2": [
+    20,
+    0
+   ],
+   "2025-raw-kick-sample-bundle-vol-1": [
+    20,
+    0
+   ],
+   "original-game-music-composition": [
+    150,
+    0
+   ],
+   "minimal-deep-tech-ableton-template-project-chris-stussy-kolter-1": [
+    10,
+    0
+   ],
+   "minimal-deep-tech-ableton-template-project-chris-stussy-kolter": [
+    10,
+    0
+   ],
+   "2025-schranz-sample-pack": [
+    30,
+    0
+   ],
+   "hard-industrial-sample-pack": [
+    30,
+    0
+   ],
+   "micah-baxter-inspired-ableton-template": [
+    15,
+    0
+   ],
+   "ragie-ban-inspired-tech-template": [
+    10,
+    0
+   ],
+   "rawthentic-inspired-template": [
+    15,
+    0
+   ],
+   "rendher-inspired-ableton-template": [
+    15,
+    0
+   ],
+   "slugg-inspired-tech-house-project": [
+    15,
+    0
+   ],
+   "solid-grooves-inspired-template": [
+    15,
+    0
+   ],
+   "sosa-coco-inspired-ableton-template": [
+    15,
+    0
+   ],
+   "tony-romera-inspired-template": [
+    15,
+    0
+   ],
+   "toolroom-inspired-template": [
+    15,
+    0
+   ],
+   "white-off-inspired-template": [
+    15,
+    0
+   ],
+   "fisher-type-drop-tech-house-ableton-template-project": [
+    10,
+    0
+   ],
+   "morph-drift-phonk-ableton-template": [
+    20,
+    0
+   ],
+   "at-ease-lofi-house": [
+    85,
+    0
+   ],
+   "deadmau5-is-pretty-cool": [
+    69,
+    0
+   ],
+   "eclipse-electro-step": [
+    50,
+    0
+   ],
+   "waterpark-blues": [
+    55,
+    0
+   ],
+   "crazy-straw": [
+    69,
+    0
+   ],
+   "yoyo": [
+    69,
+    0
+   ],
+   "feel-it": [
+    69,
+    0
+   ],
+   "clouds-passing": [
+    115,
+    0
+   ],
+   "all-i-want": [
+    250,
+    0
+   ],
+   "peace-of-mind": [
+    115,
+    0
+   ],
+   "memphis-rap-vocals": [
+    10,
+    0
+   ],
+   "sad-reverb-guitars-1": [
+    10,
+    0
+   ],
+   "spring-reverb-guitars": [
+    10,
+    0
+   ],
+   "sad-reverb-guitars": [
+    10,
+    0
+   ],
+   "impacto": [
+    5,
+    0
+   ],
+   "classico": [
+    5,
+    0
+   ],
+   "captura": [
+    5,
+    0
+   ],
+   "basal": [
+    5,
+    0
+   ],
+   "eutimia": [
+    5,
+    0
+   ],
+   "alegro": [
+    5,
+    0
+   ],
+   "aura": [
+    5,
+    0
+   ],
+   "nox-electro": [
+    2,
+    0
+   ],
+   "dimensao": [
+    5,
+    0
+   ],
+   "abismo": [
+    5,
+    0
+   ],
+   "abrigo": [
+    5,
+    0
+   ],
+   "hardstyle-bootleg": [
+    10,
+    0
+   ],
+   "no-time-to-die-hardstyle-bootleg": [
+    12,
+    0
+   ],
+   "suave": [
+    5,
+    0
+   ],
+   "visao": [
+    5,
+    0
+   ],
+   "feitico": [
+    5,
+    0
+   ],
+   "mingal": [
+    5,
+    0
+   ],
+   "cirkular": [
+    115,
+    0
+   ],
+   "light-as-a-feather": [
+    115,
+    0
+   ],
+   "kallyn-color-bass-vol-2-demo-flp": [
+    0,
+    0
+   ],
+   "color-bass-vol-2": [
+    5,
+    0
+   ],
+   "space": [
+    199,
+    0
+   ],
+   "medievil-music-elektrodar-veles-sounds": [
+    3,
+    0
+   ],
+   "medievil-music-elektrodar-liquavra-drums": [
+    3,
+    0
+   ],
+   "medievil-music-elektrodar-techno-maxhina": [
+    3,
+    0
+   ],
+   "medievil-music-elektrodar-techno-rage": [
+    3,
+    0
+   ],
+   "midnightnox": [
+    2,
+    0
+   ],
+   "edm-enigma": [
+    20,
+    0
+   ],
+   "vibey-tapes-preset-pack": [
+    20,
+    0
+   ],
+   "vibey-tapes-free-sample-pack": [
+    1,
+    0
+   ],
+   "free-3d-skull-visual": [
+    0,
+    0
+   ],
+   "future-type-beat": [
+    25,
+    0
+   ],
+   "pharrell-type-beat-2": [
+    25,
+    0
+   ],
+   "mr-beast-type-beat": [
+    25,
+    0
+   ],
+   "melodic-techno-vol-4": [
+    2,
+    0
+   ],
+   "melodic-techno-vol-3": [
+    2,
+    0
+   ],
+   "slap-house-brazillian-bass-vol-4": [
+    2,
+    0
+   ],
+   "pharrell-type-beat": [
+    25,
+    0
+   ],
+   "future-bass-vol-3": [
+    2,
+    0
+   ],
+   "future-bass-vol-2": [
+    2,
+    0
+   ],
+   "melodic-dubstep-vol-2": [
+    2,
+    0
+   ],
+   "modern-tech-house-vol-2": [
+    2,
+    0
+   ],
+   "try": [
+    115,
+    0
+   ],
+   "sweat-love": [
+    1500,
+    0
+   ],
+   "nas": [
+    119,
+    0
+   ],
+   "bloody-assasin": [
+    5,
+    0
+   ],
+   "laid-back": [
+    7,
+    0
+   ],
+   "guiro-galore": [
+    5,
+    0
+   ],
+   "professional-melodic-dubstep-color-bass-fl-studio-project": [
+    5,
+    0
+   ],
+   "psy-trance": [
+    25,
+    0
+   ],
+   "melodic-techno-collection": [
+    8,
+    0
+   ],
+   "the-bass-ghost-house-sample-pack-vol-2-minimal-deep-tech-tech-house": [
+    15,
+    0
+   ],
+   "stems-for-dance-dee-r": [
+    25,
+    0
+   ],
+   "flp-how-to-james-hype-byor-fisher-tech-house-fl-studio-project": [
+    9.99,
+    0
+   ],
+   "lil-guitar-sad-guitar-pack": [
+    14.99,
+    0
+   ],
+   "noxone-2": [
+    1,
+    0
+   ],
+   "future-bass": [
+    2,
+    0
+   ],
+   "phonk-ableton-template-stems-midi": [
+    2,
+    0
+   ],
+   "melodic-dubstep-ableton-template-stems-midi": [
+    2,
+    0
+   ],
+   "melodic-techno-ableton-template-stems-midi": [
+    2,
+    0
+   ],
+   "modern-tech-house-1": [
+    2,
+    0
+   ],
+   "soothe2-colour-bass-patch": [
+    0,
+    0
+   ],
+   "squirrel-gun-flp": [
+    0,
+    0
+   ],
+   "promise-1": [
+    349,
+    0
+   ],
+   "rizzness-on-ten": [
+    20,
+    0
+   ],
+   "afrobeat": [
+    50,
+    0
+   ],
+   "quanta": [
+    5,
+    0
+   ],
+   "serum-uptempo-kick-project": [
+    12,
+    0
+   ],
+   "vocal-trap-full-ableton-project-template": [
+    2,
+    0
+   ],
+   "rebelion-city-lights-leads-kick-remake-project": [
+    30,
+    0
+   ],
+   "melodic-vocal-uplifting-trance": [
+    2,
+    0
+   ],
+   "mercenary": [
+    0.5,
+    0
+   ],
+   "mutilator-punch-project-file": [
+    12,
+    0
+   ],
+   "funky-nights": [
+    30,
+    0
+   ],
+   "no-signal": [
+    130,
+    0
+   ],
+   "loco-loco": [
+    199,
+    0
+   ],
+   "acid-in-the-house-house-template-for-ableton-live-logic-pro-x-cubase-and-fl-studio": [
+    30,
+    0
+   ],
+   "african-soul-deep-progressive-template-for-ableton-live-cubase-fl-studio-and-logic-pro-x": [
+    30,
+    0
+   ],
+   "finding-a-way": [
+    3.99,
+    0
+   ],
+   "producer-1": [
+    0.01,
+    0
+   ],
+   "melodic-riddim-starter-pack": [
+    5,
+    0
+   ],
+   "krushy-mayhem": [
+    7,
+    0
+   ],
+   "kicks-like-atmozfears-devin-wild-project": [
+    12,
+    0
+   ],
+   "cheapskate-budget-bangers": [
+    5,
+    0
+   ],
+   "neon-tunnel-free-vj-loop": [
+    0,
+    0
+   ],
+   "mixing-records": [
+    97.49,
+    0
+   ],
+   "neon-cube-visual-vj-loop-animation": [
+    10,
+    0
+   ],
+   "monster-eye-visual-vj-loop-animation": [
+    25,
+    0
+   ],
+   "red-skull-visual-animation-vj-loop": [
+    5,
+    0
+   ],
+   "dom-dolla-tutorial": [
+    15,
+    0
+   ],
+   "bastile-pompeii-audien-remix-fl-studio-remake-1": [
+    55,
+    0
+   ],
+   "intents-anthem-into-the-wild-lead-remake-project": [
+    12,
+    0
+   ],
+   "regrets": [
+    300,
+    0
+   ],
+   "gated-kicks-like-warface-project-file": [
+    12,
+    0
+   ],
+   "pa-romper": [
+    250,
+    0
+   ],
+   "slap-house-brazillian-bass-template-complete-track": [
+    2,
+    0
+   ],
+   "bring-me-somebody": [
+    300,
+    0
+   ],
+   "the-stars": [
+    300,
+    0
+   ],
+   "professional-melodic-house-flp-with-royalty-free-vocals": [
+    10,
+    0
+   ],
+   "professional-color-bass-flp": [
+    3,
+    0
+   ],
+   "road-trip": [
+    95,
+    0
+   ],
+   "tita-lau-project-file": [
+    15,
+    0
+   ],
+   "zatox-my-life-leads-remake-project": [
+    10,
+    0
+   ],
+   "quilt-trap-horrorcore": [
+    50,
+    0
+   ],
+   "groovzilla-afrobeats-drums-percussions": [
+    9.95,
+    0
+   ],
+   "alomo-house-vibes": [
+    15.99,
+    0
+   ],
+   "tech-house-minimal-tech-samples-pack": [
+    60,
+    0
+   ],
+   "d-sturb-kick-project": [
+    12,
+    0
+   ],
+   "pajane-inspired-ableton-template": [
+    15,
+    0
+   ],
+   "kiss": [
+    119,
+    0
+   ],
+   "hiphop-drake-type-beat-w-switch-up-sicko-mode-type": [
+    200,
+    0
+   ],
+   "trap": [
+    15000,
+    0
+   ],
+   "pop-tropical-house": [
+    2,
+    0
+   ],
+   "jon-daviz-walk-with-it": [
+    270,
+    0
+   ],
+   "futuristic-raw-kicks-like-deezl-project": [
+    15,
+    0
+   ],
+   "adrenalize-far-from-home-remake-project": [
+    12,
+    0
+   ],
+   "suprovot": [
+    100,
+    0
+   ],
+   "let-go-love-ones-hands": [
+    150,
+    0
+   ],
+   "kick-collection": [
+    5,
+    0
+   ],
+   "mind-yearn-with-time": [
+    150,
+    0
+   ],
+   "plusfeedback": [
+    20,
+    0
+   ],
+   "mixing-and-mastering": [
+    100,
+    0
+   ],
+   "ghost-plusbeatz": [
+    100,
+    0
+   ],
+   "fatd-proq3-presets-for-samples": [
+    1.9,
+    0
+   ],
+   "free-for-profit-don-toliver-x-travis-scott-days-before-bandit": [
+    10,
+    0
+   ],
+   "memorizing": [
+    10,
+    0
+   ],
+   "shoke-inspired-style-template-2": [
+    15,
+    0
+   ],
+   "the-straikerz-kick-project": [
+    12,
+    0
+   ],
+   "neroz-e-m-p-kick-remake-project": [
+    12,
+    0
+   ],
+   "with-me": [
+    180,
+    0
+   ],
+   "the-club": [
+    200,
+    0
+   ],
+   "san-pacho-inspired-ableton-template": [
+    15,
+    0
+   ],
+   "bomber": [
+    20,
+    0
+   ],
+   "zatox-the-purge-kick-project": [
+    12,
+    0
+   ],
+   "how-to-rich-flex": [
+    9,
+    15
+   ],
+   "wheats-detlef-ableton-template": [
+    15,
+    0
+   ],
+   "fallon-hellbent-inspired-latin-tech-house-template": [
+    15,
+    0
+   ],
+   "i-will-be-a-custom-beat-multigenre-producer-for-your-song": [
+    60,
+    0
+   ],
+   "create-a-house-track-in-ableton-in-20-minutes": [
+    12.99,
+    0
+   ],
+   "progressive-house-lost-original-mix": [
+    35,
+    0
+   ],
+   "francisco-panesso-edm-track": [
+    35,
+    0
+   ],
+   "reggaeton-beat-pop": [
+    40,
+    0
+   ],
+   "francisco-panesso-hip-hop-beat-boom-bap": [
+    30,
+    0
+   ],
+   "rooler-move-2-da-beat-kick-remake-project": [
+    12,
+    0
+   ],
+   "foreword": [
+    9.99,
+    0
+   ],
+   "barrio": [
+    9.99,
+    0
+   ],
+   "bumpa": [
+    9.99,
+    0
+   ],
+   "go-somewhere": [
+    10,
+    0
+   ],
+   "flow-cushion": [
+    9.99,
+    0
+   ],
+   "custom-beat": [
+    30,
+    0
+   ],
+   "ghost-producer": [
+    0.1,
+    0
+   ],
+   "the-house-of-house": [
+    199,
+    299
+   ],
+   "wade-tutorial": [
+    15,
+    0
+   ],
+   "connected": [
+    199,
+    0
+   ],
+   "house-music-project-file": [
+    15,
+    0
+   ],
+   "trance-uplifting-drop-template": [
+    2,
+    0
+   ],
+   "avi8-heartless-leads-project": [
+    10,
+    0
+   ],
+   "detlef-issues-inspired-ableton-project": [
+    15,
+    0
+   ],
+   "on-the-ground-original-samples-from-james-hype": [
+    0,
+    0
+   ],
+   "eli-brown-be-the-one-fl-studio-remake": [
+    10,
+    0
+   ],
+   "eli-brown-be-the-one-ableton-remake": [
+    10,
+    0
+   ],
+   "modules-bass-bootcamp": [
+    36.76,
+    0
+   ],
+   "circuit-breakers-modules-dnb-toolkit": [
+    11.59,
+    0
+   ],
+   "tech-house-project-in-style-of-repopulate-mars-experts-only-real-m": [
+    20,
+    0
+   ],
+   "nox-audios": [
+    0,
+    0
+   ],
+   "horror-for-vital-by-anton-what": [
+    5,
+    0
+   ],
+   "mastering": [
+    60,
+    0
+   ],
+   "mixing-service": [
+    155,
+    0
+   ],
+   "genesi-everything-you-have-done-meduza-edit-fl-studio-remake": [
+    10,
+    0
+   ],
+   "genesi-everything-you-have-done-meduza-edit-ableton-remake": [
+    10,
+    0
+   ],
+   "minimal-glitch-generator-ableton-rack": [
+    15,
+    0
+   ],
+   "godcore-screech-project-the-geminizers-warface": [
+    10,
+    0
+   ],
+   "david-guetta-bebe-rexha-im-good-blue-fl-studio-remake": [
+    10,
+    0
+   ],
+   "deep-house-fl-studio": [
+    5,
+    0
+   ],
+   "techno-track-1-from-sweden": [
+    140,
+    0
+   ],
+   "trance-track-1-from-sweden": [
+    140,
+    0
+   ],
+   "edm1-from-sweden": [
+    140,
+    0
+   ],
+   "dbstf-primal-energy-leads-project": [
+    10,
+    0
+   ],
+   "dark-smile": [
+    199,
+    0
+   ],
+   "james-hype-project-file": [
+    11.99,
+    0
+   ],
+   "david-guetta-bebe-rexha-im-good-blue-ableton-remake": [
+    10,
+    0
+   ],
+   "audien-drifting-away-fl-studio-remake": [
+    30,
+    0
+   ],
+   "vasto-gated-kick-project": [
+    12,
+    0
+   ],
+   "dark-side": [
+    25,
+    0
+   ],
+   "shut-it-down": [
+    28.95,
+    0
+   ],
+   "rumba": [
+    249,
+    0
+   ],
+   "sonny-foder-mk-inspired-ableton-template": [
+    15,
+    0
+   ],
+   "i-will-be-your-music-producer": [
+    25,
+    0
+   ],
+   "95bpm-jump-rope-visualizer": [
+    200,
+    0
+   ],
+   "entered": [
+    47,
+    0
+   ],
+   "slap-house-brazillian-bass-drop-template": [
+    2,
+    0
+   ],
+   "run-it-up": [
+    20,
+    0
+   ],
+   "michael-bibi-endor-inspired-tech-house-track": [
+    15,
+    0
+   ],
+   "switch-type-beat-old-school-guitar": [
+    1,
+    0
+   ],
+   "record-player": [
+    35,
+    0
+   ],
+   "too-late-for-mama-slow": [
+    65,
+    0
+   ],
+   "bring-me-to-life": [
+    300,
+    0
+   ],
+   "cryex-leads-project": [
+    10,
+    0
+   ],
+   "love-me-too": [
+    160,
+    0
+   ],
+   "tell-me": [
+    99,
+    0
+   ],
+   "calma-brazil": [
+    150,
+    0
+   ],
+   "nuhuh": [
+    10,
+    0
+   ],
+   "new-jazz-type-beat-cant-blame-u": [
+    30,
+    0
+   ],
+   "new-jazz-type-beat-lovely": [
+    30,
+    0
+   ],
+   "new-jazz-type-beat-body": [
+    30,
+    0
+   ],
+   "pop-break": [
+    5,
+    0
+   ],
+   "too-late-for-mama": [
+    65,
+    0
+   ],
+   "risk": [
+    20,
+    0
+   ],
+   "slamm": [
+    15,
+    0
+   ],
+   "beat-making": [
+    18,
+    0
+   ],
+   "its-not-you": [
+    349,
+    0
+   ],
+   "ultra-house": [
+    30,
+    0
+   ],
+   "tech-house-grooves": [
+    28,
+    0
+   ],
+   "slap-house-1": [
+    30,
+    0
+   ],
+   "sensory-house": [
+    30,
+    0
+   ],
+   "power-house": [
+    30,
+    0
+   ],
+   "ibiza-house": [
+    30,
+    0
+   ],
+   "hard-house-anthems": [
+    30,
+    0
+   ],
+   "dark-bass-house": [
+    26,
+    0
+   ],
+   "tech-house-punch": [
+    28,
+    0
+   ],
+   "on-fire": [
+    300,
+    0
+   ],
+   "park-secret-moody-indie-guitar-loops-vol-1": [
+    5.99,
+    0
+   ],
+   "park-secret-funky-indie-guitar-loops-vol-1": [
+    5.99,
+    0
+   ],
+   "mix-and-master-in-rap-pop-and-hiphop": [
+    150,
+    0
+   ],
+   "produce-you-a-hard-techno-track": [
+    60,
+    0
+   ],
+   "awake": [
+    20,
+    0
+   ],
+   "armored-bass-house": [
+    28,
+    0
+   ],
+   "6ix-strings": [
+    4.99,
+    0
+   ],
+   "send-my-regards": [
+    9.99,
+    0
+   ],
+   "was-it-even-real": [
+    400,
+    0
+   ],
+   "hard-times-vol-1-by-blsro-rave-industrial-techno-sample-pack": [
+    20,
+    0
+   ],
+   "bunnydance-vol-1-by-blsro-hard-rave-samples": [
+    20,
+    0
+   ],
+   "the-avance-horror-pack": [
+    20,
+    0
+   ],
+   "tech-house-like-fisher-flp": [
+    7,
+    10
+   ],
+   "tech-house-like-fisher": [
+    5,
+    0
+   ],
+   "bookings-only": [
+    150,
+    0
+   ],
+   "element-gated-kick-project": [
+    12,
+    0
+   ],
+   "drake-travis-scott-type-beat": [
+    9.99,
+    0
+   ],
+   "baby-keem-type-beat": [
+    9.99,
+    0
+   ],
+   "afro-beats": [
+    100,
+    0
+   ],
+   "scrapped-house-project": [
+    20,
+    0
+   ],
+   "2024-schranz-rave-techno-sample-pack": [
+    25,
+    0
+   ],
+   "pro-vocal-mixing-mastering": [
+    29,
+    0
+   ],
+   "magia": [
+    200,
+    0
+   ],
+   "hard-rain-oldschool-hiphop-melancholic": [
+    30,
+    0
+   ],
+   "be-free": [
+    200,
+    0
+   ],
+   "2000-tech-house-sounds": [
+    30,
+    0
+   ],
+   "pop-house": [
+    20,
+    0
+   ],
+   "slap-house": [
+    20,
+    0
+   ],
+   "synthwave": [
+    20,
+    0
+   ],
+   "how-to-make-a-deep-tech-bass-in-serum": [
+    4,
+    0
+   ],
+   "d-block-s-te-fan-style-mid-intro-kick-project": [
+    12,
+    0
+   ],
+   "midle": [
+    350,
+    0
+   ],
+   "60-jazzy-piano-bass-lofi-sample-midi-pack": [
+    20,
+    0
+   ],
+   "tate-mcrae-greedy-remake": [
+    9.99,
+    0
+   ],
+   "lofi-midi-pack": [
+    10,
+    0
+   ],
+   "melodic-techno-1": [
+    20,
+    0
+   ],
+   "tech-house-serum-presets-1": [
+    20,
+    0
+   ],
+   "tech-house-dancefloor": [
+    20,
+    0
+   ],
+   "brejcha-techno-1": [
+    20,
+    0
+   ],
+   "8-pm": [
+    30,
+    0
+   ],
+   "dee-r-vocal-fx-ableton-rack": [
+    1,
+    0
+   ],
+   "afro-house": [
+    5,
+    0
+   ],
+   "yoku-color-bass-essentials": [
+    0,
+    0
+   ],
+   "chapter-v-kick-project": [
+    12,
+    0
+   ],
+   "legacy": [
+    150,
+    0
+   ],
+   "cant-sleep": [
+    50,
+    0
+   ],
+   "deep-house-vol-1": [
+    20,
+    0
+   ],
+   "cyberpunk-vol-1": [
+    20,
+    0
+   ],
+   "dance": [
+    149,
+    0
+   ],
+   "never-stop": [
+    100,
+    0
+   ],
+   "feels-like": [
+    100,
+    0
+   ],
+   "addicted": [
+    110,
+    0
+   ],
+   "without-you": [
+    150,
+    0
+   ],
+   "tutorial-making-dub-in-arrangement-view-2": [
+    6,
+    0
+   ],
+   "eyes-on-me": [
+    100,
+    0
+   ],
+   "vroom-vroom": [
+    20,
+    0
+   ],
+   "kruelty-screech-project": [
+    10,
+    0
+   ],
+   "dual-damage-high-pitched-gated-kick-project": [
+    12,
+    0
+   ],
+   "italian-swag": [
+    100,
+    0
+   ],
+   "lil-nas-x-type-beat": [
+    200,
+    0
+   ],
+   "flp-professional-tech-house-mau-p-john-summit-hugel": [
+    5,
+    10
+   ],
+   "regain-dominate-remake-project": [
+    10,
+    0
+   ],
+   "patience-exclusive-beat": [
+    200,
+    0
+   ],
+   "professional-song-feedback": [
+    10,
+    0
+   ],
+   "1-on-1-coaching-session": [
+    60,
+    0
+   ],
+   "big-bass": [
+    400,
+    0
+   ],
+   "stem-mastering-hybrid-analog-meets-digital": [
+    199,
+    0
+   ],
+   "stereo-mastering-hybrid-analog-meets-digital": [
+    129,
+    0
+   ],
+   "sparkz-gated-kick-project": [
+    12,
+    0
+   ],
+   "spact-time": [
+    20,
+    0
+   ],
+   "invu-synthpop-1": [
+    20,
+    0
+   ],
+   "d-sturb-sound-of-the-thunder-lead-remake": [
+    10,
+    0
+   ],
+   "simulation-leads-remake-project": [
+    10,
+    0
+   ],
+   "sub-zero-project-kick-project": [
+    12,
+    0
+   ],
+   "atmozfears-kick-project": [
+    10,
+    0
+   ],
+   "kruelty-kick-project": [
+    10,
+    30
+   ],
+   "riot-shift-machinery-kick": [
+    7,
+    0
+   ],
+   "we-can-find-a-way": [
+    20,
+    0
+   ],
+   "i-got-it-original-mix": [
+    10,
+    0
+   ],
+   "free-flp-calvin-harris-sam-smith-desire-sparty-remake": [
+    5,
+    0
+   ],
+   "alone-melodic-techno-afterlife-style": [
+    199,
+    0
+   ],
+   "la-noche-1": [
+    10,
+    0
+   ],
+   "mahoya": [
+    20,
+    0
+   ],
+   "caliginous": [
+    300,
+    0
+   ],
+   "da-heat": [
+    150,
+    0
+   ],
+   "adjuzt-kick": [
+    10,
+    0
+   ],
+   "wait-for-me": [
+    400,
+    0
+   ],
+   "nicky-romero-jonas-blue-all-you-need-is-love-festival-editfl-studio-remake": [
+    50,
+    0
+   ],
+   "miss-you": [
+    350,
+    0
+   ],
+   "in-the-music": [
+    25,
+    0
+   ],
+   "ruff-x-deity-anthems-of-olympus-vol-1": [
+    19,
+    0
+   ],
+   "drum-and-bass-track": [
+    100,
+    0
+   ],
+   "music-mastering-mix-review-services": [
+    120,
+    0
+   ],
+   "future-bass-track-skrillex-jaron-style": [
+    230,
+    0
+   ],
+   "swarm-intelligence-production-project": [
+    14.95,
+    0
+   ],
+   "dont-stop": [
+    20,
+    0
+   ],
+   "cinnamon-melodic-house-techno": [
+    199,
+    0
+   ],
+   "lollipop-ableton-project": [
+    15,
+    0
+   ],
+   "the-bass-ghost-house-sample-pack-vol-1-tech-minimal-bass-house": [
+    12,
+    0
+   ],
+   "tutorial-dub-steppas-2-1": [
+    6,
+    0
+   ],
+   "repopulate-mars-ableton-10-tech-house-template": [
+    20,
+    0
+   ],
+   "give-me-a-break-vinyl-hip-hop-break-loops": [
+    9.99,
+    0
+   ],
+   "making-beats-moving-feet": [
+    20,
+    0
+   ],
+   "ringtone-edm": [
+    9.99,
+    20
+   ],
+   "throw-dat-phonk-ableton-project-file": [
+    10,
+    0
+   ],
+   "contraband-phonk-ableton-project-file-1": [
+    10,
+    0
+   ],
+   "space-laces-phone-tap-cheapskate-remix": [
+    15,
+    45
+   ],
+   "let-me": [
+    19,
+    0
+   ],
+   "jungala-tech-house-ableton-project": [
+    15,
+    0
+   ],
+   "track-feedback-with-kyle-zuck": [
+    15,
+    0
+   ],
+   "one-on-one-with-kyle-zuck": [
+    74,
+    0
+   ],
+   "the-dnb-archive-vol-1": [
+    10,
+    0
+   ],
+   "the-juice-800-sub-special": [
+    2,
+    0
+   ],
+   "the-awakening": [
+    35,
+    0
+   ],
+   "echos-of-the-future": [
+    6.99,
+    13.99
+   ],
+   "in-your-head-first-half": [
+    5,
+    0
+   ],
+   "live-track-feedback-by-galactor": [
+    70,
+    0
+   ],
+   "love-like-this-kpop-garage": [
+    20,
+    0
+   ],
+   "one-on-one-zoom-studio-session": [
+    75,
+    0
+   ],
+   "track-feedback-by-dave-summit": [
+    90,
+    0
+   ],
+   "mixing-and-mastering-with-dave-summit": [
+    275,
+    0
+   ],
+   "edm-future-bass-pop-track-1": [
+    25,
+    0
+   ],
+   "spooky-club-banger-music-track": [
+    50,
+    0
+   ],
+   "hiphop-soul-pop-type-beat-3-thoughts": [
+    25,
+    0
+   ],
+   "hiphop-soul-pop-type-beat-2-fake-love": [
+    25,
+    0
+   ],
+   "hiphop-soul-type-beat-highway": [
+    50,
+    0
+   ],
+   "hiphop-drill-pop-type-beat-1": [
+    50,
+    0
+   ],
+   "liquid-drum-and-bass": [
+    5,
+    10
+   ],
+   "zalghouta": [
+    28.95,
+    0
+   ],
+   "arajaka": [
+    28.95,
+    0
+   ],
+   "uro-tra-h-feat-ogaquafina-1f2f-cashew-remix": [
+    15,
+    0
+   ],
+   "lektrique-all-fl-patchers-bundle": [
+    80,
+    0
+   ],
+   "clublionx-kagura-project-visualizer-v1": [
+    8,
+    0
+   ],
+   "fl-studio-washout-rack": [
+    25,
+    0
+   ],
+   "wtf-flp-stems": [
+    15,
+    45
+   ],
+   "fl-studio-erosion-patcher": [
+    25,
+    0
+   ],
+   "fl-studio-master-rack": [
+    25,
+    0
+   ],
+   "fl-studio-vocal-template": [
+    15,
+    0
+   ],
+   "lektrique-fl-production-template": [
+    15,
+    0
+   ],
+   "ableton-vocal-template": [
+    15,
+    0
+   ],
+   "ableton-production-template": [
+    15,
+    0
+   ],
+   "yoku-color-bass-vol-1": [
+    5,
+    0
+   ],
+   "kavinsky-nightcall-single-spark-remix": [
+    30,
+    75
+   ],
+   "professional-drum-and-bass-flp-with-vocals": [
+    10,
+    0
+   ],
+   "neuro-dnb-synth-vol-1": [
+    34.99,
+    0
+   ],
+   "scream-verb-hk": [
+    30,
+    0
+   ],
+   "raptures-me-times-two-ft-moav-flp": [
+    15,
+    0
+   ],
+   "doodles": [
+    20,
+    0
+   ],
+   "angry-house-legacy-preset-pack-serum": [
+    28.95,
+    0
+   ],
+   "reverb-delay-sidechain-cd": [
+    3,
+    0
+   ],
+   "big-lead-brightener-yh": [
+    3,
+    0
+   ],
+   "feeling-like-zo": [
+    100,
+    0
+   ],
+   "make-it-right-nj": [
+    28.95,
+    0
+   ],
+   "promise-wh": [
+    50,
+    0
+   ],
+   "the-avance-sub-ableton-rack": [
+    15,
+    0
+   ],
+   "avance-sample-pack-vol-1": [
+    25,
+    0
+   ],
+   "grl-gvng-style-of-xg": [
+    20,
+    0
+   ],
+   "diamond-qo": [
+    99.9,
+    0
+   ],
+   "i-like-it": [
+    299,
+    0
+   ],
+   "vangorian-serum-preset-pack-vol-1-vy": [
+    25,
+    0
+   ],
+   "gurgly": [
+    10,
+    20
+   ],
+   "kanye-west-no-more-parties-in-la-ryans-mix-sv": [
+    15,
+    0
+   ],
+   "ear-candy-filter": [
+    4,
+    0
+   ],
+   "street-king-ft-king-marino": [
+    30,
+    0
+   ],
+   "let-it-drop-xz": [
+    30,
+    0
+   ],
+   "bananza-0z": [
+    9.99,
+    0
+   ],
+   "axwell-tremolo-trick-6c": [
+    10,
+    0
+   ],
+   "kep1er케플러-wa-da-da-fl-studio-remake": [
+    15,
+    0
+   ],
+   "get-this-party-started-xw": [
+    40,
+    0
+   ],
+   "running-4q": [
+    40,
+    65
+   ],
+   "track-in-1-hour-pt-2": [
+    15,
+    0
+   ],
+   "track-in-1-hour": [
+    15,
+    0
+   ],
+   "lollipop-89": [
+    30,
+    0
+   ],
+   "ateez에이티즈-bouncy-k-hot-chilli-peppers-fl-studio-remake": [
+    15,
+    0
+   ],
+   "wild-jd": [
+    15,
+    0
+   ],
+   "take-you-high-9n": [
+    15,
+    0
+   ],
+   "david-guetta-titanium-ft-sia-single-spark-remix": [
+    40,
+    80
+   ],
+   "deep-house-selected-style-project": [
+    6.99,
+    0
+   ],
+   "serum-madness-gz": [
+    13.99,
+    0
+   ],
+   "blamblam-jw": [
+    150,
+    0
+   ],
+   "lying-in-my-bed": [
+    25,
+    0
+   ],
+   "kumbo-aa": [
+    7,
+    0
+   ],
+   "fleet-riddim-ft-dmvu": [
+    8,
+    0
+   ],
+   "sandbox-colour-bass-flp-5v": [
+    10,
+    0
+   ],
+   "sandbox-colour-bass-flp-extension-pack": [
+    0.5,
+    0
+   ],
+   "stonebank-like-uk-hardcore-flp-mo": [
+    15,
+    30
+   ],
+   "deadmau5-kaskade-i-remember-john-summit-remix-remake": [
+    45.99,
+    0
+   ],
+   "cinema-1p": [
+    5,
+    0
+   ],
+   "all-i-want-5m": [
+    10,
+    0
+   ],
+   "no-sleep-xn": [
+    10,
+    25
+   ],
+   "country-synthwave-fj": [
+    9.99,
+    24.99
+   ],
+   "from-the-burn-xy": [
+    25,
+    0
+   ],
+   "yesu-kn": [
+    25,
+    0
+   ],
+   "feel-it-ku": [
+    14.99,
+    0
+   ],
+   "yoku-see-it-through": [
+    5,
+    0
+   ],
+   "dont-worry-about-it": [
+    5,
+    10
+   ],
+   "telefuck-2v": [
+    5,
+    10
+   ],
+   "legacy-be-somethingflp-stems": [
+    15,
+    30
+   ],
+   "3000-gz": [
+    20,
+    0
+   ],
+   "7000-db": [
+    20,
+    0
+   ],
+   "switchback-phonk-ableton-project-file": [
+    15,
+    0
+   ],
+   "pitch-modulated-fm-growl-of": [
+    1,
+    0
+   ],
+   "fisher-like-tech-house-beat-y7": [
+    13,
+    0
+   ],
+   "professional-selected-style-deep-house-project-t2": [
+    8,
+    0
+   ],
+   "camelphat-your-mind-remake": [
+    19.99,
+    0
+   ],
+   "eternity-uw": [
+    5,
+    0
+   ],
+   "kream-style-flp-kb": [
+    19.99,
+    0
+   ],
+   "blackpink-yeah-yeah-yeah-fl-studio-remake": [
+    15,
+    0
+   ],
+   "skrillex-xena-shards-remix": [
+    0.99,
+    0
+   ],
+   "swerve-pt": [
+    12.99,
+    0
+   ],
+   "resemblance-wu": [
+    50,
+    0
+   ],
+   "tech-house-set-intro": [
+    10,
+    0
+   ],
+   "secret-number시크릿넘버-odyssey-fl-studio-remake": [
+    15,
+    0
+   ],
+   "waiting-outside-8r": [
+    5,
+    15
+   ],
+   "caffiene-jn": [
+    1.29,
+    5
+   ],
+   "tech-house-start-project-d9": [
+    5,
+    10
+   ],
+   "stupid-kid": [
+    5,
+    10
+   ],
+   "akuma-phonk-ableton-project-file": [
+    10,
+    0
+   ],
+   "stay-kl": [
+    485,
+    0
+   ],
+   "acid-breaker-6k": [
+    525,
+    0
+   ],
+   "el-loco": [
+    400,
+    0
+   ],
+   "downlow-i4": [
+    525,
+    0
+   ],
+   "gravity-i6": [
+    5,
+    10
+   ],
+   "up-and-down-xf": [
+    5,
+    10
+   ],
+   "colours-cx": [
+    440,
+    0
+   ],
+   "phonkie-lx": [
+    1,
+    0
+   ],
+   "hard-dancecore-template-4w": [
+    5,
+    0
+   ],
+   "socotra-x3": [
+    280,
+    0
+   ],
+   "groovy-tech-house-track": [
+    13.99,
+    0
+   ],
+   "pargoy-z0": [
+    8,
+    0
+   ],
+   "professional-future-bass-pop": [
+    10,
+    0
+   ],
+   "freaky-sm": [
+    10,
+    0
+   ],
+   "pandoras-box-kda-style": [
+    20,
+    0
+   ],
+   "stark-yf": [
+    7,
+    0
+   ],
+   "monster-brass-ol": [
+    16,
+    0
+   ],
+   "edm": [
+    15,
+    0
+   ],
+   "no-rest-revealed-style-track": [
+    20,
+    0
+   ],
+   "your-body": [
+    450,
+    0
+   ],
+   "little-closer-cp": [
+    400,
+    0
+   ],
+   "i-want-to-tell-u-hr": [
+    400,
+    0
+   ],
+   "90s-piano-house-ql": [
+    32,
+    0
+   ],
+   "moth-to-a-flame-remake-flp-xa": [
+    20,
+    0
+   ],
+   "vigorous-rp": [
+    8.99,
+    0
+   ],
+   "rave-revival-o2": [
+    80,
+    0
+   ],
+   "sweep-beat-3": [
+    10,
+    0
+   ],
+   "sweep-beat-2": [
+    10,
+    0
+   ],
+   "sweep-beat-tp": [
+    10,
+    0
+   ],
+   "fl-studio-template-for-house-music-david-fritz-edition": [
+    9.49,
+    0
+   ],
+   "how-to-make-a-rolling-fx-loop-with-abletons-stock-plugins": [
+    3.82,
+    0
+   ],
+   "legacy-dream-of-you-flp-stems": [
+    15,
+    0
+   ],
+   "timmy-trumpet-diamonds-fl-studio-remake": [
+    50,
+    0
+   ],
+   "beautiful-nightmares-c6": [
+    60,
+    0
+   ],
+   "fiesta-tech-house-ableton-template-toolroom-style": [
+    20,
+    0
+   ],
+   "dont-be-scared": [
+    240,
+    0
+   ],
+   "jungle-tech-house-ableton-template-biscits-style": [
+    20,
+    0
+   ],
+   "jungle-tech-house-fl-studio-template-biscits-style": [
+    20,
+    0
+   ],
+   "flower-power-fl-studio-template-boris-brejcha-style": [
+    20,
+    0
+   ],
+   "flower-power-ableton-template-boris-brejcha-style-yu": [
+    20,
+    0
+   ],
+   "groove-tech-house-fl-studio-template-eli-brown-style": [
+    20,
+    0
+   ],
+   "groove-tech-house-ableton-template-eli-brown-style": [
+    20,
+    0
+   ],
+   "techno-magic-ableton-template-boris-brejcha-style": [
+    20,
+    0
+   ],
+   "techno-magic-fl-studio-template-boris-brejcha-style": [
+    20,
+    0
+   ],
+   "fiesta-tech-house-fl-studio-template-toolroom-style": [
+    20,
+    0
+   ],
+   "topic-chain-my-heart-remake-fl-studio": [
+    20,
+    0
+   ],
+   "topic-chain-my-heart-remake-ableton": [
+    20,
+    0
+   ],
+   "images-fl-studio": [
+    20,
+    0
+   ],
+   "images-ableton": [
+    20,
+    0
+   ],
+   "dream-ship-fl-studio": [
+    20,
+    0
+   ],
+   "dream-ship-ableton": [
+    20,
+    0
+   ],
+   "regard-ride-it-remake-fl-studio": [
+    20,
+    0
+   ],
+   "regard-ride-it-remake-ableton": [
+    20,
+    0
+   ],
+   "summer-in-love-ableton": [
+    20,
+    0
+   ],
+   "summer-in-love-fl-studio": [
+    20,
+    0
+   ],
+   "all-i-need-ableton-template-ka": [
+    20,
+    0
+   ],
+   "all-i-need-fl-studio-template": [
+    20,
+    0
+   ],
+   "something-mw": [
+    29,
+    0
+   ],
+   "feel-the-love-t4": [
+    2.99,
+    0
+   ],
+   "smoke-ms": [
+    2.99,
+    0
+   ],
+   "african-rain-jx": [
+    30,
+    0
+   ],
+   "legacy-just-like-you-als-stems": [
+    15,
+    0
+   ],
+   "bright-city-lights-fq": [
+    5.99,
+    0
+   ],
+   "old-skool-gz": [
+    15,
+    0
+   ],
+   "freedom-of-speech-8d": [
+    300,
+    0
+   ],
+   "banging-weird-vibe-gq": [
+    20,
+    0
+   ],
+   "all-you-gotta-do-hr": [
+    20,
+    0
+   ],
+   "cloonee-style-template-3w": [
+    14.99,
+    0
+   ],
+   "marco-carola-style-template-ll": [
+    14.9,
+    0
+   ],
+   "rave-thing-habstrakt-style-eu": [
+    5,
+    10
+   ],
+   "decrypted-nd": [
+    14.99,
+    0
+   ],
+   "legacy-bounce-house-flp-stems": [
+    15,
+    0
+   ],
+   "legacy-rapture-flp-stems": [
+    15,
+    0
+   ],
+   "chord-stab-v5": [
+    5.05,
+    0
+   ],
+   "white-noise-riser-mc": [
+    2.52,
+    0
+   ],
+   "legacy-you-i-als-stems": [
+    15,
+    0
+   ],
+   "legacy-nobody-else-als-stems": [
+    15,
+    0
+   ],
+   "organ-sound-up": [
+    5.05,
+    0
+   ],
+   "pitch-modulation-womp-yt": [
+    3.79,
+    0
+   ],
+   "up-riser-demo-ss": [
+    3.79,
+    0
+   ],
+   "donk-sound-yi": [
+    5.05,
+    0
+   ],
+   "garage-womp-bass-sh": [
+    5.05,
+    10
+   ],
+   "reece-bass-rumble-m8": [
+    5.05,
+    0
+   ],
+   "parabellum-ht": [
+    150,
+    0
+   ],
+   "stand-up-1o": [
+    20,
+    0
+   ],
+   "somnium-ht": [
+    20,
+    0
+   ],
+   "over-and-over-style-gn": [
+    7.38,
+    0
+   ],
+   "kawaii-future-bass-with-cubase-zx": [
+    20,
+    40
+   ],
+   "then-what-gn": [
+    300,
+    0
+   ],
+   "creativity-eg": [
+    0,
+    0
+   ],
+   "roots-of-house-music-cz": [
+    20,
+    0
+   ],
+   "burial-wukah-remix-midi-pack-ly": [
+    15,
+    0
+   ],
+   "take-a-flight-n9": [
+    20,
+    0
+   ],
+   "burial-midi-pack-mt": [
+    15,
+    0
+   ],
+   "beyond-borders-rd": [
+    15,
+    0
+   ],
+   "plain-fields": [
+    20,
+    0
+   ],
+   "thrilling-saga-kp": [
+    5,
+    0
+   ],
+   "secrets-of-the-unknown-bu": [
+    5,
+    0
+   ],
+   "just-lofi-vibes-rk": [
+    20,
+    0
+   ],
+   "dont-give-up": [
+    25,
+    0
+   ],
+   "canary-wharf-fn": [
+    15,
+    0
+   ],
+   "kukuona-uy": [
+    300,
+    0
+   ],
+   "feet-on-fire-vp": [
+    300,
+    0
+   ],
+   "gabbs-q0": [
+    300,
+    0
+   ],
+   "add-milk-6f": [
+    300,
+    0
+   ],
+   "burning-in-my-soul-fj": [
+    15,
+    0
+   ],
+   "never-let-me-go-yb": [
+    40,
+    0
+   ],
+   "ultimate-battle-w6": [
+    5,
+    0
+   ],
+   "anarchy-sc": [
+    5,
+    0
+   ],
+   "like-that-so": [
+    30,
+    0
+   ],
+   "i-should-have-known-n1": [
+    20,
+    0
+   ],
+   "long-distance-deep-house-w6": [
+    10,
+    0
+   ],
+   "alright-at": [
+    20,
+    0
+   ],
+   "better-with-you-ft": [
+    200,
+    0
+   ],
+   "here-we-go-again-9i": [
+    20,
+    0
+   ],
+   "disco-feeling-ar": [
+    25,
+    0
+   ],
+   "twist-lh": [
+    10,
+    0
+   ],
+   "abanico-bx": [
+    15,
+    0
+   ],
+   "on-my-mind-s4": [
+    30,
+    0
+   ],
+   "let-it-whip-l9": [
+    20,
+    0
+   ],
+   "lies-to-be-told-4d": [
+    20,
+    0
+   ],
+   "back-to-the-funk-6e": [
+    20,
+    40
+   ],
+   "fire-fire-fire-7m": [
+    45,
+    0
+   ],
+   "welcome-to-the-jungle-py": [
+    40,
+    80
+   ],
+   "shut-up-tn": [
+    20,
+    0
+   ],
+   "whos-the-master": [
+    20,
+    0
+   ],
+   "wish-for-un": [
+    20,
+    40
+   ],
+   "no-hablo-espanol": [
+    19.95,
+    50
+   ],
+   "heartbeat-eb": [
+    20,
+    40
+   ],
+   "believe-in-music-an": [
+    20,
+    0
+   ],
+   "kuff-ho": [
+    20,
+    0
+   ],
+   "jammin": [
+    15,
+    0
+   ],
+   "house-head-xt": [
+    20,
+    0
+   ],
+   "__sale": 40
+  },
+  "productionmusiclive.com": {
+   "organica-vol-7-full-production-suite": [
+    47,
+    0
+   ],
+   "ableton-creative-toolkit": [
+    47,
+    0
+   ],
+   "melodic-techno-sound-pack-meridian": [
+    67,
+    0
+   ],
+   "melodic-dubstep-sound-pack-stardust": [
+    67,
+    0
+   ],
+   "melodic-house-sound-pack-sunset-vibes-vol-2": [
+    67,
+    0
+   ],
+   "deep-progressive-house-vol-2-sound-pack-grains": [
+    67,
+    0
+   ],
+   "vocals-vol-8-sample-pack-afro-house": [
+    37,
+    37
+   ],
+   "indie-dance-sound-pack-surge": [
+    67,
+    0
+   ],
+   "melodic-percussive-sound-pack-savanna-vol-2": [
+    67,
+    0
+   ],
+   "progressive-house-sound-pack-mainstage-edm-vibes": [
+    67,
+    0
+   ],
+   "course-afro-tech-from-start-to-finish": [
+    57,
+    0
+   ],
+   "infinite-dreams-vol-8-midi-pack": [
+    32,
+    0
+   ],
+   "timeless-vol-4-sound-pack-electronic-classics": [
+    67,
+    0
+   ],
+   "melodic-techno-sound-pack-rising": [
+    67,
+    0
+   ],
+   "course-deep-progressive-house-from-start-to-finish": [
+    57,
+    0
+   ],
+   "melodic-percussive-sound-pack-savanna": [
+    67,
+    0
+   ],
+   "indie-dance-sound-pack-shift": [
+    67,
+    0
+   ],
+   "course-indie-dance-from-start-to-finish": [
+    57,
+    0
+   ],
+   "breaks-vol-2-sound-pack-flux": [
+    67,
+    0
+   ],
+   "infinite-dreams-vol-7-midi-pack": [
+    32,
+    0
+   ],
+   "melodic-house-sound-pack-bloom": [
+    67,
+    0
+   ],
+   "course-melodic-deep-house-from-start-to-finish": [
+    57,
+    0
+   ],
+   "serum-2-presets-dimensions-vol-2": [
+    47,
+    0
+   ],
+   "trance-vol-2-sound-pack-unity": [
+    67,
+    0
+   ],
+   "course-trance-from-start-to-finish": [
+    57,
+    0
+   ],
+   "pml-gift-pack": [
+    47,
+    594
+   ],
+   "course-low-end-kick-bass-setup": [
+    57,
+    0
+   ],
+   "sub-37-vol-2-full-sound-pack": [
+    37,
+    0
+   ],
+   "deep-premium-vol-10-drum-sample-pack": [
+    47,
+    0
+   ],
+   "serum-2-presets-feelings-vol-3": [
+    47,
+    0
+   ],
+   "serum-2-presets-bass-pack-vol-2": [
+    47,
+    0
+   ],
+   "techno-bundle-signature-sounds": [
+    234,
+    0
+   ],
+   "techno-sound-pack-voltage": [
+    67,
+    0
+   ],
+   "tech-house-bundle-signature-sounds": [
+    234,
+    0
+   ],
+   "kicks-sample-pack-vol-3": [
+    32,
+    0
+   ],
+   "deep-progressive-house-sound-pack-particles": [
+    67,
+    0
+   ],
+   "infinite-dreams-vol-6-midi-pack": [
+    32,
+    0
+   ],
+   "course-tech-house-from-start-to-finish": [
+    57,
+    0
+   ],
+   "tech-house-sound-pack-drift": [
+    67,
+    0
+   ],
+   "vocals-vol-7-sample-pack": [
+    37,
+    37
+   ],
+   "course-timeless-melodic-techno-from-start-to-finish": [
+    57,
+    0
+   ],
+   "timeless-vol-3-sound-pack-electronic-classics": [
+    67,
+    0
+   ],
+   "afro-house-sound-pack-vol-5": [
+    67,
+    0
+   ],
+   "melodic-techno-and-trance-diva-presets-by-aiyn-zahev-vol-3": [
+    44,
+    0
+   ],
+   "retro-house-sound-pack-zara": [
+    67,
+    0
+   ],
+   "complete-melodic-house-start-to-finish-academy-vol-2": [
+    194,
+    0
+   ],
+   "infinite-dreams-vol-5-midi-pack": [
+    32,
+    0
+   ],
+   "everything-bundle-year-edition-2026": [
+    297,
+    594
+   ],
+   "melodic-techno-sound-pack-eclipse": [
+    67,
+    0
+   ],
+   "course-melodic-techno-track-from-start-to-finish-pml406": [
+    57,
+    0
+   ],
+   "live-set-start-to-finish-academy": [
+    247,
+    0
+   ],
+   "masterclass-becoming-monolink": [
+    67,
+    0
+   ],
+   "serum-2-techno-vol-2-presets": [
+    47,
+    0
+   ],
+   "breakbeat-sound-pack-motion": [
+    67,
+    0
+   ],
+   "organica-vol-6-full-production-suite": [
+    47,
+    57
+   ],
+   "melodic-house-sound-pack-afterglow": [
+    67,
+    0
+   ],
+   "melodic-techno-sound-pack-monument": [
+    67,
+    0
+   ],
+   "melodic-techno-bundle-signature-sounds": [
+    234,
+    0
+   ],
+   "melodic-house-bundle-signature-sounds": [
+    234,
+    0
+   ],
+   "dub-techno-sound-pack-flow": [
+    67,
+    0
+   ],
+   "serum-2-presets-bundle": [
+    194,
+    178
+   ],
+   "infinite-dreams-vol-4-midi-pack": [
+    32,
+    0
+   ],
+   "organic-house-sound-pack-woodlands": [
+    67,
+    0
+   ],
+   "trance-hard-dance-sound-pack": [
+    67,
+    0
+   ],
+   "afro-house-sample-pack-sounds-from-the-cape": [
+    37,
+    0
+   ],
+   "serum-2-afro-house-presets": [
+    37,
+    0
+   ],
+   "afro-house-sound-pack-vol-4": [
+    67,
+    0
+   ],
+   "course-afro-house-from-start-to-finish": [
+    57,
+    0
+   ],
+   "course-advanced-sound-design-with-serum-2": [
+    47,
+    0
+   ],
+   "timeless-vol-2-sound-pack-electronic-classics": [
+    67,
+    0
+   ],
+   "serum-2-melodic-progressive-presets": [
+    47,
+    0
+   ],
+   "melodic-house-sound-pack-fragments": [
+    67,
+    0
+   ],
+   "course-melodic-house-track-from-start-to-finish-pml379": [
+    57,
+    0
+   ],
+   "midi-complete-pack-preset-bundle-upsells": [
+    294,
+    0
+   ],
+   "diva-presets-deep-melodics-vol-1": [
+    47,
+    0
+   ],
+   "diva-presets-deep-melodics-vol-2": [
+    47,
+    47
+   ],
+   "tech-house-sound-pack-pulse": [
+    57,
+    0
+   ],
+   "techno-underground-sample-pack": [
+    37,
+    0
+   ],
+   "techno-sound-pack-energy": [
+    57,
+    0
+   ],
+   "course-techno-track-from-start-to-finish-pml374": [
+    57,
+    0
+   ],
+   "x-upgrade-course-plan": [
+    29.9,
+    0
+   ],
+   "infinite-dreams-vol-3-midi-pack": [
+    32,
+    0
+   ],
+   "complete-classic-house-start-to-finish-academy": [
+    194,
+    0
+   ],
+   "course-serum-2": [
+    57,
+    0
+   ],
+   "serum-2-techno-presets": [
+    47,
+    0
+   ],
+   "course-melodic-techno-track-from-start-to-finish": [
+    57,
+    0
+   ],
+   "melodic-techno-sound-pack-mesmerize": [
+    67,
+    0
+   ],
+   "deep-premium-vol-9-drum-sample-pack": [
+    47,
+    0
+   ],
+   "serum-2-presets-feelings-2": [
+    47,
+    0
+   ],
+   "kicks-sample-pack-vol-2": [
+    32,
+    0
+   ],
+   "trance-sound-pack-eternity": [
+    57,
+    0
+   ],
+   "melodic-bass-house-sound-pack-vibes": [
+    57,
+    0
+   ],
+   "infinite-dreams-vol-2-midi-pack": [
+    32,
+    0
+   ],
+   "arrangement-academy": [
+    117,
+    0
+   ],
+   "minimal-melodic-techno-sound-pack-voyager": [
+    57,
+    0
+   ],
+   "melodic-house-sound-pack-beyond-life": [
+    57,
+    0
+   ],
+   "house-sound-pack-fun-times": [
+    67,
+    0
+   ],
+   "afro-house-sound-pack-vol-3": [
+    67,
+    0
+   ],
+   "everything-bundle-year-edition-2025": [
+    297,
+    594
+   ],
+   "everything-bundle-collectors-edition-2024": [
+    997,
+    997
+   ],
+   "melodic-techno-sound-pack-mystique": [
+    67,
+    0
+   ],
+   "moon-rocks-ableton-techno-template": [
+    32,
+    0
+   ],
+   "deep-dynamics-sound-pack": [
+    67,
+    0
+   ],
+   "techno-berlin-2010s-sound-pack": [
+    67,
+    0
+   ],
+   "progressive-melodic-techno-sound-pack": [
+    67,
+    0
+   ],
+   "melodic-techno-axon-terminals-sound-pack": [
+    57,
+    0
+   ],
+   "melodic-techno-analog-rooms-sound-pack": [
+    67,
+    0
+   ],
+   "timeless-vol-1-sound-pack-electronic-classics": [
+    67,
+    0
+   ],
+   "deep-house-sound-pack-reflections": [
+    67,
+    0
+   ],
+   "acoustic-melodic-house-themes-vol-5": [
+    47,
+    0
+   ],
+   "afro-house-sound-pack-vol-2": [
+    67,
+    0
+   ],
+   "vocals-vol-6-sample-pack": [
+    37,
+    37
+   ],
+   "melodic-techno-sound-pack-mirage": [
+    67,
+    67
+   ],
+   "vocals-vol-5-sample-pack-afro-house": [
+    39.9,
+    49.9
+   ],
+   "vocals-vol-4-sample-pack-tech-house": [
+    37,
+    44
+   ],
+   "cercle-sounds-vol-4-diva-preset-pack": [
+    39.9,
+    39.9
+   ],
+   "complete-afro-house-start-to-finish-academy": [
+    194,
+    0
+   ],
+   "complete-tech-house-academy-to-finish-academy": [
+    194,
+    0
+   ],
+   "afro-house-bundle": [
+    234,
+    0
+   ],
+   "inner-glow-midi-pack": [
+    47,
+    47
+   ],
+   "afro-house-sound-pack": [
+    47,
+    0
+   ],
+   "infinite-dreams-midi-pack": [
+    32,
+    32
+   ],
+   "organica-vol-5-full-production-suite": [
+    47,
+    57
+   ],
+   "complete-techno-start-to-finish-academy": [
+    194,
+    0
+   ],
+   "vocals-bundle": [
+    87,
+    0
+   ],
+   "vocalized-vol-2-sample-pack": [
+    37,
+    39.9
+   ],
+   "vocals-vol-3-sample-pack": [
+    37,
+    39.9
+   ],
+   "kick-sample-pack-vol-1": [
+    29.6,
+    29.9
+   ],
+   "course-beginner-to-advanced-start-to-finish-in-ableton-live-12": [
+    97,
+    97
+   ],
+   "ableton-live-presets-bundle": [
+    127,
+    0
+   ],
+   "deep-premium-vol-8-drum-sample-pack": [
+    47,
+    0
+   ],
+   "melodic-house-production-kit-twilight-rhythms": [
+    67,
+    0
+   ],
+   "melodic-techno-and-trance-diva-presets-by-aiyn-zahev-vol-2": [
+    44,
+    0
+   ],
+   "complete-melodic-techno-start-to-finish-academy-vol-2": [
+    194,
+    0
+   ],
+   "serum-presets-melodic-house-feelings": [
+    39.9,
+    44
+   ],
+   "serum-presets-bass-pack-vol-1": [
+    37,
+    44
+   ],
+   "antithesis-techno-sound-pack": [
+    47,
+    0
+   ],
+   "masterclass-julia-borelli-mixing-and-mastering": [
+    97,
+    97
+   ],
+   "everything-bundle-year-edition-2024": [
+    297,
+    394
+   ],
+   "everything-bundle-collectors-edition-2023": [
+    497,
+    994
+   ],
+   "masterclass-super-flu": [
+    57,
+    0
+   ],
+   "acoustic-melodic-house-themes-vol-4": [
+    47,
+    0
+   ],
+   "techno-production-pack-radiation": [
+    47,
+    0
+   ],
+   "serum-modern-melodic-techno-presets": [
+    37,
+    0
+   ],
+   "course-serum-sound-design-modern-melodic-techno": [
+    47,
+    0
+   ],
+   "course-organic-house-track-from-start-to-finish-vol-2": [
+    57,
+    0
+   ],
+   "organica-vol-4-full-production-suite": [
+    47,
+    0
+   ],
+   "fl-full-bundle-by-pml-upsells": [
+    294,
+    0
+   ],
+   "techno-production-pack-overdrive": [
+    97,
+    117
+   ],
+   "ultra-progressive-house-edm-bundle": [
+    67,
+    0
+   ],
+   "serum-preset-bundle": [
+    294,
+    274
+   ],
+   "serum-presets-collection-vol-2": [
+    298,
+    0
+   ],
+   "serum-techno-presets-vol-3": [
+    37,
+    0
+   ],
+   "melodic-organic-sample-pack-by-fejka": [
+    47,
+    0
+   ],
+   "pml-sound-design-bundle": [
+    137,
+    0
+   ],
+   "tech-house-start-to-finish-bundle": [
+    67,
+    0
+   ],
+   "tech-house-masterclass-start-to-finish-with-fab-massimo": [
+    57,
+    0
+   ],
+   "tech-house-essentials-vol-2": [
+    44,
+    0
+   ],
+   "percussive-house-vol-2-organic-samples-loops": [
+    54,
+    0
+   ],
+   "diva-presets-bundle": [
+    294,
+    0
+   ],
+   "melodic-techno-and-trance-diva-presets-by-aiyn-zahev": [
+    44,
+    44
+   ],
+   "diva-preset-bundle-vol-2": [
+    294,
+    0
+   ],
+   "organic-house-diva-presets-by-yannek-maunz": [
+    37,
+    0
+   ],
+   "vocalized-sample-pack": [
+    37,
+    0
+   ],
+   "vocals-vol-2-sample-pack": [
+    37,
+    0
+   ],
+   "course-mastering-from-start-to-finish": [
+    47,
+    0
+   ],
+   "course-mixing-from-start-to-finish": [
+    47,
+    0
+   ],
+   "super-flu-sample-pack": [
+    47,
+    0
+   ],
+   "techno-sound-pack": [
+    54,
+    54
+   ],
+   "acoustic-melodic-house-themes-bundle": [
+    147,
+    0
+   ],
+   "acoustic-melodic-house-themes-vol-3": [
+    47,
+    47
+   ],
+   "midi-pack-melodic-house-white-glow": [
+    24.9,
+    0
+   ],
+   "music-theory-for-melodic-techno-and-house": [
+    114,
+    114
+   ],
+   "complete-melodic-techno-start-to-finish-academy": [
+    194,
+    0
+   ],
+   "deep-premium-vol-7-drum-sample-pack": [
+    37,
+    37
+   ],
+   "organic-sounds-bundle": [
+    194,
+    0
+   ],
+   "organica-vol-3-full-production-suite": [
+    47,
+    0
+   ],
+   "uk-house-actual-life": [
+    54,
+    0
+   ],
+   "pml-melodic-house-start-to-finish-academy": [
+    194,
+    0
+   ],
+   "stil-vor-talent-x-pml-artist-pack-oliver-koletzki": [
+    57,
+    0
+   ],
+   "everything-bundle-collectors-edition-2022": [
+    997,
+    0
+   ],
+   "jonas-saalbach-loops-song-starters-melodic-techno": [
+    39.9,
+    0
+   ],
+   "pml-bound-to-divide-laurent-laiment-vocal-hooks": [
+    47,
+    0
+   ],
+   "artist-kicks-vol-2-by-bound-to-divide": [
+    27,
+    0
+   ],
+   "peak-time-techno-vol-2-samples-by-weska": [
+    37,
+    0
+   ],
+   "dreams-vol-2-melodic-house-techno-serum-presets-by-bound-to-divide": [
+    39.9,
+    0
+   ],
+   "bass-lab-serum-bass-presets-by-bound-to-divide": [
+    39.9,
+    0
+   ],
+   "everything-year-2022": [
+    394,
+    0
+   ],
+   "music-streaming-masterclass": [
+    97,
+    0
+   ],
+   "cercle-sounds-vol-3-diva-preset-pack-for-techno": [
+    37,
+    0
+   ],
+   "everything-bundle-year-2023": [
+    297,
+    394
+   ],
+   "course-learn-sound-design-with-arturia-pigments": [
+    37,
+    0
+   ],
+   "acoustic-melodic-house-themes-2": [
+    47,
+    47
+   ],
+   "jimi-jules-x-pml-artist-sample-pack": [
+    39.9,
+    0
+   ],
+   "masterclass-jimi-jules": [
+    57,
+    0
+   ],
+   "serum-presets-vibes": [
+    27,
+    0
+   ],
+   "serum-presets-essentials": [
+    27,
+    0
+   ],
+   "serum-presets-ultra": [
+    27,
+    0
+   ],
+   "mixing-start-to-finish-in-fl": [
+    47,
+    0
+   ],
+   "vocals-vol-1-sample-pack": [
+    37,
+    0
+   ],
+   "dimensions-serum-presets-melodic-techno-vol-2": [
+    37,
+    0
+   ],
+   "inner-lights-melodic-house-midi-pack-vol-1": [
+    24.9,
+    0
+   ],
+   "midi-pack-chord-vibes": [
+    47,
+    49.9
+   ],
+   "organica-vol-2-full-production-suite": [
+    47,
+    0
+   ],
+   "course-melodic-techno-track-from-start-to-finish-vol-2": [
+    47,
+    0
+   ],
+   "course-percussive-house-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "main-stage-techno-sample-pack": [
+    33,
+    0
+   ],
+   "become-one-melodic-techno-ableton-template-by-solanca": [
+    32,
+    0
+   ],
+   "substances-melodic-techno-ableton-template": [
+    32,
+    0
+   ],
+   "full-bundle-fl-by-pml": [
+    194,
+    0
+   ],
+   "techno-start-to-finish-in-fl": [
+    47,
+    0
+   ],
+   "peak-time-bunker-vol-1-sample-pack": [
+    37,
+    0
+   ],
+   "vital-preset-pack-melodic-house-by-furcloud": [
+    37,
+    0
+   ],
+   "course-organic-house-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "tim-engelhardt-production-pack-melodic-techno-vol-2": [
+    57,
+    0
+   ],
+   "melodic-techno-start-to-finish-in-fl": [
+    47,
+    0
+   ],
+   "masterclass-cioz-how-to-remix-diplo-damian-lazarus-jungle-don-t-be-afraid": [
+    47,
+    0
+   ],
+   "beginners-bundle": [
+    97,
+    0
+   ],
+   "together-again-melodic-house-ableton-template-by-solanca": [
+    32,
+    0
+   ],
+   "serum-presets-house": [
+    37,
+    0
+   ],
+   "getting-away-breakbeat-ableton-template": [
+    32,
+    0
+   ],
+   "centuries-modern-melodic-techno-ableton-template-by-dahu": [
+    32,
+    0
+   ],
+   "stil-vor-talent-x-pml-artist-pack-vol-2-polaroit": [
+    47,
+    0
+   ],
+   "vital-presets-bundle": [
+    127,
+    0
+   ],
+   "vital-techno": [
+    37,
+    0
+   ],
+   "vital-presets-afterlight-melodic-deep-techno": [
+    37,
+    0
+   ],
+   "masterclass-creative-sound-design-with-the-moog-sub37": [
+    57,
+    0
+   ],
+   "techno-producer-bundle": [
+    234,
+    0
+   ],
+   "full-melodic-house-bundle": [
+    234,
+    0
+   ],
+   "full-melodic-techno-bundle": [
+    234,
+    0
+   ],
+   "deep-premium-vol-6-drum-sample-pack": [
+    37,
+    37
+   ],
+   "la-pianista-classic-house-ableton-project-file": [
+    32,
+    0
+   ],
+   "touch-classic-house-ableton-project-file": [
+    32,
+    0
+   ],
+   "melodic-techno-bundle": [
+    447,
+    0
+   ],
+   "course-music-production-in-ableton-live": [
+    97,
+    97
+   ],
+   "vital-presets-boiler-production": [
+    37,
+    0
+   ],
+   "samples-bundle": [
+    494,
+    0
+   ],
+   "diva-preset-bundle": [
+    294,
+    0
+   ],
+   "serum-presets-bundle": [
+    194,
+    0
+   ],
+   "miombo-peak-time-festival-track-laroz-sam-shure-cowbell-dub": [
+    32,
+    0
+   ],
+   "woodlands-vol-2-organic-house-sample-pack": [
+    37,
+    0
+   ],
+   "sub-37-techno-presets": [
+    37,
+    0
+   ],
+   "diablo-future-house-logic-pro-x-serum-template-by-the-producer-tutor": [
+    32,
+    0
+   ],
+   "mantra-psy-trance-logic-pro-x-serum-template": [
+    27,
+    0
+   ],
+   "odyssey-melodic-techno-ableton-project-file": [
+    32,
+    0
+   ],
+   "melodic-techno-vital-presets": [
+    37,
+    0
+   ],
+   "artist-kicks-by-bound-to-divide": [
+    27,
+    0
+   ],
+   "visions-melodic-house-diva-presets-by-bound-to-divide": [
+    39.9,
+    0
+   ],
+   "dreams-melodic-house-serum-presets-by-bound-to-divide": [
+    39.9,
+    0
+   ],
+   "purity-melodic-house-serum-presets-by-bound-to-divide": [
+    37,
+    0
+   ],
+   "melodic-house-for-vital": [
+    37,
+    0
+   ],
+   "balloon-melodic-techno-logic-pro-x-serum-template-by-the-producer-tutor": [
+    32,
+    0
+   ],
+   "organic-melodic-diva-presets-by-felix-raphael": [
+    37,
+    0
+   ],
+   "darkside-high-tech-minimal-techno-logic-pro-x-massive-template-by-the-producer-tutor": [
+    32,
+    0
+   ],
+   "purple-diver-high-tech-minimal-techno-logic-pro-x-template": [
+    32,
+    0
+   ],
+   "lo-fi-house-masterclass-with-misc-inc": [
+    47,
+    0
+   ],
+   "jonas-saalbach-masterclass": [
+    67,
+    0
+   ],
+   "acoustic-melodic-house-themes": [
+    37,
+    47
+   ],
+   "stil-vor-talent-x-pml-artist-pack-vol-1-cioz": [
+    44,
+    0
+   ],
+   "decades-modern-melodic-techno-ableton-template-by-dahu": [
+    32,
+    0
+   ],
+   "mastering-in-fl": [
+    47,
+    0
+   ],
+   "drill-course-in-fl": [
+    47,
+    0
+   ],
+   "organic-house-essentials": [
+    39.9,
+    0
+   ],
+   "pml-everything-bundle": [
+    994,
+    0
+   ],
+   "ben-bohmer-master-class": [
+    67,
+    0
+   ],
+   "course-how-i-built-my-home-studio": [
+    47,
+    0
+   ],
+   "serum-preset-pack-innerbloom": [
+    37,
+    0
+   ],
+   "serum-techno-pack-vol-2": [
+    37,
+    0
+   ],
+   "how-to-make-a-sample-pack": [
+    97,
+    0
+   ],
+   "empire-of-afterlife-melodic-techno-ableton-template": [
+    32,
+    0
+   ],
+   "desert-ethereal-techno-ableton-template": [
+    32,
+    0
+   ],
+   "deep-house-production-suite": [
+    37,
+    0
+   ],
+   "repro-5-preset-pack-analog-melodic": [
+    37,
+    0
+   ],
+   "course-melodic-house-track-from-start-to-finish-vol-2": [
+    47,
+    0
+   ],
+   "percussive-house-samples-loops-by-florian-busse": [
+    54,
+    0
+   ],
+   "serum-presets-melodic-house": [
+    37,
+    0
+   ],
+   "melodic-techno-midi-pack-vol-2-melodies-arpeggios-arps-plucks-and-more": [
+    29.9,
+    34.9
+   ],
+   "getting-the-most-out-of-logic-pro-x-vol-1": [
+    37,
+    0
+   ],
+   "organica-full-ableton-production-suite": [
+    47,
+    0
+   ],
+   "peak-time-techno-samples-by-weska": [
+    37,
+    0
+   ],
+   "diva-presets-by-tim-engelhardt": [
+    37,
+    0
+   ],
+   "pigments-preset-pack-deep-progressive-by-tim-engelhardt": [
+    37,
+    0
+   ],
+   "nils-hoffmann-production-pack": [
+    47,
+    0
+   ],
+   "deep-sounds-ableton-wavetable-preset-pack": [
+    37,
+    0
+   ],
+   "beginners-course-ableton-live-11-making-a-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "equinox-progressive-melodic-techno-ableton-template": [
+    32,
+    0
+   ],
+   "attila-hanak-courses-bundle": [
+    117,
+    0
+   ],
+   "bound-to-divide-sound-pack-melodic-house": [
+    87,
+    0
+   ],
+   "deep-premium-vol-5-drum-sample-pack": [
+    37,
+    37
+   ],
+   "percussive-afro-house": [
+    57,
+    0
+   ],
+   "midnight-punch-drums-for-melodic-house-techno": [
+    33,
+    0
+   ],
+   "woodlands-vol-1": [
+    37,
+    0
+   ],
+   "deep-premium-drum-pack-bundle": [
+    194,
+    0
+   ],
+   "academy-bundle-electronic-music-production-in-ableton-live": [
+    597,
+    0
+   ],
+   "pro-bundle-ableton-techno-producer": [
+    197,
+    0
+   ],
+   "hard-trap-in-fl": [
+    37,
+    0
+   ],
+   "chord-progressions-theory-in-fl": [
+    47,
+    0
+   ],
+   "full-bundle": [
+    167,
+    0
+   ],
+   "tim-engelhardt-production-pack-melodic-techno": [
+    57,
+    0
+   ],
+   "bound-to-divide-diva-preset-pack-for-melodic-house": [
+    39.9,
+    0
+   ],
+   "interstellar-techno-ableton-template": [
+    32,
+    0
+   ],
+   "future-bass-in-fl": [
+    37,
+    0
+   ],
+   "ufb-sample-midi-pack": [
+    19.9,
+    0
+   ],
+   "clouds-melodic-deep-ableton-template": [
+    32,
+    0
+   ],
+   "vintage-house-sample-pack-drum-samples-instruments": [
+    57,
+    0
+   ],
+   "melodic-deep-ableton-production-pack-by-francois-rengere": [
+    67,
+    0
+   ],
+   "course-u-he-diva-sound-design": [
+    37,
+    0
+   ],
+   "ableton-session-view-masterclass": [
+    47,
+    0
+   ],
+   "masquerade-pack-high-tech-minimal-techno-sound-pack": [
+    47,
+    0
+   ],
+   "deep-melodic-house-sound-pack": [
+    67,
+    0
+   ],
+   "ableton-beginners-class": [
+    127,
+    0
+   ],
+   "production-session-vol-1-start-to-finish-course-melodic-progressive-house": [
+    47,
+    0
+   ],
+   "tech-house-from-start-to-finish-course-in-ableton-live": [
+    57,
+    0
+   ],
+   "ben-bohmer-style-melodic-deep-sound-pack": [
+    67,
+    0
+   ],
+   "mixing-in-fl": [
+    47,
+    0
+   ],
+   "cercle-sounds-vol-2-diva-preset-pack-for-techno": [
+    37,
+    0
+   ],
+   "dark-techno-sample-pack": [
+    33,
+    0
+   ],
+   "hard-trap-from-start-to-finish-in-ableton": [
+    47,
+    0
+   ],
+   "mixing-and-mastering-courses": [
+    97,
+    0
+   ],
+   "techno-masterclass": [
+    47,
+    0
+   ],
+   "deep-premium-vol-4": [
+    37,
+    0
+   ],
+   "analog-meets-digital": [
+    57,
+    0
+   ],
+   "serum-presets-techno": [
+    37,
+    0
+   ],
+   "instant-inspiration-course": [
+    37,
+    0
+   ],
+   "summer-vibes-v1-sample-pack-fl-version": [
+    5,
+    0
+   ],
+   "beginner-course-in-fl": [
+    37,
+    0
+   ],
+   "tech-house-drums-sample-pack": [
+    33,
+    0
+   ],
+   "course-melodic-house-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "sunset-vibes-melodic-house-sound-pack": [
+    67,
+    0
+   ],
+   "anjuna-vibes-melodic-house-ableton-template": [
+    32,
+    0
+   ],
+   "analog-techno-bundle": [
+    97,
+    0
+   ],
+   "techno-bundle-vol-1": [
+    67,
+    0
+   ],
+   "complete-pack-deep-tech-house": [
+    67,
+    0
+   ],
+   "dark-textures-and-soundscapes-for-techno-deep-underground-sample-pack-for-ambience-by-pml": [
+    33,
+    0
+   ],
+   "massive-x-techno-pack": [
+    37,
+    0
+   ],
+   "plurality-techno-template": [
+    32,
+    0
+   ],
+   "good-intentions-synthwave-ableton-template": [
+    32,
+    0
+   ],
+   "melodic-techno-diva-preset-pack": [
+    37,
+    0
+   ],
+   "push-2-masterclass": [
+    57,
+    0
+   ],
+   "the-best-trap-sample-pack": [
+    19.9,
+    0
+   ],
+   "groove-course": [
+    37,
+    0
+   ],
+   "deep-premium-vol-3-drum-sample-pack": [
+    37,
+    0
+   ],
+   "course-high-tech-minimal-track-from-start-to-finish": [
+    57,
+    0
+   ],
+   "diablo-edm-ableton-live-template": [
+    15,
+    0
+   ],
+   "right-now-fl-project-file": [
+    19.9,
+    0
+   ],
+   "trap-fl-project-file": [
+    19.9,
+    0
+   ],
+   "fl-house-project-file": [
+    19.9,
+    0
+   ],
+   "van-burn-ableton-edm-template": [
+    17,
+    0
+   ],
+   "smack-edm-trap-samples-and-presets": [
+    13.5,
+    0
+   ],
+   "progressive-house-fl-project-file": [
+    19.9,
+    0
+   ],
+   "analog-techno-synth-shots-sample-pack": [
+    33,
+    0
+   ],
+   "how-to-mix-a-track-with-the-best-plugins-available": [
+    47,
+    0
+   ],
+   "melodic-techno-pack-comino": [
+    27,
+    0
+   ],
+   "full-future-bass-pop-bundle": [
+    47,
+    0
+   ],
+   "darkside-techno-ableton-template": [
+    32,
+    0
+   ],
+   "full-techno-bundle": [
+    147,
+    0
+   ],
+   "mixing-tools-and-default-template": [
+    0,
+    0
+   ],
+   "harmony-bundle": [
+    117,
+    117
+   ],
+   "masterclass-mixing-mastering-a-future-bass-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "course-techno-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "arrangement-course": [
+    117,
+    0
+   ],
+   "amelie-dark-techno-ableton-template": [
+    32,
+    0
+   ],
+   "godzin-bass-techno-ableton-template": [
+    32,
+    0
+   ],
+   "classic-state-of-trance-ableton-template": [
+    32,
+    0
+   ],
+   "melodic-techno-midi-pack-melodies-arpeggios-arps-plucks-and-more": [
+    24.9,
+    0
+   ],
+   "serum-presets-melodic-techno": [
+    37,
+    0
+   ],
+   "future-bass-drums-drum-sample-pack-optional-ableton-project": [
+    7,
+    0
+   ],
+   "techno-kickdrums-vol-1-drum-sample-pack": [
+    29.9,
+    0
+   ],
+   "melodic-techno-vol-1-drum-sample-pack": [
+    33,
+    0
+   ],
+   "trap-production-pack-samples-instruments-midis-drum-kits": [
+    19.9,
+    0
+   ],
+   "future-bass-v2-drum-sample-pack": [
+    7,
+    0
+   ],
+   "shipwrecked-future-bass": [
+    27,
+    0
+   ],
+   "marshmallow-style-ableton-template": [
+    14.9,
+    0
+   ],
+   "tropical-show-ableton-template": [
+    14.9,
+    0
+   ],
+   "edm-drum-sample-pack": [
+    7,
+    0
+   ],
+   "kshmir-edm-template": [
+    27,
+    0
+   ],
+   "psytrance-mantra-loops-and-samples": [
+    9,
+    0
+   ],
+   "psytrance-mantra-vini-vici-style-ableton-template": [
+    32,
+    0
+   ],
+   "voorn-style-ableton-house-template": [
+    27,
+    0
+   ],
+   "best-trap-presets-for-massive": [
+    19.9,
+    0
+   ],
+   "summer-vibes-pop-ableton-template": [
+    27,
+    0
+   ],
+   "summer-vibes-v1-sample-pack": [
+    27,
+    0
+   ],
+   "shaker-loops": [
+    11.9,
+    0
+   ],
+   "course-pop-track-from-start-to-finish-chainsmoking-style": [
+    47,
+    0
+   ],
+   "course-how-to-write-melodies": [
+    47,
+    0
+   ],
+   "course-mixing-masterclass": [
+    47,
+    0
+   ],
+   "course-analog-melodic-techno-track-from-start-to-finish": [
+    57,
+    0
+   ],
+   "course-arturia-mini-v3-how-to-sound-design": [
+    37,
+    0
+   ],
+   "karmac-charged-trap": [
+    14.9,
+    0
+   ],
+   "melodic-techno-arturia-mini-v3-sound-pack": [
+    37,
+    0
+   ],
+   "complete-midi-pack": [
+    194,
+    0
+   ],
+   "calvin-slides-ableton-template": [
+    27,
+    0
+   ],
+   "midi-chord-progression-pack": [
+    15,
+    0
+   ],
+   "oneeyedking-ethereal-techno-template": [
+    27,
+    0
+   ],
+   "pml-doubler-tool-rack-template": [
+    8,
+    0
+   ],
+   "course-track-from-start-to-finish-beginners-2017": [
+    37,
+    0
+   ],
+   "pre-sale-mastering-a-track-from-start-to-finish": [
+    37,
+    0
+   ],
+   "default-template-for-techno": [
+    10,
+    0
+   ],
+   "edm-spinning-it-ableton-template": [
+    14.9,
+    0
+   ],
+   "progressive-house-track-from-start-to-finish": [
+    27,
+    0
+   ],
+   "future-bass-trap-midi-pack-melodies-chords-percussions": [
+    15,
+    0
+   ],
+   "analog-moods-ableton-template": [
+    32,
+    0
+   ],
+   "something-just-dropped-ableton-template": [
+    27,
+    0
+   ],
+   "course-sylenth1-sound-design": [
+    37,
+    0
+   ],
+   "chain-closers-ableton-template": [
+    27,
+    0
+   ],
+   "everything-pack-all-sounds-all-courses": [
+    497,
+    0
+   ],
+   "course-serum-sound-design": [
+    37,
+    0
+   ],
+   "complete-courses-bundle": [
+    994,
+    0
+   ],
+   "deep-premium-vol-2-drum-sample-pack": [
+    32,
+    37
+   ],
+   "midi-pack": [
+    15,
+    0
+   ],
+   "massive-presets-future-pop-moombahton": [
+    24.9,
+    0
+   ],
+   "massive-presets-boiler-production-2": [
+    24.9,
+    0
+   ],
+   "bass-house-jauzz-styled-ableton-template": [
+    24.9,
+    0
+   ],
+   "course-producing-a-track-from-start-to-finish-beginners": [
+    27,
+    0
+   ],
+   "course-massive-sound-design": [
+    37,
+    0
+   ],
+   "course-mixing-a-track-from-start-to-finish": [
+    37,
+    0
+   ],
+   "course-harmony-and-chord-progressions": [
+    47,
+    0
+   ],
+   "future-bass-track-from-start-to-finish": [
+    27,
+    0
+   ],
+   "course-deep-house-track-from-start-to-finish": [
+    47,
+    0
+   ],
+   "melodic-techno-track-start-to-finish-ableton": [
+    47,
+    0
+   ],
+   "chill-waters-ableton-template": [
+    27,
+    0
+   ],
+   "lose-myself-ableton-template": [
+    27,
+    0
+   ],
+   "ibiza-deep-pack-7-templates-massive-preset-pack-midi": [
+    37,
+    0
+   ],
+   "serum-presets-vol-5-future-chill": [
+    20,
+    0
+   ],
+   "massive-presets-drums-code": [
+    24.9,
+    0
+   ],
+   "massive-presets-boiler-production": [
+    24.9,
+    0
+   ],
+   "lunacy-trap-ableton-template": [
+    14.9,
+    0
+   ],
+   "floor-control-techno-ableton-template": [
+    32,
+    0
+   ],
+   "flumed-you-style-ableton-template": [
+    14.9,
+    0
+   ],
+   "massive-presets-vol-10-future-beat": [
+    11.9,
+    0
+   ],
+   "premium-house-loops-optional-midis-optional-ableton-template-racks": [
+    11.9,
+    0
+   ],
+   "future-bass-big-pack-8-templates-presets-midis-samples": [
+    39.9,
+    0
+   ],
+   "tropical-house-pack-4-templates-2-preset-packs": [
+    29,
+    0
+   ],
+   "pronto-trap-ableton-template": [
+    14.9,
+    0
+   ],
+   "smoked-chains-down-ableton-template": [
+    27,
+    0
+   ],
+   "future-bass-margerita-ableton-template": [
+    25,
+    0
+   ],
+   "future-bass-moan-ableton-template": [
+    27,
+    0
+   ],
+   "future-bass-riot-ableton-template": [
+    14.9,
+    0
+   ],
+   "san-ho-low-ableton-template": [
+    14.9,
+    0
+   ],
+   "do-think-oshii-ableton-template": [
+    14.9,
+    0
+   ],
+   "about-you-o-desza-styled-ableton-template": [
+    14.9,
+    0
+   ],
+   "o-desza-ableton-template": [
+    14.9,
+    0
+   ],
+   "sa-je-future-bass-ableton-template": [
+    14.9,
+    0
+   ],
+   "lazer-style-ableton-template": [
+    27,
+    0
+   ],
+   "neon-future-ableton-template": [
+    14.9,
+    0
+   ],
+   "melodic-techno-francois-giants-ableton-template": [
+    32,
+    0
+   ],
+   "tropical-winds-ableton-template": [
+    14.9,
+    0
+   ],
+   "first-trap-ableton-template": [
+    14.9,
+    0
+   ],
+   "escape-progressive-house-ableton-template": [
+    27,
+    0
+   ],
+   "catch-deep-house-ableton-template": [
+    14.9,
+    0
+   ],
+   "illusions-progressive-house-trance-ableton-template": [
+    27,
+    0
+   ],
+   "belonged-x-deep-house-ableton-template": [
+    24.9,
+    0
+   ],
+   "felix-deep-house-ableton-template": [
+    14.9,
+    0
+   ],
+   "summer-deep-house-ableton-template": [
+    14.9,
+    0
+   ],
+   "future-house-bass-ableton-template": [
+    7,
+    0
+   ],
+   "start-to-finish-ableton-template": [
+    24.9,
+    0
+   ],
+   "pill-in-ibiza-ableton-template": [
+    27,
+    0
+   ],
+   "fast-car-tropical-ableton-template": [
+    27,
+    0
+   ],
+   "tropical-cuts-ableton-template": [
+    14.9,
+    0
+   ],
+   "future-life-ableton-template": [
+    27,
+    0
+   ],
+   "heldens-future-house-ableton-template": [
+    14.9,
+    0
+   ],
+   "black-nights-ableton-template": [
+    14.9,
+    0
+   ],
+   "big-room-edm-ableton-template": [
+    14.9,
+    0
+   ],
+   "live-dj-start-fx-rack-ableton-template": [
+    6,
+    0
+   ],
+   "live-dj-start-fx-rack-ableton-template1": [
+    6,
+    0
+   ],
+   "pml-default-template-mixing-tools": [
+    10,
+    0
+   ],
+   "i-see-fire-ableton-template": [
+    14.9,
+    0
+   ],
+   "tropical-ableton-template": [
+    14.9,
+    0
+   ],
+   "melodic-deep-house-ableton-template": [
+    14.9,
+    0
+   ],
+   "blau-edm-style-ableton-template": [
+    14.9,
+    0
+   ],
+   "hello-piano-ballad-ableton-template": [
+    14.9,
+    0
+   ],
+   "carmack-styled-ableton-template": [
+    14.9,
+    0
+   ],
+   "flumed-tennis-style-ableton-template": [
+    14.9,
+    0
+   ],
+   "flumed-style-ableton-template": [
+    14.9,
+    0
+   ],
+   "serum-presets-vol-4-future-bass-2": [
+    20,
+    0
+   ],
+   "serum-presets-vol-3-tropical-house": [
+    19.9,
+    0
+   ],
+   "serum-presets-vol-2-tropical-house": [
+    20,
+    0
+   ],
+   "sylenth1-presets-vol-1-pml-future-essentials": [
+    37,
+    0
+   ],
+   "massive-presets-vol-9-progressive-house": [
+    13.9,
+    0
+   ],
+   "massive-full-presets-pack": [
+    47,
+    0
+   ],
+   "serum-presets-vol-1-future-bass": [
+    20,
+    0
+   ],
+   "massive-presets-vol-7-tropical-house-2": [
+    19.9,
+    0
+   ],
+   "copy-of-massive-presets-vol-6-future-house-2": [
+    11.9,
+    0
+   ],
+   "massive-presets-vol-4-tropical-house-1": [
+    11.9,
+    0
+   ],
+   "copy-of-massive-presets-vol-2-chillstep-edm": [
+    11.9,
+    0
+   ],
+   "massive-presets-vol-1-deep-house": [
+    11.9,
+    0
+   ],
+   "massive-presets-vol-8-future-bass": [
+    15,
+    0
+   ],
+   "deep-premium-vol-1-drum-sample-pack-ableton-project-midis": [
+    37,
+    0
+   ],
+   "__sale": 20
+  },
+  "__us": {
+   "https://solid-sound.net/product/time-goes-fast-documentary-piano/": 15,
+   "https://solid-sound.net/product/melodic-techno-presets/": 4.5,
+   "https://solid-sound.net/product/pitch/": 12,
+   "https://solid-sound.net/product/mutualism/": 12,
+   "https://solid-sound.net/product/intricate/": 12,
+   "https://solid-sound.net/product/infinity/": 12,
+   "https://solid-sound.net/product/kratos/": 12,
+   "https://solid-sound.net/product/protos/": 12
+  }
+ },
+ "sources": {
+  "shop:scrapsaudio.com": {
+   "runs": 1,
+   "ok": 1,
+   "failStreak": 0,
+   "items": 0,
+   "useful": 0,
+   "noise": 0,
+   "off": false,
+   "lastOk": "2026-11-25"
+  },
+  "shop:productionmusiclive.com": {
+   "runs": 1,
+   "ok": 1,
+   "failStreak": 0,
+   "items": 0,
+   "useful": 0,
+   "noise": 0,
+   "off": false,
+   "lastOk": "2026-11-25"
+  },
+  "feed:musicradar": {
+   "runs": 1,
+   "ok": 1,
+   "failStreak": 0,
+   "items": 11,
+   "useful": 0,
+   "noise": 0,
+   "off": false,
+   "lastOk": "2026-11-25"
+  }
+ },
+ "candidates": {},
+ "watch": [
+  {
+   "name": "Scraps Audio",
+   "domain": "scrapsaudio.com",
+   "type": "shopify",
+   "best": "best-sellers"
+  },
+  {
+   "name": "Production Music Live",
+   "domain": "productionmusiclive.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Cymatics",
+   "domain": "cymatics.fm",
+   "type": "shopify"
+  },
+  {
+   "name": "Zenhiser",
+   "domain": "zenhiser.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Sample Tools by Cr2",
+   "domain": "sampletoolsbycr2.com",
+   "type": "woo"
+  },
+  {
+   "name": "Black Octopus",
+   "domain": "blackoctopus-sound.com",
+   "type": "woo"
+  },
+  {
+   "name": "ADSR Sounds",
+   "domain": "adsrsounds.com",
+   "type": "woo"
+  }
+ ],
+ "keywords": {},
+ "feedback": [],
+ "lessons": [],
+ "improved": "",
+ "trendHistory": [
+  {
+   "d": "2026-11-25",
+   "g": {
+    "drum and bass": 3,
+    "house": 2,
+    "future bass": 2,
+    "edm": 2,
+    "pop": 1,
+    "progressive": 1
+   },
+   "median": 27,
+   "sale": 5
+  }
+ ],
+ "updated": "2026-11-25T07:11:10.664Z"
+}
