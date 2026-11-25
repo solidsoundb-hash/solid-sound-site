@@ -3866,7 +3866,8 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 		ob_start(); ?>
 <section class="l-section ssh" aria-label="Solid Sound"><div class="l-section-h i-cf">
 	<div class="ssh-in">
-		<h1 class="ssh-h1"><?php printf( esc_html( ss_h3_t( 'h1' ) ), '<span>Solid Sound</span>' ); ?></h1>
+		<?php $ssh_tag = is_front_page() ? 'h1' : 'div'; /* 25.11 SEO: on All products this banner was a 2nd H1 — the page has its own H1 «All products»; same class, same look */ ?>
+		<<?php echo $ssh_tag; ?> class="ssh-h1"><?php printf( esc_html( ss_h3_t( 'h1' ) ), '<span>Solid Sound</span>' ); ?></<?php echo $ssh_tag; ?>>
 		<?php $ssl = function_exists( 'pll_current_language' ) ? pll_current_language() : 'en'; if ( 'uk' === $ssl ) $ssl = 'ua';
 		$ssub = array( 'en' => array( 'Ableton templates · Presets · Mixing & Mastering', 'Royalty-free', 'Instant download after payment', 'Secure payment' ), 'ua' => array( 'Шаблони Ableton · Пресети · Зведення й мастеринг', 'Без роялті', 'Миттєве завантаження після оплати', 'Безпечна оплата' ), 'de' => array( 'Ableton-Templates · Presets · Mixing & Mastering', 'Lizenzfrei', 'Sofortiger Download nach Zahlung', 'Sichere Zahlung' ), 'fr' => array( 'Templates Ableton · Presets · Mixage & mastering', 'Libre de droits', 'Téléchargement immédiat après paiement', 'Paiement sécurisé' ), 'pt' => array( 'Templates Ableton · Presets · Mixagem & masterização', 'Livre de royalties', 'Download imediato após o pagamento', 'Pagamento seguro' ) );
 		$ssub = isset( $ssub[ $ssl ] ) ? $ssub[ $ssl ] : $ssub['en'];
@@ -3899,7 +3900,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4750'); ?>
+<?php ss_asset('js-l4751'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4581,7 +4582,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5826'); ?>
+<?php ss_asset('css-l5827'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5160,7 +5161,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6442'); ?>
+<?php ss_asset('css-l6443'); ?>
 		<?php
 		return ob_get_clean();
 	}
