@@ -88,7 +88,7 @@ add_action( 'template_redirect', function () {
 	status_header( 200 );
 	$title = 'heard' === $r ? 'Get Your DJ Set Heard by Club & Festival Managers | Solid Sound' : 'Why Solid Sound — Everything You Get | Solid Sound';
 	$desc  = 'heard' === $r ? 'Send your best DJ set or track. A sound engineer listens to every one and passes the standouts to club and festival managers. Free.'
-		: 'Free starter pack, free feedback, a live client dashboard, 3% bonus back, royalty-free licenses and up to 85% for creators. Everything in one list.';
+		: 'Free starter pack, free feedback, a live client dashboard, 3% bonus back, royalty-free licenses and free listing for creators. Everything in one list.';
 	add_filter( 'pre_get_document_title', function () use ( $title ) { return $title; } );
 	add_action( 'wp_head', function () use ( $desc, $r ) {
 		echo '<meta name="description" content="' . esc_attr( $desc ) . '">' . "\n";
@@ -211,7 +211,7 @@ function ss_why_items() {
 			array( 'M12 8V4H8M4 8h16v12H4zM2 14h2M20 14h2M9 13v2M15 13v2', 'Help any time', 'Our AI assistant answers 24/7, and a real person replies every evening.', $u( '/contacts' ), 'Ask a question', '' ),
 		),
 		'For creators who sell' => array(
-			array( 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6', 'Up to 85% of every sale', '85% for Founding Creators in the first 12 months, 70% standard. No listing fees, non-exclusive.', $u( '/en/sell/' ), 'Start selling', '' ),
+			array( 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6', 'Sell your templates & presets', 'Free to list, non-exclusive, you set the price. Founding Creator badge for the first 20 producers.', $u( '/en/sell/' ), 'Start selling', '' ),
 			array( 'M3 11l18-8-8 18-2-8z', 'Featured, not buried', 'New releases go to our homepage and our Instagram, TikTok and YouTube.', $u( '/en/sell/' ), 'How we promote', '' ),
 			array( 'M3 3v18h18M7 15l4-4 3 3 5-6', 'Creator space with AI help', 'Live sales stats, and AI that writes titles, descriptions and covers from your ZIP.', $u( '/en/sell/' ), 'See the creator space', '' ),
 		),

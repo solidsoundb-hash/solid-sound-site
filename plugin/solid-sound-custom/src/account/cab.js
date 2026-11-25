@@ -9,7 +9,7 @@
     'Quick actions': 'Shortcuts to what people use most.',
     'Account': 'Name, email, password, billing details and saved cards.',
     'Last 30 days': 'Sales, your earnings and preview plays, day by day.',
-    'My products': 'Live = on sale. In review = we check it within 24 hours. Draft = only you see it.',
+    'My products': 'Live = on sale. In review = we are checking it. Draft = only you see it.',
     'Best sellers': 'Your top products by sales, then by preview plays.',
     'Payouts': 'Your share is paid monthly once it reaches $25. Add PayPal or bank details to get paid.',
     'Profile strength': 'A full profile sells more: photo, cover, short bio, music links, country and payout method.',

@@ -20,7 +20,7 @@ function ss_ct_head( $s ) {
 	$H = array(
 		'ss-products' => array( 'My products', 'Everything you sell, with its status and what it earned.', array( 'Add product', $add, 'a' ) ),
 		'ss-earnings' => array( 'Earnings', 'Your share of every sale, month by month.', array( 'Payout settings', ss_cp_url( 'ss-payouts' ), '' ) ),
-		'ss-payouts'  => array( 'Payouts', 'We pay on the 1st of each month once your balance reaches €25.', null ),
+		'ss-payouts'  => array( 'Payouts', 'Payouts start once our payment setup for creators is live — we will email you.', null ),
 		'ss-reviews'  => array( 'Reviews', 'What buyers say about your products. Reply to build trust.', null ),
 		'ss-settings' => array( 'Profile', 'Your public page: photo, cover, bio and where to listen.', $pub ? array( 'View my page ↗', $pub, '' ) : null ),
 		'ss-help'     => array( 'Help', 'Short answers about selling on Solid Sound.', array( 'Ask the team', '#chat', '' ) ),
@@ -32,15 +32,14 @@ function ss_ct_head( $s ) {
 }
 function ss_ct_empty_products() {
 	$add = function_exists( 'ss_ep_url' ) ? ss_ep_url() : ss_cp_url( 'ss-add-product' );
-	return '<div class="ssw-card sscp-none sscp-first"><span class="ic">♪</span><b>Your first product starts here</b><p>Templates, presets, sample packs or music — creators keep 70% of every sale.</p>'
-		. '<ol class="sscp-steps"><li><b>Choose the type</b><span>and upload your ZIP</span></li><li><b>Add a cover and MP3 preview</b><span>buyers listen before they buy</span></li><li><b>We review it</b><span>usually within 24 hours, then it is live</span></li></ol>'
+	return '<div class="ssw-card sscp-none sscp-first"><span class="ic">♪</span><b>Your first product starts here</b><p>Templates, presets, sample packs or music — free to list, non-exclusive.</p>'
+		. '<ol class="sscp-steps"><li><b>Choose the type</b><span>and upload your ZIP</span></li><li><b>Add a cover and MP3 preview</b><span>buyers listen before they buy</span></li><li><b>We check it</b><span>every product, before it goes live</span></li></ol>'
 		. '<a class="sscp-tb a" href="' . esc_url( $add ) . '">Add your first product</a></div>';
 }
 function ss_ct_payout_status( $id, $mth, $pay ) {
 	$st = function_exists( 'ss_cp_stats' ) ? ss_cp_stats( $id ) : array( 'available' => 0 );
 	$av = (float) ( $st['available'] ?? 0 );
-	$pct = max( 0, min( 100, round( $av / 25 * 100 ) ) );
-	$next = date_i18n( 'F j', strtotime( gmdate( 'Y-m-01', strtotime( current_time( 'Y-m-01' ) . ' +1 month' ) ) ) );
+	/* 25.11 (Юрист/владелец): no payout amounts or dates until creator payments are set up */
 	if ( 'paypal' === $mth && ! empty( $pay['paypal']['email'] ) ) {
 		$e = $pay['paypal']['email']; $at = strpos( $e, '@' );
 		$who = 'PayPal · ' . ( $at > 2 ? substr( $e, 0, 2 ) . str_repeat( '•', max( 1, $at - 2 ) ) . substr( $e, $at ) : $e );
@@ -48,9 +47,9 @@ function ss_ct_payout_status( $id, $mth, $pay ) {
 		$n = preg_replace( '/\s+/', '', (string) ( $pay['bank']['iban'] ?? $pay['bank']['ac_number'] ?? '' ) );
 		$who = 'Bank transfer · •••• ' . substr( $n, -4 );
 	} else $who = '';
-	return '<div class="ssw-card sscp-ps"><div class="m"><span>Payout method</span>' . ( $who ? '<b>' . esc_html( $who ) . ' <i class="ok">Active</i></b>' : '<b class="no">Not set yet <i>Add one below so we can pay you</i></b>' ) . '</div>'
-		. '<div class="m"><span>Available now</span><b>' . wp_kses_post( ss_cp_money( $av ) ) . '<small> of €25</small></b><i class="bar"><i style="width:' . (int) $pct . '%"></i></i></div>'
-		. '<div class="m"><span>Next payout</span><b>' . esc_html( $next ) . '</b><small>' . ( $av >= 25 ? ( $who ? 'You will be paid on this day.' : 'Add a method to get paid.' ) : 'When your balance reaches €25.' ) . '</small></div></div>';
+	return '<div class="ssw-card sscp-ps"><div class="m"><span>Payout method</span>' . ( $who ? '<b>' . esc_html( $who ) . ' <i class="ok">Active</i></b>' : '<b class="no">Not set yet <i>You can add one below</i></b>' ) . '</div>'
+		. '<div class="m"><span>Earned, not yet paid</span><b>' . wp_kses_post( ss_cp_money( $av ) ) . '</b></div>'
+		. '<div class="m"><span>Next payout</span><b>Coming soon</b><small>Payouts start once our payment setup for creators is live — we will email you.</small></div></div>';
 }
 
 add_action( 'wp_head', function () {

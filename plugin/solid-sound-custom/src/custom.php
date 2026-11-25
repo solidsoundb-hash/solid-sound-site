@@ -579,8 +579,8 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
 			'refund_returns' => array( 'Refund Policy for Digital Products | Solid Sound', 'Refund rules for Solid Sound digital downloads: Ableton templates, Serum presets and royalty-free music. When and how you can request a refund.' ),
-			'creator-terms' => array( 'Creator Terms – Sell Your Templates & Presets | Solid Sound', 'Terms for producers selling on Solid Sound: what you can sell, approval, pricing, your 70% share and monthly payouts.' ),
-			'vendor-membership' => array( 'Become a Creator – Sell on Solid Sound', 'Sell your Ableton templates, presets, sample packs and music on Solid Sound. Keep 70% of every sale, monthly payouts.' ),
+			'creator-terms' => array( 'Creator Terms – Sell Your Templates & Presets | Solid Sound', 'Terms for producers selling on Solid Sound: what you can sell, product checks, pricing, licensing and payouts.' ),
+			'vendor-membership' => array( 'Become a Creator – Sell on Solid Sound', 'Sell your Ableton templates, presets, sample packs and music on Solid Sound. Free to list, non-exclusive, you set the price.' ),
 			'vendor-register' => array( 'Creator Registration | Solid Sound', 'Create your Solid Sound creator account to upload and sell Ableton templates, presets, sample packs and music.' ),
 		);
 	}
@@ -1354,9 +1354,9 @@ function ss_auth_close() {
 		<h3 class="ssam-h">Sell on Solid Sound</h3>
 		<p class="ssam-sub">Ableton templates, presets, sample packs, MIDI, music.</p>
 		<ul class="ssam-perks">
-			<li><i>%</i><span><b>Keep up to 85%</b> &mdash; Founding Creators, first 20 producers</span></li>
+			<li><i>%</i><span><b>Free to list</b> &mdash; Founding Creator badge for the first 20 producers</span></li>
 			<li><i>&#9733;</i><span><b>Featured from day one</b> &mdash; homepage &amp; our socials</span></li>
-			<li><i>&#9889;</i><span><b>Approved in 24 h</b> &middot; no fees &middot; non-exclusive</span></li>
+			<li><i>&#9889;</i><span><b>Dashboard opens right away</b> &middot; no fees &middot; non-exclusive</span></li>
 		</ul>
 		<?php /* (owner 15.11) no Google sign-up for creators: we need store name, links and the creator terms from the form */ ?>
 		<a class="ssam-btn" href="<?php echo esc_url( $sell ); ?>">Become a vendor &rarr;</a>
@@ -1496,8 +1496,8 @@ function ss_sell_page() {
 	$terms   = home_url( '/sell/#terms' );
 	$faq = array(
 		array( 'Is it exclusive?', 'No. You keep all rights and can sell the same products anywhere else.' ),
-		array( 'How and when do I get paid?', 'Monthly, once your balance reaches $25, by PayPal or bank transfer. You see every sale in your dashboard.' ),
-		array( 'What is a Founding Creator?', 'The first 20 approved producers get 85% per sale for 12 months, a Founding Creator badge and priority promotion on the homepage and our socials. After 12 months the standard 70% applies.' ),
+		array( 'How and when do I get paid?', 'Revenue terms are being finalised. We will send them to you in writing before any of your products go on sale, so you can decide then. Payouts start once our payment setup for creators is live — we will email you.' ),
+		array( 'What is a Founding Creator?', 'The first 20 producers get a Founding Creator badge and priority promotion on the homepage and our socials.' ),
 		array( 'Do I get a discount on mixing and mastering?', 'Yes. Every approved creator gets 20% off our mixing and mastering services.' ),
 		array( 'Can I use third-party samples?', 'Only royalty-free samples you are allowed to redistribute inside a project. No copyrighted loops or vocals.' ),
 		array( 'What if a buyer doesn\'t have my plugins?', 'You list the plugins used; they appear on the product page and as a filter, so buyers know before they purchase.' ),
@@ -1596,23 +1596,23 @@ function ss_sell_page() {
 <section class="sssell-hero">
 	<div>
 		<span class="sssell-kick">For producers &amp; sound designers</span>
-		<h1>Sell your Ableton templates.<br><em>Keep up to 85%.</em></h1>
+		<h1>Sell your Ableton templates.<br><em>Free to list.</em></h1>
 		<p>A marketplace made for producers and DJs: waveform previews, BPM &amp; key filters, a player that lets buyers compare tracks. No fees, non-exclusive, you set the price.</p>
 		<div class="sssell-ctas"><a class="btn" href="#apply">Apply now &mdash; takes 2 minutes</a><a class="btn ghost" href="#how">How it works</a></div>
 	</div>
-	<div class="sssell-big"><div class="n">85%</div><div class="l">to you for every sale</div><div class="s">Founding Creator rate &middot; first 20 producers &middot; locked for 12 months<br>Standard rate: 70%</div></div>
+	<div class="sssell-big"><div class="n">€0</div><div class="l">to list your products</div><div class="s">Non-exclusive &middot; you set the price<br>Revenue terms in writing before your products go on sale</div></div>
 </section>
 <div class="sssell-stats">
 	<div class="sssell-stat"><b>€0</b><span>listing fees</span></div>
-	<div class="sssell-stat"><b>24 h</b><span>application review</span></div>
-	<div class="sssell-stat"><b>€25</b><span>minimum payout</span></div>
+	<div class="sssell-stat"><b>Instant</b><span>creator dashboard</span></div>
+	<div class="sssell-stat"><b>You</b><span>set the price</span></div>
 	<div class="sssell-stat"><b>Non-exclusive</b><span>sell anywhere else too</span></div>
 </div>
 
 <h2>Why sell <em>here</em></h2>
 <p class="sssell-lead">Big marketplaces list thousands of products &mdash; new creators get buried. We put your work in front of buyers from day one.</p>
 <div class="sssell-g3">
-	<div class="sssell-card"><?php echo $ic( '<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>' ); ?><h3>Higher share</h3><p>Up to 85% for Founding Creators, 70% standard. Most marketplaces start at 50%.</p></div>
+	<div class="sssell-card"><?php echo $ic( '<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>' ); ?><h3>Clear terms first</h3><p>Revenue terms are being finalised. You get them in writing before your products go on sale &mdash; then you decide.</p></div>
 	<div class="sssell-card"><?php echo $ic( '<polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9"/>' ); ?><h3>Featured, not buried</h3><p>New releases go to the homepage, Best Products and our Instagram, TikTok and YouTube &mdash; with your name.</p></div>
 	<div class="sssell-card"><?php echo $ic( '<path d="M2 12h3l3-8 4 16 3-8h7"/>' ); ?><h3>Waveform previews</h3><p>Buyers hear your track instantly, add it to a queue and compare &mdash; built for DJs and producers.</p></div>
 	<div class="sssell-card"><?php echo $ic( '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>' ); ?><h3>Found by BPM &amp; key</h3><p>Genre, BPM, key, Ableton version and plugins as filters &mdash; the right buyer finds your template in seconds.</p></div>
@@ -1623,12 +1623,12 @@ function ss_sell_page() {
 <h2 id="terms" style="scroll-margin-top:90px">The <em>terms</em>, in one table</h2>
 <p class="sssell-lead">No small print.</p>
 <table class="sssell-table">
-	<tr><th>Your share per sale</th><td><b>85%</b> Founding Creators (first 20, 12 months) &middot; <b>70%</b> standard</td></tr>
+	<tr><th>Revenue share</th><td>Being finalised &mdash; sent to you in writing before your products go on sale</td></tr>
 	<tr><th>Listing / membership fee</th><td>None</td></tr>
 	<tr><th>Exclusivity</th><td>Non-exclusive &mdash; keep selling anywhere</td></tr>
 	<tr><th>Who sets the price</th><td>You</td></tr>
-	<tr><th>Payouts</th><td>Monthly, from $25 &middot; PayPal or bank transfer</td></tr>
-	<tr><th>Application review</th><td>Within 24 hours</td></tr>
+	<tr><th>Payouts</th><td>Start once our payment setup for creators is live &mdash; we will email you</td></tr>
+	<tr><th>Product check</th><td>Every product is checked before it goes live</td></tr>
 	<tr><th>Creator perk</th><td>20% off mixing &amp; mastering</td></tr>
 	<tr><th>What you can sell</th><td>Ableton / DAW templates, synth presets, sample packs, MIDI, stems, royalty-free music</td></tr>
 </table>
@@ -1636,9 +1636,9 @@ function ss_sell_page() {
 <h2 id="how">How it <em>works</em></h2>
 <div class="sssell-steps">
 	<div class="sssell-step"><b>Apply</b><span>2-minute form with links to your work.</span></div>
-	<div class="sssell-step"><b>Get approved</b><span>We reply within 24 h.</span></div>
+	<div class="sssell-step"><b>Open your dashboard</b><span>It opens right away.</span></div>
 	<div class="sssell-step"><b>Upload</b><span>Add products in your dashboard &mdash; or let us do it.</span></div>
-	<div class="sssell-step"><b>Get paid</b><span>Monthly payouts, live sales stats.</span></div>
+	<div class="sssell-step"><b>Go live</b><span>Every product is checked before it goes live.</span></div>
 </div>
 
 <h2 id="apply" style="scroll-margin-top:90px">Apply as a <em>creator</em></h2>
@@ -1980,7 +1980,7 @@ add(F('tag'));add(drop);add(files);add(multi);
 var mp3=F('mp3');if(mp3){mp3.classList.add('ss-wm-hidden');var alt=el('span','ss-wm-alt','Prefer the media library for the MP3 demo?');alt.onclick=function(){mp3.classList.toggle('ss-wm-hidden');add(mp3)};add(alt)}
 var fs=q('fieldset');if(fs&&!fs.querySelector('.acf-field:not(.ss-ap-hide)'))fs.classList.add('ss-wm-empty');
 add(submitP);submitP.className='ss-wm-submit';submitBtn.textContent='Send for review';
-var note=el('p','ss-wm-note','After you send it, we review the product (usually within 24 hours) and then publish it.');submitP.appendChild(note);
+var note=el('p','ss-wm-note','After you send it, we check the product and then publish it.');submitP.appendChild(note);
 top.querySelector('.ss-wm-save').onclick=function(){if(form.requestSubmit)form.requestSubmit(submitBtn);else submitBtn.click()};
 /* max hints + counters */
 function maxify(n,max,label){var w=F(n);if(!w)return;var lab=w.querySelector('.acf-label label');if(lab&&label)lab.firstChild.nodeValue=label;if(lab&&max&&!w.querySelector('.ss-wm-max'))lab.insertAdjacentHTML('afterend','<span class="ss-wm-max">(max '+max+')</span>');if(max){var c=el('div','ss-wm-cnt','<b>0</b> / '+max+' selected');w.querySelector('.acf-label').appendChild(c);w.dataset.max=max}}
@@ -2064,8 +2064,8 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 		$url = function_exists( 'get_wcfm_url' ) ? get_wcfm_url() : home_url( '/store-manager/' );
 		$steps = array(
 			array( $s1, 'Complete your profile', 'Logo, banner and a short bio build trust with buyers.', 'Edit profile', function_exists( 'ss_cp_url' ) ? ss_cp_url( 'ss-settings' ) : trailingslashit( $url ) . 'profile/' ),
-			array( $s2, 'Add your first product', 'Upload files and an MP3 preview. We review it within 24 hours.', 'Add product', function_exists( 'ss_ep_url' ) ? ss_ep_url() : home_url( '/add-product/' ) ),
-			array( $s3, 'Set up payouts', 'Add your PayPal email so we can pay you monthly (from $25).', 'Set up payouts', function_exists( 'ss_cp_url' ) ? ss_cp_url( 'ss-payouts' ) : trailingslashit( $url ) . 'profile/' ),
+			array( $s2, 'Add your first product', 'Upload files and an MP3 preview. We check every product before it goes live.', 'Add product', function_exists( 'ss_ep_url' ) ? ss_ep_url() : home_url( '/add-product/' ) ),
+			array( $s3, 'Set up payouts', 'Payouts start once our payment setup for creators is live — we will email you. You can add your PayPal email now.', 'Set up payouts', function_exists( 'ss_cp_url' ) ? ss_cp_url( 'ss-payouts' ) : trailingslashit( $url ) . 'profile/' ),
 			array( $s4, 'Make your first sale', 'Share your store link: in your bio, under YouTube videos, in Discord.', '', '' ),
 		);
 		$done = count( array_filter( wp_list_pluck( $steps, 0 ) ) );
@@ -2406,13 +2406,13 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 	function ss_cp_cards( $s ) {
 		return '<div class="sscp-cards">'
 			. '<div class="sscp-c g"><span>Total earnings</span><b>' . ss_cp_money( $s['total'] ) . '</b><em>Your share of all sales</em></div>'
-			. '<div class="sscp-c d"><span>Available balance</span><b>' . ss_cp_money( $s['available'] ) . '</b><em>Earned — not yet paid. Min. $25 for payout</em></div>'
+			. '<div class="sscp-c d"><span>Available balance</span><b>' . ss_cp_money( $s['available'] ) . '</b><em>Earned — not yet paid</em></div>'
 			. '<div class="sscp-c y"><span>Pending balance</span><b>' . ss_cp_money( $s['pending'] ) . '</b><em>Requested — awaiting payment</em></div>'
 			. '<div class="sscp-c b"><span>Total paid out</span><b>' . ss_cp_money( $s['paid'] ) . '</b><em>Lifetime payments received</em></div></div>';
 	}
 	function ss_cp_payout_cta( $id ) {
 		if ( ss_cp_payout_set( $id ) ) return '';
-		return '<div class="sscp-warn"><b>🔒 Set up your payouts</b><p>Add your PayPal email or bank details so we can pay you for your sales.</p><a class="ssw-btn" href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">Set Up Payouts</a></div>';
+		return '<div class="sscp-warn"><b>🔒 Set up your payouts</b><p>Add your PayPal email or bank details now. Payouts start once our payment setup for creators is live — we will email you.</p><a class="ssw-btn" href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">Set Up Payouts</a></div>';
 	}
 
 	function ss_cp_render( $s ) {
@@ -2448,8 +2448,8 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 			$p = ss_cp_prof( $id ); $pay = isset( $p['payment'] ) ? (array) $p['payment'] : array(); $mth = $pay['method'] ?? '';
 			$n = wp_nonce_field( 'ss_cp_payout', '_sscp', true, false ) . '<input type="hidden" name="ss_cp_action" value="payout">';
 			$o .= ( function_exists( 'ss_ct_payout_status' ) ? ss_ct_payout_status( $id, $mth, $pay ) : '' ) . '<div class="ssw-card"><div class="ssw-h"><b>' . ( $mth ? 'Change payout method' : 'Choose how we pay you' ) . '</b></div><p class="sscp-sub">One method at a time. Your details are private: only our payout team sees them.</p><div class="sscp-pm">'
-				. '<form method="post" class="sscp-pmc' . ( 'paypal' === $mth ? ' on' : '' ) . '">' . $n . '<input type="hidden" name="method" value="paypal"><h3>PayPal</h3><p class="h">PayPal — Monthly</p><span class="tag">Paid within 30 days</span><p>We pay your PayPal on the 1st of each month for everything you are owed (from $25).</p><input type="email" name="paypal_email" placeholder="your@paypal.com" value="' . esc_attr( $pay['paypal']['email'] ?? '' ) . '" required><button class="sscp-sel">' . ( 'paypal' === $mth ? 'Selected ✓ — Save' : 'Select' ) . '</button></form>'
-				. '<form method="post" class="sscp-pmc' . ( 'bank_transfer' === $mth ? ' on' : '' ) . '">' . $n . '<input type="hidden" name="method" value="bank_transfer"><h3>Bank transfer</h3><p class="h">Bank Transfer — Monthly</p><span class="tag">Paid within 30 days</span><p>We send a bank transfer on the 1st of each month for everything you are owed (from $25).</p>'
+				. '<form method="post" class="sscp-pmc' . ( 'paypal' === $mth ? ' on' : '' ) . '">' . $n . '<input type="hidden" name="method" value="paypal"><h3>PayPal</h3><p class="h">PayPal</p><span class="tag">Payouts start soon</span><p>Payouts start once our payment setup for creators is live — we will email you.</p><input type="email" name="paypal_email" placeholder="your@paypal.com" value="' . esc_attr( $pay['paypal']['email'] ?? '' ) . '" required><button class="sscp-sel">' . ( 'paypal' === $mth ? 'Selected ✓ — Save' : 'Select' ) . '</button></form>'
+				. '<form method="post" class="sscp-pmc' . ( 'bank_transfer' === $mth ? ' on' : '' ) . '">' . $n . '<input type="hidden" name="method" value="bank_transfer"><h3>Bank transfer</h3><p class="h">Bank transfer</p><span class="tag">Payouts start soon</span><p>Payouts start once our payment setup for creators is live — we will email you.</p>'
 				. '<input name="bank_ac_name" placeholder="Account holder name" value="' . esc_attr( $pay['bank']['ac_name'] ?? '' ) . '" required><input name="bank_bank_name" placeholder="Bank name" value="' . esc_attr( $pay['bank']['bank_name'] ?? '' ) . '"><input name="bank_iban" placeholder="IBAN" value="' . esc_attr( $pay['bank']['iban'] ?? '' ) . '" required><input name="bank_swift" placeholder="SWIFT / BIC" value="' . esc_attr( $pay['bank']['swift'] ?? '' ) . '"><button class="sscp-sel">' . ( 'bank_transfer' === $mth ? 'Selected ✓ — Save' : 'Select' ) . '</button></form>'
 				. '</div></div><p class="sscp-sub"><a href="' . esc_url( trailingslashit( get_wcfm_url() ) . 'payments/' ) . '">Payment history →</a></p>';
 		}
@@ -2495,9 +2495,9 @@ if ( ! function_exists( 'ss_cp_pages' ) ) {
 		}
 		if ( 'ss-help' === $s ) {
 			$qa = array(
-				array( 'How much do I earn?', 'You keep 70% of every sale. The first 20 Founding Creators keep 85% for their first 12 months.' ),
-				array( 'When and how do I get paid?', 'Once a month, by PayPal or bank transfer, when your available balance is at least $25. Set it up in Payouts.' ),
-				array( 'How long does product review take?', 'Usually within 24 hours. You get an email when your product is live.' ),
+				array( 'How much do I earn?', 'Revenue terms are being finalised. We will send them to you in writing before any of your products go on sale, so you can decide then.' ),
+				array( 'When and how do I get paid?', 'Payouts start once our payment setup for creators is live — we will email you. You can already add PayPal or bank details in Payouts.' ),
+				array( 'How long does product review take?', 'Every product is checked before it goes live. You get an email when your product is live.' ),
 				array( 'Is it exclusive?', 'No. You can sell the same products anywhere else.' ),
 				array( 'What files do I need?', 'A cover image (JPG, 1000×1000+), the project or pack as a ZIP, and an MP3 demo for the player.' ),
 				array( 'Can I use third-party samples?', 'Only if their licence allows redistribution. If in doubt, leave them out.' ),

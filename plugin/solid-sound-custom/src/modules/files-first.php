@@ -287,7 +287,7 @@ function init(){form=document.getElementById('solid-sound-upload-form');if(!form
      c3=card('ss-ff-c3','','Sound',''),
      c4=card('ss-ff-c4','','Cover','Square, 1000×1000 or larger — yours, or one from AI.'),
      c5=card('ss-ff-c5','3','Name, price & publish','AI wrote the name and text from your files — tweak if you like, set a price, send.'),
-     c6=card('ss-ff-c6','','Price','You keep 70 % of every sale (85 % as a Founding Creator). Live within 24 hours.');
+     c6=card('ss-ff-c6','','Price','You set the price. Revenue terms come in writing before your product goes on sale.');
  var CS=[c1,c2,c3,c4,c5,c6];CS.forEach(function(c,i){body.insertBefore(c,i?CS[i-1].nextSibling:body.firstChild)});
  [drop,files,st,zf,document.getElementById('ss-az')].forEach(function(x){if(x)c1.appendChild(x)});
  var man=document.createElement('button');man.type='button';man.className='ss-ff-man';man.textContent='No files yet? Fill it in by hand →';c1.appendChild(man);

@@ -45,7 +45,7 @@ function ss_cr_guidelines_html( $short = false ) {
 	foreach ( $rules as $r ) $h .= '<li><b>' . esc_html( $r[0] ) . '.</b> ' . esc_html( $r[1] ) . '</li>';
 	$h .= '</ol><h3>How a product goes live</h3><ol>'
 		. '<li><b>Robot check</b> — right after you press "Send for review": files, demo, cover and plugins. If something is wrong you see the exact list and can fix it immediately.</li>'
-		. '<li><b>Quick listen</b> — the Solid Sound team listens to the demo and publishes the product, usually within 24 hours.</li>'
+		. '<li><b>Quick listen</b> — the Solid Sound team listens to the demo and publishes the product once it is checked.</li>'
 		. '<li><b>Buyers decide</b> — new products appear in the catalog with a "New" badge. Plays, likes, sales and reviews move them up to "Trending", "Best products" and the home page.</li></ol>'
 		. '<h3>Not ready yet?</h3><p>If a product is declined you get the reason and what to improve. We help producers grow: free guides in the <a href="' . esc_url( home_url( '/en/wiki/' ) ) . '">Solid Sound Wiki</a>, and a detailed review of your project by our studio on request.</p>'
 		. '<h3>After publishing</h3><p>If buyers confirm that a product does not open or does not match its description, it is hidden until fixed. Repeated problems close the creator account.</p></div>';
@@ -428,7 +428,7 @@ add_action( 'woocommerce_after_single_product_summary', function () {
 /* dashboard Products list: what happens with each product, in plain words */
 function ss_cr_status_note( $pid, $st ) {
 	$s = 'display:block;margin-top:4px;font-size:12px;line-height:1.35;color:#94A3B8;max-width:260px';
-	if ( 'pending' === $st ) return '<small style="' . $s . '">Robot check passed · usually live within 24 h</small>';
+	if ( 'pending' === $st ) return '<small style="' . $s . '">Robot check passed · our team checks it next</small>';
 	$d = get_post_meta( $pid, '_ss_declined', true );
 	if ( 'draft' === $st && $d ) {
 		$rs = ss_cr_reasons(); $r = isset( $rs[ $d ] ) ? $rs[ $d ] : $rs['other'];

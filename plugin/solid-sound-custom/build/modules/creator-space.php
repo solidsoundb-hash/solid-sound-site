@@ -101,8 +101,8 @@ function ss_cs_data( $id ) {
 	foreach ( $chk as $x ) { if ( $x[0] ) $d['strength'] += $x[1]; else $d['missing'][] = $x[2]; }
 	$d['steps'] = array(
 		array( ! empty( $pr['gravatar'] ) && ( ! empty( $pr['shop_description'] ) || ! empty( $pr['banner'] ) ), 'Complete your profile', 'Photo, cover and a short bio build trust with buyers.', 'Edit profile', ss_cp_url( 'ss-settings' ) ),
-		array( (bool) $d['rows'], 'Add your first product', 'Upload files and an MP3 preview. We review it within 24 hours.', 'Add product', function_exists( 'ss_ep_url' ) ? ss_ep_url() : ss_cp_url( 'ss-add-product' ) ),
-		array( $d['pay_set'], 'Set up payouts', 'Add your PayPal email or bank so we can pay you monthly (from €25).', 'Set up payouts', ss_cp_url( 'ss-payouts' ) ),
+		array( (bool) $d['rows'], 'Add your first product', 'Upload files and an MP3 preview. We check every product before it goes live.', 'Add product', function_exists( 'ss_ep_url' ) ? ss_ep_url() : ss_cp_url( 'ss-add-product' ) ),
+		array( $d['pay_set'], 'Set up payouts', 'Payouts start once our payment setup for creators is live — we will email you. You can add PayPal or bank now.', 'Set up payouts', ss_cp_url( 'ss-payouts' ) ),
 		array( $d['all']['count'] > 0, 'Make your first sale', 'Share your profile page: in your bio, under videos, in Discord.', '', '' ),
 	);
 	$d['store'] = function_exists( 'wcfmmp_get_store_url' ) ? wcfmmp_get_store_url( $id ) : '';
@@ -173,15 +173,16 @@ function ss_cs_render() {
 		}
 		$h .= '<div class="btns"><a class="btn" href="' . esc_url( $add ) . '">' . ss_cs_ic( 'up' ) . 'Add product</a><a class="btn g" href="' . esc_url( ss_cp_url( 'ss-products' ) ) . '">All products</a></div>';
 	} else {
-		$h .= '<div class="empty">No products yet. Add your first template, preset pack or track — we review it within 24 hours.</div><a class="btn" href="' . esc_url( $add ) . '">' . ss_cs_ic( 'up' ) . 'Add product</a>';
+		$h .= '<div class="empty">No products yet. Add your first template, preset pack or track — we check every product before it goes live.</div><a class="btn" href="' . esc_url( $add ) . '">' . ss_cs_ic( 'up' ) . 'Add product</a>';
 	}
 	$h .= '</section></div><div>';
 	$h .= apply_filters( 'ss_cs_side_top', '', $id ); /* 18.11: love from listeners (modules/kudos.php) */
 	/* profile link */
 	if ( $d['store'] ) $h .= '<section class="p">' . $head( 'Your profile page', 'link' ) . '<p class="sub" style="margin:0">Share it in your bio, under videos, in Discord — fans see only your products. Every sale from it counts.</p><div class="lnk"><input readonly value="' . esc_attr( $d['store'] ) . '" aria-label="Your profile page link"><button type="button" class="btn g ss-cs-copy">Copy</button></div></section>';
 	/* payouts */
-	$av = (float) $d['all']['available']; $pct = min( 100, $av / 25 * 100 );
-	$h .= '<section class="p">' . $head( 'Payouts', 'card' ) . '<div class="row"><div class="nm"><b>' . $money( $av ) . ( $av >= 25 ? ' available' : ' of €25.00' ) . '</b><small>' . ( $av >= 25 ? 'Ready for the next monthly payout' : 'Next payout when you reach $25 · monthly · PayPal or bank' ) . ( $d['all']['paid'] ? ' · paid so far ' . $money( $d['all']['paid'] ) : '' ) . '</small></div><a class="btn g" href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">' . ( $d['pay_set'] ? 'Payouts' : 'Set up payouts' ) . '</a></div><div class="pg"><i style="width:' . round( $pct ) . '%"></i></div></section>';
+	/* 25.11 (Юрист/владелец): no payout minimum or schedule until creator payments are set up */
+	$av = (float) $d['all']['available'];
+	$h .= '<section class="p">' . $head( 'Payouts', 'card' ) . '<div class="row"><div class="nm"><b>' . $money( $av ) . ' earned</b><small>Payouts start once our payment setup for creators is live — we will email you' . ( $d['all']['paid'] ? ' · paid so far ' . $money( $d['all']['paid'] ) : '' ) . '</small></div><a class="btn g" href="' . esc_url( ss_cp_url( 'ss-payouts' ) ) . '">' . ( $d['pay_set'] ? 'Payouts' : 'Set up payouts' ) . '</a></div></section>';
 	/* best sellers */
 	$best = array_filter( $d['rows'], function ( $r ) { return 'publish' === $r['st']; } );
 	usort( $best, function ( $a, $b ) { return array( $b['q'], $b['plays'] ) <=> array( $a['q'], $a['plays'] ); } );
