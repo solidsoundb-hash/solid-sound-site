@@ -38,7 +38,7 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
   const ctx = await browser.newContext({ locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
   const page = await ctx.newPage();
   const since = new Date(Date.now() - HOURS * 3600e3).toISOString().slice(0, 19);
-  const R = { updated: new Date().toISOString(), hours: HOURS, orders: [], funnel: null, forum: [], errors: [] };
+  const R = { updated: new Date().toISOString(), hours: HOURS, orders: [], funnel: null, leads: null, forum: [], errors: [] };
   try {
     let resp = null;
     for (let i = 0; i < 4; i++) { // hosting answers 429 when many robots run at once
@@ -69,6 +69,11 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
       const sum = (re) => Object.entries(x.p || {}).reduce((n, [p, v]) => n + (re.test(p) ? v : 0), 0);
       R.funnel = { day, product: sum(/\/product\//), cart: sum(/\/cart\/?$/), checkout: sum(/\/checkout\/?$/), thanks: sum(/order-received/), orders: ((d.orders || {})[day] || {}).n || 0 };
     } else R.errors.push('статистика: ответ ' + s.status());
+
+    // 2b. requests from site forms (modules/site-leads.php, admin «Requests») — form, time, TEST flag only (no names / e-mails)
+    const l = await ctx.request.get(`${S}/wp-json/ss/v1/leads?days=${Math.max(1, Math.ceil(HOURS / 24))}`, H);
+    if (l.status() === 200) { const d = await l.json(); R.leads = (d.leads || []).map(x => ({ id: x.id, date: x.date, form: scrub(x.form), test: !!x.test, reply: !!x.has_email })); }
+    else R.errors.push('заявки: ответ ' + l.status());
   } catch (e) { R.errors.push(e.message.split('\n')[0]); }
 
   // 3. forum: wpForo RSS of all topics (public, titles + dates only — no nicknames); new = published within HOURS
@@ -93,7 +98,9 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
   L.push(R.funnel ? `${R.funnel.day}: товар ${R.funnel.product} → корзина ${R.funnel.cart} → оформление ${R.funnel.checkout} → «спасибо» ${R.funnel.thanks}; заказов ${R.funnel.orders}.` +
     (R.funnel.checkout > R.funnel.orders ? ' ⚠ дошли до оформления, но не купили — вероятно, мешает оплата.' : '') : '_нет данных_');
   L.push('', `## Форум — темы (${R.forum.length}, новых ${R.forum.filter(f => f.fresh).length})`, R.forum.length ? R.forum.map(f => `- ${f.fresh ? '🆕 ' : ''}${f.question ? '❓ ' : ''}${f.title} (${(f.date || '').slice(0, 10)}) — ${f.url}`).join('\n') : '_тем не найдено_');
-  L.push('', '## Формы', '_Заявки студии и формы контактов приходят только на почту (на сайте не хранятся) — робот их не видит._');
+  const real = (R.leads || []).filter(x => !x.test);
+  L.push('', `## Заявки с форм (${real.length}${(R.leads || []).length > real.length ? ', тестовых ' + ((R.leads || []).length - real.length) : ''})`,
+    R.leads ? (R.leads.length ? R.leads.map(x => `- ${x.test ? '🧪 TEST ' : ''}${x.date.slice(0, 16).replace('T', ' ')} — ${x.form}${x.reply ? '' : ' (без e-mail)'} — ответить: wp-admin → Requests #${x.id}`).join('\n') : '_Новых заявок нет._') : '_нет данных_');
   if (R.errors.length) L.push('', '## Ошибки робота', ...R.errors.map(e => '- ' + e));
   const md = L.join('\n') + '\n';
   if (/[\w.+-]+@[\w-]+\.[a-z]{2,}/i.test(md.replace(/actions@users\.noreply\.github\.com/g, ''))) { console.log('STOP: в отчёте нашлась почта — не сохраняю'); process.exit(1); }
