@@ -90,3 +90,24 @@ cpn();if(window.jQuery)jQuery(document.body).on('updated_wc_div updated_cart_tot
 })();</script>
 	<?php
 }, 46 );
+
+/* (25.11, Analyst «19 корзин → 1 оформление», п. в): checkout on phones (≤600px) — the four blocks above the form
+   (Google, bonus, «Returning customer?», «Have a coupon?») become thin rows, so «Billing details» starts on the first screen;
+   the cookie banner sits at the top here too, so it never covers the fields or «Place order». Computer unchanged. */
+add_action( 'wp_footer', function () {
+	if ( ! function_exists( 'is_checkout' ) || ! is_checkout() || ( function_exists( 'is_order_received_page' ) && is_order_received_page() ) ) return;
+	?>
+<style id="ss-co-m">@media(max-width:600px){
+body.woocommerce-checkout .ss-gsi-co{padding:8px 10px!important;margin:0 0 8px!important}
+body.woocommerce-checkout .ss-gsi-co>p{display:none}
+body.woocommerce-checkout .ss-gsi-co .ss-gsi-btn{min-height:40px}
+body.woocommerce-checkout .ss-bonus{padding:8px 12px!important;margin:0 0 6px!important;font-size:13px!important;line-height:1.35}
+body.woocommerce-checkout .woocommerce-form-login-toggle,body.woocommerce-checkout .woocommerce-form-coupon-toggle{margin:0!important}
+body.woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info,body.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info{background:none!important;border:0!important;box-shadow:none!important;padding:5px 2px!important;margin:0!important;min-height:0!important;font-size:13.5px!important;line-height:1.35}
+body.woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info:before,body.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info:before{display:none!important}
+body.woocommerce-checkout form.checkout{margin-top:8px!important}
+body.woocommerce-checkout .woocommerce-billing-fields>h3{margin:4px 0 8px!important;font-size:20px!important}
+body.woocommerce-checkout .ss-cc{top:8px;bottom:auto!important}
+}</style>
+	<?php
+}, 46 );
