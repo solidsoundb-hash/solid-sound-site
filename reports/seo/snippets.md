@@ -1,24 +1,22 @@
-# SEO: сниппеты ключевых страниц — 2026-11-25 16:24 UTC
+# SEO: сниппеты ключевых страниц — 2026-11-25 17:26 UTC
 
-Экзамен: 8/9 — ошибки: /en/all-products/ «H1: 2» не найдено
+Экзамен: 9/9 ✅
 
 Страниц: 37. Большой обход всего сайта (битые ссылки, карта сайта, сироты, hreflang) — `reports/sitebots/seo.md` (по воскресеньям).
 
-## Что поправить (11)
+## Что поправить (2)
 - 🟡 /en/ — title 62 зн.
-- 🟡 /en/services-prices/ — description 193 зн.
-- 🟡 /studio-calculator/ — title 64 зн.
-- 🟠 /de/studio-calculator/ — title как в EN
-- 🟠 /de/studio-calculator/ — description как в EN
-- 🟡 /de/studio-calculator/ — title 64 зн.
-- 🟡 /de/studio-calculator/ — canonical → /studio-calculator/
-- 🟠 /fr/studio-calculator/ — title как в EN
-- 🟠 /fr/studio-calculator/ — description как в EN
-- 🟡 /fr/studio-calculator/ — title 64 зн.
-- 🟡 /fr/studio-calculator/ — canonical → /studio-calculator/
+- 🟡 /fr/studio-calculator/ — title 67 зн.
 
-## Что изменилось с прошлого прогона (2026-11-25 11:10)
-- ничего
+## Что изменилось с прошлого прогона (2026-11-25 16:24)
+- /en/services-prices/ **desc**: «Online mixing from 69€, mastering from 35€, mix + master bundles, project rework in your DAW, custom production, remixes and release help. Pay 50 % to start — compare packages and order online.» → «Online mixing from 69€, mastering from 35€, mix + master bundles, remixes and custom production. Pay 50 % to start — compare packages and order online.»
+- /studio-calculator/ **title**: «Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound» → «Studio Price Calculator – Mixing & Mastering | Solid Sound»
+- /de/studio-calculator/ **title**: «Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound» → «Studio-Preisrechner – Mixing, Mastering, Remix | Solid Sound»
+- /de/studio-calculator/ **desc**: «Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.» → «Sofortpreise für Mixing, Mastering (Stereo, Stem, Multitrack), Remix, Ghost Producing und Postproduktion. Start mit 50 % Anzahlung.»
+- /de/studio-calculator/ **h1**: «Studio price calculator» → «Studio-Preisrechner»
+- /fr/studio-calculator/ **title**: «Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound» → «Calculateur de prix studio – Mixage, Mastering, Remix | Solid Sound»
+- /fr/studio-calculator/ **desc**: «Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.» → «Prix immédiats pour mixage, mastering (stéréo, stems, multipiste), remix, ghost production et post-production. Démarrez avec 50 % d'acompte.»
+- /fr/studio-calculator/ **h1**: «Studio price calculator» → «Calculateur de prix studio»
 
 ## Все страницы
 | Страница | Язык | title | H1 | hreflang | Замечания |
@@ -30,15 +28,15 @@
 | Главная | pt | Solid Sound — Templates Ableton, presets e mistura online | Transforme suas ideias em Solid Sound | 8 | ✅ |
 | Главная | es | Solid Sound — Plantillas Ableton, presets y mezcla online | Convierte tus ideas en Solid Sound | 8 | ✅ |
 | Главная | it | Solid Sound — Template Ableton, preset e mix online | Trasforma le tue idee in Solid Sound | 8 | ✅ |
-| Каталог | en | Ableton Templates, Serum Presets & Music ¦ Solid Sound | All products | 4 | ✅ |
-| Каталог | de | Ableton Templates, Presets, Mixing & Mastering ¦ Solid Sound | Alle Produkte | 4 | ✅ |
-| Каталог | fr | Templates Ableton, presets, mixage & mastering ¦ Solid Sound | Tous les produits | 4 | ✅ |
-| Услуги | en | Mixing, Mastering & Production Prices ¦ Solid Sound | Services & Prices | 4 | description 193 зн. |
-| Услуги | de | Mixing & Mastering Preise online ¦ Solid Sound | Leistungen & Preise | 4 | ✅ |
-| Услуги | fr | Prix mixage & mastering en ligne ¦ Solid Sound | Services & tarifs | 4 | ✅ |
-| Калькулятор | en | Studio Price Calculator – Mixing, Mastering, Remix ¦ Solid Sound | Studio price calculator | 0 | title 64 зн. |
-| Калькулятор | de | Studio Price Calculator – Mixing, Mastering, Remix ¦ Solid Sound | Studio price calculator | 4 | title как в EN; description как в EN; title 64 зн.; canonical → /studio-calculator/ |
-| Калькулятор | fr | Studio Price Calculator – Mixing, Mastering, Remix ¦ Solid Sound | Studio price calculator | 4 | title как в EN; description как в EN; title 64 зн.; canonical → /studio-calculator/ |
+| Каталог | en | Ableton Templates, Serum Presets & Music ¦ Solid Sound | All products | 5 | ✅ |
+| Каталог | de | Ableton Templates, Presets, Mixing & Mastering ¦ Solid Sound | Alle Produkte | 5 | ✅ |
+| Каталог | fr | Templates Ableton, presets, mixage & mastering ¦ Solid Sound | Tous les produits | 5 | ✅ |
+| Услуги | en | Mixing, Mastering & Production Prices ¦ Solid Sound | Services & Prices | 5 | ✅ |
+| Услуги | de | Mixing & Mastering Preise online ¦ Solid Sound | Leistungen & Preise | 5 | ✅ |
+| Услуги | fr | Prix mixage & mastering en ligne ¦ Solid Sound | Services & tarifs | 5 | ✅ |
+| Калькулятор | en | Studio Price Calculator – Mixing & Mastering ¦ Solid Sound | Studio price calculator | 0 | ✅ |
+| Калькулятор | de | Studio-Preisrechner – Mixing, Mastering, Remix ¦ Solid Sound | Studio-Preisrechner | 5 | ✅ |
+| Калькулятор | fr | Calculateur de prix studio – Mixage, Mastering, Remix ¦ Solid Sound | Calculateur de prix studio | 5 | title 67 зн. |
 | Товар infinity | en | Infinity – Techno Ableton Live Template ¦ Solid Sound | Infinity | 8 | ✅ |
 | Товар infinity | ua | Infinity – Techno Шаблон Ableton Live ¦ Solid Sound | Infinity | 8 | ✅ |
 | Товар infinity | de | Infinity – Techno Ableton Live Vorlage ¦ Solid Sound | Infinity | 8 | ✅ |

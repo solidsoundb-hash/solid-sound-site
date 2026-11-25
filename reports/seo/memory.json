@@ -1,5 +1,5 @@
 {
- "date": "2026-11-25 16:24",
+ "date": "2026-11-25 17:26",
  "pages": {
   "/en/": {
    "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
@@ -63,7 +63,7 @@
   },
   "/en/services-prices/": {
    "title": "Mixing, Mastering & Production Prices | Solid Sound",
-   "desc": "Online mixing from 69€, mastering from 35€, mix + master bundles, project rework in your DAW, custom production, remixes and release help. Pay 50 % to start — compare packages and order online.",
+   "desc": "Online mixing from 69€, mastering from 35€, mix + master bundles, remixes and custom production. Pay 50 % to start — compare packages and order online.",
    "h1": "Services & Prices",
    "brand": ""
   },
@@ -80,21 +80,21 @@
    "brand": ""
   },
   "/studio-calculator/": {
-   "title": "Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound",
+   "title": "Studio Price Calculator – Mixing & Mastering | Solid Sound",
    "desc": "Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.",
    "h1": "Studio price calculator",
    "brand": ""
   },
   "/de/studio-calculator/": {
-   "title": "Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound",
-   "desc": "Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.",
-   "h1": "Studio price calculator",
+   "title": "Studio-Preisrechner – Mixing, Mastering, Remix | Solid Sound",
+   "desc": "Sofortpreise für Mixing, Mastering (Stereo, Stem, Multitrack), Remix, Ghost Producing und Postproduktion. Start mit 50 % Anzahlung.",
+   "h1": "Studio-Preisrechner",
    "brand": ""
   },
   "/fr/studio-calculator/": {
-   "title": "Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound",
-   "desc": "Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.",
-   "h1": "Studio price calculator",
+   "title": "Calculateur de prix studio – Mixage, Mastering, Remix | Solid Sound",
+   "desc": "Prix immédiats pour mixage, mastering (stéréo, stems, multipiste), remix, ghost production et post-production. Démarrez avec 50 % d'acompte.",
+   "h1": "Calculateur de prix studio",
    "brand": ""
   },
   "/product/infinity/": {
@@ -224,6 +224,6 @@
    "brand": "Solid Sound"
   }
  },
- "runs": 6,
- "exam": "Экзамен: 8/9 — ошибки: /en/all-products/ «H1: 2» не найдено"
+ "runs": 7,
+ "exam": "Экзамен: 9/9 ✅"
 }
