@@ -22,9 +22,11 @@ const action = (status) => ({
   cancelled: 'отменён — узнать причину', refunded: 'возврат — проверить причину', 'checkout-draft': 'бросил оформление — напомнить',
 }[status] || 'проверить вручную');
 const urgent = (status) => ['pending', 'failed', 'on-hold', 'checkout-draft'].includes(status);
+// topic address = /forum/<section>/<topic>/ (not a section, profile, tag or service page)
+const isTopicUrl = (u) => /\/forum\/(?!participant|profile|members|recent|tag|search|register|login|account)[^/?#]+\/[^/?#]+\/?$/.test(String(u || '').replace(/^https?:\/\/[^/]+(\/[a-z]{2}(?=\/))?/, ''));
 const isQuestion = (title) => /\?|^(how|why|what|where|which|can|does|is|help|wie|comment|cómo|как|чому|чем|що)\b/i.test(String(title || '').trim());
 
-if (require.main !== module) { module.exports = { scrub, action, urgent, isQuestion }; return; }
+if (require.main !== module) { module.exports = { scrub, action, urgent, isQuestion, isTopicUrl }; return; }
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
@@ -66,13 +68,21 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
     } else R.errors.push('статистика: ответ ' + s.status());
   } catch (e) { R.errors.push(e.message.split('\n')[0]); }
 
-  // 3. forum: newest topics (public page, titles only — no nicknames)
+  // 3. forum: topics on the main forum page (public, titles only — no nicknames); "new" = not in the previous report
+  let prev = new Set();
+  try { prev = new Set((JSON.parse(fs.readFileSync(OUT + '/morning.json', 'utf8')).forum || []).map(f => f.url)); } catch (e) {}
   try {
-    await page.goto(S + '/forum/recent/', { waitUntil: 'domcontentloaded', timeout: 90000 });
-    const t = await page.$$eval('#wpforo-wrap a[href*="/forum/"]', as => as.map(a => ({ t: a.textContent.trim(), h: a.getAttribute('href') }))
-      .filter(a => a.t.length > 8 && /\/forum\/[^/]+\/[^/]+\/?$/.test(a.h)));
+    let st = 0;
+    for (let i = 0; i < 3; i++) { const r = await page.goto(S + '/en/forum/', { waitUntil: 'domcontentloaded', timeout: 90000 }); st = r ? r.status() : 0; if (st < 400) break; await page.waitForTimeout(45000); }
+    if (st >= 400) throw new Error('страница форума ответила ' + st);
+    const t = await page.$$eval('a[href*="/forum/"]', as => as.map(a => ({ t: a.textContent.trim(), h: a.getAttribute('href') || '' })));
     const seen = new Set();
-    for (const a of t) { if (seen.has(a.h)) continue; seen.add(a.h); R.forum.push({ title: scrub(a.t), url: a.h.replace(/[?#].*$/, ''), question: isQuestion(a.t) }); if (R.forum.length >= 10) break; }
+    for (const a of t) {
+      const u = a.h.replace(/[?#].*$/, '');
+      if (!isTopicUrl(u) || a.t.length < 6 || seen.has(u)) continue; seen.add(u);
+      R.forum.push({ title: scrub(a.t), url: u, question: isQuestion(a.t), fresh: prev.size > 0 && !prev.has(u) });
+      if (R.forum.length >= 15) break;
+    }
   } catch (e) { R.errors.push('форум: ' + e.message.split('\n')[0]); }
   await browser.close();
 
@@ -80,13 +90,13 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
   const L = [`# Утренняя сводка поддержки — ${R.updated.slice(0, 16).replace('T', ' ')} UTC (за ${HOURS} ч)`, ''];
   const todo = R.orders.filter(x => urgent(x.status));
   L.push(`**Сделать сегодня:** ${todo.length ? todo.length + ' заказ(ов) без оплаты — написать клиенту' : 'неоплаченных заказов нет'}` +
-    `${R.forum.some(f => f.question) ? '; есть вопросы на форуме' : ''}.`, '');
+    `${R.forum.some(f => f.fresh) ? '; новые темы на форуме — ответить' : ''}.`, '');
   L.push('## Заказы', R.orders.length ? '| № | Статус | Что делать | Товары | Сумма | Страна | Оплата |' : '_Новых заказов нет._');
   if (R.orders.length) { L.push('|---|---|---|---|---|---|---|'); for (const x of R.orders) L.push(`| #${x.id} | ${x.status} | ${action(x.status)} | ${x.items} | ${x.total} ${x.currency} | ${x.country} | ${x.method} |`); }
   L.push('', '## Корзина без заказа (Solid Stats, последний день)');
   L.push(R.funnel ? `${R.funnel.day}: товар ${R.funnel.product} → корзина ${R.funnel.cart} → оформление ${R.funnel.checkout} → «спасибо» ${R.funnel.thanks}; заказов ${R.funnel.orders}.` +
     (R.funnel.checkout > R.funnel.orders ? ' ⚠ дошли до оформления, но не купили — вероятно, мешает оплата.' : '') : '_нет данных_');
-  L.push('', '## Форум — последние темы', R.forum.length ? R.forum.map(f => `- ${f.question ? '❓ ' : ''}${f.title} — ${f.url}`).join('\n') : '_тем не найдено_');
+  L.push('', `## Форум — темы (${R.forum.length}, новых ${R.forum.filter(f => f.fresh).length})`, R.forum.length ? R.forum.map(f => `- ${f.fresh ? '🆕 ' : ''}${f.question ? '❓ ' : ''}${f.title} — ${f.url}`).join('\n') : '_тем не найдено_');
   L.push('', '## Формы', '_Заявки студии и формы контактов приходят только на почту (на сайте не хранятся) — робот их не видит._');
   if (R.errors.length) L.push('', '## Ошибки робота', ...R.errors.map(e => '- ' + e));
   const md = L.join('\n') + '\n';

@@ -1,17 +1,107 @@
 [
- {"f":"scrub","in":"Contact me john.doe+x@gmail.com please","want":"Contact me [email] please"},
- {"f":"scrub","in":"call +33 6 12 34 56 78 now","want":"call [phone] now"},
- {"f":"scrub","in":"see https://example.com/a?b=1 ok","want":"see [link] ok"},
- {"f":"scrub","in":"Techno Ableton Template Vol. 2","want":"Techno Ableton Template Vol. 2"},
- {"f":"scrub","in":"Serum Presets 2026 (40 presets)","want":"Serum Presets 2026 (40 presets)"},
- {"f":"urgent","in":"pending","want":true},
- {"f":"urgent","in":"failed","want":true},
- {"f":"urgent","in":"checkout-draft","want":true},
- {"f":"urgent","in":"completed","want":false},
- {"f":"urgent","in":"refunded","want":false},
- {"f":"isQuestion","in":"How do I sidechain in Live 12?","want":true},
- {"f":"isQuestion","in":"Template won't open in Live 11?","want":true},
- {"f":"isQuestion","in":"Wie exportiere ich Stems","want":true},
- {"f":"isQuestion","in":"My new techno track","want":false},
- {"f":"isQuestion","in":"Rate my track: deep house","want":false}
+ {
+  "f": "scrub",
+  "in": "Contact me john.doe+x@gmail.com please",
+  "want": "Contact me [email] please"
+ },
+ {
+  "f": "scrub",
+  "in": "call +33 6 12 34 56 78 now",
+  "want": "call [phone] now"
+ },
+ {
+  "f": "scrub",
+  "in": "see https://example.com/a?b=1 ok",
+  "want": "see [link] ok"
+ },
+ {
+  "f": "scrub",
+  "in": "Techno Ableton Template Vol. 2",
+  "want": "Techno Ableton Template Vol. 2"
+ },
+ {
+  "f": "scrub",
+  "in": "Serum Presets 2026 (40 presets)",
+  "want": "Serum Presets 2026 (40 presets)"
+ },
+ {
+  "f": "urgent",
+  "in": "pending",
+  "want": true
+ },
+ {
+  "f": "urgent",
+  "in": "failed",
+  "want": true
+ },
+ {
+  "f": "urgent",
+  "in": "checkout-draft",
+  "want": true
+ },
+ {
+  "f": "urgent",
+  "in": "completed",
+  "want": false
+ },
+ {
+  "f": "urgent",
+  "in": "refunded",
+  "want": false
+ },
+ {
+  "f": "isQuestion",
+  "in": "How do I sidechain in Live 12?",
+  "want": true
+ },
+ {
+  "f": "isQuestion",
+  "in": "Template won't open in Live 11?",
+  "want": true
+ },
+ {
+  "f": "isQuestion",
+  "in": "Wie exportiere ich Stems",
+  "want": true
+ },
+ {
+  "f": "isQuestion",
+  "in": "My new techno track",
+  "want": false
+ },
+ {
+  "f": "isQuestion",
+  "in": "Rate my track: deep house",
+  "want": false
+ },
+ {
+  "f": "isTopicUrl",
+  "in": "https://solid-sound.net/en/forum/ideas-feedback/ideas-suggestions/",
+  "want": true
+ },
+ {
+  "f": "isTopicUrl",
+  "in": "https://solid-sound.net/forum/ableton-help/sidechain-in-live-12/",
+  "want": true
+ },
+ {
+  "f": "isTopicUrl",
+  "in": "https://solid-sound.net/en/forum/ableton-help/",
+  "want": false
+ },
+ {
+  "f": "isTopicUrl",
+  "in": "https://solid-sound.net/en/forum/participant/admin/",
+  "want": false
+ },
+ {
+  "f": "isTopicUrl",
+  "in": "https://solid-sound.net/en/forum/recent/",
+  "want": false
+ },
+ {
+  "f": "isTopicUrl",
+  "in": "https://solid-sound.net/en/forum/",
+  "want": false
+ }
 ]
