@@ -1,0 +1,34 @@
+# SUPPORT-MORNING — robot of «Продажи и поддержка»: new orders (paid / not paid), cart & checkout views without an order,
+# new forum topics → reports/support/morning.md. No personal data (public repo). docs/team/bots.md: step 1 = manual runs only;
+# a schedule is added after the step-2 pass. On demand: a line in .github/support-morning.txt.
+name: Support morning
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/support-morning.txt"]
+permissions:
+  contents: write
+concurrency: support-morning
+jobs:
+  morning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/support-morning/exam.js
+      - run: npm i --no-save playwright@1.49.1
+      - name: Orders, carts, forum
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/bots/support-morning.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=support-morning bash .github/save.sh "support morning: $(date -u +%F)" reports/support
