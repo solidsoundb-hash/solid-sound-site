@@ -1,53 +1,54 @@
 {
- "date": "2026-11-25T16:31:47.796Z",
+ "date": "2026-11-25T17:33:08.417Z",
  "results": {
   "/product/infinity/|mobile": {
-   "score": 51,
-   "lcp": 9921,
-   "fcp": 2705,
-   "tbt": 547,
+   "score": 49,
+   "lcp": 10299,
+   "fcp": 2715,
+   "tbt": 492,
    "cls": 0,
-   "kb": 5065,
+   "kb": 5338,
    "requests": 212,
-   "ttfb": 1667,
+   "ttfb": 4347,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
-     "https://newassets.hcaptcha.com/c/cdba93a00fb313b4c31953c0ec66e9ba478c187a10fef88bebbcf8180 690KB",
-     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-e614396dc94b5762 653KB",
+     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-e614396dc94b5762 768KB",
+     "https://newassets.hcaptcha.com/c/051e795ed753387779414716a5b365273b5ac68651114ec46440a5d62 714KB",
+     "https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-f2a26be5952c5bcf14a6b 457KB",
      "https://pay.google.com/gp/p/ui/pay 423KB",
-     "https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-f2a26be5952c5bcf14a6b 384KB",
      "https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/ 321KB",
-     "https://js.stripe.com/v3/?ver=3.0 270KB",
-     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-payment-method-messaging-fe505415 247KB",
+     "https://js.stripe.com/v3/?ver=3.0 294KB",
+     "https://js.stripe.com/v3/fingerprinted/js/elements-inner-payment-method-messaging-fe505415 252KB",
      "https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit 218KB"
     ],
     "cpu": [
-     "/product/infinity/ 2056ms",
-     "https://js.stripe.com/v3/?ver=3.0 915ms",
-     "Unattributable 720ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ee082ae5e4.js.pagespeed.ce.o 419ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 374ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 356ms"
+     "/product/infinity/ 1788ms",
+     "https://js.stripe.com/v3/?ver=3.0 881ms",
+     "Unattributable 552ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 372ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.117e5f0386.js.pagespeed.ce.v 344ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 328ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −1667ms",
-     "Reduce unused JavaScript −1170ms",
-     "Reduce unused CSS −270ms",
-     "Properly size images −270ms"
+     "Reduce initial server response time −4347ms",
+     "Reduce unused JavaScript −1030ms",
+     "Reduce unused CSS −410ms",
+     "Defer offscreen images −270ms",
+     "Properly size images −250ms"
     ]
    }
   },
   "/en/all-products/|mobile": {
-   "score": 40,
-   "lcp": 6294,
-   "fcp": 3027,
-   "tbt": 1181,
+   "score": 42,
+   "lcp": 6193,
+   "fcp": 2981,
+   "tbt": 1254,
    "cls": 0.036,
    "kb": 1288,
    "requests": 86,
-   "ttfb": 2762,
+   "ttfb": 1702,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -61,24 +62,22 @@
      "/wp-content/plugins/js_composer/assets/css/A.js_composer.min.css,qver=6.8.0.pagespeed.cf.C 46KB"
     ],
     "cpu": [
-     "/en/all-products/ 2087ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 1633ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js.pagespee 1575ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 1279ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.ee082ae5e4.js.pagespeed.ce.o 521ms",
-     "Unattributable 488ms"
+     "/en/all-products/ 1642ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js.pagespee 1588ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 1567ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 1194ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.117e5f0386.js.pagespeed.ce.v 583ms",
+     "Unattributable 573ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −2762ms",
-     "Reduce unused CSS −820ms",
+     "Reduce initial server response time −1702ms",
+     "Reduce unused CSS −800ms",
      "Defer offscreen images −540ms",
      "Serve images in next-gen formats −540ms"
     ]
    }
   }
  },
- "warn": [
-  "/product/infinity/ (телефон): оценка упала 57 → 51"
- ]
+ "warn": []
 }
