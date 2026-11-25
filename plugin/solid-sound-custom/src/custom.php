@@ -4626,7 +4626,7 @@ if ( ! function_exists( 'ss_free_t' ) ) {
 (function(){var f=document.getElementById('ss-free-form');if(!f||f.dataset.on)return;f.dataset.on=1;
 f.addEventListener('submit',function(e){e.preventDefault();var m=f.querySelector('.ssf-msg'),b=f.querySelector('.ssf-btn');var fd=new FormData(f);
 if(!fd.get('name')||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fd.get('email')||'')||!fd.get('consent')){m.className='ssf-msg bad';m.textContent=<?php echo wp_json_encode( ss_free_t( 'err' ) ); ?>;return}
-fd.append('action','ss_free_join');fd.append('n',<?php echo wp_json_encode( wp_create_nonce( 'ss_free_join' ) ); ?>);b.disabled=true;
+fd.append('action','ss_free_join');fd.append('page',location.href.split('#')[0]);fd.append('n',<?php echo wp_json_encode( wp_create_nonce( 'ss_free_join' ) ); ?>);b.disabled=true;
 fetch(<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,{method:'POST',body:fd,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){if(j&&j.success){m.className='ssf-msg ok';m.textContent=j.data.m;setTimeout(function(){location.reload()},700)}else{m.className='ssf-msg bad';m.textContent=(j&&j.data&&j.data.m)||'Error';b.disabled=false}}).catch(function(){m.className='ssf-msg bad';m.textContent='Error';b.disabled=false})});
 })();
 </script>
@@ -5806,6 +5806,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<label><span><?php echo esc_html( $T['genre'] ); ?></span><input name="genre" type="text" maxlength="60" placeholder="Techno, House, DnB…"></label>
 		<label class="ssfb-wide"><span><?php echo esc_html( $T['want'] ); ?></span><textarea name="want" maxlength="1500" rows="2" placeholder="<?php echo esc_attr( $T['want_ph'] ); ?>"></textarea></label>
 		<input class="ssfb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+		<?php if ( function_exists( 'ss_free_t' ) ) : /* 25.11: optional — with the tick the email goes to Brevo "Free Pack" (modules/brevo-utm.php) */ ?><label class="ssfb-wide ssfb-ck"><input type="checkbox" name="news" value="1"><span><?php echo esc_html( ss_free_t( 'consent' ) ); ?></span></label><?php endif; ?>
 		<div class="ssfb-wide ssfb-row"><button type="submit"><?php echo esc_html( $T['btn'] ); ?> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><small><?php echo esc_html( $T['note'] ); ?></small></div>
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
@@ -5829,6 +5830,9 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 .ssfb-f input,.ssfb-f textarea{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid #333;border-radius:8px;color:#F4EFE8;padding:11px 12px;font:15px/1.35 Jura,Roboto,sans-serif;margin:0;height:auto}
 .ssfb-f textarea{resize:vertical;min-height:52px}
 .ssfb-f input:focus,.ssfb-f textarea:focus{outline:none;border-color:#E09900}
+.ssfb-f label.ssfb-ck{flex-direction:row;align-items:flex-start;gap:10px;cursor:pointer;min-height:24px}
+.ssfb-f .ssfb-ck input{width:20px;height:20px;flex:0 0 20px;margin:1px 0 0;padding:0;accent-color:#E09900}
+.ssfb-f .ssfb-ck span{font-size:13px;line-height:1.45;color:#cfc9c2}
 .ssfb-hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
 .ssfb-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .ssfb-f button{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:8px;background:#E09900;color:#111;font:700 16px/1 Jura,Roboto,sans-serif;padding:14px 22px;cursor:pointer}
@@ -5848,7 +5852,7 @@ var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'f
 f.addEventListener('submit',function(e){e.preventDefault();var E=f.elements,link=E['link'].value.trim(),em=E['email'].value.trim();if(link&&!/^https?:\/\//i.test(link))link='https://'+link;
 if(!/^https?:\/\/[^\s.]+\.[^\s]{2,}/i.test(link)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg.className='ssfb-wide ssfb-msg err';msg.textContent=T.err;return}
 var b=f.querySelector('button');b.disabled=true;msg.className='ssfb-wide ssfb-msg';msg.textContent='';
-var fd=new FormData();fd.append('action','ss_fb_submit');fd.append('link',link);fd.append('email',em);fd.append('name',E['name'].value.trim());fd.append('genre',E['genre'].value.trim());fd.append('want',E['want'].value.trim());fd.append('website',E['website'].value);fd.append('lang',f.getAttribute('data-lang'));fd.append('page',location.href.split('#')[0]);fd.append('el',Math.round((Date.now()-t0)/1000));
+var fd=new FormData();fd.append('action','ss_fb_submit');fd.append('link',link);fd.append('email',em);fd.append('name',E['name'].value.trim());fd.append('genre',E['genre'].value.trim());fd.append('want',E['want'].value.trim());fd.append('website',E['website'].value);fd.append('lang',f.getAttribute('data-lang'));fd.append('page',location.href.split('#')[0]);if(E['news']&&E['news'].checked)fd.append('news','1');fd.append('el',Math.round((Date.now()-t0)/1000));
 fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',{method:'POST',body:fd,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){if(j&&j.success){if(j.data&&j.data.sid){try{localStorage.setItem('ssb_sid',j.data.sid);localStorage.setItem('ssb_last',j.data.i||1)}catch(x){}}f.querySelectorAll('label,.ssfb-row').forEach(function(x){x.style.display='none'});msg.className='ssfb-wide ssfb-msg ok';msg.textContent=T.ok}else{b.disabled=false;msg.className='ssfb-wide ssfb-msg err';msg.textContent=(j&&j.data&&j.data.m==='invalid')?T.err:T.fail}}).catch(function(){b.disabled=false;msg.className='ssfb-wide ssfb-msg err';msg.textContent=T.fail})});
 /* long page: "Write us now" buttons → this form */
 document.querySelectorAll('a.btn').forEach(function(a){if(/write us now|get a free demo feedback/i.test(a.textContent)){a.setAttribute('href','#ss-fb');a.removeAttribute('target');a.addEventListener('click',function(ev){ev.preventDefault();root.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(function(){f.elements['link'].focus({preventScroll:true})},500)})}})
@@ -6945,6 +6949,7 @@ require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну ша
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
 require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
+require_once __DIR__ . '/modules/brevo-utm.php'; /* 25.11: FREE sign-ups → Brevo with UTM, feedback opt-in, one-off resync */
 require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
