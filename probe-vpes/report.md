@@ -1,4 +1,4 @@
-# Переводы /de/ — 2026-11-25T17:09:54.682Z
+# Переводы /de/ — 2026-11-25T17:16:54.722Z
 
 | Страница | Код | Куда пришли | lang | скрипт перевода | немецкий текст | hreflang | шапка | ошибки JS |
 |---|---|---|---|---|---|---|---|---|
@@ -6,7 +6,7 @@
 |   языки: en:EN:English de:DE:Deutsch fr:FR:Français es:ES:Español uk:UA:Українська pt:PT:Português it:IT:Italiano |
 | /es/all-products/ (pc) | 200 | /es/all-products/ | es-ES | ✅ | ✅ Reproducir todo | en,de,fr,es,x-default | Inicio / Productos / Servicios / Wiki / Foro / FAQ / Gratis / Vender / Favoritos / Carrito / Entrar / Inicio | — |
 |   языки: en:EN:English de:DE:Deutsch fr:FR:Français es:ES:Español uk:UA:Українська pt:PT:Português it:IT:Italiano |
-| /es/product/pitch/ (pc) | 200 | /es/product/pitch/ | es-ES | ✅ | ✅ Especificaciones | en,uk,de,fr,pt,es,it,x-default | Inicio / Productos / Servicios / Wiki / Foro / FAQ / Gratis / Vender / Favoritos / Carrito / Entrar / Inicio | — |
+| /es/product/pitch/ (pc) | — | /es/product/pitch/ | es-ES | ✅ | ✅ Especificaciones | en,uk,de,fr,pt,es,it,x-default | Inicio / Productos / Servicios / Wiki / Foro / FAQ / Gratis / Vender / Favoritos / Carrito / Entrar / Inicio | — |
 |   языки: en:EN:English uk:UA:Українська de:DE:Deutsch fr:FR:Français pt:PT:Português es:ES:Español it:IT:Italiano |
 | /es/free/ (pc) | 200 | /es/free/ | es-ES | ✅ | ✅ Gratis | en,de,fr,es,x-default | Inicio / Productos / Servicios / Wiki / Foro / FAQ / Gratis / Vender / Favoritos / Carrito / Entrar / Inicio | — |
 |   языки: en:EN:English de:DE:Deutsch fr:FR:Français es:ES:Español uk:UA:Українська pt:PT:Português it:IT:Italiano |
