@@ -75,36 +75,6 @@
   "want": false
  },
  {
-  "f": "isTopicUrl",
-  "in": "https://solid-sound.net/en/forum/ideas-feedback/ideas-suggestions/",
-  "want": true
- },
- {
-  "f": "isTopicUrl",
-  "in": "https://solid-sound.net/forum/ableton-help/sidechain-in-live-12/",
-  "want": true
- },
- {
-  "f": "isTopicUrl",
-  "in": "https://solid-sound.net/en/forum/ableton-help/",
-  "want": false
- },
- {
-  "f": "isTopicUrl",
-  "in": "https://solid-sound.net/en/forum/participant/admin/",
-  "want": false
- },
- {
-  "f": "isTopicUrl",
-  "in": "https://solid-sound.net/en/forum/recent/",
-  "want": false
- },
- {
-  "f": "isTopicUrl",
-  "in": "https://solid-sound.net/en/forum/",
-  "want": false
- },
- {
   "f": "parseRss",
   "in": "<rss><channel><item><title><![CDATA[Ideas &amp; Suggestions]]></title><link>https://solid-sound.net/en/forum/a/b/?x=1</link><pubDate>Tue, 12 Nov 2025 10:00:00 +0000</pubDate></item></channel></rss>",
   "want": [

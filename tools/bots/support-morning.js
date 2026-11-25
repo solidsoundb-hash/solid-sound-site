@@ -22,8 +22,6 @@ const action = (status) => ({
   cancelled: 'отменён — узнать причину', refunded: 'возврат — проверить причину', 'checkout-draft': 'бросил оформление — напомнить',
 }[status] || 'проверить вручную');
 const urgent = (status) => ['pending', 'failed', 'on-hold', 'checkout-draft'].includes(status);
-// topic address = /forum/<section>/<topic>/ (not a section, profile, tag or service page)
-const isTopicUrl = (u) => /\/forum\/(?!participant|profile|members|recent|tag|search|register|login|account)[^/?#]+\/[^/?#]+\/?$/.test(String(u || '').replace(/^https?:\/\/[^/]+(\/[a-z]{2}(?=\/))?/, ''));
 // RSS 2.0 → [{title, link, date}] (wpForo topic feed)
 const parseRss = (xml) => (String(xml).match(/<item>[\s\S]*?<\/item>/g) || []).map(it => {
   const g = (t) => { const m = it.match(new RegExp('<' + t + '>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</' + t + '>')); return m ? m[1].trim() : ''; };
@@ -31,7 +29,7 @@ const parseRss = (xml) => (String(xml).match(/<item>[\s\S]*?<\/item>/g) || []).m
 });
 const isQuestion = (title) => /\?|^(how|why|what|where|which|can|does|is|help|wie|comment|cómo|как|чому|чем|що)\b/i.test(String(title || '').trim());
 
-if (require.main !== module) { module.exports = { scrub, action, urgent, isQuestion, isTopicUrl, parseRss }; return; }
+if (require.main !== module) { module.exports = { scrub, action, urgent, isQuestion, parseRss }; return; }
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
