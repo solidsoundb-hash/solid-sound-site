@@ -23,7 +23,13 @@ const top = (o, n) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).slice(
   const ctx = await browser.newContext(); const page = await ctx.newPage();
   let data = null, err = '';
   try {
-    await page.goto(S + '/en/my-account/?ss_tab=login', { waitUntil: 'domcontentloaded', timeout: 120000 });
+    let resp = null;
+    for (let i = 0; i < 4; i++) { // hosting may answer 429 when many robots run at once — wait and retry
+      resp = await page.goto(S + '/en/my-account/?ss_tab=login', { waitUntil: 'domcontentloaded', timeout: 120000 });
+      if (resp && resp.status() < 400 && await page.locator('#username:visible').count()) break;
+      await page.waitForTimeout(60000);
+    }
+    if (!(await page.locator('#username:visible').count())) throw new Error(`нет формы входа (HTTP ${resp && resp.status()}, «${(await page.title()).slice(0, 60)}»)`);
     const form = page.locator('form.login').filter({ has: page.locator('#username:visible') }).first();
     await form.locator('#username').fill(process.env.TEST_ADMIN_USER || '');
     await form.locator('#password').fill(process.env.TEST_ADMIN_PASS || '');
