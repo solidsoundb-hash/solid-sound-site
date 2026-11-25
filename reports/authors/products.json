@@ -23,14 +23,12 @@
   "url": "https://solid-sound.net/product/mutualism/",
   "who": "владелец",
   "issues": [
-   "🟠 обложка меньше 1000 px (800×800)",
-   "🟡 короткое описание (360 знаков)",
-   "🟡 нет тегов"
+   "🟠 обложка меньше 1000 px (800×800)"
   ],
   "info": {
    "cover": "800×800, 150 КБ",
    "demo": "6:05, 123 kbps",
-   "text": "360 знаков",
+   "text": "557 знаков",
    "cats": "—",
    "price": "12.0 EUR"
   }
@@ -41,50 +39,12 @@
   "url": "https://solid-sound.net/product/intricate/",
   "who": "владелец",
   "issues": [
-   "🟠 обложка меньше 1000 px (800×800)",
-   "🟡 короткое описание (343 знаков)",
-   "🟡 нет тегов"
+   "🟠 обложка меньше 1000 px (800×800)"
   ],
   "info": {
    "cover": "800×800, 146 КБ",
    "demo": "7:34, 128 kbps",
-   "text": "343 знаков",
-   "cats": "—",
-   "price": "12.0 EUR"
-  }
- },
- {
-  "id": 61,
-  "name": "Kratos",
-  "url": "https://solid-sound.net/product/kratos/",
-  "who": "владелец",
-  "issues": [
-   "🟠 обложка меньше 1000 px (800×800)",
-   "🟡 короткое описание (290 знаков)",
-   "🟡 нет тегов"
-  ],
-  "info": {
-   "cover": "800×800, 149 КБ",
-   "demo": "6:46, 128 kbps",
-   "text": "290 знаков",
-   "cats": "—",
-   "price": "12.0 EUR"
-  }
- },
- {
-  "id": 60,
-  "name": "Protos",
-  "url": "https://solid-sound.net/product/protos/",
-  "who": "владелец",
-  "issues": [
-   "🟠 обложка меньше 1000 px (800×800)",
-   "🟡 короткое описание (350 знаков)",
-   "🟡 нет тегов"
-  ],
-  "info": {
-   "cover": "800×800, 232 КБ",
-   "demo": "3:48, 118 kbps",
-   "text": "350 знаков",
+   "text": "561 знаков",
    "cats": "—",
    "price": "12.0 EUR"
   }
@@ -95,13 +55,44 @@
   "url": "https://solid-sound.net/product/infinity/",
   "who": "владелец",
   "issues": [
-   "🟠 обложка меньше 1000 px (800×800)",
-   "🟡 нет тегов"
+   "🟠 обложка меньше 1000 px (800×800)"
   ],
   "info": {
    "cover": "800×800, 232 КБ",
    "demo": "5:21, 126 kbps",
    "text": "471 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 61,
+  "name": "Kratos",
+  "url": "https://solid-sound.net/product/kratos/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)"
+  ],
+  "info": {
+   "cover": "800×800, 149 КБ",
+   "demo": "6:46, 128 kbps",
+   "text": "501 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 60,
+  "name": "Protos",
+  "url": "https://solid-sound.net/product/protos/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)"
+  ],
+  "info": {
+   "cover": "800×800, 232 КБ",
+   "demo": "3:48, 118 kbps",
+   "text": "561 знаков",
    "cats": "—",
    "price": "12.0 EUR"
   }
