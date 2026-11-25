@@ -1,4 +1,4 @@
-# SEO: сниппеты ключевых страниц — 2026-11-25 11:10 UTC
+# SEO: сниппеты ключевых страниц — 2026-11-25 16:24 UTC
 
 Экзамен: 8/9 — ошибки: /en/all-products/ «H1: 2» не найдено
 
@@ -17,10 +17,8 @@
 - 🟡 /fr/studio-calculator/ — title 64 зн.
 - 🟡 /fr/studio-calculator/ — canonical → /studio-calculator/
 
-## Что изменилось с прошлого прогона (2026-11-25 10:56)
-- /en/all-products/ **h1**: «Turn Your Ideas into Solid Sound | All products» → «All products»
-- /de/all-products/ **h1**: «Mach aus deinen Ideen Solid Sound | Alle Produkte» → «Alle Produkte»
-- /fr/all-products/ **h1**: «Transforme tes idées en Solid Sound | Tous les produits» → «Tous les produits»
+## Что изменилось с прошлого прогона (2026-11-25 11:10)
+- ничего
 
 ## Все страницы
 | Страница | Язык | title | H1 | hreflang | Замечания |
