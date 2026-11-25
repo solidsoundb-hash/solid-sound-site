@@ -148,3 +148,11 @@ walk(document.body);new MutationObserver(function(ms){ms.forEach(function(m){if(
 })();</script>
 	<?php
 }, 100 );
+
+/* 25.11 owner «Исправь»: terms §3 said prices are in US dollars, but the store currency is EUR since 21.11 (modules/currency.php).
+ * The page text lives in the database; this swaps the sentence on output (page and the checkout terms box). Undo: delete this block. */
+function ss_terms_eur( $c ) {
+	return ( is_string( $c ) && false !== strpos( $c, 'Prices are set in US dollars' ) ) ? str_replace( 'Prices are set in US dollars', 'Prices are set in euros (EUR)', $c ) : $c;
+}
+add_filter( 'the_content', 'ss_terms_eur', 99 );
+add_filter( 'woocommerce_format_content', 'ss_terms_eur', 99 );
