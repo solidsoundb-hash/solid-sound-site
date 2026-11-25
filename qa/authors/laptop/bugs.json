@@ -1,37 +1,10 @@
 [
  {
-  "lvl": "🔴",
-  "page": "/wp-login.php",
-  "what": "Робот не смог войти",
-  "detail": "solid-sound"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/",
-  "what": "Ошибки в коде страницы",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "01_-en-store-manager-.jpg"
- },
- {
   "lvl": "🟠",
   "page": "/en/store-manager/ss-add-product/",
   "what": "Ошибки в коде страницы",
-  "detail": "g is not defined | Failed to load resource: the server responded with a status of 503 ()",
+  "detail": "g is not defined",
   "shot": "02_-en-store-manager-ss-add-product-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "После нажатия «$» — ошибка в коде",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "05_-en-store-manager-ss-earnings-err-.jpg"
- },
- {
-  "lvl": "🟠",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "Ошибки в коде страницы",
-  "detail": "Failed to load resource: the server responded with a status of 503 ()",
-  "shot": "04_-en-store-manager-ss-earnings-.jpg"
  },
  {
   "lvl": "🟠",
@@ -50,23 +23,5 @@
   "page": "/en/store-manager/ss-add-product/",
   "what": "Ошибки в коде при выборе формата/DAW",
   "detail": "g is not defined"
- },
- {
-  "lvl": "🟡",
-  "page": "/en/store-manager/",
-  "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /en/store-manager/"
- },
- {
-  "lvl": "🟡",
-  "page": "/en/store-manager/ss-add-product/",
-  "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /en/store-manager/ss-add-product/"
- },
- {
-  "lvl": "🟡",
-  "page": "/en/store-manager/ss-earnings/",
-  "what": "Хостинг ответил 503 (перегружен)",
-  "detail": "503 /en/store-manager/ss-payouts/"
  }
 ]

@@ -97,3 +97,31 @@ add_action( 'admin_menu', function () {
 		echo '</div>';
 	} );
 } );
+
+/* ---------- read for our robots: GET /wp-json/ss/v1/stats?days=N (admins only; Analyst robot «stats-daily», 25.11.2026) ----------
+ * Returns the raw daily totals plus WooCommerce orders per day (count, paid count, revenue), so a robot can build the
+ * daily funnel table: sessions → product pages → cart → checkout → orders. Nothing personal: no names, e-mails or IPs. */
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'ss/v1', '/stats', array(
+		'methods'             => 'GET',
+		'permission_callback' => function () { return current_user_can( 'manage_options' ); },
+		'callback'            => function ( $req ) {
+			$n   = max( 1, min( 120, (int) $req->get_param( 'days' ) ?: 30 ) );
+			$all = get_option( 'ss_stats', array() ); $all = is_array( $all ) ? $all : array(); ksort( $all );
+			$all = array_slice( $all, -$n, null, true );
+			$orders = array();
+			if ( function_exists( 'wc_get_orders' ) ) {
+				$ids = wc_get_orders( array( 'limit' => 500, 'return' => 'ids', 'type' => 'shop_order', 'status' => array_keys( wc_get_order_statuses() ), 'date_created' => '>=' . gmdate( 'Y-m-d', time() - $n * DAY_IN_SECONDS ) ) );
+				foreach ( $ids as $id ) {
+					$o = wc_get_order( $id ); if ( ! $o ) continue;
+					$d = $o->get_date_created() ? gmdate( 'Y-m-d', $o->get_date_created()->getTimestamp() ) : '?';
+					if ( ! isset( $orders[ $d ] ) ) $orders[ $d ] = array( 'n' => 0, 'paid' => 0, 'sum' => 0, 'free' => 0, 'st' => array() );
+					$orders[ $d ]['n']++;
+					$st = $o->get_status(); $orders[ $d ]['st'][ $st ] = ( isset( $orders[ $d ]['st'][ $st ] ) ? $orders[ $d ]['st'][ $st ] : 0 ) + 1;
+					if ( $o->is_paid() ) { $orders[ $d ]['paid']++; $orders[ $d ]['sum'] += (float) $o->get_total(); if ( 0.0 === (float) $o->get_total() ) $orders[ $d ]['free']++; }
+				}
+			}
+			return array( 'tz' => 'UTC', 'currency' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '', 'days' => $all, 'orders' => $orders );
+		},
+	) );
+} );

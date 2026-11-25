@@ -1,0 +1,33 @@
+# STATS-DAILY — Analyst robot: our visits → cart → checkout → orders, one row per day (owner 25.11.2026).
+# Every day 04:13 UTC (before the 05:40 Paris morning report). On demand: a line in .github/stats-daily.txt.
+name: Stats daily
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "13 4 * * *"
+  push:
+    branches: [main]
+    paths: [".github/stats-daily.txt"]
+permissions:
+  contents: write
+concurrency: stats-daily
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Read Solid Stats and orders
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: node tools/bots/stats-daily.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=stats-daily bash .github/save.sh "stats daily: $(date -u +%F)" reports/analyst

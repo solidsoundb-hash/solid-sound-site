@@ -1,0 +1,30 @@
+# Снимки юр. страниц до/после правок (Юрист, 25.11). Запуск: строка «<метка> /en/terms/,/en/license/» в .github/legal-look.txt.
+# Результат: ветка shots-legal, папка legal-out/<метка>/ (старые метки сохраняются).
+name: Legal look
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/legal-look.txt"]
+permissions:
+  contents: write
+concurrency: legal-look
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Look
+        env: { PW_CHANNEL: chrome }
+        run: node tools/legal-look.js
+      - name: Save to branch shots-legal
+        if: always()
+        run: |
+          git fetch -q origin shots-legal && git worktree add -q sl origin/shots-legal || (mkdir sl && cd sl && git init -q)
+          cp -r legal-out/. sl/ && cd sl && git checkout -q -B shots-legal && git config user.name photographer && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "legal look: $(date -u +%FT%TZ)"
+          git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shots-legal
