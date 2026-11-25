@@ -17,7 +17,7 @@ function ss_ytlite_swap( $html ) {
 		if ( preg_match( '#\bheight=["\']?(\d+)#i', $m[0], $x ) ) $h = (int) $x[1];
 		$t  = preg_match( '#\btitle=["\']([^"\']+)#i', $m[0], $x ) ? $x[1] : 'YouTube video';
 		return '<span class="ss-ytl" data-yt="' . esc_attr( $id ) . '" role="button" tabindex="0" aria-label="' . esc_attr( 'Play: ' . $t ) . '"' . ( $h ? ' style="--h:' . $h . 'px"' : '' ) . '>'
-			. '<img src="https://i.ytimg.com/vi/' . esc_attr( $id ) . '/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">'
+			. '<img src="https://i.ytimg.com/vi/' . esc_attr( $id ) . '/hqdefault.jpg" alt="' . esc_attr( $t . ' – video' ) . '" loading="lazy" decoding="async" width="480" height="360">'
 			. '<i aria-hidden="true"></i></span>';
 	}, $html );
 }
