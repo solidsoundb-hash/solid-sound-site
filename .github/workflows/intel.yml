@@ -33,4 +33,5 @@ jobs:
           node tools/bots/intel.js
       - name: Save
         if: always()
-        run: BOT_NAME=intel bash .github/save.sh "intel: $(date -u +%F)" reports/intel
+        run: |
+          BOT_NAME=intel bash .github/save.sh "intel: $(date -u +%F)" reports/intel
