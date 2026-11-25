@@ -43,8 +43,9 @@ const V = {}; const ok = (dev, k, v, what) => { V[dev + ' · ' + what] = !!v; };
     if (!add) { L('  кнопки Add to cart нет ❌'); }
     else {
       await add.scrollIntoViewIfNeeded().catch(() => {});
-      await Promise.all([p.waitForLoadState('domcontentloaded').catch(() => {}), add.click({ timeout: 8000 }).catch(e => L('  клик Add to cart:', e.message.slice(0, 80)))]);
-      await p.waitForTimeout(3500); await shot('2_added'); L('  после Add to cart:', p.url());
+      const t0 = T(); const ans = p.waitForResponse(r => /cart\/add-item|add-to-cart|wc-ajax=add_to_cart/.test(r.url()) && r.request().method() === 'POST', { timeout: 25000 }).catch(() => null);
+      await add.click({ timeout: 8000 }).catch(e => L('  клик Add to cart:', e.message.slice(0, 80))); const r = await ans; /* (25.11) wait for the site's answer: it once took > 5 s */
+      L('  товар добавлен за', ((T() - t0) / 1000).toFixed(1), 'с', r ? r.status() : 'нет ответа'); await p.waitForTimeout(1500); await shot('2_added'); L('  после Add to cart:', p.url());
     }
     // 2. cart
     await go('/en/cart/', '3_cart');

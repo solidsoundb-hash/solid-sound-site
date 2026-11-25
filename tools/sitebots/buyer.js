@@ -39,8 +39,14 @@ async function walk(browser, name, d) {
   await step('Страница товара', async () => { await p.goto(product, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await p.locator('.single_add_to_cart_button, button[name="add-to-cart"]').first().waitFor({ timeout: 30000 }); return (await p.title()).slice(0, 60); });
   await step('Добавить в корзину', async () => { const b = p.locator('.single_add_to_cart_button, button[name="add-to-cart"]').first();
-    await b.scrollIntoViewIfNeeded(); await b.click({ timeout: 15000 }); await p.waitForTimeout(4000);
-    if (!(await ctx.cookies()).some(c => c.name === 'woocommerce_items_in_cart')) throw new Error('кнопка нажата, но товар не лёг в корзину (нет cookie корзины)'); });
+    await b.scrollIntoViewIfNeeded();
+    /* (25.11 tester) adding is AJAX (Store API add-item) and waits for Stripe's check first — once it took > 5 s; wait for the answer, not a fixed 4 s */
+    const t0 = Date.now(); const ans = p.waitForResponse(r => /cart\/add-item|add-to-cart|wc-ajax=add_to_cart/.test(r.url()) && r.request().method() === 'POST', { timeout: 25000 }).catch(() => null);
+    await b.click({ timeout: 15000 }); const r = await ans; const sec = ((Date.now() - t0) / 1000).toFixed(1);
+    if (!r) await p.waitForTimeout(3000);
+    if (r && r.status() >= 400) throw new Error(`сайт ответил ошибкой ${r.status()} через ${sec} с`);
+    if (!(await ctx.cookies()).some(c => c.name === 'woocommerce_items_in_cart')) throw new Error(`кнопка нажата, товар не лёг в корзину за ${sec} с`);
+    return `товар добавлен за ${sec} с` + (+sec > 3 ? ' ⚠️ медленно (покупатель видит паузу)' : ''); });
   await step('Корзина', async () => { await p.goto(BASE + '/en/cart/', { waitUntil: 'domcontentloaded', timeout: 60000 }); await p.waitForTimeout(2500);
     const n = await p.locator('.cart_item, .wc-block-cart-items__row, tr.woocommerce-cart-form__cart-item').count();
     if (!n) throw new Error('товар не попал в корзину'); const tot = await p.locator('.order-total .amount, .wc-block-components-totals-footer-item .wc-block-components-totals-item__value').first().textContent().catch(() => '');
