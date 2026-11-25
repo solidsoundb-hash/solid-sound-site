@@ -1,5 +1,5 @@
 {
- "date": "2026-11-25 10:43",
+ "date": "2026-11-25 10:56",
  "pages": {
   "/en/": {
    "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
@@ -50,14 +50,14 @@
    "brand": ""
   },
   "/de/all-products/": {
-   "title": "Solid Sound — Ableton Vorlagen, Presets & Mixing Studio",
-   "desc": "Online Mixing & Mastering Studio und Marktplatz: lizenzfreie Ableton Live Vorlagen, Serum Presets und Musik für Videos. Mixing ab 69 €, Gratis-Feedback.",
+   "title": "Ableton Templates, Presets, Mixing & Mastering | Solid Sound",
+   "desc": "Lizenzfreie Ableton Live Templates, Serum-Presets und Musik für Videos. Lerne an Profi-Projekten oder buche Online-Mixing und -Mastering.",
    "h1": "Mach aus deinen Ideen Solid Sound | Alle Produkte",
    "brand": ""
   },
   "/fr/all-products/": {
-   "title": "Solid Sound — Templates Ableton, presets & studio de mixage",
-   "desc": "Studio de mixage et mastering en ligne et boutique : templates Ableton Live libres de droits, presets Serum et musique pour vidéo. Mixage dès 69 €.",
+   "title": "Templates Ableton, presets, mixage & mastering | Solid Sound",
+   "desc": "Templates Ableton Live libres de droits, presets Serum et musique pour vidéos. Apprenez avec des projets pro ou commandez un mixage et mastering en ligne.",
    "h1": "Transforme tes idées en Solid Sound | Tous les produits",
    "brand": ""
   },
@@ -224,6 +224,6 @@
    "brand": "Solid Sound"
   }
  },
- "runs": 3,
- "exam": "Экзамен: 7/8 — ошибки: /es/product/pitch/ «title как в EN» не найдено"
+ "runs": 4,
+ "exam": "Экзамен: 9/9 ✅"
 }
