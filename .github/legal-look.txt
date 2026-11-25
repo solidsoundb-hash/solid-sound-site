@@ -1,3 +1,4 @@
 before /en/terms/,/en/license/,/en/creator-terms/,/en/refund_returns/
 after /en/terms/,/en/license/,/en/creator-terms/,/en/refund_returns/
 before2 /cancel-order/,/en/terms/,/en/refund_returns/
+after2 /cancel-order/,/en/terms/,/en/refund_returns/,/de/terms/,/fr/refund_returns/
