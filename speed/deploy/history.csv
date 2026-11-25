@@ -1,2 +1,4 @@
 date,page,device,score,lcp_ms,fcp_ms,tbt_ms,cls,kb,requests
 2026-11-25T11:10:14.341Z,/product/infinity/,mobile,57,10694,2872,262,0,5072,211
+2026-11-25T16:31:47.796Z,/product/infinity/,mobile,51,9921,2705,547,0,5065,212
+2026-11-25T16:31:47.796Z,/en/all-products/,mobile,40,6294,3027,1181,0.036,1288,86
