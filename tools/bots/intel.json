@@ -198,7 +198,14 @@
   "plugin": 1,
   "course": 2,
   "royalty": 2,
-  "ghost production": 4
+  "ghost production": 4,
+  "guitar": -4,
+  "fender": -3,
+  "gibson": -3,
+  "pedal": -2,
+  "drummer": -2,
+  "vinyl": -1,
+  "headphones": -1
  },
  "queries": [
   "ableton project templates",
@@ -248,5 +255,33 @@
   "w3.org",
   "edmprod.com",
   "producerhive.com"
+ ],
+ "niche": [
+  "ableton",
+  "template",
+  "project file",
+  "sample",
+  "loop",
+  "preset",
+  "mixing",
+  "mastering",
+  "producer",
+  "production",
+  "daw",
+  "fl studio",
+  "logic pro",
+  "bitwig",
+  "plugin",
+  "vst",
+  "synth",
+  "serum",
+  "techno",
+  "house",
+  "edm",
+  "drum and bass",
+  "beat",
+  "stems",
+  "splice",
+  "ghost produc"
  ]
 }

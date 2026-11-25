@@ -198,6 +198,7 @@ async function feedsSection(list) {
       if (!it.link || !isNew('f:' + it.link)) continue;
       const text = (it.title + ' ' + it.text).toLowerCase();
       // score by keywords (weights learn from the owner's / Claude's feedback)
+      if (!CFG.niche.some(w => text.includes(w))) continue; // not our niche (guitars, gear…) — skip
       let score = 0; for (const [k, w] of Object.entries(Object.assign({}, CFG.keywords, mem.keywords))) if (text.includes(k)) score += w;
       countGenres(text, 1);
       for (const l of (it.text.match(/https?:\/\/[^\s"'<)]+/g) || [])) noteDomain(l, f.id);
