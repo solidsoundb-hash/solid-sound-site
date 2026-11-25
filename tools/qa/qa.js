@@ -481,6 +481,8 @@ async function scLanguageSwitch(page, dev) {
     const btn = dev === 'phone' ? page.locator('#ssg-bar .g-sheet-open:visible, #ssg .g-burger:visible, button[aria-label="Main menu"]:visible').first() : page.locator('#ssg .g-lang:visible, button[aria-label^="Language"]:visible').first();
     try { await btn.click({ timeout: 5000 }); } catch (e) { await bug({ page: '/en/', device: devName, sev: 'major', type: 'langbtn', sig: 'langbtn|' + dev, title: `Не нажимается кнопка выбора языка (${devName})`, steps: ['Открыть главную', dev === 'phone' ? 'Нажать «Menu»' : 'Нажать «EN» вверху справа'], expected: 'Открывается список языков', actual: e.message.split('\n')[0].slice(0, 120) }, page); return; }
     await page.waitForTimeout(800);
+    // phone menu (25.11): the languages sit in a collapsed «Language» item (details.s-dd) — open it like a person does
+    if (dev === 'phone') { const sum = page.locator('#ssg-sheet details:not([open]):has(a[hreflang]) > summary').first(); if (await sum.count()) { await sum.scrollIntoViewIfNeeded().catch(() => {}); await sum.click({ timeout: 3000 }).catch(() => {}); await page.waitForTimeout(400); } }
     const opt = page.locator(`a[hreflang="${HREFLANG[L]}"]:visible, a[href="${BASE}/${L}/"]:visible, a[href="/${L}/"]:visible`).first();
     if (!(await opt.count())) {
       const none = !(await page.locator('a[hreflang]:visible, a[href$="/ua/"]:visible, a[href$="/de/"]:visible').count());

@@ -171,6 +171,7 @@ async function partMonkey(browser) {
       const steps = [`Открыть ${SITE}${u} (${device})`]; let seed = 7 + u.length;
       const rnd = (n) => { seed = (seed * 9301 + 49297) % 233280; return Math.floor(seed / 233280 * n); }; // same steps every night → repeatable
       for (let i = 0; i < 40; i++) {
+        if (Date.now() > BUDGET) break;
         if (!p.url().startsWith(SITE)) { await p.goBack().catch(() => {}); await p.waitForTimeout(800); }
         const cands = await p.evaluate(() => {
           const ok = (e) => { const r = e.getBoundingClientRect(), s = getComputedStyle(e); return r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight && s.visibility !== 'hidden' && +s.opacity > .05 && !e.closest('#wpadminbar,form[action*=checkout],.woocommerce-checkout') && !(e.type === 'submit' && e.form) && !/log ?out|sign ?out|delete|remove|pay|checkout|buy now/i.test(e.innerText || e.getAttribute('aria-label') || ''); };
@@ -254,11 +255,15 @@ async function partShapes(browser) {
   }
 }
 
+// watchdog (25.11: monkey hung on a page and the step was killed at 110 min — the whole report was lost):
+// 4 min after the budget, save what was found and exit, so the swarm still gets this robot's bugs.
+const saveOut = (extra) => fs.writeFileSync(path.join(OUT, 'bugs.json'), JSON.stringify({ mode: 'full', date: new Date().toISOString(), stats, bugs: [...bugs.values()], notChecked: extra ? [...notChecked, extra] : notChecked }, null, 1));
+setTimeout(() => { try { fs.mkdirSync(OUT, { recursive: true }); saveOut('Плюс-робот остановлен сторожем по времени (завис) — часть проверок не сделана'); } catch (e) {} console.log('watchdog: saved and exit'); process.exit(0); }, Math.max(60000, BUDGET - Date.now() + 4 * 60000)).unref();
 (async () => {
   const chrome = await pw.chromium.launch({ ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}) });
   const run = { browsers: () => partBrowsers(), keys: () => partKeys(chrome), monkey: () => partMonkey(chrome), visual: () => partVisual(chrome), shapes: () => partShapes(chrome) };
   for (const part of PARTS) { if (!run[part]) continue; const t = Date.now(); try { await run[part](); } catch (e) { notChecked.push(`Плюс-робот «${part}» упал: ${String(e.message).slice(0, 100)}`); } console.log(`${part}: ${Math.round((Date.now() - t) / 1000)} s, bugs so far ${bugs.size}`); }
   await chrome.close();
-  fs.writeFileSync(path.join(OUT, 'bugs.json'), JSON.stringify({ mode: 'full', date: new Date().toISOString(), stats, bugs: [...bugs.values()], notChecked }, null, 1));
+  saveOut();
   console.log([...bugs.values()].map(b => `${b.sev} ${b.title} — ${b.where.join(', ')}`).join('\n') || 'no bugs');
 })();
