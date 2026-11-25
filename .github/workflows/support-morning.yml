@@ -1,9 +1,11 @@
 # SUPPORT-MORNING — robot of «Продажи и поддержка»: new orders (paid / not paid), cart & checkout views without an order,
-# new forum topics → reports/support/morning.md. No personal data (public repo). docs/team/bots.md: step 1 = manual runs only;
-# a schedule is added after the step-2 pass. On demand: a line in .github/support-morning.txt.
+# new forum topics → reports/support/morning.md. No personal data (public repo). Steps 1–2 passed 25.11.2026 →
+# every day 04:23 UTC (before the coordinator's 05:40 Paris digest). On demand: a line in .github/support-morning.txt.
 name: Support morning
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * *"
   push:
     branches: [main]
     paths: [".github/support-morning.txt"]
