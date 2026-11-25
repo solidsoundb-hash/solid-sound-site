@@ -11,6 +11,8 @@ const DEV = {
 };
 const log = []; const L = (...a) => { const s = a.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join(' '); log.push(s); console.log(s); };
 const T = () => Date.now();
+/* (25.11) verdicts for the nightly purchase robot (.github/workflows/buy-nightly.yml): name → true/false */
+const V = {}; const ok = (dev, k, v, what) => { V[dev + ' · ' + what] = !!v; };
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   for (const [dev, opt] of Object.entries(DEV)) {
@@ -32,10 +34,12 @@ const T = () => Date.now();
     if (playBtn) {
       await playBtn.click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(3500);
       const playing = await p.evaluate(() => [...document.querySelectorAll('audio,video'), ...window.__media].some(a => !a.paused && a.currentTime > 0.2));
+      ok(dev, 'sound', playing, 'звук ▶ на товаре');
       L('  звук после ▶:', playing ? 'играет ✅' : 'НЕ играет ❌', await p.evaluate(() => window.__media.map(a => (a.currentSrc || a.src || '').split('/').pop() + ' t=' + a.currentTime.toFixed(1) + (a.error ? ' err' + a.error.code : '')).slice(0, 3)));
       await p.evaluate(() => [...document.querySelectorAll('audio,video'), ...window.__media].forEach(a => a.pause()));
     } else L('  кнопка ▶ не найдена');
     const add = await p.$('.single_add_to_cart_button');
+    ok(dev, 'add', add, 'кнопка Add to cart');
     if (!add) { L('  кнопки Add to cart нет ❌'); }
     else {
       await add.scrollIntoViewIfNeeded().catch(() => {});
@@ -46,6 +50,7 @@ const T = () => Date.now();
     await go('/en/cart/', '3_cart');
     const rows = await p.$$eval('.cart_item, .woocommerce-cart-form__cart-item, .wc-block-cart-items__row', x => x.length).catch(() => 0);
     const tot = await p.$eval('.order-total, .wc-block-components-totals-footer-item', e => e.innerText.replace(/\s+/g, ' ').trim()).catch(() => '—');
+    ok(dev, 'cart', rows > 0, 'товар попал в корзину');
     L('  позиций в корзине:', rows, rows ? '✅' : '❌', '| итог:', tot);
     // 3. checkout
     await go('/en/checkout/', '4_checkout');
@@ -57,6 +62,7 @@ const T = () => Date.now();
       btn: (document.querySelector('#place_order, .wc-block-components-checkout-place-order-button') || {}).innerText || '',
       total: ((document.querySelector('.order-total, .wc-block-components-totals-footer-item') || {}).innerText || '').replace(/\s+/g, ' ').trim(),
     }));
+    ok(dev, 'form', ck.form && ck.email, 'форма оформления заказа'); ok(dev, 'pay', ck.pay.length || ck.express, 'способы оплаты видны');
     L('  оформление:', ck.form ? 'форма есть ✅' : 'ФОРМЫ НЕТ ❌', '| e-mail:', ck.email ? 'да' : 'нет', '| способы оплаты:', ck.pay.length ? ck.pay.join(', ') : 'НЕ ВИДНЫ', '| быстрая оплата:', ck.express ? 'да' : 'нет', '| кнопка:', ck.btn.trim() || 'нет', '| итог:', ck.total);
     await p.waitForTimeout(4000); await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2)); await shot('5_checkout_pay');
     // 4. empty cart
@@ -66,10 +72,12 @@ const T = () => Date.now();
     // 5. services
     await go('/studio-calculator/', '7_calc');
     const calc = await p.evaluate(() => ({ svc: document.querySelectorAll('[data-s]').length, euros: (document.body.innerText.match(/€\s?\d+/g) || []).slice(0, 6), form: !!document.querySelector('form[action*="admin-post"] input[name=email], input[name=email]') }));
+    ok(dev, 'calc', calc.form && calc.svc > 0, 'калькулятор услуг и форма заявки');
     L('  калькулятор: услуг', calc.svc, '| цены на экране:', calc.euros.join(' '), '| форма заявки:', calc.form ? 'есть ✅' : 'НЕТ ❌');
     await p.evaluate(() => { const f = document.querySelector('input[name=email]'); if (f) f.scrollIntoView({ block: 'center' }); }); await shot('8_calc_form');
+    ok(dev, 'js', !errs.length, 'без ошибок скриптов');
     L('  ошибки JS:', errs.length ? errs : 'нет');
     await ctx.close();
   }
-  fs.writeFileSync(OUT + '/buy.txt', log.join('\n') + '\n'); await b.close();
+  fs.writeFileSync(OUT + '/buy.txt', log.join('\n') + '\n'); fs.writeFileSync(OUT + '/buy.json', JSON.stringify({ date: new Date().toISOString(), checks: V }, null, 1)); await b.close();
 })();
