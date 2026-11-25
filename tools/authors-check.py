@@ -5,6 +5,7 @@
 Правила — как у робота загрузки (modules/creators.php): обложка квадрат >= 1000 px, <= 10 МБ; демо MP3 1–10 мин, >= 128 kbps.
 Отчёт: reports/authors/products.md (+ .json). Запуск: строка в .github/authors-check.txt или по расписанию.
 """
+import urllib.parse
 import html, json, os, re, shutil, struct, subprocess, sys, time, urllib.error, urllib.request
 
 SITE = os.environ.get('SITE', 'https://solid-sound.net').rstrip('/')
@@ -19,6 +20,7 @@ UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 def get(url, limit=None, tries=4):
     for i in range(tries):
         try:
+            url = urllib.parse.quote(url, safe=":/?&=%#+,;@~")  # кириллица в именах файлов (обложка 1102)
             req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept': '*/*'})
             with urllib.request.urlopen(req, timeout=60) as r:
                 data = r.read(limit) if limit else r.read()
@@ -160,6 +162,7 @@ def main():
         pr = p.get('prices') or {}
         if not p.get('is_purchasable'):
             issues.append('🟡 товар нельзя купить (is_purchasable = нет)')
+        info['cats'] = ', '.join(c.get('name', '') for c in (p.get('categories') or [])) or '—'
         if not p.get('categories'):
             issues.append('🟡 нет категории')
         if not p.get('tags'):
