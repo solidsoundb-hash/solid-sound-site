@@ -1,1 +1,2 @@
 before /en/terms/,/en/license/,/en/creator-terms/,/en/refund_returns/
+after /en/terms/,/en/license/,/en/creator-terms/,/en/refund_returns/
