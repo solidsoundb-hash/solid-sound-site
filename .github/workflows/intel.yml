@@ -1,0 +1,36 @@
+# INTEL ROBOT — daily analyst scout (owner 25.11.2026): competitors, new competitors, trends, us.
+# Night run 02:47 UTC -> reports/intel/latest.md; at 05:40 Paris the Claude session reads it and writes the owner
+# 3 news + 1–3 actions. On demand: add a line to .github/intel.txt whose last word is the mode (probe / quick / full / improve).
+name: Intel robot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "probe / quick / full / improve", default: full }
+  schedule:
+    - cron: "47 2 * * *"
+  push:
+    branches: [main]
+    paths: [".github/intel.txt"]
+permissions:
+  contents: write
+concurrency: intel
+jobs:
+  intel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Scout
+        env:
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/intel.txt | awk '{print $NF}'); fi
+          export MODE="${MODE:-full}"; echo "mode: $MODE"
+          node tools/bots/intel.js
+      - name: Save
+        if: always()
+        run: BOT_NAME=intel bash .github/save.sh "intel: $(date -u +%F)" reports/intel
