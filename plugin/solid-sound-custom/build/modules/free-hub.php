@@ -37,7 +37,7 @@ add_action( 'wp_footer', function () {
 function byTitle(re){return [].filter.call(document.querySelectorAll('.l-main h2'),function(h){return re.test(h.textContent)})[0]}
 function put(){if(document.querySelector('.ss-fz'))return true;var h1=document.querySelector('.l-main h1');if(!h1)return false;
  /* anchors for the two forms on this page */
- var a=byTitle(/get free access|gratis-zugang|accès gratuit/i),f=byTitle(/free track feedback|gratis track-feedback|avis gratuit/i); /* + translated titles (modules/i18n-dict-*.php) */if(a&&!document.getElementById('free-access'))a.id='free-access';if(f&&!document.getElementById('free-feedback'))f.id='free-feedback';
+ var a=byTitle(/get free access|gratis-zugang|accès gratuit|acceso gratis/i),f=byTitle(/free track feedback|gratis track-feedback|avis gratuit|feedback gratis de tu tema/i); /* + translated titles (modules/i18n-dict-*.php) */if(a&&!document.getElementById('free-access'))a.id='free-access';if(f&&!document.getElementById('free-feedback'))f.id='free-feedback';
  var d=document.createElement('div');d.innerHTML=H;var s=d.firstChild;
  var box=h1.closest('.wpb_wrapper,.w-text,.vc_column-inner')||h1.parentNode;var after=box.querySelector('p')||h1;after.insertAdjacentElement('afterend',s);
  s.addEventListener('toggle',function(e){if(!e.target.open)return;[].forEach.call(s.querySelectorAll('details[open]'),function(x){if(x!==e.target)x.open=false})},true);
