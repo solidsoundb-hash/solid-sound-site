@@ -7006,6 +7006,7 @@ require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробу�
 require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
 require_once __DIR__ . '/modules/brevo-utm.php'; /* 25.11: FREE sign-ups → Brevo with UTM, feedback opt-in, one-off resync */
 require_once __DIR__ . '/modules/cancel-order.php'; /* 25.11: EU withdrawal button — page /cancel-order/ (Юрист) */
+require_once __DIR__ . '/modules/site-leads.php'; /* 25.11: requests from forms kept in the admin («Requests»), e-mails unchanged */
 require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
