@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T11:00:51.064Z",
+ "updated": "2026-11-25T11:02:17.874Z",
  "hours": 24,
  "orders": [],
  "funnel": {
@@ -10,8 +10,14 @@
   "thanks": 0,
   "orders": 0
  },
- "forum": [],
- "errors": [
-  "форум: тем не распознал; ссылки на странице: /support/forum/requests-and-feedback /en/forum/ /en/forum/?currency=USD /en/forum/?currency=EUR /en/forum/?currency=GBP /en/forum/?currency=CAD /en/forum/?currency=AUD /en/forum/?currency=CHF /en/forum/?currency=DKK /en/forum/?currency=HKD /en/forum/?currency=INR /en/forum/?currency=JPY /en/forum/?currency=NOK /en/forum/?currency=NZD /en/forum/?currency=PLN /en/forum/?currency=SEK /en/forum/?currency=UAH /en/forum/?currency=ZAR /forum/ /en/forum/orders/ /en/forum/edit-address/ /en/forum/edit-account/ /en/forum/?type=rss2&forum=g /en/forum/?type=rss2&forum=g&topic=g"
- ]
+ "forum": [
+  {
+   "title": "Ideas & Suggestions",
+   "url": "https://solid-sound.net/en/community/main-forum/ideas-suggestions/",
+   "date": "2025-08-21T14:00:09.000Z",
+   "question": false,
+   "fresh": false
+  }
+ ],
+ "errors": []
 }
