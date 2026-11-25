@@ -1,0 +1,19 @@
+{
+ "last": {
+  "eur": "ok",
+  "seller": "warn",
+  "withdrawal": "ok",
+  "mediator": "warn",
+  "checkbox": "ok"
+ },
+ "runs": [
+  {
+   "day": "2026-11-25",
+   "bad": 0,
+   "warn": 2,
+   "ok": 3,
+   "only": "terms"
+  }
+ ],
+ "noise": []
+}
