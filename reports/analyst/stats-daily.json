@@ -1,23 +1,23 @@
 {
- "updated": "2026-11-25T08:31:59.114Z",
+ "updated": "2026-11-25T10:54:00.986Z",
  "currency": "EUR",
  "rows": [
   {
    "d": "2026-11-25",
-   "s": 73,
-   "people": 63,
+   "s": 82,
+   "people": 72,
    "bots": 10,
-   "v": 74,
+   "v": 83,
    "prod": 7,
-   "cart": 4,
+   "cart": 5,
    "co": 0,
    "thx": 0,
    "orders": 0,
    "paid": 0,
    "sum": 0,
    "phone": 7,
-   "src": "(direct) 73",
-   "ctry": "Other: Asia 10, Other: UTC 10, South Korea 9"
+   "src": "(direct) 82",
+   "ctry": "South Korea 11, United States 10, Other: Asia 10"
   },
   {
    "d": "2026-11-24",
