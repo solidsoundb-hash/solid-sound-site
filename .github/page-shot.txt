@@ -32,3 +32,4 @@
 2026-11-22 06:41:08 night-2211 /en/ /en/all-products/ /product/infinity/ /en/services-prices/ /en/cart/ /en/wiki/
 2026-11-22 09:35:51 de-before /de/ /de/product/pitch/ /en/all-products/ /en/services-prices/ /en/free/ /de/cart/ /de/my-account/
 2026-11-22 12:09:25 after-de-live /de/all-products/ /de/product/infinity/ /de/services-prices/ /de/
+2026-11-25 06:43:34 hdr-before /en/ /en/all-products/ /en/templates/
