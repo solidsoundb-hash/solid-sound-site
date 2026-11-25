@@ -3,7 +3,7 @@
 'use strict';
 const fs = require('fs'); const rules = require('./rules');
 const BASE = 'https://solid-sound.net', UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundBots/1.0';
-const PAGES = { terms: '/en/terms/', refund: '/en/refund_returns/', license: '/en/license/', creator: '/en/creator-terms/', notice: '/en/legal-notice/', privacy: '/en/privacy-policy/', cancel: '/en/cancel-order/' };
+const PAGES = { terms: '/en/terms/', refund: '/en/refund_returns/', license: '/en/license/', creator: '/en/creator-terms/', notice: '/en/legal-notice/', privacy: '/en/privacy-policy/', cancel: '/cancel-order/' };
 const text = h => h.replace(/<(script|style|noscript)[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/&#8217;|&rsquo;/g, "'").replace(/&#8220;|&#8221;/g, '"').replace(/&amp;/g, '&').replace(/\s+/g, ' ');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function get(path) { for (let i = 0; i < 3; i++) { try { const r = await fetch(BASE + path, { headers: { 'user-agent': UA }, redirect: 'follow' }); const html = await r.text();
