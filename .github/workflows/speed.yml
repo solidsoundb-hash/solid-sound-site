@@ -8,6 +8,9 @@ on:
   schedule:
     - cron: "41 3 * * *"   # every night 03:41 UTC (owner 20.11 «1»: robots on a schedule)
   workflow_call:          # started by the main robot (main-robot.yml) every Monday
+  workflow_run:           # (25.11 Developer) after every successful deploy: 2 purchase pages, phone, median of 3 → speed/deploy/
+    workflows: ["Deploy plugin"]
+    types: [completed]
   push:
     branches: [main]
     paths: [".github/speed.txt"]
@@ -22,12 +25,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
+      - name: Mode — after deploy (workflow_run, or a line with «deploy» in .github/speed.txt) or the full nightly run
+        run: |
+          if [ "${{ github.event_name }}" = workflow_run ] || { [ "${{ github.event_name }}" = push ] && tail -1 .github/speed.txt | grep -q deploy; }; then
+            { echo "SPEED_OUT=speed/deploy"; echo "SPEED_DEVICES=mobile"; echo "SPEED_RUNS=3"; echo "SPEED_LOCAL=1"
+              if tail -1 .github/speed.txt | grep -q deploy1 && [ "${{ github.event_name }}" = push ]; then echo "SPEED_PAGES=/product/infinity/"; else echo "SPEED_PAGES=/product/infinity/,/en/all-products/"; fi
+              echo "SPEED_NOTE=$(tail -1 .github/deploy.txt | cut -c1-160 | tr -d '`$')"; } >> $GITHUB_ENV
+          fi
       - name: Skip if measured less than 2 hours ago (after deploys only)
         id: gate
         run: |
-          if [ "${{ github.event_name }}" = workflow_run ] && [ -f speed/latest.json ]; then
-            last=$(python3 -c "import json,datetime;d=json.load(open('speed/latest.json'))['date'];print(int(datetime.datetime.fromisoformat(d.replace('Z','+00:00')).timestamp()))" 2>/dev/null || echo 0)
-            if [ $(( $(date +%s) - last )) -lt 7200 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "measured recently, skipping"; fi
+          if [ "${{ github.event_name }}" = workflow_run ] && [ -f speed/deploy/latest.json ]; then
+            last=$(python3 -c "import json,datetime;d=json.load(open('speed/deploy/latest.json'))['date'];print(int(datetime.datetime.fromisoformat(d.replace('Z','+00:00')).timestamp()))" 2>/dev/null || echo 0)
+            if [ $(( $(date +%s) - last )) -lt 3600 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "measured recently, skipping"; fi
           fi
       - uses: actions/setup-node@v4
         if: steps.gate.outputs.skip != '1'

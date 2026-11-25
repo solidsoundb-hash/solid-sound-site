@@ -75,8 +75,12 @@ async function psi(url, strategy) {
   fs.mkdirSync(OUT, { recursive: true });
   let prev = {}; try { prev = JSON.parse(fs.readFileSync(path.join(OUT, 'latest.json'), 'utf8')).results || {}; } catch (e) {}
   const results = {}; const warn = []; const date = new Date().toISOString();
-  for (const p of PAGES) for (const s of ['mobile', 'desktop']) {
-    const k = p + '|' + s; const t = Date.now(); results[k] = await psi(BASE + p, s);
+  /* (25.11 Developer robot «after deploy»): SPEED_DEVICES=mobile, SPEED_RUNS=3 → median of 3 runs by score (one run swings ±15) */
+  const DEVS = (process.env.SPEED_DEVICES || 'mobile,desktop').split(','); const RUNS = Math.max(1, +(process.env.SPEED_RUNS || 1));
+  for (const p of PAGES) for (const s of DEVS) {
+    const k = p + '|' + s; const t = Date.now();
+    const runs = []; for (let i = 0; i < RUNS; i++) { const x = await psi(BASE + p, s); if (!x.error) runs.push(x); else if (!runs.length && i === RUNS - 1) runs.push(x); }
+    runs.sort((a, b) => (a.score || 0) - (b.score || 0)); results[k] = runs[Math.floor((runs.length - 1) / 2)] || { error: 'нет результата' };
     console.log(k, results[k].error ? 'ERROR ' + results[k].error : 'score ' + results[k].score, Math.round((Date.now() - t) / 1000) + 's');
     const r = results[k], o = prev[k];
     if (r.error) continue;
@@ -88,7 +92,7 @@ async function psi(url, strategy) {
     if (r.cls > 0.1) warn.push(`${p} (${s === 'mobile' ? 'телефон' : 'компьютер'}): страница «прыгает» при загрузке (CLS ${r.cls}, норма до 0.1)`);
   }
   const sec = (ms) => (ms / 1000).toFixed(1) + ' с';
-  const L = [`# Скорость сайта — ${date.slice(0, 16).replace('T', ' ')} UTC`, '',
+  const L = [`# Скорость сайта — ${date.slice(0, 16).replace('T', ' ')} UTC`, '', ...(process.env.SPEED_NOTE ? ['После выкладки: ' + process.env.SPEED_NOTE + (RUNS > 1 ? ` (медиана ${RUNS} замеров)` : ''), ''] : []),
     (KEY ? 'Google PageSpeed (Lighthouse).' : 'Lighthouse на роботе GitHub (ключа PageSpeed нет).') + ' Оценка 90–100 — отлично, 50–89 — средне, ниже 50 — плохо. «Главный блок» (LCP) — когда видно основное: норма до 2.5 с.', ''];
   const measured = Object.values(results).filter(r => !r.error).length;
   L.push(!measured ? '## ⏸ Ничего не измерено — см. причину в таблице\n' : warn.length ? '## ⚠️ Стало хуже / проблемы\n\n' + warn.map(w => '- ' + w).join('\n') + '\n' : '## ✅ Скорость не ухудшилась\n');
