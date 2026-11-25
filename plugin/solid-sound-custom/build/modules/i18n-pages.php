@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function ss_vp_langs() { return array( 'de' ); }
+function ss_vp_langs() { return array( 'de', 'fr' ); }
 function ss_vp_slugs() { return 'all-products|services-prices|studio-calculator|services-calculator|mastering-album-calculator|free|sell|faq|why-solid-sound|get-heard|free-demo-feedback|terms|refund_returns|license|privacy-policy|legal-notice|about|creator-terms'; }
 /* the English pages behind the slugs (for links printed by WordPress: get_permalink → /de/…) */
 function ss_vp_page_ids() { return array( 2, 1947, 1260, 1498, 2108, 1970, 567, 1709, 2169, 35, 385, 3, 2170, 2617, 1972 ); }

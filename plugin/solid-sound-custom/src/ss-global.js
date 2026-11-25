@@ -235,7 +235,7 @@ function rItem(o,extra,cls){ return tag('div',{'class':'g-it g-r-it'+(cls?' '+cl
 var LN={en:'English',uk:'Українська',ua:'Українська',de:'Deutsch',fr:'Français',es:'Español',it:'Italiano',pt:'Português',pl:'Polski',ru:'Русский'};
 function lcode(c){ c=(c||'').toLowerCase().slice(0,2); return c==='uk' ? 'UA' : c.toUpperCase(); }
 var langs=[];
-function addLang(code,href){ code=(code||'').toLowerCase(); if(!code||code==='x-default'||!href) return; var k=code.slice(0,2); if(langs.some(function(x){ return x.k===k; })) return; langs.push({k:k,h:href,t:lcode(k),n:LN[k]||lcode(k)}); }
+function addLang(code,href){ code=(code||'').toLowerCase(); if(!code||code==='x-default'||!href) return; var k=code.slice(0,2); if(k==='ua') k='uk'; if(langs.some(function(x){ return x.k===k; })) return; langs.push({k:k,h:href,t:lcode(k),n:LN[k]||lcode(k)}); }
 D.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(l){ addLang(l.getAttribute('hreflang'),l.href); });
 D.querySelectorAll('.l-header a[hreflang], .l-header .lang-item a').forEach(function(a){ addLang(a.getAttribute('hreflang')||a.getAttribute('lang'),a.href); });
 window.ssLangs=langs;
