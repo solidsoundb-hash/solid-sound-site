@@ -1,5 +1,5 @@
 # Менеджер авторов (25.11.2026): проверка товаров — обложка, демо, описание (только чтение).
-# Run: add a line to .github/authors-check.txt (or daily schedule). Result: reports/authors/products.md on main.
+# Run: Actions → Authors check → Run workflow (manual, stages per docs/team/bots.md). Result: reports/authors/products.md on main.
 name: Authors check
 # Лестница (docs/team/bots.md): ступень 1 — ONLY_IDS=1102, ступень 2 — LIMIT=9, ступень 3 — расписание (добавить после зачёта).
 on:
