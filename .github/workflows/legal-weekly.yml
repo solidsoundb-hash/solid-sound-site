@@ -1,0 +1,33 @@
+# Юр. проверка сайта (роль «Юрист», 25.11.2026): продавец, Refund, Cancel order, галочки отказа, EUR, единое право, подвал.
+# Запуск: строка в .github/legal.txt («<дата> only=terms» — одна страница, ступень 1) или по расписанию (вт 03:23 UTC).
+# Отчёт: reports/legal/check.md, память reports/legal/memory.json. Только чтение сайта. Сначала экзамен — провал = отчёт не верим.
+name: Legal weekly
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * 2"
+  push:
+    branches: [main]
+    paths: [".github/legal.txt"]
+permissions:
+  contents: write
+concurrency: { group: legal-weekly, cancel-in-progress: false }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam
+        run: node tools/bots/legal/exam.js
+      - name: Check
+        run: |
+          L=$(tail -1 .github/legal.txt 2>/dev/null | grep -o 'only=[a-z,]*' | cut -d= -f2)
+          [ "${{ github.event_name }}" = "schedule" ] && L=""
+          LEGAL_ONLY="$L" node tools/legal/check.js
+      - name: Save
+        if: always()
+        run: BOT_NAME=legal-robot bash .github/save.sh "legal: check $(date -u +%FT%TZ)" reports/legal
