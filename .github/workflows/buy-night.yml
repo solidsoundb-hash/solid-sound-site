@@ -47,4 +47,5 @@ jobs:
           fi
       - name: Save
         if: always()
-        run: BOT_NAME=night-buyer bash .github/save.sh "night buyer: $(date -u +%FT%TZ)" reports/tester
+        run: |
+          BOT_NAME=night-buyer bash .github/save.sh "night buyer: $(date -u +%FT%TZ)" reports/tester
