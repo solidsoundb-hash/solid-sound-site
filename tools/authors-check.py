@@ -11,6 +11,8 @@ SITE = os.environ.get('SITE', 'https://solid-sound.net').rstrip('/')
 OWNER_IDS = {int(x) for x in os.environ.get('OWNER_IDS', '1').split(',') if x.strip()}
 TEAM_IDS = {int(x) for x in os.environ.get('TEAM_IDS', '6').split(',') if x.strip()}  # 6 = uagen.music (уточнить у владельца)
 OUT = os.environ.get('OUT', 'reports/authors')
+ONLY = {int(x) for x in os.environ.get('ONLY_IDS', '').split(',') if x.strip()}  # ступень 1: один товар (например 1102)
+LIMIT = int(os.environ.get('LIMIT', '0') or 0)  # ступень 2: 5–10 товаров
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
 
 
@@ -96,6 +98,10 @@ def main():
         authors = {p['id']: p.get('author') for p in json.loads(raw2)}
     except Exception:
         pass
+    if ONLY:
+        products = [p for p in products if p.get('id') in ONLY]
+    if LIMIT:
+        products = products[:LIMIT]
     rows = []
     for p in products:
         time.sleep(2)
