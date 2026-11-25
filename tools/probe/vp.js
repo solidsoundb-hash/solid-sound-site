@@ -1,9 +1,9 @@
-// Probe (24.11, «Копирайтер»): do the translated pages work? For each /de/ URL (cache-busting query): HTTP code, final URL
+// Probe (24.11, «Копирайтер»; 25.11 + /fr/ and the language list on /en/all-products/): do the translated pages work? For each /de/ and /fr/ URL (cache-busting query): HTTP code, final URL
 // (redirect to /en/?), <html lang>, our translator script (ss-vp-js), a German marker text, hreflang links; + header labels after JS.
 const { chromium } = require('playwright'); const fs = require('fs');
 const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive: true });
 const S = 'https://solid-sound.net';
-const PAGES = [['/de/services-prices/', 'Leistungen'], ['/de/all-products/', 'Alle abspielen'], ['/de/product/pitch/', 'Technische Daten'], ['/de/free/', 'Gratis'], ['/de/sell/', 'Verkaufe'], ['/de/faq/', 'Zahlungsarten'], ['/de/studio-calculator/?s=mixing', 'Studio-Preisrechner'], ['/de/cart/', 'Warenkorb'], ['/de/my-account/', 'Willkommen zurück']];
+const PAGES = [['/en/all-products/', 'Play All'], ['/de/services-prices/', 'Leistungen'], ['/de/all-products/', 'Alle abspielen'], ['/de/product/pitch/', 'Technische Daten'], ['/de/free/', 'Gratis'], ['/de/sell/', 'Verkaufe'], ['/de/faq/', 'Zahlungsarten'], ['/de/studio-calculator/?s=mixing', 'Studio-Preisrechner'], ['/de/cart/', 'Warenkorb'], ['/de/my-account/', 'Willkommen zurück'], ['/fr/services-prices/', 'tarifs'], ['/fr/all-products/', 'Tout écouter'], ['/fr/product/pitch/', 'Caractéristiques'], ['/fr/free/', 'Gratuit'], ['/fr/sell/', 'Vendre'], ['/fr/faq/', 'Moyens de paiement'], ['/fr/studio-calculator/?s=mixing', 'Calculateur de prix studio'], ['/fr/cart/', 'Panier'], ['/fr/my-account/', 'Bon retour'], ['/fr/terms/', 'Droit de rétractation']];
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined }); const md = ['# Переводы /de/ — ' + new Date().toISOString(), '', '| Страница | Код | Куда пришли | lang | скрипт перевода | немецкий текст | hreflang | шапка | ошибки JS |', '|---|---|---|---|---|---|---|---|---|'];
   for (const [dev, opt] of [['pc', { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' }], ['a31', { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' }]]) {
@@ -17,9 +17,9 @@ const PAGES = [['/de/services-prices/', 'Leistungen'], ['/de/all-products/', 'Al
       await p.waitForTimeout(2000);
       const d = await p.evaluate((mark) => ({ lang: document.documentElement.lang, vp: !!document.getElementById('ss-vp-js'), de: document.body.innerText.includes(mark),
         hl: [...document.querySelectorAll('link[rel=alternate][hreflang]')].map(l => l.hreflang).join(','),
-        head: [...document.querySelectorAll('#ssg .g-l, #ssg-bar a')].map(x => x.textContent.trim()).filter(Boolean).slice(0, 12).join(' / ') }), mark).catch(() => ({}));
-      md.push(`| ${u} (${dev}) | ${r ? r.status() : '—'} | ${p.url().replace(S, '').replace(/[?&]nc=\d+/, '')} | ${d.lang} | ${d.vp ? '✅' : '❌'} | ${d.de ? '✅' : '❌'} ${mark} | ${d.hl || '—'} | ${d.head || '—'} | ${errs.join(' / ') || '—'} |`);
-      if (dev === 'a31' || u === '/de/services-prices/') await p.screenshot({ path: `${OUT}/${dev}_${u.replace(/[^a-z0-9]+/gi, '_')}.jpg`, type: 'jpeg', quality: 60 });
+        langs: (window.ssLangs || []).map(l => l.k + ':' + l.t + ':' + l.n).join(' '), head: [...document.querySelectorAll('#ssg .g-l, #ssg-bar a')].map(x => x.textContent.trim()).filter(Boolean).slice(0, 12).join(' / ') }), mark).catch(() => ({}));
+      md.push(`| ${u} (${dev}) | ${r ? r.status() : '—'} | ${p.url().replace(S, '').replace(/[?&]nc=\d+/, '')} | ${d.lang} | ${d.vp ? '✅' : '❌'} | ${d.de ? '✅' : '❌'} ${mark} | ${d.hl || '—'} | ${d.head || '—'} | ${errs.join(' / ') || '—'} |`); if (d.langs) md.push(`|   языки: ${d.langs} |`);
+      if (dev === 'a31' || /services-prices|terms/.test(u)) await p.screenshot({ path: `${OUT}/${dev}_${u.replace(/[^a-z0-9]+/gi, '_')}.jpg`, type: 'jpeg', quality: 60 });
     }
     await ctx.close();
   }
