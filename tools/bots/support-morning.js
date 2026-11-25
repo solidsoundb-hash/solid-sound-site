@@ -24,9 +24,14 @@ const action = (status) => ({
 const urgent = (status) => ['pending', 'failed', 'on-hold', 'checkout-draft'].includes(status);
 // topic address = /forum/<section>/<topic>/ (not a section, profile, tag or service page)
 const isTopicUrl = (u) => /\/forum\/(?!participant|profile|members|recent|tag|search|register|login|account)[^/?#]+\/[^/?#]+\/?$/.test(String(u || '').replace(/^https?:\/\/[^/]+(\/[a-z]{2}(?=\/))?/, ''));
+// RSS 2.0 → [{title, link, date}] (wpForo topic feed)
+const parseRss = (xml) => (String(xml).match(/<item>[\s\S]*?<\/item>/g) || []).map(it => {
+  const g = (t) => { const m = it.match(new RegExp('<' + t + '>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</' + t + '>')); return m ? m[1].trim() : ''; };
+  return { title: g('title').replace(/&amp;/g, '&').replace(/&#0?39;|&apos;/g, "'").replace(/&quot;/g, '"'), link: g('link').replace(/[?#].*$/, ''), date: g('pubDate') ? new Date(g('pubDate')).toISOString() : '' };
+});
 const isQuestion = (title) => /\?|^(how|why|what|where|which|can|does|is|help|wie|comment|cómo|как|чому|чем|що)\b/i.test(String(title || '').trim());
 
-if (require.main !== module) { module.exports = { scrub, action, urgent, isQuestion, isTopicUrl }; return; }
+if (require.main !== module) { module.exports = { scrub, action, urgent, isQuestion, isTopicUrl, parseRss }; return; }
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
@@ -68,22 +73,14 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
     } else R.errors.push('статистика: ответ ' + s.status());
   } catch (e) { R.errors.push(e.message.split('\n')[0]); }
 
-  // 3. forum: topics on the main forum page (public, titles only — no nicknames); "new" = not in the previous report
-  let prev = new Set();
-  try { prev = new Set((JSON.parse(fs.readFileSync(OUT + '/morning.json', 'utf8')).forum || []).map(f => f.url)); } catch (e) {}
+  // 3. forum: wpForo RSS of all topics (public, titles + dates only — no nicknames); new = published within HOURS
   try {
-    let st = 0;
-    for (let i = 0; i < 3; i++) { const r = await page.goto(S + '/en/forum/', { waitUntil: 'domcontentloaded', timeout: 90000 }); st = r ? r.status() : 0; if (st < 400) break; await page.waitForTimeout(45000); }
-    if (st >= 400) throw new Error('страница форума ответила ' + st);
-    const t = await page.$$eval('a[href*="/forum/"]', as => as.map(a => ({ t: a.textContent.trim(), h: a.getAttribute('href') || '' })));
-    const seen = new Set();
-    for (const a of t) {
-      const u = a.h.replace(/[?#].*$/, '');
-      if (!isTopicUrl(u) || a.t.length < 6 || seen.has(u)) continue; seen.add(u);
-      R.forum.push({ title: scrub(a.t), url: u, question: isQuestion(a.t), fresh: prev.size > 0 && !prev.has(u) });
-      if (R.forum.length >= 15) break;
+    let r = null;
+    for (let i = 0; i < 3; i++) { r = await ctx.request.get(S + '/en/forum/?type=rss2&forum=g&topic=g', { timeout: 90000 }); if (r.status() < 400) break; await page.waitForTimeout(45000); }
+    if (r.status() >= 400) throw new Error('лента форума ответила ' + r.status());
+    for (const it of parseRss(await r.text()).slice(0, 15)) {
+      R.forum.push({ title: scrub(it.title), url: it.link, date: it.date, question: isQuestion(it.title), fresh: !!it.date && Date.parse(it.date) > Date.now() - HOURS * 3600e3 });
     }
-    if (!R.forum.length) R.errors.push('форум: тем не распознал; ссылки на странице: ' + [...new Set(t.map(x => x.h.replace(/^https?:\/\/[^/]+/, '')))].slice(0, 25).join(' '));
   } catch (e) { R.errors.push('форум: ' + e.message.split('\n')[0]); }
   await browser.close();
 
@@ -97,7 +94,7 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
   L.push('', '## Корзина без заказа (Solid Stats, последний день)');
   L.push(R.funnel ? `${R.funnel.day}: товар ${R.funnel.product} → корзина ${R.funnel.cart} → оформление ${R.funnel.checkout} → «спасибо» ${R.funnel.thanks}; заказов ${R.funnel.orders}.` +
     (R.funnel.checkout > R.funnel.orders ? ' ⚠ дошли до оформления, но не купили — вероятно, мешает оплата.' : '') : '_нет данных_');
-  L.push('', `## Форум — темы (${R.forum.length}, новых ${R.forum.filter(f => f.fresh).length})`, R.forum.length ? R.forum.map(f => `- ${f.fresh ? '🆕 ' : ''}${f.question ? '❓ ' : ''}${f.title} — ${f.url}`).join('\n') : '_тем не найдено_');
+  L.push('', `## Форум — темы (${R.forum.length}, новых ${R.forum.filter(f => f.fresh).length})`, R.forum.length ? R.forum.map(f => `- ${f.fresh ? '🆕 ' : ''}${f.question ? '❓ ' : ''}${f.title} (${(f.date || '').slice(0, 10)}) — ${f.url}`).join('\n') : '_тем не найдено_');
   L.push('', '## Формы', '_Заявки студии и формы контактов приходят только на почту (на сайте не хранятся) — робот их не видит._');
   if (R.errors.length) L.push('', '## Ошибки робота', ...R.errors.map(e => '- ' + e));
   const md = L.join('\n') + '\n';
