@@ -7,6 +7,9 @@ on:
     inputs:
       only_ids: { description: "ID товаров через запятую (ступень 1)", default: "1102" }
       limit: { description: "Сколько товаров (ступень 2), 0 = все", default: "0" }
+  push:
+    branches: [main]
+    paths: [".github/authors-check.txt"]  # последняя строка: "only=1102" или "limit=9" или "all"
 permissions:
   contents: write
 concurrency: authors-check
@@ -20,9 +23,16 @@ jobs:
         run: which ffprobe || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null)
       - name: Check products
         env:
-          ONLY_IDS: ${{ github.event.inputs.only_ids }}
-          LIMIT: ${{ github.event.inputs.limit }}
-        run: python3 tools/authors-check.py
+          IN_ONLY: ${{ github.event.inputs.only_ids }}
+          IN_LIMIT: ${{ github.event.inputs.limit }}
+        run: |
+          L=$(tail -n1 .github/authors-check.txt 2>/dev/null || true)
+          export ONLY_IDS="$IN_ONLY" LIMIT="$IN_LIMIT"
+          if [ "${{ github.event_name }}" = "push" ]; then
+            ONLY_IDS=$(echo "$L" | grep -oP 'only=\K[0-9,]+' || true); LIMIT=$(echo "$L" | grep -oP 'limit=\K[0-9]+' || true)
+          fi
+          echo "ONLY_IDS=$ONLY_IDS LIMIT=$LIMIT"
+          python3 tools/authors-check.py
       - name: Save report
         if: always()
         run: |
