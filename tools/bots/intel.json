@@ -3,44 +3,250 @@
  "maxRequests": 220,
  "maxWatch": 25,
  "shops": [
-  { "name": "Scraps Audio", "domain": "scrapsaudio.com", "type": "shopify" },
-  { "name": "Production Music Live", "domain": "productionmusiclive.com", "type": "shopify" },
-  { "name": "Cymatics", "domain": "cymatics.fm", "type": "shopify" }
+  {
+   "name": "Scraps Audio",
+   "domain": "scrapsaudio.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Production Music Live",
+   "domain": "productionmusiclive.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Cymatics",
+   "domain": "cymatics.fm",
+   "type": "shopify"
+  },
+  {
+   "name": "Zenhiser",
+   "domain": "zenhiser.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Sample Tools by Cr2",
+   "domain": "sampletoolsbycr2.com",
+   "type": "woo"
+  },
+  {
+   "name": "Black Octopus",
+   "domain": "blackoctopus-sound.com",
+   "type": "woo"
+  },
+  {
+   "name": "ADSR Sounds",
+   "domain": "adsrsounds.com",
+   "type": "woo"
+  }
  ],
  "probeShops": [
-  { "name": "Ghosthack", "domain": "ghosthack.de" },
-  { "name": "Sample Tools by Cr2", "domain": "sampletoolsbycr2.com" },
-  { "name": "Function Loops", "domain": "functionloops.com" },
-  { "name": "Black Octopus", "domain": "blackoctopus-sound.com" },
-  { "name": "Zenhiser", "domain": "zenhiser.com" },
-  { "name": "Riemann Kollektion", "domain": "riemannkollektion.de" },
-  { "name": "Audentity Records", "domain": "audentityrecords.com" },
-  { "name": "W. A. Production", "domain": "waproduction.com" },
-  { "name": "ADSR Sounds", "domain": "adsrsounds.com" },
-  { "name": "Loopmasters", "domain": "loopmasters.com" },
-  { "name": "Sample Magic", "domain": "samplemagic.com" },
-  { "name": "Toolroom Academy", "domain": "toolroomacademy.com" },
-  { "name": "Sonic Academy", "domain": "sonicacademy.com" },
-  { "name": "Ableton Templates (Abletunes)", "domain": "abletunes.com" },
-  { "name": "Hyperbits", "domain": "hyperbits.com" },
-  { "name": "Splice Blog", "domain": "splice.com" }
+  {
+   "name": "Ghosthack",
+   "domain": "ghosthack.de"
+  },
+  {
+   "name": "Function Loops",
+   "domain": "functionloops.com"
+  },
+  {
+   "name": "Riemann Kollektion",
+   "domain": "riemannkollektion.de"
+  },
+  {
+   "name": "Audentity Records",
+   "domain": "audentityrecords.com"
+  },
+  {
+   "name": "W. A. Production",
+   "domain": "waproduction.com"
+  },
+  {
+   "name": "Loopmasters",
+   "domain": "loopmasters.com"
+  },
+  {
+   "name": "Sample Magic",
+   "domain": "samplemagic.com"
+  },
+  {
+   "name": "Toolroom Academy",
+   "domain": "toolroomacademy.com"
+  },
+  {
+   "name": "Sonic Academy",
+   "domain": "sonicacademy.com"
+  },
+  {
+   "name": "Ableton Templates (Abletunes)",
+   "domain": "abletunes.com"
+  },
+  {
+   "name": "Hyperbits",
+   "domain": "hyperbits.com"
+  },
+  {
+   "name": "Splice Blog",
+   "domain": "splice.com"
+  }
  ],
  "feeds": [
-  { "id": "kvr", "name": "KVR Audio", "url": "https://www.kvraudio.com/rss/kvr_news.rss", "max": 4 },
-  { "id": "musicradar", "name": "MusicRadar", "url": "https://www.musicradar.com/feeds/all", "max": 3 },
-  { "id": "attack", "name": "Attack Magazine", "url": "https://www.attackmagazine.com/feed/", "max": 3 },
-  { "id": "ableton", "name": "Ableton Blog", "url": "https://www.ableton.com/en/blog/feeds/latest/", "max": 3 }
+  {
+   "id": "musicradar",
+   "name": "MusicRadar",
+   "url": "https://www.musicradar.com/feeds/all",
+   "max": 3
+  },
+  {
+   "id": "attack",
+   "name": "Attack Magazine",
+   "url": "https://www.attackmagazine.com/feed/",
+   "max": 3
+  },
+  {
+   "id": "ableton",
+   "name": "Ableton Blog",
+   "url": "https://www.ableton.com/en/blog/feeds/latest/",
+   "max": 3
+  },
+  {
+   "id": "gearnews",
+   "name": "Gearnews",
+   "url": "https://www.gearnews.com/feed/",
+   "max": 3
+  },
+  {
+   "id": "rekkerd",
+   "name": "Rekkerd",
+   "url": "https://rekkerd.org/feed/",
+   "max": 3
+  },
+  {
+   "id": "bedroom",
+   "name": "Bedroom Producers Blog",
+   "url": "https://bedroomproducersblog.com/feed/",
+   "max": 3
+  },
+  {
+   "id": "edmprod",
+   "name": "EDMProd",
+   "url": "https://www.edmprod.com/feed/",
+   "max": 3
+  },
+  {
+   "id": "producerhive",
+   "name": "Producer Hive",
+   "url": "https://producerhive.com/feed/",
+   "max": 3
+  }
  ],
  "probeFeeds": [
-  { "id": "gearnews", "name": "Gearnews", "url": "https://www.gearnews.com/feed/" },
-  { "id": "rekkerd", "name": "Rekkerd", "url": "https://rekkerd.org/feed/" },
-  { "id": "bedroom", "name": "Bedroom Producers Blog", "url": "https://bedroomproducersblog.com/feed/" },
-  { "id": "edmprod", "name": "EDMProd", "url": "https://www.edmprod.com/feed/" },
-  { "id": "producerhive", "name": "Producer Hive", "url": "https://producerhive.com/feed/" }
+  {
+   "id": "kvr2",
+   "name": "KVR Audio",
+   "url": "https://www.kvraudio.com/xml/rss.xml"
+  }
  ],
- "bestCollections": ["best-sellers", "bestsellers", "best-selling", "top-sellers"],
- "genres": ["techno", "house", "tech house", "melodic", "afro", "drum and bass", "dnb", "trap", "hip hop", "lo-fi", "lofi", "future bass", "dubstep", "trance", "progressive", "deep house", "minimal", "hardstyle", "pop", "r&b", "ambient", "garage", "phonk", "amapiano", "edm", "cinematic"],
- "keywords": { "ableton": 3, "template": 4, "project file": 4, "sample pack": 2, "mixing": 2, "mastering": 2, "free": 1, "sale": 2, "black friday": 3, "discount": 2, "launch": 2, "release": 1, "ai": 2, "stems": 2, "plugin": 1, "course": 2, "royalty": 2, "ghost production": 4 },
- "queries": ["ableton project templates", "ableton live templates royalty free", "buy ableton project file techno", "tech house ableton template", "melodic techno ableton project", "online mixing mastering service", "ghost production edm", "fl studio template marketplace", "afro house ableton template", "mixing and mastering online price"],
- "ignoreDomains": ["solid-sound.net", "kvraudio.com", "musicradar.com", "attackmagazine.com", "ableton.com", "youtube.com", "youtu.be", "twitter.com", "x.com", "facebook.com", "instagram.com", "tiktok.com", "reddit.com", "amazon.com", "apple.com", "google.com", "wikipedia.org", "soundcloud.com", "spotify.com", "bandcamp.com", "discord.gg", "discord.com", "linkedin.com", "pinterest.com", "t.co", "bit.ly", "gearnews.com", "rekkerd.org", "bedroomproducersblog.com", "feedburner.com", "wordpress.com", "gravatar.com", "w3.org"]
+ "bestCollections": [
+  "best-sellers",
+  "bestsellers",
+  "best-selling",
+  "top-sellers"
+ ],
+ "genres": [
+  "techno",
+  "house",
+  "tech house",
+  "melodic",
+  "afro",
+  "drum and bass",
+  "dnb",
+  "trap",
+  "hip hop",
+  "lo-fi",
+  "lofi",
+  "future bass",
+  "dubstep",
+  "trance",
+  "progressive",
+  "deep house",
+  "minimal",
+  "hardstyle",
+  "pop",
+  "r&b",
+  "ambient",
+  "garage",
+  "phonk",
+  "amapiano",
+  "edm",
+  "cinematic"
+ ],
+ "keywords": {
+  "ableton": 3,
+  "template": 4,
+  "project file": 4,
+  "sample pack": 2,
+  "mixing": 2,
+  "mastering": 2,
+  "free": 1,
+  "sale": 2,
+  "black friday": 3,
+  "discount": 2,
+  "launch": 2,
+  "release": 1,
+  "ai": 2,
+  "stems": 2,
+  "plugin": 1,
+  "course": 2,
+  "royalty": 2,
+  "ghost production": 4
+ },
+ "queries": [
+  "ableton project templates",
+  "ableton live templates royalty free",
+  "buy ableton project file techno",
+  "tech house ableton template",
+  "melodic techno ableton project",
+  "online mixing mastering service",
+  "ghost production edm",
+  "fl studio template marketplace",
+  "afro house ableton template",
+  "mixing and mastering online price"
+ ],
+ "ignoreDomains": [
+  "solid-sound.net",
+  "kvraudio.com",
+  "musicradar.com",
+  "attackmagazine.com",
+  "ableton.com",
+  "youtube.com",
+  "youtu.be",
+  "twitter.com",
+  "x.com",
+  "facebook.com",
+  "instagram.com",
+  "tiktok.com",
+  "reddit.com",
+  "amazon.com",
+  "apple.com",
+  "google.com",
+  "wikipedia.org",
+  "soundcloud.com",
+  "spotify.com",
+  "bandcamp.com",
+  "discord.gg",
+  "discord.com",
+  "linkedin.com",
+  "pinterest.com",
+  "t.co",
+  "bit.ly",
+  "gearnews.com",
+  "rekkerd.org",
+  "bedroomproducersblog.com",
+  "feedburner.com",
+  "wordpress.com",
+  "gravatar.com",
+  "w3.org",
+  "edmprod.com",
+  "producerhive.com"
+ ]
 }
