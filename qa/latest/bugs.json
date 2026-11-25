@@ -1,17 +1,17 @@
 {
  "mode": "full",
- "date": "2026-11-24T00:35:20.877Z",
+ "date": "2026-11-25T04:16:30.908Z",
  "stats": {
   "pages": 86,
-  "clicks": 442,
+  "clicks": 460,
   "sounds": 54,
-  "links": 973,
+  "links": 991,
   "blockedRequests": 38,
   "eyesTiles": 0,
   "eyesPages": 0,
   "audioFiles": 35,
-  "plusChecks": 106,
-  "robots": 23
+  "plusChecks": 84,
+  "robots": 22
  },
  "bugs": [
   {
@@ -20,7 +20,7 @@
    "title": "Скрипты в <head> без defer/async — тормозят показ страницы (висит 16 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/en/ (компьютер)",
-    "Где: https://solid-sound.net/wp-content/plugins/solid-sound-custom/build/assets/js-l1023.d70a254c40.js; https://solid-sound.net/wp-content/plugins/official-facebook-pixel/js/facebook_signal.js,qver=5.2.2.pagespeed.ce.OkuaffgxX-.js"
+    "Где: https://solid-sound.net/wp-content/plugins/solid-sound-custom/build/assets/js-l1023.357a36aaa1.js"
    ],
    "expected": "defer (правило проекта в CLAUDE.md).",
    "actual": "Почему важно: Браузер ждёт скачивания скрипта, страница белая.",
@@ -213,7 +213,7 @@
   {
    "sev": "major",
    "type": "kb-a11y-contrast",
-   "title": "Текст плохо читается: слишком бледный на фоне (висит 15 проверок подряд)",
+   "title": "Текст плохо читается: слишком бледный на фоне (висит 16 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/en/free-demo-feedback/ (компьютер)",
     "Где: a.btn «GET A FREE DEMO FEEDBACK» 1.2:1"
@@ -229,13 +229,13 @@
     "телефон"
    ],
    "shot": "shots/12_005.jpg",
-   "streak": 15,
+   "streak": 16,
    "isNew": false
   },
   {
    "sev": "major",
    "type": "ears-clip",
-   "title": "Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз) (висит 14 проверок подряд)",
+   "title": "Превью «Pitch_128_kbps.mp3» может хрипеть (перегруз) (висит 15 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/en/all-products/",
     "Нажать ▶ у трека «Pitch_128_kbps.mp3»"
@@ -250,13 +250,13 @@
     "звук"
    ],
    "shot": "",
-   "streak": 14,
+   "streak": 15,
    "isNew": false
   },
   {
    "sev": "major",
    "type": "ears-clip",
-   "title": "Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз) (висит 14 проверок подряд)",
+   "title": "Превью «Infinity_Tech_House_128Kbps.mp3» может хрипеть (перегруз) (висит 15 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/?p=338",
     "Нажать ▶ у трека «Infinity_Tech_House_128Kbps.mp3»"
@@ -271,13 +271,13 @@
     "звук"
    ],
    "shot": "",
-   "streak": 14,
+   "streak": 15,
    "isNew": false
   },
   {
    "sev": "major",
    "type": "ears-clip",
-   "title": "Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз) (висит 14 проверок подряд)",
+   "title": "Превью «Intricate_Dark-Techno_128kbps.mp3» может хрипеть (перегруз) (висит 15 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/?p=340",
     "Нажать ▶ у трека «Intricate_Dark-Techno_128kbps.mp3»"
@@ -292,13 +292,13 @@
     "звук"
    ],
    "shot": "",
-   "streak": 14,
+   "streak": 15,
    "isNew": false
   },
   {
    "sev": "major",
    "type": "ears-clip",
-   "title": "Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз) (висит 14 проверок подряд)",
+   "title": "Превью «Kratos_Dark_Techno_128kbps.mp3» может хрипеть (перегруз) (висит 15 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/?p=61",
     "Нажать ▶ у трека «Kratos_Dark_Techno_128kbps.mp3»"
@@ -313,7 +313,7 @@
     "звук"
    ],
    "shot": "",
-   "streak": 14,
+   "streak": 15,
    "isNew": false
   },
   {
@@ -334,33 +334,34 @@
     "компьютер"
    ],
    "shot": "shots/14_007.jpg",
-   "streak": 2,
+   "streak": 3,
    "isNew": false
   },
   {
    "sev": "major",
-   "type": "img",
-   "title": "Картинка не загружается",
+   "type": "langopt",
+   "title": "На главной (телефон) нельзя выбрать язык — в меню нет списка языков",
    "steps": [
-    "Открыть https://solid-sound.net/en/wiki/audio-interface-for-vocals/"
+    "Открыть главную",
+    "Нажать кнопку меню"
    ],
-   "expected": "Картинка видна",
-   "actual": "/wp-content/uploads/audio-interface-patch-cables-usb-connections.webp",
-   "sig": "img|https://solid-sound.net/wp-content/uploads/audio-interface-patch-cables-usb-connections.webp",
+   "expected": "Список языков: EN, UA, DE, FR, PT, ES, IT",
+   "actual": "Списка языков нет",
+   "sig": "langopt|phone",
    "where": [
-    "/en/wiki/audio-interface-for-vocals/"
+    "/en/"
    ],
    "devices": [
-    "компьютер"
+    "телефон"
    ],
-   "shot": "shots/16_007.jpg",
+   "shot": "shots/18_016.jpg",
    "streak": 1,
    "isNew": true
   },
   {
-   "sev": "major",
+   "sev": "minor",
    "type": "ears-clip",
-   "title": "↩ вернулся после исправления: ↩ вернулся после исправления: Превью «02-After.mp3» может хрипеть (перегруз)",
+   "title": "Превью «02-After.mp3» может хрипеть (перегруз)",
    "steps": [
     "Открыть https://solid-sound.net/en/all-products/",
     "Нажать ▶ у трека «02-After.mp3»"
@@ -375,13 +376,13 @@
     "звук"
    ],
    "shot": "",
-   "streak": 1,
-   "isNew": true
+   "streak": 2,
+   "isNew": false
   },
   {
-   "sev": "major",
+   "sev": "minor",
    "type": "ears-start",
-   "title": "↩ вернулся после исправления: ↩ вернулся после исправления: Превью «01-Before.mp3» начинается с тишины (4.4 с)",
+   "title": "Превью «01-Before.mp3» начинается с тишины (4.4 с)",
    "steps": [
     "Открыть https://solid-sound.net/en/all-products/",
     "Нажать ▶ у трека «01-Before.mp3»"
@@ -396,94 +397,14 @@
     "звук"
    ],
    "shot": "",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "plus-focus-ring",
-   "sig": "plus-ring|/en/",
-   "title": "Не видно, где фокус клавиатуры (нет рамки)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажимать Tab"
-   ],
-   "expected": "У кнопки в фокусе видна рамка",
-   "actual": "input «»; input «BPM»; input «on»",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_001_keys_en_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "plus-focus-ring",
-   "sig": "plus-ring|/en/studio-calculator/",
-   "title": "Не видно, где фокус клавиатуры (нет рамки)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/studio-calculator/",
-    "Нажимать Tab"
-   ],
-   "expected": "У кнопки в фокусе видна рамка",
-   "actual": "input «»; input «12»; input «on»",
-   "where": [
-    "/en/studio-calculator/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_005_keys_en_studio_calculator_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "plus-focus-hidden",
-   "sig": "plus-fh|/en/sell/",
-   "title": "Tab попадает на невидимые элементы",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/",
-    "Нажимать Tab"
-   ],
-   "expected": "Фокус только на видимых кнопках",
-   "actual": "input «wcfmvm_custom_infos[what-do-yo»",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_007_keys_en_sell_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "minor",
-   "type": "plus-focus-ring",
-   "sig": "plus-ring|/en/sell/",
-   "title": "Не видно, где фокус клавиатуры (нет рамки)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/",
-    "Нажимать Tab"
-   ],
-   "expected": "У кнопки в фокусе видна рамка",
-   "actual": "input «»; input «first_name»; input «last_name»; input «user_email»; input «store_name»",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_007_keys_en_sell_.jpg",
-   "streak": 1,
-   "isNew": true
+   "streak": 2,
+   "isNew": false
   }
  ],
- "notChecked": [],
+ "notChecked": [
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
+  "Проверка остановлена по времени — часть ссылок/входов не проверена",
+  "Робот y1 не прислал отчёт"
+ ],
  "l10nSkipped": 44
 }
