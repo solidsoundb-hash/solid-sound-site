@@ -2266,6 +2266,31 @@ if ( ! function_exists( 'ss_prod_dict' ) ) {
 	function ss_prod_dict() {
 		return json_decode( <<<'SSPJ'
 {
+"Inside the project: 15 MIDI tracks, 3 audio tracks, 2 return tracks, key G, length 6:06. Open it in Ableton Live, solo any track and see exactly how the groove, the bass and the effects are built.": {
+"ua": "Усередині проєкту: 15 MIDI-доріжок, 3 аудіодоріжки, 2 return-доріжки, тональність G, тривалість 6:06. Відкрийте його в Ableton Live, увімкніть соло на будь-якій доріжці й подивіться, як саме побудовані грув, бас та ефекти.",
+"de": "Im Projekt: 15 MIDI-Spuren, 3 Audiospuren, 2 Return-Spuren, Tonart G, Länge 6:06. Öffne es in Ableton Live, schalte jede Spur solo und sieh genau, wie Groove, Bass und Effekte gebaut sind.",
+"fr": "Dans le projet : 15 pistes MIDI, 3 pistes audio, 2 pistes de retour, tonalité G, durée 6:06. Ouvrez-le dans Ableton Live, mettez n’importe quelle piste en solo et voyez comment le groove, la basse et les effets sont construits.",
+"pt": "No projeto: 15 faixas MIDI, 3 faixas de áudio, 2 faixas de retorno, tonalidade G, duração 6:06. Abra-o no Ableton Live, coloque qualquer faixa em solo e veja exatamente como o groove, o baixo e os efeitos são construídos."},
+"Inside the project: 31 MIDI tracks, 3 audio tracks, 2 return tracks, 130 BPM, key G, length 7:34. Open it in Ableton Live 11 or later, solo any track and see exactly how the groove, the bass and the effects are built.": {
+"ua": "Усередині проєкту: 31 MIDI-доріжка, 3 аудіодоріжки, 2 return-доріжки, 130 BPM, тональність G, тривалість 7:34. Відкрийте його в Ableton Live 11 або новішій версії, увімкніть соло на будь-якій доріжці й подивіться, як саме побудовані грув, бас та ефекти.",
+"de": "Im Projekt: 31 MIDI-Spuren, 3 Audiospuren, 2 Return-Spuren, 130 BPM, Tonart G, Länge 7:34. Öffne es in Ableton Live 11 oder neuer, schalte jede Spur solo und sieh genau, wie Groove, Bass und Effekte gebaut sind.",
+"fr": "Dans le projet : 31 pistes MIDI, 3 pistes audio, 2 pistes de retour, 130 BPM, tonalité G, durée 7:34. Ouvrez-le dans Ableton Live 11 ou plus récent, mettez n’importe quelle piste en solo et voyez comment le groove, la basse et les effets sont construits.",
+"pt": "No projeto: 31 faixas MIDI, 3 faixas de áudio, 2 faixas de retorno, 130 BPM, tonalidade G, duração 7:34. Abra-o no Ableton Live 11 ou mais recente, coloque qualquer faixa em solo e veja exatamente como o groove, o baixo e os efeitos são construídos."},
+"Inside the project: 14 MIDI tracks, 2 return tracks, 130 BPM, key Am, length 5:21. Open it in Ableton Live 11 or later, solo any track and see exactly how the groove, the bass and the effects are built.": {
+"ua": "Усередині проєкту: 14 MIDI-доріжок, 2 return-доріжки, 130 BPM, тональність Am, тривалість 5:21. Відкрийте його в Ableton Live 11 або новішій версії, увімкніть соло на будь-якій доріжці й подивіться, як саме побудовані грув, бас та ефекти.",
+"de": "Im Projekt: 14 MIDI-Spuren, 2 Return-Spuren, 130 BPM, Tonart Am, Länge 5:21. Öffne es in Ableton Live 11 oder neuer, schalte jede Spur solo und sieh genau, wie Groove, Bass und Effekte gebaut sind.",
+"fr": "Dans le projet : 14 pistes MIDI, 2 pistes de retour, 130 BPM, tonalité Am, durée 5:21. Ouvrez-le dans Ableton Live 11 ou plus récent, mettez n’importe quelle piste en solo et voyez comment le groove, la basse et les effets sont construits.",
+"pt": "No projeto: 14 faixas MIDI, 2 faixas de retorno, 130 BPM, tonalidade Am, duração 5:21. Abra-o no Ableton Live 11 ou mais recente, coloque qualquer faixa em solo e veja exatamente como o groove, o baixo e os efeitos são construídos."},
+"Inside the project: 34 MIDI tracks, 4 audio tracks, 2 return tracks, 128 BPM, length 6:46. Open it in Ableton Live 10 or later, solo any track and see exactly how the groove, the bass and the effects are built.": {
+"ua": "Усередині проєкту: 34 MIDI-доріжки, 4 аудіодоріжки, 2 return-доріжки, 128 BPM, тривалість 6:46. Відкрийте його в Ableton Live 10 або новішій версії, увімкніть соло на будь-якій доріжці й подивіться, як саме побудовані грув, бас та ефекти.",
+"de": "Im Projekt: 34 MIDI-Spuren, 4 Audiospuren, 2 Return-Spuren, 128 BPM, Länge 6:46. Öffne es in Ableton Live 10 oder neuer, schalte jede Spur solo und sieh genau, wie Groove, Bass und Effekte gebaut sind.",
+"fr": "Dans le projet : 34 pistes MIDI, 4 pistes audio, 2 pistes de retour, 128 BPM, durée 6:46. Ouvrez-le dans Ableton Live 10 ou plus récent, mettez n’importe quelle piste en solo et voyez comment le groove, la basse et les effets sont construits.",
+"pt": "No projeto: 34 faixas MIDI, 4 faixas de áudio, 2 faixas de retorno, 128 BPM, duração 6:46. Abra-o no Ableton Live 10 ou mais recente, coloque qualquer faixa em solo e veja exatamente como o groove, o baixo e os efeitos são construídos."},
+"Inside the project: 16 MIDI tracks, 4 audio tracks, 3 return tracks, 128 BPM, length 3:49. Open it in Ableton Live 10 or later, solo any track and see exactly how the groove, the bass and the effects are built.": {
+"ua": "Усередині проєкту: 16 MIDI-доріжок, 4 аудіодоріжки, 3 return-доріжки, 128 BPM, тривалість 3:49. Відкрийте його в Ableton Live 10 або новішій версії, увімкніть соло на будь-якій доріжці й подивіться, як саме побудовані грув, бас та ефекти.",
+"de": "Im Projekt: 16 MIDI-Spuren, 4 Audiospuren, 3 Return-Spuren, 128 BPM, Länge 3:49. Öffne es in Ableton Live 10 oder neuer, schalte jede Spur solo und sieh genau, wie Groove, Bass und Effekte gebaut sind.",
+"fr": "Dans le projet : 16 pistes MIDI, 4 pistes audio, 3 pistes de retour, 128 BPM, durée 3:49. Ouvrez-le dans Ableton Live 10 ou plus récent, mettez n’importe quelle piste en solo et voyez comment le groove, la basse et les effets sont construits.",
+"pt": "No projeto: 16 faixas MIDI, 4 faixas de áudio, 3 faixas de retorno, 128 BPM, duração 3:49. Abra-o no Ableton Live 10 ou mais recente, coloque qualquer faixa em solo e veja exatamente como o groove, o baixo e os efeitos são construídos."},
 "Time Goes Fast Documentary Piano": {
 "ua": "«Time Goes Fast Documentary Piano» — задумлива й емоційна фортепіанна композиція, що передає швидкоплинність часу. Ніжні мелодії та кінематографічна атмосфера ідеально підходять для документальних фільмів, сторітелінгу, проєктів про життя людей і зворушливих моментів спогадів та роздумів.",
 "de": "„Time Goes Fast Documentary Piano“ ist eine nachdenkliche, emotionale Klavierkomposition, die die Vergänglichkeit der Zeit einfängt. Sanfte Melodien und eine filmische Atmosphäre machen sie ideal für Dokumentationen, Storytelling, Projekte über menschliche Lebensgeschichten und berührende Momente der Erinnerung.",
@@ -2604,7 +2629,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 			$raw = wp_strip_all_tags( wptexturize( strip_shortcodes( preg_replace( '#\[/?audio[^\]]*\]#i', '', get_post_field( 'post_excerpt', $id ) ) ) ) );
 			$raw = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( $raw, ENT_QUOTES, 'UTF-8' ) ) );
 			$desc = '';
-			foreach ( (array) ss_prod_dict() as $en => $tr ) if ( ! empty( $tr[ $l ] ) && ( false !== strpos( $raw, $en ) || false !== strpos( $en, mb_substr( $raw, 0, 60 ) ) || false !== strpos( $raw, '“' . $en . '”' ) ) ) { $desc = $tr[ $l ]; break; }
+			foreach ( (array) ss_prod_dict() as $en => $tr ) if ( ! empty( $tr[ $l ] ) && 0 !== strpos( $en, 'Inside the project:' ) /* 25.11: 2nd paragraph, not the description */ && ( false !== strpos( $raw, $en ) || false !== strpos( $en, mb_substr( $raw, 0, 60 ) ) || false !== strpos( $raw, '“' . $en . '”' ) ) ) { $desc = $tr[ $l ]; break; }
 			/* 25.11 SEO: no translated description (es/it) → the whole localized title was dropped; use a short localized text */
 			if ( ! $desc ) {
 				$nm = get_the_title( $id ); $gn = trim( $genre );
@@ -3900,7 +3925,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4751'); ?>
+<?php ss_asset('js-l4776'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4582,7 +4607,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5827'); ?>
+<?php ss_asset('css-l5852'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5161,7 +5186,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6443'); ?>
+<?php ss_asset('css-l6468'); ?>
 		<?php
 		return ob_get_clean();
 	}
