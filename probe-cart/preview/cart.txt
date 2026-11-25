@@ -4,13 +4,13 @@ product https://solid-sound.net/product/time-goes-fast-documentary-piano/
 vh: 700
 html: ss-strong ss-pay-wait ssg-on
 body: wp-singular page-template-default page page-id-32 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top woocommerce theme-Imprez
-.checkout-button: top 476 h 32 w 368  pos relative
-.wc-proceed-to-checkout: top 427 h 95 w 368  pos static
-.cart_totals: top 374 h 255 w 412  pos static
+.checkout-button: top 476 h 46 w 368  pos relative
+.wc-proceed-to-checkout: top 427 h 131 w 368  pos static
+.cart_totals: top 374 h 291 w 412  pos static
 .coupon: top 0 h 0 w 0 (скрыт) pos static
 button[name=update_cart]: top 0 h 0 w 0 (скрыт) pos relative
 .woocommerce-cart-form: top 182 h 182 w 370  pos static
-.cart-collaterals: top 374 h 255 w 370  pos static
+.cart-collaterals: top 374 h 291 w 370  pos static
 #ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 8 h 119 w 396  pos fixed
 #ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 646 h 54 w 412  pos fixed
 .ss-bonus, [class*=bonus]: top 112 h 54 w 370  pos static
@@ -234,13 +234,13 @@ a31_700: JS errors: 0
 vh: 780
 html: ss-strong ss-pay-wait ssg-on
 body: wp-singular page-template-default page page-id-32 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top woocommerce theme-Imprez
-.checkout-button: top 476 h 32 w 368  pos relative
-.wc-proceed-to-checkout: top 427 h 95 w 368  pos static
-.cart_totals: top 374 h 255 w 412  pos static
+.checkout-button: top 476 h 46 w 368  pos relative
+.wc-proceed-to-checkout: top 427 h 179 w 368  pos static
+.cart_totals: top 374 h 339 w 412  pos static
 .coupon: top 0 h 0 w 0 (скрыт) pos static
 button[name=update_cart]: top 0 h 0 w 0 (скрыт) pos relative
 .woocommerce-cart-form: top 182 h 182 w 370  pos static
-.cart-collaterals: top 374 h 255 w 370  pos static
+.cart-collaterals: top 374 h 339 w 370  pos static
 #ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 8 h 119 w 396  pos fixed
 #ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 726 h 54 w 412  pos fixed
 .ss-bonus, [class*=bonus]: top 112 h 54 w 370  pos static
@@ -382,7 +382,7 @@ dom: div.l-canvas.type_wide
         button.g-burger
           svg
             path
-  header#page-header.l-header.pos_fixed.shadow_wide.bg_solid.id_18.notransition
+  header#page-header.l-header.pos_fixed.shadow_wide.bg_solid.id_18
     div.l-subheader.at_top
       div.l-subheader-h
         div.l-subheader-cell.at_left
@@ -456,7 +456,7 @@ dom: div.l-canvas.type_wide
             input
 footer#page-footer.l-footer
   style
-  section.l-section.wpb_row.hide_on_
+  section.l-section.wpb_row.hide_on_mobiles.heigh
 fixed: header#ssg. top 34 h 57 | div#ss-cc.ss-cc top 8 h 119 | div#ssb.ssb top 648 h 52 | nav#ssg-bar. top 726 h 54 | div#ssp.ssp top 723 h 64
 a31_780: JS errors: 0
 
@@ -464,13 +464,13 @@ a31_780: JS errors: 0
 vh: 780
 html: ss-strong ss-pay-wait ssg-on ss-lite
 body: wp-singular page-template-default page page-id-32 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top woocommerce theme-Imprez
-.checkout-button: top 429 h 32 w 368  pos relative
-.wc-proceed-to-checkout: top 427 h 48 w 368  pos static
-.cart_totals: top 374 h 208 w 412  pos static
+.checkout-button: top 429 h 46 w 368  pos relative
+.wc-proceed-to-checkout: top 427 h 62 w 368  pos static
+.cart_totals: top 374 h 222 w 412  pos static
 .coupon: top 0 h 0 w 0 (скрыт) pos static
 button[name=update_cart]: top 0 h 0 w 0 (скрыт) pos relative
 .woocommerce-cart-form: top 182 h 182 w 370  pos static
-.cart-collaterals: top 374 h 208 w 370  pos static
+.cart-collaterals: top 374 h 222 w 370  pos static
 #ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 8 h 119 w 396  pos fixed
 #ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 726 h 54 w 412  pos fixed
 .ss-bonus, [class*=bonus]: top 112 h 54 w 370  pos static
@@ -695,12 +695,12 @@ vh: 768
 html: ss-strong no-touch ss-pay-wait ssg-on
 body: wp-singular page-template-default page page-id-32 wp-custom-logo wp-embed-responsive wp-theme-Impreza l-body Impreza_8.7 us-core_8.7 header_hor links_underline headerinpos_top state_default woocommerc
 .checkout-button: top 444 h 32 w 329  pos relative
-.wc-proceed-to-checkout: top 372 h 185 w 329  pos static
-.cart_totals: top 245 h 441 w 395  pos static
+.wc-proceed-to-checkout: top 372 h 145 w 329  pos static
+.cart_totals: top 245 h 402 w 395  pos static
 .coupon: top 390 h 47 w 355  pos static
 button[name=update_cart]: top 390 h 44 w 124  pos relative
 .woocommerce-cart-form: top 243 h 2 w 1318  pos static
-.cart-collaterals: top 245 h 473 w 395  pos sticky
+.cart-collaterals: top 245 h 434 w 395  pos sticky
 #ss-cc, .ss-cc, [id*=consent], [class*=consent]: top 566 h 187 w 560  pos fixed
 #ssg-bar, .ssg-bar, nav.ssg-tab, .ssg-tabbar: top 0 h 0 w 0 (скрыт) pos static
 .ss-bonus, [class*=bonus]: top 173 h 54 w 1318  pos static
@@ -918,5 +918,5 @@ footer#page-footer.l-footer
     div.l-section-overlay
     div.l-section-h.i-cf
       div.g-cols
-fixed: header#ssg. top 36 h 73 | div.cart-collaterals top 245 h 473 | div#ss-cc.ss-cc top 566 h 187 | div#ssb.ssb top 692 h 56 | div#ssp.ssp top 775 h 72
+fixed: header#ssg. top 36 h 73 | div.cart-collaterals top 245 h 434 | div#ss-cc.ss-cc top 566 h 187 | div#ssb.ssb top 692 h 56 | div#ssp.ssp top 775 h 72
 pc: JS errors: 0
