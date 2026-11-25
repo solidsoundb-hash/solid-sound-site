@@ -704,6 +704,13 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			$d = ss_seo_clean( $product->get_short_description() ? $product->get_short_description() : $product->get_description(), 300 );
 			if ( $d ) $markup['description'] = $d;
 		}
+		/* 25.11 SEO audit: Google wants brand for product snippets; creators' items — their store name (as in license.php) */
+		if ( empty( $markup['brand'] ) && ! get_option( 'ss_seo_brand_off' ) ) {
+			$bn = 'Solid Sound';
+			$uid = (int) get_post_field( 'post_author', $product->get_id() );
+			if ( $uid && function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $uid ) && function_exists( 'wcfm_get_vendor_store_name' ) ) { $sn = wp_strip_all_tags( (string) wcfm_get_vendor_store_name( $uid ) ); if ( $sn ) $bn = $sn; }
+			$markup['brand'] = array( '@type' => 'Brand', 'name' => $bn );
+		}
 		return $markup;
 	}, 10, 2 );
 }
@@ -1032,7 +1039,7 @@ window.ssFbLoad=function(){if(window.ssFbLoaded)return;window.ssFbLoaded=1;var t
 window.ssConsentRun=function(){if(window.ssConsentRan)return;window.ssConsentRan=1;[].forEach.call(document.querySelectorAll('script[type="text/plain"][data-ss-consent]'),function(o){var s=document.createElement('script');for(var i=0;i<o.attributes.length;i++){var a=o.attributes[i];if(a.name!=='type'&&a.name!=='data-ss-consent')s.setAttribute(a.name,a.value)}if(!o.src)s.text=o.text;o.parentNode.replaceChild(s,o)})};
 (function(){var c=(document.cookie.match(/(?:^|;\s*)ss_consent=(yes|no)/)||[])[1];window.ssConsent=c||'';if(c==='yes'){window.ssFbLoad();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.ssConsentRun);else window.ssConsentRun()}else fbq('consent','revoke');})();
 </script>
-<?php ss_asset('css-l1025'); ?>
+<?php ss_asset('css-l1032'); ?>
 		<?php
 	}
 	add_action( 'wp_head', 'ss_consent_head', -1000 );
@@ -1046,7 +1053,7 @@ window.ssConsentRun=function(){if(window.ssConsentRan)return;window.ssConsentRan
 <p>We use essential cookies to run this site (cart, login, checkout). With your permission we also use marketing cookies (Meta Pixel) to measure and improve our ads.<?php if ( $pp ) : ?> <a href="<?php echo esc_url( $pp ); ?>">Privacy Policy</a><?php endif; ?></p>
 <div class="ss-cc-row"><button type="button" class="ss-cc-no">Reject non-essential</button><button type="button" class="ss-cc-yes">Accept all</button></div>
 </div>
-<?php ss_asset('js-l1059'); ?>
+<?php ss_asset('js-l1066'); ?>
 		<?php
 	}
 	add_action( 'wp_footer', 'ss_consent_footer', 5 );
@@ -1306,7 +1313,7 @@ function ss_sell_page() {
 	ob_start();
 	?>
 <div class="sssell">
-<?php ss_asset('css-l1501'); ?>
+<?php ss_asset('css-l1508'); ?>
 
 <section class="sssell-hero">
 	<div>
@@ -1711,7 +1718,7 @@ if ( ! function_exists( 'ss_wd_is_page' ) ) {
 /* 15.11.2026 owner review: clearer stat labels for producers; no empty sales chart (its axis went below zero) */
 add_action( 'wp_footer', function () {
 	if ( ! function_exists( 'ss_wd_is_page' ) || ! ss_wd_is_page() ) return; ?>
-<?php ss_asset('js-l2190'); ?>
+<?php ss_asset('js-l2197'); ?>
 <?php }, 40 );
 
 /* ═══ Solid Sound — 14.10.2026: "Add Product" inside the WCFM dashboard (WeMake-style) ═══ */
@@ -1748,7 +1755,7 @@ if ( ! function_exists( 'ss_menu_order_js' ) ) {
 #wcfm_menu .wcfm_menu_items a.wcfm_menu_item:hover{box-shadow:none}
 #wcfm_menu .wcfm_menu_items.ss-soon a.wcfm_menu_item{opacity:.55}
 </style>
-<?php ss_asset('js-l2227'); ?>
+<?php ss_asset('js-l2234'); ?>
 	<?php }
 	add_action( 'wp_footer', 'ss_menu_order_js', 40 );
 }
@@ -3876,7 +3883,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4727'); ?>
+<?php ss_asset('js-l4734'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4557,7 +4564,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5802'); ?>
+<?php ss_asset('css-l5809'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5136,7 +5143,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6415'); ?>
+<?php ss_asset('css-l6422'); ?>
 		<?php
 		return ob_get_clean();
 	}

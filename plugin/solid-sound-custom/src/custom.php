@@ -704,6 +704,13 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			$d = ss_seo_clean( $product->get_short_description() ? $product->get_short_description() : $product->get_description(), 300 );
 			if ( $d ) $markup['description'] = $d;
 		}
+		/* 25.11 SEO audit: Google wants brand for product snippets; creators' items — their store name (as in license.php) */
+		if ( empty( $markup['brand'] ) && ! get_option( 'ss_seo_brand_off' ) ) {
+			$bn = 'Solid Sound';
+			$uid = (int) get_post_field( 'post_author', $product->get_id() );
+			if ( $uid && function_exists( 'wcfm_is_vendor' ) && wcfm_is_vendor( $uid ) && function_exists( 'wcfm_get_vendor_store_name' ) ) { $sn = wp_strip_all_tags( (string) wcfm_get_vendor_store_name( $uid ) ); if ( $sn ) $bn = $sn; }
+			$markup['brand'] = array( '@type' => 'Brand', 'name' => $bn );
+		}
 		return $markup;
 	}, 10, 2 );
 }

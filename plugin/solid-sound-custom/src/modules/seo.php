@@ -80,3 +80,25 @@ add_action( 'wp_head', function () {
 	if ( count( $list ) < 2 ) return;
 	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $list ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 5 );
+
+/* 25.11 SEO audit: language copies of products (/de/product/pitch/ … — same post, language prefix, see ss_add_prefix in custom.php)
+   were not in the sitemap (51 addresses). Add them next to the English address. Off: option ss_seo_sitemap_lang_off. */
+add_filter( 'wp_sitemaps_posts_pre_url_list', function ( $list, $type, $page ) {
+	static $busy = false;
+	if ( null !== $list || 'product' !== $type || $busy || get_option( 'ss_seo_sitemap_lang_off' ) || ! class_exists( 'WP_Sitemaps_Posts' ) ) return $list;
+	$busy = true;
+	$p = new WP_Sitemaps_Posts();
+	$base = $p->get_url_list( $page, $type );
+	$busy = false;
+	$langs = array( 'ua', 'de', 'fr', 'pt', 'es', 'it' );
+	if ( ! $base || count( $base ) * ( 1 + count( $langs ) ) > 2000 ) return $base;
+	$home = untrailingslashit( get_option( 'home' ) );
+	$out = array();
+	foreach ( $base as $e ) {
+		$out[] = $e;
+		if ( empty( $e['loc'] ) || 0 !== strpos( $e['loc'], $home . '/product/' ) ) continue;
+		$path = substr( $e['loc'], strlen( $home ) );
+		foreach ( $langs as $l ) { $x = $e; $x['loc'] = $home . '/' . $l . $path; $out[] = $x; }
+	}
+	return $out;
+}, 10, 3 );
