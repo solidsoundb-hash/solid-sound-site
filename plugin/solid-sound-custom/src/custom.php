@@ -4720,7 +4720,8 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 		ob_start(); ?>
 <section class="l-section ssh" aria-label="Solid Sound"><div class="l-section-h i-cf">
 	<div class="ssh-in">
-		<h1 class="ssh-h1"><?php printf( esc_html( ss_h3_t( 'h1' ) ), '<span>Solid Sound</span>' ); ?></h1>
+		<?php $ssh_tag = is_front_page() ? 'h1' : 'div'; /* 25.11 SEO: on All products this banner was a 2nd H1 — the page has its own H1 «All products»; same class, same look */ ?>
+		<<?php echo $ssh_tag; ?> class="ssh-h1"><?php printf( esc_html( ss_h3_t( 'h1' ) ), '<span>Solid Sound</span>' ); ?></<?php echo $ssh_tag; ?>>
 		<?php $ssl = function_exists( 'pll_current_language' ) ? pll_current_language() : 'en'; if ( 'uk' === $ssl ) $ssl = 'ua';
 		$ssub = array( 'en' => array( 'Ableton templates · Presets · Mixing & Mastering', 'Royalty-free', 'Instant download after payment', 'Secure payment' ), 'ua' => array( 'Шаблони Ableton · Пресети · Зведення й мастеринг', 'Без роялті', 'Миттєве завантаження після оплати', 'Безпечна оплата' ), 'de' => array( 'Ableton-Templates · Presets · Mixing & Mastering', 'Lizenzfrei', 'Sofortiger Download nach Zahlung', 'Sichere Zahlung' ), 'fr' => array( 'Templates Ableton · Presets · Mixage & mastering', 'Libre de droits', 'Téléchargement immédiat après paiement', 'Paiement sécurisé' ), 'pt' => array( 'Templates Ableton · Presets · Mixagem & masterização', 'Livre de royalties', 'Download imediato após o pagamento', 'Pagamento seguro' ) );
 		$ssub = isset( $ssub[ $ssl ] ) ? $ssub[ $ssl ] : $ssub['en'];
