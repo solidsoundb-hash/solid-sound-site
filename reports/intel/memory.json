@@ -3329,7 +3329,9 @@
   "n:Save up to 83% on Tokyo Dawn Labs plugin &#038; bundles (dynamic processors, EQs) (Rekkerd)": "2026-11-25",
   "n:MrMoustache offers FREE Mr.Warmer and up to 50% off its analog-style plugins for Black Friday (Bedroom Producers Blog)": "2026-11-25",
   "n:Ableton Live Workflow Guide: From First Idea to Finished Arrangement (EDMProd)": "2026-11-25",
-  "n:Live 13 Introduces Step Sequencer, Drum Synth, ARA 2 &#038; New Racks (Attack Magazine)": "2026-11-25"
+  "n:Live 13 Introduces Step Sequencer, Drum Synth, ARA 2 &#038; New Racks (Attack Magazine)": "2026-11-25",
+  "f:https://www.musicradar.com/music-industry/streaming-sharing/tidal-is-banning-all-entirely-ai-generated-tracks-thats-27-million-and-counting": "2026-11-25",
+  "f:https://www.musicradar.com/guitars/fender-made-in-japan-godzilla-telecaster": "2026-11-25"
  },
  "shops": {
   "scrapsaudio.com": {
@@ -16070,8 +16072,8 @@
  },
  "sources": {
   "shop:scrapsaudio.com": {
-   "runs": 2,
-   "ok": 2,
+   "runs": 3,
+   "ok": 3,
    "failStreak": 0,
    "items": 0,
    "useful": 0,
@@ -16080,8 +16082,8 @@
    "lastOk": "2026-11-25"
   },
   "shop:productionmusiclive.com": {
-   "runs": 2,
-   "ok": 2,
+   "runs": 3,
+   "ok": 3,
    "failStreak": 0,
    "items": 0,
    "useful": 0,
@@ -16090,8 +16092,8 @@
    "lastOk": "2026-11-25"
   },
   "feed:musicradar": {
-   "runs": 2,
-   "ok": 2,
+   "runs": 3,
+   "ok": 3,
    "failStreak": 0,
    "items": 11,
    "useful": 0,
@@ -16300,7 +16302,18 @@
    },
    "median": 32,
    "sale": 13
+  },
+  {
+   "d": "2026-11-25",
+   "g": {
+    "drum and bass": 3,
+    "house": 2,
+    "future bass": 2,
+    "edm": 2
+   },
+   "median": 27,
+   "sale": 5
   }
  ],
- "updated": "2026-11-25T07:13:02.434Z"
+ "updated": "2026-11-25T10:54:10.997Z"
 }

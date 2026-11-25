@@ -1,27 +1,25 @@
 # Разведка — 2026-11-25
 
-_Робот: 7 конкурентов, 8 лент; запросов 12, 28 с. Память: 1202 известных записей._
+_Робот: 7 конкурентов, 8 лент; запросов 12, 28 с. Память: 3331 известных записей._
 
 ## Главное за ночь
-1. I’ve checked out all 77 items in Fender’s Black Friday sale, but it’s the rarities and exclusives that have caught my eye (MusicRadar) — [ссылка](https://www.musicradar.com/guitars/electric-guitars/ive-checked-out-all-77-items-in-fenders-black-friday-sale-but-its-the-rarities-and-exclusives-that-have-caught-my-eye) `[feed:musicradar]`
+- ничего нового и важного — рынок спокоен
 
 ## Конкуренты
-- **Scraps Audio**: товаров 672, медиана цены 19, со скидкой 40 — первый замер, изменения со следующей ночи
-- **Production Music Live**: товаров 488, медиана цены 39.9, со скидкой 20 — первый замер, изменения со следующей ночи
+- **Scraps Audio**: товаров 672, медиана цены 19, со скидкой 40 — без изменений
+- **Production Music Live**: товаров 488, медиана цены 39.9, со скидкой 20 — без изменений
 
 ## Что у них в топе
-- **Scraps Audio** — топ: [Track in 1 Hour](https://scrapsaudio.com/products/track-in-1-hour) (15), [The Juice (800 Sub Special)](https://scrapsaudio.com/products/the-juice-800-sub-special) (2), [Liquid Drum and Bass](https://scrapsaudio.com/products/liquid-drum-and-bass) (5), [MODERN TECH 2](https://scrapsaudio.com/products/modern-tech-2) (4), [Newage House Drop](https://scrapsaudio.com/products/newage-house-drop-bv) (5)
+- **Scraps Audio** — топ: [Track in 1 Hour](https://scrapsaudio.com/products/track-in-1-hour) (15), [The Juice (800 Sub Special)](https://scrapsaudio.com/products/the-juice-800-sub-special) (2), [Liquid Drum and Bass](https://scrapsaudio.com/products/liquid-drum-and-bass) (5), [MODERN TECH 2](https://scrapsaudio.com/products/modern-tech-2) (4), [Newage House Drop](https://scrapsaudio.com/products/newage-house-drop-bv) (5) _(как вчера)_
 
 ## Новости сферы
-- [I’ve checked out all 77 items in Fender’s Black Friday sale, but it’s the rarities and exclusives that have caught my eye](https://www.musicradar.com/guitars/electric-guitars/ive-checked-out-all-77-items-in-fenders-black-friday-sale-but-its-the-rarities-and-exclusives-that-have-caught-my-eye) — MusicRadar
-- [SampleRadar: 475 free drum 'n' bass essentials samples](https://www.musicradar.com/music-tech/sampleradar-475-free-drum-n-bass-essentials-samples) — MusicRadar
-- [Joe Satriani on the “crazy” late-night session that saved his ’80s classic Flying In A Blue Dream](https://www.musicradar.com/artists/joe-satriani-on-the-crazy-late-night-session-that-saved-flying-in-a-blue-dream) — MusicRadar
+- новых важных новостей нет
 
 ## Новые конкуренты
 - новых не нашёл
 
 ## Тренды
-- жанры в новинках и топах сегодня: drum and bass (3), house (2), future bass (2), edm (2), pop (1), progressive (1)
+- жанры в новинках и топах сегодня: drum and bass (3), house (2), future bass (2), edm (2)
 - у конкурентов: товаров 1160, медиана цены 27, на скидке 5 %
 
 ## Мы
