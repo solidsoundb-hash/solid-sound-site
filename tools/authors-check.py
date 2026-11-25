@@ -149,7 +149,7 @@ def main():
                         issues.append(f"🟠 демо короче 1 мин ({int(d['dur'])} с)")
                     if d['dur'] > 600:
                         issues.append('🟡 демо длиннее 10 мин')
-                    if d['kbps'] and d['kbps'] < 128:
+                    if d['kbps'] and d['kbps'] < 112:  # VBR: файл «128 kbps» в среднем даёт 113–127 (25.11)
                         issues.append(f"🟠 демо ниже 128 kbps ({d['kbps']})")
         # описание
         t = text_of(allh)

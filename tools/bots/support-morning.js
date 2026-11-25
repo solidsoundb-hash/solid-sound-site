@@ -83,6 +83,7 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
       R.forum.push({ title: scrub(a.t), url: u, question: isQuestion(a.t), fresh: prev.size > 0 && !prev.has(u) });
       if (R.forum.length >= 15) break;
     }
+    if (!R.forum.length) R.errors.push('форум: тем не распознал; ссылки на странице: ' + [...new Set(t.map(x => x.h.replace(/^https?:\/\/[^/]+/, '')))].slice(0, 25).join(' '));
   } catch (e) { R.errors.push('форум: ' + e.message.split('\n')[0]); }
   await browser.close();
 
