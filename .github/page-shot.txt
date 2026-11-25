@@ -33,3 +33,4 @@
 2026-11-22 09:35:51 de-before /de/ /de/product/pitch/ /en/all-products/ /en/services-prices/ /en/free/ /de/cart/ /de/my-account/
 2026-11-22 12:09:25 after-de-live /de/all-products/ /de/product/infinity/ /de/services-prices/ /de/
 2026-11-25 06:43:34 hdr-before /en/ /en/all-products/ /en/templates/
+2026-11-25 10:29:08 fb-before /en/free-demo-feedback/ /en/free/
