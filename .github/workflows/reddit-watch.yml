@@ -1,0 +1,29 @@
+# REDDIT WATCH — marketer's read-only monitor (owner 25.11.2026, docs/team/bots.md).
+# Ladder stage 1: manual only, r/ableton -> reports/marketing/latest.md. Run: add a line to .github/reddit-watch.txt (last word = stage 1/2/3).
+# Schedule (16:23 UTC daily) is switched on only after stage 2 passes.
+name: Reddit watch
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/reddit-watch.txt"]
+permissions:
+  contents: write
+concurrency: reddit-watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Read Reddit
+        run: |
+          export STAGE=$(tail -n 1 .github/reddit-watch.txt 2>/dev/null | awk '{print $NF}' | grep -E '^[123]$' || echo 1)
+          node tools/bots/reddit-watch.js --exam
+          node tools/bots/reddit-watch.js
+      - name: Save
+        if: always()
+        run: BOT_NAME=reddit-watch bash .github/save.sh "reddit-watch: $(date -u +%F)" reports/marketing

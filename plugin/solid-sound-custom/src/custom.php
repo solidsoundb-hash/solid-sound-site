@@ -3075,6 +3075,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 	function ss_seo_ml_map() {
 		return array(
 			'es' => array(
+				'front' => array( 'Solid Sound — Plantillas Ableton, presets y mezcla online', 'Estudio de mezcla y masterización online y tienda: plantillas de Ableton Live sin royalties, presets de Serum y música para vídeo. Mezcla desde 69 €.' ), /* 25.11 SEO: brand first, as EN */
 				2    => array( 'Plantillas Ableton, presets, mezcla y masterización | Solid Sound', 'Plantillas de Ableton Live libres de royalties, presets de Serum y música para vídeos. Aprende con proyectos profesionales o encarga mezcla y masterización online.' ),
 				1115 => array( 'Plantillas de Ableton Live libres de royalties | Solid Sound', 'Plantillas de Ableton Live de techno y tech house. Proyectos completos, mezclados y masterizados con plugins nativos: estudia, reorganiza y publica.' ),
 				1121 => array( 'Presets de Serum y sound packs | Solid Sound', 'Presets de Serum para melodic techno y más. Sonidos listos para usar de Solid Sound: descarga inmediata, sin royalties.' ),
@@ -3082,6 +3083,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 				399  => array( 'Contacto | Solid Sound', 'Contacta con Solid Sound sobre plantillas Ableton, presets, mezcla y masterización. Respondemos por email.' ),
 			),
 			'it' => array(
+				'front' => array( 'Solid Sound — Template Ableton, preset e mix online', 'Studio di mix e mastering online e negozio: template Ableton Live royalty-free, preset per Serum e musica per video. Mix da 69 €, feedback gratuito.' ),
 				2    => array( 'Template Ableton, preset, mix e mastering | Solid Sound', 'Template Ableton Live royalty-free, preset per Serum e musica per video. Impara dai progetti professionali o richiedi mix e mastering online.' ),
 				1115 => array( 'Template Ableton Live royalty-free | Solid Sound', 'Template Ableton Live techno e tech house. Progetti completi, mixati e masterizzati con plugin nativi: studia, riarrangia, pubblica.' ),
 				1121 => array( 'Preset per Serum e sound pack | Solid Sound', 'Preset per Serum per melodic techno e altri generi. Suoni pronti di Solid Sound: download immediato, royalty-free.' ),
@@ -3089,6 +3091,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 				399  => array( 'Contatti | Solid Sound', 'Contatta Solid Sound per template Ableton, preset, mix e mastering. Rispondiamo via email.' ),
 			),
 			'ua' => array(
+				'front' => array( 'Solid Sound — шаблони Ableton, пресети, зведення онлайн', 'Онлайн-студія зведення й мастерингу та магазин: шаблони Ableton Live без роялті, пресети Serum і музика для відео. Зведення від 69 €.' ),
 				2    => array( 'Шаблони Ableton, пресети, зведення та мастеринг | Solid Sound', 'Шаблони Ableton Live без роялті, пресети Serum і музика для відео. Вчіться на професійних проєктах або замовте онлайн-зведення та мастеринг.' ),
 				1115 => array( 'Шаблони Ableton Live без роялті | Solid Sound', 'Шаблони Ableton Live у стилях техно та тек-хаус. Повністю зведені й відмастерені проєкти на вбудованих плагінах: вивчайте, переробляйте, випускайте.' ),
 				1121 => array( 'Пресети Serum і саунд-паки | Solid Sound', 'Пресети Serum для мелодійного техно та інших жанрів. Готові звуки від Solid Sound: миттєве завантаження, без роялті.' ),
@@ -3096,6 +3099,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 				399  => array( 'Контакти | Solid Sound', 'Зв’яжіться з Solid Sound щодо шаблонів Ableton, пресетів, зведення та мастерингу. Відповідаємо електронною поштою.' ),
 			),
 			'de' => array(
+				'front' => array( 'Solid Sound — Ableton Vorlagen, Presets & Mixing Studio', 'Online Mixing & Mastering Studio und Marktplatz: lizenzfreie Ableton Live Vorlagen, Serum Presets und Musik für Videos. Mixing ab 69 €, Gratis-Feedback.' ),
 				2    => array( 'Ableton Templates, Presets, Mixing & Mastering | Solid Sound', 'Lizenzfreie Ableton Live Templates, Serum-Presets und Musik für Videos. Lerne an Profi-Projekten oder buche Online-Mixing und -Mastering.' ),
 				1115 => array( 'Ableton Live Templates – lizenzfrei | Solid Sound', 'Lizenzfreie Ableton Live Templates für Techno und Tech House. Fertig gemischte und gemasterte Projekte mit Stock-Plugins: lernen, remixen, veröffentlichen.' ),
 				1121 => array( 'Serum-Presets & Sound Packs | Solid Sound', 'Serum-Presets für Melodic Techno und mehr. Sofort einsetzbare Sounds von Solid Sound – direkter Download, lizenzfrei.' ),
@@ -3103,6 +3107,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 				399  => array( 'Kontakt | Solid Sound', 'Kontaktiere Solid Sound bei Fragen zu Ableton-Templates, Presets, Mixing und Mastering. Wir antworten per E-Mail.' ),
 			),
 			'fr' => array(
+				'front' => array( 'Solid Sound — Templates Ableton, presets & studio de mixage', 'Studio de mixage et mastering en ligne et boutique : templates Ableton Live libres de droits, presets Serum et musique pour vidéo. Mixage dès 69 €.' ),
 				2    => array( 'Templates Ableton, presets, mixage & mastering | Solid Sound', 'Templates Ableton Live libres de droits, presets Serum et musique pour vidéos. Apprenez avec des projets pro ou commandez un mixage et mastering en ligne.' ),
 				1115 => array( 'Templates Ableton Live libres de droits | Solid Sound', 'Templates Ableton Live techno et tech house libres de droits. Projets mixés et masterisés avec les plugins natifs : apprenez, remixez, publiez.' ),
 				1121 => array( 'Presets Serum & sound packs | Solid Sound', 'Presets Serum pour la melodic techno et plus encore. Des sons prêts à l’emploi par Solid Sound : téléchargement immédiat, libres de droits.' ),
@@ -3110,6 +3115,7 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 				399  => array( 'Contact | Solid Sound', 'Contactez Solid Sound pour toute question sur les templates Ableton, les presets, le mixage et le mastering. Réponse par e-mail.' ),
 			),
 			'pt' => array(
+				'front' => array( 'Solid Sound — Templates Ableton, presets e mistura online', 'Estúdio de mistura e masterização online e loja: templates Ableton Live livres de royalties, presets Serum e música para vídeo. Mistura desde 69 €.' ),
 				2    => array( 'Templates Ableton, presets, mistura e masterização | Solid Sound', 'Templates Ableton Live livres de royalties, presets Serum e música para vídeos. Aprenda com projetos profissionais ou encomende mistura e masterização online.' ),
 				1115 => array( 'Templates Ableton Live livres de royalties | Solid Sound', 'Templates Ableton Live de techno e tech house livres de royalties. Projetos misturados e masterizados com plugins nativos: aprenda, remisture, lance.' ),
 				1121 => array( 'Presets Serum e sound packs | Solid Sound', 'Presets Serum para melodic techno e muito mais. Sons prontos a usar da Solid Sound: download imediato, livres de royalties.' ),
@@ -3124,12 +3130,13 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 		$map = ss_seo_ml_map(); if ( empty( $map[ $l ] ) ) return null;
 		if ( is_page() ) {
 			$id = get_queried_object_id();
-			foreach ( $map[ $l ] as $src => $v ) if ( (int) pll_get_post( $src, $l ) === (int) $id || (int) $src === (int) $id ) return $v;
+			if ( is_front_page() ) return empty( $map[ $l ]['front'] ) ? null : $map[ $l ]['front']; /* 25.11 SEO: home (2433) had no entry — every language showed the English title. Key 2 is All products (de/fr: dictionary) */
+			foreach ( $map[ $l ] as $src => $v ) if ( is_int( $src ) && ( int ) pll_get_post( $src, $l ) === (int) $id || (int) $src === (int) $id ) return $v;
 			return null;
 		}
 		if ( function_exists( 'is_product' ) && is_product() && function_exists( 'ss_prod_dict' ) ) {
 			$id    = get_queried_object_id();
-			$types = array( 'ua' => array( 'Шаблон Ableton Live', 'Пресети Serum', 'Музика без роялті' ), 'de' => array( 'Ableton Live Template', 'Serum-Presets', 'Lizenzfreie Musik' ), 'fr' => array( 'Template Ableton Live', 'Presets Serum', 'Musique libre de droits' ), 'pt' => array( 'Template Ableton Live', 'Presets Serum', 'Música livre de royalties' ), 'es' => array( 'Plantilla Ableton Live', 'Presets de Serum', 'Música libre de royalties' ), 'it' => array( 'Template Ableton Live', 'Preset per Serum', 'Musica royalty-free' ) );
+			$types = array( 'ua' => array( 'Шаблон Ableton Live', 'Пресети Serum', 'Музика без роялті' ), 'de' => array( 'Ableton Live Vorlage', 'Serum-Presets', 'Lizenzfreie Musik' ), 'fr' => array( 'Template Ableton Live', 'Presets Serum', 'Musique libre de droits' ), 'pt' => array( 'Template Ableton Live', 'Presets Serum', 'Música livre de royalties' ), 'es' => array( 'Plantilla Ableton Live', 'Presets de Serum', 'Música libre de royalties' ), 'it' => array( 'Template Ableton Live', 'Preset per Serum', 'Musica royalty-free' ) );
 			$f = get_the_terms( $id, 'product-format' ); $k = 0;
 			if ( $f && ! is_wp_error( $f ) ) foreach ( $f as $t ) { if ( 'presets' === $t->slug ) $k = 1; elseif ( 'music' === $t->slug ) $k = 2; }
 			$g = get_the_terms( $id, 'product-genre' ); $genre = ( $g && ! is_wp_error( $g ) ) ? $g[0]->name . ' ' : '';
@@ -3138,6 +3145,15 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 			$raw = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( $raw, ENT_QUOTES, 'UTF-8' ) ) );
 			$desc = '';
 			foreach ( (array) ss_prod_dict() as $en => $tr ) if ( ! empty( $tr[ $l ] ) && ( false !== strpos( $raw, $en ) || false !== strpos( $en, mb_substr( $raw, 0, 60 ) ) || false !== strpos( $raw, '“' . $en . '”' ) ) ) { $desc = $tr[ $l ]; break; }
+			/* 25.11 SEO: no translated description (es/it) → the whole localized title was dropped; use a short localized text */
+			if ( ! $desc ) {
+				$nm = get_the_title( $id ); $gn = trim( $genre );
+				$gen = array(
+					'es' => array( $nm . ': plantilla de Ableton Live' . ( $gn ? ' de ' . $gn : '' ) . ', proyecto completo mezclado y masterizado con plugins nativos. Escucha la demo, descarga inmediata, sin royalties.', $nm . ': presets de Serum listos para usar. Escucha la demo, descarga inmediata, sin royalties.', $nm . ': música libre de royalties para vídeos y proyectos. Escucha la demo y compra la licencia online.' ),
+					'it' => array( $nm . ': template Ableton Live' . ( $gn ? ' ' . $gn : '' ) . ', progetto completo mixato e masterizzato con plugin nativi. Ascolta la demo, download immediato, royalty-free.', $nm . ': preset per Serum pronti all’uso. Ascolta la demo, download immediato, royalty-free.', $nm . ': musica royalty-free per video e progetti. Ascolta la demo e acquista la licenza online.' ),
+				);
+				$desc = isset( $gen[ $l ] ) ? $gen[ $l ][ $k ] : ss_seo_clean( $raw );
+			}
 			if ( mb_strlen( $desc ) > 155 ) $desc = rtrim( mb_substr( $desc, 0, 152 ), " ,.;:" ) . '…';
 			return array( $title, $desc ? $desc : null );
 		}
@@ -4626,7 +4642,7 @@ if ( ! function_exists( 'ss_free_t' ) ) {
 (function(){var f=document.getElementById('ss-free-form');if(!f||f.dataset.on)return;f.dataset.on=1;
 f.addEventListener('submit',function(e){e.preventDefault();var m=f.querySelector('.ssf-msg'),b=f.querySelector('.ssf-btn');var fd=new FormData(f);
 if(!fd.get('name')||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fd.get('email')||'')||!fd.get('consent')){m.className='ssf-msg bad';m.textContent=<?php echo wp_json_encode( ss_free_t( 'err' ) ); ?>;return}
-fd.append('action','ss_free_join');fd.append('n',<?php echo wp_json_encode( wp_create_nonce( 'ss_free_join' ) ); ?>);b.disabled=true;
+fd.append('action','ss_free_join');fd.append('page',location.href.split('#')[0]);fd.append('n',<?php echo wp_json_encode( wp_create_nonce( 'ss_free_join' ) ); ?>);b.disabled=true;
 fetch(<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,{method:'POST',body:fd,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){if(j&&j.success){m.className='ssf-msg ok';m.textContent=j.data.m;setTimeout(function(){location.reload()},700)}else{m.className='ssf-msg bad';m.textContent=(j&&j.data&&j.data.m)||'Error';b.disabled=false}}).catch(function(){m.className='ssf-msg bad';m.textContent='Error';b.disabled=false})});
 })();
 </script>
@@ -5806,6 +5822,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<label><span><?php echo esc_html( $T['genre'] ); ?></span><input name="genre" type="text" maxlength="60" placeholder="Techno, House, DnB…"></label>
 		<label class="ssfb-wide"><span><?php echo esc_html( $T['want'] ); ?></span><textarea name="want" maxlength="1500" rows="2" placeholder="<?php echo esc_attr( $T['want_ph'] ); ?>"></textarea></label>
 		<input class="ssfb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+		<?php if ( function_exists( 'ss_free_t' ) ) : /* 25.11: optional — with the tick the email goes to Brevo "Free Pack" (modules/brevo-utm.php) */ ?><label class="ssfb-wide ssfb-ck"><input type="checkbox" name="news" value="1"><span><?php echo esc_html( ss_free_t( 'consent' ) ); ?></span></label><?php endif; ?>
 		<div class="ssfb-wide ssfb-row"><button type="submit"><?php echo esc_html( $T['btn'] ); ?> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><small><?php echo esc_html( $T['note'] ); ?></small></div>
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
@@ -5829,6 +5846,9 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 .ssfb-f input,.ssfb-f textarea{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid #333;border-radius:8px;color:#F4EFE8;padding:11px 12px;font:15px/1.35 Jura,Roboto,sans-serif;margin:0;height:auto}
 .ssfb-f textarea{resize:vertical;min-height:52px}
 .ssfb-f input:focus,.ssfb-f textarea:focus{outline:none;border-color:#E09900}
+.ssfb-f label.ssfb-ck{flex-direction:row;align-items:flex-start;gap:10px;cursor:pointer;min-height:24px}
+.ssfb-f .ssfb-ck input{width:20px;height:20px;flex:0 0 20px;margin:1px 0 0;padding:0;accent-color:#E09900}
+.ssfb-f .ssfb-ck span{font-size:13px;line-height:1.45;color:#cfc9c2}
 .ssfb-hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
 .ssfb-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .ssfb-f button{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:8px;background:#E09900;color:#111;font:700 16px/1 Jura,Roboto,sans-serif;padding:14px 22px;cursor:pointer}
@@ -5848,7 +5868,7 @@ var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'f
 f.addEventListener('submit',function(e){e.preventDefault();var E=f.elements,link=E['link'].value.trim(),em=E['email'].value.trim();if(link&&!/^https?:\/\//i.test(link))link='https://'+link;
 if(!/^https?:\/\/[^\s.]+\.[^\s]{2,}/i.test(link)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg.className='ssfb-wide ssfb-msg err';msg.textContent=T.err;return}
 var b=f.querySelector('button');b.disabled=true;msg.className='ssfb-wide ssfb-msg';msg.textContent='';
-var fd=new FormData();fd.append('action','ss_fb_submit');fd.append('link',link);fd.append('email',em);fd.append('name',E['name'].value.trim());fd.append('genre',E['genre'].value.trim());fd.append('want',E['want'].value.trim());fd.append('website',E['website'].value);fd.append('lang',f.getAttribute('data-lang'));fd.append('page',location.href.split('#')[0]);fd.append('el',Math.round((Date.now()-t0)/1000));
+var fd=new FormData();fd.append('action','ss_fb_submit');fd.append('link',link);fd.append('email',em);fd.append('name',E['name'].value.trim());fd.append('genre',E['genre'].value.trim());fd.append('want',E['want'].value.trim());fd.append('website',E['website'].value);fd.append('lang',f.getAttribute('data-lang'));fd.append('page',location.href.split('#')[0]);if(E['news']&&E['news'].checked)fd.append('news','1');fd.append('el',Math.round((Date.now()-t0)/1000));
 fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',{method:'POST',body:fd,credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){if(j&&j.success){if(j.data&&j.data.sid){try{localStorage.setItem('ssb_sid',j.data.sid);localStorage.setItem('ssb_last',j.data.i||1)}catch(x){}}f.querySelectorAll('label,.ssfb-row').forEach(function(x){x.style.display='none'});msg.className='ssfb-wide ssfb-msg ok';msg.textContent=T.ok}else{b.disabled=false;msg.className='ssfb-wide ssfb-msg err';msg.textContent=(j&&j.data&&j.data.m==='invalid')?T.err:T.fail}}).catch(function(){b.disabled=false;msg.className='ssfb-wide ssfb-msg err';msg.textContent=T.fail})});
 /* long page: "Write us now" buttons → this form */
 document.querySelectorAll('a.btn').forEach(function(a){if(/write us now|get a free demo feedback/i.test(a.textContent)){a.setAttribute('href','#ss-fb');a.removeAttribute('target');a.addEventListener('click',function(ev){ev.preventDefault();root.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(function(){f.elements['link'].focus({preventScroll:true})},500)})}})
@@ -6945,6 +6965,7 @@ require_once __DIR__ . '/modules/one-header.php'; /* 20.11 owner «одну ша
 require_once __DIR__ . '/modules/i18n-forms.php'; /* 20.11 owner «переведи»: contact form texts on every language */
 require_once __DIR__ . '/modules/pay-late.php'; /* 20.11 owner «попробуем 3»: express pay buttons on product pages load at the first touch */
 require_once __DIR__ . '/modules/ss-health.php'; /* 21.11 owner «подмена файлов, база данных»: daily read-only integrity + DB health for the robot */
+require_once __DIR__ . '/modules/brevo-utm.php'; /* 25.11: FREE sign-ups → Brevo with UTM, feedback opt-in, one-off resync */
 require_once __DIR__ . '/modules/consent-gate.php'; /* 22.11 owner: Brevo tracker only after «Accept», one Meta plugin (Facebook for WooCommerce) */
 require_once __DIR__ . '/modules/speed-db.php'; /* 19.11 owner: speed — unused autoload settings off (once, undoable) */
 require_once __DIR__ . '/modules/speed-opts.php'; /* 19.11 owner: speed — plugin settings read one by one → one query (mu-plugin, self-learning list) */
