@@ -34,3 +34,8 @@
 ## Приёмы
 - Новый чат роли: `create_session` с полной инструкцией (цель, порядок, запреты, как проверять, как выкладывать) — он стартует холодным.
 - Состояние роботов: ветки `shots-ab`, `shots-click`, `shots-lang`, `qa/latest/report.md`, `speed/latest.md`.
+
+## Состав команды (25.11.2026, владелец: «Создай тех кого нехватает»)
+Тестировщик session_01NPXKJhrYvdWWfUagqSAu8Z · Аналитик session_01NPXKJhDiNTsh9pu5i2tiKS · Копирайтер session_01NPXKJeMmU8GRHYvF4YQG9Q ·
+Юрист session_01NPXKJgWzueVDvuo6rqmSgo · Маркетолог session_01NPXKJeVnBWP4wz3wFrqWJJ · Продажи и поддержка session_01NPXKJgN4szBTkmbkuncpnF ·
+SEO session_01NPXKJhbgDXRqv2ebK6CWmZ · Менеджер авторов session_01NPXKJf6GqXHbPTdyk3pPHn. Разработчик (B, ПК) и «Контент Комбайн» (ПК) — только через владельца/SYNC.
