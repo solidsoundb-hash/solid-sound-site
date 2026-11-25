@@ -1,0 +1,19 @@
+[
+ {
+  "id": 1102,
+  "name": "Melodic Techno Presets",
+  "url": "https://solid-sound.net/product/melodic-techno-presets/",
+  "who": "команда?",
+  "issues": [
+   "🔴 обложка не открывается (код 0)",
+   "🟠 демо короче 1 мин (35 с)",
+   "🟡 нет категории"
+  ],
+  "info": {
+   "cover": "код 0",
+   "demo": "0:35, 320 kbps",
+   "text": "550 знаков",
+   "price": "4.5 EUR"
+  }
+ }
+]
