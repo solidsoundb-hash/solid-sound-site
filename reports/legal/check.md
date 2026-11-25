@@ -1,6 +1,6 @@
 # Юр. проверка сайта — 2026-11-25
 
-🔴 0 · 🟠 3 · ✅ 8 · 28 с
+🔴 0 · 🟠 2 · ✅ 9 · 39 с
 
 | | Что | Правило |
 |---|---|---|
@@ -12,8 +12,8 @@
 | ✅ | License и Terms: одно право | law |
 | ✅ | Creator Terms без обещаний выплат | payouts |
 | 🟠 | Медиатор не назван (нужно решение владельца и цена) | mediator |
-| 🟠 | Нет страницы «Cancel an order» (кнопка отказа ЕС с 19.06.2026) | cancel |
+| ✅ | Есть страница «Cancel an order» с кнопкой отказа _(было 🟠)_ | cancel |
 | ✅ | Галочки отказа в коде оформления есть | checkbox |
 | ✅ | В подвале все юр. ссылки | footer |
 
-Страницы: terms 200 · refund 200 · license 200 · creator 200 · notice 200 · privacy 200 · cancel 404
+Страницы: terms 200 · refund 200 · license 200 · creator 200 · notice 200 · privacy 200 · cancel 200

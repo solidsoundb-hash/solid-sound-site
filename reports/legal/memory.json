@@ -8,7 +8,7 @@
   "law": "ok",
   "payouts": "ok",
   "mediator": "warn",
-  "cancel": "warn",
+  "cancel": "ok",
   "checkbox": "ok",
   "footer": "ok"
  },
@@ -32,6 +32,13 @@
    "bad": 0,
    "warn": 3,
    "ok": 8,
+   "only": ""
+  },
+  {
+   "day": "2026-11-25",
+   "bad": 0,
+   "warn": 2,
+   "ok": 9,
    "only": ""
   }
  ],
