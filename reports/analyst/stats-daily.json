@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-25T10:54:00.986Z",
+ "updated": "2026-11-25T10:57:14.424Z",
  "currency": "EUR",
  "rows": [
   {
    "d": "2026-11-25",
-   "s": 82,
-   "people": 72,
+   "s": 83,
+   "people": 73,
    "bots": 10,
-   "v": 83,
+   "v": 84,
    "prod": 7,
    "cart": 5,
    "co": 0,
@@ -16,8 +16,37 @@
    "paid": 0,
    "sum": 0,
    "phone": 7,
-   "src": "(direct) 82",
-   "ctry": "South Korea 11, United States 10, Other: Asia 10"
+   "src": "(direct) 83",
+   "ctry": "South Korea 11, United States 10, Other: Asia 10",
+   "funnelPaths": {
+    "/en/cart/": 5
+   },
+   "lang": "en 81, uk 2",
+   "sessCountry": {
+    "South Korea": 11,
+    "United States": 10,
+    "Other: Asia": 10,
+    "Indonesia": 1,
+    "Argentina": 2,
+    "Philippines": 2,
+    "Singapore": 8,
+    "Netherlands": 3,
+    "Germany": 5,
+    "Brazil": 2,
+    "France": 3,
+    "Finland": 2,
+    "Nigeria": 1,
+    "UAE": 3,
+    "China": 1,
+    "Bulgaria": 2,
+    "Other: UTC": 10,
+    "South Africa": 1,
+    "Colombia": 2,
+    "Japan": 1,
+    "Italy": 1,
+    "Mexico": 1,
+    "Poland": 1
+   }
   },
   {
    "d": "2026-11-24",
@@ -34,7 +63,36 @@
    "sum": 0,
    "phone": 8,
    "src": "(direct) 128, google.com 1",
-   "ctry": "United States 28, Singapore 13, Other: Asia 13"
+   "ctry": "United States 28, Singapore 13, Other: Asia 13",
+   "funnelPaths": {
+    "/en/cart/": 7,
+    "/de/cart/": 1
+   },
+   "lang": "en 125, es 2, uk 2",
+   "sessCountry": {
+    "Singapore": 13,
+    "South Africa": 4,
+    "Other: America": 1,
+    "United States": 28,
+    "Other: UTC": 10,
+    "Other: Asia": 13,
+    "France": 10,
+    "Japan": 4,
+    "South Korea": 8,
+    "Thailand": 4,
+    "UAE": 2,
+    "Germany": 10,
+    "Indonesia": 7,
+    "Spain": 1,
+    "Netherlands": 4,
+    "Mexico": 3,
+    "Philippines": 1,
+    "Nigeria": 1,
+    "Bulgaria": 1,
+    "Ukraine": 1,
+    "Brazil": 2,
+    "Poland": 1
+   }
   },
   {
    "d": "2026-11-23",
@@ -51,7 +109,23 @@
    "sum": 0,
    "phone": 13,
    "src": "(direct) 51",
-   "ctry": "Other: UTC 20, United States 18, Thailand 3"
+   "ctry": "Other: UTC 20, United States 18, Thailand 3",
+   "funnelPaths": {
+    "/en/cart/": 4
+   },
+   "lang": "en 48, uk 3",
+   "sessCountry": {
+    "United States": 18,
+    "Japan": 1,
+    "Indonesia": 1,
+    "South Korea": 2,
+    "Thailand": 3,
+    "France": 2,
+    "Other: UTC": 20,
+    "Singapore": 2,
+    "Ukraine": 1,
+    "Other: Asia": 1
+   }
   },
   {
    "d": "2026-11-22",
@@ -68,7 +142,29 @@
    "sum": 0,
    "phone": 11,
    "src": "(direct) 67",
-   "ctry": "United States 30, Other: UTC 20, Other: Asia 3"
+   "ctry": "United States 30, Other: UTC 20, Other: Asia 3",
+   "funnelPaths": {
+    "/en/cart/": 1
+   },
+   "lang": "en 64, uk 2, ru 1",
+   "sessCountry": {
+    "United States": 30,
+    "Singapore": 1,
+    "Bulgaria": 1,
+    "Other: UTC": 20,
+    "Finland": 1,
+    "Other: Asia": 3,
+    "Thailand": 1,
+    "Germany": 1,
+    "Ukraine": 2,
+    "France": 1,
+    "Peru": 1,
+    "South Korea": 1,
+    "Netherlands": 1,
+    "Mexico": 1,
+    "Indonesia": 1,
+    "Philippines": 1
+   }
   },
   {
    "d": "2026-11-21",
@@ -85,7 +181,21 @@
    "sum": 0,
    "phone": 11,
    "src": "(direct) 36",
-   "ctry": "Other: UTC 18, Germany 8, United States 6"
+   "ctry": "Other: UTC 18, Germany 8, United States 6",
+   "funnelPaths": {
+    "/en/cart/": 1,
+    "/en/checkout/": 1
+   },
+   "lang": "en 26, uk 7, ru 3",
+   "sessCountry": {
+    "Germany": 8,
+    "United States": 6,
+    "Singapore": 1,
+    "France": 1,
+    "Netherlands": 1,
+    "Other: UTC": 18,
+    "Ukraine": 1
+   }
   }
  ]
 }
