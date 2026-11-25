@@ -7,6 +7,7 @@
  * session: referrer host or utm_source), top pages, phone / computer. Nothing personal is stored: no IP, no cookie,
  * no user agent; "session" = a flag in sessionStorage (gone when the tab closes). Admins and bots are not counted.
  * Funnel (25.11, Analyst): add_to_cart / checkout_start / pay_click / pay_error / order — once per session each, in day['e'].
+ * Server side (25.11): day['e']['add'] / ['co'] — real add-to-cart and checkout form, see the bottom of this file.
  * Robots: time zone UTC or HeadlessChrome are not counted.
  * Read: WP admin → Tools → Site stats, or the option `ss_stats` (kept 120 days). Off: option ss_stats_off = 1.
  */
@@ -112,7 +113,7 @@ add_action( 'admin_menu', function () {
 		echo '<table class="widefat striped" style="max-width:520px"><thead><tr><th>Day</th><th>Sessions</th><th>Views</th></tr></thead><tbody>';
 		foreach ( $days as $k => $d ) echo '<tr><td>' . esc_html( $k ) . '</td><td>' . (int) $d['s'] . '</td><td>' . (int) $d['v'] . '</td></tr>';
 		echo '</tbody></table>';
-		$fn = array( 'add_to_cart' => 'Added to cart', 'checkout_start' => 'Opened checkout', 'pay_click' => 'Clicked «Place order»', 'pay_error' => 'Payment error', 'order' => 'Order received page' );
+		$fn = array( 'add' => 'Added to cart (server, real)', 'co' => 'Checkout form shown (server, real)', 'add_to_cart' => 'Added to cart', 'checkout_start' => 'Opened checkout', 'pay_click' => 'Clicked «Place order»', 'pay_error' => 'Payment error', 'order' => 'Order received page' );
 		echo '<h2>Purchase funnel (sessions, each step once per session)</h2><table class="widefat striped" style="max-width:520px"><tbody><tr><td>Sessions</td><td>' . (int) $S . '</td></tr>';
 		foreach ( $fn as $k => $t ) { $n = 0; foreach ( $days as $d ) $n += isset( $d['e'][ $k ] ) ? (int) $d['e'][ $k ] : 0; echo '<tr><td>' . esc_html( $t ) . '</td><td>' . $n . '</td></tr>'; }
 		echo '</tbody></table>';
@@ -152,3 +153,22 @@ add_action( 'rest_api_init', function () {
 		},
 	) );
 } );
+
+/* ---------- server-side funnel (25.11, Analyst «19 корзин → 1 оформление»): real WooCommerce events, not page views ----------
+ * add = a product really went into the cart (woocommerce_add_to_cart, also from the block cart / Store API),
+ * co  = the checkout form was really shown (woocommerce_before_checkout_form). Once per shop session each, in day['e'].
+ * Not counted: admins, our QA robots (UA «SolidSoundQA»), crawlers / headless browsers. Nothing personal is stored. */
+function ss_stats_srv_event( $k ) {
+	if ( get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) ) return;
+	$ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? (string) $_SERVER['HTTP_USER_AGENT'] : '';
+	if ( '' === $ua || preg_match( '~SolidSoundQA|HeadlessChrome|Lighthouse|bot|crawl|spider|slurp|curl|wget|python|php~i', $ua ) ) return;
+	$ses = ( function_exists( 'WC' ) && WC()->session ) ? WC()->session : null;
+	if ( $ses ) { if ( $ses->get( 'ss_e_' . $k ) ) return; $ses->set( 'ss_e_' . $k, 1 ); }
+	$day = gmdate( 'Y-m-d' ); $all = get_option( 'ss_stats', array() ); if ( ! is_array( $all ) ) $all = array();
+	if ( ! isset( $all[ $day ] ) ) $all[ $day ] = array( 's' => 0, 'v' => 0, 'c' => array(), 'r' => array(), 'p' => array(), 'm' => array(), 'l' => array() );
+	if ( ! isset( $all[ $day ]['e'] ) || ! is_array( $all[ $day ]['e'] ) ) $all[ $day ]['e'] = array();
+	$all[ $day ]['e'][ $k ] = ( isset( $all[ $day ]['e'][ $k ] ) ? (int) $all[ $day ]['e'][ $k ] : 0 ) + 1;
+	update_option( 'ss_stats', $all, false );
+}
+add_action( 'woocommerce_add_to_cart', function () { ss_stats_srv_event( 'add' ); }, 99 );
+add_action( 'woocommerce_before_checkout_form', function () { ss_stats_srv_event( 'co' ); }, 1 );
