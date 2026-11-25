@@ -127,7 +127,7 @@ async function bestsellers(shop) {
 function parseFeed(xml) {
   const items = []; const re = /<(item|entry)[\s>][\s\S]*?<\/\1>/g; let m;
   while ((m = re.exec(xml))) {
-    const b = m[0]; const pick = (tag) => { const x = b.match(new RegExp('<' + tag + '[^>]*>([\\s\\S]*?)</' + tag + '>')); return x ? x[1].replace(/<!\[CDATA\[|\]\]>/g, '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#0?39;|&apos;/g, "'").replace(/&quot;/g, '"').trim() : ''; };
+    const b = m[0]; const pick = (tag) => { const x = b.match(new RegExp('<' + tag + '[^>]*>([\\s\\S]*?)</' + tag + '>')); return x ? x[1].replace(/<!\[CDATA\[|\]\]>/g, '').replace(/<[^>]+>/g, '').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, '&').replace(/&#0?39;|&apos;/g, "'").replace(/&quot;/g, '"').trim() : ''; };
     let link = pick('link'); if (!link) { const h = b.match(/<link[^>]*href="([^"]+)"/); link = h ? h[1] : ''; }
     items.push({ title: pick('title'), link, date: pick('pubDate') || pick('published') || pick('updated'), text: (pick('description') || pick('summary') || pick('content')).slice(0, 600) });
   }
