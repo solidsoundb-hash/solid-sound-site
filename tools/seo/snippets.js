@@ -83,6 +83,8 @@ function parse(t) {
       if (finalPath.split('?')[0] !== path) flags.push('переадресация → ' + finalPath);
       if (lang !== 'en' && en.title && p.title === en.title) flags.push('title как в EN');
       if (lang !== 'en' && en.desc && p.desc && p.desc === en.desc) flags.push('description как в EN');
+      const home = now['/' + lang + '/'] || {}; // 25.11: /de/all-products/ got the home title
+      if (path !== '/' + lang + '/' && home.title && p.title === home.title) flags.push('title как у главной');
       if (p.title.length > 60) flags.push('title ' + p.title.length + ' зн.');
       if (!p.desc) flags.push('нет description'); else if (p.desc.length > 160) flags.push('description ' + p.desc.length + ' зн.');
       if (p.h1.length !== 1) flags.push('H1: ' + p.h1.length);

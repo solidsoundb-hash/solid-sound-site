@@ -2535,42 +2535,48 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 	function ss_seo_ml_map() {
 		return array(
 			'es' => array(
-				2    => array( 'Solid Sound — Plantillas Ableton, presets y mezcla online', 'Estudio de mezcla y masterización online y tienda: plantillas de Ableton Live sin royalties, presets de Serum y música para vídeo. Mezcla desde 69 €.' ), /* 25.11 SEO: brand first, as EN */
+				'front' => array( 'Solid Sound — Plantillas Ableton, presets y mezcla online', 'Estudio de mezcla y masterización online y tienda: plantillas de Ableton Live sin royalties, presets de Serum y música para vídeo. Mezcla desde 69 €.' ), /* 25.11 SEO: brand first, as EN */
+				2    => array( 'Plantillas Ableton, presets, mezcla y masterización | Solid Sound', 'Plantillas de Ableton Live libres de royalties, presets de Serum y música para vídeos. Aprende con proyectos profesionales o encarga mezcla y masterización online.' ),
 				1115 => array( 'Plantillas de Ableton Live libres de royalties | Solid Sound', 'Plantillas de Ableton Live de techno y tech house. Proyectos completos, mezclados y masterizados con plugins nativos: estudia, reorganiza y publica.' ),
 				1121 => array( 'Presets de Serum y sound packs | Solid Sound', 'Presets de Serum para melodic techno y más. Sonidos listos para usar de Solid Sound: descarga inmediata, sin royalties.' ),
 				1547 => array( 'Música libre de royalties para vídeos y empresas | Solid Sound', 'Música libre de royalties para vídeos, documentales y proyectos de empresa. Escucha las demos y compra la licencia online.' ),
 				399  => array( 'Contacto | Solid Sound', 'Contacta con Solid Sound sobre plantillas Ableton, presets, mezcla y masterización. Respondemos por email.' ),
 			),
 			'it' => array(
-				2    => array( 'Solid Sound — Template Ableton, preset e mix online', 'Studio di mix e mastering online e negozio: template Ableton Live royalty-free, preset per Serum e musica per video. Mix da 69 €, feedback gratuito.' ),
+				'front' => array( 'Solid Sound — Template Ableton, preset e mix online', 'Studio di mix e mastering online e negozio: template Ableton Live royalty-free, preset per Serum e musica per video. Mix da 69 €, feedback gratuito.' ),
+				2    => array( 'Template Ableton, preset, mix e mastering | Solid Sound', 'Template Ableton Live royalty-free, preset per Serum e musica per video. Impara dai progetti professionali o richiedi mix e mastering online.' ),
 				1115 => array( 'Template Ableton Live royalty-free | Solid Sound', 'Template Ableton Live techno e tech house. Progetti completi, mixati e masterizzati con plugin nativi: studia, riarrangia, pubblica.' ),
 				1121 => array( 'Preset per Serum e sound pack | Solid Sound', 'Preset per Serum per melodic techno e altri generi. Suoni pronti di Solid Sound: download immediato, royalty-free.' ),
 				1547 => array( 'Musica royalty-free per video e aziende | Solid Sound', 'Musica royalty-free per video, documentari e progetti aziendali. Ascolta le demo e acquista la licenza online.' ),
 				399  => array( 'Contatti | Solid Sound', 'Contatta Solid Sound per template Ableton, preset, mix e mastering. Rispondiamo via email.' ),
 			),
 			'ua' => array(
-				2    => array( 'Solid Sound — шаблони Ableton, пресети, зведення онлайн', 'Онлайн-студія зведення й мастерингу та магазин: шаблони Ableton Live без роялті, пресети Serum і музика для відео. Зведення від 69 €.' ),
+				'front' => array( 'Solid Sound — шаблони Ableton, пресети, зведення онлайн', 'Онлайн-студія зведення й мастерингу та магазин: шаблони Ableton Live без роялті, пресети Serum і музика для відео. Зведення від 69 €.' ),
+				2    => array( 'Шаблони Ableton, пресети, зведення та мастеринг | Solid Sound', 'Шаблони Ableton Live без роялті, пресети Serum і музика для відео. Вчіться на професійних проєктах або замовте онлайн-зведення та мастеринг.' ),
 				1115 => array( 'Шаблони Ableton Live без роялті | Solid Sound', 'Шаблони Ableton Live у стилях техно та тек-хаус. Повністю зведені й відмастерені проєкти на вбудованих плагінах: вивчайте, переробляйте, випускайте.' ),
 				1121 => array( 'Пресети Serum і саунд-паки | Solid Sound', 'Пресети Serum для мелодійного техно та інших жанрів. Готові звуки від Solid Sound: миттєве завантаження, без роялті.' ),
 				1547 => array( 'Музика без роялті для відео та бізнесу | Solid Sound', 'Музика без роялті для відео, документальних фільмів і бізнес-проєктів. Слухайте демо та купуйте ліцензію онлайн.' ),
 				399  => array( 'Контакти | Solid Sound', 'Зв’яжіться з Solid Sound щодо шаблонів Ableton, пресетів, зведення та мастерингу. Відповідаємо електронною поштою.' ),
 			),
 			'de' => array(
-				2    => array( 'Solid Sound — Ableton Vorlagen, Presets & Mixing Studio', 'Online Mixing & Mastering Studio und Marktplatz: lizenzfreie Ableton Live Vorlagen, Serum Presets und Musik für Videos. Mixing ab 69 €, Gratis-Feedback.' ),
+				'front' => array( 'Solid Sound — Ableton Vorlagen, Presets & Mixing Studio', 'Online Mixing & Mastering Studio und Marktplatz: lizenzfreie Ableton Live Vorlagen, Serum Presets und Musik für Videos. Mixing ab 69 €, Gratis-Feedback.' ),
+				2    => array( 'Ableton Templates, Presets, Mixing & Mastering | Solid Sound', 'Lizenzfreie Ableton Live Templates, Serum-Presets und Musik für Videos. Lerne an Profi-Projekten oder buche Online-Mixing und -Mastering.' ),
 				1115 => array( 'Ableton Live Templates – lizenzfrei | Solid Sound', 'Lizenzfreie Ableton Live Templates für Techno und Tech House. Fertig gemischte und gemasterte Projekte mit Stock-Plugins: lernen, remixen, veröffentlichen.' ),
 				1121 => array( 'Serum-Presets & Sound Packs | Solid Sound', 'Serum-Presets für Melodic Techno und mehr. Sofort einsetzbare Sounds von Solid Sound – direkter Download, lizenzfrei.' ),
 				1547 => array( 'Lizenzfreie Musik für Videos & Unternehmen | Solid Sound', 'Lizenzfreie Musik für Videos, Dokumentationen und Business-Projekte. Demos anhören und die Lizenz online kaufen.' ),
 				399  => array( 'Kontakt | Solid Sound', 'Kontaktiere Solid Sound bei Fragen zu Ableton-Templates, Presets, Mixing und Mastering. Wir antworten per E-Mail.' ),
 			),
 			'fr' => array(
-				2    => array( 'Solid Sound — Templates Ableton, presets & studio de mixage', 'Studio de mixage et mastering en ligne et boutique : templates Ableton Live libres de droits, presets Serum et musique pour vidéo. Mixage dès 69 €.' ),
+				'front' => array( 'Solid Sound — Templates Ableton, presets & studio de mixage', 'Studio de mixage et mastering en ligne et boutique : templates Ableton Live libres de droits, presets Serum et musique pour vidéo. Mixage dès 69 €.' ),
+				2    => array( 'Templates Ableton, presets, mixage & mastering | Solid Sound', 'Templates Ableton Live libres de droits, presets Serum et musique pour vidéos. Apprenez avec des projets pro ou commandez un mixage et mastering en ligne.' ),
 				1115 => array( 'Templates Ableton Live libres de droits | Solid Sound', 'Templates Ableton Live techno et tech house libres de droits. Projets mixés et masterisés avec les plugins natifs : apprenez, remixez, publiez.' ),
 				1121 => array( 'Presets Serum & sound packs | Solid Sound', 'Presets Serum pour la melodic techno et plus encore. Des sons prêts à l’emploi par Solid Sound : téléchargement immédiat, libres de droits.' ),
 				1547 => array( 'Musique libre de droits pour vidéos & entreprises | Solid Sound', 'Musique libre de droits pour vidéos, documentaires et projets d’entreprise. Écoutez les démos et achetez la licence en ligne.' ),
 				399  => array( 'Contact | Solid Sound', 'Contactez Solid Sound pour toute question sur les templates Ableton, les presets, le mixage et le mastering. Réponse par e-mail.' ),
 			),
 			'pt' => array(
-				2    => array( 'Solid Sound — Templates Ableton, presets e mistura online', 'Estúdio de mistura e masterização online e loja: templates Ableton Live livres de royalties, presets Serum e música para vídeo. Mistura desde 69 €.' ),
+				'front' => array( 'Solid Sound — Templates Ableton, presets e mistura online', 'Estúdio de mistura e masterização online e loja: templates Ableton Live livres de royalties, presets Serum e música para vídeo. Mistura desde 69 €.' ),
+				2    => array( 'Templates Ableton, presets, mistura e masterização | Solid Sound', 'Templates Ableton Live livres de royalties, presets Serum e música para vídeos. Aprenda com projetos profissionais ou encomende mistura e masterização online.' ),
 				1115 => array( 'Templates Ableton Live livres de royalties | Solid Sound', 'Templates Ableton Live de techno e tech house livres de royalties. Projetos misturados e masterizados com plugins nativos: aprenda, remisture, lance.' ),
 				1121 => array( 'Presets Serum e sound packs | Solid Sound', 'Presets Serum para melodic techno e muito mais. Sons prontos a usar da Solid Sound: download imediato, livres de royalties.' ),
 				1547 => array( 'Música livre de royalties para vídeos e empresas | Solid Sound', 'Música livre de royalties para vídeos, documentários e projetos empresariais. Ouça as demos e compre a licença online.' ),
@@ -2584,8 +2590,8 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 		$map = ss_seo_ml_map(); if ( empty( $map[ $l ] ) ) return null;
 		if ( is_page() ) {
 			$id = get_queried_object_id();
-			if ( is_front_page() && ! empty( $map[ $l ][2] ) ) return $map[ $l ][2]; /* 25.11 SEO: the home page is now 2433, not 2 — every language showed the English title */
-			foreach ( $map[ $l ] as $src => $v ) if ( (int) pll_get_post( $src, $l ) === (int) $id || (int) $src === (int) $id ) return $v;
+			if ( is_front_page() ) return empty( $map[ $l ]['front'] ) ? null : $map[ $l ]['front']; /* 25.11 SEO: home (2433) had no entry — every language showed the English title. Key 2 is All products (de/fr: dictionary) */
+			foreach ( $map[ $l ] as $src => $v ) if ( is_int( $src ) && ( int ) pll_get_post( $src, $l ) === (int) $id || (int) $src === (int) $id ) return $v;
 			return null;
 		}
 		if ( function_exists( 'is_product' ) && is_product() && function_exists( 'ss_prod_dict' ) ) {
@@ -3893,7 +3899,7 @@ if ( ! function_exists( 'ss_h3_t' ) ) {
 	</div>
 </div></section>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
-<?php ss_asset('js-l4744'); ?>
+<?php ss_asset('js-l4750'); ?>
 <?php ss_asset('ssh-css'); ?>
 <?php ss_asset('ssh-js'); ?>
 <?php
@@ -4575,7 +4581,7 @@ if ( ! function_exists( 'ss_fb_t' ) ) {
 		<div class="ssfb-wide ssfb-msg" role="status" aria-live="polite"></div>
 	</form>
 </div></section>
-<?php ss_asset('css-l5820'); ?>
+<?php ss_asset('css-l5826'); ?>
 <script>
 (function(){var root=document.getElementById('ss-fb');if(!root||root.dataset.on)return;root.dataset.on=1;var f=root.querySelector('form'),msg=f.querySelector('.ssfb-msg'),t0=Date.now();
 var T=<?php echo wp_json_encode( array( 'ok' => $T['ok'], 'err' => $T['err'], 'fail' => $T['fail'] ) ); ?>;
@@ -5154,7 +5160,7 @@ if ( ! function_exists( 'ss_free_follow_html' ) ) {
 <div class="ssfw"><div class="ssfw-t"><b><?php echo esc_html( $t[0] ); ?></b><span><?php echo esc_html( $t[1] ); ?></span></div><div class="ssfw-b">
 <a class="ssfw-ig" href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[2] ); ?></a>
 <a class="ssfw-yt" href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg><?php echo esc_html( $t[3] ); ?></a></div></div>
-<?php ss_asset('css-l6436'); ?>
+<?php ss_asset('css-l6442'); ?>
 		<?php
 		return ob_get_clean();
 	}
