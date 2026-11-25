@@ -1,4 +1,4 @@
-run 403 2026-11-25T17:28:01Z commit 1ed7b3646939f4e4292ad5e98979cf985adaec5a
+run 404 2026-11-25T17:32:27Z commit d8d42799575249fd70675df5483820a81d6a4716
 https://solid-sound.net/en/?ss_v2=0 -> HTTP 200 
 https://solid-sound.net/en/?ss_v2=1 -> HTTP 200 
 https://solid-sound.net/product/infinity/?ss_v2=1 -> HTTP 200 
