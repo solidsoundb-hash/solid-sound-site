@@ -13,7 +13,7 @@ const PAGES = ['/terms/', '/de/terms/'];
     for (const path of PAGES) {
       const p = await ctx.newPage();
       await p.goto('https://solid-sound.net' + path + '?r=' + Date.now(), { waitUntil: 'networkidle', timeout: 120000 }).catch(() => {}); await p.waitForTimeout(2500);
-      const txt = await p.evaluate(() => { const els = [...document.querySelectorAll('p,li,div')].filter(e => /(US dollars|US-Dollar|euros|Euro)\b/.test(e.textContent) && e.children.length < 4); const e = els[els.length - 1]; if (!e) return ''; e.scrollIntoView({ block: 'center' }); return e.textContent.trim().slice(0, 220); });
+      const txt = await p.evaluate(() => { const els = [...document.querySelectorAll('p,li')].filter(e => /Prices are set in|Die Preise werden in/.test(e.textContent)).sort((a, b) => a.textContent.length - b.textContent.length); const e = els[0]; if (!e) return ''; e.scrollIntoView({ block: 'center' }); return e.textContent.trim().slice(0, 220); });
       await p.waitForTimeout(600);
       rows.push(`| ${path} | ${dn} | ${txt || 'не найден'} |`);
       await p.screenshot({ path: `${OUT}/${dn}_${path.replace(/\W+/g, '_')}.jpg`, type: 'jpeg', quality: 70 });
