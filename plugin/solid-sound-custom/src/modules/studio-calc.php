@@ -67,7 +67,7 @@ add_action( 'template_redirect', function () {
 	global $wp_query;
 	$wp_query->is_404 = false;
 	status_header( 200 );
-	add_filter( 'pre_get_document_title', function () { return 'Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound'; } );
+	add_filter( 'pre_get_document_title', function () { return 'Studio Price Calculator – Mixing & Mastering | Solid Sound'; } );
 	/* 25.11 (SEO → «Копирайтер»): /de/, /fr/, /es/ — canonical to itself and the server-side translation (modules/i18n-pages.php).
 	   This page exits here at priority 1, before i18n-pages starts its buffer at 9999, so start it here. */
 	$vl = function_exists( 'ss_vp_on' ) ? ss_vp_on() : '';

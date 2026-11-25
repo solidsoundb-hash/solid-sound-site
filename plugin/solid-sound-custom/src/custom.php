@@ -579,11 +579,11 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'wiki-it' => array( 'Solid Wiki — guide alla produzione musicale | Solid Sound', 'Guide gratuite su produzione musicale, mix, mastering e DJing dallo studio Solid Sound: Ableton, voce, cavi, serate e altro ancora.' ),
 			'faq' => array( 'FAQ – Payments, Licenses & Downloads | Solid Sound', 'Answers about payments, licenses, downloads and using Solid Sound templates in your own productions.' ),
 			'license' => array( 'License Agreement – Royalty-Free Use | Solid Sound', 'What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.' ),
-			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 69€, mastering from 35€, mix + master bundles, project rework in your DAW, custom production, remixes and release help. Pay 50 % to start — compare packages and order online.' ),
+			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 69€, mastering from 35€, mix + master bundles, remixes and custom production. Pay 50 % to start — compare packages and order online.' ), /* 25.11 SEO: was 193 chars; DE/FR/ES dictionary keys renamed too */
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */
 			'all-products' => array( 'Ableton Templates, Serum Presets & Music | Solid Sound', /* 20.11 swarm: was 82 chars, Google cuts at ~60 */ 'All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.' ),
 			'free' => array( 'Free Ableton Templates, Presets & Track Feedback | Solid Sound', 'Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.' ),
-			'about' => array( 'About Solid Sound — Online Mixing Studio & Ableton Templates', 'Solid Sound is an online music production studio and marketplace since 2018: mixing, mastering, remix and custom production, plus royalty-free Ableton templates and Serum presets.' ),
+			'about' => array( 'About Solid Sound — Online Mixing Studio & Ableton Templates', 'Online music studio and marketplace since 2018: mixing, mastering, remix and custom production, plus royalty-free Ableton templates and Serum presets.' ), /* 25.11 SEO: was 193 chars */
 			'contacts' => array( 'Contact Solid Sound Studio', 'Contact Solid Sound for questions about Ableton templates, presets, mixing and mastering.' ),
 			'privacy-policy' => array( 'Privacy Policy | Solid Sound', 'How Solid Sound collects, uses and protects your personal data when you buy templates, presets and music or use our mixing and mastering services.' ),
 			'refund_returns' => array( 'Refund Policy for Digital Products | Solid Sound', 'Refund rules for Solid Sound digital downloads: Ableton templates, Serum presets and royalty-free music. When and how you can request a refund.' ),
@@ -624,7 +624,10 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			if ( $f && ! is_wp_error( $f ) ) foreach ( $labels as $slug => $lab ) { foreach ( $f as $t ) if ( $t->slug === $slug ) { $type = $lab; break 2; } }
 			$g = get_the_terms( $id, 'product-genre' );
 			$genre = ( $g && ! is_wp_error( $g ) ) ? $g[0]->name : '';
-			$title = get_the_title( $id ) . ( $type ? ' – ' . trim( $genre . ' ' . $type ) : '' ) . ' | Solid Sound';
+			$nm = get_the_title( $id );
+			if ( $genre && false !== stripos( $nm, $genre ) ) $genre = ''; /* 25.11 SEO: «Melodic Techno Presets – Melodic Techno Serum Presets» */
+			$title = $nm . ( $type ? ' – ' . trim( $genre . ' ' . $type ) : '' ) . ' | Solid Sound';
+			if ( mb_strlen( $title ) > 60 ) $title = mb_substr( $title, 0, -14 ); /* too long for Google: keep the keywords, drop « | Solid Sound» */
 			$desc = ss_seo_clean( get_post_field( 'post_excerpt', $id ) );
 			if ( ! $desc ) $desc = ss_seo_clean( get_post_field( 'post_content', $id ) );
 			return array( $title, $desc );
@@ -3173,7 +3176,9 @@ if ( ! function_exists( 'ss_seo_ml' ) ) {
 			$f = get_the_terms( $id, 'product-format' ); $k = 0;
 			if ( $f && ! is_wp_error( $f ) ) foreach ( $f as $t ) { if ( 'presets' === $t->slug ) $k = 1; elseif ( 'music' === $t->slug ) $k = 2; }
 			$g = get_the_terms( $id, 'product-genre' ); $genre = ( $g && ! is_wp_error( $g ) ) ? $g[0]->name . ' ' : '';
+			if ( $genre && false !== stripos( get_the_title( $id ), trim( $genre ) ) ) $genre = ''; /* 25.11 SEO: no genre twice */
 			$title = get_the_title( $id ) . ' – ' . ( 2 === $k ? $types[ $l ][2] : $genre . $types[ $l ][ $k ] ) . ' | Solid Sound';
+			if ( mb_strlen( $title ) > 60 ) $title = mb_substr( $title, 0, -14 );
 			$raw = wp_strip_all_tags( wptexturize( strip_shortcodes( preg_replace( '#\[/?audio[^\]]*\]#i', '', get_post_field( 'post_excerpt', $id ) ) ) ) );
 			$raw = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( $raw, ENT_QUOTES, 'UTF-8' ) ) );
 			$desc = '';

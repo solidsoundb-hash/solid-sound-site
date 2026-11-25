@@ -38,8 +38,8 @@
   },
   {
    "path": "/en/services-prices/",
-   "flag": "description 193",
-   "expect": true
+   "flag": "description",
+   "expect": false
   },
   {
    "path": "/de/all-products/",
