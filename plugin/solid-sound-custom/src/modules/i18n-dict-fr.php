@@ -368,6 +368,7 @@ return json_decode( <<<'SSFR'
 "Thank you! We got your request and will reply by email within 24 hours.": "Merci ! Nous avons bien reçu votre demande et répondons par e-mail sous 24 heures.",
 "Studio price calculator": "Calculateur de prix studio",
 "Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound": "Calculateur de prix studio – Mixage, Mastering, Remix | Solid Sound",
+"Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.": "Prix immédiats pour mixage, mastering (stéréo, stems, multipiste), remix, ghost production et post-production. Démarrez avec 50 % d'acompte.",
 "Every service, one place. Pay 50% to start — the rest only when you love the result.": "Tous les services au même endroit. 50 % pour démarrer — le reste seulement quand le résultat vous plaît.",
 "Service": "Service",
 "Pay now (50%)": "À payer maintenant (50 %)",

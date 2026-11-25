@@ -68,8 +68,12 @@ add_action( 'template_redirect', function () {
 	$wp_query->is_404 = false;
 	status_header( 200 );
 	add_filter( 'pre_get_document_title', function () { return 'Studio Price Calculator – Mixing, Mastering, Remix | Solid Sound'; } );
-	add_action( 'wp_head', function () { echo '<meta name="description" content="Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.">' . "\n" . '<link rel="canonical" href="' . esc_url( home_url( '/studio-calculator/' ) ) . '">'; }, 1 );
+	/* 25.11 (SEO → «Копирайтер»): /de/, /fr/, /es/ — canonical to itself and the server-side translation (modules/i18n-pages.php).
+	   This page exits here at priority 1, before i18n-pages starts its buffer at 9999, so start it here. */
+	$vl = function_exists( 'ss_vp_on' ) ? ss_vp_on() : '';
+	add_action( 'wp_head', function () use ( $vl ) { echo '<meta name="description" content="Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.">' . "\n" . '<link rel="canonical" href="' . esc_url( home_url( ( $vl ? '/' . $vl : '' ) . '/studio-calculator/' ) ) . '">'; }, 1 );
 	add_action( 'wp_head', function () { echo '<style>' . ss_sc_css() . '</style>'; } );
+	if ( $vl ) ob_start( function ( $html ) use ( $vl ) { return ss_vp_tr_html( $html, $vl ); } );
 	get_header();
 	echo '<main id="page-content" class="l-main"><section class="l-section"><div class="l-section-h">' . ss_sc_html() . '</div></section></main>';
 	get_footer();
