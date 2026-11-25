@@ -39,3 +39,4 @@
 2026-11-25 16:23:29 alt-before /product/pitch/ /en/all-products/
 2026-11-25 16:35:48 alt-after /product/pitch/ /en/all-products/
 2026-11-25 16:39:15 desc-before /product/mutualism/ /product/intricate/ /product/infinity/ /product/kratos/ /product/protos/ /de/product/kratos/
+2026-11-25 17:02:57 cxo-before /cancel-order/ /refund_returns/
