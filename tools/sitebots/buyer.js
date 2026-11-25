@@ -16,16 +16,18 @@ async function walk(browser, name, d) {
   const ctx = await browser.newContext({ ...d, locale: 'en-US' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
   const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message.slice(0, 160)));
+  let n429 = 0; p.on('response', r => { if (r.status() === 429 && r.url().includes('solid-sound.net')) n429++; }); // hosting rate limit, not a site bug
   const steps = []; let broken = '';
   const step = async (title, fn) => {
     if (broken) { steps.push([title, '—', 'пропущено']); return; }
-    const t0 = Date.now(); let ok = true, note = '';
+    const t0 = Date.now(); let ok = true, note = ''; const c429 = n429;
     const busy = async () => /Service Unavailable|503 Service/i.test(await p.title().catch(() => '') + ' ' + await p.locator('h1').first().textContent({ timeout: 1000 }).catch(() => ''));
     for (let a = 0; a < 2; a++) { ok = true; note = '';
       try { note = (await fn()) || ''; } catch (e) { ok = false; note = e.message.split('\n')[0].slice(0, 160); }
       if (!ok && await busy()) { note = 'сервер перегружен (503)' + (a ? ' и через 30 с тоже' : ''); if (!a) { await p.waitForTimeout(30000); continue; } }
       break; }
     if (await blocked(p)) { ok = false; note = 'хостинг показал капчу (не ошибка сайта)'; }
+    else if (!ok && n429 > c429) note += ' — хостинг ограничил частоту запросов (429), сервер перегружен, не ошибка сайта';
     const s = ((Date.now() - t0) / 1000).toFixed(1);
     steps.push([title, s + ' с', (ok ? '✅ ' : '❌ ') + note]);
     if (!ok) { broken = title; fs.mkdirSync(path.join(OUT, 'shots'), { recursive: true }); await p.screenshot({ path: path.join(OUT, 'shots', `buyer-${name === 'компьютер' ? 'pc' : 'a31'}.png`) }).catch(() => {}); }
@@ -37,7 +39,8 @@ async function walk(browser, name, d) {
   await step('Страница товара', async () => { await p.goto(product, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await p.locator('.single_add_to_cart_button, button[name="add-to-cart"]').first().waitFor({ timeout: 30000 }); return (await p.title()).slice(0, 60); });
   await step('Добавить в корзину', async () => { const b = p.locator('.single_add_to_cart_button, button[name="add-to-cart"]').first();
-    await b.scrollIntoViewIfNeeded(); await b.click({ timeout: 15000 }); await p.waitForTimeout(4000); });
+    await b.scrollIntoViewIfNeeded(); await b.click({ timeout: 15000 }); await p.waitForTimeout(4000);
+    if (!(await ctx.cookies()).some(c => c.name === 'woocommerce_items_in_cart')) throw new Error('кнопка нажата, но товар не лёг в корзину (нет cookie корзины)'); });
   await step('Корзина', async () => { await p.goto(BASE + '/en/cart/', { waitUntil: 'domcontentloaded', timeout: 60000 }); await p.waitForTimeout(2500);
     const n = await p.locator('.cart_item, .wc-block-cart-items__row, tr.woocommerce-cart-form__cart-item').count();
     if (!n) throw new Error('товар не попал в корзину'); const tot = await p.locator('.order-total .amount, .wc-block-components-totals-footer-item .wc-block-components-totals-item__value').first().textContent().catch(() => '');
@@ -54,7 +57,7 @@ async function walk(browser, name, d) {
 module.exports = async function buyer() {
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const res = []; for (const [n, d] of Object.entries(DEV)) res.push(await walk(browser, n, d)); await browser.close();
-  let md = '## 🛒 Покупатель: путь до оформления заказа\n\nРобот проходит покупку как клиент (без оплаты). ❌ — здесь путь ломается, снимок в `reports/sitebots/shots/`.\n\n';
+  let md = '## 🛒 Покупатель: путь до оформления заказа\n\nРобот проходит покупку как клиент (без оплаты). ❌ — здесь путь ломается, снимок в `' + OUT + '/shots/`.\n\n';
   for (const r of res) {
     md += `**${r.name}** — ${r.broken ? '❌ сломано на шаге «' + r.broken + '»' : '✅ весь путь пройден'}\n\n| Шаг | Время | Итог |\n|---|---|---|\n` + r.steps.map(s => `| ${s.join(' | ')} |`).join('\n') + '\n\n';
     if (r.errs.length) md += 'Ошибки скриптов: ' + r.errs.map(e => '`' + e.replace(/`/g, "'") + '`').join(', ') + '\n\n';
