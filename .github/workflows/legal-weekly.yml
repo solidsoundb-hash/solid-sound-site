@@ -30,4 +30,5 @@ jobs:
           LEGAL_ONLY="$L" node tools/legal/check.js
       - name: Save
         if: always()
-        run: BOT_NAME=legal-robot bash .github/save.sh "legal: check $(date -u +%FT%TZ)" reports/legal
+        run: |
+          BOT_NAME=legal-robot bash .github/save.sh "legal: check $(date -u +%FT%TZ)" reports/legal
