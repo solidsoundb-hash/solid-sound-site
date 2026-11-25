@@ -52,11 +52,41 @@ add_action( 'wp_footer', function () {
 	?>
 <style id="ss-crm-css">.woocommerce-cart-form tr.ss-removing{opacity:.45;pointer-events:none;transition:opacity .2s}
 .woocommerce-cart-form tr.ss-removing td.product-name:after{content:"Removing…";display:block;margin-top:4px;color:#F59E0B;font-weight:700;font-size:13px}
-.woocommerce-cart-form tr.ss-removing a.remove{animation:ss-crm-spin .8s linear infinite}@keyframes ss-crm-spin{to{transform:rotate(360deg)}}</style>
+.woocommerce-cart-form tr.ss-removing a.remove{animation:ss-crm-spin .8s linear infinite}@keyframes ss-crm-spin{to{transform:rotate(360deg)}}
+/* (25.11, Analyst «19 корзин → 1 оформление»): phones only — total + «Proceed to checkout» right under the item.
+   «Update cart» hidden (digital items, quantity is always 1), coupon folded into a «Have a coupon?» link,
+   the cookie banner sits at the top on this page so it never covers the button. Computer unchanged. */
+.ss-cpn-link{display:none}
+@media(max-width:600px){
+body.woocommerce-cart .woocommerce-cart-form button[name=update_cart]{display:none!important}
+body.woocommerce-cart .woocommerce-cart-form td.actions{padding:6px 10px!important;text-align:left}
+body.woocommerce-cart .woocommerce-cart-form td.actions .coupon{display:none!important}
+body.woocommerce-cart .woocommerce-cart-form td.actions.ss-cpn-on .coupon{display:flex!important;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+body.woocommerce-cart .woocommerce-cart-form td.actions.ss-cpn-on .coupon>*{margin:0!important}
+body.woocommerce-cart .woocommerce-cart-form td.actions.ss-cpn-on .coupon input{flex:1 1 150px;min-width:0}
+.ss-cpn-link{display:inline-block;padding:6px 2px;color:#F59E0B!important;font-weight:600;font-size:14px;text-decoration:underline!important;background:none;border:0;cursor:pointer}
+td.actions.ss-cpn-on .ss-cpn-link{display:none}
+body.woocommerce-cart .woocommerce-cart-form{margin-bottom:10px!important}
+body.woocommerce-cart .cart-collaterals{margin-top:0!important;padding-top:0!important}
+body.woocommerce-cart .cart_totals{margin-top:0!important;padding-top:12px!important;padding-bottom:12px!important}
+body.woocommerce-cart .cart_totals>h2{display:none}
+body.woocommerce-cart .cart_totals tr.cart-subtotal{display:none}
+body.woocommerce-cart .cart_totals th,body.woocommerce-cart .cart_totals td{padding-top:6px!important;padding-bottom:6px!important}
+body.woocommerce-cart .wc-proceed-to-checkout{padding:8px 0 0!important;margin:0!important}
+body.woocommerce-cart .wc-proceed-to-checkout .checkout-button{display:flex!important;align-items:center;justify-content:center;width:100%;min-height:46px;margin:0!important;box-sizing:border-box;font-size:16px!important}
+body.woocommerce-cart .ss-cc{top:8px;bottom:auto!important}
+}</style>
 <script id="ss-crm">(function(){
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.woocommerce-cart-form a.remove');if(!a)return;var tr=a.closest('tr');if(tr)tr.classList.add('ss-removing')},true);
 function sync(){fetch(<?php echo wp_json_encode( home_url( '/wp-json/wc/store/v1/cart' ) ); ?>,{credentials:'include',headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(j){if(j&&typeof j.items_count==='number'){try{localStorage.setItem('ss_cart_n',String(j.items_count))}catch(x){}if(window.ssCartPaint)ssCartPaint(j.items_count)}}).catch(function(){})}
 if(window.jQuery)jQuery(document.body).on('updated_cart_totals removed_from_cart updated_wc_div',sync);
+/* «Have a coupon?» link (phones: the coupon box is folded; CSS shows the link only ≤600px) */
+var CPN=<?php echo wp_json_encode( __( 'Have a coupon?', 'woocommerce' ) ); ?>;
+function cpn(){var td=document.querySelector('.woocommerce-cart-form td.actions');if(!td||!td.querySelector('.coupon')||td.querySelector('.ss-cpn-link'))return;
+var a=document.createElement('button');a.type='button';a.className='ss-cpn-link';a.textContent=CPN;td.insertBefore(a,td.firstChild);
+var i=td.querySelector('#coupon_code');if((i&&i.value)||document.querySelector('.woocommerce-error'))td.classList.add('ss-cpn-on');
+a.addEventListener('click',function(){td.classList.add('ss-cpn-on');if(i)i.focus()})}
+cpn();if(window.jQuery)jQuery(document.body).on('updated_wc_div updated_cart_totals',cpn);
 })();</script>
 	<?php
 }, 46 );
