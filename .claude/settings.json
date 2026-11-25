@@ -11,5 +11,18 @@
       "mcp__www_solid-sound_net__wp_update_post",
       "mcp__www_solid-sound_net__wp_update_option"
     ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git pull --rebase --autostash -q 2>/dev/null || echo 'git pull не удался — сделай вручную'",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
   }
 }
