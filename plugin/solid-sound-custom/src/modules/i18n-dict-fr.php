@@ -1151,7 +1151,12 @@ return json_decode( <<<'SSFR'
 "Online Mixing & Mastering – Price Calculator | Solid Sound": "Prix mixage & mastering – calculateur | Solid Sound",
 "Get an instant quote for online mixing & mastering. Choose the number of tracks, vocal tuning and extras – prices in EUR, send your request in one click.": "Devis immédiat pour le mixage et mastering en ligne : nombre de titres, correction vocale et options – prix en EUR, demande envoyée en un clic.",
 "Album Mastering – Price Calculator | Solid Sound": "Mastering d'album – calculateur de prix | Solid Sound",
-"Album mastering price calculator: choose the number of tracks, tags & cover art and rush delivery. Free demo of the first track for group orders.": "Calculateur de prix pour le mastering d'album : nombre de titres, tags & pochette, livraison express. Démo gratuite du premier titre pour les commandes groupées."
+"Album mastering price calculator: choose the number of tracks, tags & cover art and rush delivery. Free demo of the first track for group orders.": "Calculateur de prix pour le mastering d'album : nombre de titres, tags & pochette, livraison express. Démo gratuite du premier titre pour les commandes groupées.",
+"You can also withdraw online: use our": "Vous pouvez aussi vous rétracter en ligne avec notre formulaire",
+"Cancel an order": "Annuler une commande",
+"form. We confirm receipt by e-mail right away.": ". Nous confirmons la réception par e-mail immédiatement.",
+"To cancel an order online, use our": "Pour annuler une commande en ligne, utilisez notre formulaire",
+"Refunds are made in euros (EUR), the currency of your order. If your bank converted the payment, the amount on your statement may differ slightly because of exchange rates.": "Les remboursements sont effectués en euros (EUR), la devise de votre commande. Si votre banque a converti le paiement, le montant sur votre relevé peut légèrement différer en raison des taux de change."
 }
 SSFR
 , true );

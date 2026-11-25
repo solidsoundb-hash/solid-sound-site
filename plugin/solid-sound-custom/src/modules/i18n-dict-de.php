@@ -1171,7 +1171,12 @@ return json_decode( <<<'SSDE'
 "Online Mixing & Mastering – Price Calculator | Solid Sound": "Mixing & Mastering Kosten – Preisrechner | Solid Sound",
 "Get an instant quote for online mixing & mastering. Choose the number of tracks, vocal tuning and extras – prices in EUR, send your request in one click.": "Sofort-Angebot für Online Mixing & Mastering: Anzahl der Tracks, Vocal-Tuning und Extras wählen – Preise in EUR, Anfrage mit einem Klick senden.",
 "Album Mastering – Price Calculator | Solid Sound": "Album Mastering Kosten – Preisrechner | Solid Sound",
-"Album mastering price calculator: choose the number of tracks, tags & cover art and rush delivery. Free demo of the first track for group orders.": "Preisrechner für Album-Mastering: Anzahl der Tracks, Tags & Cover und Express-Lieferung wählen. Gratis-Demo des ersten Tracks bei Gruppenaufträgen."
+"Album mastering price calculator: choose the number of tracks, tags & cover art and rush delivery. Free demo of the first track for group orders.": "Preisrechner für Album-Mastering: Anzahl der Tracks, Tags & Cover und Express-Lieferung wählen. Gratis-Demo des ersten Tracks bei Gruppenaufträgen.",
+"You can also withdraw online: use our": "Du kannst auch online widerrufen: nutze unser Formular",
+"Cancel an order": "Bestellung stornieren",
+"form. We confirm receipt by e-mail right away.": ". Wir bestätigen den Eingang sofort per E-Mail.",
+"To cancel an order online, use our": "Um eine Bestellung online zu stornieren, nutze unser Formular",
+"Refunds are made in euros (EUR), the currency of your order. If your bank converted the payment, the amount on your statement may differ slightly because of exchange rates.": "Erstattungen erfolgen in Euro (EUR), der Währung deiner Bestellung. Hat deine Bank die Zahlung umgerechnet, kann der Betrag auf deinem Kontoauszug wegen der Wechselkurse leicht abweichen."
 }
 SSDE
 , true );
