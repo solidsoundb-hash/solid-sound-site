@@ -26,4 +26,5 @@ jobs:
           node tools/bots/reddit-watch.js
       - name: Save
         if: always()
-        run: BOT_NAME=reddit-watch bash .github/save.sh "reddit-watch: $(date -u +%F)" reports/marketing
+        run: |
+          BOT_NAME=reddit-watch bash .github/save.sh "reddit-watch: $(date -u +%F)" reports/marketing
