@@ -36,3 +36,4 @@
 2026-11-25 10:29:08 fb-before /en/free-demo-feedback/ /en/free/
 2026-11-25 10:57:31 h1-before /en/all-products/ /de/all-products/ /en/
 2026-11-25 11:06:35 h1-after /en/all-products/ /de/all-products/ /en/
+2026-11-25 16:23:29 alt-before /product/pitch/ /en/all-products/
