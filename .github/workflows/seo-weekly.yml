@@ -23,4 +23,5 @@ jobs:
       - run: node tools/seo/snippets.js
       - name: Save
         if: always()
-        run: BOT_NAME=seo-robot bash .github/save.sh "seo: snippets $(date -u +%FT%TZ)" reports/seo
+        run: |
+          BOT_NAME=seo-robot bash .github/save.sh "seo: snippets $(date -u +%FT%TZ)" reports/seo
