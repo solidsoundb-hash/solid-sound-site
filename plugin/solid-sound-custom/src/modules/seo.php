@@ -102,3 +102,18 @@ add_filter( 'wp_sitemaps_posts_pre_url_list', function ( $list, $type, $page ) {
 	}
 	return $out;
 }, 10, 3 );
+
+/* 25.11 SEO audit п.8: images with an empty alt that are not decorative — the header logo (Impreza header image, file
+   «Монтажная-область-0_3.png») and the payment icons (pay-visa.svg, pay-mastercard.svg …). Decorative lines and pictures
+   next to their own text keep alt="" on purpose. Off: option ss_seo_alt_off. */
+add_filter( 'wp_get_attachment_image_attributes', function ( $attr, $att ) {
+	if ( ! empty( $attr['alt'] ) || is_admin() || get_option( 'ss_seo_alt_off' ) || ! $att ) return $attr;
+	$f = (string) get_post_meta( $att->ID, '_wp_attached_file', true );
+	$b = strtolower( pathinfo( $f, PATHINFO_FILENAME ) );
+	if ( false !== strpos( $f, 'Монтажная-область-0_3' ) ) $attr['alt'] = 'Solid Sound';
+	elseif ( preg_match( '/^pay-([a-z0-9-]+)$/', $b, $m ) ) {
+		$names = array( 'visa' => 'Visa', 'mastercard' => 'Mastercard', 'paypal' => 'PayPal', 'applepay' => 'Apple Pay', 'apple-pay' => 'Apple Pay', 'googlepay' => 'Google Pay', 'google-pay' => 'Google Pay', 'amex' => 'American Express', 'maestro' => 'Maestro' );
+		$attr['alt'] = isset( $names[ $m[1] ] ) ? $names[ $m[1] ] : ucwords( str_replace( '-', ' ', $m[1] ) );
+	}
+	return $attr;
+}, 20, 2 );

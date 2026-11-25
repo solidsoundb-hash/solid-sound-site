@@ -3439,7 +3439,7 @@ if ( ! defined( 'SS_PD3' ) ) {
 		foreach ( $inside as $x ) echo '<li>' . esc_html( $x ) . '</li>';
 		echo '</ul></div></div>';
 		$ytm = function_exists( 'ss_yt_map' ) ? ss_yt_map() : array();
-		if ( ! empty( $ytm[ $id ] ) ) echo '<div class="ss-inside-video"><h2>' . esc_html( ss_pd2_t( 'inside' ) ) . '</h2><div class="ss-pd-vbox" data-yt="' . esc_attr( $ytm[ $id ] ) . '" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/' . esc_attr( $ytm[ $id ] ) . '/hqdefault.jpg" alt=""><span class="ss-pd-play"></span></div></div>';
+		if ( ! empty( $ytm[ $id ] ) ) echo '<div class="ss-inside-video"><h2>' . esc_html( ss_pd2_t( 'inside' ) ) . '</h2><div class="ss-pd-vbox" data-yt="' . esc_attr( $ytm[ $id ] ) . '" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/' . esc_attr( $ytm[ $id ] ) . '/hqdefault.jpg" alt="' . esc_attr( get_the_title( $id ) . ' – what’s inside, video' ) . '"><span class="ss-pd-play"></span></div></div>';
 		echo '</section>';
 	}, 3 );
 	add_action( 'woocommerce_after_single_product_summary', function () {
