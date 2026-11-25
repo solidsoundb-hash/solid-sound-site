@@ -1,4 +1,4 @@
-# Mobile cart check (25.11, «Тестировщик»): a line in .github/cart-probe.txt → tools/probe/cart.js twice:
+# Mobile cart / checkout check (25.11, «Тестировщик»): a line in .github/cart-probe.txt (with «checkout» → /en/checkout/) → tools/probe/cart.js twice:
 # «before» (the live cart as it is) and «preview» (live cart + tools/probe/cart-inject.json = the new CSS/JS before deploy).
 # Own queue, so other probes do not push it out. Output: branch shots-ab, folder probe-cart/ (before/ and preview/).
 name: Cart probe
@@ -19,12 +19,15 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
+      - name: Which page
+        run: |
+          if tail -1 .github/cart-probe.txt | grep -q checkout; then echo "PAGE=checkout" >> $GITHUB_ENV; echo "F=probe-checkout" >> $GITHUB_ENV; else echo "PAGE=cart" >> $GITHUB_ENV; echo "F=probe-cart" >> $GITHUB_ENV; fi
       - name: Before
-        run: PW_CHANNEL=chrome PROBE_OUT=probe-cart/before node tools/probe/cart.js
+        run: PW_CHANNEL=chrome PROBE_OUT=$F/before node tools/probe/cart.js
       - name: Preview
         if: always()
-        run: PREVIEW=1 PW_CHANNEL=chrome PROBE_OUT=probe-cart/preview node tools/probe/cart.js
+        run: PREVIEW=1 PW_CHANNEL=chrome PROBE_OUT=$F/preview node tools/probe/cart.js
       - name: Save to branch shots-ab
         if: always()
         run: |
-          BOT_NAME=photographer GH_TOKEN=${{ github.token }} bash .github/save-branch.sh shots-ab "probe cart: $(date -u +%FT%TZ)" "probe-cart"
+          BOT_NAME=photographer GH_TOKEN=${{ github.token }} bash .github/save-branch.sh shots-ab "probe $PAGE: $(date -u +%FT%TZ)" "$F"
