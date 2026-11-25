@@ -7,8 +7,7 @@
   "issues": [
    "🟠 обложка не квадратная (562×608)",
    "🟠 обложка меньше 1000 px (562×608)",
-   "🟠 демо короче 1 мин (35 с)",
-   "🟡 нет категории"
+   "🟠 демо короче 1 мин (35 с)"
   ],
   "info": {
    "cover": "562×608, 72 КБ",
@@ -16,6 +15,131 @@
    "text": "550 знаков",
    "cats": "—",
    "price": "4.5 EUR"
+  }
+ },
+ {
+  "id": 341,
+  "name": "Mutualism",
+  "url": "https://solid-sound.net/product/mutualism/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)",
+   "🟠 демо ниже 128 kbps (123)",
+   "🟡 короткое описание (360 знаков)",
+   "🟡 нет тегов"
+  ],
+  "info": {
+   "cover": "800×800, 150 КБ",
+   "demo": "6:05, 123 kbps",
+   "text": "360 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 60,
+  "name": "Protos",
+  "url": "https://solid-sound.net/product/protos/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)",
+   "🟠 демо ниже 128 kbps (118)",
+   "🟡 короткое описание (350 знаков)",
+   "🟡 нет тегов"
+  ],
+  "info": {
+   "cover": "800×800, 232 КБ",
+   "demo": "3:48, 118 kbps",
+   "text": "350 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 338,
+  "name": "Infinity",
+  "url": "https://solid-sound.net/product/infinity/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)",
+   "🟠 демо ниже 128 kbps (126)",
+   "🟡 нет тегов"
+  ],
+  "info": {
+   "cover": "800×800, 232 КБ",
+   "demo": "5:21, 126 kbps",
+   "text": "471 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 340,
+  "name": "Intricate",
+  "url": "https://solid-sound.net/product/intricate/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)",
+   "🟡 короткое описание (343 знаков)",
+   "🟡 нет тегов"
+  ],
+  "info": {
+   "cover": "800×800, 146 КБ",
+   "demo": "7:34, 128 kbps",
+   "text": "343 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 61,
+  "name": "Kratos",
+  "url": "https://solid-sound.net/product/kratos/",
+  "who": "владелец",
+  "issues": [
+   "🟠 обложка меньше 1000 px (800×800)",
+   "🟡 короткое описание (290 знаков)",
+   "🟡 нет тегов"
+  ],
+  "info": {
+   "cover": "800×800, 149 КБ",
+   "demo": "6:46, 128 kbps",
+   "text": "290 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 752,
+  "name": "Pitch",
+  "url": "https://solid-sound.net/product/pitch/",
+  "who": "владелец",
+  "issues": [
+   "🟠 демо ниже 128 kbps (113)",
+   "🟡 короткое описание (329 знаков)"
+  ],
+  "info": {
+   "cover": "1400×1400, 220 КБ",
+   "demo": "7:30, 113 kbps",
+   "text": "329 знаков",
+   "cats": "—",
+   "price": "12.0 EUR"
+  }
+ },
+ {
+  "id": 1541,
+  "name": "Time Goes Fast Documentary Piano",
+  "url": "https://solid-sound.net/product/time-goes-fast-documentary-piano/",
+  "who": "владелец",
+  "issues": [
+   "🟡 короткое описание (371 знаков)"
+  ],
+  "info": {
+   "cover": "1024×1024, 1907 КБ",
+   "demo": "2:49, 128 kbps",
+   "text": "371 знаков",
+   "cats": "—",
+   "price": "15.0 EUR"
   }
  }
 ]
