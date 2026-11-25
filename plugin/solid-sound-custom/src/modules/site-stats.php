@@ -6,6 +6,8 @@
  * sessions, page views, country (from the browser's time zone — no IP lookup), language, source (first page of a
  * session: referrer host or utm_source), top pages, phone / computer. Nothing personal is stored: no IP, no cookie,
  * no user agent; "session" = a flag in sessionStorage (gone when the tab closes). Admins and bots are not counted.
+ * Funnel (25.11, Analyst): add_to_cart / checkout_start / pay_click / pay_error / order — once per session each, in day['e'].
+ * Robots: time zone UTC or HeadlessChrome are not counted.
  * Read: WP admin → Tools → Site stats, or the option `ss_stats` (kept 120 days). Off: option ss_stats_off = 1.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -45,6 +47,18 @@ function ss_stats_hit() {
 	if ( $n > 150 ) wp_die( '', '', array( 'response' => 204 ) ); /* one browser cannot flood the counter */
 	set_transient( $rk, $n + 1, HOUR_IN_SECONDS );
 	$s = function ( $k, $max = 80 ) { return isset( $_POST[ $k ] ) ? mb_substr( sanitize_text_field( wp_unslash( $_POST[ $k ] ) ), 0, $max ) : ''; };
+	/* (25.11, Analyst «воронка») robots: GitHub runners report the time zone UTC — not counted */
+	if ( 'UTC' === $s( 'tz', 60 ) || 'Etc/UTC' === $s( 'tz', 60 ) ) wp_die( '', '', array( 'response' => 204 ) );
+	$ev = $s( 'e', 20 );
+	if ( $ev ) { /* funnel step, once per session per step: add_to_cart → checkout_start → pay_click → pay_error / order */
+		if ( ! in_array( $ev, array( 'add_to_cart', 'checkout_start', 'pay_click', 'pay_error', 'order' ), true ) ) wp_die( '', '', array( 'response' => 204 ) );
+		$day = gmdate( 'Y-m-d' ); $all = get_option( 'ss_stats', array() ); if ( ! is_array( $all ) ) $all = array();
+		if ( ! isset( $all[ $day ] ) ) $all[ $day ] = array( 's' => 0, 'v' => 0, 'c' => array(), 'r' => array(), 'p' => array(), 'm' => array(), 'l' => array() );
+		if ( ! isset( $all[ $day ]['e'] ) || ! is_array( $all[ $day ]['e'] ) ) $all[ $day ]['e'] = array();
+		$all[ $day ]['e'][ $ev ] = ( isset( $all[ $day ]['e'][ $ev ] ) ? $all[ $day ]['e'][ $ev ] : 0 ) + 1;
+		update_option( 'ss_stats', $all, false );
+		wp_die( '', '', array( 'response' => 204 ) );
+	}
 	$path = preg_replace( '~[?#].*$~', '', $s( 'p', 120 ) ); $path = $path ? $path : '/';
 	$new  = '1' === $s( 'n', 1 );
 	$day  = gmdate( 'Y-m-d' );
@@ -73,10 +87,19 @@ add_action( 'wp_footer', function () {
 	if ( is_admin() || get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) ) return;
 	$u = esc_url( admin_url( 'admin-ajax.php' ) );
 	echo '<script>(function(){if(navigator.webdriver||!navigator.sendBeacon)return;function go(){try{var s=sessionStorage,n=s.getItem("ssS")?"0":"1";s.setItem("ssS","1");'
-		. 'var q=new URLSearchParams(location.search),f=new FormData();f.append("action","ss_hit");f.append("p",location.pathname);f.append("n",n);'
-		. 'if(n==="1"){f.append("r",document.referrer||"");f.append("u",q.get("utm_source")||"");f.append("tz",(Intl.DateTimeFormat().resolvedOptions().timeZone)||"");'
+		. 'var q=new URLSearchParams(location.search),f=new FormData();f.append("action","ss_hit");f.append("p",location.pathname);f.append("n",n);f.append("tz",(Intl.DateTimeFormat().resolvedOptions().timeZone)||"");'
+		. 'if(n==="1"){f.append("r",document.referrer||"");f.append("u",q.get("utm_source")||"");'
 		. 'f.append("m",/Mobi|Android|iPhone/.test(navigator.userAgent)?"1":"0");f.append("lg",navigator.language||"")}navigator.sendBeacon("' . $u . '",f)}catch(e){}}'
-		. 'var w=window.requestIdleCallback||function(c){setTimeout(c,1500)};if(document.readyState==="complete")w(go);else addEventListener("load",function(){w(go)})})();</script>';
+		. 'var w=window.requestIdleCallback||function(c){setTimeout(c,1500)};if(document.readyState==="complete")w(go);else addEventListener("load",function(){w(go)});'
+		/* funnel events (25.11): once per session per step; robots (time zone UTC, HeadlessChrome) skipped */
+		. 'var TZ=(Intl.DateTimeFormat().resolvedOptions().timeZone)||"";if(TZ==="UTC"||TZ==="Etc/UTC"||/HeadlessChrome/.test(navigator.userAgent))return;'
+		. 'function ev(e){try{var k="ssE_"+e;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var f=new FormData();f.append("action","ss_hit");f.append("e",e);f.append("tz",TZ);navigator.sendBeacon("' . $u . '",f)}catch(x){}}window.ssEv=ev;'
+		. 'var F=window.fetch;if(F)window.fetch=function(a,o){var r=F.apply(this,arguments);try{var u=typeof a==="string"?a:(a.url||"");if(/cart\/add-item|add_to_cart/.test(u))r.then(function(x){if(x.ok)ev("add_to_cart")},function(){})}catch(x){}return r};'
+		. 'if(window.jQuery){jQuery(document.body).on("added_to_cart",function(){ev("add_to_cart")}).on("checkout_error",function(){ev("pay_error")})}'
+		. 'var b=document.body.className;if(/woocommerce-order-received/.test(b))ev("order");else if(/woocommerce-checkout/.test(b))ev("checkout_start");'
+		. 'document.addEventListener("click",function(x){var t=x.target.closest?x.target.closest("#place_order,.wc-block-components-checkout-place-order-button"):null;if(!t)return;ev("pay_click");'
+		. 'var n=document.querySelector(".wc-block-checkout,form.checkout");if(n&&window.MutationObserver){var m=new MutationObserver(function(){if(n.querySelector(".wc-block-components-notice-banner.is-error,.woocommerce-error")){ev("pay_error");m.disconnect()}});m.observe(n,{childList:true,subtree:true});setTimeout(function(){m.disconnect()},20000)}},true)'
+		. '})();</script>';
 }, 99 );
 
 /* ---------- read: Tools → Site stats ---------- */
@@ -88,6 +111,10 @@ add_action( 'admin_menu', function () {
 		echo '<div class="wrap"><h1>Site stats — last 30 days</h1><p>Our own private counter: no cookies, no IP addresses; admins and bots are not counted. Sessions: <b>' . (int) $S . '</b> · page views: <b>' . (int) $V . '</b></p>';
 		echo '<table class="widefat striped" style="max-width:520px"><thead><tr><th>Day</th><th>Sessions</th><th>Views</th></tr></thead><tbody>';
 		foreach ( $days as $k => $d ) echo '<tr><td>' . esc_html( $k ) . '</td><td>' . (int) $d['s'] . '</td><td>' . (int) $d['v'] . '</td></tr>';
+		echo '</tbody></table>';
+		$fn = array( 'add_to_cart' => 'Added to cart', 'checkout_start' => 'Opened checkout', 'pay_click' => 'Clicked «Place order»', 'pay_error' => 'Payment error', 'order' => 'Order received page' );
+		echo '<h2>Purchase funnel (sessions, each step once per session)</h2><table class="widefat striped" style="max-width:520px"><tbody><tr><td>Sessions</td><td>' . (int) $S . '</td></tr>';
+		foreach ( $fn as $k => $t ) { $n = 0; foreach ( $days as $d ) $n += isset( $d['e'][ $k ] ) ? (int) $d['e'][ $k ] : 0; echo '<tr><td>' . esc_html( $t ) . '</td><td>' . $n . '</td></tr>'; }
 		echo '</tbody></table>';
 		foreach ( array( 'c' => 'Countries (by time zone)', 'r' => 'Sources', 'p' => 'Pages', 'm' => 'Devices', 'l' => 'Browser language' ) as $k => $t ) {
 			arsort( $sum[ $k ] ); echo '<h2>' . esc_html( $t ) . '</h2><table class="widefat striped" style="max-width:520px"><tbody>';
