@@ -59,7 +59,7 @@ add_action( 'wp_footer', function () {
 		$h .= '<a href="' . esc_url( $s[2] ) . '" aria-label="' . esc_attr( $s[0] ) . '" style="color:' . $s[1] . '" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' . esc_attr( $s[3] ) . '"></path></svg></a>';
 	}
 	$h .= '</div><div class="legal"><span>© 2026 Solid Sound</span>';
-	foreach ( array( array( 'Terms of Sale', $S . '/en/terms/' ), array( 'Privacy Policy', $S . '/privacy-policy/' ), array( 'Refund Policy', $S . '/refund_returns/' ), array( 'License Agreement', $S . '/license/' ), array( 'Legal Notice', $S . '/en/legal-notice/' ) ) as $l ) {
+	foreach ( array( array( 'Terms of Sale', $S . '/en/terms/' ), array( 'Privacy Policy', $S . '/privacy-policy/' ), array( 'Refund Policy', $S . '/refund_returns/' ), array( 'License Agreement', $S . '/license/' ), array( 'Legal Notice', $S . '/en/legal-notice/' ), array( 'Cancel an order', $S . '/cancel-order/' ) ) as $l ) {
 		$h .= '<a data-ss-legal="1" href="' . esc_url( $l[1] ) . '">' . esc_html( $l[0] ) . '</a>';
 	}
 	$h .= '<a class="ss-cc-open" role="button" tabindex="0" onclick="var b=document.getElementById(\'ss-cc\');if(b)b.hidden=false">Cookie settings</a>';
