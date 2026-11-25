@@ -53,7 +53,7 @@ if (require.main !== module) { module.exports = { isProduct, isCart, isCheckout,
   const rows = days.map(d => {
     const x = data.days[d]; const o = data.orders[d] || { n: 0, paid: 0, sum: 0 };
     const bots = (x.c || {})['Other: UTC'] || 0;
-    return { d, s: x.s, people: x.s - bots, bots, v: x.v, prod: sumWhere(x.p, isProduct), cart: sumWhere(x.p, isCart), co: sumWhere(x.p, isCheckout), thx: sumWhere(x.p, isThanks), orders: o.n, paid: o.paid, sum: Math.round(o.sum * 100) / 100, phone: (x.m || {}).phone || 0, src: top(x.r, 3), ctry: top(x.c, 3) };
+    return { d, s: x.s, people: x.s - bots, bots, v: x.v, prod: sumWhere(x.p, isProduct), cart: sumWhere(x.p, isCart), co: sumWhere(x.p, isCheckout), thx: sumWhere(x.p, isThanks), orders: o.n, paid: o.paid, sum: Math.round(o.sum * 100) / 100, phone: (x.m || {}).phone || 0, src: top(x.r, 3), ctry: top(x.c, 3), funnelPaths: Object.fromEntries(Object.entries(x.p || {}).filter(([p]) => isCart(p) || isCheckout(p) || isThanks(p))), lang: top(x.l, 4), sessCountry: x.c || {} };
   });
   const T = (k) => rows.slice(0, 7).reduce((n, r) => n + r[k], 0); const P = (k) => rows.slice(7, 14).reduce((n, r) => n + r[k], 0);
   const ch = (k) => { const a = T(k), b = P(k); return b ? `${a} (${a >= b ? '+' : ''}${Math.round((a - b) / b * 100)} % к прошлой неделе)` : `${a}`; };
