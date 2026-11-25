@@ -22,6 +22,7 @@ foreach ($tokens as $t) {
     function ($m) use (&$manifest, &$used, $dir, $min, $line, $slug) {
       [$all, $tag, $attrs, $body] = $m;
       if (strlen($body) < $min) return $all;
+      if (preg_match('/\bdata-ss-inline\b/i', $attrs)) return $all; // must run in <head> before other code: stays inline (no extra blocking file)
       if ($tag === 'script') {
         if (preg_match('/\bsrc\s*=/i', $attrs)) return $all;
         if (preg_match('/\btype\s*=\s*["\']?([^"\'\s>]+)/i', $attrs, $ty) && !preg_match('#javascript|module#i', $ty[1])) return $all;

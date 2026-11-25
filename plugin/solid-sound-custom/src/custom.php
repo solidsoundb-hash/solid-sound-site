@@ -1019,8 +1019,10 @@ if ( ! function_exists( 'ss_trust_block' ) ) {
 if ( ! function_exists( 'ss_consent_head' ) ) {
 	function ss_consent_head() {
 		if ( is_admin() ) return;
+		/* data-ss-inline (25.11, robot «script in <head> without defer»): this must run before the Meta/Woo snippets, so
+		   no defer — it stays inline in the page instead of a separate blocking file */
 		?>
-<script>
+<script data-ss-inline>
 /* Meta Pixel: the fbq queue exists at once (plugin snippets see it and do not load their own copy), but the Meta script
    itself loads ONLY after «Accept all» (22.11.2026, robot «Cookie/GDPR»: with the script loaded early, the two Meta plugins
    still sent /tr after «Reject»). Until then every call just waits in the queue; after Reject nothing is ever sent. */

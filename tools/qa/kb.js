@@ -178,7 +178,9 @@ function collect() {
   f.small = [];
   if (vw < 600) document.querySelectorAll('a[href], button, [role=button], input[type=checkbox], input[type=radio], select').forEach(e => {
     if (!vis(e) || e.closest('p, li p, .woocommerce-product-details__short-description, article p')) return; // links inside text are fine
-    const r = e.getBoundingClientRect(); if (r.width >= 24 && r.height >= 24) return; if (r.width >= 120) return; /* long text links: wide enough to hit */ if (r.width < 4 || r.height < 4) return; if (e.closest('footer, .ssf, .l-footer')) return;
+    const r = e.getBoundingClientRect(); if (r.width >= 24 && r.height >= 24) return;
+    { const a = getComputedStyle(e, '::after'); if (a.content !== 'none' && a.position === 'absolute') { const w = r.width - (parseFloat(a.left) || 0) - (parseFloat(a.right) || 0), h = r.height - (parseFloat(a.top) || 0) - (parseFloat(a.bottom) || 0); if (w >= 24 && h >= 24) return; } } // invisible ::after hit area (slider dots) counts (25.11)
+    { const lb = e.matches('input') && e.closest('label'); if (lb) { const q = lb.getBoundingClientRect(); if (q.width >= 24 && q.height >= 24) return; } } // the whole label is the tap target (25.11) if (r.width >= 120) return; /* long text links: wide enough to hit */ if (r.width < 4 || r.height < 4) return; if (e.closest('footer, .ssf, .l-footer')) return;
     if (r.top > vh * 6) return; f.small.push(desc(e) + ` ${Math.round(r.width)}×${Math.round(r.height)}`);
   });
   // tiny text + contrast (sample)
@@ -190,7 +192,8 @@ function collect() {
   while (walker.nextNode() && n < 1500) {
     n++; const e = walker.currentNode.parentElement; if (!e || !vis(e) || e.closest('#wpadminbar, script, style, noscript, [aria-hidden=true]')) continue;
     const s = getComputedStyle(e); const fs = parseFloat(s.fontSize);
-    if (vw < 600 && fs < 10.5 && f.tiny.length < 6 && !f.tiny.some(x => x.startsWith(desc(e)))) f.tiny.push(desc(e) + ` ${fs}px`);
+    // fs 0 = text swapped for a ::after label (e.g. «+3 more» → «+6 more» 13px) — not tiny text (25.11)
+    if (vw < 600 && fs > 0 && fs < 10.5 && f.tiny.length < 6 && !f.tiny.some(x => x.startsWith(desc(e)))) f.tiny.push(desc(e) + ` ${fs}px`);
     const bg = bgOf(e); if (!bg) continue; const a = lum(s.color), b = lum(bg); if (a == null || b == null) continue;
     const ratio = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); const big = fs >= 18.5 || (fs >= 14 && +s.fontWeight >= 700);
     if (ratio < (big ? 3 : 4.5) - 0.05 && f.lowContrast.length < 6) { const d = desc(e) + ` ${ratio.toFixed(1)}:1`; if (!f.lowContrast.includes(d)) f.lowContrast.push(d); }

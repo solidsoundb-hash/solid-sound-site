@@ -338,7 +338,8 @@ async function audibleNow(page) {
   return b.filter(x => a.some(y => y.src === x.src && y.t < x.t)).map(x => x.src);
 }
 async function waitAudible(page, ms) { const t = Date.now(); let s = []; while (Date.now() - t < ms) { s = await audibleNow(page); if (s.length) break; } return s; }
-const btnState = (h) => h.evaluate(e => [e.getAttribute('aria-label') || '', typeof e.className === 'string' ? e.className.replace(/\s+/g, ' ') : '', e.getAttribute('aria-pressed') || '', ((e.querySelector('svg path') || {}).getAttribute ? e.querySelector('svg path').getAttribute('d') || '' : '').slice(0, 40), (e.innerText || '').slice(0, 20)].join('|')).catch(() => 'gone');
+// aria-pressed: absent and "false" mean the same (25.11: false «stale ⏸» on the services A/B players)
+const btnState = (h) => h.evaluate(e => [e.getAttribute('aria-label') || '', typeof e.className === 'string' ? e.className.replace(/\s+/g, ' ') : '', (e.getAttribute('aria-pressed') === 'true' ? 'true' : ''), ((e.querySelector('svg path') || {}).getAttribute ? e.querySelector('svg path').getAttribute('d') || '' : '').slice(0, 40), (e.innerText || '').slice(0, 20)].join('|')).catch(() => 'gone');
 const btnLabel = (h) => h.evaluate(e => (e.getAttribute('aria-label') || e.title || e.innerText || e.className || '').toString().replace(/\s+/g, ' ').trim().slice(0, 60)).catch(() => '?');
 
 async function testSound(page, url, dev, max) {

@@ -46,7 +46,8 @@ async function run(urls, get, limit) {
     const gap = a.sil.find(([s, e]) => s >= 0.3 && e < a.dur - 0.5 && e - s >= 3);
     if (gap) bugs.push({ ...base, sev: 'major', type: 'ears-gap', sig: 'ears-gap|' + name(u), title: `В превью ${t} провал тишины`, expected: 'Звук без пауз', actual: `Тишина с ${gap[0].toFixed(1)} по ${gap[1].toFixed(1)} с` });
     if (a.mean !== null && a.mean < -32) bugs.push({ ...base, sev: 'minor', type: 'ears-quiet', sig: 'ears-quiet|' + name(u), title: `Превью ${t} слишком тихое`, expected: 'Громкость как у остальных превью (около −14…−20 дБ в среднем)', actual: `Средняя громкость ${a.mean} дБ` });
-    if (a.max !== null && a.max >= -0.05 && a.mean !== null && a.mean > -9) bugs.push({ ...base, sev: 'minor', type: 'ears-clip', sig: 'ears-clip|' + name(u), title: `Превью ${t} может хрипеть (перегруз)`, expected: 'Пики ниже 0 дБ', actual: `Пик ${a.max} дБ при средней громкости ${a.mean} дБ` });
+    // owner 25.11: «наши примеры должны быть самыми громкими — война громкостей»; a 0 dB peak is intended, not a bug. Check off.
+    if (false && a.max !== null && a.max >= -0.05 && a.mean !== null && a.mean > -9) bugs.push({ ...base, sev: 'minor', type: 'ears-clip', sig: 'ears-clip|' + name(u), title: `Превью ${t} может хрипеть (перегруз)`, expected: 'Пики ниже 0 дБ', actual: `Пик ${a.max} дБ при средней громкости ${a.mean} дБ` });
     if (a.dur && a.dur < 10) bugs.push({ ...base, sev: 'minor', type: 'ears-short', sig: 'ears-short|' + name(u), title: `Превью ${t} слишком короткое (${a.dur.toFixed(0)} с)`, expected: 'Превью 20–60 с', actual: `${a.dur.toFixed(1)} с` });
   }
   try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) {}
