@@ -163,8 +163,7 @@ def main():
         if not p.get('is_purchasable'):
             issues.append('🟡 товар нельзя купить (is_purchasable = нет)')
         info['cats'] = ', '.join(c.get('name', '') for c in (p.get('categories') or [])) or '—'
-        if not p.get('categories'):
-            issues.append('🟡 нет категории')
+        # категорию не проверяем: Store API отдаёт [] даже при заполненной (товар 1102, 25.11) — ложная тревога
         if not p.get('tags'):
             issues.append('🟡 нет тегов')
         info['price'] = (str(int(pr.get('price', '0')) / (10 ** pr.get('currency_minor_unit', 2))) + ' ' + pr.get('currency_code', '')) if pr.get('price') else '—'
