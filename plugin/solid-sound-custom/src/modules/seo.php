@@ -117,3 +117,30 @@ add_filter( 'wp_get_attachment_image_attributes', function ( $attr, $att ) {
 	}
 	return $attr;
 }, 20, 2 );
+
+/* 25.11 SEO audit: wiki articles without Article markup (seo bot: /en/wiki/how-much-do-djs-get-paid/ and 2 more).
+   Only on /…/wiki/<article>/ pages whose content has no Article/BlogPosting of its own. Off: option ss_seo_article_off. */
+add_action( 'wp_head', function () {
+	if ( is_admin() || ! is_singular() || get_option( 'ss_seo_article_off' ) ) return;
+	$path = (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '', PHP_URL_PATH );
+	if ( ! preg_match( '#/wiki(?:-[a-z]{2})?/[^/]+/?$#', $path ) ) return;
+	$id = get_queried_object_id(); $c = (string) get_post_field( 'post_content', $id );
+	if ( preg_match( '/"@type"\s*:\s*"(Article|BlogPosting|NewsArticle)"/', $c ) ) return;
+	$home = home_url( '/' );
+	$a = array(
+		'@context' => 'https://schema.org',
+		'@type' => 'Article',
+		'headline' => mb_substr( wp_strip_all_tags( get_the_title( $id ) ), 0, 110 ),
+		'datePublished' => get_post_time( 'c', true, $id ),
+		'dateModified' => get_post_modified_time( 'c', true, $id ),
+		'mainEntityOfPage' => get_permalink( $id ),
+		'author' => array( '@type' => 'Organization', 'name' => 'Solid Sound', 'url' => $home ),
+		'publisher' => array( '@type' => 'Organization', 'name' => 'Solid Sound', 'url' => $home ),
+		'inLanguage' => str_replace( '_', '-', get_locale() ),
+	);
+	$img = get_the_post_thumbnail_url( $id, 'large' );
+	if ( $img ) $a['image'] = $img;
+	$logo = get_site_icon_url( 512 );
+	if ( $logo ) $a['publisher']['logo'] = array( '@type' => 'ImageObject', 'url' => $logo );
+	echo '<script type="application/ld+json">' . wp_json_encode( $a, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}, 6 );
