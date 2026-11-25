@@ -9,12 +9,13 @@
  * System mails (price changes, copy alerts, product reviews) have no visitor Reply-To and are not stored.
  * Robots: GET /wp-json/ss/v1/leads?days=N (admins) — form, date, test flag only; &full=1 adds name, e-mail, text
  * (personal data: never save it into the public repository).
- * Kept 365 days, then deleted. Off: option ss_leads_off = 1.
+ * Post type ss_req («Requests»). NOT ss_lead: that is «Chat questions» in custom.php (kept as is; the REST list shows both).
+ * Requests are kept 365 days, then deleted (only ss_req; chat questions are never touched). Off: option ss_leads_off = 1.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action( 'init', function () {
-	register_post_type( 'ss_lead', array(
+	register_post_type( 'ss_req', array(
 		'labels'          => array( 'name' => 'Requests', 'singular_name' => 'Request', 'menu_name' => 'Requests', 'all_items' => 'All requests', 'edit_item' => 'Request', 'search_items' => 'Search requests', 'not_found' => 'No requests yet' ),
 		'public'          => false, 'publicly_queryable' => false, 'exclude_from_search' => true, 'show_in_rest' => false,
 		'show_ui'         => true, 'show_in_menu' => true, 'menu_position' => 56, 'menu_icon' => 'dashicons-email-alt',
@@ -50,13 +51,14 @@ function ss_leads_form( $subj, $only_known = false ) {
 
 add_filter( 'wp_mail', function ( $m ) {
 	try {
-		if ( get_option( 'ss_leads_off' ) || ! is_array( $m ) || ! post_type_exists( 'ss_lead' ) ) return $m;
+		if ( get_option( 'ss_leads_off' ) || ! is_array( $m ) || ! post_type_exists( 'ss_req' ) ) return $m;
 		$to = $m['to'] ?? ''; $to = is_array( $to ) ? implode( ',', $to ) : (string) $to;
 		$shop = ss_leads_shop_addrs(); $hit = false;
 		foreach ( $shop as $s ) if ( false !== stripos( $to, $s ) ) { $hit = true; break; }
 		$subj = (string) ( $m['subject'] ?? '' );
 		$known = '' !== ss_leads_form( $subj, true ) && ! preg_match( '~^Re:|We received~i', $subj ); /* a known request form (some send to an address written in code) */
 		if ( ! $hit && ! $known ) return $m;
+		if ( preg_match( '~\] Question:~i', $subj ) ) return $m; /* already kept in «Chat questions» (post type ss_lead, custom.php) */
 		$h = $m['headers'] ?? array(); $h = is_array( $h ) ? $h : preg_split( "~\r?\n~", (string) $h );
 		$name = ''; $email = '';
 		foreach ( $h as $line ) {
@@ -72,7 +74,7 @@ add_filter( 'wp_mail', function ( $m ) {
 		$dk = 'ss_lead_' . md5( $subj . $body ); if ( get_transient( $dk ) ) return $m; set_transient( $dk, 1, 120 );
 		$test = (bool) preg_match( '~\bTEST\b|@example\.(com|org|net)~', $subj . ' ' . $name . ' ' . $email . ' ' . mb_substr( $body, 0, 2000 ) );
 		$id = wp_insert_post( array(
-			'post_type' => 'ss_lead', 'post_status' => 'private', 'post_title' => mb_substr( ( $test ? '[TEST] ' : '' ) . $subj, 0, 200 ),
+			'post_type' => 'ss_req', 'post_status' => 'private', 'post_title' => mb_substr( ( $test ? '[TEST] ' : '' ) . $subj, 0, 200 ),
 			'post_content' => mb_substr( $body, 0, 20000 ), 'post_author' => 0,
 		), true );
 		if ( $id && ! is_wp_error( $id ) ) {
@@ -85,22 +87,22 @@ add_filter( 'wp_mail', function ( $m ) {
 }, 999 );
 
 /* admin list: Date · Form · Name · E-mail · Text */
-add_filter( 'manage_ss_lead_posts_columns', function () {
+add_filter( 'manage_ss_req_posts_columns', function () {
 	return array( 'cb' => '<input type="checkbox">', 'title' => 'Subject', 'ss_form' => 'Form', 'ss_name' => 'Name', 'ss_email' => 'E-mail', 'ss_text' => 'Text', 'date' => 'Date' );
 } );
-add_action( 'manage_ss_lead_posts_custom_column', function ( $c, $id ) {
+add_action( 'manage_ss_req_posts_custom_column', function ( $c, $id ) {
 	if ( 'ss_form' === $c ) echo esc_html( get_post_meta( $id, '_ss_form', true ) ) . ( get_post_meta( $id, '_ss_test', true ) ? ' <b style="color:#b45309">TEST</b>' : '' );
 	elseif ( 'ss_name' === $c ) echo esc_html( get_post_meta( $id, '_ss_name', true ) );
 	elseif ( 'ss_email' === $c ) { $e = get_post_meta( $id, '_ss_email', true ); if ( $e ) echo '<a href="mailto:' . esc_attr( $e ) . '">' . esc_html( $e ) . '</a>'; }
 	elseif ( 'ss_text' === $c ) echo esc_html( wp_trim_words( get_post_field( 'post_content', $id ), 30 ) );
 }, 10, 2 );
-add_action( 'add_meta_boxes_ss_lead', function () {
-	add_meta_box( 'ss_lead_body', 'Request', function ( $p ) {
+add_action( 'add_meta_boxes_ss_req', function () {
+	add_meta_box( 'ss_req_body', 'Request', function ( $p ) {
 		$e = get_post_meta( $p->ID, '_ss_email', true );
 		echo '<p><b>' . esc_html( get_post_meta( $p->ID, '_ss_form', true ) ) . '</b> · ' . esc_html( get_the_date( 'Y-m-d H:i', $p ) ) . ' · ' . esc_html( get_post_meta( $p->ID, '_ss_name', true ) )
 			. ( $e ? ' · <a href="mailto:' . esc_attr( $e ) . '?subject=' . rawurlencode( 'Re: ' . $p->post_title ) . '">' . esc_html( $e ) . '</a>' : '' ) . '</p>'
 			. '<pre style="white-space:pre-wrap;font:13px/1.5 monospace;background:#f6f7f7;padding:12px;max-height:600px;overflow:auto">' . esc_html( $p->post_content ) . '</pre>';
-	}, 'ss_lead', 'normal', 'high' );
+	}, 'ss_req', 'normal', 'high' );
 } );
 
 /* robots: /wp-json/ss/v1/leads?days=N[&full=1] (admins only) */
@@ -109,23 +111,24 @@ add_action( 'rest_api_init', function () {
 		'methods' => 'GET', 'permission_callback' => function () { return current_user_can( 'manage_options' ); },
 		'callback' => function ( $req ) {
 			$n = max( 1, min( 365, (int) $req->get_param( 'days' ) ?: 7 ) ); $full = (bool) $req->get_param( 'full' );
-			$q = get_posts( array( 'post_type' => 'ss_lead', 'post_status' => 'any', 'numberposts' => 200, 'orderby' => 'date', 'order' => 'DESC',
+			$q = get_posts( array( 'post_type' => array( 'ss_req', 'ss_lead' ), 'post_status' => 'any', 'numberposts' => 200, 'orderby' => 'date', 'order' => 'DESC',
 				'date_query' => array( array( 'after' => gmdate( 'Y-m-d H:i:s', time() - $n * DAY_IN_SECONDS ), 'column' => 'post_date_gmt' ) ) ) );
 			$out = array();
 			foreach ( $q as $p ) {
-				$r = array( 'id' => $p->ID, 'date' => get_post_time( 'c', true, $p ), 'form' => get_post_meta( $p->ID, '_ss_form', true ),
-					'test' => (bool) get_post_meta( $p->ID, '_ss_test', true ), 'has_email' => (bool) get_post_meta( $p->ID, '_ss_email', true ) );
-				if ( $full ) $r += array( 'subject' => $p->post_title, 'name' => get_post_meta( $p->ID, '_ss_name', true ), 'email' => get_post_meta( $p->ID, '_ss_email', true ), 'text' => $p->post_content );
+				$cq = 'ss_lead' === $p->post_type; /* «Chat questions» (custom.php): meta ss_email / ss_name */
+				$r = array( 'id' => $p->ID, 'date' => get_post_time( 'c', true, $p ), 'form' => $cq ? 'Chat question' : get_post_meta( $p->ID, '_ss_form', true ),
+					'test' => (bool) get_post_meta( $p->ID, '_ss_test', true ), 'has_email' => (bool) get_post_meta( $p->ID, $cq ? 'ss_email' : '_ss_email', true ), 'list' => $cq ? 'Chat questions' : 'Requests' );
+				if ( $full ) $r += array( 'subject' => $p->post_title, 'name' => get_post_meta( $p->ID, $cq ? 'ss_name' : '_ss_name', true ), 'email' => get_post_meta( $p->ID, $cq ? 'ss_email' : '_ss_email', true ), 'text' => $p->post_content );
 				$out[] = $r;
 			}
-			return array( 'days' => $n, 'count' => count( $out ), 'admin' => admin_url( 'edit.php?post_type=ss_lead' ), 'leads' => $out );
+			return array( 'days' => $n, 'count' => count( $out ), 'admin' => admin_url( 'edit.php?post_type=ss_req' ), 'admin_chat' => admin_url( 'edit.php?post_type=ss_lead' ), 'leads' => $out );
 		},
 	) );
 } );
 
 /* keep 365 days */
 add_action( 'ss_leads_gc', function () {
-	foreach ( get_posts( array( 'post_type' => 'ss_lead', 'post_status' => 'any', 'numberposts' => 100, 'fields' => 'ids',
+	foreach ( get_posts( array( 'post_type' => 'ss_req', 'post_status' => 'any', 'numberposts' => 100, 'fields' => 'ids',
 		'date_query' => array( array( 'before' => '365 days ago' ) ) ) ) as $id ) wp_delete_post( $id, true );
 } );
 add_action( 'init', function () { if ( ! wp_next_scheduled( 'ss_leads_gc' ) ) wp_schedule_event( time() + 3600, 'daily', 'ss_leads_gc' ); } );
