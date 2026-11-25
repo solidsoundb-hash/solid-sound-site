@@ -1,0 +1,9 @@
+a31: feedback consent box есть; text: Send me free packs, new releases and offers (max 2 emails / month). Unsubscribe anytime.
+a31: box 350×38
+a31: feedback sent → 200 {"success":true,"data":{"sid":"9a5cac217e0a230af63dca2a44cb2847","i":1}}
+a31: /free/ sent → 200 {"success":true,"data":{"m":"Done! Unlocking your downloads\u2026"}}
+a31: JS errors: 0
+pc: feedback consent box есть; text: Send me free packs, new releases and offers (max 2 emails / month). Unsubscribe anytime.
+pc: box 610×24
+pc: JS errors: 0
+emails: qa-fb-202611251044@example.com, qa-free-202611251044@example.com; campaign qa_202611251044
