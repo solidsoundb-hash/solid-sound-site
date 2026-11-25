@@ -1,0 +1,15 @@
+{
+ "updated": "2026-11-25T10:57:24.026Z",
+ "hours": 24,
+ "orders": [],
+ "funnel": {
+  "day": "2026-11-25",
+  "product": 7,
+  "cart": 5,
+  "checkout": 0,
+  "thanks": 0,
+  "orders": 0
+ },
+ "forum": [],
+ "errors": []
+}
