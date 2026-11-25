@@ -1,5 +1,5 @@
 {
- "date": "2026-11-25 10:35",
+ "date": "2026-11-25 10:43",
  "pages": {
   "/en/": {
    "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
@@ -8,38 +8,38 @@
    "brand": ""
   },
   "/ua/": {
-   "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
-   "desc": "Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.",
+   "title": "Solid Sound — шаблони Ableton, пресети, зведення онлайн",
+   "desc": "Онлайн-студія зведення й мастерингу та магазин: шаблони Ableton Live без роялті, пресети Serum і музика для відео. Зведення від 69 €.",
    "h1": "Перетворіть свої ідеї на Solid Sound",
    "brand": ""
   },
   "/de/": {
-   "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
-   "desc": "Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.",
+   "title": "Solid Sound — Ableton Vorlagen, Presets & Mixing Studio",
+   "desc": "Online Mixing & Mastering Studio und Marktplatz: lizenzfreie Ableton Live Vorlagen, Serum Presets und Musik für Videos. Mixing ab 69 €, Gratis-Feedback.",
    "h1": "Mach aus deinen Ideen Solid Sound",
    "brand": ""
   },
   "/fr/": {
-   "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
-   "desc": "Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.",
+   "title": "Solid Sound — Templates Ableton, presets & studio de mixage",
+   "desc": "Studio de mixage et mastering en ligne et boutique : templates Ableton Live libres de droits, presets Serum et musique pour vidéo. Mixage dès 69 €.",
    "h1": "Transforme tes idées en Solid Sound",
    "brand": ""
   },
   "/pt/": {
-   "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
-   "desc": "Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.",
+   "title": "Solid Sound — Templates Ableton, presets e mistura online",
+   "desc": "Estúdio de mistura e masterização online e loja: templates Ableton Live livres de royalties, presets Serum e música para vídeo. Mistura desde 69 €.",
    "h1": "Transforme suas ideias em Solid Sound",
    "brand": ""
   },
   "/es/": {
-   "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
-   "desc": "Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.",
+   "title": "Solid Sound — Plantillas Ableton, presets y mezcla online",
+   "desc": "Estudio de mezcla y masterización online y tienda: plantillas de Ableton Live sin royalties, presets de Serum y música para vídeo. Mezcla desde 69 €.",
    "h1": "Convierte tus ideas en Solid Sound",
    "brand": ""
   },
   "/it/": {
-   "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
-   "desc": "Online mixing & mastering studio and marketplace: royalty-free Ableton Live templates, Serum presets and music for video. Mixing from €69, free track feedback.",
+   "title": "Solid Sound — Template Ableton, preset e mix online",
+   "desc": "Studio di mix e mastering online e negozio: template Ableton Live royalty-free, preset per Serum e musica per video. Mix da 69 €, feedback gratuito.",
    "h1": "Trasforma le tue idee in Solid Sound",
    "brand": ""
   },
@@ -50,14 +50,14 @@
    "brand": ""
   },
   "/de/all-products/": {
-   "title": "Ableton Templates, Presets, Mixing & Mastering | Solid Sound",
-   "desc": "Lizenzfreie Ableton Live Templates, Serum-Presets und Musik für Videos. Lerne an Profi-Projekten oder buche Online-Mixing und -Mastering.",
+   "title": "Solid Sound — Ableton Vorlagen, Presets & Mixing Studio",
+   "desc": "Online Mixing & Mastering Studio und Marktplatz: lizenzfreie Ableton Live Vorlagen, Serum Presets und Musik für Videos. Mixing ab 69 €, Gratis-Feedback.",
    "h1": "Mach aus deinen Ideen Solid Sound | Alle Produkte",
    "brand": ""
   },
   "/fr/all-products/": {
-   "title": "Templates Ableton, presets, mixage & mastering | Solid Sound",
-   "desc": "Templates Ableton Live libres de droits, presets Serum et musique pour vidéos. Apprenez avec des projets pro ou commandez un mixage et mastering en ligne.",
+   "title": "Solid Sound — Templates Ableton, presets & studio de mixage",
+   "desc": "Studio de mixage et mastering en ligne et boutique : templates Ableton Live libres de droits, presets Serum et musique pour vidéo. Mixage dès 69 €.",
    "h1": "Transforme tes idées en Solid Sound | Tous les produits",
    "brand": ""
   },
@@ -110,7 +110,7 @@
    "brand": "Solid Sound"
   },
   "/de/product/infinity/": {
-   "title": "Infinity – Techno Ableton Live Template | Solid Sound",
+   "title": "Infinity – Techno Ableton Live Vorlage | Solid Sound",
    "desc": "Infinity ist ein vollständiges Ableton-Live-11-Template, produziert von Grenør. Der treibende Track mit 130 BPM in a-Moll ist ausschließlich mit nativen…",
    "h1": "Infinity",
    "brand": "Solid Sound"
@@ -128,14 +128,14 @@
    "brand": "Solid Sound"
   },
   "/es/product/infinity/": {
-   "title": "Infinity – Techno Ableton Live Template | Solid Sound",
-   "desc": "Infinity is a full-length Ableton Live 11 template produced by Grenør. This driving 130 BPM track in A minor is built with native Ableton plugins only, so…",
+   "title": "Infinity – Techno Plantilla Ableton Live | Solid Sound",
+   "desc": "Infinity: plantilla de Ableton Live de Techno, proyecto completo mezclado y masterizado con plugins nativos. Escucha la demo, descarga inmediata, sin ro…",
    "h1": "Infinity",
    "brand": "Solid Sound"
   },
   "/it/product/infinity/": {
-   "title": "Infinity – Techno Ableton Live Template | Solid Sound",
-   "desc": "Infinity is a full-length Ableton Live 11 template produced by Grenør. This driving 130 BPM track in A minor is built with native Ableton plugins only, so…",
+   "title": "Infinity – Techno Template Ableton Live | Solid Sound",
+   "desc": "Infinity: template Ableton Live Techno, progetto completo mixato e masterizzato con plugin nativi. Ascolta la demo, download immediato, royalty-free.",
    "h1": "Infinity",
    "brand": "Solid Sound"
   },
@@ -152,7 +152,7 @@
    "brand": "Solid Sound"
   },
   "/de/product/pitch/": {
-   "title": "Pitch – Techno Ableton Live Template | Solid Sound",
+   "title": "Pitch – Techno Ableton Live Vorlage | Solid Sound",
    "desc": "Pitch ist ein Techno-Template, inspiriert vom legendären Dino Maggiorana. Lerne damit professionelle Techniken und Tricks, die komplett mit nativen Able…",
    "h1": "Pitch",
    "brand": "Solid Sound"
@@ -170,14 +170,14 @@
    "brand": "Solid Sound"
   },
   "/es/product/pitch/": {
-   "title": "Pitch – Techno Ableton Live Template | Solid Sound",
-   "desc": "Pitch is a techno template inspired by the legendary Dino Maggiorana. Use it to learn professional techniques and tricks built entirely with native…",
+   "title": "Pitch – Techno Plantilla Ableton Live | Solid Sound",
+   "desc": "Pitch: plantilla de Ableton Live de Techno, proyecto completo mezclado y masterizado con plugins nativos. Escucha la demo, descarga inmediata, sin royal…",
    "h1": "Pitch",
    "brand": "Solid Sound"
   },
   "/it/product/pitch/": {
-   "title": "Pitch – Techno Ableton Live Template | Solid Sound",
-   "desc": "Pitch is a techno template inspired by the legendary Dino Maggiorana. Use it to learn professional techniques and tricks built entirely with native…",
+   "title": "Pitch – Techno Template Ableton Live | Solid Sound",
+   "desc": "Pitch: template Ableton Live Techno, progetto completo mixato e masterizzato con plugin nativi. Ascolta la demo, download immediato, royalty-free.",
    "h1": "Pitch",
    "brand": "Solid Sound"
   },
@@ -194,7 +194,7 @@
    "brand": "Solid Sound"
   },
   "/de/product/kratos/": {
-   "title": "Kratos – Techno Ableton Live Template | Solid Sound",
+   "title": "Kratos – Techno Ableton Live Vorlage | Solid Sound",
    "desc": "Kratos ist ein vollständiges Dark-Techno-Template für Ableton Live 10, produziert von Grenør. Komplett mit nativen Ableton-Plugins gebaut und leicht anp…",
    "h1": "Kratos",
    "brand": "Solid Sound"
@@ -212,18 +212,18 @@
    "brand": "Solid Sound"
   },
   "/es/product/kratos/": {
-   "title": "Kratos – Techno Ableton Live Template | Solid Sound",
-   "desc": "Kratos is a full-length dark techno template for Ableton Live 10, produced by Grenør. Built with native Ableton plugins only, it is easy to customize…",
+   "title": "Kratos – Techno Plantilla Ableton Live | Solid Sound",
+   "desc": "Kratos: plantilla de Ableton Live de Techno, proyecto completo mezclado y masterizado con plugins nativos. Escucha la demo, descarga inmediata, sin roya…",
    "h1": "Kratos",
    "brand": "Solid Sound"
   },
   "/it/product/kratos/": {
-   "title": "Kratos – Techno Ableton Live Template | Solid Sound",
-   "desc": "Kratos is a full-length dark techno template for Ableton Live 10, produced by Grenør. Built with native Ableton plugins only, it is easy to customize…",
+   "title": "Kratos – Techno Template Ableton Live | Solid Sound",
+   "desc": "Kratos: template Ableton Live Techno, progetto completo mixato e masterizzato con plugin nativi. Ascolta la demo, download immediato, royalty-free.",
    "h1": "Kratos",
    "brand": "Solid Sound"
   }
  },
- "runs": 2,
- "exam": "Экзамен: 8/8 ✅"
+ "runs": 3,
+ "exam": "Экзамен: 7/8 — ошибки: /es/product/pitch/ «title как в EN» не найдено"
 }
