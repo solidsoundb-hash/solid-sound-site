@@ -1,0 +1,26 @@
+# SEO weekly (role «SEO», 25.11.2026): snippets of the key selling pages in every language + what changed + exam.
+# Run: a line in .github/seo.txt, or by hand. Weekly: Monday 04:37 UTC. Report: reports/seo/snippets.md. Read-only.
+name: SEO weekly
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 4 * * 1"
+  push:
+    branches: [main]
+    paths: [".github/seo.txt"]
+permissions:
+  contents: write
+concurrency: { group: seo-weekly, cancel-in-progress: false }
+jobs:
+  snippets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node tools/seo/snippets.js
+      - name: Save
+        if: always()
+        run: BOT_NAME=seo-robot bash .github/save.sh "seo: snippets $(date -u +%FT%TZ)" reports/seo
