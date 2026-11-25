@@ -1,0 +1,13 @@
+{
+ "_": "Экзамен робота сниппетов (docs/team/bots.md). Правда сверена вручную 25.11 после выкладки. flag — кусок текста замечания; expect — должно ли оно быть.",
+ "items": [
+  { "path": "/de/services-prices/", "flag": "title как в EN", "expect": false },
+  { "path": "/de/services-prices/", "flag": "description как в EN", "expect": false },
+  { "path": "/en/all-products/", "flag": "H1: 2", "expect": true },
+  { "path": "/es/product/pitch/", "flag": "title как в EN", "expect": true },
+  { "path": "/ua/product/infinity/", "flag": "title как в EN", "expect": false },
+  { "path": "/product/pitch/", "flag": "нет brand", "expect": false },
+  { "path": "/product/pitch/", "flag": "нет цены", "expect": false },
+  { "path": "/en/services-prices/", "flag": "description 193", "expect": true }
+ ]
+}
