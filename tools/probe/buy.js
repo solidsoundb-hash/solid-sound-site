@@ -30,7 +30,7 @@ const V = {}; const ok = (dev, k, v, what) => { V[dev + ' · ' + what] = !!v; };
     const price = await p.$eval('.summary .price, .product .price', e => e.innerText.replace(/\s+/g, ' ').trim()).catch(() => '—');
     L('  цена на товаре:', price);
     L('  кнопки play:', await p.evaluate(() => [...document.querySelectorAll('button, [role=button]')].filter(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]')).slice(0, 4).map(e => (e.getAttribute('aria-label') || '') + ' .' + String(e.className).slice(0, 40))));
-    const playBtn = (await p.$('.ssp-play:visible, .ssp-b.ssp-play')) || await p.evaluateHandle(() => [...document.querySelectorAll('button, [role=button]')].find(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]') && e.getBoundingClientRect().height > 0) || null).then(h => h.asElement());
+    const playBtn = (await p.$('.ssw-btn:visible, .summary button[aria-label^="Play" i]:visible')) || /* (25.11) the product's own ▶ — not the empty bottom player */ await p.evaluateHandle(() => [...document.querySelectorAll('button, [role=button]')].find(e => /play/i.test((e.getAttribute('aria-label') || '') + ' ' + e.className) && !e.closest('[class*="yt"], [class*="youtube"]') && e.getBoundingClientRect().height > 0) || null).then(h => h.asElement());
     if (playBtn) {
       await playBtn.click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(3500);
       const playing = await p.evaluate(() => [...document.querySelectorAll('audio,video'), ...window.__media].some(a => !a.paused && a.currentTime > 0.2));
