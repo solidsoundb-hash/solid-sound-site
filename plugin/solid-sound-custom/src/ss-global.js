@@ -408,7 +408,11 @@ function ssgAI(){
   var cache=null, panel=null, aud=null, micOn=false, micMsg='', aiOn=true;
   try{ aiOn=localStorage.getItem('ssAiOn')!=='0'; }catch(x){}
   window.ssAIon=function(){ return aiOn; };
-  function phText(){
+  /* 25.11 «Копирайтер»: /de/ /fr/ /es/ — through the page dictionary (modules/i18n-pages.php → window.ssVPT); the translator
+     itself cannot do it: paint() would put the English text back on every DOM change */
+  function T(x){ return window.ssVPT ? window.ssVPT(x) : x; }
+  function phText(){ return T(phEn()); }
+  function phEn(){
     var m=innerWidth<761;
     if(micOn) return m ? 'Speak now…' : 'Listening… speak now (tap the mic again to stop)';
     if(micMsg) return micMsg;
@@ -421,9 +425,9 @@ function ssgAI(){
     if(inp){ var p=phText(); if(inp.placeholder!==p) inp.placeholder=p; }
     /* 16.11: write only on real change — rewriting the same value fed ssOnDom ~8×/s on every page */
     if(chip){
-      sTx(chip, aiOn ? 'AI' : 'AI off');
+      sTx(chip, aiOn ? 'AI' : T('AI off'));
       sA(chip,'aria-pressed', aiOn ? 'true' : 'false');
-      sA(chip,'title', aiOn ? 'AI search is on (tap to turn off)' : 'AI search is off (tap to turn on)');
+      sA(chip,'title', T(aiOn ? 'AI search is on (tap to turn off)' : 'AI search is off (tap to turn on)'));
       setSt(chip,'background', aiOn ? '#F59E0B' : 'transparent'); setSt(chip,'color', aiOn ? '#111111' : '#94A3B8');
       setSt(chip,'border', aiOn ? '1px solid #F59E0B' : '1px solid rgba(148,163,184,0.45)');
     }

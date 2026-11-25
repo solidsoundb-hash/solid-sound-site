@@ -140,6 +140,7 @@ add_action( 'wp_footer', function () {
 <script id="ss-vp-js">window.ssVPL=<?php echo wp_json_encode( ss_vp_langs() ); ?>;(function(){var D=<?php echo wp_json_encode( $js, JSON_UNESCAPED_UNICODE ); ?>,SK={SCRIPT:1,STYLE:1,TEXTAREA:1,NOSCRIPT:1,CODE:1},A=['placeholder','aria-label','title'];
 var P=[];Object.keys(D).forEach(function(k){if(k.indexOf('@prefix:')===0)P.push([k.slice(8),D[k],1]);else if(k.indexOf('@start:')===0)P.push([k.slice(7),D[k],0])});
 function f(k){if(D[k])return D[k];for(var i=0;i<P.length;i++)if(k.indexOf(P[i][0])===0&&(!P[i][2]||/\d/.test(k.slice(P[i][0].length))))return P[i][1]+k.slice(P[i][0].length);return ''}
+window.ssVPT=function(k){return f(k)||k};
 function t(n){var p=n.parentNode;if(!p||SK[p.nodeName])return;var v=n.nodeValue,k=v.replace(/\s+/g,' ').trim(),r=k&&f(k);if(r&&r!==k)n.nodeValue=v.replace(v.trim(),r)}
 function at(e){for(var i=0;i<A.length;i++){var x=e.getAttribute(A[i]);if(x){x=x.trim();if(D[x]&&D[x]!==x)e.setAttribute(A[i],D[x])}}if(e.tagName==='INPUT'&&(e.type==='submit'||e.type==='button')&&D[e.value]&&D[e.value]!==e.value)e.value=D[e.value]}
 function walk(r){if(!r)return;if(r.nodeType===3){t(r);return}if(r.nodeType!==1||SK[r.nodeName])return;var w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode())t(n);at(r);[].forEach.call(r.querySelectorAll('[placeholder],[aria-label],[title],input[type=submit],input[type=button]'),at)}
