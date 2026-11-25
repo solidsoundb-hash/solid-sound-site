@@ -1,0 +1,54 @@
+[
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Ошибки в коде страницы",
+  "detail": "g is not defined",
+  "shot": "02_-en-store-manager-ss-add-product-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-products/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: the server responded with a status of 503 ()",
+  "shot": "03_-en-store-manager-ss-products-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-reviews/",
+  "what": "Ошибки в коде страницы",
+  "detail": "Failed to load resource: the server responded with a status of 502 ()",
+  "shot": "06_-en-store-manager-ss-reviews-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-reviews/",
+  "what": "Файлы/запросы не загрузились",
+  "detail": "502 /wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js,qver=11.2.1.pagespeed.ce.c0IZNLaIBg.js | 502 /wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js.pagespeed.ce.IBielztEI4.js",
+  "shot": "06_-en-store-manager-ss-reviews-.jpg"
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Templates: нет шага DAW",
+  "detail": ""
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Reconstructed Templates: нет шага DAW",
+  "detail": ""
+ },
+ {
+  "lvl": "🟠",
+  "page": "/en/store-manager/ss-add-product/",
+  "what": "Ошибки в коде при выборе формата/DAW",
+  "detail": "g is not defined"
+ },
+ {
+  "lvl": "🟡",
+  "page": "/en/store-manager/ss-products/",
+  "what": "Хостинг ответил 503 (перегружен)",
+  "detail": "503 /en/store-manager/ss-add-product/ | 503 /en/store-manager/"
+ }
+]
