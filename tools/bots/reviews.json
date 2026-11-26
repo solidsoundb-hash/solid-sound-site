@@ -1,0 +1,17 @@
+{
+ "step": 1,
+ "pauseMs": 4000,
+ "maxRequests": 40,
+ "shops": [
+  { "name": "Scraps Audio", "domain": "scrapsaudio.com", "type": "shopify", "products": 8 }
+ ],
+ "themes": {
+  "звук/качество": ["sound", "quality", "punch", "mixdown", "mix ", "master", "professional", "fire", "banger"],
+  "учит/понятно": ["learn", "learned", "tutorial", "video", "walkthrough", "explain", "understand", "workflow", "study", "insight"],
+  "цена/выгода": ["price", "value", "worth", "cheap", "expensive", "money", "deal", "discount"],
+  "быстро/готовый трек": ["finish", "finished", "fast", "quick", "hour", "time", "release", "starting point", "inspiration"],
+  "файлы/версия/проблемы": ["missing", "version", "crash", "plugin", "vst", "third party", "download", "corrupt", "error", "not work", "doesn't work", "refund"],
+  "поддержка": ["support", "customer service", "replied", "response", "helpful team"],
+  "midi/stems": ["midi", "stems", "samples", "presets", "serum"]
+ }
+}
