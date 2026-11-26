@@ -29,6 +29,7 @@ const ME = {
   ua: 'та і й що як для це ви ваш ваша на з до від не але або ще все ми наш',
 };
 const words = s => (s.toLowerCase().match(/\p{L}+/gu) || []);
+const notText = t => /^(https?:\/\/|www\.)\S+$|^\S+@\S+\.\w+$/i.test(t.trim()); /* a link or an email address is not copy */
 function isEnglish(text, lang) {
   const w = words(text); if (w.length < 3) return false;
   if (lang === 'ua' && /[а-яіїєґ]/i.test(text)) return false;
@@ -44,7 +45,7 @@ function sameAsEn(text, lang, enSet) {
   if (/^\d+\.\s+\p{L}/u.test(text)) return true;
   return /(^|[\s(])\p{Ll}{4,}/u.test(text);
 }
-const untr = (t, lang, enSet) => isEnglish(t, lang) || sameAsEn(t, lang, enSet);
+const untr = (t, lang, enSet) => !notText(t) && (isEnglish(t, lang) || sameAsEn(t, lang, enSet));
 
 if (process.argv.includes('--exam')) {
   const ex = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/bots/untranslated/exam.json'), 'utf8'));

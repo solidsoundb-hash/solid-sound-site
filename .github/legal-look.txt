@@ -3,3 +3,4 @@ after /en/terms/,/en/license/,/en/creator-terms/,/en/refund_returns/
 before2 /cancel-order/,/en/terms/,/en/refund_returns/
 after2 /cancel-order/,/en/terms/,/en/refund_returns/,/de/terms/,/fr/refund_returns/
 after3 /cancel-order/,/en/refund_returns/,/en/terms/,/es/terms/
+copy-before /de/creator-terms/,/fr/creator-terms/,/es/creator-terms/,/de/license/,/fr/license/,/es/license/

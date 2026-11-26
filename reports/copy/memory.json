@@ -1,4 +1,11 @@
 {
  "about": "Память робота непереведённых строк (tools/copy/untranslated.js). noise — строки, которые английскими остаются нарочно (бренды, названия товаров, цитаты). Добавлять после каждого прогона, если строка — ложная тревога.",
- "noise": []
+ "noise": [
+  "It is very good. The kick is very good.",
+  "I’ve had time to listen to it in the car and now in the studio. It’s just perfect. It’s exactly as I wanted it.",
+  "Just listened to the radio edit and it is perfect. Good job. I have just signed the last track you worked on. There is more job coming."
+ ],
+ "why": {
+  "отзывы клиентов": "настоящие цитаты на английском — не переводим (26.11)"
+ }
 }
