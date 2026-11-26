@@ -1,4 +1,4 @@
-# Поиск клиентов — 2026-11-26 (ступень 2)
+# Поиск клиентов — 2026-11-26 (ступень 3)
 
 _Робот «Поиск клиентов» (Аналитик). Портрет клиента — `docs/customer-avatar.md`. Робот только читает; отвечать вручную, сначала польза, без спама._
 
@@ -18,19 +18,20 @@ _что делать и продавать: шаблоны, пресеты, сэ
 - сегодня нет
 
 ## 🎵 Жанры в свежих постах
-house 2
+- мало данных
 
 ## Источники
-- Stack Exchange — Audio-Video Production: ок, новых 1, по делу 0
+- Stack Exchange — Audio-Video Production: ок, новых 0, по делу 0
 - Stack Exchange — Music (production tags): ок, новых 0, по делу 0
 - Mastodon #musicproduction: ок, новых 0, по делу 0
 - Mastodon #techno: ок, новых 0, по делу 0
-- Mastodon #ableton: ок, новых 19, по делу 0
-- Mastodon #mixing: ок, новых 2, по делу 0
+- Mastodon #ableton: ок, новых 0, по делу 0
+- Mastodon #mixing: ок, новых 0, по делу 0
 - Mastodon #edmproduction: ок, новых 0, по делу 0
-- Lemmy «mastering engineer»: ок, новых 1, по делу 0
+- Lemmy «mastering engineer»: ок, новых 0, по делу 0
 - Lemmy «mixing feedback»: ок, новых 0, по делу 0
 - Lemmy «ableton template»: ок, новых 0, по делу 0
 - Lemmy «techno track»: ок, новых 0, по делу 0
+- ⏸ ждут ключ: Reddit (секреты REDDIT_ID и REDDIT_SECRET — бесплатно, reddit.com/prefs/apps → «script»); Brave Search (секрет BRAVE_KEY — бесплатно, 2000 запросов в месяц; тот же ключ ждёт робот Intel)
 
-_Всего за все прогоны: ищут услугу 1, боли 13, товары 1; прогонов 3._
+_Всего за все прогоны: ищут услугу 1, боли 13, товары 1; прогонов 4._
