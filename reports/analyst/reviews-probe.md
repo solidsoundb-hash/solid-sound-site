@@ -1,4 +1,4 @@
-# Отзывы покупателей конкурентов — 2026-11-26 06:51 UTC (probe)
+# Отзывы покупателей конкурентов — 2026-11-26 06:52 UTC (probe)
 
 Только публичные страницы товаров, без имён покупателей — только суть отзыва и темы.
 
@@ -29,4 +29,11 @@ Loox: страница отзывов → ❌ robots.txt запрещает, 0 �
 | 🔥 Running | $40 | ✅ | judgeme, loox, okendo, yotpo | 0 | 5 ★ / 5 |
 | 🔥 Ringtones EDM | $9.99 | ✅ | judgeme, loox, okendo, yotpo | 0 | 5 ★ / 3 |
 
-_Запросов: 9, пауза 4000 мс на сайт._
+**Другие публичные страницы отзывов:**
+
+- https://scrapsaudio.com/pages/reviews → ❌ 404, отзывов найдено: 0
+- https://scrapsaudio.com/pages/testimonials → ❌ 404, отзывов найдено: 0
+- https://www.trustpilot.com/review/scrapsaudio.com → ❌ robots.txt запрещает, отзывов найдено: 0
+- https://www.trustpilot.com/review/www.scrapsaudio.com → ❌ robots.txt запрещает, отзывов найдено: 0
+
+_Запросов: 11, пауза 4000 мс на сайт._
