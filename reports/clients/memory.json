@@ -162,83 +162,106 @@
   "lm-https://lemmy.dbzer0.com/post/78617267": 1795670556253,
   "lm-https://news.abolish.capital/post/93761": 1795670556253,
   "lm-https://lemmy.sdf.org/post/62024644": 1795670556253,
-  "lm-https://lemmy.sdf.org/post/62023617": 1795670556253
+  "lm-https://lemmy.sdf.org/post/62023617": 1795670556253,
+  "se-avp-40372": 1795670629931,
+  "md-117596305959389698": 1795670638432,
+  "md-117594035626225371": 1795670638433,
+  "md-117592751151234061": 1795670638433,
+  "md-117592366811503454": 1795670638434,
+  "md-117592139742441913": 1795670638434,
+  "md-117591590107614816": 1795670638434,
+  "md-117568966215409046": 1795670638434,
+  "md-117565821970395467": 1795670638434,
+  "md-117564835257508952": 1795670638434,
+  "md-117559235475130885": 1795670638434,
+  "md-117552966468098954": 1795670638434,
+  "md-117533286672532162": 1795670638434,
+  "md-117530308723676628": 1795670638434,
+  "md-117526079510559175": 1795670638434,
+  "md-117524084826359015": 1795670638434,
+  "md-117520649598362191": 1795670638434,
+  "md-117520641806373922": 1795670638434,
+  "md-117515818947003403": 1795670638434,
+  "md-117515324289978841": 1795670638434,
+  "md-117601282809621110": 1795670640451,
+  "md-117601264790001667": 1795670640451,
+  "lm-https://lemmy.durstig.online/post/70084": 1795670646478
  },
- "runs": 2,
+ "runs": 3,
  "sources": {
   "se:avp": {
+   "runs": 3,
+   "ok": 3,
+   "items": 1,
+   "hits": 0,
+   "failStreak": 0
+  },
+  "se:music": {
    "runs": 2,
    "ok": 2,
    "items": 0,
    "hits": 0,
    "failStreak": 0
   },
-  "se:music": {
-   "runs": 1,
-   "ok": 1,
-   "items": 0,
-   "hits": 0,
-   "failStreak": 0
-  },
   "mastodon:musicproduction": {
-   "runs": 1,
-   "ok": 1,
+   "runs": 2,
+   "ok": 2,
    "items": 40,
    "hits": 3,
    "failStreak": 0
   },
   "mastodon:techno": {
-   "runs": 1,
-   "ok": 1,
+   "runs": 2,
+   "ok": 2,
    "items": 40,
    "hits": 0,
    "failStreak": 0
   },
   "mastodon:ableton": {
-   "runs": 1,
-   "ok": 1,
-   "items": 15,
+   "runs": 2,
+   "ok": 2,
+   "items": 34,
    "hits": 4,
    "failStreak": 0
   },
   "mastodon:mixing": {
-   "runs": 1,
-   "ok": 1,
-   "items": 36,
+   "runs": 2,
+   "ok": 2,
+   "items": 38,
    "hits": 8,
    "failStreak": 0
   },
   "mastodon:edmproduction": {
-   "runs": 1,
-   "ok": 1,
+   "runs": 2,
+   "ok": 2,
    "items": 0,
    "hits": 0,
    "failStreak": 0
   },
   "lemmy:mastering engineer": {
-   "runs": 1,
-   "ok": 1,
-   "items": 0,
+   "runs": 2,
+   "ok": 2,
+   "items": 1,
    "hits": 0,
    "failStreak": 0
   },
   "lemmy:mixing feedback": {
-   "runs": 1,
-   "ok": 1,
+   "runs": 2,
+   "ok": 2,
    "items": 2,
    "hits": 0,
    "failStreak": 0
   },
   "lemmy:ableton template": {
-   "runs": 1,
-   "ok": 1,
+   "runs": 2,
+   "ok": 2,
    "items": 0,
    "hits": 0,
    "failStreak": 0
   },
   "lemmy:techno track": {
-   "runs": 1,
-   "ok": 1,
+   "runs": 2,
+   "ok": 2,
    "items": 30,
    "hits": 0,
    "failStreak": 0
