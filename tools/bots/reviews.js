@@ -100,9 +100,9 @@ const json = (r) => { try { return JSON.parse(r.text); } catch (e) { return null
 async function handles(shop) {
   const o = 'https://' + shop.domain; const list = [];
   const b = json(await get(o + '/collections/best-sellers/products.json?limit=' + (shop.products || 8)));
-  for (const p of (b && b.products) || []) list.push({ handle: p.handle, title: dec(p.title), price: +((p.variants || [])[0] || {}).price || null, best: true });
+  for (const p of (b && b.products) || []) list.push({ id: p.id, handle: p.handle, title: dec(p.title), price: +((p.variants || [])[0] || {}).price || null, best: true });
   if (list.length < (shop.products || 8)) { const a = json(await get(o + '/products.json?limit=' + (shop.products || 8)));
-    for (const p of (a && a.products) || []) if (!list.some(x => x.handle === p.handle)) list.push({ handle: p.handle, title: dec(p.title), price: +((p.variants || [])[0] || {}).price || null }); }
+    for (const p of (a && a.products) || []) if (!list.some(x => x.handle === p.handle)) list.push({ id: p.id, handle: p.handle, title: dec(p.title), price: +((p.variants || [])[0] || {}).price || null }); }
   return list.slice(0, shop.products || 8);
 }
 
@@ -126,6 +126,13 @@ async function handles(shop) {
           const seen = new Set();
           for (const m of r.text.matchAll(/(?:src|href|data-[\w-]+)=['"]([^'"]*(?:judge\.me|jdgm|loox|okendo|yotpo|stamped|reviews\.io)[^'"]*)['"]/gi)) { const v = m[1].slice(0, 160); if (!seen.has(v) && seen.size < 15) { seen.add(v); L.push('- `' + v.replace(/`/g, '') + '`'); } }
           for (const m of r.text.matchAll(/class=['"]([^'"]*(?:jdgm|loox|oke-|yotpo)[^'"]*)['"]/gi)) { const v = 'class: ' + m[1].slice(0, 100); if (!seen.has(v) && seen.size < 30) { seen.add(v); L.push('- `' + v + '`'); } }
+          const lx = r.text.match(/loox\.io\/widget\/([\w-]+)\/loox(?:\.(\d+))?\.js/);
+          if (lx && h.id) { const u = `https://loox.io/widget/${lx[1]}/reviews/${h.id}?h=${lx[2] || ''}&page=1`; const q = await get(u);
+            L.push('', `Loox: страница отзывов → ${q.status === 200 ? '✅' : '❌ ' + (q.error || q.status)}, ${q.text.length} байт`);
+            const cls = {}; for (const m of q.text.matchAll(/class=['"]([^'"]+)['"]/g)) for (const c of m[1].split(/\s+/)) cls[c] = (cls[c] || 0) + 1;
+            L.push('', 'Классы разметки (частота): ' + Object.entries(cls).sort((a, b) => b[1] - a[1]).slice(0, 45).map(([k, v]) => k + '×' + v).join(', '));
+            const attrs = {}; for (const m of q.text.matchAll(/\s(data-[\w-]+|aria-label)=/g)) attrs[m[1]] = (attrs[m[1]] || 0) + 1;
+            L.push('', 'Атрибуты: ' + Object.entries(attrs).map(([k, v]) => k + '×' + v).join(', ')); }
           L.push('', '</details>', ''); }
         continue;
       }
