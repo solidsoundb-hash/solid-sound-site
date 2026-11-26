@@ -121,7 +121,14 @@ async function handles(shop) {
       const rv = r.text ? parseReviews(r.text) : [];
       S.products.push({ title: h.title, price: h.price, best: !!h.best, status: r.status, widgets: w, found: rv.length, agg: rv.agg || null });
       L.push(`| ${h.best ? '🔥 ' : ''}${h.title} | ${h.price != null ? '$' + h.price : '—'} | ${r.status === 200 ? '✅' : '❌ ' + (r.error || r.status)} | ${w.join(', ') || '—'} | ${rv.length} | ${rv.agg ? (rv.agg.rating || '—') + ' ★ / ' + (rv.agg.count || '—') : '—'} |`);
-      if (MODE === 'probe') continue;
+      if (MODE === 'probe') {
+        if (!S.diag && r.text) { S.diag = 1; L.push('', '<details><summary>Метки отзывов на странице «' + h.title + '»</summary>', '');
+          const seen = new Set();
+          for (const m of r.text.matchAll(/(?:src|href|data-[\w-]+)=['"]([^'"]*(?:judge\.me|jdgm|loox|okendo|yotpo|stamped|reviews\.io)[^'"]*)['"]/gi)) { const v = m[1].slice(0, 160); if (!seen.has(v) && seen.size < 15) { seen.add(v); L.push('- `' + v.replace(/`/g, '') + '`'); } }
+          for (const m of r.text.matchAll(/class=['"]([^'"]*(?:jdgm|loox|oke-|yotpo)[^'"]*)['"]/gi)) { const v = 'class: ' + m[1].slice(0, 100); if (!seen.has(v) && seen.size < 30) { seen.add(v); L.push('- `' + v + '`'); } }
+          L.push('', '</details>', ''); }
+        continue;
+      }
       for (const x of rv) { const gist = scrub((x.title ? x.title + '. ' : '') + x.body); if (!gist) continue; const th = themes(gist);
         th.forEach(t => S.themes[t] = (S.themes[t] || 0) + 1); if (x.rating && x.rating <= 3) S.low++;
         S.reviews.push({ product: h.title, rating: x.rating, date: x.date, gist, themes: th }); }
