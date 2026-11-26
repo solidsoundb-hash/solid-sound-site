@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-25T17:34:54.435Z",
+ "updated": "2026-11-26T05:29:40.691Z",
  "hours": 24,
  "orders": [],
  "funnel": {
-  "day": "2026-11-25",
-  "product": 7,
-  "cart": 10,
+  "day": "2026-11-26",
+  "product": 1,
+  "cart": 2,
   "checkout": 0,
   "thanks": 0,
   "orders": 0
@@ -14,9 +14,9 @@
   {
    "id": 2632,
    "date": "2026-11-25T17:33:51+00:00",
-   "form": "Studio calculator",
+   "form": "Chat question",
    "test": true,
-   "reply": true
+   "reply": false
   }
  ],
  "forum": [
