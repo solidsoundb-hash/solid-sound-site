@@ -16359,7 +16359,30 @@
   }
  ],
  "keywords": {},
- "feedback": [],
+ "feedback": [
+  {
+   "date": "2026-11-26",
+   "useful": [
+    "shop:blackoctopus-sound.com",
+    "shop:adsrsounds.com",
+    "feed:rekkerd",
+    "feed:bedroom"
+   ],
+   "noise": [
+    "feed:musicradar"
+   ],
+   "useful_words": [
+    "bundle",
+    "black friday",
+    "techno"
+   ],
+   "noise_words": [
+    "hoover",
+    "glory days"
+   ],
+   "note": "Cymatics «новинки» за 1 $ — апселлы (-offer), отсеяны в коде"
+  }
+ ],
  "lessons": [],
  "improved": "",
  "trendHistory": [

@@ -87,6 +87,7 @@ async function get(url, opts = {}) {
 }
 const json = (r) => { try { return JSON.parse(r.text); } catch (e) { return null; } };
 
+const dec = (t) => String(t || '').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, '&').replace(/&quot;/g, '"');
 // ---------- adapters ----------
 // Shopify: /products.json (public). Woo: Store API (public). Returns {items:[{id,title,price,cmp,url,created,tags}]}.
 async function readShop(shop) {
@@ -101,12 +102,12 @@ async function readShop(shop) {
         if (!j || !Array.isArray(j.products)) break;
         all = (all || []).concat(j.products); if (j.products.length < 250) break;
       }
-      if (all) return { type: 'shopify', full: true, items: all.map(p => { const v = (p.variants || [])[0] || {}; return { id: p.handle, title: p.title, price: +v.price || 0, cmp: +v.compare_at_price || 0, url: origin + '/products/' + p.handle, created: (p.published_at || p.created_at || '').slice(0, 10), tags: [].concat(p.tags || [], p.product_type || []).join(' ') }; }) };
+      if (all) return { type: 'shopify', full: true, items: all.map(p => { const v = (p.variants || [])[0] || {}; return { id: p.handle, title: dec(p.title), price: +v.price || 0, cmp: +v.compare_at_price || 0, url: origin + '/products/' + p.handle, created: (p.published_at || p.created_at || '').slice(0, 10), tags: [].concat(p.tags || [], p.product_type || []).join(' ') }; }) };
       if (r.error && tries.length === 1) return { error: r.error };
     } else {
       const r = await get(origin + '/wp-json/wc/store/v1/products?per_page=100&orderby=date');
       const j = r.status === 200 && json(r);
-      if (Array.isArray(j)) return { type: 'woo', items: j.map(p => { const pr = p.prices || {}; const d = Math.pow(10, pr.currency_minor_unit || 2); return { id: String(p.id), title: p.name, price: (+pr.price || 0) / d, cmp: (+pr.regular_price || 0) / d > (+pr.price || 0) / d ? (+pr.regular_price) / d : 0, url: p.permalink, created: '', tags: (p.categories || []).map(c => c.name).join(' '), rating: +p.average_rating || 0, reviews: p.review_count || 0 }; }) };
+      if (Array.isArray(j)) return { type: 'woo', items: j.map(p => { const pr = p.prices || {}; const d = Math.pow(10, pr.currency_minor_unit || 2); return { id: String(p.id), title: dec(p.name), price: (+pr.price || 0) / d, cmp: (+pr.regular_price || 0) / d > (+pr.price || 0) / d ? (+pr.regular_price) / d : 0, url: p.permalink, created: '', tags: (p.categories || []).map(c => c.name).join(' '), rating: +p.average_rating || 0, reviews: p.review_count || 0 }; }) };
       return { error: r.error || ('HTTP ' + r.status) };
     }
   }
@@ -119,7 +120,7 @@ async function bestsellers(shop) {
   for (const c of (shop.best ? [shop.best] : CFG.bestCollections)) {
     const r = await get(origin + '/collections/' + c + '/products.json?limit=10');
     const j = r.status === 200 && json(r);
-    if (j && Array.isArray(j.products) && j.products.length) { shop.best = c; return j.products.map(p => ({ title: p.title, price: +((p.variants || [])[0] || {}).price || 0, url: origin + '/products/' + p.handle })); }
+    if (j && Array.isArray(j.products) && j.products.length) { shop.best = c; return j.products.map(p => ({ title: dec(p.title), price: +((p.variants || [])[0] || {}).price || 0, url: origin + '/products/' + p.handle })); }
     if (shop.best) break;
   }
   return [];
@@ -165,7 +166,8 @@ async function shopsSection(list) {
       cur[it.id] = [it.price, it.cmp];
       prodCount++; if (it.cmp > it.price) saleCount++; if (it.price) allPrices.push(it.price);
       const recent = !it.created || it.created >= new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
-      if (!old[it.id]) { if (!first && recent && isNew('p:' + it.url)) { added.push(it); countGenres(it.title + ' ' + it.tags, 2); } else mem.seen['p:' + it.url] = mem.seen['p:' + it.url] || today; }
+      const upsell = it.price <= 1 || /-offer$/.test(it.id);
+      if (!old[it.id]) { if (!first && recent && !upsell && isNew('p:' + it.url)) { added.push(it); countGenres(it.title + ' ' + it.tags, 2); } else mem.seen['p:' + it.url] = mem.seen['p:' + it.url] || today; }
       else if (old[it.id][0] !== it.price) price.push({ it, was: old[it.id][0] });
     }
     for (const id of Object.keys(old)) if (id !== '__sale' && !cur[id]) { if (res.full) gone.push(id); else cur[id] = old[id]; } // Woo shows only the latest 100: keep the rest
