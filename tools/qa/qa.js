@@ -704,7 +704,7 @@ function learn(all, save, muted) {
       b.sev = 'minor'; b.title += ' — висит месяц: Claude, реши — исправить или записать «не баг» в qa/learned.json';
     }
     if (b.sev === 'minor' && b.streak >= 10) { b.sev = 'major'; b.title += ` (висит ${b.streak} проверок подряд)`; }
-    if (M.fixed[b.sig] && now - Date.parse(M.fixed[b.sig]) < 30 * 864e5) { b.title = '↩ вернулся после исправления: ' + b.title; if (b.sev === 'minor' || b.sev === 'check') b.sev = 'major'; }
+    if (M.fixed[b.sig] && now - Date.parse(M.fixed[b.sig]) < 30 * 864e5) { b.title = '↩ вернулся после исправления: ' + b.title.replace(/^(↩ вернулся после исправления: )+/, ''); if (b.sev === 'minor' || b.sev === 'check') b.sev = 'major'; }
     out.push(b);
   }
   if (save) {

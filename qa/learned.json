@@ -20,6 +20,20 @@
    "why": "это аватарки авторов отзывов, а не кнопки",
    "by": "Claude",
    "date": "2026-11-23"
+  },
+  {
+   "type": "kb-shop-zero-price",
+   "re": "€0 to list your products",
+   "why": "/sell/: «€0 to list your products» — условие для авторов (бесплатно выставить товар), а не товар за €0",
+   "by": "Claude",
+   "date": "2026-11-26"
+  },
+  {
+   "type": "clickerr",
+   "re": "compute-pressure is not allowed",
+   "why": "сообщение браузера о встроенном YouTube/Google (Permissions policy), на работу сайта не влияет",
+   "by": "Claude",
+   "date": "2026-11-26"
   }
  ],
  "auto": [
