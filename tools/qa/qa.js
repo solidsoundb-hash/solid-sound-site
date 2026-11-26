@@ -681,10 +681,12 @@ function writeReport(final = true) {
   notBug[]  — «не баг», written by Claude/owner after looking at the screenshot: {type?, sig?, re?, why, by, date, until?} → never shown again
   auto[]    — «проверить глазами» seen 5 runs in a row: put to sleep for 14 days by the robot itself; after 2 sleeps it is not
               slept again but raised to 🟡 «реши: баг или исключение» (so nothing hangs for ever silently)
+  must[]    — team rules (26.11, «Задачи»): {type?, sig?, re?, sev, why, by, date} → that check is never muted (notBug/auto ignored)
+              and is raised to at least `sev`; title gets «📏 правило: why»
   fixed{}   — sig → date it disappeared; if it comes back within 30 days it is marked «↩ вернулся» and is at least 🟠
  Every bug also gets .streak = in how many runs in a row (same mode) it has been seen; a 🟡 seen 10+ runs in a row becomes 🟠. */
 function learn(all, save, muted) {
-  const F = path.join('qa', 'learned.json'); let M = { notBug: [], auto: [], sleeps: {}, fixed: {} };
+  const F = path.join('qa', 'learned.json'); let M = { notBug: [], auto: [], sleeps: {}, fixed: {}, must: [] };
   try { M = Object.assign(M, JSON.parse(fs.readFileSync(F, 'utf8'))); } catch (e) {}
   const now = Date.now(), day = (t) => new Date(t).toISOString().slice(0, 10);
   let runs = []; const H = path.join('qa', 'history');
@@ -696,6 +698,8 @@ function learn(all, save, muted) {
   M.auto = M.auto.filter(live);
   const out = [];
   for (const b of all) {
+    const mu = (M.must || []).find(r => hit(r, b));
+    if (mu) { const R = ['check', 'minor', 'major', 'critical']; if (R.indexOf(b.sev) < R.indexOf(mu.sev)) b.sev = mu.sev; if (!/📏/.test(b.title)) b.title += ' — 📏 правило: ' + mu.why; out.push(b); continue; }
     const nb = M.notBug.find(r => hit(r, b)); if (nb) { muted.push({ title: b.title, why: 'не баг: ' + nb.why }); continue; }
     const au = M.auto.find(r => r.sig === b.sig); if (au) { muted.push({ title: b.title, why: `отложено до ${au.until} (${au.why})` }); continue; }
     if (b.sev === 'check' && b.streak >= 5) {

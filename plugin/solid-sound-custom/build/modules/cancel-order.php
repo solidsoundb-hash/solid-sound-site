@@ -70,12 +70,15 @@ add_shortcode( 'ss_cancel_order', function () {
 		}
 	}
 	$h = $css . '<div class="ss-cxo">' . $msg;
-	if ( ! $done && $confirm ) {
-		$items = array(); foreach ( $confirm->get_items() as $it ) $items[] = $it->get_name() . ' × ' . $it->get_quantity();
-		$hid = '<input type="hidden" name="ss_cxo" value="2"><input type="hidden" name="order" value="' . esc_attr( $v['order'] ) . '"><input type="hidden" name="email" value="' . esc_attr( $v['email'] ) . '"><input type="hidden" name="why" value="' . esc_attr( $v['why'] ) . '">';
-		$h .= '<p><b>Please check and confirm your withdrawal.</b> Nothing has been sent yet.</p><form method="post" action="">' . $hid
-			. '<dl><dt>Order</dt><dd>#' . esc_html( $confirm->get_order_number() ) . ' · ' . esc_html( wc_format_datetime( $confirm->get_date_created() ) ) . '</dd><dt>Items</dt><dd>' . esc_html( implode( ', ', $items ) ) . '</dd><dt>E-mail</dt><dd>' . esc_html( $v['email'] ) . '</dd>'
-			. ( $v['why'] ? '<dt>Your message</dt><dd>' . esc_html( $v['why'] ) . '</dd>' : '' ) . '</dl>'
+	/* robots (buy-night): admins see step 2 with made-up data, no real order, the form sends nothing — ?ss_cxo_preview=1 */
+	$pv = ! $done && ! $confirm && 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) && isset( $_GET['ss_cxo_preview'] ) && current_user_can( 'manage_options' );
+	if ( ! $done && ( $confirm || $pv ) ) {
+		if ( $pv ) { $num = 'TEST-1'; $date = gmdate( 'M j, Y' ); $items = array( 'TEST item × 1' ); $mail = 'qa-cancel@example.com'; $why = 'TEST preview — nothing is sent'; }
+		else { $num = $confirm->get_order_number(); $date = wc_format_datetime( $confirm->get_date_created() ); $items = array(); foreach ( $confirm->get_items() as $it ) $items[] = $it->get_name() . ' × ' . $it->get_quantity(); $mail = $v['email']; $why = $v['why']; }
+		$hid = $pv ? '' : '<input type="hidden" name="ss_cxo" value="2"><input type="hidden" name="order" value="' . esc_attr( $v['order'] ) . '"><input type="hidden" name="email" value="' . esc_attr( $v['email'] ) . '"><input type="hidden" name="why" value="' . esc_attr( $v['why'] ) . '">';
+		$h .= '<p><b>Please check and confirm your withdrawal.</b> Nothing has been sent yet.</p><form method="post" action=""' . ( $pv ? ' onsubmit="return false" data-preview="1"' : '' ) . '>' . $hid
+			. '<dl><dt>Order</dt><dd>#' . esc_html( $num ) . ' · ' . esc_html( $date ) . '</dd><dt>Items</dt><dd>' . esc_html( implode( ', ', $items ) ) . '</dd><dt>E-mail</dt><dd>' . esc_html( $mail ) . '</dd>'
+			. ( $why ? '<dt>Your message</dt><dd>' . esc_html( $why ) . '</dd>' : '' ) . '</dl>'
 			. '<button type="submit">Confirm withdrawal here</button>'
 			. '<button type="submit" name="back" value="1" class="back" style="all:unset;display:block;text-align:center;margin-top:12px;color:#F59E0B;cursor:pointer;width:100%">← Change details</button></form>';
 	} elseif ( ! $done ) {

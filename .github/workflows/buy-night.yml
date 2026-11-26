@@ -26,7 +26,10 @@ jobs:
       - run: npm i --no-save playwright@1.49.1
       - name: Walk the purchase path
         id: b
-        env: { PW_CHANNEL: chrome }
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}   # only for the «Cancel an order» step-2 preview (made-up data)
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
         run: |
           set +e; node tools/sitebots/buy-night.js > out.txt 2>&1; c=$?; set -e
           cat out.txt; cat out.txt >> $GITHUB_STEP_SUMMARY

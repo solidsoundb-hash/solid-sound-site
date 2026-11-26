@@ -92,5 +92,14 @@
   "sndstale|/en/services-prices/": "2026-11-26",
   "langopt|phone": "2026-11-26",
   "ears-clip|02-After.mp3": "2026-11-26"
- }
+ },
+ "must": [
+  {
+   "type": "kb-seo-h1",
+   "sev": "major",
+   "why": "на каждой странице ровно один видимый H1 (скрытый в HTML не считается)",
+   "by": "Задачи/Claude",
+   "date": "2026-11-26"
+  }
+ ]
 }
