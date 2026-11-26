@@ -1237,7 +1237,8 @@ return json_decode( <<<'SSES'
 "8. Governing Law": "8. Ley aplicable",
 "8.1 This Agreement is governed by the same law as our": "8.1 Este Acuerdo se rige por la misma ley que nuestras",
 "(section 10 \"Law and disputes\").": "(sección 10 «Ley aplicable y litigios»).",
-"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Los litigios se tratan como se describe en nuestras Condiciones de venta. Si eres consumidor, nada de este Acuerdo te quita la protección de las normas imperativas de tu país de residencia ni tu derecho a acudir a sus tribunales."
+"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Los litigios se tratan como se describe en nuestras Condiciones de venta. Si eres consumidor, nada de este Acuerdo te quita la protección de las normas imperativas de tu país de residencia ni tu derecho a acudir a sus tribunales.",
+"Voice search on, tap to turn off": "Búsqueda por voz activada: toca para apagarla"
 }
 SSES
 , true );

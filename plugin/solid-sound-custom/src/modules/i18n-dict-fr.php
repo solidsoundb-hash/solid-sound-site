@@ -1237,7 +1237,8 @@ return json_decode( <<<'SSFR'
 "8. Governing Law": "8. Droit applicable",
 "8.1 This Agreement is governed by the same law as our": "8.1 Le présent Contrat est régi par le même droit que nos",
 "(section 10 \"Law and disputes\").": "(section 10 « Droit applicable et litiges »).",
-"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Les litiges sont traités comme décrit dans nos Conditions de vente. Si vous êtes un consommateur, rien dans le présent Contrat ne vous prive de la protection des règles impératives de votre pays de résidence ni de votre droit de saisir les tribunaux de ce pays."
+"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Les litiges sont traités comme décrit dans nos Conditions de vente. Si vous êtes un consommateur, rien dans le présent Contrat ne vous prive de la protection des règles impératives de votre pays de résidence ni de votre droit de saisir les tribunaux de ce pays.",
+"Voice search on, tap to turn off": "Recherche vocale activée – touchez pour l’arrêter"
 }
 SSFR
 , true );

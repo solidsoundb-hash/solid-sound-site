@@ -1257,7 +1257,8 @@ return json_decode( <<<'SSDE'
 "8. Governing Law": "8. Anwendbares Recht",
 "8.1 This Agreement is governed by the same law as our": "8.1 Für diese Vereinbarung gilt dasselbe Recht wie für unsere",
 "(section 10 \"Law and disputes\").": "(Abschnitt 10 „Recht und Streitigkeiten“).",
-"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Streitigkeiten werden wie in unseren Verkaufsbedingungen beschrieben behandelt. Wenn du Verbraucher bist, nimmt dir nichts in dieser Vereinbarung den Schutz der zwingenden Vorschriften deines Wohnsitzlandes oder dein Recht, dort vor Gericht zu gehen."
+"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Streitigkeiten werden wie in unseren Verkaufsbedingungen beschrieben behandelt. Wenn du Verbraucher bist, nimmt dir nichts in dieser Vereinbarung den Schutz der zwingenden Vorschriften deines Wohnsitzlandes oder dein Recht, dort vor Gericht zu gehen.",
+"Voice search on, tap to turn off": "Sprachsuche an – tippen zum Ausschalten"
 }
 SSDE
 , true );

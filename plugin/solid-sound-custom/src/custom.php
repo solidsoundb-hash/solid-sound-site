@@ -1303,7 +1303,7 @@ function initWcfm(){
     if(l2){var t2=title(l2);if(t2)t2.style.setProperty('display','none','important');l2.style.marginTop='8px';}
     var nt=f.querySelector('[name="wcfmvm_custom_infos[anything-we-should-know]"]');if(nt){nt.rows=3;var t3=title(nt);if(t3)t3.innerHTML='<strong>Anything we should know?</strong> <small style="font-weight:400;color:#94A3B8">optional</small>';}
   })();
-  Object.keys(ph).forEach(function(k){var i=f.querySelector('[name="wcfmvm_custom_infos['+k+']"]');if(i)i.setAttribute('placeholder',ph[k])});
+  Object.keys(ph).forEach(function(k){var i=f.querySelector('[name="wcfmvm_custom_infos['+k+']"]');if(i)i.setAttribute('placeholder',window.ssVPT?window.ssVPT(ph[k]):ph[k])});
   f.querySelectorAll('.wcfm_title .img_tip').forEach(function(tip){var t=tip.closest('.wcfm_title'),txt=tip.getAttribute('data-tip')||'';tip.parentNode.removeChild(tip);if(t&&txt&&t.classList.contains('checkbox-title'))t.setAttribute('data-sub',txt)});
   f.querySelectorAll('input[type=checkbox].wcfm-checkbox').forEach(function(c){
     if(c.closest('.sssell-chk'))return;
