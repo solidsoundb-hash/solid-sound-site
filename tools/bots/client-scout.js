@@ -55,6 +55,16 @@ async function getJson(url) {
   return { ok: false, err: 'retries' };
 }
 
+let _rt = null;
+async function redditToken() {
+  if (_rt) return _rt;
+  const auth = Buffer.from(process.env.REDDIT_ID + ':' + process.env.REDDIT_SECRET).toString('base64');
+  const r = await fetch('https://www.reddit.com/api/v1/access_token', { method: 'POST', headers: { Authorization: 'Basic ' + auth, 'User-Agent': UA, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'grant_type=client_credentials', signal: AbortSignal.timeout(30000) });
+  const j = await r.json().catch(() => ({}));
+  if (!j.access_token) throw new Error('Reddit не выдал доступ: ' + (j.error || r.status));
+  return (_rt = j.access_token);
+}
+
 // Each source returns [{id, title, text, link, date}]
 const SOURCES = [
   { id: 'se:avp', name: 'Stack Exchange — Audio-Video Production', fn: async () => {
@@ -77,6 +87,21 @@ const SOURCES = [
     if (!r.ok) throw new Error(r.err);
     return (r.j.posts || []).map((p) => ({ id: 'lm-' + p.post.ap_id, title: strip(p.post.name), text: strip(p.post.name + ' ' + (p.post.body || '')).slice(0, 600), link: p.post.ap_id, date: Date.parse(p.post.published) }));
   } })),
+  // Reddit — official API, app-only token. Owner adds secrets REDDIT_ID + REDDIT_SECRET (reddit.com/prefs/apps → «script»).
+  ...['edmproduction', 'ableton', 'Techno', 'TechHouse', 'mixingmastering', 'WeAreTheMusicMakers'].map((sub) => ({ id: 'reddit:' + sub, name: 'Reddit r/' + sub, needs: 'REDDIT_ID', fn: async () => {
+    const tok = await redditToken();
+    const r = await fetch(`https://oauth.reddit.com/r/${sub}/new?limit=50`, { headers: { Authorization: 'Bearer ' + tok, 'User-Agent': UA }, signal: AbortSignal.timeout(30000) });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    return (j.data.children || []).map((c) => c.data).map((d) => ({ id: 'rd-' + d.id, title: strip(d.title), text: strip(d.title + ' ' + (d.selftext || '')).slice(0, 600), link: 'https://www.reddit.com' + d.permalink, date: d.created_utc * 1000 }));
+  } })),
+  // Brave Search (same free key as the Intel robot, secret BRAVE_KEY): forum threads of the last week
+  ...['need mastering engineer techno', 'feedback on my techno track', 'mixdown sounds bad in club', 'ableton template tech house'].map((q) => ({ id: 'brave:' + q, name: 'Поиск «' + q + '»', needs: 'BRAVE_KEY', fn: async () => {
+    const r = await fetch(`https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(q)}&freshness=pw&count=20`, { headers: { 'X-Subscription-Token': process.env.BRAVE_KEY, Accept: 'application/json' }, signal: AbortSignal.timeout(30000) });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    return ((j.web && j.web.results) || []).map((x) => ({ id: 'bv-' + x.url, title: strip(x.title), text: strip(x.title + ' ' + (x.description || '')).slice(0, 600), link: x.url, date: Date.now() }));
+  } })),
   // Bluesky public search answered HTTP 403 (needs login) on 26.11 — removed; Reddit needs an official API key (secret REDDIT_*)
 ];
 
@@ -92,7 +117,9 @@ async function main() {
   if (process.argv.includes('--exam')) return exam();
   fs.mkdirSync(OUT, { recursive: true });
   let mem; try { mem = JSON.parse(fs.readFileSync(MEM, 'utf8')); } catch { mem = { seen: {}, runs: 0, sources: {}, totals: {} }; }
-  const list = STAGE === 1 ? SOURCES.slice(0, 1) : SOURCES;
+  const waiting = SOURCES.filter((x) => x.needs && !process.env[x.needs]);
+  const ready = SOURCES.filter((x) => !x.needs || process.env[x.needs]);
+  const list = STAGE === 1 ? ready.slice(0, 1) : ready;
   const found = { lead: [], pain: [], product: [] }; const genres = {}; const health = [];
   const maxAge = Date.now() - 30 * 864e5;
   for (const s of list) {
@@ -126,7 +153,8 @@ async function main() {
     ...sec('😣 Что болит', 'идеи для роликов, статей wiki и текстов на сайте', found.pain),
     ...sec('🛒 Спрос на товары', 'что делать и продавать: шаблоны, пресеты, сэмплы', found.product),
     '## 🎵 Жанры в свежих постах', Object.keys(genres).length ? Object.entries(genres).sort((a, b) => b[1] - a[1]).map(([g, n]) => `${g} ${n}`).join(' · ') : '- мало данных', '',
-    '## Источники', ...health, '',
+    '## Источники', ...health,
+    ...(waiting.length ? [`- ⏸ ждут ключ: ${[...new Set(waiting.map((x) => x.needs))].map((k) => k === 'REDDIT_ID' ? 'Reddit (секреты REDDIT_ID и REDDIT_SECRET — бесплатно, reddit.com/prefs/apps → «script»)' : 'Brave Search (секрет BRAVE_KEY — бесплатно, 2000 запросов в месяц; тот же ключ ждёт робот Intel)').join('; ')}`] : []), '',
     `_Всего за все прогоны: ищут услугу ${mem.totals.lead || 0}, боли ${mem.totals.pain || 0}, товары ${mem.totals.product || 0}; прогонов ${mem.runs}._`];
   fs.writeFileSync(path.join(OUT, 'latest.md'), L.join('\n') + '\n');
   fs.mkdirSync(path.join(OUT, 'history'), { recursive: true });

@@ -2,10 +2,12 @@
 # who asks for mastering/mixing/feedback, what hurts, which templates/presets/samples people want, which genres.
 # Public sources only (Stack Exchange, Mastodon, Lemmy, Bluesky), read-only. Result: reports/clients/latest.md.
 # Ladder (docs/team/bots.md): run by hand — a line in .github/client-scout.txt, last word = stage 1/2/3.
-# The daily schedule is switched on only after stage 2 passes.
+# Stage 2 passed 26.11 (exam 22/22, no noise after the promo filter) → daily at 03:53 UTC, before the 05:40 Paris morning report.
 name: Client scout
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "53 3 * * *"
   push:
     branches: [main]
     paths: [".github/client-scout.txt"]
@@ -21,6 +23,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - name: Exam, then scout
+        env:
+          REDDIT_ID: ${{ secrets.REDDIT_ID }}
+          REDDIT_SECRET: ${{ secrets.REDDIT_SECRET }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
         run: |
           STAGE=$(tail -1 .github/client-scout.txt 2>/dev/null | awk '{print $NF}'); case "$STAGE" in 1|2|3) ;; *) STAGE=3;; esac
           echo "stage $STAGE"
