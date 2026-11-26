@@ -1,0 +1,31 @@
+# CLIENT SCOUT — Analyst's scout for the customer avatar «Mark» (owner 26.11.2026, docs/customer-avatar.md):
+# who asks for mastering/mixing/feedback, what hurts, which templates/presets/samples people want, which genres.
+# Public sources only (Stack Exchange, Mastodon, Lemmy, Bluesky), read-only. Result: reports/clients/latest.md.
+# Ladder (docs/team/bots.md): run by hand — a line in .github/client-scout.txt, last word = stage 1/2/3.
+# The daily schedule is switched on only after stage 2 passes.
+name: Client scout
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/client-scout.txt"]
+permissions:
+  contents: write
+concurrency: client-scout
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam, then scout
+        run: |
+          STAGE=$(tail -1 .github/client-scout.txt 2>/dev/null | awk '{print $NF}'); case "$STAGE" in 1|2|3) ;; *) STAGE=3;; esac
+          echo "stage $STAGE"
+          node tools/bots/client-scout.js --exam
+          STAGE=$STAGE node tools/bots/client-scout.js
+      - name: Save
+        if: always()
+        run: BOT_NAME=client-scout bash .github/save.sh "client scout: $(date -u +%F)" reports/clients
