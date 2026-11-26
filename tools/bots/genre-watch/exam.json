@@ -1,0 +1,15 @@
+{
+ "focus": [
+  { "it": { "title": "Melodic Techno Ableton Template Vol 3", "tags": "" }, "want": "melodic techno" },
+  { "it": { "title": "Afterlife Style", "tags": "Melodic House, Ableton" }, "want": "melodic house" },
+  { "it": { "title": "Peak Time Techno Drums", "tags": "" }, "want": "techno" },
+  { "it": { "title": "Future Bass Kit", "tags": "" }, "want": null },
+  { "it": { "title": "Tech House Groove", "tags": "" }, "want": "tech house" },
+  { "it": { "title": "Lo-fi Beats", "tags": "house music lovers" }, "want": "house" }
+ ],
+ "template": [
+  { "it": { "title": "Melodic Techno Ableton Template", "tags": "" }, "want": true },
+  { "it": { "title": "Tech House Sample Pack", "tags": "" }, "want": false },
+  { "it": { "title": "Track in 1 Hour", "tags": "" }, "want": true }
+ ]
+}

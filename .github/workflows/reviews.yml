@@ -7,7 +7,7 @@ on:
     inputs:
       mode: { description: "probe / run", default: run }
   schedule:
-    - cron: "17 3 * * 1"
+    - cron: "17 3 * * *"   # daily until 28.11 (owner wants a result in 2 days), then back to Monday: "17 3 * * 1"
   push:
     branches: [main]
     paths: [".github/reviews.txt"]
