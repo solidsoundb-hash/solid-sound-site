@@ -146,5 +146,23 @@
 "english": false,
 "same": false,
 "text": "Creator perks"
+},
+{
+"lang": "de",
+"english": false,
+"same": true,
+"text": "https://solid-sound.net/store/"
+},
+{
+"lang": "fr",
+"english": false,
+"same": true,
+"text": "solidsoundb@gmail.com"
+},
+{
+"lang": "de",
+"english": true,
+"same": true,
+"text": "optional"
 }
 ]

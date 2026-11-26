@@ -1,0 +1,38 @@
+# Непереведённые строки (роль «Копирайтер», 26.11.2026): DE/FR/ES × страницы пути к покупке и для авторов, ночью.
+# Запуск: строка в .github/untr.txt («<дата> langs=de pages=/terms/» — выборочно) или по расписанию (каждый день 01:41 UTC).
+# Отчёт: reports/copy/untranslated.md (+ .json), память шума reports/copy/memory.json. Только чтение сайта. Сначала экзамен.
+name: Untranslated
+on:
+  workflow_dispatch:
+  # schedule: включу после 2-го прогона ступени 2 (bots.md)
+  #   - cron: "41 1 * * *"
+  push:
+    branches: [main]
+    paths: [".github/untr.txt"]
+permissions:
+  contents: write
+concurrency: { group: untranslated, cancel-in-progress: false }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam
+        run: node tools/copy/untranslated.js --exam
+      - run: npm i --no-save playwright@1.49.1
+      - name: Check
+        run: |
+          T=$(tail -1 .github/untr.txt 2>/dev/null)
+          [ "${{ github.event_name }}" = "schedule" ] && T=""
+          L=$(echo "$T" | grep -o 'langs=[a-z,]*' | cut -d= -f2)
+          P=$(echo "$T" | grep -o 'pages=[^ ]*' | cut -d= -f2)
+          UNTR_LANGS="$L" UNTR_PAGES="$P" UNTR_OUT=untr-out PW_CHANNEL=chrome node tools/copy/untranslated.js
+          mkdir -p reports/copy && cp untr-out/report.md reports/copy/untranslated.md && cp untr-out/data.json reports/copy/untranslated.json
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=copy-robot bash .github/save.sh "copy: untranslated $(date -u +%FT%TZ)" reports/copy

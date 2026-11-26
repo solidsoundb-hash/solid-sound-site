@@ -110,6 +110,7 @@ async function wooShop(shop, L, data) {
     const r = await get(`https://${shop.domain}/wp-json/wc/store/v1/products/reviews?per_page=${MODE === 'probe' ? 10 : 50}&page=${pg}&orderby=date_gmt&order=desc`);
     const rv = wooReviews(json(r)); total += rv.length;
     if (pg === 1) L.push(`- Публичный список отзывов магазина → ${r.status === 200 ? '✅' : '❌ ' + (r.error || r.status)}, на 1-й странице: ${rv.length}${rv[0] ? ', самый свежий: ' + rv[0].date : ''}`);
+    if (pg === 1) L.push('');
     for (const x of rv) { const gist = scrub(x.body); if (!gist) continue; const th = themes(gist);
       th.forEach(t => S.themes[t] = (S.themes[t] || 0) + 1); if (x.rating && x.rating <= 3) S.low++;
       S.products[x.product] = (S.products[x.product] || 0) + 1;
