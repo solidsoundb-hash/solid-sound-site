@@ -37,11 +37,19 @@ function isEnglish(text, lang) {
   for (const x of w) { if (EN.has(x) && !also.has(x)) en++; if (me.has(x)) mine++; }
   return en >= 2 && en > mine * 2 && en / w.length >= 0.15;
 }
+/* the same string word for word on the /en/ page: untranslated if it has an ordinary lowercase word (4+ letters) or a section
+   number («5. Payouts», «Last updated: …»). Product names, brands and plugin names are Capitalised → skipped. */
+function sameAsEn(text, lang, enSet) {
+  if (!enSet.has(text) || lang === 'en') return false;
+  if (/^\d+\.\s+\p{L}/u.test(text)) return true;
+  return /(^|[\s(])\p{Ll}{4,}/u.test(text);
+}
+const untr = (t, lang, enSet) => isEnglish(t, lang) || sameAsEn(t, lang, enSet);
 
 if (process.argv.includes('--exam')) {
   const ex = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/bots/untranslated/exam.json'), 'utf8'));
   let ok = 0; const bad = [];
-  for (const e of ex) { const r = isEnglish(e.text, e.lang); if (r === e.english) ok++; else bad.push(e); }
+  for (const e of ex) { const r = untr(e.text, e.lang, new Set(e.same ? [e.text] : [])); if (r === e.english) ok++; else bad.push(e); }
   console.log(`exam ${ok}/${ex.length}`); bad.forEach(b => console.log('  WRONG', b.lang, b.english, b.text));
   process.exit(ok === ex.length ? 0 : 1);
 }
@@ -55,42 +63,45 @@ if (process.argv.includes('--exam')) {
   const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
   const p = await ctx.newPage();
-  const found = {}; const pages = [];
+  const COLLECT = () => {
+    const SK = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEXTAREA: 1, CODE: 1 }; const out = [];
+    const vis = el => { try { return el.checkVisibility ? el.checkVisibility({ checkVisibilityCSS: true }) : !!el.offsetParent; } catch (e) { return true; } };
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+    while ((n = w.nextNode())) { const el = n.parentElement; if (!el || SK[el.nodeName] || el.closest('script,style,noscript,textarea,code,svg,#wpadminbar')) continue;
+      const t = n.nodeValue.replace(/\s+/g, ' ').trim(); if (t.length > 6) out.push([t, vis(el) ? '' : 'скрыт']); }
+    document.querySelectorAll('[placeholder],[aria-label],[title],img[alt]').forEach(el => ['placeholder', 'aria-label', 'title', 'alt'].forEach(a => { const v = (el.getAttribute(a) || '').replace(/\s+/g, ' ').trim(); if (v.length > 6) out.push([v, a]); }));
+    out.push([document.title, 'title']);
+    const md = document.querySelector('meta[name=description]'); if (md) out.push([md.content.trim(), 'description']);
+    return out;
+  };
+  async function load(url) {
+    const r = await p.goto(S + url + (url.includes('?') ? '&' : '?') + 'nc=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 60000 });
+    const code = r ? r.status() : 0, final = p.url().replace(S, '').replace(/[?&]nc=\d+/, '');
+    await p.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
+    await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); } scrollTo(0, 0); });
+    await p.waitForTimeout(1200);
+    return { code, final, items: await p.evaluate(COLLECT) };
+  }
+  const found = {}; const pages = []; const EN_PAGE = {};
   const t0 = Date.now();
+  for (const pg of PAGES) { try { EN_PAGE[pg] = new Set((await load('/en' + pg)).items.map(x => x[0])); } catch (e) { EN_PAGE[pg] = new Set(); } }
   for (const lang of LANGS) {
     found[lang] = {};
     for (const pg of PAGES) {
-      const url = `/${lang}${pg}`; let code = 0, final = '';
-      try {
-        const r = await p.goto(S + url + (url.includes('?') ? '&' : '?') + 'nc=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 60000 });
-        code = r ? r.status() : 0; final = p.url().replace(S, '').replace(/[?&]nc=\d+/, '');
-        await p.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
-        await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); } scrollTo(0, 0); });
-        await p.waitForTimeout(1200);
-      } catch (e) { pages.push({ lang, url, code: 'ошибка', final: String(e.message).slice(0, 80), n: 0 }); continue; }
-      const items = await p.evaluate(() => {
-        const SK = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEXTAREA: 1, CODE: 1, svg: 1 }; const out = [];
-        const vis = el => { try { return el.checkVisibility ? el.checkVisibility({ checkVisibilityCSS: true }) : !!el.offsetParent; } catch (e) { return true; } };
-        const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
-        while ((n = w.nextNode())) { const el = n.parentElement; if (!el || SK[el.nodeName] || el.closest('script,style,noscript,textarea,code,#wpadminbar')) continue;
-          const t = n.nodeValue.replace(/\s+/g, ' ').trim(); if (t.length > 6) out.push([t, vis(el) ? '' : 'скрыт']); }
-        document.querySelectorAll('[placeholder],[aria-label],[title],img[alt]').forEach(el => ['placeholder', 'aria-label', 'title', 'alt'].forEach(a => { const v = (el.getAttribute(a) || '').trim(); if (v.length > 6) out.push([v, a]); }));
-        out.push([document.title, 'title']);
-        const md = document.querySelector('meta[name=description]'); if (md) out.push([md.content, 'description']);
-        return out;
-      });
+      const url = `/${lang}${pg}`; let res;
+      try { res = await load(url); } catch (e) { pages.push({ lang, url, code: 'ошибка', final: String(e.message).slice(0, 80), n: 0 }); continue; }
       let n = 0;
-      for (const [t, where] of items) {
-        if (noise.has(t) || !isEnglish(t, lang)) continue;
+      for (const [t, where] of res.items) {
+        if (noise.has(t) || !untr(t, lang, EN_PAGE[pg])) continue;
         const k = t.slice(0, 300); const f = found[lang][k] || (found[lang][k] = { where: new Set(), pages: new Set() });
         f.pages.add(pg); if (where) f.where.add(where); n++;
       }
-      pages.push({ lang, url, code, final, n });
+      pages.push({ lang, url, code: res.code, final: res.final, n });
     }
   }
   await b.close();
   const md = ['# Непереведённые строки — ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC', '',
-    `Робот «Копирайтера» (только чтение): ${LANGS.length} яз. × ${PAGES.length} стр., ${Math.round((Date.now() - t0) / 60000)} мин. Строка считается английской, если в ней ≥ 3 слов и английские служебные слова (the, your, you, for…) явно перевешивают слова языка страницы. Шум убирается через \`reports/copy/memory.json\` → \`noise\`.`, '',
+    `Робот «Копирайтера» (только чтение): ${LANGS.length} яз. × ${PAGES.length} стр., ${Math.round((Date.now() - t0) / 60000)} мин. Строка считается английской, если (1) в ней ≥ 3 слов и английские служебные слова (the, your, you, for…) явно перевешивают слова языка страницы, или (2) она слово в слово как на /en/ и в ней есть обычное слово со строчной буквы или номер раздела. Шум убирается через \`reports/copy/memory.json\` → \`noise\`.`, '',
     '| Язык | Страница | Код | Куда пришли | Англ. строк |', '|---|---|---|---|---|',
     ...pages.map(x => `| ${x.lang} | ${x.url} | ${x.code} | ${x.final && x.final !== x.url ? x.final : '—'} | ${x.n} |`), ''];
   const data = {};
