@@ -60,7 +60,7 @@ function parseReviews(html) {
 const WIDGETS = { judgeme: /judge\.me|jdgm-/i, loox: /loox\.io/i, okendo: /okendo/i, stamped: /stamped\.io/i, yotpo: /yotpo/i, reviewsio: /reviews\.io|reviewsio/i, trustpilot: /trustpilot/i, spr: /shopify-product-reviews|spr-review/i, woo: /woocommerce-Reviews|commentlist/i };
 function widgets(html) { return Object.keys(WIDGETS).filter(k => WIDGETS[k].test(html)); }
 
-if (require.main !== module) { module.exports = { scrub, themes, parseReviews, widgets }; return; }
+if (require.main !== module) { module.exports = { scrub, themes, parseReviews, widgets, wooReviews }; return; }
 
 // ---------- polite fetch (same rules as intel.js) ----------
 const MODE = process.env.MODE || 'probe';
@@ -97,6 +97,40 @@ async function get(url) {
 }
 const json = (r) => { try { return JSON.parse(r.text); } catch (e) { return null; } };
 
+
+// WooCommerce: public Store API list of product reviews (the same data the shop shows on product pages).
+function wooReviews(arr) {
+  return (Array.isArray(arr) ? arr : []).filter(x => x && x.review).map(x => ({ product: dec(x.product_name || ''), rating: +x.rating || null, date: String(x.date_created || '').slice(0, 10), body: x.review, verified: !!x.verified }));
+}
+async function wooShop(shop, L, data) {
+  const S = { name: shop.name, reviews: [], themes: {}, low: 0, products: {} };
+  L.push(`## ${shop.name}`, '');
+  const pages = MODE === 'probe' ? 1 : (shop.pages || 3); let total = 0;
+  for (let pg = 1; pg <= pages; pg++) {
+    const r = await get(`https://${shop.domain}/wp-json/wc/store/v1/products/reviews?per_page=${MODE === 'probe' ? 10 : 50}&page=${pg}&orderby=date_gmt&order=desc`);
+    const rv = wooReviews(json(r)); total += rv.length;
+    if (pg === 1) L.push(`- Публичный список отзывов магазина → ${r.status === 200 ? '✅' : '❌ ' + (r.error || r.status)}, на 1-й странице: ${rv.length}${rv[0] ? ', самый свежий: ' + rv[0].date : ''}`);
+    for (const x of rv) { const gist = scrub(x.body); if (!gist) continue; const th = themes(gist);
+      th.forEach(t => S.themes[t] = (S.themes[t] || 0) + 1); if (x.rating && x.rating <= 3) S.low++;
+      S.products[x.product] = (S.products[x.product] || 0) + 1;
+      S.reviews.push({ product: x.product, rating: x.rating, date: x.date, verified: x.verified, gist, themes: th }); }
+    if (rv.length < 50) break;
+  }
+  if (MODE === 'probe') { L.push(`- Пример (суть, без имени): ${S.reviews[0] ? S.reviews[0].rating + '★ «' + S.reviews[0].gist.slice(0, 120) + '»' : '—'}`, ''); data.shops.push({ name: S.name, found: total }); return; }
+  report(S, L); data.shops.push(S);
+}
+function report(S, L) {
+  const top = Object.entries(S.themes).sort((a, b) => b[1] - a[1]);
+  const n = S.reviews.length, avg = n ? (S.reviews.reduce((a, x) => a + (x.rating || 0), 0) / n).toFixed(2) : '—';
+  L.push(`**Прочитано отзывов:** ${n}, средняя оценка ${avg} ★, на 1–3 ★: ${S.low}${S.reviews[n - 1] ? ` (с ${S.reviews[n - 1].date} по ${S.reviews[0].date})` : ''}.`, '');
+  L.push('**О чём пишут (темы):** ' + (top.map(([k, v]) => `${k} ${v}`).join(' · ') || '—'), '');
+  const prods = Object.entries(S.products || {}).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  if (prods.length) L.push('**Больше всего отзывов у:** ' + prods.map(([k, v]) => `${k} (${v})`).join(', '), '');
+  const lows = S.reviews.filter(x => x.rating && x.rating <= 3).slice(0, 10);
+  if (lows.length) { L.push('**Жалобы (суть, словами покупателя):**'); lows.forEach(x => L.push(`- ${x.rating}★ «${x.gist}» — ${x.product}`)); L.push(''); }
+  L.push('**Примеры похвалы:**'); S.reviews.filter(x => x.rating >= 5 && x.gist.length > 40).slice(0, 8).forEach(x => L.push(`- «${x.gist}» — ${x.product}`)); L.push('');
+}
+
 async function handles(shop) {
   const o = 'https://' + shop.domain; const list = [];
   const b = json(await get(o + '/collections/best-sellers/products.json?limit=' + (shop.products || 8)));
@@ -108,11 +142,12 @@ async function handles(shop) {
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
-  const shops = CFG.shops.slice(0, CFG.step === 1 ? 1 : CFG.shops.length);
+  const shops = MODE === 'probe' || CFG.step > 1 ? CFG.shops : CFG.shops.slice(0, 1);
   const now = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
   const L = [`# Отзывы покупателей конкурентов — ${now} (${MODE})`, '', 'Только публичные страницы товаров, без имён покупателей — только суть отзыва и темы.', ''];
   const data = { date: now.slice(0, 10), mode: MODE, shops: [] };
   for (const shop of shops) {
+    if (shop.type === 'woo') { await wooShop(shop, L, data); continue; }
     const hs = await handles(shop); const S = { name: shop.name, products: [], widgets: {}, reviews: [], themes: {}, low: 0 };
     L.push(`## ${shop.name}`, '', '| Товар | Цена | Ответ | Виджеты | Отзывов на странице | Рейтинг (всего) |', '|---|---|---|---|---|---|');
     for (const h of hs) {
