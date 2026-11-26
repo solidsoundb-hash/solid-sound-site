@@ -4,13 +4,13 @@
  "maxRequests": 40,
  "shops": [
   {
-   "name": "ADSR Sounds",
-   "domain": "adsrsounds.com",
+   "name": "Black Octopus",
+   "domain": "blackoctopus-sound.com",
    "type": "woo"
   },
   {
-   "name": "Black Octopus",
-   "domain": "blackoctopus-sound.com",
+   "name": "ADSR Sounds",
+   "domain": "adsrsounds.com",
    "type": "woo"
   },
   {
@@ -93,5 +93,5 @@
    "serum"
   ]
  },
- "note": "Scraps Audio (26.11): отзывы в Loox и Trustpilot — robots.txt запрещает, не читаем."
+ "note": "Scraps Audio (26.11): отзывы в Loox и Trustpilot — robots.txt запрещает, не читаем. ADSR и Cr2 (26.11): публичный список отзывов пустой."
 }
