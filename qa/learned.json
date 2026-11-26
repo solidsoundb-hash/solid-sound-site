@@ -58,7 +58,6 @@
   "sndicon|PlayEscapeclienttrac|/en/services-prices/": "2026-11-23",
   "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу": "2026-11-23",
   "kb|kb-perf-weight|Страница весит больше 3 МБ": "2026-11-23",
-  "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.": "2026-11-24",
   "menutr|desktop|ua": "2026-11-24",
   "menutr|phone|ua": "2026-11-24",
   "menutr|desktop|de": "2026-11-24",
@@ -72,9 +71,12 @@
   "menutr|desktop|it": "2026-11-24",
   "menutr|phone|it": "2026-11-24",
   "img|https://solid-sound.net/wp-content/uploads/audio-interface-patch-cables-usb-connections.webp": "2026-11-25",
-  "plus-ring|/en/": "2026-11-25",
-  "plus-ring|/en/studio-calculator/": "2026-11-25",
-  "plus-fh|/en/sell/": "2026-11-25",
-  "plus-ring|/en/sell/": "2026-11-25"
+  "ears-clip|Pitch_128_kbps.mp3": "2026-11-26",
+  "ears-clip|Infinity_Tech_House_128Kbps.mp3": "2026-11-26",
+  "ears-clip|Intricate_Dark-Techno_128kbps.mp3": "2026-11-26",
+  "ears-clip|Kratos_Dark_Techno_128kbps.mp3": "2026-11-26",
+  "sndstale|/en/services-prices/": "2026-11-26",
+  "langopt|phone": "2026-11-26",
+  "ears-clip|02-After.mp3": "2026-11-26"
  }
 }
