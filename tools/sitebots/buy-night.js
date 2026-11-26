@@ -6,12 +6,14 @@
 const fs = require('fs'); const path = require('path');
 const OUT = 'reports/tester';
 process.env.SITEBOTS_OUT = OUT;
-require('./buyer')().then(r => {
+require('./buyer')().then(async r => {
+  let cx = { md: '', alerts: [] }; // 26.11: two-step «Cancel an order» (tools/sitebots/cancel-check.js), never confirms a real one
+  try { fs.mkdirSync(OUT, { recursive: true }); cx = await require('./cancel-check')(OUT); } catch (e) { cx.md = '## ↩️ Отмена заказа\n\n- ⚠️ ' + e.message + '\n'; }
   fs.mkdirSync(OUT, { recursive: true });
   const at = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
   const broken = r.metrics.buyer_broken;
   const md = `# 🛒 Ночная покупка — ${at}\n\n${broken ? '❌ **ПУТЬ ПОКУПКИ СЛОМАН** — тревога: задача «🛒 Покупка сломалась» на GitHub.' : '✅ Путь покупки работает.'}\n\n` +
-    (r.alerts.length ? r.alerts.map(a => '- ' + a).join('\n') + '\n\n' : '') + r.md.replace(/^## .*\n\n/, '') +
+    (r.alerts.length ? r.alerts.map(a => '- ' + a).join('\n') + '\n\n' : '') + r.md.replace(/^## .*\n\n/, '') + '\n' + (cx.alerts.length ? cx.alerts.map(x => '- ⚠️ ' + x).join('\n') + '\n\n' : '') + cx.md +
     '\n---\nРобот `tools/sitebots/buy-night.js`, каждую ночь 02:37 UTC; вручную — строка в `.github/buy-night.txt`.\n';
   fs.writeFileSync(path.join(OUT, 'buy-night.md'), md);
   const csv = path.join(OUT, 'buy-night.csv');
