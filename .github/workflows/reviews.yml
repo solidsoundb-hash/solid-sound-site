@@ -1,11 +1,13 @@
 # REVIEWS ROBOT (Analyst, 26.11.2026): what competitors' customers praise / complain about, from public product pages.
-# No buyer names in the repo — only the gist of each review + themes. Ladder step 1: one shop, manual runs only.
+# No buyer names in the repo — only the gist of each review + themes. Ladder: 26.11 probe -> 2 runs on Black Octopus (150 reviews) -> weekly on Monday 03:17 UTC.
 # On demand: add a line to .github/reviews.txt whose last word is the mode (probe / run).
 name: Reviews robot
 on:
   workflow_dispatch:
     inputs:
-      mode: { description: "probe / run", default: probe }
+      mode: { description: "probe / run", default: run }
+  schedule:
+    - cron: "17 3 * * 1"
   push:
     branches: [main]
     paths: [".github/reviews.txt"]
@@ -27,7 +29,7 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode }}"
           if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/reviews.txt | awk '{print $NF}'); fi
-          export MODE="${MODE:-probe}"; echo "mode: $MODE"
+          export MODE="${MODE:-run}"; echo "mode: $MODE"
           node tools/bots/reviews.js
       - name: Save
         if: always()

@@ -56,6 +56,16 @@
    "want": [
     "цена/выгода"
    ]
+  },
+  {
+   "in": "Hope to see more city pop sample packs like this one",
+   "want": [
+    "просят ещё такого"
+   ]
+  },
+  {
+   "in": "Good.",
+   "want": []
   }
  ],
  "parse": [
