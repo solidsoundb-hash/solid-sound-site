@@ -140,6 +140,15 @@ async function handles(shop) {
         th.forEach(t => S.themes[t] = (S.themes[t] || 0) + 1); if (x.rating && x.rating <= 3) S.low++;
         S.reviews.push({ product: h.title, rating: x.rating, date: x.date, gist, themes: th }); }
     }
+    if (shop.pages && shop.pages.length) {
+      L.push('', '**Другие публичные страницы отзывов:**', '');
+      for (const u of shop.pages) { const r = await get(u); const rv = r.text ? parseReviews(r.text) : [];
+        L.push(`- ${u} → ${r.status === 200 ? '✅' : '❌ ' + (r.error || r.status)}, отзывов найдено: ${rv.length}${rv.agg ? ', рейтинг ' + rv.agg.rating + ' ★ / ' + rv.agg.count : ''}`);
+        if (MODE === 'probe') continue;
+        for (const x of rv) { const gist = scrub((x.title ? x.title + '. ' : '') + x.body); if (!gist) continue; const th = themes(gist);
+          th.forEach(t => S.themes[t] = (S.themes[t] || 0) + 1); if (x.rating && x.rating <= 3) S.low++;
+          S.reviews.push({ product: new URL(u).host, rating: x.rating, date: x.date, gist, themes: th }); } }
+    }
     if (MODE !== 'probe') {
       const top = Object.entries(S.themes).sort((a, b) => b[1] - a[1]);
       L.push('', `**Всего отзывов прочитано:** ${S.reviews.length}, из них на 1–3 ★: ${S.low}.`, '', '**О чём пишут (темы):** ' + (top.map(([k, v]) => `${k} ${v}`).join(' · ') || '—'), '');
