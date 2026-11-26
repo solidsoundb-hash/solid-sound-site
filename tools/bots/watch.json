@@ -2,18 +2,116 @@
  "pauseMs": 3000,
  "maxRequests": 120,
  "shops": [
-  { "name": "Scraps Audio", "domain": "scrapsaudio.com", "type": "shopify" },
-  { "name": "Production Music Live", "domain": "productionmusiclive.com", "type": "shopify" },
-  { "name": "Cymatics", "domain": "cymatics.fm", "type": "shopify" },
-  { "name": "Zenhiser", "domain": "zenhiser.com", "type": "shopify" },
-  { "name": "Black Octopus", "domain": "blackoctopus-sound.com", "type": "woo" },
-  { "name": "ADSR Sounds", "domain": "adsrsounds.com", "type": "woo" },
-  { "name": "Sample Tools by Cr2", "domain": "sampletoolsbycr2.com", "type": "woo" }
+  {
+   "name": "Scraps Audio",
+   "domain": "scrapsaudio.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Production Music Live",
+   "domain": "productionmusiclive.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Cymatics",
+   "domain": "cymatics.fm",
+   "type": "shopify"
+  },
+  {
+   "name": "Zenhiser",
+   "domain": "zenhiser.com",
+   "type": "shopify"
+  },
+  {
+   "name": "Black Octopus",
+   "domain": "blackoctopus-sound.com",
+   "type": "woo"
+  },
+  {
+   "name": "ADSR Sounds",
+   "domain": "adsrsounds.com",
+   "type": "woo"
+  },
+  {
+   "name": "Sample Tools by Cr2",
+   "domain": "sampletoolsbycr2.com",
+   "type": "woo"
+  }
  ],
- "us": { "name": "Solid Sound (мы)", "domain": "solid-sound.net", "type": "woo" },
- "bundleWords": ["\\bbundles?\\b", "mega ?pack", "\\bcollection\\b", "\\bcomplete\\b", "all[- ]in[- ]one", "\\bvault\\b", "\\bultimate\\b", "\\beverything\\b", "\\b\\d{1,3}\\s*-?\\s*in\\s*-?\\s*1\\b", "\\b\\d{1,3}\\s+(?:ableton\\s+)?(?:templates|projects)\\b", "\\bmega\\b", "\\bmulti[- ]pack\\b"],
- "notBundle": ["\\bfree\\b", "gift ?card", "sub special"],
- "genres": ["melodic techno", "melodic house", "tech house", "afro house", "deep house", "progressive house", "organic house", "bass house", "future house", "house", "hard techno", "peak time techno", "techno", "trance", "drum and bass", "dnb", "trap", "hip hop", "lo-fi", "future bass", "dubstep", "phonk", "amapiano", "edm", "cinematic", "ambient", "pop", "garage", "minimal"],
- "focus": ["melodic techno", "melodic house", "tech house", "afro house", "deep house", "progressive house", "organic house", "house", "techno"],
- "templateWords": ["template", "project", "ableton live set", "remake", "track in", ".als", "flp", "logic project"]
+ "us": {
+  "name": "Solid Sound (мы)",
+  "domain": "solid-sound.net",
+  "type": "woo"
+ },
+ "bundleWords": [
+  "\\bbundles?\\b",
+  "mega ?pack",
+  "\\bcollection\\b",
+  "all[- ]in[- ]one",
+  "\\bvault\\b",
+  "\\b\\d{1,3}\\s*-?\\s*in\\s*-?\\s*1\\b",
+  "\\b\\d{1,3}\\s+(?:ableton\\s+)?(?:templates|projects)\\b",
+  "\\bmega\\b",
+  "\\bmulti[- ]pack\\b",
+  "\\bcomplete (?:bundle|collection|pack|set)\\b",
+  "\\bultimate (?:bundle|collection|pack)\\b",
+  "\\beverything bundle\\b"
+ ],
+ "notBundle": [
+  "\\bfree\\b",
+  "gift ?card",
+  "sub special"
+ ],
+ "genres": [
+  "melodic techno",
+  "melodic house",
+  "tech house",
+  "afro house",
+  "deep house",
+  "progressive house",
+  "organic house",
+  "bass house",
+  "future house",
+  "house",
+  "hard techno",
+  "peak time techno",
+  "techno",
+  "trance",
+  "drum and bass",
+  "dnb",
+  "trap",
+  "hip hop",
+  "lo-fi",
+  "future bass",
+  "dubstep",
+  "phonk",
+  "amapiano",
+  "edm",
+  "cinematic",
+  "ambient",
+  "pop",
+  "garage",
+  "minimal"
+ ],
+ "focus": [
+  "melodic techno",
+  "melodic house",
+  "tech house",
+  "afro house",
+  "deep house",
+  "progressive house",
+  "organic house",
+  "house",
+  "techno"
+ ],
+ "templateWords": [
+  "template",
+  "project",
+  "ableton live set",
+  "remake",
+  "track in",
+  ".als",
+  "flp",
+  "logic project"
+ ]
 }

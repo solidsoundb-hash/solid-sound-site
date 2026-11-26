@@ -1,15 +1,83 @@
 {
  "focus": [
-  { "it": { "title": "Melodic Techno Ableton Template Vol 3", "tags": "" }, "want": "melodic techno" },
-  { "it": { "title": "Afterlife Style", "tags": "Melodic House, Ableton" }, "want": "melodic house" },
-  { "it": { "title": "Peak Time Techno Drums", "tags": "" }, "want": "techno" },
-  { "it": { "title": "Future Bass Kit", "tags": "" }, "want": null },
-  { "it": { "title": "Tech House Groove", "tags": "" }, "want": "tech house" },
-  { "it": { "title": "Lo-fi Beats", "tags": "house music lovers" }, "want": "house" }
+  {
+   "it": {
+    "title": "Melodic Techno Ableton Template Vol 3",
+    "tags": ""
+   },
+   "want": "melodic techno"
+  },
+  {
+   "it": {
+    "title": "Afterlife Style",
+    "tags": "Melodic House, Ableton"
+   },
+   "want": "melodic house"
+  },
+  {
+   "it": {
+    "title": "Peak Time Techno Drums",
+    "tags": ""
+   },
+   "want": "techno"
+  },
+  {
+   "it": {
+    "title": "Future Bass Kit",
+    "tags": ""
+   },
+   "want": null
+  },
+  {
+   "it": {
+    "title": "Tech House Groove",
+    "tags": ""
+   },
+   "want": "tech house"
+  },
+  {
+   "it": {
+    "title": "Lo-fi Beats",
+    "tags": "house music lovers"
+   },
+   "want": null
+  },
+  {
+   "it": {
+    "title": "Liquid Drum and Bass",
+    "tags": "melodic house, deep house, techno, tech house, edm"
+   },
+   "want": null
+  },
+  {
+   "it": {
+    "title": "Running",
+    "tags": "Melodic House"
+   },
+   "want": "melodic house"
+  }
  ],
  "template": [
-  { "it": { "title": "Melodic Techno Ableton Template", "tags": "" }, "want": true },
-  { "it": { "title": "Tech House Sample Pack", "tags": "" }, "want": false },
-  { "it": { "title": "Track in 1 Hour", "tags": "" }, "want": true }
+  {
+   "it": {
+    "title": "Melodic Techno Ableton Template",
+    "tags": ""
+   },
+   "want": true
+  },
+  {
+   "it": {
+    "title": "Tech House Sample Pack",
+    "tags": ""
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "Track in 1 Hour",
+    "tags": ""
+   },
+   "want": true
+  }
  ]
 }

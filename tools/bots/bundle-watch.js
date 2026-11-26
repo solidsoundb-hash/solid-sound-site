@@ -25,9 +25,11 @@ function parts(b, cat) {
   return out;
 }
 function genresOf(text) { const t = ' ' + String(text).toLowerCase() + ' '; const g = CFG.genres.filter(x => t.includes(x)); return g.filter(x => !g.some(y => y !== x && y.includes(x))); }
+// Genres of a product: title first; shop tags / description only when they are specific (shops add long SEO genre lists)
+function genresBest(it) { const t = genresOf(it.title); if (t.length) return t; const g = genresOf(it.tags || ''); if (g.length && g.length <= 2) return g; const b = genresOf((it.body || '').slice(0, 1500)); return b.length && b.length <= 3 ? b : []; }
 function kind(text) { const t = String(text).toLowerCase(); return /template|project|\.als|ableton live set|remake|track in/.test(t) ? 'шаблоны/проекты' : /preset|serum|vital|sylenth/.test(t) ? 'пресеты' : /course|masterclass|lesson/.test(t) ? 'курсы' : 'сэмплы/паки'; }
 
-if (require.main !== module) { module.exports = { isBundle, promised, parts, genresOf, kind }; return; }
+if (require.main !== module) { module.exports = { isBundle, promised, parts, genresOf, genresBest, kind }; return; }
 
 const MODE = process.env.MODE || 'run';
 const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs: CFG.pauseMs });
@@ -47,7 +49,7 @@ const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs:
       return { shop: shop.name, title: b.title, url: b.url, price: b.price, was: b.cmp || null, created: b.created, items: p.length || promised(b) || null,
         parts: p.slice(0, 12).map(x => x.title + ' $' + x.price), sumParts: p.length >= 2 ? +sum.toFixed(2) : null,
         offParts: p.length >= 2 && sum > b.price ? Math.round((1 - b.price / sum) * 100) : null, offWas: b.cmp > b.price ? Math.round((1 - b.price / b.cmp) * 100) : null,
-        genres: genresOf(txt), kind: kind(txt) };
+        genres: genresBest(b), kind: kind(txt) };
     }).sort((a, b) => (b.created || '').localeCompare(a.created || '') || b.price - a.price);
     all.push(...bundles); data.shops.push({ name: shop.name, catalog: cat.length, bundles });
     L.push(`## ${shop.name} — бандлов ${bundles.length} из ${cat.length} товаров`, '');

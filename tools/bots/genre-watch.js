@@ -6,10 +6,10 @@
 const fs = require('fs'), path = require('path');
 const CFG = JSON.parse(fs.readFileSync(path.join(__dirname, 'watch.json'), 'utf8'));
 const OUT = path.join(__dirname, '..', '..', 'reports', 'analyst');
-const { genresOf, kind } = require('./bundle-watch.js');
+const { genresBest, kind } = require('./bundle-watch.js');
 
 // Focus genre of an item (most specific first), or null if not house / techno family
-function focus(it) { const g = genresOf(it.title + ' ' + (it.tags || '')); return CFG.focus.find(f => g.some(x => x.includes(f))) || null; }
+function focus(it) { const g = genresBest(it); return CFG.focus.find(f => g.some(x => x.includes(f))) || null; }
 const isTemplate = (it) => kind(it.title + ' ' + (it.tags || '')) === 'шаблоны/проекты';
 const daysAgo = (d) => d ? (Date.now() - Date.parse(d)) / 864e5 : Infinity;
 

@@ -1,26 +1,174 @@
 {
  "isBundle": [
-  { "it": { "title": "Melodic Techno Bundle", "tags": "", "price": 49 }, "want": true },
-  { "it": { "title": "10 Ableton Templates Mega Pack", "tags": "", "price": 99 }, "want": true },
-  { "it": { "title": "Track in 1 Hour", "tags": "", "price": 15 }, "want": false },
-  { "it": { "title": "Free 1GB Bundle", "tags": "", "price": 0 }, "want": false },
-  { "it": { "title": "The Juice (800 Sub Special)", "tags": "bundle", "price": 2 }, "want": false },
-  { "it": { "title": "Deep House Vol 2", "tags": "", "price": 25 }, "want": false }
+  {
+   "it": {
+    "title": "Melodic Techno Bundle",
+    "tags": "",
+    "price": 49
+   },
+   "want": true
+  },
+  {
+   "it": {
+    "title": "10 Ableton Templates Mega Pack",
+    "tags": "",
+    "price": 99
+   },
+   "want": true
+  },
+  {
+   "it": {
+    "title": "Track in 1 Hour",
+    "tags": "",
+    "price": 15
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "Free 1GB Bundle",
+    "tags": "",
+    "price": 0
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "The Juice (800 Sub Special)",
+    "tags": "bundle",
+    "price": 2
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "Deep House Vol 2",
+    "tags": "",
+    "price": 25
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "Ultimate Kick - Roland TR-808 and TR-909 Kick",
+    "tags": "",
+    "price": 5
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "GENESI - Everything You Have Done [Ableton Remake]",
+    "tags": "",
+    "price": 10
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "Slap house Template (Complete track)",
+    "tags": "",
+    "price": 2
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "2025 Raw Kicks Bundle vol 10",
+    "tags": "",
+    "price": 20
+   },
+   "want": true
+  }
  ],
  "promised": [
-  { "it": { "title": "5 Ableton Templates Bundle", "body": "" }, "want": 5 },
-  { "it": { "title": "Techno Bundle", "body": "Includes 4 sample packs for techno" }, "want": 4 },
-  { "it": { "title": "Mega Pack 3-in-1", "body": "" }, "want": 3 },
-  { "it": { "title": "Melodic Bundle", "body": "120 BPM loops" }, "want": 0 }
+  {
+   "it": {
+    "title": "5 Ableton Templates Bundle",
+    "body": ""
+   },
+   "want": 5
+  },
+  {
+   "it": {
+    "title": "Techno Bundle",
+    "body": "Includes 4 sample packs for techno"
+   },
+   "want": 4
+  },
+  {
+   "it": {
+    "title": "Mega Pack 3-in-1",
+    "body": ""
+   },
+   "want": 3
+  },
+  {
+   "it": {
+    "title": "Melodic Bundle",
+    "body": "120 BPM loops"
+   },
+   "want": 0
+  }
  ],
  "parts": {
-  "bundle": { "id": "b", "title": "Melodic Bundle", "price": 40, "tags": "", "body": "This bundle includes: Melodic Techno Vol 1, Afro House Dreams and more." },
-  "cat": [ { "id": "1", "title": "Melodic Techno Vol 1", "price": 25, "tags": "" }, { "id": "2", "title": "Afro House Dreams", "price": 25, "tags": "" }, { "id": "3", "title": "Trap Bangers", "price": 20, "tags": "" }, { "id": "4", "title": "Melodic", "price": 10, "tags": "" } ],
-  "want": ["1", "2"]
+  "bundle": {
+   "id": "b",
+   "title": "Melodic Bundle",
+   "price": 40,
+   "tags": "",
+   "body": "This bundle includes: Melodic Techno Vol 1, Afro House Dreams and more."
+  },
+  "cat": [
+   {
+    "id": "1",
+    "title": "Melodic Techno Vol 1",
+    "price": 25,
+    "tags": ""
+   },
+   {
+    "id": "2",
+    "title": "Afro House Dreams",
+    "price": 25,
+    "tags": ""
+   },
+   {
+    "id": "3",
+    "title": "Trap Bangers",
+    "price": 20,
+    "tags": ""
+   },
+   {
+    "id": "4",
+    "title": "Melodic",
+    "price": 10,
+    "tags": ""
+   }
+  ],
+  "want": [
+   "1",
+   "2"
+  ]
  },
  "genres": [
-  { "t": "Melodic Techno Ableton Template", "want": ["melodic techno"] },
-  { "t": "Tech House & Afro House pack", "want": ["tech house", "afro house"] },
-  { "t": "Lo-fi beats", "want": ["lo-fi"] }
+  {
+   "t": "Melodic Techno Ableton Template",
+   "want": [
+    "melodic techno"
+   ]
+  },
+  {
+   "t": "Tech House & Afro House pack",
+   "want": [
+    "tech house",
+    "afro house"
+   ]
+  },
+  {
+   "t": "Lo-fi beats",
+   "want": [
+    "lo-fi"
+   ]
+  }
  ]
 }
