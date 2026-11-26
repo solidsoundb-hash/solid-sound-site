@@ -19,15 +19,21 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const NICHE = /\b(techno|house|tech.?house|afro.?house|trance|edm|club|dj|ableton|serum|drum and bass|dnb|minimal|electronic|producer|track|mixdown|mastering|mixing|daw|kick|bassline|synth)\b/i;
 const CLASSES = [
   { id: 'lead', w: 3, re: /\b(need|looking for|recommend|hire|anyone (do|offer)|who can|where can i get)\b[^.?!]{0,60}\b(master(ing)?|mix(ing)?|engineer|feedback|critique|someone to finish)\b|\b(mastering|mixing) (engineer|service)s?\b.*\?|\b(feedback|critique) (on|for) my (track|mix|song)\b|\bcan (someone|anyone) (listen|give feedback|check my mix)\b/i },
-  { id: 'pain', w: 2, re: /\b(muddy|muddiness|thin|harsh|not loud|too quiet|lufs|loudness|low.?end|sub.?bass|kick and bass|clash|translat\w*|sounds? (bad|weak|flat) (in|on) (the )?(club|car|speakers|phone)|can'?t finish|never finish|unfinished|8.?bar loop|loop ?(hell|itis)|stuck on|writer'?s block|mix (sounds|is) (bad|amateur)|amateur sound|compare (to|with) (pro|reference))/i },
+  { id: 'pain', w: 2, re: /\b(muddy|muddiness|thin|harsh|not loud|too quiet|lufs|loudness|low.?end|sub.?bass|kick and bass|clash|translat\w*|sounds? (bad|weak|flat) (in|on) (the )?(club|car|speakers|phone)|disappear\w* (in|on) the club|club (system|speakers|sound system)|can'?t finish|never finish|unfinished|8.?bar loop|loop ?(hell|itis)|stuck on|writer'?s block|mix (sounds|is) (bad|amateur)|amateur sound|compare (to|with) (pro|reference))\b/i },
   { id: 'product', w: 2, re: /\b(ableton (template|project)|project file|\.als\b|template for|serum (preset|patch)|preset pack|sample pack|drum kit|one.?shots?|midi pack|stems? (for|of))\b/i },
 ];
 const NOISE = /\b(for sale|selling my|\[wts\]|\[wtb\]|job offer|we are hiring|giveaway|nsfw|crypto|nft)\b/i;
+// (26.11 stage 2) vendor posts and tips are not customers: promo words, "one of ours", product launches, statements of advice
+const PROMO = /\b(one of ours|our (new )?(plugin|pack|product|course)|black friday|cyber monday|on sale|\d+ ?% off|discount|deal|buy now|out now|available now|offers? (a|an|the|alternatives)|puts the|gathers|ist ein|loudness enhancer|mixing tip|production tip|pro tip|a small habit)\b/i;
+// someone speaks about THEIR OWN problem or asks: first person + question/complaint
+const ASKS = /\?|\b(help|any(one|body)? (know|recommend|tips)|how (do|can|should) (i|you|we)|why (does|is|do) my|please|what am i doing wrong|struggl\w*|can'?t|cannot|stuck)\b/i;
+const MINE = /\b(i|i'?m|i'?ve|my|me|we|our track)\b/i;
 const GENRES = ['melodic techno', 'hard techno', 'peak time', 'minimal', 'tech house', 'afro house', 'deep house', 'progressive house', 'trance', 'drum and bass', 'dubstep', 'house', 'techno'];
 
 function classify(text) {
   const t = String(text || '');
-  if (NOISE.test(t)) return { cls: 'none', score: 0 };
+  if (NOISE.test(t) || PROMO.test(t)) return { cls: 'none', score: 0 };
+  if (!ASKS.test(t) && !MINE.test(t)) return { cls: 'none', score: 0 };   // only real people: a question or their own music
   let best = { cls: 'none', score: 0 };
   for (const c of CLASSES) if (c.re.test(t) && c.w > best.score) best = { cls: c.id, score: c.w };
   if (best.cls !== 'none' && NICHE.test(t)) best.score += 1;      // clearly about electronic production
@@ -71,11 +77,7 @@ const SOURCES = [
     if (!r.ok) throw new Error(r.err);
     return (r.j.posts || []).map((p) => ({ id: 'lm-' + p.post.ap_id, title: strip(p.post.name), text: strip(p.post.name + ' ' + (p.post.body || '')).slice(0, 600), link: p.post.ap_id, date: Date.parse(p.post.published) }));
   } })),
-  ...['need mastering', 'mastering engineer techno', 'feedback on my track', 'ableton template', 'mixdown help'].map((q) => ({ id: 'bsky:' + q, name: 'Bluesky «' + q + '»', fn: async () => {
-    const r = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&sort=latest&limit=30`);
-    if (!r.ok) throw new Error(r.err);
-    return (r.j.posts || []).map((p) => { const rk = p.uri.split('/').pop(); return { id: 'bs-' + p.uri, title: strip(p.record && p.record.text).slice(0, 120), text: strip(p.record && p.record.text).slice(0, 600), link: `https://bsky.app/profile/${p.author.handle}/post/${rk}`, date: Date.parse(p.record && p.record.createdAt) }; });
-  } })),
+  // Bluesky public search answered HTTP 403 (needs login) on 26.11 — removed; Reddit needs an official API key (secret REDDIT_*)
 ];
 
 function exam() {
@@ -92,7 +94,7 @@ async function main() {
   let mem; try { mem = JSON.parse(fs.readFileSync(MEM, 'utf8')); } catch { mem = { seen: {}, runs: 0, sources: {}, totals: {} }; }
   const list = STAGE === 1 ? SOURCES.slice(0, 1) : SOURCES;
   const found = { lead: [], pain: [], product: [] }; const genres = {}; const health = [];
-  const maxAge = Date.now() - 14 * 864e5;
+  const maxAge = Date.now() - 30 * 864e5;
   for (const s of list) {
     const st = mem.sources[s.id] || (mem.sources[s.id] = { runs: 0, ok: 0, items: 0, hits: 0, failStreak: 0 });
     st.runs++;

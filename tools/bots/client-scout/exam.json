@@ -1,18 +1,90 @@
 [
- {"text": "Looking for a mastering engineer for my melodic techno EP, any recommendations?", "expect": "lead"},
- {"text": "Can someone give feedback on my tech house track? Link in comments", "expect": "lead"},
- {"text": "Need mixing help: who can mix my afro house track before label submission?", "expect": "lead"},
- {"text": "Feedback on my track please, first techno tune made in Ableton", "expect": "lead"},
- {"text": "My kick and bass clash and the low end is muddy, how do you fix it in techno?", "expect": "pain"},
- {"text": "Why does my mix sound weak in the club but fine on headphones?", "expect": "pain"},
- {"text": "I have 30 unfinished 8 bar loops and can't finish anything", "expect": "pain"},
- {"text": "How loud should a club track be, what LUFS for Beatport?", "expect": "pain"},
- {"text": "Where can I find a good Ableton template for hard techno?", "expect": "product"},
- {"text": "Best Serum preset pack for peak time techno leads?", "expect": "product"},
- {"text": "Any free sample pack with rumble kicks and one shots?", "expect": "product"},
- {"text": "Selling my Push 2 controller, mint condition [WTS]", "expect": "none"},
- {"text": "Just played my first gig last night, what a vibe!", "expect": "none"},
- {"text": "New album from my favourite band is out today", "expect": "none"},
- {"text": "We are hiring a sound engineer for our studio, job offer in Berlin", "expect": "none"},
- {"text": "Microphone recommendations for podcast recording?", "expect": "none"}
+ {
+  "text": "Looking for a mastering engineer for my melodic techno EP, any recommendations?",
+  "expect": "lead"
+ },
+ {
+  "text": "Can someone give feedback on my tech house track? Link in comments",
+  "expect": "lead"
+ },
+ {
+  "text": "Need mixing help: who can mix my afro house track before label submission?",
+  "expect": "lead"
+ },
+ {
+  "text": "Feedback on my track please, first techno tune made in Ableton",
+  "expect": "lead"
+ },
+ {
+  "text": "My kick and bass clash and the low end is muddy, how do you fix it in techno?",
+  "expect": "pain"
+ },
+ {
+  "text": "Why does my mix sound weak in the club but fine on headphones?",
+  "expect": "pain"
+ },
+ {
+  "text": "I have 30 unfinished 8 bar loops and can't finish anything",
+  "expect": "pain"
+ },
+ {
+  "text": "How loud should a club track be, what LUFS for Beatport?",
+  "expect": "pain"
+ },
+ {
+  "text": "Where can I find a good Ableton template for hard techno?",
+  "expect": "product"
+ },
+ {
+  "text": "Best Serum preset pack for peak time techno leads?",
+  "expect": "product"
+ },
+ {
+  "text": "Any free sample pack with rumble kicks and one shots?",
+  "expect": "product"
+ },
+ {
+  "text": "Selling my Push 2 controller, mint condition [WTS]",
+  "expect": "none"
+ },
+ {
+  "text": "Just played my first gig last night, what a vibe!",
+  "expect": "none"
+ },
+ {
+  "text": "New album from my favourite band is out today",
+  "expect": "none"
+ },
+ {
+  "text": "We are hiring a sound engineer for our studio, job offer in Berlin",
+  "expect": "none"
+ },
+ {
+  "text": "Microphone recommendations for podcast recording?",
+  "expect": "none"
+ },
+ {
+  "text": "Mixing tip: if your bus compressor pumps every time the kick hits, try a high-pass filter on the sidechain.",
+  "expect": "none"
+ },
+ {
+  "text": "Sibilance fixed without the lisp. Shusssh is one of ours: it turns down harsh S sounds. #mixing",
+  "expect": "none"
+ },
+ {
+  "text": "Last weekend I did a DJ gig, first one in ages. I was worried about my small case of CDs but it was great #mixing",
+  "expect": "none"
+ },
+ {
+  "text": "Mastering Chain offers alternatives for a final chain: loudness shaping, valve saturation #mixing",
+  "expect": "none"
+ },
+ {
+  "text": "Okay, I think I am done with my cover version! #musicproduction",
+  "expect": "none"
+ },
+ {
+  "text": "Why does my techno kick disappear on the club system? Sounds fine in my headphones",
+  "expect": "pain"
+ }
 ]
