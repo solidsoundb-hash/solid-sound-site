@@ -1139,7 +1139,7 @@ return json_decode( <<<'SSES'
 "Claim exclusive ownership or authorship of the track without modifying original melodies": "Atribuirte la propiedad exclusiva o la autoría del tema sin modificar las melodías originales",
 "Use for creating sample libraries and royalty-free music": "Usarlos para crear librerías de samples y música libre de derechos",
 "Licensing FAQ": "Preguntas sobre la licencia",
-"Can I render the template ‘as is’ and release it on a record label?": "¿Puedo renderizar el template «tal cual» y publicarlo en un sello?",
+"Can I render the template 'as is' and release it on a record label?": "¿Puedo renderizar el template «tal cual» y publicarlo en un sello?",
 "No, you can not. You should make significant changes into template. For example, change the root note, melody, sound processing, add your own ideas and sounds, etc. The main and minimum requirement is to change all the main melodies.": "No. Tienes que hacer cambios importantes en el template. Por ejemplo, cambiar la tonalidad, la melodía, el procesado de sonido, añadir tus propias ideas y sonidos, etc. El requisito principal y mínimo es cambiar todas las melodías principales.",
 "Are there any restrictions for using samples and presets from the template I purchased?": "¿Hay alguna restricción para usar los samples y presets del template que he comprado?",
 "All samples and presets used in our products are royalty-free. You can use separate samples and presets in your own music productions. You are allowed to create the unlimited number of music productions based on one template. Any kind of separate distribution is strictly prohibited.": "Todos los samples y presets de nuestros productos son libres de derechos. Puedes usar samples y presets sueltos en tus propias producciones musicales. Puedes crear un número ilimitado de producciones a partir de un mismo template. Queda estrictamente prohibida cualquier forma de distribución por separado.",
@@ -1238,7 +1238,8 @@ return json_decode( <<<'SSES'
 "8.1 This Agreement is governed by the same law as our": "8.1 Este Acuerdo se rige por la misma ley que nuestras",
 "(section 10 \"Law and disputes\").": "(sección 10 «Ley aplicable y litigios»).",
 "8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Los litigios se tratan como se describe en nuestras Condiciones de venta. Si eres consumidor, nada de este Acuerdo te quita la protección de las normas imperativas de tu país de residencia ni tu derecho a acudir a sus tribunales.",
-"Voice search on, tap to turn off": "Búsqueda por voz activada: toca para apagarla"
+"Voice search on, tap to turn off": "Búsqueda por voz activada: toca para apagarla",
+"What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.": "Qué puedes hacer con las plantillas de Solid Sound y la música basada en ellas: uso personal, educativo y comercial, explicado."
 }
 SSES
 , true );
