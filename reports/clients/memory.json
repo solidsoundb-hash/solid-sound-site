@@ -1,0 +1,18 @@
+{
+ "seen": {},
+ "runs": 1,
+ "sources": {
+  "se:avp": {
+   "runs": 1,
+   "ok": 1,
+   "items": 0,
+   "hits": 0,
+   "failStreak": 0
+  }
+ },
+ "totals": {
+  "lead": 0,
+  "pain": 0,
+  "product": 0
+ }
+}
