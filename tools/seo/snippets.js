@@ -96,6 +96,23 @@ function parse(t) {
       if (old && !old.st) for (const k of ['title', 'desc', 'h1', 'brand']) if ((old[k] || '') !== (now[path][k] || '')) changes.push(`- ${path} **${k}**: «${old[k] || '—'}» → «${now[path][k] || '—'}»`);
     }
   }
+  // 26.11: count VISIBLE H1 in a real browser (25.11: the only H1 on /en/all-products/ sat in a hidden block → 0 visible)
+  let pw = null; try { pw = require('playwright'); } catch (e) {}
+  if (pw) {
+    const br = await pw.chromium.launch(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {});
+    const ctx = await br.newContext({ userAgent: UA, viewport: { width: 1366, height: 768 } });
+    for (const path of ['/en/', '/en/all-products/', '/en/services-prices/', ...PRODUCTS.map(p => '/product/' + p + '/')]) {
+      const pg = await ctx.newPage();
+      try {
+        await pg.goto(BASE + path, { waitUntil: 'domcontentloaded', timeout: 60000 });
+        const n = await pg.evaluate(() => [...document.querySelectorAll('h1')].filter(h => { const r = h.getBoundingClientRect(), c = getComputedStyle(h); return r.width > 0 && r.height > 0 && c.visibility !== 'hidden' && c.display !== 'none' && +c.opacity !== 0; }).length);
+        if (n !== 1) issues.push(`🟠 ${path} — видимых H1: ${n}`);
+        rows.push(`| видимые H1 | en | ${path} | | | ${n === 1 ? '✅ 1' : '❌ ' + n} |`);
+      } catch (e) { rows.push(`| видимые H1 | en | ${path} | | | не открылась |`); }
+      await pg.close(); await sleep(3000);
+    }
+    await br.close();
+  } else rows.push('| видимые H1 | — | нет playwright | | | |');
   // exam (docs/team/bots.md): known answers, checked by hand
   const exam = fs.existsSync('tools/seo/exam.json') ? JSON.parse(fs.readFileSync('tools/seo/exam.json', 'utf8')).items : [];
   const bad = exam.filter(e => issues.some(i => i.includes(e.path + ' —') && i.includes(e.flag)) !== e.expect);

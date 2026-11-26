@@ -1,20 +1,107 @@
 {
  "scrub": [
-  { "in": "Amazing template, learned so much! - John", "want": "Amazing template, learned so much!." , "mode": "nosign", "name": "John" },
-  { "in": "Write me at mark.d@gmail.com for collab", "noHas": "gmail", "mode": "has" },
-  { "in": "Check my track https://soundcloud.com/abc/x", "noHas": "soundcloud", "mode": "has" },
-  { "in": "Follow me @djmarko on insta", "noHas": "djmarko", "mode": "has" },
-  { "in": "Great stems. Thanks, Mike D.", "noHas": "Mike", "mode": "has" },
-  { "in": "Sounds &amp; MIDI are <b>fire</b>", "want": "Sounds & MIDI are fire", "mode": "eq" }
+  {
+   "in": "Amazing template, learned so much! - John",
+   "want": "Amazing template, learned so much!.",
+   "mode": "nosign",
+   "name": "John"
+  },
+  {
+   "in": "Write me at mark.d@gmail.com for collab",
+   "noHas": "gmail",
+   "mode": "has"
+  },
+  {
+   "in": "Check my track https://soundcloud.com/abc/x",
+   "noHas": "soundcloud",
+   "mode": "has"
+  },
+  {
+   "in": "Follow me @djmarko on insta",
+   "noHas": "djmarko",
+   "mode": "has"
+  },
+  {
+   "in": "Great stems. Thanks, Mike D.",
+   "noHas": "Mike",
+   "mode": "has"
+  },
+  {
+   "in": "Sounds &amp; MIDI are <b>fire</b>",
+   "want": "Sounds & MIDI are fire",
+   "mode": "eq"
+  }
  ],
  "themes": [
-  { "in": "The mixdown is so clean and punchy", "want": ["звук/качество"] },
-  { "in": "The video walkthrough explained every step", "want": ["учит/понятно"] },
-  { "in": "Missing samples, project would not open in my version", "want": ["файлы/версия/проблемы"] },
-  { "in": "Worth every penny for the price", "want": ["цена/выгода"] }
+  {
+   "in": "The mixdown is so clean and punchy",
+   "want": [
+    "звук/качество"
+   ]
+  },
+  {
+   "in": "The video walkthrough explained every step",
+   "want": [
+    "учит/понятно"
+   ]
+  },
+  {
+   "in": "Missing samples, project would not open in my version",
+   "want": [
+    "файлы/версия/проблемы"
+   ]
+  },
+  {
+   "in": "Worth every penny for the price",
+   "want": [
+    "цена/выгода"
+   ]
+  }
  ],
  "parse": [
-  { "html": "<script type=\"application/ld+json\">{\"@type\":\"Product\",\"aggregateRating\":{\"ratingValue\":\"4.9\",\"reviewCount\":\"57\"},\"review\":[{\"@type\":\"Review\",\"author\":{\"name\":\"Anna K\"},\"reviewRating\":{\"ratingValue\":\"5\"},\"reviewBody\":\"Best template I bought\",\"datePublished\":\"2026-10-01\"}]}</script>", "count": 1, "rating": 5, "agg": 57, "noAuthor": "Anna" },
-  { "html": "<div class='jdgm-rev jdgm-divider-top' data-review-id='1'><span class='jdgm-rev__rating' data-score='2'></span><span class='jdgm-rev__author'>Bob Smith</span><b class='jdgm-rev__title'>Meh</b><div class='jdgm-rev__body'><p>Files missing</p></div></div><div class='jdgm-rev' data-review-id='2'><span class='jdgm-rev__rating' data-score='5'></span><div class='jdgm-rev__body'><p>Love it</p></div></div>", "count": 2, "rating": 2, "noAuthor": "Bob" }
+  {
+   "html": "<script type=\"application/ld+json\">{\"@type\":\"Product\",\"aggregateRating\":{\"ratingValue\":\"4.9\",\"reviewCount\":\"57\"},\"review\":[{\"@type\":\"Review\",\"author\":{\"name\":\"Anna K\"},\"reviewRating\":{\"ratingValue\":\"5\"},\"reviewBody\":\"Best template I bought\",\"datePublished\":\"2026-10-01\"}]}</script>",
+   "count": 1,
+   "rating": 5,
+   "agg": 57,
+   "noAuthor": "Anna"
+  },
+  {
+   "html": "<div class='jdgm-rev jdgm-divider-top' data-review-id='1'><span class='jdgm-rev__rating' data-score='2'></span><span class='jdgm-rev__author'>Bob Smith</span><b class='jdgm-rev__title'>Meh</b><div class='jdgm-rev__body'><p>Files missing</p></div></div><div class='jdgm-rev' data-review-id='2'><span class='jdgm-rev__rating' data-score='5'></span><div class='jdgm-rev__body'><p>Love it</p></div></div>",
+   "count": 2,
+   "rating": 2,
+   "noAuthor": "Bob"
+  }
+ ],
+ "woo": [
+  {
+   "in": [
+    {
+     "id": 1,
+     "date_created": "2026-11-20T10:00:00",
+     "product_name": "Melodic Techno &amp; Afro House",
+     "reviewer": "Carla Jensen",
+     "reviewer_avatar_urls": {
+      "48": "https://x/a.png"
+     },
+     "review": "<p>Great sounds, but the Ableton project needs Live 12.</p>",
+     "rating": 4,
+     "verified": true
+    },
+    {
+     "id": 2,
+     "reviewer": "Tom",
+     "review": "",
+     "rating": 5
+    }
+   ],
+   "count": 1,
+   "product": "Melodic Techno & Afro House",
+   "noHas": [
+    "Carla",
+    "Jensen",
+    "avatar"
+   ]
+  }
  ]
 }

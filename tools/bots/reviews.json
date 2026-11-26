@@ -4,16 +4,19 @@
  "maxRequests": 40,
  "shops": [
   {
-   "name": "Scraps Audio",
-   "domain": "scrapsaudio.com",
-   "type": "shopify",
-   "products": 8,
-   "pages": [
-    "https://scrapsaudio.com/pages/reviews",
-    "https://scrapsaudio.com/pages/testimonials",
-    "https://www.trustpilot.com/review/scrapsaudio.com",
-    "https://www.trustpilot.com/review/www.scrapsaudio.com"
-   ]
+   "name": "Black Octopus",
+   "domain": "blackoctopus-sound.com",
+   "type": "woo"
+  },
+  {
+   "name": "ADSR Sounds",
+   "domain": "adsrsounds.com",
+   "type": "woo"
+  },
+  {
+   "name": "Sample Tools by Cr2",
+   "domain": "sampletoolsbycr2.com",
+   "type": "woo"
   }
  ],
  "themes": {
@@ -89,5 +92,6 @@
    "presets",
    "serum"
   ]
- }
+ },
+ "note": "Scraps Audio (26.11): отзывы в Loox и Trustpilot — robots.txt запрещает, не читаем. ADSR и Cr2 (26.11): публичный список отзывов пустой."
 }
