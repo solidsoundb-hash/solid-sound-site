@@ -390,21 +390,6 @@
     },
     {
      "shop": "Production Music Live",
-     "title": "MIDI COMPLETE PACK + Preset Bundle Upsells",
-     "url": "https://productionmusiclive.com/products/midi-complete-pack-preset-bundle-upsells",
-     "price": 294,
-     "was": null,
-     "created": "2025-06-26",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "пресеты"
-    },
-    {
-     "shop": "Production Music Live",
      "title": "Complete Classic House Start to Finish Academy",
      "url": "https://productionmusiclive.com/products/complete-classic-house-start-to-finish-academy",
      "price": 194,
@@ -1439,7 +1424,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 40,
      "genres": [
       "future bass"
      ],
@@ -1456,7 +1441,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 45,
      "genres": [
       "house"
      ],
@@ -1570,21 +1555,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 93,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "Vintage Plugin Bundle",
-     "url": "https://cymatics.fm/products/vintage-plugin-bundle",
-     "price": 47,
-     "was": null,
-     "created": "2026-08-16",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
      "genres": [],
      "kind": "сэмплы/паки"
     },
@@ -1954,66 +1924,6 @@
     },
     {
      "shop": "Cymatics",
-     "title": "Cyber Monday - All Plugins Bundle - I",
-     "url": "https://cymatics.fm/products/cyber-monday-all-plugins-bundle-i",
-     "price": 147,
-     "was": 1690,
-     "created": "2025-12-01",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 91,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "Ultimate Plugins Bundle",
-     "url": "https://cymatics.fm/products/cyber-monday-ultimate-plugins-bundle",
-     "price": 147,
-     "was": 1690,
-     "created": "2025-12-01",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 91,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "Cyber Monday - All Plugins Bundle - Payment Plan - I",
-     "url": "https://cymatics.fm/products/cyber-monday-all-plugins-bundle-payment-plan-i",
-     "price": 57,
-     "was": 1690,
-     "created": "2025-12-01",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 97,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "Ultimate Plugins Bundle - Payment Plan",
-     "url": "https://cymatics.fm/products/cyber-monday-all-plugins-bundle-payment-plan",
-     "price": 57,
-     "was": 1690,
-     "created": "2025-12-01",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 97,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
      "title": "Black Friday 2025 - Master Collection",
      "url": "https://cymatics.fm/products/black-friday-2025-mega-collection",
      "price": 347,
@@ -2024,21 +1934,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 84,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "Black Friday 2025 - Master Collection - Payment Plan",
-     "url": "https://cymatics.fm/products/black-friday-2025-master-collection-payment-plan",
-     "price": 97,
-     "was": null,
-     "created": "2025-11-26",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
      "genres": [],
      "kind": "сэмплы/паки"
     },
@@ -2104,21 +1999,6 @@
     },
     {
      "shop": "Cymatics",
-     "title": "BLACK LOTUS - Vintage Collection - Payment Plan",
-     "url": "https://cymatics.fm/products/black-lotus-vintage-collection-payment-plan",
-     "price": 25,
-     "was": 411,
-     "created": "2025-07-08",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
      "title": "ULTRAVIOLET - Trap Collection",
      "url": "https://cymatics.fm/products/ultraviolet-trap-collection",
      "price": 97,
@@ -2129,23 +2009,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 83,
-     "genres": [
-      "trap"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "ULTRAVIOLET - Trap Collection - Payment Plan",
-     "url": "https://cymatics.fm/products/ultraviolet-trap-collection-payment-plan",
-     "price": 25,
-     "was": 582,
-     "created": "2025-06-12",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 96,
      "genres": [
       "trap"
      ],
@@ -2377,186 +2240,6 @@
     },
     {
      "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) (ILL)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-ill",
-     "price": 147,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) (PL)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-pl",
-     "price": 147,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) (OP)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-op",
-     "price": 147,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) (DB)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-db",
-     "price": 147,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) (SW)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-sw",
-     "price": 147,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) - Payment Plan (ILL)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-payment-plan-ill",
-     "price": 37,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) - Payment Plan (PL)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-payment-plan-pl",
-     "price": 37,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) - Payment Plan (OP)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-payment-plan-op",
-     "price": 37,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) - Payment Plan (DB)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-payment-plan-db",
-     "price": 37,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) - Payment Plan (SW)",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-payment-plan-sw",
-     "price": 37,
-     "was": 633,
-     "created": "2025-04-09",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025) - Payment Plan",
-     "url": "https://cymatics.fm/products/all-plugins-bundle-2025-payment-plan",
-     "price": 37,
-     "was": 633,
-     "created": "2025-03-26",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "All Plugins Bundle (2025)",
-     "url": "https://cymatics.fm/products/ultimate-plugin-bundle-2025",
-     "price": 147,
-     "was": 633,
-     "created": "2025-03-24",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
      "title": "CARNAGE - UK & Sexy Drill Collection",
      "url": "https://cymatics.fm/products/carnage-uk-sexy-drill-collection",
      "price": 97,
@@ -2568,55 +2251,6 @@
      "offParts": null,
      "offWas": 80,
      "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "CARNAGE - UK & Sexy Drill Collection - Payment Plan",
-     "url": "https://cymatics.fm/products/carnage-uk-sexy-drill-collection-payment-plan",
-     "price": 25,
-     "was": 492,
-     "created": "2025-03-11",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 95,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "ICONS - Hip Hop Sample Pack Collection - Ultimate Edition - Payment Plan",
-     "url": "https://cymatics.fm/products/icons-hip-hop-sample-pack-collection-ultimate-edition-payment-plan",
-     "price": 37,
-     "was": 275,
-     "created": "2025-03-06",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 87,
-     "genres": [
-      "hip hop"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Cymatics",
-     "title": "ICONS - Hip Hop Sample Pack Collection - Deluxe Edition - Payment Plan",
-     "url": "https://cymatics.fm/products/icons-hip-hop-sample-pack-collection-deluxe-edition-payment-plan",
-     "price": 37,
-     "was": 275,
-     "created": "2025-03-06",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 87,
-     "genres": [
-      "hip hop"
-     ],
      "kind": "сэмплы/паки"
     },
     {
@@ -3081,24 +2715,6 @@
    "bundles": [
     {
      "shop": "Black Octopus",
-     "title": "Waves Horizon Bundle",
-     "url": "https://blackoctopus-sound.com/product/waves-horizon/",
-     "price": 3999,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [
-      "house",
-      "pop"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "PSP Audioware 25th Anniversary Bundle",
      "url": "https://blackoctopus-sound.com/product/psp-audioware-25th-anniversary-bundle/",
      "price": 2625,
@@ -3127,21 +2743,6 @@
      "genres": [
       "cinematic"
      ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Izotope Everything Bundle",
-     "url": "https://blackoctopus-sound.com/product/izotope-everything-bundle-2/",
-     "price": 699,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
      "kind": "сэмплы/паки"
     },
     {
@@ -3179,70 +2780,6 @@
      "genres": [
       "techno"
      ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Channel Strip 2 and Harrison 32Classic Channel Strip Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-channel-strip-2-and-harrison-32classic-channel-strip-bundle/",
-     "price": 629.98,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [
-      "techno"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL x Sonible Synergy Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-x-sonible-synergy-bundle/",
-     "price": 599,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [
-      "pop"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL & Harrison Compressor Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-harrison-compressor-bundle/",
-     "price": 559.96,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL 80s Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-80s-bundle/",
-     "price": 519.97,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
      "kind": "сэмплы/паки"
     },
     {
@@ -3295,99 +2832,6 @@
       "techno"
      ],
      "kind": "пресеты"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Bus Compressor 2 + sonible smart:EQ 4 bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-bus-compressor-2-sonible-smarteq-4-bundle/",
-     "price": 458.99,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [
-      "house",
-      "techno"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Bus Compressor 2 & LMC+ bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-bus-compressor-2-lmc-bundle/",
-     "price": 449.98,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL DeEss & X-EQ2 Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-deess-x-eq2-bundle/",
-     "price": 419.98,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Guitarstrip & Harrison Bass Flow bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-guitarstrip-harrison-bass-flow-bundle/",
-     "price": 399.99,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Drum Strip & Harrison Drum Flow bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-drum-strip-harrison-drum-flow-bundle/",
-     "price": 399.98,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Izotope Mix & Master Bundle Advanced",
-     "url": "https://blackoctopus-sound.com/product/izotope-mix-master-bundle-advanced/",
-     "price": 399,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
     },
     {
      "shop": "Black Octopus",
@@ -3597,24 +3041,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "Eventide H9 Series plugin bundle",
-     "url": "https://blackoctopus-sound.com/product/eventide-h9-series-plugin-bundle/",
-     "price": 299,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [
-      "ambient",
-      "pop"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Baby Audio Complete Bundle",
      "url": "https://blackoctopus-sound.com/product/baby-audio-complete-bundle/",
      "price": 299,
@@ -3627,23 +3053,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 25,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Reverb Collection",
-     "url": "https://blackoctopus-sound.com/product/ssl-reverb-collection/",
-     "price": 296,
-     "was": null,
-     "created": "",
-     "items": 1,
-     "parts": [
-      "SSL Springverb $49"
-     ],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
      "genres": [],
      "kind": "сэмплы/паки"
     },
@@ -3716,23 +3125,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "SSL Vocalstrip & Sonible pure:unmask bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-vocalstrip-sonible-pureunmask-bundle/",
-     "price": 249.99,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [
-      "minimal"
-     ],
-     "kind": "пресеты"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Black Octopus Mega Vocal Bundle 2",
      "url": "https://blackoctopus-sound.com/product/black-octopus-mega-vocal-bundle-2/",
      "price": 249,
@@ -3768,21 +3160,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "SSL X-Limit + X-Gate bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-x-limit-x-gate-bundle/",
-     "price": 229,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Mega Guitar Bundle",
      "url": "https://blackoctopus-sound.com/product/mega-guitar-bundle/",
      "price": 220.6,
@@ -3796,36 +3173,6 @@
      "genres": [
       "ambient"
      ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Mastering Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-mastering-bundle/",
-     "price": 209.99,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Spring Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-spring-bundle/",
-     "price": 209.98,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
      "kind": "сэмплы/паки"
     },
     {
@@ -3898,36 +3245,6 @@
       "pop"
      ],
      "kind": "курсы"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Band Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-band-bundle/",
-     "price": 199,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Fusion Full Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-fusion-full-bundle/",
-     "price": 199,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
     },
     {
      "shop": "Black Octopus",
@@ -4042,26 +3359,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "SSL AutoSeries Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-autoseries-bundle/",
-     "price": 149,
-     "was": null,
-     "created": "",
-     "items": 4,
-     "parts": [
-      "SSL AutoBUS $99",
-      "SSL AutoDYN $99",
-      "SSL AutoEQ $99",
-      "SSL 4K E Channel $49"
-     ],
-     "sumParts": 346,
-     "offParts": 57,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Moogerfooger Complete Bundle",
      "url": "https://blackoctopus-sound.com/product/moogerfooger-complete-bundle/",
      "price": 149,
@@ -4074,21 +3371,6 @@
      "offWas": 47,
      "genres": [],
      "kind": "пресеты"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL X-Delay & X-Echo Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-x-delay-x-echo-bundle/",
-     "price": 149,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
     },
     {
      "shop": "Black Octopus",
@@ -4193,23 +3475,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "SSL 4K Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-4k-bundle/",
-     "price": 99,
-     "was": 299,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 67,
-     "genres": [
-      "house"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Reveal Sound 6-in-1 EDM Bundle",
      "url": "https://blackoctopus-sound.com/product/reveal-sound-6-in-1-edm-bundle/",
      "price": 99,
@@ -4227,40 +3492,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "Air Music MPC Instruments Collection",
-     "url": "https://blackoctopus-sound.com/product/air-music-mpc-instruments-collection/",
-     "price": 99,
-     "was": 499,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 80,
-     "genres": [
-      "house"
-     ],
-     "kind": "пресеты"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Air Music AIEP3 COMPLETE",
-     "url": "https://blackoctopus-sound.com/product/air-music-aiep3-complete/",
-     "price": 99,
-     "was": 499,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 80,
-     "genres": [
-      "techno"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Newfangled Audio Elevate Mastering Bundle",
      "url": "https://blackoctopus-sound.com/product/newfangled-audio-elevate-mastering-bundle/",
      "price": 99,
@@ -4274,21 +3505,6 @@
      "genres": [
       "techno"
      ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "SSL Plateverb & Gateverb Bundle",
-     "url": "https://blackoctopus-sound.com/product/ssl-plateverb-gateverb-bundle/",
-     "price": 98,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
      "kind": "сэмплы/паки"
     },
     {
@@ -4520,40 +3736,6 @@
     },
     {
      "shop": "Black Octopus",
-     "title": "Air Music AIEP3 Select",
-     "url": "https://blackoctopus-sound.com/product/air-music-aiep3-select/",
-     "price": 49,
-     "was": 299,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 84,
-     "genres": [
-      "techno"
-     ],
-     "kind": "пресеты"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Air Music The Keys Collection",
-     "url": "https://blackoctopus-sound.com/product/air-music-the-keys-collection/",
-     "price": 49,
-     "was": 199,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 75,
-     "genres": [
-      "lo-fi"
-     ],
-     "kind": "пресеты"
-    },
-    {
-     "shop": "Black Octopus",
      "title": "Sonuscore Origins Bundle (Vol 1 – 5)",
      "url": "https://blackoctopus-sound.com/product/sonuscore-origins-bundle-vol-1-5/",
      "price": 49,
@@ -4582,39 +3764,6 @@
      "genres": [
       "trap"
      ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Air Music Creative FX Collection 2",
-     "url": "https://blackoctopus-sound.com/product/air-music-creative-fx-collection-2/",
-     "price": 44,
-     "was": 129,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 66,
-     "genres": [
-      "edm",
-      "pop"
-     ],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Air Music Vocal FX Collection",
-     "url": "https://blackoctopus-sound.com/product/air-music-vocal-fx-collection/",
-     "price": 39,
-     "was": 199,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 80,
-     "genres": [],
      "kind": "сэмплы/паки"
     },
     {
@@ -4650,23 +3799,6 @@
       "trap"
      ],
      "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "Black Octopus",
-     "title": "Air Music Fabric",
-     "url": "https://blackoctopus-sound.com/product/air-music-fabric/",
-     "price": 34,
-     "was": 149,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 77,
-     "genres": [
-      "house"
-     ],
-     "kind": "пресеты"
     },
     {
      "shop": "Black Octopus",
@@ -5398,21 +4530,6 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "Enhance Plugin Bundle",
-     "url": "https://www.adsrsounds.com/product/software/sonnox-enhance-plugin-bundle/",
-     "price": 431,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "United ALL Bundle",
      "url": "https://www.adsrsounds.com/product/software/united-plugins-united-all-bundle/",
      "price": 399.5,
@@ -5438,21 +4555,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 50,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "All Plugins Bundle",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/mastering-the-mix-all-plugins-bundle/",
-     "price": 375.6,
-     "was": 939,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 60,
      "genres": [],
      "kind": "сэмплы/паки"
     },
@@ -5503,55 +4605,10 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "Fabric Vintage Synths Vol. 1 – Vintage Synth Plugin Bundle",
-     "url": "https://www.adsrsounds.com/product/software/air-music-tech-fabric-vintage-synths-vol-1-vintage-synth-plugin-bundle/",
-     "price": 299,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "FabFilter Creative Bundle – 4 Premium Plugins for Distortion, Synthesis, Delay & Filtering",
-     "url": "https://www.adsrsounds.com/product/software/fabfilter-creative-bundle-4-premium-plugins-for-distortion-synthesis-delay-filtering/",
-     "price": 295,
-     "was": 389,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 24,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "FX Collection 6 PRO – Comprehensive Effects Suite for Modern Production",
      "url": "https://www.adsrsounds.com/product/software/arturia-fx-collection-6-pro-comprehensive-effects-suite-for-modern-production/",
      "price": 249,
      "was": 499,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 50,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "FL Studio All Plugins Bundle – Complete Music Production Software",
-     "url": "https://www.adsrsounds.com/product/software/fl-studio-all-plugins-bundle-complete-music-production-software/",
-     "price": 224,
-     "was": 449,
      "created": "",
      "items": null,
      "parts": [],
@@ -5578,38 +4635,8 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "FL Studio Signature Bundle – Advanced Music Production & Creative Plugin Suite",
-     "url": "https://www.adsrsounds.com/product/software/fl-studio-signature-bundle-advanced-music-production-creative-plugin-suite/",
-     "price": 199,
-     "was": 269,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 26,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "NoiseWorks Dynamic Bundle",
      "url": "https://www.adsrsounds.com/product/software/noiseworks-dynamic-bundle/",
-     "price": 199,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "Tiefkraft – Virtual Bass Collection Plugin",
-     "url": "https://www.adsrsounds.com/product/software/pfundstein-audio-tiefkraft-virtual-bass-collection-plugin/",
      "price": 199,
      "was": null,
      "created": "",
@@ -5663,21 +4690,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 43,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "Thenatan Threebie Plugins Bundle: Creative FX Collection",
-     "url": "https://www.adsrsounds.com/product/software/thenatan-threebie-plugins-bundle-creative-fx-collection/",
-     "price": 189,
-     "was": null,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": null,
      "genres": [],
      "kind": "сэмплы/паки"
     },
@@ -5789,21 +4801,6 @@
       "melodic house"
      ],
      "kind": "пресеты"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "Soundbox Instruments Bundle",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/audiomodern-soundbox-instruments-bundle/",
-     "price": 109,
-     "was": 246,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 56,
-     "genres": [],
-     "kind": "сэмплы/паки"
     },
     {
      "shop": "ADSR Sounds",
@@ -6097,21 +5094,6 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "5 Creative FX Plugins · United Plugins",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/5-creative-fx-plugins-united-plugins/",
-     "price": 59,
-     "was": 466,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 87,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "3D DAW + Spatializer · Audiocube",
      "url": "https://www.adsrsounds.com/product/comprised-bundle/3d-daw-spatializer-audiocube/",
      "price": 59,
@@ -6122,21 +5104,6 @@
      "sumParts": null,
      "offParts": null,
      "offWas": 79,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "2 Mixing & Mastering Plugins · Mastering The Mix",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/2-mixing-mastering-plugins-mastering-the-mix/",
-     "price": 56,
-     "was": 160,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 65,
      "genres": [],
      "kind": "сэмплы/паки"
     },
@@ -6376,21 +5343,6 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "2 Freeze & Dynamics Plugins · FlickSwitch Audio",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/2-freeze-dynamics-plugins-flickswitch-audio/",
-     "price": 49,
-     "was": 128,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 62,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "learn:bundle",
      "url": "https://www.adsrsounds.com/product/software/sonible-learnbundle-multi-fx-bundle/",
      "price": 49,
@@ -6501,51 +5453,6 @@
       "pop"
      ],
      "kind": "пресеты"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "Nectar 5 Elements: All-in-One Vocal Mixing Plugin",
-     "url": "https://www.adsrsounds.com/product/software/izotope-nectar-5-elements-all-in-one-vocal-mixing-plugin/",
-     "price": 39,
-     "was": 55,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 29,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "3 Sound Design Plugins · Anemond",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/3-sound-design-plugins-anemond/",
-     "price": 39,
-     "was": 158,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 75,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "2 Multi-FX Plugins · Sauce Audio",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/2-multi-fx-plugins-sauce-audio/",
-     "price": 39,
-     "was": 119,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 67,
-     "genres": [],
-     "kind": "сэмплы/паки"
     },
     {
      "shop": "ADSR Sounds",
@@ -6663,21 +5570,6 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "3 Drum Plugins for Mac · Marla Audio",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/3-drum-plugins-for-mac-marla-audio/",
-     "price": 29.99,
-     "was": 117,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 74,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "Halloween Dream Vocal Bundle – Soulful & Dark Female Vocal Pack",
      "url": "https://www.adsrsounds.com/product/presets/barbie-mak-halloween-dream-vocal-bundle/",
      "price": 29.99,
@@ -6729,36 +5621,6 @@
       "peak time techno"
      ],
      "kind": "пресеты"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "12 Character FX Plugins · Thenatan",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/12-character-fx-plugins-thenatan/",
-     "price": 29,
-     "was": 791.5,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 96,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
-     "title": "3 Mix FX Plugins · Carbonated Audio",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/spilled-3-mix-fx-plugins-carbonated-audio/",
-     "price": 29,
-     "was": 69,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 58,
-     "genres": [],
-     "kind": "сэмплы/паки"
     },
     {
      "shop": "ADSR Sounds",
@@ -7753,21 +6615,6 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "6 Chord, Delay & Vocal Plugins · W.A Production",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/6-chord-delay-vocal-plugins-w-a-production/",
-     "price": 14.9,
-     "was": 237.6,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 94,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "31 Ghosts Omnisphere Bundle",
      "url": "https://www.adsrsounds.com/product/presets/31-ghosts-omnisphere-bundle/",
      "price": 14,
@@ -8451,21 +7298,6 @@
     },
     {
      "shop": "ADSR Sounds",
-     "title": "X-Plugins Bundle",
-     "url": "https://www.adsrsounds.com/product/comprised-bundle/thenatan-x-plugins-bundle/",
-     "price": 9.5,
-     "was": 265.5,
-     "created": "",
-     "items": null,
-     "parts": [],
-     "sumParts": null,
-     "offParts": null,
-     "offWas": 96,
-     "genres": [],
-     "kind": "сэмплы/паки"
-    },
-    {
-     "shop": "ADSR Sounds",
      "title": "Mainstream Techno For Serum 2 – Modern Hard & Peak-Time Techno Preset Collection",
      "url": "https://www.adsrsounds.com/product/presets/immense-sounds-mainstream-techno-for-serum-2-modern-hard-peak-time-techno-preset-collection/",
      "price": 8.98,
@@ -9028,7 +7860,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 70,
      "genres": [
       "house"
      ],
@@ -9164,7 +7996,7 @@
      ],
      "sumParts": 3.98,
      "offParts": null,
-     "offWas": null,
+     "offWas": 75,
      "genres": [
       "house"
      ],
@@ -9311,7 +8143,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 80,
      "genres": [
       "tech house",
       "techno"
@@ -9437,7 +8269,7 @@
      ],
      "sumParts": 115.94,
      "offParts": 70,
-     "offWas": null,
+     "offWas": 70,
      "genres": [],
      "kind": "пресеты"
     },
@@ -9535,7 +8367,7 @@
      ],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 75,
      "genres": [
       "techno"
      ],
@@ -9573,7 +8405,7 @@
      ],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 75,
      "genres": [],
      "kind": "пресеты"
     },
@@ -9703,7 +8535,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 80,
      "genres": [
       "house"
      ],
@@ -9763,7 +8595,7 @@
      ],
      "sumParts": 90.26,
      "offParts": 67,
-     "offWas": null,
+     "offWas": 80,
      "genres": [
       "dnb",
       "pop"
@@ -9798,7 +8630,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 80,
      "genres": [
       "deep house"
      ],
@@ -9989,7 +8821,7 @@
      ],
      "sumParts": 19.97,
      "offParts": null,
-     "offWas": null,
+     "offWas": 70,
      "genres": [
       "garage"
      ],
@@ -10023,7 +8855,7 @@
      ],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 50,
      "genres": [
       "tech house"
      ],
@@ -10111,7 +8943,7 @@
      ],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 70,
      "genres": [
       "tech house",
       "garage"
@@ -10437,7 +9269,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 60,
      "genres": [],
      "kind": "шаблоны/проекты"
     },
@@ -10452,7 +9284,7 @@
      "parts": [],
      "sumParts": null,
      "offParts": null,
-     "offWas": null,
+     "offWas": 50,
      "genres": [],
      "kind": "сэмплы/паки"
     }
@@ -10460,7 +9292,7 @@
   }
  ],
  "summary": {
-  "bundles": 627,
+  "bundles": 552,
   "templateBundles": 83,
   "medPrice": 88.38,
   "medItems": 3,
