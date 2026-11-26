@@ -93,7 +93,7 @@ if (process.argv.includes('--exam')) {
       try { res = await load(url); } catch (e) { pages.push({ lang, url, code: 'ошибка', final: String(e.message).slice(0, 80), n: 0 }); continue; }
       let n = 0;
       for (const [t, where] of res.items) {
-        if (noise.has(t) || !untr(t, lang, EN_PAGE[pg])) continue;
+        if (noise.has(t) || noise.has(lang + '|' + t) || !untr(t, lang, EN_PAGE[pg])) continue; /* «fr|10. Contact»: the same word in that language */
         const k = t.slice(0, 300); const f = found[lang][k] || (found[lang][k] = { where: new Set(), pages: new Set() });
         f.pages.add(pg); if (where) f.where.add(where); n++;
       }
