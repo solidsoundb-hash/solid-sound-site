@@ -1,5 +1,5 @@
 {
- "date": "2026-11-25 17:26",
+ "date": "2026-11-26 06:58",
  "pages": {
   "/en/": {
    "title": "Solid Sound — Ableton Templates, Serum Presets & Mixing Studio",
@@ -46,19 +46,19 @@
   "/en/all-products/": {
    "title": "Ableton Templates, Serum Presets & Music | Solid Sound",
    "desc": "All Solid Sound products in one place: royalty-free Ableton Live templates, Serum presets and music for video. Listen to demos, instant download.",
-   "h1": "All products",
+   "h1": "Turn Your Ideas into Solid Sound",
    "brand": ""
   },
   "/de/all-products/": {
    "title": "Ableton Templates, Presets, Mixing & Mastering | Solid Sound",
    "desc": "Lizenzfreie Ableton Live Templates, Serum-Presets und Musik für Videos. Lerne an Profi-Projekten oder buche Online-Mixing und -Mastering.",
-   "h1": "Alle Produkte",
+   "h1": "Mach aus deinen Ideen Solid Sound",
    "brand": ""
   },
   "/fr/all-products/": {
    "title": "Templates Ableton, presets, mixage & mastering | Solid Sound",
    "desc": "Templates Ableton Live libres de droits, presets Serum et musique pour vidéos. Apprenez avec des projets pro ou commandez un mixage et mastering en ligne.",
-   "h1": "Tous les produits",
+   "h1": "Transforme tes idées en Solid Sound",
    "brand": ""
   },
   "/en/services-prices/": {
@@ -92,7 +92,7 @@
    "brand": ""
   },
   "/fr/studio-calculator/": {
-   "title": "Calculateur de prix studio – Mixage, Mastering, Remix | Solid Sound",
+   "title": "Calculateur de prix – Mixage & Mastering | Solid Sound",
    "desc": "Prix immédiats pour mixage, mastering (stéréo, stems, multipiste), remix, ghost production et post-production. Démarrez avec 50 % d'acompte.",
    "h1": "Calculateur de prix studio",
    "brand": ""
@@ -224,6 +224,6 @@
    "brand": "Solid Sound"
   }
  },
- "runs": 7,
- "exam": "Экзамен: 9/9 ✅"
+ "runs": 8,
+ "exam": "Экзамен: 10/10 ✅"
 }

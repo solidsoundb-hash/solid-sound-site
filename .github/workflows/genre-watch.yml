@@ -1,0 +1,36 @@
+# GENRE-WATCH (Analyst, 26.11.2026, owner via «Задачи»): see header of tools/bots/genre-watch.js. Public pages only, no personal data.
+# Daily 03:41 UTC -> reports/analyst/. On demand: a line in .github/genre-watch.txt whose last word is the mode (probe / run).
+name: genre-watch robot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "probe / run", default: run }
+  schedule:
+    - cron: "41 3 * * *"
+  push:
+    branches: [main]
+    paths: [".github/genre-watch.txt"]
+permissions:
+  contents: write
+concurrency: genre-watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/genre-watch/exam.js
+      - name: Watch
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/genre-watch.txt | awk '{print $NF}'); fi
+          export MODE="${MODE:-run}"; echo "mode: $MODE"
+          node tools/bots/genre-watch.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=genre-watch bash .github/save.sh "genre-watch: $(date -u +%F)" reports/analyst
