@@ -9,6 +9,7 @@ process.env.SITEBOTS_OUT = OUT;
 require('./buyer')().then(async r => {
   let cx = { md: '', alerts: [] }; // 26.11: two-step «Cancel an order» (tools/sitebots/cancel-check.js), never confirms a real one
   try { fs.mkdirSync(OUT, { recursive: true }); cx = await require('./cancel-check')(OUT); } catch (e) { cx.md = '## ↩️ Отмена заказа\n\n- ⚠️ ' + e.message + '\n'; }
+  try { const dm = await require('./demo-match')(); cx.md += '\n' + dm.md; cx.alerts.push(...dm.alerts); } catch (e) { cx.md += '\n## 🎧 Демо ↔ товар\n\n- ⚠️ ' + e.message + '\n'; } // 26.11: demo of THIS product
   fs.mkdirSync(OUT, { recursive: true });
   const at = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
   const broken = r.metrics.buyer_broken;
