@@ -20,7 +20,9 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
       - run: node tools/seo/snippets.js
+        env: { PW_CHANNEL: chrome }
       - name: Save
         if: always()
         run: |

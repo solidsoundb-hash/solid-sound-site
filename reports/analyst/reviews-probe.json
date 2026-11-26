@@ -3,155 +3,16 @@
  "mode": "probe",
  "shops": [
   {
-   "name": "Scraps Audio",
-   "products": [
-    {
-     "title": "Track in 1 Hour",
-     "price": 15,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 10
-     }
-    },
-    {
-     "title": "The Juice (800 Sub Special)",
-     "price": 2,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 3
-     }
-    },
-    {
-     "title": "Liquid Drum and Bass",
-     "price": 5,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 4
-     }
-    },
-    {
-     "title": "MODERN TECH 2",
-     "price": 4,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 3
-     }
-    },
-    {
-     "title": "Newage House Drop",
-     "price": 5,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 3
-     }
-    },
-    {
-     "title": "KAWAII FUTURE BASS with Cubase",
-     "price": 20,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 5
-     }
-    },
-    {
-     "title": "Running",
-     "price": 40,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 5
-     }
-    },
-    {
-     "title": "Ringtones EDM",
-     "price": 9.99,
-     "best": true,
-     "status": 200,
-     "widgets": [
-      "judgeme",
-      "loox",
-      "okendo",
-      "yotpo"
-     ],
-     "found": 0,
-     "agg": {
-      "rating": 5,
-      "count": 3
-     }
-    }
-   ],
-   "widgets": {
-    "judgeme": 8,
-    "loox": 8,
-    "okendo": 8,
-    "yotpo": 8
-   },
-   "reviews": [],
-   "themes": {},
-   "low": 0,
-   "diag": 1
+   "name": "ADSR Sounds",
+   "found": 0
+  },
+  {
+   "name": "Black Octopus",
+   "found": 10
+  },
+  {
+   "name": "Sample Tools by Cr2",
+   "found": 0
   }
  ]
 }

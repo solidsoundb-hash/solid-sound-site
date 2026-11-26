@@ -45,6 +45,11 @@
    "path": "/de/all-products/",
    "flag": "title как у главной",
    "expect": false
+  },
+  {
+   "path": "/en/all-products/",
+   "flag": "видимых H1",
+   "expect": false
   }
  ]
 }
