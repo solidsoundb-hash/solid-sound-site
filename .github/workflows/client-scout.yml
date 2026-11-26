@@ -28,4 +28,5 @@ jobs:
           STAGE=$STAGE node tools/bots/client-scout.js
       - name: Save
         if: always()
-        run: BOT_NAME=client-scout bash .github/save.sh "client scout: $(date -u +%F)" reports/clients
+        run: |
+          BOT_NAME=client-scout bash .github/save.sh "client scout: $(date -u +%F)" reports/clients
