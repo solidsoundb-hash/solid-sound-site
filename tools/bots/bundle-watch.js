@@ -26,10 +26,12 @@ function parts(b, cat) {
 }
 function genresOf(text) { const t = ' ' + String(text).toLowerCase() + ' '; const g = CFG.genres.filter(x => t.includes(x)); return g.filter(x => !g.some(y => y !== x && y.includes(x))); }
 // Genres of a product: title first; shop tags / description only when they are specific (shops add long SEO genre lists)
+// Discount the shop itself claims in the title: "(75% OFF)", "SAVE 70%", "-50%"
+function offClaim(title) { const m = String(title).match(/(\d{1,2})\s?%\s?off|save\s?(\d{1,2})\s?%|[-\u2212\u2013]\s?(\d{1,2})\s?%/i); return m ? +(m[1] || m[2] || m[3]) : null; }
 function genresBest(it) { const t = genresOf(it.title); if (t.length) return t; const g = genresOf(it.tags || ''); if (g.length && g.length <= 2) return g; const b = genresOf((it.body || '').slice(0, 1500)); return b.length && b.length <= 3 ? b : []; }
 function kind(text) { const t = String(text).toLowerCase(); return /template|project|\.als|ableton live set|remake|track in/.test(t) ? 'шаблоны/проекты' : /preset|serum|vital|sylenth/.test(t) ? 'пресеты' : /course|masterclass|lesson/.test(t) ? 'курсы' : 'сэмплы/паки'; }
 
-if (require.main !== module) { module.exports = { isBundle, promised, parts, genresOf, genresBest, kind }; return; }
+if (require.main !== module) { module.exports = { isBundle, promised, parts, genresOf, genresBest, kind, offClaim }; return; }
 
 const MODE = process.env.MODE || 'run';
 const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs: CFG.pauseMs });
@@ -48,7 +50,7 @@ const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs:
       const p = parts(b, cat), sum = p.reduce((a, x) => a + x.price, 0), txt = b.title + ' ' + b.tags + ' ' + b.body.slice(0, 1500);
       return { shop: shop.name, title: b.title, url: b.url, price: b.price, was: b.cmp || null, created: b.created, items: p.length || promised(b) || null,
         parts: p.slice(0, 12).map(x => x.title + ' $' + x.price), sumParts: p.length >= 2 ? +sum.toFixed(2) : null,
-        offParts: p.length >= 2 && sum > b.price ? Math.round((1 - b.price / sum) * 100) : null, offWas: b.cmp > b.price ? Math.round((1 - b.price / b.cmp) * 100) : null,
+        offParts: p.length >= 2 && sum > b.price ? Math.round((1 - b.price / sum) * 100) : null, offWas: b.cmp > b.price ? Math.round((1 - b.price / b.cmp) * 100) : offClaim(b.title),
         genres: genresBest(b), kind: kind(txt) };
     }).sort((a, b) => (b.created || '').localeCompare(a.created || '') || b.price - a.price);
     all.push(...bundles); data.shops.push({ name: shop.name, catalog: cat.length, bundles });
@@ -61,10 +63,14 @@ const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs:
   const tpl = all.filter(b => b.kind === 'шаблоны/проекты');
   const med = (a) => { const s = a.filter(x => x != null).sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
   const perItem = tpl.filter(b => b.items).map(b => +(b.price / b.items).toFixed(2));
+  const FOCUS = CFG.focus; const fb = all.filter(b => b.genres.some(g => FOCUS.some(f => g.includes(f)))).sort((a, b) => a.price - b.price);
+  L.push(`## Бандлы house / techno (${fb.length}) — от дешёвых к дорогим`, '', '| Магазин | Бандл | Что | Цена | Скидка | Частей | Жанры |', '|---|---|---|---|---|---|---|');
+  fb.slice(0, 40).forEach(b => L.push(`| ${b.shop} | [${b.title.replace(/\|/g, '/')}](${b.url}) | ${b.kind} | $${b.price} | ${b.offParts != null ? '−' + b.offParts + '% к частям' : b.offWas != null ? '−' + b.offWas + '%' : '—'} | ${b.items || '?'} | ${b.genres.join(', ')} |`));
+  L.push('');
   L.push('## Итог', '', `- Бандлов всего: ${all.length}, из них шаблонов/проектов: ${tpl.length}.`,
     `- Цена бандла шаблонов: медиана $${med(tpl.map(b => b.price)) ?? '—'}, частей в бандле: медиана ${med(tpl.map(b => b.items)) ?? '—'}, цена за 1 шаблон в бандле: медиана $${med(perItem) ?? '—'}.`,
     `- Скидка к сумме частей (где посчитать удалось): медиана −${med(all.map(b => b.offParts)) ?? '—'}% (бандлов с расчётом: ${all.filter(b => b.offParts != null).length}).`,
-    `- Скидка к «было»: медиана −${med(all.map(b => b.offWas)) ?? '—'}%.`,
+    `- Скидка к «было» / заявленная в названии: медиана −${med(all.map(b => b.offWas)) ?? '—'}%; в house/techno: −${med(fb.map(b => b.offWas ?? b.offParts)) ?? '—'}%, цена бандла house/techno: медиана $${med(fb.map(b => b.price)) ?? '—'}.`,
     '- Жанры бандлов: ' + Object.entries(all.flatMap(b => b.genres).reduce((a, g) => (a[g] = (a[g] || 0) + 1, a), {})).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([g, n]) => `${g} ${n}`).join(' · '), '',
     `_Запросов: ${S.used()}._`);
   data.summary = { bundles: all.length, templateBundles: tpl.length, medPrice: med(tpl.map(b => b.price)), medItems: med(tpl.map(b => b.items)), medPerItem: med(perItem), medOffParts: med(all.map(b => b.offParts)) };

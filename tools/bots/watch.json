@@ -60,7 +60,15 @@
  "notBundle": [
   "\\bfree\\b",
   "gift ?card",
-  "sub special"
+  "sub special",
+  "plugins?\\b",
+  "\\bwaves\\b",
+  "izotope",
+  "\\bssl\\b",
+  "payment plan",
+  "upsells?",
+  "\\bair music\\b",
+  "soundbox instruments"
  ],
  "genres": [
   "melodic techno",

@@ -79,6 +79,22 @@
     "price": 20
    },
    "want": true
+  },
+  {
+   "it": {
+    "title": "Waves Horizon Bundle",
+    "tags": "",
+    "price": 3999
+   },
+   "want": false
+  },
+  {
+   "it": {
+    "title": "All Plugins Bundle (2025) - Payment Plan",
+    "tags": "",
+    "price": 37
+   },
+   "want": false
   }
  ],
  "promised": [
@@ -169,6 +185,20 @@
    "want": [
     "lo-fi"
    ]
+  }
+ ],
+ "offClaim": [
+  {
+   "t": "The Techno Bundle (75% OFF!)",
+   "want": 75
+  },
+  {
+   "t": "The Speed Garage Bundle (SAVE 70%)",
+   "want": 70
+  },
+  {
+   "t": "Techno Bundle (4 packs in 1)",
+   "want": null
   }
  ]
 }
