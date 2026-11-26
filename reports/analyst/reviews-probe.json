@@ -150,7 +150,8 @@
    },
    "reviews": [],
    "themes": {},
-   "low": 0
+   "low": 0,
+   "diag": 1
   }
  ]
 }

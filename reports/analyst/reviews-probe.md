@@ -1,4 +1,4 @@
-# Отзывы покупателей конкурентов — 2026-11-26 06:48 UTC (probe)
+# Отзывы покупателей конкурентов — 2026-11-26 06:49 UTC (probe)
 
 Только публичные страницы товаров, без имён покупателей — только суть отзыва и темы.
 
@@ -7,6 +7,14 @@
 | Товар | Цена | Ответ | Виджеты | Отзывов на странице | Рейтинг (всего) |
 |---|---|---|---|---|---|
 | 🔥 Track in 1 Hour | $15 | ✅ | judgeme, loox, okendo, yotpo | 0 | 5 ★ / 10 |
+
+<details><summary>Метки отзывов на странице «Track in 1 Hour»</summary>
+
+- `https://loox.io/widget/Ez5hXcLeQK/loox.1683335713970.js?shop=scrapsaudio.myshopify.com`
+- `class: loox-reviews-default`
+
+</details>
+
 | 🔥 The Juice (800 Sub Special) | $2 | ✅ | judgeme, loox, okendo, yotpo | 0 | 5 ★ / 3 |
 | 🔥 Liquid Drum and Bass | $5 | ✅ | judgeme, loox, okendo, yotpo | 0 | 5 ★ / 4 |
 | 🔥 MODERN TECH 2 | $4 | ✅ | judgeme, loox, okendo, yotpo | 0 | 5 ★ / 3 |
