@@ -30,7 +30,7 @@ add_shortcode( 'ss_cancel_order', function () {
 		. '.ss-cxo label{display:block;margin:0 0 12px;font-weight:600;font-size:14px}.ss-cxo input,.ss-cxo textarea{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0B1220;color:#fff;font:inherit}'
 		. '.ss-cxo textarea{min-height:80px}.ss-cxo .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}'
 		. '.ss-cxo button{width:100%;min-height:48px;margin-top:6px;border:0;border-radius:10px!important;background:#F59E0B;color:#111;font:inherit;font-weight:800;font-size:16px;cursor:pointer}'
-		. '.ss-cxo dl{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}.ss-cxo dt{color:#94A3B8}.ss-cxo dd{margin:0;word-break:break-word}.ss-cxo .back{display:block;text-align:center;margin-top:12px}'
+		. '.ss-cxo dl{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}.ss-cxo dt{color:#94A3B8}.ss-cxo dd{margin:0;word-break:break-word}.ss-cxo button.back{display:block;min-height:40px;margin-top:8px;background:none!important;border:0!important;box-shadow:none!important;color:#F59E0B!important;font-weight:600;font-size:14px;text-transform:none!important;letter-spacing:0!important;text-decoration:underline}'
 		. '.ss-cxo .msg{padding:12px 14px;border-radius:10px;margin:0 0 14px}.ss-cxo .ok{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.4)}.ss-cxo .err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.4)}'
 		. '.ss-cxo small{display:block;color:#94A3B8;font-size:13px;margin-top:10px}@media(max-width:600px){.ss-cxo{font-size:14px}.ss-cxo form{padding:14px}}</style>';
 	$intro = '<p>To cancel (withdraw from) an order, enter your order number and the e-mail you used at checkout, then press the button, check the details and confirm. We confirm receipt by e-mail right away.</p>'
@@ -80,7 +80,7 @@ add_shortcode( 'ss_cancel_order', function () {
 			. '<dl><dt>Order</dt><dd>#' . esc_html( $num ) . ' · ' . esc_html( $date ) . '</dd><dt>Items</dt><dd>' . esc_html( implode( ', ', $items ) ) . '</dd><dt>E-mail</dt><dd>' . esc_html( $mail ) . '</dd>'
 			. ( $why ? '<dt>Your message</dt><dd>' . esc_html( $why ) . '</dd>' : '' ) . '</dl>'
 			. '<button type="submit">Confirm withdrawal here</button>'
-			. '<button type="submit" name="back" value="1" class="back" style="all:unset;display:block;text-align:center;margin-top:12px;color:#F59E0B;cursor:pointer;width:100%">← Change details</button></form>';
+			. '<button type="submit" name="back" value="1" class="back">← Change details</button></form>';
 	} elseif ( ! $done ) {
 		$h .= $intro . '<form method="post" action="">'
 			. '<input type="hidden" name="ss_cxo" value="1">'
