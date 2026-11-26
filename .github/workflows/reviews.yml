@@ -1,0 +1,35 @@
+# REVIEWS ROBOT (Analyst, 26.11.2026): what competitors' customers praise / complain about, from public product pages.
+# No buyer names in the repo — only the gist of each review + themes. Ladder step 1: one shop, manual runs only.
+# On demand: add a line to .github/reviews.txt whose last word is the mode (probe / run).
+name: Reviews robot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "probe / run", default: probe }
+  push:
+    branches: [main]
+    paths: [".github/reviews.txt"]
+permissions:
+  contents: write
+concurrency: reviews
+jobs:
+  reviews:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/reviews/exam.js
+      - name: Read reviews
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/reviews.txt | awk '{print $NF}'); fi
+          export MODE="${MODE:-probe}"; echo "mode: $MODE"
+          node tools/bots/reviews.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=reviews bash .github/save.sh "reviews: $(date -u +%F)" reports/analyst
