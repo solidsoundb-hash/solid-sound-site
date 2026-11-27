@@ -1,24 +1,16 @@
 {
- "updated": "2026-11-26T05:29:40.691Z",
+ "updated": "2026-11-27T05:29:43.249Z",
  "hours": 24,
  "orders": [],
  "funnel": {
-  "day": "2026-11-26",
-  "product": 1,
-  "cart": 2,
+  "day": "2026-11-27",
+  "product": 5,
+  "cart": 4,
   "checkout": 0,
   "thanks": 0,
   "orders": 0
  },
- "leads": [
-  {
-   "id": 2632,
-   "date": "2026-11-25T17:33:51+00:00",
-   "form": "Chat question",
-   "test": true,
-   "reply": false
-  }
- ],
+ "leads": [],
  "forum": [
   {
    "title": "Ideas & Suggestions",
