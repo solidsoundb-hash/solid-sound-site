@@ -10,6 +10,9 @@
  * Server side (25.11): day['e']['add'] / ['co'] — real add-to-cart and checkout form, see the bottom of this file.
  * Robots: time zone UTC, HeadlessChrome, UA «SolidSoundQA» / crawlers (server check, 27.11) are not counted; a plain GET «?add-to-cart=» link
  * is not an «add» (crawlers follow it; real clicks use AJAX, 27.11).
+ * Human visits only (27.11, Analyst): a page view / session is counted after the first human sign — pointerdown, touchstart, keydown,
+ * scroll > 50 px, or the tab visible with window focus for 8 s; then the rest of that session counts at once. Every page load is also
+ * written to day['raw'] = { s, v } (crawlers that run JS included) to compare the volume. Countries / devices / pages = counted visits only.
  * Read: WP admin → Tools → Site stats, or the option `ss_stats` (kept 120 days). Off: option ss_stats_off = 1.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -52,11 +55,21 @@ function ss_stats_hit() {
 	if ( get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) || ss_stats_is_bot() ) wp_die( '', '', array( 'response' => 204 ) );
 	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? (string) $_SERVER['REMOTE_ADDR'] : '';
 	$rk = 'ss_hit_' . substr( md5( $ip . wp_salt() ), 0, 12 ); $n = (int) get_transient( $rk );
-	if ( $n > 150 ) wp_die( '', '', array( 'response' => 204 ) ); /* one browser cannot flood the counter */
+	if ( $n > 300 ) wp_die( '', '', array( 'response' => 204 ) ); /* one browser cannot flood the counter */
 	set_transient( $rk, $n + 1, HOUR_IN_SECONDS );
 	$s = function ( $k, $max = 80 ) { return isset( $_POST[ $k ] ) ? mb_substr( sanitize_text_field( wp_unslash( $_POST[ $k ] ) ), 0, $max ) : ''; };
 	/* (25.11, Analyst «воронка») robots: GitHub runners report the time zone UTC — not counted */
 	if ( 'UTC' === $s( 'tz', 60 ) || 'Etc/UTC' === $s( 'tz', 60 ) ) wp_die( '', '', array( 'response' => 204 ) );
+	$rw = $s( 'raw', 1 );
+	if ( '' !== $rw ) { /* 27.11: raw page load before any human sign — volume only, nothing else */
+		$day = gmdate( 'Y-m-d' ); $all = get_option( 'ss_stats', array() ); if ( ! is_array( $all ) ) $all = array();
+		if ( ! isset( $all[ $day ] ) ) $all[ $day ] = array( 's' => 0, 'v' => 0, 'c' => array(), 'r' => array(), 'p' => array(), 'm' => array(), 'l' => array() );
+		$r = isset( $all[ $day ]['raw'] ) && is_array( $all[ $day ]['raw'] ) ? $all[ $day ]['raw'] : array( 's' => 0, 'v' => 0 );
+		$r['v']++; if ( '1' === $rw ) $r['s']++;
+		$all[ $day ]['raw'] = $r;
+		update_option( 'ss_stats', $all, false );
+		wp_die( '', '', array( 'response' => 204 ) );
+	}
 	$ev = $s( 'e', 20 );
 	if ( $ev ) { /* funnel step, once per session per step: add_to_cart → checkout_start → pay_click → pay_error / order */
 		if ( ! in_array( $ev, array( 'add_to_cart', 'checkout_start', 'pay_click', 'pay_error', 'order' ), true ) ) wp_die( '', '', array( 'response' => 204 ) );
@@ -98,7 +111,14 @@ add_action( 'wp_footer', function () {
 		. 'var q=new URLSearchParams(location.search),f=new FormData();f.append("action","ss_hit");f.append("p",location.pathname);f.append("n",n);f.append("tz",(Intl.DateTimeFormat().resolvedOptions().timeZone)||"");'
 		. 'if(n==="1"){f.append("r",document.referrer||"");f.append("u",q.get("utm_source")||"");'
 		. 'f.append("m",/Mobi|Android|iPhone/.test(navigator.userAgent)?"1":"0");f.append("lg",navigator.language||"")}navigator.sendBeacon("' . $u . '",f)}catch(e){}}'
-		. 'var w=window.requestIdleCallback||function(c){setTimeout(c,1500)};if(document.readyState==="complete")w(go);else addEventListener("load",function(){w(go)});'
+		/* 27.11: raw load now; the counted visit only after a human sign (see the header) */
+		. 'function raw(){try{var s=sessionStorage,n=s.getItem("ssR")?"0":"1";s.setItem("ssR","1");var f=new FormData();f.append("action","ss_hit");f.append("raw",n);f.append("tz",(Intl.DateTimeFormat().resolvedOptions().timeZone)||"");navigator.sendBeacon("' . $u . '",f)}catch(e){}}'
+		. 'var H=0,L=0,T,E=["pointerdown","touchstart","keydown"],D=document;function vis(){return D.visibilityState==="visible"&&D.hasFocus()}'
+		. 'function off(){E.forEach(function(e){removeEventListener(e,hu,true)});removeEventListener("scroll",sc);removeEventListener("focus",ar);removeEventListener("blur",bl);D.removeEventListener("visibilitychange",ar);clearTimeout(T)}'
+		. 'function hu(){if(H)return;H=1;off();try{sessionStorage.setItem("ssH","1")}catch(e){}if(L)go()}function sc(){if((window.scrollY||0)>50)hu()}function bl(){clearTimeout(T)}'
+		. 'function ar(){clearTimeout(T);if(vis())T=setTimeout(function(){if(vis())hu()},8000)}'
+		. 'try{if(sessionStorage.getItem("ssH"))H=1}catch(e){}if(!H){E.forEach(function(e){addEventListener(e,hu,{capture:true,passive:true})});addEventListener("scroll",sc,{passive:true});addEventListener("focus",ar);addEventListener("blur",bl);D.addEventListener("visibilitychange",ar);ar()}'
+		. 'function st(){L=1;raw();if(H)go()}var w=window.requestIdleCallback||function(c){setTimeout(c,1500)};if(D.readyState==="complete")w(st);else addEventListener("load",function(){w(st)});'
 		/* funnel events (25.11): once per session per step; robots (time zone UTC, HeadlessChrome) skipped */
 		. 'var TZ=(Intl.DateTimeFormat().resolvedOptions().timeZone)||"";if(TZ==="UTC"||TZ==="Etc/UTC"||/HeadlessChrome/.test(navigator.userAgent))return;'
 		. 'function ev(e){try{var k="ssE_"+e;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var f=new FormData();f.append("action","ss_hit");f.append("e",e);f.append("tz",TZ);navigator.sendBeacon("' . $u . '",f)}catch(x){}}window.ssEv=ev;'
@@ -117,8 +137,8 @@ add_action( 'admin_menu', function () {
 		$days = array_slice( $all, 0, 30, true ); $sum = array( 'c' => array(), 'r' => array(), 'p' => array(), 'm' => array(), 'l' => array() ); $S = $V = 0;
 		foreach ( $days as $d ) { $S += $d['s']; $V += $d['v']; foreach ( $sum as $k => $_ ) foreach ( (array) $d[ $k ] as $x => $n ) $sum[ $k ][ $x ] = ( isset( $sum[ $k ][ $x ] ) ? $sum[ $k ][ $x ] : 0 ) + $n; }
 		echo '<div class="wrap"><h1>Site stats — last 30 days</h1><p>Our own private counter: no cookies, no IP addresses; admins and bots are not counted. Sessions: <b>' . (int) $S . '</b> · page views: <b>' . (int) $V . '</b></p>';
-		echo '<table class="widefat striped" style="max-width:520px"><thead><tr><th>Day</th><th>Sessions</th><th>Views</th></tr></thead><tbody>';
-		foreach ( $days as $k => $d ) echo '<tr><td>' . esc_html( $k ) . '</td><td>' . (int) $d['s'] . '</td><td>' . (int) $d['v'] . '</td></tr>';
+		echo '<table class="widefat striped" style="max-width:520px"><thead><tr><th>Day</th><th>Sessions</th><th>Views</th><th>Raw loads (incl. crawlers)</th></tr></thead><tbody>';
+		foreach ( $days as $k => $d ) echo '<tr><td>' . esc_html( $k ) . '</td><td>' . (int) $d['s'] . '</td><td>' . (int) $d['v'] . '</td><td>' . ( isset( $d['raw']['v'] ) ? (int) $d['raw']['s'] . ' / ' . (int) $d['raw']['v'] : '—' ) . '</td></tr>';
 		echo '</tbody></table>';
 		$fn = array( 'add' => 'Added to cart (server, real)', 'co' => 'Checkout form shown (server, real)', 'add_to_cart' => 'Added to cart', 'checkout_start' => 'Opened checkout', 'pay_click' => 'Clicked «Place order»', 'pay_error' => 'Payment error', 'order' => 'Order received page' );
 		echo '<h2>Purchase funnel (sessions, each step once per session)</h2><table class="widefat striped" style="max-width:520px"><tbody><tr><td>Sessions</td><td>' . (int) $S . '</td></tr>';
