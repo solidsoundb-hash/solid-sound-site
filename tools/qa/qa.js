@@ -406,10 +406,12 @@ async function testSound(page, url, dev, max) {
     const st0 = await btnState(barBtn);
     try {
       await barBtn.click({ timeout: 4000 });
-      const pl = await waitAudible(page, 7000);
+      const pl = await waitAudible(page, 12000); // 27.11: the night swarm loads the hosting — 7 s gave a false «silent» while the file was still loading
       const st1 = await btnState(barBtn);
+      const barLoading = !pl.length && (await page.evaluate(() => window.__qaAudible().length).catch(() => 0)) > 0;
+      if (barLoading) await bug({ ...here, sev: 'check', type: 'sound-slow', sig: 'sndslow|' + rel(url), title: 'Трек долго не начинает играть (больше 12 секунд)', steps: [`Открыть ${BASE}${rel(url)}`, 'Нажать ▶ в нижнем плеере'], expected: 'Звук через 1–3 секунды', actual: 'Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)' });
       if (pl.length && st1 === st0) await bug({ ...here, sev: 'major', type: 'bar-icon', sig: 'baricon', title: 'Нижний плеер: кнопка не меняется на ⏸ во время игры', steps: ['Нажать ▶ в нижнем плеере'], expected: 'Значок ⏸', actual: 'Остаётся ▶' }, page, barBtn);
-      if (!pl.length && st1 !== st0) await bug({ ...here, sev: 'major', type: 'bar-silent', sig: 'barsilent', title: 'Нижний плеер показывает «играет», но звука нет', steps: ['Нажать ▶ в нижнем плеере'], expected: 'Играет трек', actual: 'Тишина' }, page, barBtn);
+      if (!pl.length && !barLoading && st1 !== st0) await bug({ ...here, sev: 'major', type: 'bar-silent', sig: 'barsilent', title: 'Нижний плеер показывает «играет», но звука нет', steps: ['Нажать ▶ в нижнем плеере'], expected: 'Играет трек', actual: 'Тишина' }, page, barBtn);
       if (pl.length) { await barBtn.click({ timeout: 4000 }); await page.waitForTimeout(1200); const a2 = await audibleNow(page); if (a2.length) await bug({ ...here, sev: 'critical', type: 'bar-pause', sig: 'barpause', title: 'Нижний плеер: после паузы звук продолжает играть', steps: ['Нажать ▶ в нижнем плеере', 'Нажать ⏸'], expected: 'Тишина', actual: 'Играет: ' + a2.join(', ') }, page, barBtn); }
     } catch (e) {}
     await page.evaluate(() => window.__qaStopAll()).catch(() => {});
