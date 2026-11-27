@@ -1,55 +1,55 @@
 {
- "date": "2026-11-26T06:50:01.818Z",
+ "date": "2026-11-27T04:48:25.369Z",
  "results": {
   "/product/infinity/|mobile": {
-   "score": 53,
-   "lcp": 10288,
-   "fcp": 2788,
-   "tbt": 416,
-   "cls": 0.068,
-   "kb": 5054,
-   "requests": 214,
-   "ttfb": 1535,
+   "score": 60,
+   "lcp": 10468,
+   "fcp": 2660,
+   "tbt": 240,
+   "cls": 0,
+   "kb": 5068,
+   "requests": 213,
+   "ttfb": 1542,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
-     "https://newassets.hcaptcha.com/c/e8834341727135fe0bad7df35ca2a2f4531587b2907ef6023bf59df97 688KB",
+     "https://newassets.hcaptcha.com/c/6cbbffb0a0bac67fef2c9566a13b318fdee5e05e4eb21853e82671a37 684KB",
      "https://js.stripe.com/v3/fingerprinted/js/elements-inner-accessory-render-e614396dc94b5762 653KB",
      "https://pay.google.com/gp/p/ui/pay 423KB",
      "https://js.stripe.com/v3/fingerprinted/js/controller-with-preconnect-f2a26be5952c5bcf14a6b 384KB",
-     "https://newassets.hcaptcha.com/captcha/v1/7b6de2b378178a05e8aa25e42494ec5883aa37f6/static/ 321KB",
+     "https://newassets.hcaptcha.com/captcha/v1/a7305732738ccf3b7862eab7fe6d8f7b136a48f4/static/ 321KB",
      "https://js.stripe.com/v3/?ver=3.0 270KB",
      "https://js.stripe.com/v3/fingerprinted/js/elements-inner-payment-method-messaging-fe505415 247KB",
-     "https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit 218KB"
+     "https://hcaptcha.com/1/api.js?onload=captchaLoad&render=explicit 219KB"
     ],
     "cpu": [
-     "/product/infinity/ 2250ms",
-     "https://js.stripe.com/v3/?ver=3.0 937ms",
-     "Unattributable 685ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.117e5f0386.js.pagespeed.ce.v 450ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 311ms",
-     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 292ms"
+     "/product/infinity/ 1409ms",
+     "Unattributable 765ms",
+     "https://js.stripe.com/v3/?ver=3.0 690ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 359ms",
+     "/wp-content/plugins/woocommerce-payments/dist/product-details.js?ver=11.2.1 288ms",
+     "https://www.googletagmanager.com/gtag/js?id=G-4J1F7EGCCW 278ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −1535ms",
-     "Reduce unused JavaScript −1370ms",
-     "Reduce unused CSS −620ms",
-     "Serve images in next-gen formats −310ms",
-     "Properly size images −310ms",
-     "Defer offscreen images −160ms"
+     "Reduce initial server response time −1542ms",
+     "Reduce unused JavaScript −1440ms",
+     "Reduce unused CSS −580ms",
+     "Properly size images −520ms",
+     "Serve images in next-gen formats −440ms",
+     "Defer offscreen images −290ms"
     ]
    }
   },
   "/en/all-products/|mobile": {
-   "score": 43,
-   "lcp": 4815,
-   "fcp": 3104,
-   "tbt": 1257,
-   "cls": 0.058,
+   "score": 54,
+   "lcp": 4771,
+   "fcp": 3186,
+   "tbt": 630,
+   "cls": 0.002,
    "kb": 1288,
-   "requests": 87,
-   "ttfb": 3837,
+   "requests": 86,
+   "ttfb": 2227,
    "field": "lighthouse на роботе",
    "why": {
     "heavy": [
@@ -63,19 +63,19 @@
      "/wp-content/plugins/js_composer/assets/css/A.js_composer.min.css,qver=6.8.0.pagespeed.cf.C 46KB"
     ],
     "cpu": [
-     "/en/all-products/ 2723ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js.pagespee 1601ms",
-     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 1303ms",
-     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 1300ms",
-     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.117e5f0386.js.pagespeed.ce.v 788ms",
-     "Unattributable 504ms"
+     "/en/all-products/ 1350ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/theme-player-js.868bec0162.js.pagespee 1077ms",
+     "/wp-content/themes/Impreza/js/us.core.min.js,qver=8.7.pagespeed.ce.ACVwiv8arX.js 949ms",
+     "/wp-includes/js/jquery/jquery.min.js,qver=3.7.1.pagespeed.ce.gm63foawKr.js 827ms",
+     "/wp-content/plugins/solid-sound-custom/build/assets/ss-global.117e5f0386.js.pagespeed.ce.v 680ms",
+     "Unattributable 580ms"
     ],
     "lcp": "",
     "save": [
-     "Reduce initial server response time −3837ms",
-     "Defer offscreen images −930ms",
-     "Reduce unused CSS −930ms",
-     "Serve images in next-gen formats −620ms"
+     "Reduce initial server response time −2227ms",
+     "Defer offscreen images −860ms",
+     "Reduce unused CSS −860ms",
+     "Serve images in next-gen formats −820ms"
     ]
    }
   }
