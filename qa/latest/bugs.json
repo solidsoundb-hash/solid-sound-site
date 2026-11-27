@@ -1,12 +1,12 @@
 {
  "mode": "full",
- "date": "2026-11-26T00:40:33.384Z",
+ "date": "2026-11-27T03:03:04.206Z",
  "stats": {
   "pages": 88,
-  "clicks": 430,
+  "clicks": 414,
   "sounds": 54,
   "links": 1036,
-  "blockedRequests": 37,
+  "blockedRequests": 38,
   "eyesTiles": 0,
   "eyesPages": 0,
   "audioFiles": 35,
@@ -20,7 +20,7 @@
    "title": "Кнопки/ссылки слишком маленькие для пальца (висит 16 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/en/ (телефон)",
-    "Где: input 18×18; a.ss-cp «Only an idea? Custom production →» 304×15; a «Time Goes Fast Documentary Piano (Cinema» 208×22; a «Pitch (Techno)» 208×22; a «Infinity (Techno)» 208×22"
+    "Где: input 18×18; a.ss-cp «Only an idea? Custom production →» 304×15; a «Time Goes Fast Documentary Piano (Cinema» 208×22; a «Infinity (Techno)» 208×22; a «Pitch (Techno)» 208×22"
    ],
    "expected": "Увеличить зону нажатия (padding).",
    "actual": "Почему важно: Промахиваются и жмут соседнюю кнопку. Норма — 44×44 px (Apple), 48 px (Google).",
@@ -206,169 +206,22 @@
   },
   {
    "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Infinity» невозможно нажать (её что-то закрывает)",
+   "type": "bar-silent",
+   "title": "Нижний плеер показывает «играет», но звука нет",
    "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Infinity»"
+    "Нажать ▶ в нижнем плеере"
    ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Infinity",
+   "expected": "Играет трек",
+   "actual": "Тишина",
+   "sig": "barsilent",
    "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_003.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "sound-click",
-   "title": "Кнопку ▶ «Play Kratos» невозможно нажать (её что-то закрывает)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Kratos»"
-   ],
-   "expected": "Кнопка нажимается",
-   "actual": "elementHandle.click: Timeout 5000ms exceeded.",
-   "sig": "sndclick|/en/|Play Kratos",
-   "where": [
-    "/en/"
+    "/en/",
+    "/en/templates/"
    ],
    "devices": [
     "компьютер"
    ],
    "shot": "shots/10_004.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "clickerr",
-   "title": "↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: ↩ вернулся после исправления: После нажатия «Product 3» — ошибка в коде",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажать «Product 3»"
-   ],
-   "expected": "Без ошибок",
-   "actual": "console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "sig": "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_010.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "kb-shop-zero-price",
-   "title": "Товар за $0 / €0 виден покупателям (не бесплатный пакет)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/ (компьютер)"
-   ],
-   "expected": "Скрыть из каталога.",
-   "actual": "Текст: «€0 to list your products Non-exclusive · you set the price Revenue terms in writing before». Почему важно: Обычно это технический товар — выглядит как ошибка магазина.",
-   "sig": "kb|kb-shop-zero-price|Товар за $0 / €0 виден покупателям (не бесплатный пакет)",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/15_003.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "plus-focus-ring",
-   "sig": "plus-ring|/en/",
-   "title": "↩ вернулся после исправления: Не видно, где фокус клавиатуры (нет рамки)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажимать Tab"
-   ],
-   "expected": "У кнопки в фокусе видна рамка",
-   "actual": "input «»; input «BPM»; input «on»",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_001_keys_en_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "plus-focus-ring",
-   "sig": "plus-ring|/en/studio-calculator/",
-   "title": "↩ вернулся после исправления: Не видно, где фокус клавиатуры (нет рамки)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/studio-calculator/",
-    "Нажимать Tab"
-   ],
-   "expected": "У кнопки в фокусе видна рамка",
-   "actual": "input «»; input «12»; input «on»",
-   "where": [
-    "/en/studio-calculator/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_005_keys_en_studio_calculator_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "plus-focus-hidden",
-   "sig": "plus-fh|/en/sell/",
-   "title": "↩ вернулся после исправления: Tab попадает на невидимые элементы",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/",
-    "Нажимать Tab"
-   ],
-   "expected": "Фокус только на видимых кнопках",
-   "actual": "input «wcfmvm_custom_infos[what-do-yo»",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_007_keys_en_sell_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "major",
-   "type": "plus-focus-ring",
-   "sig": "plus-ring|/en/sell/",
-   "title": "↩ вернулся после исправления: Не видно, где фокус клавиатуры (нет рамки)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/sell/",
-    "Нажимать Tab"
-   ],
-   "expected": "У кнопки в фокусе видна рамка",
-   "actual": "input «»; input «first_name»; input «last_name»; input «user_email»; input «store_name»",
-   "where": [
-    "/en/sell/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_007_keys_en_sell_.jpg",
    "streak": 1,
    "isNew": true
   },
@@ -390,57 +243,197 @@
     "звук"
    ],
    "shot": "",
-   "streak": 3,
+   "streak": 4,
    "isNew": false
   },
   {
    "sev": "minor",
-   "type": "kb-seo-h1",
-   "title": "Нет главного заголовка H1 или их несколько",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
    "steps": [
-    "Открыть https://solid-sound.net/en/all-products/ (компьютер)"
+    "Открыть https://solid-sound.net/en/",
+    "Нажимать Tab"
    ],
-   "expected": "Ровно один видимый H1.",
-   "actual": "Видимых H1: 0. Почему важно: Google и экранные дикторы по H1 понимают, о чём страница.",
-   "sig": "kb|kb-seo-h1|Нет главного заголовка H1 или их несколько",
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "input «»; input «BPM»; input «on»",
+   "where": [
+    "/en/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/22_001_keys_en_.jpg",
+   "streak": 2,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/studio-calculator/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/studio-calculator/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "input «»; input «12»; input «on»",
+   "where": [
+    "/en/studio-calculator/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/22_005_keys_en_studio_calculator_.jpg",
+   "streak": 2,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-hidden",
+   "sig": "plus-fh|/en/sell/",
+   "title": "Tab попадает на невидимые элементы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажимать Tab"
+   ],
+   "expected": "Фокус только на видимых кнопках",
+   "actual": "input «wcfmvm_custom_infos[what-do-yo»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/22_007_keys_en_sell_.jpg",
+   "streak": 2,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-ring",
+   "sig": "plus-ring|/en/sell/",
+   "title": "Не видно, где фокус клавиатуры (нет рамки)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/sell/",
+    "Нажимать Tab"
+   ],
+   "expected": "У кнопки в фокусе видна рамка",
+   "actual": "input «»; input «first_name»; input «last_name»; input «user_email»; input «store_name»",
+   "where": [
+    "/en/sell/"
+   ],
+   "devices": [
+    "Клавиатура"
+   ],
+   "shot": "shots/22_007_keys_en_sell_.jpg",
+   "streak": 2,
+   "isNew": false
+  },
+  {
+   "sev": "minor",
+   "type": "plus-focus-hidden",
+   "sig": "plus-fh|/en/all-products/",
+   "title": "Tab попадает на невидимые элементы",
+   "steps": [
+    "Открыть https://solid-sound.net/en/all-products/",
+    "Нажимать Tab"
+   ],
+   "expected": "Фокус только на видимых кнопках",
+   "actual": "a «Mutualism»",
    "where": [
     "/en/all-products/"
    ],
    "devices": [
-    "компьютер",
-    "телефон",
-    "Samsung A31"
+    "Клавиатура"
    ],
-   "shot": "shots/10_008.jpg",
+   "shot": "shots/22_002_keys_en_all_products_.jpg",
    "streak": 1,
    "isNew": true
   },
   {
    "sev": "check",
-   "type": "style-odd",
-   "title": "Кнопка «WITHDRAW FROM CONTRACT HERE» скруглена не так, как остальные",
+   "type": "sound-slow",
+   "title": "Трек долго не начинает играть (больше 12 секунд)",
    "steps": [
-    "Открыть https://solid-sound.net/en/cancel-order/"
+    "Открыть https://solid-sound.net/en/",
+    "Нажать ▶ «Play Infinity»"
    ],
-   "expected": "Скругление углов 8–12px",
-   "actual": "Радиус 5px",
-   "sig": "odd|WITHDRAW FROM CONTRACT HERE",
+   "expected": "Звук через 1–3 секунды",
+   "actual": "Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)",
+   "sig": "sndslow|/en/",
    "where": [
-    "/en/cancel-order/"
+    "/en/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/10_003.jpg",
+   "streak": 1,
+   "isNew": true
+  },
+  {
+   "sev": "check",
+   "type": "sound-slow",
+   "title": "Трек долго не начинает играть (больше 12 секунд)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/templates/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Звук через 1–3 секунды",
+   "actual": "Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)",
+   "sig": "sndslow|/en/templates/",
+   "where": [
+    "/en/templates/"
    ],
    "devices": [
     "компьютер",
     "телефон"
    ],
-   "shot": "shots/16_006.jpg",
+   "shot": "shots/16_005.jpg",
+   "streak": 1,
+   "isNew": true
+  },
+  {
+   "sev": "check",
+   "type": "sound-slow",
+   "title": "Трек долго не начинает играть (больше 12 секунд)",
+   "steps": [
+    "Открыть https://solid-sound.net/en/presets/",
+    "Нажать ▶ «Play»"
+   ],
+   "expected": "Звук через 1–3 секунды",
+   "actual": "Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)",
+   "sig": "sndslow|/en/presets/",
+   "where": [
+    "/en/presets/"
+   ],
+   "devices": [
+    "компьютер"
+   ],
+   "shot": "shots/17_005.jpg",
    "streak": 1,
    "isNew": true
   }
  ],
  "notChecked": [
-  "Ссылка /en/?currency=CAD — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/music/?currency=INR — сервер не ответил (защита от частых запросов)",
-  "Ссылка /services-calculator/ — сервер не ответил (защита от частых запросов)"
+  "Ссылка /product/pitch/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /fr/all-products/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /es/all-products/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /en/sitemap/?currency=GBP — сервер не ответил (защита от частых запросов)",
+  "Ссылка /en/sitemap/?currency=CAD — сервер не ответил (защита от частых запросов)",
+  "Ссылка /en/sitemap/?currency=AUD — сервер не ответил (защита от частых запросов)",
+  "Ссылка /de/kontakt/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /fr/contact/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /pt/contactos/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /en/wiki/how-to-get-booked-as-a-dj/?currency=JPY — сервер не ответил (защита от частых запросов)",
+  "Ссылка /en/wiki/how-to-get-booked-as-a-dj/?currency=NOK — сервер не ответил (защита от частых запросов)",
+  "Ссылка /en/wiki/how-to-get-booked-as-a-dj/?currency=NZD — сервер не ответил (защита от частых запросов)",
+  "Ссылка /ua/wiki-ua/balansni-nebalansni-kabeli-ua/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /de/wiki-de/symmetrische-unsymmetrische-kabel-de/ — сервер не ответил (защита от частых запросов)",
+  "Ссылка /fr/wiki-fr/cables-symetriques-asymetriques-fr/ — сервер не ответил (защита от частых запросов)",
+  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
+  "Проверка остановлена по времени — часть ссылок/входов не проверена"
  ],
  "l10nSkipped": 45
 }

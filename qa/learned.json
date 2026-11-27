@@ -91,7 +91,13 @@
   "ears-clip|Kratos_Dark_Techno_128kbps.mp3": "2026-11-26",
   "sndstale|/en/services-prices/": "2026-11-26",
   "langopt|phone": "2026-11-26",
-  "ears-clip|02-After.mp3": "2026-11-26"
+  "ears-clip|02-After.mp3": "2026-11-26",
+  "sndclick|/en/|Play Infinity": "2026-11-27",
+  "sndclick|/en/|Play Kratos": "2026-11-27",
+  "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.": "2026-11-27",
+  "kb|kb-shop-zero-price|Товар за $0 / €0 виден покупателям (не бесплатный пакет)": "2026-11-27",
+  "kb|kb-seo-h1|Нет главного заголовка H1 или их несколько": "2026-11-27",
+  "odd|WITHDRAW FROM CONTRACT HERE": "2026-11-27"
  },
  "must": [
   {
