@@ -1,10 +1,26 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "mode": "run",
  "shops": [
   {
    "name": "Black Octopus",
    "reviews": [
+    {
+     "product": "Divine Vocal Lullabies by KV Balakrishnan",
+     "rating": 5,
+     "date": "2026-11-26",
+     "verified": true,
+     "gist": "The best",
+     "themes": []
+    },
+    {
+     "product": "Divine Vocal Lullabies by KV Balakrishnan",
+     "rating": 4,
+     "date": "2026-11-26",
+     "verified": true,
+     "gist": "Nice for layering as ear candy!",
+     "themes": []
+    },
     {
      "product": "City Pop Night Drive",
      "rating": 5,
@@ -1301,38 +1317,20 @@
       "midi/stems",
       "просят ещё такого"
      ]
-    },
-    {
-     "product": "Ilkay Sencan’s Secret Lab Vol 2",
-     "rating": 5,
-     "date": "2026-10-14",
-     "verified": true,
-     "gist": "Haven't gone too deep into the samples yet, but the presets are great for a variety of genres and uses. I think this a great pack if even just for the presets.",
-     "themes": [
-      "midi/stems"
-     ]
-    },
-    {
-     "product": "1 GB of Free Samples From Black Octopus Sound",
-     "rating": 5,
-     "date": "2026-10-14",
-     "verified": true,
-     "gist": "Nice",
-     "themes": []
     }
    ],
    "themes": {
     "просят ещё такого": 5,
     "звук/качество": 42,
-    "midi/stems": 7,
+    "midi/stems": 6,
     "цена/выгода": 4,
     "быстро/готовый трек": 2,
     "файлы/версия/проблемы": 2
    },
    "low": 2,
    "products": {
+    "Divine Vocal Lullabies by KV Balakrishnan": 11,
     "City Pop Night Drive": 1,
-    "Divine Vocal Lullabies by KV Balakrishnan": 9,
     "Latina House Vocals": 1,
     "Compact Series: Minimal Tech Drums": 1,
     "Minimal Ambient Percussion by AK": 1,
@@ -1393,7 +1391,7 @@
     "Event Horizon for John Bowen Solaris": 2,
     "Macrosurfing – 200 Serum Wavetables by Psymbionic": 2,
     "The Karen – Angry Vocal Samples": 3,
-    "1 GB of Free Samples From Black Octopus Sound": 5,
+    "1 GB of Free Samples From Black Octopus Sound": 4,
     "1GB of Free Samples From Black Octopus Sound": 5,
     "MoBlack Records Presents Afro House Collection": 1,
     "Carbon – Melodic Techno": 1,
@@ -1437,8 +1435,7 @@
     "Deep Sea Dubstep by Screamarts": 1,
     "Hollywood Fantasy Orchestra": 1,
     "SOR Ultimate Bundle": 1,
-    "Ilkay Sencan’s Secret LAB Vol.1": 1,
-    "Ilkay Sencan’s Secret Lab Vol 2": 1
+    "Ilkay Sencan’s Secret LAB Vol.1": 1
    }
   }
  ]
