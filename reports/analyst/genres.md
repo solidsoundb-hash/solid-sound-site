@@ -1,4 +1,4 @@
-# House / melodic techno у конкурентов — 2026-11-26 07:00 UTC (run)
+# House / melodic techno у конкурентов — 2026-11-27 04:44 UTC (run)
 
 Публичные каталоги и топы магазинов (Shopify «best-sellers», WooCommerce «по популярности»). 🆕 = появилось с прошлого запуска.
 
@@ -42,15 +42,15 @@
 - Legacy Machines 1 — $60 (house, 2026-11-10)
 - Backroom - Tech House — $60 (tech house, 2026-11-05)
 
-## Black Octopus — house/techno: 77 из 298 (шаблонов 0)
+## Black Octopus — house/techno: 76 из 298 (шаблонов 0)
 
 **В топе магазина:**
 - #11 Magnetic Mag x Black Octopus Sound – Elements of House – FREE PACK — $0 (house)
-- #13 Free Indian Instrument Samples — $0 (deep house)
-- #25 Free Techno & Tech House Samples – Black Friday 2026 — $0 (tech house)
+- #14 Free Indian Instrument Samples — $0 (deep house)
+- #24 Free Techno & Tech House Samples – Black Friday 2026 — $0 (tech house)
 - #28 Black Octopus Mega Vocal Bundle — $249 (house)
 - #35 Vocal Atmospheres by Cory Friesenhan — $7.49 (deep house)
-- #41 Leviathan 5 – LEAKED Samples & Serum2 Presets — $0 (house)
+- #37 Leviathan 5 – LEAKED Samples & Serum2 Presets — $0 (house)
 - #44 Deep India — $11.24 (deep house)
 - #46 Delicious House Drums & Loops by Bound to Divide — $4.99 (house)
 - #47 Tribal & African Percussion — $7.49 (house)
@@ -68,7 +68,7 @@
 - Nightcall – Festival Deep House for Serum 2 — $8.74 (deep house)
 - Deep House for Serum 2 — $7.49 (deep house)
 
-## ADSR Sounds — house/techno: 51 из 300 (шаблонов 2)
+## ADSR Sounds — house/techno: 53 из 300 (шаблонов 2)
 
 **В топе магазина:**
 - #8 ADSR 20 Designers for 2020 – OST AUDIO — $0 (house)
@@ -82,7 +82,13 @@
 - #24 ADSR 20 Designers for 2020 – AUDENTITY RECORDS — $0 (house)
 - #26 ADSR 20 Designers for 2020 – NUT.FM — $0 (house)
 
+**🆕 Новое с прошлого запуска:**
+- What About: Huba Afro House Vocals – Authentic African Vocal Chants, Harmonies & Construction Kits — $11.96 (afro house)
+- Baganda – Afro Melodic House Serum 2 Presets – 95 Organic Bass, Lead & Atmospheric Patches — $9.99 (melodic house)
+
 **Последние по дате:**
+- What About: Huba Afro House Vocals – Authentic African Vocal Chants, Harmonies & Construction Kits — $11.96 (afro house)
+- Baganda – Afro Melodic House Serum 2 Presets – 95 Organic Bass, Lead & Atmospheric Patches — $9.99 (melodic house)
 - Substance Techno – 140 BPM Dark Club Drums, Driving Basslines, Synth Phrases & MIDI — $16.98 (techno)
 - Constellation – Techno Serum Presets – 100 Peak-Time & Driving Techno Patches for Xfer Serum — $12.5 (techno)
 - Hardcore Kick Arsenal – High-Impact Hardcore, Gabber, Hard Dance & Hard Techno Kick One-Shots — $24.75 (techno)
@@ -91,8 +97,6 @@
 - Lo-Fi House Top Drums Vol. 2 – Tape-Saturated, Kick-Free Top Loops & Percussive Grooves — $6.5 (house)
 - Higher Consciousness – Techno Serum Presets – Peak-Time Techno & Driving Bass Synth Bank — $12.5 (techno)
 - Mainstage Techno Presets for Serum 2 – Festival-Ready Peak Time, Hard Techno & Rave Synth Bank — $17.48 (techno)
-- House Kick Arsenal – Professional House, Deep & Tech House Kick Drum Library — $24.75 (tech house)
-- Techno: 10 Packs — $25 (techno)
 
 ## Sample Tools by Cr2 — house/techno: 50 из 132 (шаблонов 0)
 
@@ -125,13 +129,13 @@
 | Жанр | Товаров | Из них шаблонов | Медиана цены | Медиана цены шаблона |
 |---|---|---|---|---|
 | house | 241 | 56 | $29.95 | $19.9 |
-| techno | 231 | 27 | $34 | $32 |
+| techno | 230 | 27 | $34 | $32 |
 | tech house | 173 | 64 | $20 | $15 |
 | melodic techno | 132 | 39 | $40 | $57 |
+| melodic house | 106 | 38 | $47 | $47 |
 | deep house | 105 | 27 | $30 | $14.9 |
-| melodic house | 105 | 38 | $47 | $47 |
 | progressive house | 68 | 10 | $40 | $67 |
-| afro house | 33 | 11 | $40 | $67 |
+| afro house | 34 | 11 | $40 | $67 |
 | organic house | 18 | 1 | $47 | $67 |
 
 ## Наши шаблоны (8, из них house/techno: 7) — кандидаты в бандл
