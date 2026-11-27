@@ -1,5 +1,5 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "shops": [
   {
    "name": "Scraps Audio",
@@ -292,7 +292,7 @@
   {
    "name": "Black Octopus",
    "catalog": 298,
-   "focus": 77,
+   "focus": 76,
    "fresh": [
     {
      "t": "Resonance Sound – Techno Producer Bundle",
@@ -388,14 +388,14 @@
      "tpl": false
     },
     {
-     "r": 13,
+     "r": 14,
      "t": "Free Indian Instrument Samples",
      "p": 0,
      "g": "deep house",
      "tpl": false
     },
     {
-     "r": 25,
+     "r": 24,
      "t": "Free Techno & Tech House Samples – Black Friday 2026",
      "p": 0,
      "g": "tech house",
@@ -416,7 +416,7 @@
      "tpl": false
     },
     {
-     "r": 41,
+     "r": 37,
      "t": "Leviathan 5 – LEAKED Samples & Serum2 Presets",
      "p": 0,
      "g": "house",
@@ -515,8 +515,8 @@
     },
     {
      "r": 100,
-     "t": "Enchanted Thailand & Burma by David Starfire",
-     "p": 9.99,
+     "t": "Basement Freaks & Concord Audio Presents – New York Flash",
+     "p": 9.24,
      "g": "house",
      "tpl": false
     }
@@ -526,8 +526,22 @@
   {
    "name": "ADSR Sounds",
    "catalog": 300,
-   "focus": 51,
+   "focus": 53,
    "fresh": [
+    {
+     "t": "What About: Huba Afro House Vocals – Authentic African Vocal Chants, Harmonies & Construction Kits",
+     "p": 11.96,
+     "g": "afro house",
+     "tpl": false,
+     "d": ""
+    },
+    {
+     "t": "Baganda – Afro Melodic House Serum 2 Presets – 95 Organic Bass, Lead & Atmospheric Patches",
+     "p": 9.99,
+     "g": "melodic house",
+     "tpl": false,
+     "d": ""
+    },
     {
      "t": "Substance Techno – 140 BPM Dark Club Drums, Driving Basslines, Synth Phrases & MIDI",
      "p": 16.98,
@@ -595,20 +609,6 @@
      "t": "Techno: 10 Packs",
      "p": 25,
      "g": "techno",
-     "tpl": false,
-     "d": ""
-    },
-    {
-     "t": "House & Afro House: 10 Packs",
-     "p": 25,
-     "g": "afro house",
-     "tpl": false,
-     "d": ""
-    },
-    {
-     "t": "Tech House Drums – High-Energy Club Groove, Drum & Synth Bass Library",
-     "p": 6,
-     "g": "tech house",
      "tpl": false,
      "d": ""
     }
@@ -755,7 +755,10 @@
      "tpl": false
     }
    ],
-   "newSince": []
+   "newSince": [
+    "What About: Huba Afro House Vocals – Authentic African Vocal Chants, Harmonies & Construction Kits",
+    "Baganda – Afro Melodic House Serum 2 Presets – 95 Organic Bass, Lead & Atmospheric Patches"
+   ]
   },
   {
    "name": "Sample Tools by Cr2",
@@ -2291,7 +2294,8 @@
   "Black Octopus|367314": 1,
   "Black Octopus|368438": 1,
   "Black Octopus|366234": 1,
-  "Black Octopus|364308": 1,
+  "ADSR Sounds|2331749": 1,
+  "ADSR Sounds|2329610": 1,
   "ADSR Sounds|2331490": 1,
   "ADSR Sounds|2329616": 1,
   "ADSR Sounds|2329471": 1,
@@ -2396,7 +2400,7 @@
  },
  "byGenre": {
   "techno": {
-   "n": 231,
+   "n": 230,
    "tpl": 27,
    "med": 34,
    "medTpl": 32
@@ -2426,13 +2430,13 @@
    "medTpl": 14.9
   },
   "afro house": {
-   "n": 33,
+   "n": 34,
    "tpl": 11,
    "med": 40,
    "medTpl": 67
   },
   "melodic house": {
-   "n": 105,
+   "n": 106,
    "tpl": 38,
    "med": 47,
    "medTpl": 47
