@@ -17,7 +17,9 @@ const isCheckout = (p) => /\/checkout\/?$/.test(p);
 const isThanks = (p) => /order-received/.test(p);
 const top = (o, n) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => `${k} ${v}`).join(', ');
 
-if (require.main !== module) { module.exports = { isProduct, isCart, isCheckout, isThanks }; return; }
+const DIRTY = ['2026-11-24', '2026-11-25', '2026-11-26', '2026-11-27']; // outside crawler; counter fixed 27.11 05:02 UTC (Tester, deploy 48016c83)
+const isDirty = (d) => DIRTY.includes(d);
+if (require.main !== module) { module.exports = { isProduct, isCart, isCheckout, isThanks, isDirty }; return; }
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const { chromium } = require('playwright');
@@ -53,16 +55,19 @@ if (require.main !== module) { module.exports = { isProduct, isCart, isCheckout,
   const rows = days.map(d => {
     const x = data.days[d]; const o = data.orders[d] || { n: 0, paid: 0, sum: 0 };
     const bots = (x.c || {})['Other: UTC'] || 0;
-    return { d, s: x.s, people: x.s - bots, bots, v: x.v, prod: sumWhere(x.p, isProduct), cart: sumWhere(x.p, isCart), co: sumWhere(x.p, isCheckout), thx: sumWhere(x.p, isThanks), orders: o.n, paid: o.paid, sum: Math.round(o.sum * 100) / 100, phone: (x.m || {}).phone || 0, src: top(x.r, 3), ctry: top(x.c, 3), funnelPaths: Object.fromEntries(Object.entries(x.p || {}).filter(([p]) => isCart(p) || isCheckout(p) || isThanks(p))), lang: top(x.l, 4), sessCountry: x.c || {} };
+    const raw = x.raw || {};
+    return { d, dirty: isDirty(d), rawS: raw.s || 0, rawV: raw.v || 0, add: (x.e || {}).add || 0, s: x.s, people: x.s - bots, bots, v: x.v, prod: sumWhere(x.p, isProduct), cart: sumWhere(x.p, isCart), co: sumWhere(x.p, isCheckout), thx: sumWhere(x.p, isThanks), orders: o.n, paid: o.paid, sum: Math.round(o.sum * 100) / 100, phone: (x.m || {}).phone || 0, src: top(x.r, 3), ctry: top(x.c, 3), funnelPaths: Object.fromEntries(Object.entries(x.p || {}).filter(([p]) => isCart(p) || isCheckout(p) || isThanks(p))), lang: top(x.l, 4), sessCountry: x.c || {} };
   });
-  const T = (k) => rows.slice(0, 7).reduce((n, r) => n + r[k], 0); const P = (k) => rows.slice(7, 14).reduce((n, r) => n + r[k], 0);
+  // Days spoiled by an outside crawler (24.11–27.11, counter fixed 27.11 05:02 UTC) are not used for conclusions.
+  const clean = rows.filter(r => !r.dirty);
+  const T = (k) => clean.slice(0, 7).reduce((n, r) => n + r[k], 0); const P = (k) => clean.slice(7, 14).reduce((n, r) => n + r[k], 0);
   const ch = (k) => { const a = T(k), b = P(k); return b ? `${a} (${a >= b ? '+' : ''}${Math.round((a - b) / b * 100)} % к прошлой неделе)` : `${a}`; };
-  L.push('## 7 дней', `- люди (сессии без роботов): **${ch('people')}**; страниц: ${ch('v')}`,
-    `- воронка: товар ${T('prod')} → корзина ${T('cart')} → оформление ${T('co')} → «спасибо» ${T('thx')}; заказов ${T('orders')}, оплачено ${T('paid')} на ${Math.round(rows.slice(0, 7).reduce((n, r) => n + r.sum, 0) * 100) / 100} ${data.currency}`,
+  L.push('## 7 чистых дней', `- ⚠ дни ${DIRTY.join(', ')} — «грязные» (внешний краулер), в итог не входят`, `- люди (засчитанные визиты): **${ch('people')}**; страниц: ${ch('v')}; сырых загрузок: ${T('rawV')}; событий «в корзину»: ${T('add')}`,
+    `- воронка: товар ${T('prod')} → корзина ${T('cart')} → оформление ${T('co')} → «спасибо» ${T('thx')}; заказов ${T('orders')}, оплачено ${T('paid')} на ${Math.round(clean.slice(0, 7).reduce((n, r) => n + r.sum, 0) * 100) / 100} ${data.currency}`,
     `- с телефона: ${T('phone')} из ${T('s')} сессий`, '');
-  L.push('## По дням (UTC)', '| День | Люди | Роботы | Страниц | Товар | Корзина | Оформл. | Заказы (оплач.) | Сумма | Источники | Страны |', '|---|---|---|---|---|---|---|---|---|---|---|');
-  for (const r of rows) L.push(`| ${r.d} | ${r.people} | ${r.bots} | ${r.v} | ${r.prod} | ${r.cart} | ${r.co} | ${r.orders} (${r.paid}) | ${r.sum} | ${r.src} | ${r.ctry} |`);
-  L.push('', '_«Роботы» = сессии с часовым поясом UTC (наши проверки на GitHub). Страница «Товар» — просмотры /product/…; корзина/оформление — просмотры этих страниц. Заказы — из WooCommerce._');
+  L.push('## По дням (UTC)', '| День | Люди | Роботы | Страниц | Сырые загрузки | В корзину | Товар | Корзина | Оформл. | Заказы (оплач.) | Сумма | Источники | Страны |', '|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+  for (const r of rows) L.push(`| ${r.d}${r.dirty ? ' ⚠' : ''} | ${r.people} | ${r.bots} | ${r.v} | ${r.rawV || '—'} | ${r.add} | ${r.prod} | ${r.cart} | ${r.co} | ${r.orders} (${r.paid}) | ${r.sum} | ${r.src} | ${r.ctry} |`);
+  L.push('', '_С 27.11 05:02 UTC визит засчитывается только после действия человека (касание, клавиша, прокрутка, 8 с на виду); «сырые загрузки» — все открытия страниц до действий; наши роботы не пишутся вообще. ⚠ = «грязный» день. «Роботы» = старая метка часового пояса UTC (до 25.11). Страница «Товар» — просмотры /product/…; корзина/оформление — просмотры этих страниц. Заказы — из WooCommerce._');
   fs.writeFileSync(OUT + '/stats-daily.md', L.join('\n') + '\n');
   fs.writeFileSync(OUT + '/stats-daily.json', JSON.stringify({ updated: new Date().toISOString(), currency: data.currency, rows }, null, 1));
   console.log(L.slice(0, 8).join('\n'));
