@@ -13,7 +13,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const log = []; const L = (...a) => { const s = a.join(' '); log.push(s); console.log(s); };
 let shotN = 0;
 const shot = async (p, name, full = true) => { shotN++; await p.screenshot({ path: `${OUT}/${String(shotN).padStart(2, '0')}_${name}.jpg`, type: 'jpeg', quality: 70, fullPage: full }).catch(() => {}); };
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
 
 async function adminCtx(browser) {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, userAgent: UA });

@@ -10,7 +10,7 @@ fs.mkdirSync(out, { recursive: true });
   for (const p of paths) {
     const shots = {};
     for (const v of ['0', '1']) {
-      const ctx = await browser.newContext({ viewport: { width: +width, height: 900 }, deviceScaleFactor: 1, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36' + (+width < 600 ? ' Mobile' : '') , isMobile: +width < 600, hasTouch: +width < 600 });
+      const ctx = await browser.newContext({ viewport: { width: +width, height: 900 }, deviceScaleFactor: 1, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' + (+width < 600 ? ' Mobile' : '') , isMobile: +width < 600, hasTouch: +width < 600 });
       // The host rate-limits datacenter IPs (HTTP 429). Fetch same-site files one-two at a time and retry 429.
       let active = 0; const queue = [];
       const slot = () => new Promise(r => { if (active < 2) { active++; r(); } else queue.push(r); });

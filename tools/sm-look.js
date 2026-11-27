@@ -17,7 +17,7 @@ const PAGES = ['/en/store-manager/', '/en/store-manager/ss-add-product/', '/en/s
   for (const who of [{ n: 'vendor', u: process.env.TEST_VENDOR_USER, p: process.env.TEST_VENDOR_PASS }, { n: 'admin', u: process.env.TEST_ADMIN_USER, p: process.env.TEST_ADMIN_PASS }]) {
     if (!who.u || !who.p) { log.push(`## ${who.n}: no secrets set — skipped`); continue; }
     for (const dev of [{ n: 'desktop', o: { viewport: { width: 1440, height: 900 } } }, { n: 'phone', o: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } }]) {
-      const ctx = await browser.newContext({ ...dev.o, userAgent: dev.n === 'phone' ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+      const ctx = await browser.newContext({ ...dev.o, userAgent: dev.n === 'phone' ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
       await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
       const page = await ctx.newPage();
       const errs = []; page.on('pageerror', e => errs.push(e.message));

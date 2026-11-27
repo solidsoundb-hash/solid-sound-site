@@ -9,7 +9,7 @@ Run: python3 tools/old-sites.py studio post templates test
 """
 import html, json, os, re, sys, urllib.parse, urllib.request
 
-UA = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36'
+UA = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36 SolidSoundQA/1.0'
 OUT = 'old-sites'
 MEDIA_RE = re.compile(r'\.(jpe?g|png|gif|webp|svg|mp3|wav|ogg|m4a|mp4|webm|mov|pdf)(\?|$)', re.I)
 

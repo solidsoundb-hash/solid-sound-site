@@ -22,7 +22,7 @@ if (require.main !== module) { module.exports = { isProduct, isCart, isCheckout,
   fs.mkdirSync(OUT, { recursive: true });
   const { chromium } = require('playwright');
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
-  const ctx = await browser.newContext({ locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' }); /* (25.11 tester) «HeadlessChrome» gets 403 from the host */ const page = await ctx.newPage();
+  const ctx = await browser.newContext({ locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' }); /* (25.11 tester) «HeadlessChrome» gets 403 from the host */ const page = await ctx.newPage();
   let data = null, err = '';
   try {
     let resp = null;

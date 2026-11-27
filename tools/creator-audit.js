@@ -9,8 +9,8 @@ const S = 'https://solid-sound.net';
 const PAGES = ['/en/store-manager/', '/en/store-manager/ss-products/', '/en/store-manager/ss-add-product/', '/en/store-manager/ss-add-product/?ss_ff3=1', '/en/store-manager/ss-earnings/',
   '/en/store-manager/ss-payouts/', '/en/store-manager/ss-reviews/', '/en/store-manager/ss-settings/', '/en/store-manager/ss-help/', '/en/my-account/', '/sell/'];
 const DEVICES = [
-  { name: 'phone', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, ua: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' },
-  { name: 'desktop', viewport: { width: 1366, height: 900 }, isMobile: false, hasTouch: false, ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' },
+  { name: 'phone', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, ua: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' },
+  { name: 'desktop', viewport: { width: 1366, height: 900 }, isMobile: false, hasTouch: false, ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' },
 ];
 const slug = (p) => p.replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '') || 'home';
 const hideBanners = () => document.querySelectorAll('body *').forEach(z => { const s = getComputedStyle(z); if (s.position === 'fixed' && /privacy|cookie/i.test((z.textContent || '').slice(0, 200)) && (z.textContent || '').length < 900) z.style.display = 'none'; });

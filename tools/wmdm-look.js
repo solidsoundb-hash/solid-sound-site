@@ -16,7 +16,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
   if (!user || !pass) { fs.writeFileSync(`${OUT}/report.txt`, 'no WMDM_USER / WMDM_PASS secrets\n'); return; }
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   for (const dev of [{ n: 'desktop', o: { viewport: { width: 1440, height: 900 } } }, { n: 'phone', o: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } }]) {
-    const ctx = await browser.newContext({ ...dev.o, userAgent: dev.n === 'phone' ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+    const ctx = await browser.newContext({ ...dev.o, userAgent: dev.n === 'phone' ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
     const page = await ctx.newPage();
     await page.goto(BASE + '/en/customer/account/login/', { waitUntil: 'domcontentloaded', timeout: 90000 });
     await sleep(2500);

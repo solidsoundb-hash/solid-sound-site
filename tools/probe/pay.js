@@ -5,7 +5,7 @@ const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive:
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const log = []; const L = (...a) => log.push(a.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join(' '));
   for (const q of ['', '?ss_pay_now=1']) {
-    const ctx = await b.newContext({ viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' }); // same phone as tools/page-shot.js
+    const ctx = await b.newContext({ viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' }); // same phone as tools/page-shot.js
     await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
     const p = await ctx.newPage(); let n = 0, pay = 0; const errs = [];
     p.on('response', r => { n++; if (/stripe|pay\.google|hcaptcha/.test(r.url())) pay++; });

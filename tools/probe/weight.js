@@ -7,7 +7,7 @@ const log = []; const L = (...a) => { const s = a.map(x => typeof x === 'string'
 const kb = n => Math.round(n / 1024) + ' КБ';
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
-  const ctx = await b.newContext({ viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' });
+  const ctx = await b.newContext({ viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' });
   await ctx.addCookies([{ name: 'ss_consent', value: 'essential', domain: 'solid-sound.net', path: '/' }]);
   const p = await ctx.newPage();
   const measure = async (path, label, repeat = 2) => {

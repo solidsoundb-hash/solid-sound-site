@@ -14,7 +14,7 @@ TEAM_IDS = {int(x) for x in os.environ.get('TEAM_IDS', '6').split(',') if x.stri
 OUT = os.environ.get('OUT', 'reports/authors')
 ONLY = {int(x) for x in os.environ.get('ONLY_IDS', '').split(',') if x.strip()}  # ступень 1: один товар (например 1102)
 LIMIT = int(os.environ.get('LIMIT', '0') or 0)  # ступень 2: 5–10 товаров
-UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
+UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0'
 
 
 def get(url, limit=None, tries=4):

@@ -2,7 +2,7 @@
 // Снимки: ПК 1366, телефон 412×780 и 412×700 → legal-out/<метка>/ ; текст страницы → .txt (для сравнения слов).
 const { chromium } = require('playwright'); const fs = require('fs');
 const [tag, list] = fs.readFileSync('.github/legal-look.txt', 'utf8').trim().split('\n').pop().split(' ');
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
 (async () => {
   const out = `legal-out/${tag}`; fs.mkdirSync(out, { recursive: true });
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });

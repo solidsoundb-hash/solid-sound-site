@@ -10,7 +10,7 @@ const PAGES = (process.env.PAGES || '/en/store-manager/,/en/store-manager/ss-add
 const short = u => (u || '').replace(/^https?:\/\/[^/]+/, '').slice(-90);
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined, args: ['--js-flags=--max-old-space-size=1024'] });
-  const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+  const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
   const lp = await ctx.newPage();
   await lp.goto(BASE + '/wp-login.php', { waitUntil: 'domcontentloaded', timeout: 90000 });

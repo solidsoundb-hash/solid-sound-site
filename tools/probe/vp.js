@@ -8,7 +8,7 @@ const PAGES = [['/en/all-products/', 'Play All'], ['/de/services-prices/', 'Leis
 if (process.env.VP_ONLY) { const re = new RegExp(process.env.VP_ONLY); for (let i = PAGES.length - 1; i >= 0; i--) if (!re.test(PAGES[i][0])) PAGES.splice(i, 1); }
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined }); const md = ['# Переводы /de/ — ' + new Date().toISOString(), '', '| Страница | Код | Куда пришли | lang | скрипт перевода | немецкий текст | hreflang | шапка | ошибки JS |', '|---|---|---|---|---|---|---|---|---|'];
-  for (const [dev, opt] of [['pc', { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' }], ['a31', { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' }]]) {
+  for (const [dev, opt] of [['pc', { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' }], ['a31', { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' }]]) {
     const ctx = await b.newContext(Object.assign({ locale: 'de-DE' }, opt));
     await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
     const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message.slice(0, 100)));

@@ -7,7 +7,7 @@ const log = []; const L = (...a) => { const s = a.join(' '); log.push(s); consol
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   for (const tz of ['Europe/Paris', 'UTC']) {
-    const ctx = await b.newContext({ timezoneId: tz, viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' });
+    const ctx = await b.newContext({ timezoneId: tz, viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, locale: 'en-US', userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' });
     await ctx.addInitScript(() => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); });
     const p = await ctx.newPage(); const sent = []; const errs = []; p.on('pageerror', e => errs.push(e.message));
     await p.route('**/admin-ajax.php*', r => { const d = r.request().postData() || ''; if (d.includes('ss_hit')) { sent.push((d.match(/name="(e|p)"\r\n\r\n([^\r]*)/g) || []).map(x => x.replace(/name="|"\r\n\r\n/g, ' ').trim()).join(',')); return r.fulfill({ status: 204 }); } r.continue(); });

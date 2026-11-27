@@ -11,7 +11,7 @@ const MEM = path.join(OUT, 'memory.json');
 const ALL = ['ableton', 'edmproduction', 'Techno', 'WeAreTheMusicMakers', 'musicproduction', 'mixingmastering', 'synthesizers', 'Serum', 'TechHouse'];
 const STAGE = Number(process.env.STAGE || 1);
 const SUBS = STAGE === 1 ? ['ableton'] : STAGE === 2 ? ALL.slice(0, 6) : ALL;
-const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 SolidSoundQA/1.0';
 
 // topic -> what we can honestly offer (link is added by hand by the marketer, with UTM)
 const TOPICS = [

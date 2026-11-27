@@ -64,7 +64,7 @@ function ss_pe_slider() {
 }
 
 /* ---------- demand ---------- */
-function ss_pe_bot() { $ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? (string) $_SERVER['HTTP_USER_AGENT'] : ''; return ! $ua || preg_match( '/bot|crawl|spider|slurp|headless|SolidSoundQA|lighthouse|preview/i', $ua ) || current_user_can( 'manage_options' ); }
+function ss_pe_bot() { $ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? (string) $_SERVER['HTTP_USER_AGENT'] : ''; return ! $ua || preg_match( '/bot|crawl|spider|slurp|headless|SolidSound|lighthouse|preview/i', $ua ) || current_user_can( 'manage_options' ); }
 function ss_pe_hit( $svc, $kind ) {
 	if ( ! in_array( $svc, ss_pe_services(), true ) || ss_pe_bot() ) return;
 	$d = (array) get_option( 'ss_pe_demand', array() ); $day = gmdate( 'Y-m-d' );

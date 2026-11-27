@@ -6,7 +6,7 @@ const url = fs.readFileSync('.github/page-look.txt', 'utf8').trim().split('\n').
   fs.mkdirSync('page-out', { recursive: true });
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   for (const [n, o] of [['desktop', { viewport: { width: 1440, height: 900 } }], ['phone', { viewport: { width: 390, height: 844 }, isMobile: true }]]) {
-    const p = await (await b.newContext({ ...o, locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' })).newPage();
+    const p = await (await b.newContext({ ...o, locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' })).newPage();
     const errs = []; p.on('pageerror', e => errs.push(e.message));
     await p.goto(url, { waitUntil: 'networkidle', timeout: 120000 }).catch(() => {});
     await p.waitForTimeout(3000);

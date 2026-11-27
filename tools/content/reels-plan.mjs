@@ -7,7 +7,7 @@ import fs from 'node:fs';
 const [COUNT = '3', OUT = 'reels.json'] = process.argv.slice(2);
 const MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:7b';
 const HOST = process.env.OLLAMA_HOST_URL || 'http://127.0.0.1:11434';
-const UA = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36' };
+const UA = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36 SolidSoundQA/1.0' };
 const sleep = (ms) => new Promise(z => setTimeout(z, ms));
 
 async function getJSON(u) {

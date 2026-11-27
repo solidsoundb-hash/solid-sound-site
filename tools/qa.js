@@ -12,10 +12,10 @@ const ALL_PAGES = ['/en/', '/en/all-products/', '/en/templates/', '/en/presets/'
   '/en/vendor-register/', '/contacts/', '/license/'];
 const PAGES = process.argv[3] ? process.argv[3].split(',') : ALL_PAGES;
 const DEV = {
-  desktop: { viewport: { width: 1440, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' },
+  desktop: { viewport: { width: 1440, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' },
   iphone: { ...devices['iPhone 13'] },
   iphonese: { ...devices['iPhone SE'] },
-  a31: { viewport: { width: 411, height: 914 }, deviceScaleFactor: 2.625, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' },
+  a31: { viewport: { width: 411, height: 914 }, deviceScaleFactor: 2.625, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' },
 };
 const DEVS = process.argv[4] ? process.argv[4].split(',') : ['desktop', 'a31', 'iphone'];
 const slug = (p) => p.replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '') || 'home';

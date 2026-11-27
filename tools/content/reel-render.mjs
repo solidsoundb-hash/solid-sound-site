@@ -14,7 +14,7 @@ const FONT = process.env.FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bo
 const W = fs.mkdtempSync('reel-'), F = (n) => path.join(W, n);
 const run = (cmd, args, input) => execFileSync(cmd, args, { stdio: input ? ['pipe', 'inherit', 'inherit'] : 'inherit', input });
 const dur = (f) => +execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f], { encoding: 'utf8' }).trim();
-const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36';
+const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36 SolidSoundQA/1.0';
 async function dl(u, f) { if (u.startsWith('/')) { fs.copyFileSync(u, f); return; } /* local file (tests) */ for (let i = 0; i < 6; i++) { try { const x = await fetch(u, { headers: { 'User-Agent': UA } }); if (x.ok) { fs.writeFileSync(f, Buffer.from(await x.arrayBuffer())); return; } } catch { /* retry */ } await new Promise(z => setTimeout(z, 8000 * (i + 1))); } throw new Error('download ' + u); }
 const wrap = (t, n) => { const out = []; let cur = ''; for (const w of String(t).split(/\s+/)) { if ((cur + ' ' + w).trim().length > n) { if (cur) out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); } if (cur) out.push(cur); return out.join('\n'); };
 

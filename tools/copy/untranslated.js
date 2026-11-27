@@ -61,7 +61,7 @@ if (process.argv.includes('--exam')) {
   let mem = { noise: [] }; try { mem = JSON.parse(fs.readFileSync(path.join(ROOT, 'reports/copy/memory.json'), 'utf8')); } catch (e) {}
   const noise = new Set((mem.noise || []).map(s => s.replace(/\s+/g, ' ').trim()));
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
-  const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+  const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
   const p = await ctx.newPage();
   const COLLECT = () => {

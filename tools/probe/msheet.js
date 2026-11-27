@@ -2,7 +2,7 @@
 // A31 412×700 and 412×780: menu open, then Language opened. Before/after shots of the owner's request.
 const { chromium } = require('playwright'); const fs = require('fs');
 const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive: true });
-const UA = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
+const UA = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0';
 const log = []; const L = (...a) => log.push(a.join(' '));
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });

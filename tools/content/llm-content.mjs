@@ -13,7 +13,7 @@ const read = (f) => { try { return fs.readFileSync(f, 'utf8').slice(0, 6000); } 
 async function products() {
   for (let i = 0; i < 5; i++) {
     try {
-      const r = await fetch('https://solid-sound.net/wp-json/wc/store/v1/products?per_page=60&orderby=popularity', { headers: { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36' } });
+      const r = await fetch('https://solid-sound.net/wp-json/wc/store/v1/products?per_page=60&orderby=popularity', { headers: { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36 SolidSoundQA/1.0' } });
       if (r.ok) {
         const j = await r.json();
         return j.map(p => {

@@ -8,7 +8,7 @@ const PAGES = ['/en/all-products/', '/en/services-prices/', '/studio-calculator/
   '/product/pitch/', '/en/cart/', '/en/checkout/', '/en/my-account/', '/en/terms/', '/refund_returns/', '/license/', '/privacy-policy/', '/en/legal-notice/', '/en/about/', '/contacts/'];
 (async () => {
   const b = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
-  const ctx = await b.newContext({ viewport: { width: 1366, height: 768 }, locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+  const ctx = await b.newContext({ viewport: { width: 1366, height: 768 }, locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: 'solid-sound.net', path: '/' }]);
   const p = await ctx.newPage(); const all = {}; let n = 0;
   for (const u of PAGES) {

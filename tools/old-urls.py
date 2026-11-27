@@ -10,7 +10,7 @@ Run: python3 tools/old-urls.py
 import concurrent.futures as cf, csv, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
 
 OUT = 'reports/seo'
-UA = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36'
+UA = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36 SolidSoundQA/1.0'
 SKIP = re.compile(r'\.(css|js|mjs|map|png|jpe?g|gif|webp|avif|svg|ico|woff2?|ttf|eot|mp3|wav|ogg|mp4|webm|json|xml|txt|zip|rar|gz|pdf)$|'
                   r'/(wp-admin|wp-json|wp-includes|wp-content|cdn-cgi|xmlrpc\.php|wp-login\.php|wp-cron\.php|feed|comments/feed|embed|trackback)(/|$)|'
                   r'[?&](add-to-cart|add_to_wishlist|remove_item|wc-ajax|replytocom|s=|orderby|filter_|min_price|max_price|_wpnonce|action=)', re.I)

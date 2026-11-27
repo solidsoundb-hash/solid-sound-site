@@ -35,7 +35,7 @@ if (require.main !== module) { module.exports = { scrub, action, urgent, isQuest
   fs.mkdirSync(OUT, { recursive: true });
   const { chromium } = require('playwright');
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
-  const ctx = await browser.newContext({ locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+  const ctx = await browser.newContext({ locale: 'en-US', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
   const page = await ctx.newPage();
   const since = new Date(Date.now() - HOURS * 3600e3).toISOString().slice(0, 19);
   const R = { updated: new Date().toISOString(), hours: HOURS, orders: [], funnel: null, leads: null, forum: [], errors: [] };

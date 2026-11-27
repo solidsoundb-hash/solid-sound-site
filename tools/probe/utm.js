@@ -5,8 +5,8 @@ const { chromium } = require('playwright'); const fs = require('fs');
 const OUT = process.env.PROBE_OUT || 'probe-utm'; fs.mkdirSync(OUT, { recursive: true });
 const SITE = 'https://solid-sound.net';
 const DEV = {
-  a31: { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' },
-  pc: { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' },
+  a31: { viewport: { width: 412, height: 700 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' },
+  pc: { viewport: { width: 1366, height: 768 }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' },
 };
 const log = []; const L = (...a) => { const s = a.join(' '); log.push(s); console.log(s); };
 const tag = new Date().toISOString().slice(0, 16).replace(/[-:T]/g, '');

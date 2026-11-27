@@ -1,8 +1,8 @@
 // Probe (25.11, Копирайтер): terms §3 «Prices and payment» — which currency the text names (EN /terms/ + DE /de/terms/), PC 1366 + A31 412×780 screenshots of that section.
 const { chromium } = require('playwright'); const fs = require('fs');
 const OUT = process.env.PROBE_OUT || 'probe-out'; fs.mkdirSync(OUT, { recursive: true });
-const UA_M = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
-const UA_D = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+const UA_M = 'Mozilla/5.0 (Linux; Android 12; SM-A315F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0';
+const UA_D = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0';
 const DEV = { pc: { viewport: { width: 1366, height: 768 }, userAgent: UA_D }, a31: { viewport: { width: 412, height: 780 }, isMobile: true, hasTouch: true, userAgent: UA_M } };
 const PAGES = ['/terms/', '/de/terms/'];
 (async () => {

@@ -8,7 +8,8 @@
  * no user agent; "session" = a flag in sessionStorage (gone when the tab closes). Admins and bots are not counted.
  * Funnel (25.11, Analyst): add_to_cart / checkout_start / pay_click / pay_error / order — once per session each, in day['e'].
  * Server side (25.11): day['e']['add'] / ['co'] — real add-to-cart and checkout form, see the bottom of this file.
- * Robots: time zone UTC or HeadlessChrome are not counted.
+ * Robots: time zone UTC, HeadlessChrome, UA «SolidSoundQA» / crawlers (server check, 27.11) are not counted; a plain GET «?add-to-cart=» link
+ * is not an «add» (crawlers follow it; real clicks use AJAX, 27.11).
  * Read: WP admin → Tools → Site stats, or the option `ss_stats` (kept 120 days). Off: option ss_stats_off = 1.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -38,11 +39,17 @@ function ss_stats_tz_country( $tz ) {
 	return $r ? 'Other: ' . $r : '?';
 }
 
+/* our QA robots (UA «SolidSoundQA»), crawlers, headless browsers — not counted (27.11: also for page views, was only for the funnel) */
+function ss_stats_is_bot() {
+	$ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? (string) $_SERVER['HTTP_USER_AGENT'] : '';
+	return '' === $ua || (bool) preg_match( '~SolidSound|HeadlessChrome|Lighthouse|bot|crawl|spider|slurp|curl|wget|python|php~i', $ua );
+}
+
 /* ---------- receive ---------- */
 add_action( 'wp_ajax_nopriv_ss_hit', 'ss_stats_hit' );
 add_action( 'wp_ajax_ss_hit', 'ss_stats_hit' );
 function ss_stats_hit() {
-	if ( get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) ) wp_die( '', '', array( 'response' => 204 ) );
+	if ( get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) || ss_stats_is_bot() ) wp_die( '', '', array( 'response' => 204 ) );
 	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? (string) $_SERVER['REMOTE_ADDR'] : '';
 	$rk = 'ss_hit_' . substr( md5( $ip . wp_salt() ), 0, 12 ); $n = (int) get_transient( $rk );
 	if ( $n > 150 ) wp_die( '', '', array( 'response' => 204 ) ); /* one browser cannot flood the counter */
@@ -87,7 +94,7 @@ function ss_stats_hit() {
 add_action( 'wp_footer', function () {
 	if ( is_admin() || get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) ) return;
 	$u = esc_url( admin_url( 'admin-ajax.php' ) );
-	echo '<script>(function(){if(navigator.webdriver||!navigator.sendBeacon)return;function go(){try{var s=sessionStorage,n=s.getItem("ssS")?"0":"1";s.setItem("ssS","1");'
+	echo '<script>(function(){if(navigator.webdriver||!navigator.sendBeacon||/HeadlessChrome/.test(navigator.userAgent))return;function go(){try{var s=sessionStorage,n=s.getItem("ssS")?"0":"1";s.setItem("ssS","1");'
 		. 'var q=new URLSearchParams(location.search),f=new FormData();f.append("action","ss_hit");f.append("p",location.pathname);f.append("n",n);f.append("tz",(Intl.DateTimeFormat().resolvedOptions().timeZone)||"");'
 		. 'if(n==="1"){f.append("r",document.referrer||"");f.append("u",q.get("utm_source")||"");'
 		. 'f.append("m",/Mobi|Android|iPhone/.test(navigator.userAgent)?"1":"0");f.append("lg",navigator.language||"")}navigator.sendBeacon("' . $u . '",f)}catch(e){}}'
@@ -160,8 +167,11 @@ add_action( 'rest_api_init', function () {
  * Not counted: admins, our QA robots (UA «SolidSoundQA»), crawlers / headless browsers. Nothing personal is stored. */
 function ss_stats_srv_event( $k ) {
 	if ( get_option( 'ss_stats_off' ) || current_user_can( 'manage_options' ) ) return;
-	$ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? (string) $_SERVER['HTTP_USER_AGENT'] : '';
-	if ( '' === $ua || preg_match( '~SolidSoundQA|HeadlessChrome|Lighthouse|bot|crawl|spider|slurp|curl|wget|python|php~i', $ua ) ) return;
+	if ( ss_stats_is_bot() ) return;
+	/* 27.11 (Analyst: 90 «add» on 133 visits): crawlers follow the plain links «?add-to-cart=ID» of related products
+	   (robots.txt forbids them, bad crawlers ignore it). A real click goes through AJAX / Store API or the product form (POST);
+	   with JavaScript those buttons use AJAX (class ajax_add_to_cart), so a plain GET link is not counted. */
+	if ( 'add' === $k && 'GET' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && isset( $_GET['add-to-cart'] ) && ! wp_doing_ajax() && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) return;
 	$ses = ( function_exists( 'WC' ) && WC()->session ) ? WC()->session : null;
 	if ( $ses ) { if ( $ses->get( 'ss_e_' . $k ) ) return; $ses->set( 'ss_e_' . $k, 1 ); }
 	$day = gmdate( 'Y-m-d' ); $all = get_option( 'ss_stats', array() ); if ( ! is_array( $all ) ) $all = array();

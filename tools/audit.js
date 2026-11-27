@@ -17,7 +17,7 @@ fs.mkdirSync(out, { recursive: true });
   const res = [];
   for (const w of WIDTHS) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 }, isMobile: w < 600, hasTouch: w < 600, deviceScaleFactor: 1,
-      userAgent: w < 600 ? 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' });
+      userAgent: w < 600 ? 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 SolidSoundQA/1.0' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 SolidSoundQA/1.0' });
     let active = 0; const q = []; const slot = () => new Promise(r => active < 2 ? (active++, r()) : q.push(r)); const free = () => { const n = q.shift(); n ? n() : active--; };
     await ctx.route(/solid-sound\.net/, async r => { await slot(); try { let x; for (let i = 0; i < 6; i++) { x = await r.fetch(); if (x.status() !== 429) break; await new Promise(z => setTimeout(z, 4000 * (i + 1))); } await r.fulfill({ response: x }); } catch (e) { try { await r.abort(); } catch (_) {} } finally { free(); } });
     for (const p of (ONLY || PAGES)) {
