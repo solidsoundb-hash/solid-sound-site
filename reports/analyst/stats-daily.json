@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-27T05:05:38.045Z",
+ "updated": "2026-11-27T05:20:34.421Z",
  "currency": "EUR",
  "rows": [
   {
    "d": "2026-11-27",
    "dirty": true,
-   "rawS": 1,
-   "rawV": 1,
+   "rawS": 2,
+   "rawV": 2,
    "add": 8,
    "s": 31,
    "people": 31,
