@@ -121,5 +121,7 @@
   ".als",
   "flp",
   "logic project"
- ]
+ ],
+ "eurUsd": 1.05,
+ "eurUsdNote": "approximate EUR->USD rate for comparing our EUR prices with competitors in USD; update by hand if it moves >5%"
 }
