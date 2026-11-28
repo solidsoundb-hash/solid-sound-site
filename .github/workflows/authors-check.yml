@@ -8,7 +8,7 @@ on:
       only_ids: { description: "ID товаров через запятую (ступень 1)", default: "1102" }
       limit: { description: "Сколько товаров (ступень 2), 0 = все", default: "0" }
   schedule:
-    - cron: "23 3 * * *"  # ступень 3 с 25.11 (ступени 1–2 сданы)
+    - cron: "23 3 * * 3"  # 28.11 «Задачи»: раз в неделю (ср) — авторы ждут решения владельца
   push:
     branches: [main]
     paths: [".github/authors-check.txt"]  # последняя строка: "only=1102" или "limit=9" или "all"

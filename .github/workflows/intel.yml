@@ -7,7 +7,7 @@ on:
     inputs:
       mode: { description: "probe / quick / full / improve", default: full }
   schedule:
-    - cron: "47 2 * * *"
+    - cron: "47 2 * * 1,4"   # 28.11 «Задачи»: пн и чт вместо каждой ночи
   push:
     branches: [main]
     paths: [".github/intel.txt"]

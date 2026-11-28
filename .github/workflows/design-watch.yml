@@ -7,7 +7,7 @@ on:
     inputs:
       mode: { description: "probe / run", default: run }
   schedule:
-    - cron: "53 1 * * *"
+    - cron: "53 1 * * 1"   # 28.11 «Задачи»: раз в неделю, перед сменой Дизайнера
   push:
     branches: [main]
     paths: [".github/design-watch.txt"]
