@@ -8,6 +8,14 @@
    "ok": 12,
    "minutes": 2.2,
    "changes": 0
+  },
+  {
+   "date": "2026-11-28 02:25 UTC",
+   "mode": "карточек",
+   "sites": 9,
+   "ok": 42,
+   "minutes": 7.4,
+   "changes": 0
   }
  ],
  "noise": [],
@@ -115,6 +123,240 @@
    "pricePx": 25,
    "sliders": 0,
    "hdrH": 72,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Production Music Live home/pc": {
+   "sliders": 1,
+   "slides": 14,
+   "popup": false,
+   "oldPrice": true,
+   "badges": 1
+  },
+  "Production Music Live catalog/pc": {
+   "sliders": 0,
+   "hdrH": 81,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Production Music Live home/phone": {
+   "sliders": 1,
+   "slides": 14,
+   "hdrH": 37,
+   "popup": false,
+   "oldPrice": true,
+   "badges": 1
+  },
+  "Production Music Live catalog/phone": {
+   "sliders": 0,
+   "hdrH": 37,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Cymatics home/pc": {
+   "sliders": 4,
+   "slides": 3,
+   "hdrH": 62,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Cymatics catalog/pc": {
+   "sliders": 0,
+   "hdrH": 62,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 2
+  },
+  "Cymatics product/pc": {
+   "sliders": 1,
+   "slides": 37,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Cymatics home/phone": {
+   "sliders": 4,
+   "slides": 3,
+   "hdrH": 72,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Cymatics catalog/phone": {
+   "sliders": 0,
+   "hdrH": 72,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 2
+  },
+  "Cymatics product/phone": {
+   "sliders": 1,
+   "slides": 21,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Zenhiser home/pc": {
+   "sliders": 1,
+   "slides": 2,
+   "hdrH": 60,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Zenhiser catalog/pc": {
+   "sliders": 0,
+   "hdrH": 60,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Zenhiser home/phone": {
+   "sliders": 1,
+   "slides": 2,
+   "hdrH": 50,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Zenhiser catalog/phone": {
+   "sliders": 0,
+   "hdrH": 50,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Sample Tools by Cr2 home/pc": {
+   "sliders": 5,
+   "slides": 6,
+   "hdrH": 120,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Sample Tools by Cr2 catalog/pc": {
+   "sliders": 0,
+   "hdrH": 120,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Sample Tools by Cr2 product/pc": {
+   "buyColor": "#00dc0a",
+   "buyText": "ADD TO BASKET",
+   "buyH": 29,
+   "sliders": 0,
+   "hdrH": 120,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Sample Tools by Cr2 home/phone": {
+   "sliders": 5,
+   "slides": 6,
+   "hdrH": 90,
+   "popup": true,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Sample Tools by Cr2 catalog/phone": {
+   "sliders": 0,
+   "hdrH": 90,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Sample Tools by Cr2 product/phone": {
+   "buyColor": "#00dc0a",
+   "buyText": "ADD TO BASKET",
+   "buyH": 29,
+   "sliders": 0,
+   "hdrH": 90,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Black Octopus home/pc": {
+   "sliders": 0,
+   "hdrH": 125,
+   "popup": false,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Black Octopus home/phone": {
+   "sliders": 0,
+   "hdrH": 50,
+   "popup": false,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "ADSR Sounds home/pc": {
+   "sliders": 1,
+   "slides": 2,
+   "hdrH": 76,
+   "popup": false,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "ADSR Sounds home/phone": {
+   "sliders": 1,
+   "slides": 2,
+   "hdrH": 76,
+   "popup": false,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "We Make Dance Music home/pc": {
+   "sliders": 0,
+   "hdrH": 60,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 2
+  },
+  "We Make Dance Music catalog/pc": {
+   "sliders": 1,
+   "slides": 10,
+   "hdrH": 60,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "We Make Dance Music product/pc": {
+   "buyColor": "#007e8a",
+   "buyText": "$35.99 ADD TO CART",
+   "buyH": 65,
+   "pricePx": 18,
+   "sliders": 0,
+   "hdrH": 60,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "We Make Dance Music home/phone": {
+   "sliders": 0,
+   "hdrH": 56,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 2
+  },
+  "We Make Dance Music catalog/phone": {
+   "sliders": 1,
+   "slides": 10,
+   "hdrH": 56,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "We Make Dance Music product/phone": {
+   "buyColor": "#007e8a",
+   "buyText": "$35.99 ADD TO CART",
+   "buyH": 58,
+   "sliders": 0,
+   "hdrH": 56,
    "popup": null,
    "oldPrice": false,
    "badges": 0
