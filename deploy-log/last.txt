@@ -1,6 +1,6 @@
-run 411 2026-11-27T05:02:18Z commit 48016c83bf41617764b0b1e4d4b5432944a628d7
-https://solid-sound.net/en/?ss_v2=0 -> HTTP 200 
-https://solid-sound.net/en/?ss_v2=1 -> HTTP 200 
-https://solid-sound.net/product/infinity/?ss_v2=1 -> HTTP 200 
-https://solid-sound.net/en/my-account/?ss_v2=1 -> HTTP 200 
+run 412 2026-11-28T02:33:57Z commit c32b36a26af08086472fc93d3f48faafc5957eb0
+https://solid-sound.net/en/?ss_v2=0 -> HTTP 429 
+https://solid-sound.net/en/?ss_v2=1 -> HTTP 429 
+https://solid-sound.net/product/infinity/?ss_v2=1 -> HTTP 429 
+https://solid-sound.net/en/my-account/?ss_v2=1 -> HTTP 429 
 OK
