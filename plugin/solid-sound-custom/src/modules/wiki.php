@@ -143,7 +143,7 @@ function ss_wiki_cards() {
 		'audio-interface-for-vocals'          => array( 'box', 'Preamps, 48V, gain staging and latency — set it up once, right.', 9, 1 ),
 		'balanced-vs-unbalanced-cables'       => array( 'plug', 'XLR, TRS or TS: which cable goes where, and how to kill hum.', 9, 2 ),
 		'closed-back-headphones-for-recording'=> array( 'phones', 'Stop headphone bleed: models, fit, levels and the click track.', 8, 3 ),
-		'record-clean-vocals-at-home'         => array( 'mic', 'Distance, angle, consistency — three free rules for clean vocals.', 10, 4 ),
+		'record-clean-vocals-at-home'         => array( 'mic', 'Six free steps: distance, angle, gain and one spot for every take.', 7, 4 ),
 		/* (19.11.2026) Promotion & DJ gigs — not part of the 4-step recording path (step 0) */
 		'how-to-promote-yourself-as-a-dj'     => array( 'flag', 'The first 90 days: your set, your press kit, your first gigs.', 6, 0 ),
 		'how-much-do-djs-get-paid'            => array( 'star', 'Rough fees from bar gigs to festival stages, and what moves you up.', 5, 0 ),
