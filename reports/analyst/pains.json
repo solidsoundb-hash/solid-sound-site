@@ -2,31 +2,25 @@
  "date": "2026-11-28",
  "mode": "run",
  "sources": [
-  "Stack Exchange — Sound Design (audio): вопросов 629, с болью 699",
-  "Stack Exchange — Music: вопросов 600, с болью 573",
-  "Lemmy: постов 300, с болью 120",
-  "client-scout, история: с болью 2",
-  "отзывы конкурентов: с болью 25"
+  "Stack Exchange — Sound Design (audio): вопросов 629, с болью 349",
+  "Stack Exchange — Music: вопросов 600, с болью 305",
+  "Lemmy: постов 300, с болью 89",
+  "client-scout, история: с болью 1",
+  "отзывы конкурентов: с болью 23"
  ],
  "top": [
   {
    "id": "daw",
    "label": "Ableton и DAW: роутинг, CPU, рабочий процесс",
-   "n": 514,
-   "views": 1460781,
+   "n": 264,
+   "views": 647212,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 226,
-    "Stack Exchange — Music": 249,
+    "Stack Exchange — Sound Design (audio)": 117,
+    "Stack Exchange — Music": 108,
     "Lemmy": 39
    },
    "ours": "Шаблоны Ableton (рабочий процесс внутри)",
    "examples": [
-    {
-     "t": "How to make ASIO work with multiple programs simultaneously : how can I listen to Guitar Rig plus something else through the same interface?",
-     "src": "Stack Exchange — Music",
-     "views": 227456,
-     "url": "https://music.stackexchange.com/questions/20484/how-to-make-asio-work-with-multiple-programs-simultaneously-how-can-i-listen-t"
-    },
     {
      "t": "TS vs TRS cables to connect mixer to audio interface",
      "src": "Stack Exchange — Music",
@@ -40,27 +34,33 @@
      "url": "https://music.stackexchange.com/questions/44014/connect-a-yamaha-keyboard-to-ableton-live"
     },
     {
-     "t": "How can I change the master BPM in my song without stretching the recorded wav files?",
+     "t": "How to use two computers simultaneously for production (CPU sharing)",
      "src": "Stack Exchange — Sound Design (audio)",
-     "views": 43315,
-     "url": "https://sound.stackexchange.com/questions/25962/how-can-i-change-the-master-bpm-in-my-song-without-stretching-the-recorded-wav-f"
+     "views": 28503,
+     "url": "https://sound.stackexchange.com/questions/39734/how-to-use-two-computers-simultaneously-for-production-cpu-sharing"
     },
     {
-     "t": "Techniques for pitch shifting vocals while maintaining a natural sound",
+     "t": "How to get rid of latency experienced while using VST in Reaper?",
      "src": "Stack Exchange — Music",
-     "views": 28581,
-     "url": "https://music.stackexchange.com/questions/20438/techniques-for-pitch-shifting-vocals-while-maintaining-a-natural-sound"
+     "views": 22709,
+     "url": "https://music.stackexchange.com/questions/48574/how-to-get-rid-of-latency-experienced-while-using-vst-in-reaper"
+    },
+    {
+     "t": "Asio4All - couldn't get beneath 24 ms latency",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 22605,
+     "url": "https://sound.stackexchange.com/questions/22397/asio4all-couldnt-get-beneath-24-ms-latency"
     }
    ]
   },
   {
    "id": "synth",
    "label": "Саунд-дизайн: как сделать этот звук, синт, пресет",
-   "n": 190,
-   "views": 516675,
+   "n": 130,
+   "views": 341282,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 24,
-    "Stack Exchange — Music": 145,
+    "Stack Exchange — Sound Design (audio)": 21,
+    "Stack Exchange — Music": 88,
     "Lemmy": 14,
     "Отзывы покупателей конкурентов": 7
    },
@@ -71,12 +71,6 @@
      "src": "Stack Exchange — Music",
      "views": 51458,
      "url": "https://music.stackexchange.com/questions/57952/how-to-make-a-sound-appear-to-be-more-distant"
-    },
-    {
-     "t": "What are the practical advantages of keyboards with non-weighted keys vs. weighted hammer action?",
-     "src": "Stack Exchange — Music",
-     "views": 35703,
-     "url": "https://music.stackexchange.com/questions/30130/what-are-the-practical-advantages-of-keyboards-with-non-weighted-keys-vs-weight"
     },
     {
      "t": "Is it possible to recreate any sound you hear on a synth?",
@@ -95,28 +89,28 @@
      "src": "Stack Exchange — Music",
      "views": 20882,
      "url": "https://music.stackexchange.com/questions/22806/how-to-synthesize-grand-piano-sound"
+    },
+    {
+     "t": "Why does software-synthesized MIDI music sound so bad?",
+     "src": "Stack Exchange — Music",
+     "views": 19954,
+     "url": "https://music.stackexchange.com/questions/32617/why-does-software-synthesized-midi-music-sound-so-bad"
     }
    ]
   },
   {
    "id": "space",
    "label": "Пространство: ревер, ширина, стерео, фаза",
-   "n": 153,
-   "views": 318484,
+   "n": 100,
+   "views": 238998,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 118,
-    "Stack Exchange — Music": 25,
+    "Stack Exchange — Sound Design (audio)": 69,
+    "Stack Exchange — Music": 21,
     "Lemmy": 9,
     "Отзывы покупателей конкурентов": 1
    },
    "ours": "Статья-гайд · сведение",
    "examples": [
-    {
-     "t": "Real-time audio effects in Windows",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 26634,
-     "url": "https://sound.stackexchange.com/questions/26436/real-time-audio-effects-in-windows"
-    },
     {
      "t": "Outdoor Reverb/Delay?",
      "src": "Stack Exchange — Sound Design (audio)",
@@ -140,34 +134,28 @@
      "src": "Stack Exchange — Music",
      "views": 15999,
      "url": "https://music.stackexchange.com/questions/24435/how-to-give-more-depth-to-vocals-when-mixing"
+    },
+    {
+     "t": "How to remove reverb from a recording of a voice?",
+     "src": "Stack Exchange — Music",
+     "views": 13736,
+     "url": "https://music.stackexchange.com/questions/25472/how-to-remove-reverb-from-a-recording-of-a-voice"
     }
    ]
   },
   {
    "id": "comp",
    "label": "Компрессия: атака, релиз, панч",
-   "n": 144,
-   "views": 360309,
+   "n": 82,
+   "views": 167558,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 129,
-    "Stack Exchange — Music": 13,
+    "Stack Exchange — Sound Design (audio)": 68,
+    "Stack Exchange — Music": 12,
     "Lemmy": 1,
     "Отзывы покупателей конкурентов": 1
    },
    "ours": "Статья-гайд · шаблоны",
    "examples": [
-    {
-     "t": "Why does a FLAC file have a lower bit rate than the CD file?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 59013,
-     "url": "https://sound.stackexchange.com/questions/24680/why-does-a-flac-file-have-a-lower-bit-rate-than-the-cd-file"
-    },
-    {
-     "t": "What is the difference between Vorbis and Opus?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 26228,
-     "url": "https://sound.stackexchange.com/questions/42711/what-is-the-difference-between-vorbis-and-opus"
-    },
     {
      "t": "FLAC compression level comparison/efficiency analysis",
      "src": "Stack Exchange — Sound Design (audio)",
@@ -175,71 +163,39 @@
      "url": "https://sound.stackexchange.com/questions/41964/flac-compression-level-comparison-efficiency-analysis"
     },
     {
-     "t": "How do I use the Insert I/O on my Behringer Mixer?",
+     "t": "What is side chain compression?",
      "src": "Stack Exchange — Sound Design (audio)",
-     "views": 21910,
-     "url": "https://sound.stackexchange.com/questions/24665/how-do-i-use-the-insert-i-o-on-my-behringer-mixer"
+     "views": 10868,
+     "url": "https://sound.stackexchange.com/questions/26864/what-is-side-chain-compression"
     },
     {
-     "t": "Live rock band having issues with vocals being buried",
+     "t": "Compressor vs Volume",
      "src": "Stack Exchange — Sound Design (audio)",
-     "views": 16854,
-     "url": "https://sound.stackexchange.com/questions/24661/live-rock-band-having-issues-with-vocals-being-buried"
-    }
-   ]
-  },
-  {
-   "id": "eq",
-   "label": "Эквализация: что резать, частоты",
-   "n": 88,
-   "views": 164122,
-   "src": {
-    "Stack Exchange — Sound Design (audio)": 75,
-    "Stack Exchange — Music": 11,
-    "Lemmy": 2
-   },
-   "ours": "Статья-гайд · шаблоны (настройки EQ видны)",
-   "examples": [
-    {
-     "t": "Bassline Not Audible on Laptop Speakers",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 15663,
-     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
+     "views": 8213,
+     "url": "https://sound.stackexchange.com/questions/31892/compressor-vs-volume"
     },
     {
-     "t": "Bassline Not Audible on Laptop Speakers",
+     "t": "How is compression different from normalization?",
      "src": "Stack Exchange — Sound Design (audio)",
-     "views": 15663,
-     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
+     "views": 7602,
+     "url": "https://sound.stackexchange.com/questions/22797/how-is-compression-different-from-normalization"
     },
     {
-     "t": "Bassline Not Audible on Laptop Speakers",
+     "t": "How to make compressed audio loop without audible gap?",
      "src": "Stack Exchange — Sound Design (audio)",
-     "views": 15663,
-     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
-    },
-    {
-     "t": "If hi-fi speakers color sound and studio speakers are flat, why don't we mix to get the sound of the hi-fi speakers on neutral speakers?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 8169,
-     "url": "https://sound.stackexchange.com/questions/21890/if-hi-fi-speakers-color-sound-and-studio-speakers-are-flat-why-dont-we-mix-to"
-    },
-    {
-     "t": "If hi-fi speakers color sound and studio speakers are flat, why don't we mix to get the sound of the hi-fi speakers on neutral speakers?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 8169,
-     "url": "https://sound.stackexchange.com/questions/21890/if-hi-fi-speakers-color-sound-and-studio-speakers-are-flat-why-dont-we-mix-to"
+     "views": 6559,
+     "url": "https://sound.stackexchange.com/questions/19015/how-to-make-compressed-audio-loop-without-audible-gap"
     }
    ]
   },
   {
    "id": "vocal",
    "label": "Вокал: обработка, сидит в миксе",
-   "n": 86,
-   "views": 180210,
+   "n": 74,
+   "views": 169400,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 33,
-    "Stack Exchange — Music": 35,
+    "Stack Exchange — Sound Design (audio)": 29,
+    "Stack Exchange — Music": 27,
     "Lemmy": 11,
     "Отзывы покупателей конкурентов": 7
    },
@@ -280,11 +236,11 @@
   {
    "id": "drums",
    "label": "Барабаны и грув: хэты, перкуссия, свинг",
-   "n": 62,
-   "views": 98914,
+   "n": 53,
+   "views": 85885,
    "src": {
     "Stack Exchange — Sound Design (audio)": 15,
-    "Stack Exchange — Music": 37,
+    "Stack Exchange — Music": 28,
     "Lemmy": 2,
     "Отзывы покупателей конкурентов": 8
    },
@@ -315,10 +271,54 @@
      "url": "https://music.stackexchange.com/questions/65824/how-to-make-drums-sound-punchy-and-fat"
     },
     {
-     "t": "Separate MIDI Drumtrack to edit each part individually",
+     "t": "How Can I Isolate Individual Drums From An Overhead Track?",
      "src": "Stack Exchange — Music",
-     "views": 5167,
-     "url": "https://music.stackexchange.com/questions/31103/separate-midi-drumtrack-to-edit-each-part-individually"
+     "views": 5081,
+     "url": "https://music.stackexchange.com/questions/39263/how-can-i-isolate-individual-drums-from-an-overhead-track"
+    }
+   ]
+  },
+  {
+   "id": "eq",
+   "label": "Эквализация: что резать, частоты",
+   "n": 46,
+   "views": 69728,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 33,
+    "Stack Exchange — Music": 11,
+    "Lemmy": 2
+   },
+   "ours": "Статья-гайд · шаблоны (настройки EQ видны)",
+   "examples": [
+    {
+     "t": "Why can cheap mics be eq to sound like expensive ones?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 7563,
+     "url": "https://sound.stackexchange.com/questions/15208/why-can-cheap-mics-be-eq-to-sound-like-expensive-ones"
+    },
+    {
+     "t": "Why is 'additive' EQ more difficult to use than 'subtractive'?",
+     "src": "Stack Exchange — Music",
+     "views": 5368,
+     "url": "https://music.stackexchange.com/questions/85010/why-is-additive-eq-more-difficult-to-use-than-subtractive"
+    },
+    {
+     "t": "Why is my cutting equalizer increasing output level?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 4578,
+     "url": "https://sound.stackexchange.com/questions/24981/why-is-my-cutting-equalizer-increasing-output-level"
+    },
+    {
+     "t": "Completely cut frequencies below a certain threshold",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3661,
+     "url": "https://sound.stackexchange.com/questions/27665/completely-cut-frequencies-below-a-certain-threshold"
+    },
+    {
+     "t": "Completely cut frequencies below a certain threshold",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3661,
+     "url": "https://sound.stackexchange.com/questions/27665/completely-cut-frequencies-below-a-certain-threshold"
     }
    ]
   },
@@ -370,22 +370,16 @@
   {
    "id": "theory",
    "label": "Мелодия и гармония: аккорды, тональность",
-   "n": 27,
-   "views": 62364,
+   "n": 22,
+   "views": 37806,
    "src": {
     "Stack Exchange — Sound Design (audio)": 1,
-    "Stack Exchange — Music": 18,
+    "Stack Exchange — Music": 13,
     "Lemmy": 7,
     "Отзывы покупателей конкурентов": 1
    },
    "ours": "Шаблоны (MIDI внутри) · статья",
    "examples": [
-    {
-     "t": "How do I become a better electronic music producer?",
-     "src": "Stack Exchange — Music",
-     "views": 22352,
-     "url": "https://music.stackexchange.com/questions/24236/how-do-i-become-a-better-electronic-music-producer"
-    },
     {
      "t": "What is harmonic mixing / mix in key?",
      "src": "Stack Exchange — Music",
@@ -409,16 +403,22 @@
      "src": "Stack Exchange — Music",
      "views": 1848,
      "url": "https://music.stackexchange.com/questions/25241/automatic-regular-chords-not-arpeggios-in-fl-studio"
+    },
+    {
+     "t": "How to find out the pitch of a melody in Ableton live 10?",
+     "src": "Stack Exchange — Music",
+     "views": 1294,
+     "url": "https://music.stackexchange.com/questions/113365/how-to-find-out-the-pitch-of-a-melody-in-ableton-live-10"
     }
    ]
   },
   {
    "id": "loud",
    "label": "Трек тихий, громкость, LUFS",
-   "n": 26,
-   "views": 190607,
+   "n": 17,
+   "views": 180528,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 17,
+    "Stack Exchange — Sound Design (audio)": 8,
     "Stack Exchange — Music": 6,
     "Lemmy": 2,
     "client-scout (Mastodon, Lemmy, Bluesky, SE)": 1
@@ -454,50 +454,6 @@
      "src": "Stack Exchange — Music",
      "views": 16347,
      "url": "https://music.stackexchange.com/questions/24674/tips-for-increasing-loudness-while-mastering-in-ableton-live"
-    }
-   ]
-  },
-  {
-   "id": "arrange",
-   "label": "Аранжировка: структура, брейк, дроп, переходы",
-   "n": 19,
-   "views": 31913,
-   "src": {
-    "Stack Exchange — Sound Design (audio)": 2,
-    "Stack Exchange — Music": 8,
-    "Lemmy": 9
-   },
-   "ours": "Шаблоны (разбор структуры) · статья «структура techno-трека»",
-   "examples": [
-    {
-     "t": "How do I mute a track in this Arrangement view for playback of another track in Clip view?",
-     "src": "Stack Exchange — Music",
-     "views": 10968,
-     "url": "https://music.stackexchange.com/questions/93258/how-do-i-mute-a-track-in-this-arrangement-view-for-playback-of-another-track-in"
-    },
-    {
-     "t": "\"Break\" vs \"Breakdown\" meaning (EDM)",
-     "src": "Stack Exchange — Music",
-     "views": 9243,
-     "url": "https://music.stackexchange.com/questions/72168/break-vs-breakdown-meaning-edm"
-    },
-    {
-     "t": "Music arrangement for EDM",
-     "src": "Stack Exchange — Music",
-     "views": 4054,
-     "url": "https://music.stackexchange.com/questions/30890/music-arrangement-for-edm"
-    },
-    {
-     "t": "Why do EDM musicians often create an intro that is 15/30/45/60/120 seconds long?",
-     "src": "Stack Exchange — Music",
-     "views": 2379,
-     "url": "https://music.stackexchange.com/questions/79071/why-do-edm-musicians-often-create-an-intro-that-is-15-30-45-60-120-seconds-long"
-    },
-    {
-     "t": "Ableton Live - am I misunderstanding clips in the Arrangement view?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 2191,
-     "url": "https://sound.stackexchange.com/questions/25809/ableton-live-am-i-misunderstanding-clips-in-the-arrangement-view"
     }
    ]
   },
@@ -545,34 +501,59 @@
    ]
   },
   {
+   "id": "arrange",
+   "label": "Аранжировка: структура, брейк, дроп, переходы",
+   "n": 14,
+   "views": 16070,
+   "src": {
+    "Stack Exchange — Music": 5,
+    "Lemmy": 9
+   },
+   "ours": "Шаблоны (разбор структуры) · статья «структура techno-трека»",
+   "examples": [
+    {
+     "t": "\"Break\" vs \"Breakdown\" meaning (EDM)",
+     "src": "Stack Exchange — Music",
+     "views": 9243,
+     "url": "https://music.stackexchange.com/questions/72168/break-vs-breakdown-meaning-edm"
+    },
+    {
+     "t": "Music arrangement for EDM",
+     "src": "Stack Exchange — Music",
+     "views": 4054,
+     "url": "https://music.stackexchange.com/questions/30890/music-arrangement-for-edm"
+    },
+    {
+     "t": "Why do EDM musicians often create an intro that is 15/30/45/60/120 seconds long?",
+     "src": "Stack Exchange — Music",
+     "views": 2379,
+     "url": "https://music.stackexchange.com/questions/79071/why-do-edm-musicians-often-create-an-intro-that-is-15-30-45-60-120-seconds-long"
+    },
+    {
+     "t": "How can I make my vocals stand out without ducking the instrumental in my EDM drop?",
+     "src": "Stack Exchange — Music",
+     "views": 267,
+     "url": "https://music.stackexchange.com/questions/108718/how-can-i-make-my-vocals-stand-out-without-ducking-the-instrumental-in-my-edm-dr"
+    },
+    {
+     "t": "Discipline: Song Structure + File Organization",
+     "src": "Stack Exchange — Music",
+     "views": 127,
+     "url": "https://music.stackexchange.com/questions/143923/discipline-song-structure-file-organization"
+    }
+   ]
+  },
+  {
    "id": "lowend",
    "label": "Грязный низ, саб, бас гудит",
-   "n": 14,
-   "views": 71381,
+   "n": 11,
+   "views": 24392,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 10,
+    "Stack Exchange — Sound Design (audio)": 7,
     "Stack Exchange — Music": 4
    },
    "ours": "Сведение (от €69) · бесплатный разбор трека · шаблоны (как разведены kick и bass)",
    "examples": [
-    {
-     "t": "Bassline Not Audible on Laptop Speakers",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 15663,
-     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
-    },
-    {
-     "t": "Bassline Not Audible on Laptop Speakers",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 15663,
-     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
-    },
-    {
-     "t": "Bassline Not Audible on Laptop Speakers",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 15663,
-     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
-    },
     {
      "t": "Getting a sub bass and a 808 kick to play well together?",
      "src": "Stack Exchange — Sound Design (audio)",
@@ -584,28 +565,39 @@
      "src": "Stack Exchange — Music",
      "views": 5496,
      "url": "https://music.stackexchange.com/questions/31142/how-to-judge-a-mix-on-e-g-muddiness-and-balance"
+    },
+    {
+     "t": "How to judge a mix, on e.g. muddiness and balance?",
+     "src": "Stack Exchange — Music",
+     "views": 5496,
+     "url": "https://music.stackexchange.com/questions/31142/how-to-judge-a-mix-on-e-g-muddiness-and-balance"
+    },
+    {
+     "t": "How do I get a mix with two heavy bass elements to not sound muddy?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1981,
+     "url": "https://sound.stackexchange.com/questions/25929/how-do-i-get-a-mix-with-two-heavy-bass-elements-to-not-sound-muddy"
+    },
+    {
+     "t": "How to avoid a muddy mixdown?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1724,
+     "url": "https://sound.stackexchange.com/questions/25093/how-to-avoid-a-muddy-mixdown"
     }
    ]
   },
   {
    "id": "legal",
    "label": "Права на сэмплы, royalty-free, лицензия",
-   "n": 13,
-   "views": 16759,
+   "n": 10,
+   "views": 2630,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 1,
-    "Stack Exchange — Music": 4,
+    "Stack Exchange — Music": 2,
     "Lemmy": 8
    },
    "ours": "Лицензия royalty-free (наша страница лицензии)",
    "examples": [
     {
-     "t": "Covering songs by other artists - does money change hands?",
-     "src": "Stack Exchange — Music",
-     "views": 13044,
-     "url": "https://music.stackexchange.com/questions/764/covering-songs-by-other-artists-does-money-change-hands"
-    },
-    {
      "t": "Do I have to pay a licensing fee to mix in Atmos? What about other dolby formats?",
      "src": "Stack Exchange — Music",
      "views": 1315,
@@ -618,26 +610,32 @@
      "url": "https://music.stackexchange.com/questions/135673/do-i-have-to-pay-a-licensing-fee-to-mix-in-atmos-what-about-other-dolby-formats"
     },
     {
-     "t": "Who can remix a song?",
-     "src": "Stack Exchange — Music",
-     "views": 979,
-     "url": "https://music.stackexchange.com/questions/14630/who-can-remix-a-song"
+     "t": "Internet users",
+     "src": "Lemmy",
+     "views": 0,
+     "url": "https://lemmy.today/post/28674125"
     },
     {
-     "t": "Remixes, Sampling and The Law",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 106,
-     "url": "https://sound.stackexchange.com/questions/22693/remixes-sampling-and-the-law"
+     "t": "Why Do Sovereign Citizens Keep Pursuing Unsuccessful Legal Defenses?",
+     "src": "Lemmy",
+     "views": 0,
+     "url": "https://feddit.nl/post/33829122"
+    },
+    {
+     "t": "US lawmakers seek to 'fuse' Israeli, US militaries under 2027 defense authorization act",
+     "src": "Lemmy",
+     "views": 0,
+     "url": "https://lemmy.world/post/47506853"
     }
    ]
   },
   {
    "id": "gain",
    "label": "Гейн-стейджинг, запас, клип на мастере",
-   "n": 11,
-   "views": 9201,
+   "n": 9,
+   "views": 9006,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 7,
+    "Stack Exchange — Sound Design (audio)": 5,
     "Stack Exchange — Music": 4
    },
    "ours": "Статья-гайд · мастеринг",
@@ -675,55 +673,12 @@
    ]
   },
   {
-   "id": "kickbass",
-   "label": "Кик и бас мешают друг другу, сайдчейн",
-   "n": 9,
-   "views": 15948,
-   "src": {
-    "Stack Exchange — Sound Design (audio)": 7,
-    "Stack Exchange — Music": 2
-   },
-   "ours": "Шаблоны Kratos / Protos (видно связку kick + bass) · статья-гайд",
-   "examples": [
-    {
-     "t": "What is side chain compression?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 10868,
-     "url": "https://sound.stackexchange.com/questions/26864/what-is-side-chain-compression"
-    },
-    {
-     "t": "Send \"Audio To\" MIDI Track (or its single channels) in ableton",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 2683,
-     "url": "https://sound.stackexchange.com/questions/35768/send-audio-to-midi-track-or-its-single-channels-in-ableton"
-    },
-    {
-     "t": "A Feedback Compressor",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 621,
-     "url": "https://sound.stackexchange.com/questions/9439/a-feedback-compressor"
-    },
-    {
-     "t": "Setting up side-chain compression in Sonar",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 502,
-     "url": "https://sound.stackexchange.com/questions/23042/setting-up-side-chain-compression-in-sonar"
-    },
-    {
-     "t": "Mixing question about sidechain compression in the low range with the bass and the kick frequency",
-     "src": "Stack Exchange — Music",
-     "views": 349,
-     "url": "https://music.stackexchange.com/questions/107339/mixing-question-about-sidechain-compression-in-the-low-range-with-the-bass-and-t"
-    }
-   ]
-  },
-  {
    "id": "release",
    "label": "Релиз: лейбл, демо, стриминг, продвижение",
-   "n": 9,
-   "views": 6559,
+   "n": 8,
+   "views": 6332,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 3,
+    "Stack Exchange — Sound Design (audio)": 2,
     "Stack Exchange — Music": 1,
     "Lemmy": 5
    },
@@ -748,16 +703,59 @@
      "url": "https://sound.stackexchange.com/questions/39567/what-are-important-considerations-when-mixing-and-mastering-a-track-for-vinyl-di"
     },
     {
-     "t": "Amplitude Too Low?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 227,
-     "url": "https://sound.stackexchange.com/questions/39659/amplitude-too-low"
-    },
-    {
      "t": "'3d-printing a screw' is a way to describe how AI integration is stupid most of the time",
      "src": "Lemmy",
      "views": 0,
      "url": "https://lemmy.dbzer0.com/post/52302029"
+    },
+    {
+     "t": "Songs created by AI banned from Australia's music charts - BBC",
+     "src": "Lemmy",
+     "views": 0,
+     "url": "https://lemmy.world/post/51083886"
+    }
+   ]
+  },
+  {
+   "id": "kickbass",
+   "label": "Кик и бас мешают друг другу, сайдчейн",
+   "n": 7,
+   "views": 12644,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 5,
+    "Stack Exchange — Music": 2
+   },
+   "ours": "Шаблоны Kratos / Protos (видно связку kick + bass) · статья-гайд",
+   "examples": [
+    {
+     "t": "What is side chain compression?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 10868,
+     "url": "https://sound.stackexchange.com/questions/26864/what-is-side-chain-compression"
+    },
+    {
+     "t": "Setting up side-chain compression in Sonar",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 502,
+     "url": "https://sound.stackexchange.com/questions/23042/setting-up-side-chain-compression-in-sonar"
+    },
+    {
+     "t": "Mixing question about sidechain compression in the low range with the bass and the kick frequency",
+     "src": "Stack Exchange — Music",
+     "views": 349,
+     "url": "https://music.stackexchange.com/questions/107339/mixing-question-about-sidechain-compression-in-the-low-range-with-the-bass-and-t"
+    },
+    {
+     "t": "Solo a track with a gate sidechained to a grouped track?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 345,
+     "url": "https://sound.stackexchange.com/questions/25170/solo-a-track-with-a-gate-sidechained-to-a-grouped-track"
+    },
+    {
+     "t": "How can I make my vocals stand out without ducking the instrumental in my EDM drop?",
+     "src": "Stack Exchange — Music",
+     "views": 267,
+     "url": "https://music.stackexchange.com/questions/108718/how-can-i-make-my-vocals-stand-out-without-ducking-the-instrumental-in-my-edm-dr"
     }
    ]
   },
@@ -799,58 +797,44 @@
    ]
   },
   {
-   "id": "harsh",
-   "label": "Резко, режет уши, резонансы",
-   "n": 3,
-   "views": 11228,
+   "id": "finish",
+   "label": "Не могу закончить трек, застрял в лупе",
+   "n": 2,
+   "views": 0,
    "src": {
-    "Stack Exchange — Sound Design (audio)": 2,
-    "Stack Exchange — Music": 1
+    "Lemmy": 2
    },
-   "ours": "Сведение · бесплатный разбор",
+   "ours": "Шаблоны (полная аранжировка) · бесплатный пак",
    "examples": [
     {
-     "t": "What is the difference between reverb and resonance?",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 8944,
-     "url": "https://sound.stackexchange.com/questions/35283/what-is-the-difference-between-reverb-and-resonance"
+     "t": "Openreads",
+     "src": "Lemmy",
+     "views": 0,
+     "url": null
     },
     {
-     "t": "How to identify mud and resonance in a mix",
-     "src": "Stack Exchange — Music",
-     "views": 1705,
-     "url": "https://music.stackexchange.com/questions/75887/how-to-identify-mud-and-resonance-in-a-mix"
-    },
-    {
-     "t": "Add modal resonance to voice over",
-     "src": "Stack Exchange — Sound Design (audio)",
-     "views": 579,
-     "url": "https://sound.stackexchange.com/questions/35794/add-modal-resonance-to-voice-over"
+     "t": "Another odd aspect of gaming culture",
+     "src": "Lemmy",
+     "views": 0,
+     "url": "https://lemmy.dbzer0.com/post/27253078"
     }
    ]
   },
   {
-   "id": "translate",
-   "label": "В машине, клубе, телефоне звучит иначе",
-   "n": 2,
-   "views": 352,
+   "id": "block",
+   "label": "Нет идей и мотивации, творческий ступор",
+   "n": 1,
+   "views": 0,
    "src": {
-    "Stack Exchange — Music": 1,
     "Lemmy": 1
    },
-   "ours": "Бесплатный разбор трека · мастеринг",
+   "ours": "Бесплатный пак · шаблоны как старт",
    "examples": [
     {
-     "t": "Is this the correct translation of the Pattern workflow in FL Studio to Clip & Arrangement workflow in Ableton?",
-     "src": "Stack Exchange — Music",
-     "views": 352,
-     "url": "https://music.stackexchange.com/questions/118087/is-this-the-correct-translation-of-the-pattern-workflow-in-fl-studio-to-clip-a"
-    },
-    {
-     "t": "Bundeswehr No Longer Procuring Swiss Arms Due to 'Neutrality' in Ukraine War",
+     "t": "Federated 3d printing design hub like Thingiverse?",
      "src": "Lemmy",
      "views": 0,
-     "url": "https://lemmy.world/post/19655823"
+     "url": "https://lemmy.ca/post/45195603"
     }
    ]
   }
