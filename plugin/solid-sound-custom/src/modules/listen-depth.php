@@ -4,6 +4,10 @@
  * The site player (theme/player.js exposes window.ssPlayer) reports, once per play, how far the preview was heard (0–100 %).
  * No personal data: product id + one number. Stored per product in _ss_ld = { n: plays measured, b: [10 counts], s: sum of % }.
  * On the creator's Overview: every product with plays, average % heard, a 10-step "still listening" bar and one tip.
+ * 28.11.2026 (Analyst via «Задачи»): only people count — the same rule as ss_stats (a human sign in this tab = sessionStorage
+ * «ssH», server skips robots/crawlers/admins via ss_stats_is_bot); per-day copy in option ss_ld_days {day: {pid: {n,s,b,a}}}
+ * (last 60 days); «a» = the add-to-cart button of a product pressed within 30 min after its demo was started in this tab
+ * (sessionStorage «ssDP», no cookies). Read by the Analyst via /wp-json/ss/v1/stats → «listen».
  * Customer-facing texts in English.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -12,9 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'wp_footer', function () {
 	if ( is_admin() ) return; ?>
 <script id="ss-ld-js">(function(){var A=null,pid=null,max=0,dur=0,sent=true,url=<?php echo wp_json_encode( admin_url( 'admin-ajax.php?action=ss_ld' ) ); ?>;
-function send(){if(sent||!pid||!dur||max<2)return;sent=true;var p=Math.max(0,Math.min(100,Math.round(max/dur*100)));var d=new FormData();d.append('pid',pid);d.append('p',p);d.append('d',Math.round(dur));try{navigator.sendBeacon(url,d)}catch(e){}}
+function hu(){try{return !!sessionStorage.getItem('ssH')}catch(e){return false}}
+function send(){if(sent||!pid||!dur||max<2)return;sent=true;if(!hu())return;var p=Math.max(0,Math.min(100,Math.round(max/dur*100)));var d=new FormData();d.append('pid',pid);d.append('p',p);d.append('d',Math.round(dur));d.append('h','1');try{navigator.sendBeacon(url,d)}catch(e){}}
+function dp(){try{return JSON.parse(sessionStorage.getItem('ssDP')||'{}')}catch(e){return {}}}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.single_add_to_cart_button,button[name="add-to-cart"],.add_to_cart_button');if(!b||!hu())return;
+ var f=b.closest('form'),id=b.getAttribute('data-product_id')||(b.name==='add-to-cart'?b.value:'')||(f&&f.querySelector('[name="add-to-cart"]')?f.querySelector('[name="add-to-cart"]').value:'')||((document.body.className.match(/postid-(\d+)/)||[])[1]||'');
+ var m=dp();if(!id||!m[id]||Date.now()-m[id]>18e5||m[id]<0)return;m[id]=-1;try{sessionStorage.setItem('ssDP',JSON.stringify(m))}catch(x){}
+ var d=new FormData();d.append('pid',id);d.append('a','1');d.append('h','1');try{navigator.sendBeacon(url,d)}catch(x){}},true);
 function hook(){var S=window.ssPlayer;if(!S||!S.audio)return false;A=S.audio;
- A.addEventListener('play',function(){var id=S.pid();if(id!==pid){send();pid=id;max=A.currentTime||0;sent=false}});
+ A.addEventListener('play',function(){var id=S.pid();if(id!==pid){send();pid=id;max=A.currentTime||0;sent=false}var m=dp();if(id&&!(m[id]<0)){m[id]=Date.now();try{sessionStorage.setItem('ssDP',JSON.stringify(m))}catch(x){}}});
  A.addEventListener('timeupdate',function(){if(A.duration&&isFinite(A.duration))dur=A.duration;if(A.currentTime>max)max=A.currentTime});
  A.addEventListener('ended',function(){max=dur||max;send()});
  window.addEventListener('pagehide',send);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')send()});return true}
@@ -26,8 +36,15 @@ if(!hook()){if(document.readyState==='loading')document.addEventListener('DOMCon
 function ss_ld_record() {
 	$pid = isset( $_POST['pid'] ) ? absint( $_POST['pid'] ) : 0;
 	$p   = isset( $_POST['p'] ) ? max( 0, min( 100, (int) $_POST['p'] ) ) : -1;
-	if ( ! $pid || $p < 0 || 'product' !== get_post_type( $pid ) ) wp_die( '', '', array( 'response' => 204 ) );
+	$add = ! empty( $_POST['a'] );
+	if ( empty( $_POST['h'] ) || current_user_can( 'manage_options' ) || ( function_exists( 'ss_stats_is_bot' ) && ss_stats_is_bot() ) ) wp_die( '', '', array( 'response' => 204 ) ); /* people only */
+	if ( ! $pid || ( ! $add && $p < 0 ) || 'product' !== get_post_type( $pid ) ) wp_die( '', '', array( 'response' => 204 ) );
 	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+	if ( $add ) { /* add to cart after the demo: once per visitor and product per 30 min */
+		$ak = 'ss_lda_' . md5( $ip . '|' . $pid );
+		if ( ! get_transient( $ak ) ) { set_transient( $ak, 1, 30 * MINUTE_IN_SECONDS ); ss_ld_day( $pid, -1 ); }
+		wp_die( '', '', array( 'response' => 204 ) );
+	}
 	$rk = 'ss_ld_' . md5( $ip . '|' . $pid );
 	if ( get_transient( $rk ) ) wp_die( '', '', array( 'response' => 204 ) ); /* one count per visitor and product per 10 min */
 	set_transient( $rk, 1, 10 * MINUTE_IN_SECONDS );
@@ -37,7 +54,18 @@ function ss_ld_record() {
 	for ( $i = 0; $i < 10; $i++ ) if ( $p >= ( $i + 1 ) * 10 ) $m['b'][ $i ]++; /* b[i] = still listening at (i+1)·10 % */
 	if ( ! empty( $_POST['d'] ) ) $m['d'] = (int) $_POST['d'];
 	update_post_meta( $pid, '_ss_ld', $m );
+	ss_ld_day( $pid, $p );
 	wp_die( '', '', array( 'response' => 204 ) );
+}
+/* per-day copy: $p = % heard, or -1 = add to cart after the demo */
+function ss_ld_day( $pid, $p ) {
+	$all = get_option( 'ss_ld_days', array() ); $all = is_array( $all ) ? $all : array();
+	$day = gmdate( 'Y-m-d' ); $k = (string) $pid;
+	$r = isset( $all[ $day ][ $k ] ) ? $all[ $day ][ $k ] : array( 'n' => 0, 's' => 0, 'b' => array_fill( 0, 10, 0 ), 'a' => 0 );
+	if ( $p < 0 ) $r['a']++;
+	else { $r['n']++; $r['s'] += $p; for ( $i = 0; $i < 10; $i++ ) if ( $p >= ( $i + 1 ) * 10 ) $r['b'][ $i ]++; }
+	$all[ $day ][ $k ] = $r; ksort( $all ); $all = array_slice( $all, -60, null, true );
+	update_option( 'ss_ld_days', $all, false );
 }
 add_action( 'wp_ajax_ss_ld', 'ss_ld_record' );
 add_action( 'wp_ajax_nopriv_ss_ld', 'ss_ld_record' );

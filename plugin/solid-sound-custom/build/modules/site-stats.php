@@ -176,7 +176,10 @@ add_action( 'rest_api_init', function () {
 					if ( $o->is_paid() ) { $orders[ $d ]['paid']++; $orders[ $d ]['sum'] += (float) $o->get_total(); if ( 0.0 === (float) $o->get_total() ) $orders[ $d ]['free']++; }
 				}
 			}
-			return array( 'tz' => 'UTC', 'currency' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '', 'days' => $all, 'orders' => $orders );
+			$cut = gmdate( 'Y-m-d', time() - $n * DAY_IN_SECONDS );
+			$since = function ( $o ) use ( $cut ) { $o = get_option( $o, array() ); return is_array( $o ) ? array_filter( $o, function ( $d ) use ( $cut ) { return $d >= $cut; }, ARRAY_FILTER_USE_KEY ) : array(); };
+			/* listen = demo plays by people per day and product (listen-depth.php); miss = searches with 0 results (smart-search.php) */
+			return array( 'tz' => 'UTC', 'currency' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '', 'days' => $all, 'orders' => $orders, 'listen' => $since( 'ss_ld_days' ), 'miss' => $since( 'ss_search_miss' ) );
 		},
 	) );
 } );

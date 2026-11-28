@@ -413,6 +413,7 @@ add_action( 'rest_api_init', function () {
 				$out = array( 'items' => $items, 'svcs' => $svcs, 'f' => $s['f'], 'ai' => $s['ai'] );
 				set_transient( $ck, $out, 15 * MINUTE_IN_SECONDS );
 			}
+			if ( ! array_filter( $out['items'], function ( $x ) { return $x['sc'] > 0; } ) ) ss_search_miss( $q );
 			$res = rest_ensure_response( $out );
 			$res->header( 'Cache-Control', 'public, max-age=300' );
 			return $res;
@@ -441,4 +442,26 @@ add_action( 'ss_ai_admin_page_after', function () {
 		echo '</ol>';
 		foreach ( $s['svcs'] as $sv ) echo '<p>Service: ' . esc_html( $sv[0] ) . '</p>';
 	}
+} );
+
+/* ---------- «searched and found nothing» (28.11.2026, Analyst via «Задачи») ----------
+ * Searches with 0 results from the search bar (/ss/v1/find) and the classic ?s= page. Stored: only the query text (≤ 60 chars,
+ * e-mails, phone numbers and links cut out) and a count per day — no IP, nothing about the person. Last 30 days.
+ * People only: robots, crawlers and admins are skipped. Option ss_search_miss {day: {query: count}}, read via /ss/v1/stats → «miss». */
+function ss_search_miss( $q ) {
+	if ( current_user_can( 'manage_options' ) || ( function_exists( 'ss_stats_is_bot' ) && ss_stats_is_bot() ) ) return;
+	$q = preg_replace( array( '~\S+@\S+~', '~(https?://|www\.)\S+~i', '~\+?\d[\d\s().-]{6,}\d~' ), ' ', (string) $q );
+	$q = trim( preg_replace( '~\s+~', ' ', mb_strtolower( wp_strip_all_tags( $q ) ) ) );
+	if ( mb_strlen( $q ) < 3 ) return; /* «me», «a» while typing */
+	$q = trim( mb_substr( $q, 0, 60 ) );
+	$all = get_option( 'ss_search_miss', array() ); $all = is_array( $all ) ? $all : array();
+	$day = gmdate( 'Y-m-d' );
+	if ( isset( $all[ $day ] ) && count( $all[ $day ] ) >= 300 && ! isset( $all[ $day ][ $q ] ) ) return; /* a flood cannot grow the option */
+	$all[ $day ][ $q ] = ( isset( $all[ $day ][ $q ] ) ? $all[ $day ][ $q ] : 0 ) + 1;
+	ksort( $all ); $all = array_slice( $all, -30, null, true );
+	update_option( 'ss_search_miss', $all, false );
+}
+add_action( 'template_redirect', function () {
+	global $wp_query;
+	if ( is_search() && ! is_admin() && $wp_query && 0 === (int) $wp_query->found_posts && ! get_query_var( 'paged' ) ) ss_search_miss( get_search_query( false ) );
 } );
