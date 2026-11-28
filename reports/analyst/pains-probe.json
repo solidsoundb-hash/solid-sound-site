@@ -1,0 +1,99 @@
+{
+ "date": "2026-11-28",
+ "mode": "probe",
+ "sources": [
+  "Stack Exchange — Audio-Video Production: вопросов 16, с болью 7"
+ ],
+ "top": [
+  {
+   "id": "gain",
+   "label": "Гейн-стейджинг, запас, клип на мастере",
+   "n": 3,
+   "views": 1110,
+   "src": {
+    "Stack Exchange — Audio-Video Production": 3
+   },
+   "ours": "Статья-гайд · мастеринг",
+   "examples": [
+    {
+     "t": "Final Cut Pro X — Connect audio clip to another audio (not video)",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 522,
+     "url": "https://video.stackexchange.com/questions/25434/final-cut-pro-x-connect-audio-clip-to-another-audio-not-video"
+    },
+    {
+     "t": "Free and simple video editor for Windows 10",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 347,
+     "url": "https://video.stackexchange.com/questions/20761/free-and-simple-video-editor-for-windows-10"
+    },
+    {
+     "t": "How to automate sync of 80-120 audio clips recorded at home on mobile phones?",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 241,
+     "url": "https://video.stackexchange.com/questions/30295/how-to-automate-sync-of-80-120-audio-clips-recorded-at-home-on-mobile-phones"
+    }
+   ]
+  },
+  {
+   "id": "vocal",
+   "label": "Вокал: обработка, сидит в миксе",
+   "n": 2,
+   "views": 1088,
+   "src": {
+    "Stack Exchange — Audio-Video Production": 2
+   },
+   "ours": "Сведение · сэмплы вокала у авторов",
+   "examples": [
+    {
+     "t": "Mix Voice to Video without losing video quality",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 861,
+     "url": "https://video.stackexchange.com/questions/10838/mix-voice-to-video-without-losing-video-quality"
+    },
+    {
+     "t": "Are the voice and background tracks merged together when filming hollwood movies?",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 227,
+     "url": "https://video.stackexchange.com/questions/16417/are-the-voice-and-background-tracks-merged-together-when-filming-hollwood-movies"
+    }
+   ]
+  },
+  {
+   "id": "daw",
+   "label": "Ableton и DAW: роутинг, CPU, рабочий процесс",
+   "n": 1,
+   "views": 287,
+   "src": {
+    "Stack Exchange — Audio-Video Production": 1
+   },
+   "ours": "Шаблоны Ableton (рабочий процесс внутри)",
+   "examples": [
+    {
+     "t": "routing rtmp ect streams via ffmpeg+python is it possible?",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 287,
+     "url": "https://video.stackexchange.com/questions/36021/routing-rtmp-ect-streams-via-ffmpegpython-is-it-possible"
+    }
+   ]
+  },
+  {
+   "id": "space",
+   "label": "Пространство: ревер, ширина, стерео, фаза",
+   "n": 1,
+   "views": 62,
+   "src": {
+    "Stack Exchange — Audio-Video Production": 1
+   },
+   "ours": "Статья-гайд · сведение",
+   "examples": [
+    {
+     "t": "How to efficiently simulate three-dimensional spatial audio in a standard stereo project?",
+     "src": "Stack Exchange — Audio-Video Production",
+     "views": 62,
+     "url": "https://video.stackexchange.com/questions/38234/how-to-efficiently-simulate-three-dimensional-spatial-audio-in-a-standard-stereo"
+    }
+   ]
+  }
+ ]
+}
