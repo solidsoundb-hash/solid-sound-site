@@ -90,9 +90,13 @@ async function walk(browser, who, devKey, steps, setupCtx) {
   if (setupCtx) await setupCtx(ctx);
   const p = await ctx.newPage();
   if (mobile) { try { const c = await ctx.newCDPSession(p); await c.send('Network.enable'); await c.send('Network.emulateNetworkConditions', { offline: false, latency: 150, downloadThroughput: 1.6 * 1024 * 1024 / 8, uploadThroughput: 750 * 1024 / 8 }); await c.send('Emulation.setCPUThrottlingRate', { rate: 4 }); } catch (e) {} }
-  const errs = []; p.on('pageerror', e => errs.push(e.message.slice(0, 140)));
+  const errs = []; p.on('pageerror', e => errs.push(e.message.slice(0, 120) + ' (' + (p.url().replace(/^https?:\/\/[^/]+/, '').split('?')[0] || '/') + ')'));
   let n = 0; const rows = []; let clicks = 0; const S = { p, ctx, mobile, BASE };
   S.click = async (loc, opt) => { clicks++; await loc.click({ timeout: 20000, ...opt }); };
+  // tap a text field: a field the finger cannot reach is a finding, not a crash — note what covers it, then type anyway
+  S.tapField = async loc => { clicks++; try { await loc.click({ timeout: 6000 }); } catch (e) {
+    const who = await loc.evaluate(el => { el.scrollIntoView({ block: 'center' }); const r = el.getBoundingClientRect(); const t = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return !t ? 'вне экрана' : t === el || el.contains(t) ? 'поле не ответило на касание' : (t.tagName.toLowerCase() + (t.id ? '#' + t.id : '') + (t.className && typeof t.className === 'string' ? '.' + t.className.trim().split(/\s+/).slice(0, 2).join('.') : '')); }).catch(() => '?');
+    S.note2 = (S.note2 ? S.note2 + '; ' : '') + 'поле не нажалось обычным касанием (' + who + ')'; await loc.focus(); } };
   S.go = async url => { const U = /^https?:/.test(url) ? url : BASE + url; const r = await p.goto(U, { waitUntil: 'domcontentloaded', timeout: 90000 }); if (r && r.status() === 429) { await sleep(45000); return p.goto(U, { waitUntil: 'domcontentloaded', timeout: 90000 }); } return r; };
   S.settle = async () => { await p.waitForLoadState('load', { timeout: 30000 }).catch(() => {}); await p.waitForTimeout(600);
     // a person answers the cookie bar once («Reject non-essential»); not counted as a step click
@@ -133,7 +137,7 @@ function markSteps() {
     ['Поиск «melodic techno»', async S => {
       let inp = vis(S.p, 'input#top-q, header input[type=search], input[type=search], input[name=s]');
       if (!(await inp.count())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } await S.p.waitForTimeout(800); inp = vis(S.p, 'input#top-q, input[type=search], input[name=s]'); }
-      await S.click(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
+      await S.tapField(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
       const res = vis(S.p, 'a[href*="/product/"]'); const cnt = await S.p.locator('a[href*="/product/"]').count();
       if (!cnt) throw new Error('ничего не нашлось по «melodic techno»');
       const ex = S.note2 || ''; S.note2 = ''; return { cta: res, ctaName: 'первый результат', note: `найдено ссылок на товары: ${cnt}`, extra: ex }; }],
@@ -183,9 +187,9 @@ function markSteps() {
       if (!(await fab.count())) throw new Error('не нашёл кнопку чата');
       await S.click(fab); await S.p.waitForTimeout(1500);
       const box = S.p.getByPlaceholder(/question|message|write|type/i).filter({ visible: true }).or(vis(S.p, 'textarea')).first();
-      await box.waitFor({ timeout: 15000 }); await S.click(box); await box.fill('Hi, can you master a melodic techno track by Friday?');
+      await box.waitFor({ timeout: 15000 }); await S.tapField(box); await box.fill('Hi, can you master a melodic techno track by Friday?'); const ex = S.note2 || ''; S.note2 = '';
       const send = box.locator('xpath=following::button[1]');
-      return { cta: send, ctaName: 'Send', note: 'текст набран, не отправлял' }; }],
+      return { cta: send, ctaName: 'Send', note: 'текст набран, не отправлял', extra: ex }; }],
   ];
 }
 
