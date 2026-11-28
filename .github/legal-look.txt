@@ -5,3 +5,4 @@ after2 /cancel-order/,/en/terms/,/en/refund_returns/,/de/terms/,/fr/refund_retur
 after3 /cancel-order/,/en/refund_returns/,/en/terms/,/es/terms/
 copy-before /de/creator-terms/,/fr/creator-terms/,/es/creator-terms/,/de/license/,/fr/license/,/es/license/
 copy-after /de/creator-terms/,/fr/creator-terms/,/es/creator-terms/,/de/license/,/fr/license/,/es/license/
+sell-before /sell/,/en/creator-terms/
