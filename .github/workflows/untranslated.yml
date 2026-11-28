@@ -4,8 +4,8 @@
 name: Untranslated
 on:
   workflow_dispatch:
-  # schedule: включу после 2-го прогона ступени 2 (bots.md)
-  #   - cron: "41 1 * * *"
+  schedule: # включено 28.11 после 2-го прогона ступени 2 (Тестировщик за Копирайтера)
+    - cron: "41 1 * * *"
   push:
     branches: [main]
     paths: [".github/untr.txt"]
