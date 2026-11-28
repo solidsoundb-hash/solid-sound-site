@@ -50,7 +50,7 @@ jobs:
         shard: [0, 1, 2, 3, 4, 5, 6, 7]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: Robot ${{ matrix.shard }} of 8
@@ -83,7 +83,7 @@ jobs:
           - { name: x2, parts: "ears" }
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: "ffmpeg for the ears (17.11 - the runner image has none)"
@@ -155,7 +155,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: Robot ${{ matrix.name }} (${{ matrix.parts }})
@@ -177,7 +177,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - uses: actions/download-artifact@v4

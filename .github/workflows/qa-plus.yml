@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: Safari (iPhone) and Firefox — in Playwright's own image (all their system libraries are there; 23.11 the runner lacked them)
