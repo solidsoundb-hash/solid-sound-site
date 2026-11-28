@@ -64,7 +64,7 @@ function parse(t) {
     canon: attr(all(head, /(<link\b[^>]*rel=["']canonical["'][^>]*>)/gi)[0] || '', 'href').replace(BASE, ''),
     hreflang: [...new Set(all(head, /hreflang=["']([^"']+)/gi))],
     ld: [...new Set(ld)], brand, price,
-    bodyLinks: (((t.match(/<article\b[\s\S]*?<\/article>/i) || [''])[0]).match(/href=["'][^"']*(\/product\/|services-prices|studio-calculator|\/templates\/|\/presets\/)/g) || []).length,
+    bodyLinks: (((t.match(/<article\b[\s\S]*?<\/article>/i) || [''])[0]).match(/href=["'][^"']*(\/product\/|services-prices|studio-calculator|\/templates\/|\/presets\/|all-products|get-heard|free-demo-feedback)/g) || []).length,
   };
 }
 
