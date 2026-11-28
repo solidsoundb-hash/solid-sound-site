@@ -12,3 +12,5 @@ date,page,device,score,lcp_ms,fcp_ms,tbt_ms,cls,kb,requests
 2026-11-28T02:41:12.460Z,/en/all-products/,mobile,40,6356,3186,1223,0.036,1289,86
 2026-11-28T09:25:43.843Z,/product/infinity/,mobile,59,10564,2794,222,0,5353,213
 2026-11-28T09:25:43.843Z,/en/all-products/,mobile,48,6246,3005,729,0.036,1289,86
+2026-11-28T10:30:19.535Z,/product/infinity/,mobile,54,9858,2668,442,0,5062,213
+2026-11-28T10:30:19.535Z,/en/all-products/,mobile,43,6340,2928,1205,0.036,1289,86
