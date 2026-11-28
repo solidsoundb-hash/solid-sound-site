@@ -10,6 +10,9 @@ on:
   push:
     branches: [main]
     paths: [".github/persona.txt"]
+  schedule: # 28.11 после 2 чистых прогонов: каждую ночь Марк+Лена, по понедельникам — сравнение с конкурентами
+    - cron: "17 2 * * *"
+    - cron: "37 3 * * 1"
 permissions:
   contents: write
 concurrency: { group: persona, cancel-in-progress: false }
@@ -38,6 +41,8 @@ jobs:
         run: |
           W="${{ github.event.inputs.who }}"
           if [ -z "$W" ]; then W=$(tail -n 1 .github/persona.txt | awk '{print $2}'); fi
+          [ "${{ github.event_name }}" = "schedule" ] && W=all
+          [ "${{ github.event.schedule }}" = "37 3 * * 1" ] && W=compare
           node tools/sitebots/persona.js --exam
           node tools/sitebots/persona.js "${W:-all}" both | tee -a $GITHUB_STEP_SUMMARY
       - name: Save
