@@ -35,7 +35,8 @@ jobs:
           node tools/bots/design-watch.js
       - name: Save report
         if: always()
-        run: BOT_NAME=design-watch bash .github/save.sh "design-watch: $(date -u +%F)" reports/designer
+        run: |
+          BOT_NAME=design-watch bash .github/save.sh "design-watch: $(date -u +%F)" reports/designer
       - name: Save pictures to branch shots-design
         if: always()
         run: |
