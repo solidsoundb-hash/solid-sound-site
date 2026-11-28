@@ -1,0 +1,34 @@
+# PAIN-WATCH (Analyst, 28.11.2026, content pipeline step 1): see header of tools/bots/pain-watch.js. Public pages only, no personal data.
+# Daily 04:07 UTC (after client-scout) -> reports/analyst/. On demand: a line in .github/pain-watch.txt whose last word is the mode (probe / run).
+name: pain-watch robot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "probe / run", default: run }
+  push:
+    branches: [main]
+    paths: [".github/pain-watch.txt"]
+permissions:
+  contents: write
+concurrency: pain-watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/pain-watch/exam.js
+      - name: Watch
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/pain-watch.txt | awk '{print $NF}'); fi
+          export MODE="${MODE:-run}"; echo "mode: $MODE"
+          node tools/bots/pain-watch.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=pain-watch bash .github/save.sh "pain-watch: $(date -u +%F)" reports/analyst

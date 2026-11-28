@@ -8,8 +8,9 @@ const dec = (t) => String(t || '').replace(/&#(\d+);/g, (_, n) => String.fromCha
 const strip = (h) => dec(String(h || '').replace(/<br\s*\/?>/gi, ' ').replace(/<\/(p|li|div|h\d)>/gi, ' \n').replace(/<[^>]+>/g, ' ')).replace(/[ \t]+/g, ' ').trim();
 
 function make(opts = {}) {
+  const ua = opts.ua || UA;
   let budget = opts.maxRequests || 120; const pause = opts.pauseMs || 3000; const lastHit = {}; const robotsCache = {};
-  async function rawGet(url) { const r = await fetch(url, { headers: { 'User-Agent': UA, Accept: '*/*' }, redirect: 'follow', signal: AbortSignal.timeout(30000) }); return { status: r.status, text: await r.text() }; }
+  async function rawGet(url) { const r = await fetch(url, { headers: { 'User-Agent': ua, Accept: '*/*' }, redirect: 'follow', signal: AbortSignal.timeout(30000) }); return { status: r.status, text: await r.text() }; }
   async function robotsOk(u) {
     const { origin, pathname, search } = new URL(u);
     if (!(origin in robotsCache)) {
@@ -17,7 +18,7 @@ function make(opts = {}) {
       try { const r = await rawGet(origin + '/robots.txt');
         if (r.status === 200) { let mine = false, any = false; const all = [], star = [];
           for (const line of r.text.split(/\r?\n/)) { const l = line.replace(/#.*/, '').trim(); if (!l) continue; const [k, ...rest] = l.split(':'); const v = rest.join(':').trim(); const key = k.toLowerCase();
-            if (key === 'user-agent') { mine = /solidsoundintel/i.test(v); any = v === '*'; continue; }
+            if (key === 'user-agent') { mine = new RegExp(ua.split('/')[0], 'i').test(v); any = v === '*'; continue; }
             if ((key === 'disallow' || key === 'allow') && (mine || any)) (mine ? all : star).push({ allow: key === 'allow', p: v }); }
           rules = all.length ? all : star; }
       } catch (e) { /* no robots.txt = allowed */ }
@@ -68,6 +69,6 @@ function make(opts = {}) {
     }
     return [];
   }
-  return { get, json, catalog, wooSearch, top, used: () => (opts.maxRequests || 120) - budget };
+  return { get, json, catalog, wooSearch, top, strip, dec, used: () => (opts.maxRequests || 120) - budget };
 }
 module.exports = { make, dec, strip };

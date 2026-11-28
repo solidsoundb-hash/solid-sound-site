@@ -1,0 +1,24 @@
+{
+ "classify": [
+  {"t": "How do I make my kick and bass not clash?", "has": ["kickbass"]},
+  {"t": "My mix sounds muddy in the low end", "has": ["lowend"]},
+  {"t": "Why is my track so quiet compared to commercial releases?", "has": ["loud"]},
+  {"t": "Mix sounds great on headphones but bad in the car", "has": ["translate", "monitor"]},
+  {"t": "I can never finish a track, always stuck in an 8 bar loop", "has": ["finish"]},
+  {"t": "How to build a breakdown in techno", "has": ["arrange"]},
+  {"t": "Hi-hats sound harsh and piercing", "has": ["drums", "harsh"]},
+  {"t": "How to recreate this sound in Serum?", "has": ["synth"]},
+  {"t": "What LUFS should I master to for Spotify?", "has": ["loud", "release"]},
+  {"t": "Is it legal to use royalty-free samples in a release?", "has": ["legal"]},
+  {"t": "BLACK FRIDAY 70% off all sample packs", "none": true},
+  {"t": "Nice weather today", "none": true}
+ ],
+ "clean": [
+  {"t": "Thanks @djmark for the tip, mail me at a.b@c.com https://x.y/z", "notHas": ["@djmark", "a.b@c.com", "https://"]}
+ ],
+ "safeLink": [
+  {"u": "https://sound.stackexchange.com/questions/123/how-to-eq-kick", "ok": true},
+  {"u": "https://mastodon.social/@someone/1234", "ok": false},
+  {"u": "https://www.reddit.com/user/someone", "ok": false}
+ ]
+}
