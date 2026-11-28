@@ -64,10 +64,17 @@ function parse(t) {
     canon: attr(all(head, /(<link\b[^>]*rel=["']canonical["'][^>]*>)/gi)[0] || '', 'href').replace(BASE, ''),
     hreflang: [...new Set(all(head, /hreflang=["']([^"']+)/gi))],
     ld: [...new Set(ld)], brand, price,
+    bodyLinks: (((t.match(/<article\b[\s\S]*?<\/article>/i) || [''])[0]).match(/href=["'][^"']*(\/product\/|services-prices|studio-calculator|\/templates\/|\/presets\/)/g) || []).length,
   };
 }
 
 (async () => {
+  // 28.11 content pipeline: every EN wiki article from the sitemap is checked too (title, description, Article, links to products)
+  try {
+    const sm = await get('/en/wp-sitemap-posts-page-1.xml');
+    const wiki = [...new Set((sm.t.match(/<loc>([^<]+)<\/loc>/g) || []).map(x => x.replace(/<\/?loc>/g, '').replace(BASE, '')).filter(u => /^\/en\/wiki\/[^/]+\/$/.test(u)))];
+    wiki.forEach(u => groups.push({ name: 'Вики', en: u, other: [], wiki: 1 }));
+  } catch (e) {}
   const mem = fs.existsSync(MEM) ? JSON.parse(fs.readFileSync(MEM, 'utf8')) : { pages: {} };
   const now = {}, issues = [], changes = [], rows = [];
   for (const g of groups) {
@@ -89,6 +96,7 @@ function parse(t) {
       if (!p.desc) flags.push('нет description'); else if (p.desc.length > 160) flags.push('description ' + p.desc.length + ' зн.');
       if (p.h1.length !== 1) flags.push('H1: ' + p.h1.length);
       if (p.canon && p.canon !== finalPath.split('?')[0]) flags.push('canonical → ' + p.canon);
+      if (g.wiki) { if (!p.ld.some(x => /Article|BlogPosting/.test(x))) flags.push('нет Article'); if (!p.bodyLinks) flags.push('нет ссылок на товары/услуги в тексте'); }
       if (/^\/(product|[a-z]{2}\/product)\//.test(path)) { if (!p.price) flags.push('нет цены в Product'); if (!p.brand) flags.push('нет brand'); }
       flags.forEach(f => issues.push(`${/как в EN|нет цены|ответ/.test(f) ? '🟠' : '🟡'} ${path} — ${f}`));
       rows.push(`| ${g.name} | ${lang} | ${p.title.replace(/\|/g, '¦')} | ${p.h1.join(' / ').replace(/\|/g, '¦').slice(0, 60)} | ${p.hreflang.length} | ${flags.join('; ') || '✅'} |`);
