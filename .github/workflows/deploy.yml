@@ -24,7 +24,7 @@ jobs:
       REMOTE: solid-sound.net/www/wp-content/plugins/solid-sound-custom
       SITE: https://solid-sound.net/en/
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }   # full history: the fast deploy compares the live commit with this one
       # Outdated run? (a newer deploy line is already on main) -> do nothing, the newer run uploads everything. Owner 15.11.2026.
       - name: Skip if a newer deploy is already queued

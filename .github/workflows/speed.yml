@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { ref: main }
       - name: Mode — after deploy (workflow_run, or a line with «deploy» in .github/speed.txt) or the full nightly run
         run: |

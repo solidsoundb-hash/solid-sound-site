@@ -19,7 +19,7 @@ jobs:
       FTP_USER: ${{ secrets.FTP_USER }}
       FTP_PASS: ${{ secrets.FTP_PASS }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: pip install -q maxminddb==2.6.2
       - name: Read logs
         run: python3 tools/hosting-stats.py 30
