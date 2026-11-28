@@ -16,6 +16,14 @@
    "ok": 42,
    "minutes": 7.4,
    "changes": 0
+  },
+  {
+   "date": "2026-11-28 02:34 UTC",
+   "mode": "run",
+   "sites": 9,
+   "ok": 52,
+   "minutes": 8.6,
+   "changes": 0
   }
  ],
  "noise": [],
@@ -281,7 +289,8 @@
    "badges": 0
   },
   "Black Octopus home/pc": {
-   "sliders": 0,
+   "sliders": 1,
+   "slides": 7,
    "hdrH": 125,
    "popup": false,
    "oldPrice": true,
@@ -360,6 +369,105 @@
    "popup": null,
    "oldPrice": false,
    "badges": 0
+  },
+  "Production Music Live product/pc": {
+   "buyColor": "#c3caff",
+   "buyText": "Add to cart",
+   "buyH": 50,
+   "pricePx": 40,
+   "sliders": 4,
+   "slides": 9,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Production Music Live product/phone": {
+   "buyColor": "#c3caff",
+   "buyText": "Add to cart",
+   "buyH": 50,
+   "pricePx": 40,
+   "sliders": 5,
+   "slides": 9,
+   "hdrH": 37,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Zenhiser product/pc": {
+   "buyColor": "#efefef",
+   "buyText": "ADD TO CART",
+   "buyH": 45,
+   "pricePx": 16,
+   "sliders": 2,
+   "slides": 3,
+   "hdrH": 60,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Zenhiser product/phone": {
+   "buyColor": "#efefef",
+   "buyText": "ADD TO CART",
+   "buyH": 45,
+   "pricePx": 15,
+   "sliders": 2,
+   "slides": 3,
+   "hdrH": 50,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Black Octopus product/pc": {
+   "buyColor": "#0f2028",
+   "buyText": "Add to cart",
+   "buyH": 45,
+   "pricePx": 32,
+   "sliders": 0,
+   "hdrH": 125,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Black Octopus product/phone": {
+   "buyColor": "#0f2028",
+   "buyText": "Add to cart",
+   "buyH": 45,
+   "pricePx": 32,
+   "sliders": 0,
+   "hdrH": 50,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "ADSR Sounds catalog/pc": {
+   "sliders": 0,
+   "hdrH": 76,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "ADSR Sounds product/pc": {
+   "sliders": 0,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "ADSR Sounds catalog/phone": {
+   "sliders": 0,
+   "hdrH": 76,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "ADSR Sounds product/phone": {
+   "buyColor": "#b072ff",
+   "buyText": "Buy Prism $89",
+   "buyH": 52,
+   "sliders": 0,
+   "hdrH": 76,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 2
   }
  },
  "lastChanges": []
