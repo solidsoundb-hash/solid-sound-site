@@ -1,4 +1,4 @@
-# План 10 статей (Маркетолог + SEO), версия 0 — 28.11.2026
+# План 10 статей (Маркетолог + SEO), версия 1 — 28.11.2026
 
 Шаг 4 конвейера. Тема = **боль × спрос × наш товар**. Формат — `docs/marketing/article-format.md`.
 Спрос: ★ — уже видим в нашей Search Console; ▲ — на первой странице Google много статей = запрос живой (поиск 28.11); точных частот нет (нет платного инструмента). Боль пока по смыслу и форумам — уточним по `reports/analyst/pains.md`, когда будет.
@@ -16,6 +16,11 @@
 | 8 | tech house groove ableton | Tech House Groove in Ableton: Swing, Offsets and Percussion (Infinity Breakdown) | «My drums sound stiff» | ▲ | Infinity (самый смотримый товар) | потом |
 | 9 | royalty free ableton templates | Royalty-Free Ableton Templates: What You Can (and Can't) Do With Them | «Can I release a track made from a template?» | запрос 9 аудита | все шаблоны, `/en/free/` | потом |
 | 10 | (DE) mastering kosten | Was kostet Mastering 2026? Preise für Mastering und Mixing | «Was ist ein fairer Preis?» | ★★ (vinyl mastering kosten 2, mastering kosten 10) | `/de/services-prices/` | после EN-статьи 1 (перевод — по правилу владельца «переводы потом», нужен его «да» или решение SEO) |
+
+## v1 — сверка с SEO (`docs/seo/article-keywords.md`) и болями (`reports/analyst/pains.md`)
+- Совпадают с SEO: №1 цены (SEO №1), №3 LUFS (SEO №5), №4 mixing vs mastering, №5 стемы, №6 melodic techno, №8 groove ≈ SEO №7 kick & bass, №9 royalty-free ≈ SEO №10.
+- **Добавлены из SEO:** «Vinyl Mastering: Cost and What to Prepare» (★ 2 место в DE) — после решения владельца о переводах; «How to Make Dark Techno in Ableton (Real Project Breakdown)» — объединяю с моим №7 (разбор Intricate) в одну статью, ведёт на 3 шаблона; «Royalty-Free Piano Music for Documentaries» (★ «documentary piano») — в резерв.
+- **Первая тройка не меняется:** цены (Google уже показывает), LUFS (самый большой спрос на вопрос — ~10 600 просмотров), rumble-кик (боли «кик и бас» + «грязный низ», ведёт на товар). Dark techno — 4-я, vinyl — 5-я (после «да» по DE).
 
 ## Почему первые три
 1 — единственная тема, где Google нас **уже показывает** (цены) → быстрее всего клики и заказ услуги.
