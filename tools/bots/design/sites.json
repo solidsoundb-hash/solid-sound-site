@@ -1,0 +1,16 @@
+{
+  "_note": "design-watch (Designer, 28.11.2026). Public pages only. product: optional; if empty the robot takes the first product link from the catalog page (reading href, no clicks). Shops from tools/bots/intel.json + We Make Dance Music (the owner's reference store).",
+  "pauseMs": 4000,
+  "ours": { "name": "Solid Sound", "home": "https://solid-sound.net/en/", "catalog": "https://solid-sound.net/en/all-products/", "product": "https://solid-sound.net/product/infinity/" },
+  "probe": "Scraps Audio",
+  "competitors": [
+    { "name": "Scraps Audio", "home": "https://scrapsaudio.com/", "catalog": "https://scrapsaudio.com/collections/ableton-templates" },
+    { "name": "Production Music Live", "home": "https://productionmusiclive.com/", "catalog": "https://productionmusiclive.com/collections/all" },
+    { "name": "Cymatics", "home": "https://cymatics.fm/", "catalog": "https://cymatics.fm/collections/all" },
+    { "name": "Zenhiser", "home": "https://zenhiser.com/", "catalog": "https://zenhiser.com/collections/all" },
+    { "name": "Sample Tools by Cr2", "home": "https://sampletoolsbycr2.com/", "catalog": "https://sampletoolsbycr2.com/shop/" },
+    { "name": "Black Octopus", "home": "https://blackoctopus-sound.com/", "catalog": "https://blackoctopus-sound.com/shop/" },
+    { "name": "ADSR Sounds", "home": "https://www.adsrsounds.com/", "catalog": "https://www.adsrsounds.com/product/" },
+    { "name": "We Make Dance Music", "home": "https://www.wemakedancemusic.com/en/", "catalog": "https://www.wemakedancemusic.com/en/ableton-live-templates", "product": "https://www.wemakedancemusic.com/en/universe-melodic-techno-teemplate" }
+  ]
+}
