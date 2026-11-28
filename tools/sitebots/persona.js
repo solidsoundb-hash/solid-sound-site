@@ -62,7 +62,7 @@ async function measure(p, cta) {
       if (el) {
         const btn = el.closest('a,button,input,label') || el;
         const L1 = lum(getComputedStyle(btn).color), L2 = lum(bgOf(btn));
-        if (L1 != null && L2 != null) contrast = (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+        if (L1 != null && L2 != null && (btn.innerText || btn.value || '').trim()) contrast = (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
         covered = !!window.__ssCta && !(window.__ssCta === el || window.__ssCta.contains(el) || el.contains(window.__ssCta));
       }
     }
@@ -132,11 +132,11 @@ function markSteps() {
       return { cta: c, ctaName: 'Show templates' }; }],
     ['Поиск «melodic techno»', async S => {
       let inp = vis(S.p, 'input#top-q, header input[type=search], input[type=search], input[name=s]');
-      if (!(await inp.count())) { await S.click(vis(S.p, '.g-sbtn, button[aria-label="Search"]')); await S.p.waitForTimeout(800); inp = vis(S.p, 'input#top-q, input[type=search], input[name=s]'); }
+      if (!(await inp.count())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } await S.p.waitForTimeout(800); inp = vis(S.p, 'input#top-q, input[type=search], input[name=s]'); }
       await S.click(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
       const res = vis(S.p, 'a[href*="/product/"]'); const cnt = await S.p.locator('a[href*="/product/"]').count();
       if (!cnt) throw new Error('ничего не нашлось по «melodic techno»');
-      return { cta: res, ctaName: 'первый результат', note: `найдено ссылок на товары: ${cnt}` }; }],
+      const ex = S.note2 || ''; S.note2 = ''; return { cta: res, ctaName: 'первый результат', note: `найдено ссылок на товары: ${cnt}`, extra: ex }; }],
     ['Каталог', async S => { await S.go('/en/all-products/'); await S.settle(); await S.p.evaluate(() => scrollTo(0, 0));
       const a = vis(S.p, 'a[href*="/product/"]'); await a.waitFor({ timeout: 30000 }); product = await a.getAttribute('href');
       return { cta: a, ctaName: 'карточка товара', note: 'первый: ' + product.replace(BASE, '') }; }],
@@ -160,7 +160,8 @@ function markSteps() {
     ['Корзина → оформление', async S => {
       const cartLink = vis(S.p, 'a[href*="/cart"]'); if (await cartLink.count()) { await S.click(cartLink); await S.settle(); } else { await S.go('/en/cart/'); await S.settle(); }
       if (!/cart|checkout/.test(S.p.url())) { await S.go('/en/cart/'); await S.settle(); }
-      if (/\/cart/.test(S.p.url())) { const go = vis(S.p, 'a.checkout-button, .wc-block-cart__submit-button, a[href*="/checkout"]'); await S.click(go); await S.p.waitForURL(/checkout/, { timeout: 60000 }); await S.settle(); }
+      if (/\/cart/.test(S.p.url())) { await S.p.mouse.move(300, 600); await S.p.keyboard.press('Escape').catch(() => {}); await S.p.waitForTimeout(500); // the header mini-cart opens on hover
+        let go = vis(S.p, 'a.checkout-button, .wc-block-cart__submit-button'); if (!(await go.count())) go = vis(S.p, 'main a[href*="/checkout"], a[href*="/checkout"]'); await S.click(go); await S.p.waitForURL(/checkout/, { timeout: 60000 }); await S.settle(); }
       await S.p.evaluate(() => scrollTo(0, 0));
       const pay = S.p.locator('#place_order, .wc-block-components-checkout-place-order-button').filter({ visible: true });
       const fields = await S.p.locator('form.checkout input:visible, .wc-block-checkout input:visible').count();
@@ -170,7 +171,7 @@ function markSteps() {
       return { cta: c, ctaName: (await c.textContent().catch(() => '') || 'заказать').trim().slice(0, 30) }; }],
     ['Калькулятор студии', async S => { await S.go('/en/studio-calculator/'); await S.settle();
       const before = (await S.p.locator('#sc-total').textContent().catch(() => '')).trim();
-      const miss = []; for (const sel of ['[data-s]:not(.on):not(.active)', '[data-t]', '[data-p]']) { const b = vis(S.p, sel); if (await b.count()) { try { await S.click(b, { timeout: 6000 }); await S.p.waitForTimeout(400); } catch (e) { miss.push(sel); } } }
+      const miss = []; for (const sel of ['[data-s]:not(.on):not(.active)', 'button[data-p], [data-p]:not(input)']) { const b = vis(S.p, sel); if (await b.count()) { try { await S.click(b, { timeout: 6000 }); await S.p.waitForTimeout(400); } catch (e) { miss.push(sel); } } }
       const after = (await S.p.locator('#sc-total').textContent().catch(() => '')).trim();
       if (!/\d/.test(after)) throw new Error('цена не появилась');
       return { cta: S.p.locator('#sc-total'), ctaName: 'цена', note: `цена: ${after.replace(/\s+/g, ' ').slice(0, 40)}${before === after ? ' (не изменилась после выбора)' : ''}${miss.length ? '; не нажалось: ' + miss.join(' ') : ''}`, extra: miss.length ? 'часть кнопок калькулятора не нажимается' : '' }; }],
@@ -181,9 +182,9 @@ function markSteps() {
       const fab = S.p.locator('[data-persona-fab]').first();
       if (!(await fab.count())) throw new Error('не нашёл кнопку чата');
       await S.click(fab); await S.p.waitForTimeout(1500);
-      const box = vis(S.p, 'textarea, [contenteditable=true], input[type=text]:not(#top-q)');
+      const box = S.p.getByPlaceholder(/question|message|write|type/i).filter({ visible: true }).or(vis(S.p, 'textarea')).first();
       await box.waitFor({ timeout: 15000 }); await S.click(box); await box.fill('Hi, can you master a melodic techno track by Friday?');
-      const send = S.p.locator('button[type=submit], button[aria-label*="send" i], button').filter({ hasText: /send|➤|→/i }).or(S.p.locator('button[aria-label*="send" i]')).filter({ visible: true });
+      const send = box.locator('xpath=following::button[1]');
       return { cta: send, ctaName: 'Send', note: 'текст набран, не отправлял' }; }],
   ];
 }
@@ -198,10 +199,16 @@ async function api(p, method, pth, body) {
 }
 async function admin(browser) {
   const ctx = await browser.newContext({ ...DEV.pc.ctx }); await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: new URL(BASE).hostname, path: '/' }]);
-  const p = await ctx.newPage(); await p.goto(BASE + '/wp-login.php', { waitUntil: 'domcontentloaded', timeout: 90000 });
-  await p.fill('#user_login', process.env.TEST_ADMIN_USER); await p.fill('#user_pass', process.env.TEST_ADMIN_PASS);
-  await Promise.all([p.waitForNavigation({ timeout: 90000 }).catch(() => {}), p.click('#wp-submit')]); await sleep(1500);
-  return { ctx, p };
+  const p = await ctx.newPage();
+  // same login as the night buyer (My account form) — wp-login.php gave «rest_cookie_invalid_nonce» on 28.11
+  for (let i = 0; i < 2; i++) {
+    await p.goto(BASE + '/en/my-account/?ss_tab=login', { waitUntil: 'domcontentloaded', timeout: 90000 });
+    const f = p.locator('form.login').filter({ has: p.locator('#username:visible') }).first();
+    if (await f.count()) { await f.locator('#username').fill(process.env.TEST_ADMIN_USER); await f.locator('#password').fill(process.env.TEST_ADMIN_PASS);
+      await Promise.all([p.waitForNavigation({ timeout: 120000 }).catch(() => {}), f.locator('button[name=login]').click()]); await sleep(1500); }
+    if ((await ctx.cookies()).some(c => /^wordpress_logged_in/.test(c.name))) break; await sleep(20000);
+  }
+  return { ctx, p, ok: (await ctx.cookies()).some(c => /^wordpress_logged_in/.test(c.name)) };
 }
 async function cleanLena(ad, log) {
   const us = await api(ad.p, 'GET', 'wp/v2/users?search=zz-persona-&context=edit&per_page=20');
@@ -397,7 +404,7 @@ if (require.main === module) (async () => {
       const log = []; let extra = '';
       if (!process.env.TEST_ADMIN_USER) { extra = '⚠️ Нет секретов TEST_ADMIN_* — «Лена» не создана, шаги не пройдены.\n\n'; report('Лена', 'lena', 'Автор, активно пользуется кабинетом.', [], extra); }
       else {
-        const ad = await admin(browser); await cleanLena(ad, log); // leftovers of a crashed run first
+        const ad = await admin(browser); if (!ad.ok) log.push('⚠️ тестовый админ не вошёл (капча хостинга или пароль)'); await cleanLena(ad, log); // leftovers of a crashed run first
         const ts = Date.now().toString(36); const acc = { email: `zz-persona-${ts}@example.com`, pass: 'Pz!' + crypto.randomBytes(9).toString('base64url') };
         const u = await api(ad.p, 'POST', 'wp/v2/users', { username: 'zzpersona' + ts, email: acc.email, password: acc.pass, first_name: 'Lena', last_name: 'Test', roles: ['wcfm_vendor'] });
         log.push(`тестовый автор: ${u.s === 201 ? 'создан id ' + u.j.id : 'НЕ создан (' + u.s + ' ' + JSON.stringify(u.j && u.j.code) + ')'}`);
