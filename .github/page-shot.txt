@@ -51,3 +51,4 @@
 2026-11-28 02:30:29 listen-before /product/infinity/ /en/all-products/ /?s=zzqxnothing
 2026-11-28 02:35:26 copy-before /de/license/ /fr/license/ /es/sell/ /de/
 2026-11-28 02:41:08 listen-after /product/infinity/ /en/all-products/ /?s=zzqxnothing
+2026-11-28 09:19:12 vocals-before /en/wiki/record-clean-vocals-at-home/ /en/wiki/
