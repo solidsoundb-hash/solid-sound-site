@@ -80,6 +80,25 @@
    "has": [
     "gain"
    ]
+  },
+  {
+   "t": "Should I use 44.1KHz or 96KHz sampling frequency for hobby projects?",
+   "notHas": [
+    "eq"
+   ]
+  },
+  {
+   "t": "Kick and bass frequencies clash",
+   "has": [
+    "eq",
+    "kickbass"
+   ]
+  },
+  {
+   "t": "How to release my track on Spotify",
+   "has": [
+    "release"
+   ]
   }
  ],
  "clean": [

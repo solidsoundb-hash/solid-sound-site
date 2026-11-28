@@ -23,6 +23,8 @@ jobs:
       - name: Exam (docs/team/bots.md)
         run: node tools/bots/content-watch/exam.js
       - name: Watch
+        env:
+          YOUTUBE_KEY: ${{ secrets.YOUTUBE_KEY }}
         run: |
           MODE="${{ github.event.inputs.mode }}"
           if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/content-watch.txt | awk '{print $NF}'); fi

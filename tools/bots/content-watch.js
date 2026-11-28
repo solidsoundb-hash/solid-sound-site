@@ -58,14 +58,18 @@ async function wpBlog(origin) {
 }
 async function youtube(origin, homeHtml) {
   const m = String(homeHtml).match(/youtube\.com\/(channel\/UC[\w-]{22}|@[\w.-]+|c\/[\w.-]+|user\/[\w.-]+)/i); if (!m) return { error: 'ссылки на YouTube на главной нет' };
-  let id = (m[1].match(/UC[\w-]{22}/) || [])[0];
-  if (!id) { const r = await S.get('https://www.youtube.com/' + m[1]); id = ((r.text || '').match(/"(?:externalId|channelId)":"(UC[\w-]{22})"/) || [])[1]; if (!id) return { error: 'канал не открылся (' + (r.error || r.status) + ')' }; }
-  const f = await S.get('https://www.youtube.com/feeds/videos.xml?channel_id=' + id); if (f.status !== 200) return { error: 'лента канала ' + (f.error || f.status) };
-  const items = [...f.text.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(e => { const x = e[1];
-    const g = (re) => (x.match(re) || [])[1];
-    return { title: S.dec(g(/<title>([^<]*)<\/title>/) || ''), url: g(/<link rel="alternate" href="([^"]+)"/), date: (g(/<published>([^<]+)/) || '').slice(0, 10),
-      views: +(g(/<media:statistics views="(\d+)"/) || 0), likes: +(g(/<media:starRating count="(\d+)"/) || 0), desc: S.dec(g(/<media:description>([\s\S]*?)<\/media:description>/) || '').length }; });
-  return { channel: 'https://www.youtube.com/channel/' + id, items };
+  // youtube.com closes its pages and feeds to robots in robots.txt — we do not go around it. Official YouTube Data API (free key) only.
+  const KEY = process.env.YOUTUBE_KEY; if (!KEY) return { error: 'ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)', handle: m[1] };
+  const api = async (q) => { const r = await S.get('https://www.googleapis.com/youtube/v3/' + q + '&key=' + KEY); return r.status === 200 ? S.json(r) : null; };
+  const uc = (m[1].match(/UC[\w-]{22}/) || [])[0]; const h = (m[1].match(/^@([\w.-]+)/) || [])[1];
+  const ch = await api('channels?part=contentDetails' + (uc ? '&id=' + uc : h ? '&forHandle=' + encodeURIComponent('@' + h) : '&forUsername=' + encodeURIComponent(m[1].split('/').pop())));
+  const up = ch && ch.items && ch.items[0] && ch.items[0].contentDetails.relatedPlaylists.uploads; if (!up) return { error: 'канал не найден через API' };
+  const pl = await api('playlistItems?part=contentDetails&maxResults=15&playlistId=' + up); const ids = ((pl && pl.items) || []).map(x => x.contentDetails.videoId);
+  const vs = ids.length ? await api('videos?part=snippet,statistics,contentDetails&id=' + ids.join(',')) : null;
+  const dur = (d) => { const x = String(d || '').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/) || []; return (+x[1] || 0) * 60 + (+x[2] || 0) + Math.round((+x[3] || 0) / 60); };
+  const items = ((vs && vs.items) || []).map(v => ({ title: v.snippet.title, url: 'https://www.youtube.com/watch?v=' + v.id, date: (v.snippet.publishedAt || '').slice(0, 10),
+    views: +(v.statistics.viewCount || 0), likes: +(v.statistics.likeCount || 0), comments: +(v.statistics.commentCount || 0), min: dur(v.contentDetails.duration) }));
+  return { channel: 'https://www.youtube.com/channel/' + ch.items[0].id, items };
 }
 
 (async () => {
@@ -82,14 +86,15 @@ async function youtube(origin, homeHtml) {
     const V = (yt.items || []).map(v => ({ ...v, src: s.name, fmt: format(v.title), top: topics(v.title) }));
     allA.push(...A); allV.push(...V); data.sources.push({ name: s.name, kind: s.kind, blog: { error: blog.error, total: blog.total, items: A }, youtube: { error: yt.error, channel: yt.channel, items: V } });
     L.push(`## ${s.name}${s.kind === 'author' ? ' (автор ниши)' : ''}`, '');
+    if (!blog.error && !A.length) blog.error = 'статей нет';
     if (blog.error) L.push(`- Блог: ❌ ${blog.error}`); else {
       L.push(`- Блог: статей ${blog.total ?? 'много'}, разобрал ${A.length}: медиана ${med(A.map(a => a.words)) ?? '—'} слов, картинок ${med(A.map(a => a.img)) ?? '—'}, с аудио ${A.filter(a => a.audio).length}, с видео ${A.filter(a => a.video).length}.`, '',
         '| Дата | Статья | Формат | Тема (боль) | Слов | Подзаг. | Карт. | Аудио | Видео |', '|---|---|---|---|---|---|---|---|---|');
       A.forEach(a => L.push(`| ${a.date} | [${a.title.replace(/\|/g, '/').slice(0, 90)}](${a.url}) | ${a.fmt} | ${a.top.map(t => label[t]).slice(0, 2).join('; ') || '—'} | ${a.words} | ${a.h2} | ${a.img} | ${a.audio} | ${a.video} |`)); }
     L.push('');
     if (yt.error) L.push(`- YouTube: ❌ ${yt.error}`, ''); else {
-      L.push(`- YouTube: [канал](${yt.channel}), последних видео ${V.length}, медиана просмотров ${med(V.map(v => v.views)) ?? '—'}.`, '', '| Дата | Видео | Формат | Тема (боль) | Просмотры | Лайки |', '|---|---|---|---|---|---|');
-      V.slice().sort((a, b) => b.views - a.views).slice(0, 8).forEach(v => L.push(`| ${v.date} | [${v.title.replace(/\|/g, '/').slice(0, 90)}](${v.url}) | ${v.fmt} | ${v.top.map(t => label[t]).slice(0, 2).join('; ') || '—'} | ${v.views.toLocaleString('ru-RU')} | ${v.likes.toLocaleString('ru-RU')} |`)); L.push(''); }
+      L.push(`- YouTube: [канал](${yt.channel}), последних видео ${V.length}, медиана просмотров ${med(V.map(v => v.views)) ?? '—'}.`, '', '| Дата | Видео | Формат | Тема (боль) | Мин. | Просмотры | Лайки | Коммент. |', '|---|---|---|---|---|---|---|---|');
+      V.slice().sort((a, b) => b.views - a.views).slice(0, 8).forEach(v => L.push(`| ${v.date} | [${v.title.replace(/\|/g, '/').slice(0, 90)}](${v.url}) | ${v.fmt} | ${v.top.map(t => label[t]).slice(0, 2).join('; ') || '—'} | ${v.min ?? '—'} | ${v.views.toLocaleString('ru-RU')} | ${v.likes.toLocaleString('ru-RU')} | ${v.comments ?? '—'} |`)); L.push(''); }
   }
   // What works: formats by YouTube response (median views relative to the channel's own median, so big channels don't dominate)
   const chMed = {}; for (const v of allV) (chMed[v.src] = chMed[v.src] || []).push(v.views);
