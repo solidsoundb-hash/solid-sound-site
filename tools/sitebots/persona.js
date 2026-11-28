@@ -135,12 +135,14 @@ function markSteps() {
       const c = S.p.getByRole('button', { name: /show templates/i }).or(S.p.getByRole('link', { name: /show templates|shop the sale|templates/i })).filter({ visible: true }).first();
       return { cta: c, ctaName: 'Show templates' }; }],
     ['Поиск «melodic techno»', async S => {
-      let inp = vis(S.p, 'input#top-q, header input[type=search], input[type=search], input[name=s]');
-      if (!(await inp.count())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } await S.p.waitForTimeout(800); }
+      const Q = 'input#top-q, header input[type=search], input[type=search], input[name=s]';
+      const shown = () => S.p.evaluate(q => [...document.querySelectorAll(q)].some(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10 && r.bottom > 0 && r.top < innerHeight; }), Q);
+      if (!(await shown())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"], [aria-label*="earch" i]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }).catch(() => {}); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } }
       // the page has two input#top-q (one 0×0) — mark the one a person actually sees
-      await S.p.waitForFunction(() => [...document.querySelectorAll('input#top-q, input[type=search], input[name=s]')].some(e => e.getBoundingClientRect().width > 20), null, { timeout: 10000 }).catch(() => {});
-      await S.p.evaluate(() => { const e = [...document.querySelectorAll('input#top-q, input[type=search], input[name=s]')].find(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }); if (e) e.setAttribute('data-persona-q', '1'); });
-      inp = S.p.locator('[data-persona-q]').first();
+      await S.p.waitForFunction(q => [...document.querySelectorAll(q)].some(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }), Q, { timeout: 10000 }).catch(() => {});
+      const got = await S.p.evaluate(q => { const all = [...document.querySelectorAll(q)]; const e = all.find(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }); if (e) { e.setAttribute('data-persona-q', '1'); return ''; } return all.map(e => { const r = e.getBoundingClientRect(); return (e.id || e.name || e.type) + ' ' + Math.round(r.width) + '×' + Math.round(r.height); }).join(', ') || 'полей нет'; }, Q);
+      if (got) throw new Error('поле поиска не появилось после нажатия на лупу (' + got + ')');
+      const inp = S.p.locator('[data-persona-q]').first();
       await S.tapField(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
       const res = vis(S.p, 'a[href*="/product/"]'); const cnt = await S.p.locator('a[href*="/product/"]').count();
       if (!cnt) throw new Error('ничего не нашлось по «melodic techno»');
