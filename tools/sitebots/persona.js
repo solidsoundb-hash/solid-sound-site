@@ -102,7 +102,7 @@ async function walk(browser, who, devKey, steps, setupCtx) {
     // a person answers the cookie bar once («Reject non-essential»); not counted as a step click
     const no = p.locator('.ss-cc-no').filter({ visible: true }).first(); if (await no.count().catch(() => 0)) await no.click({ timeout: 3000 }).catch(() => {}); };
   for (const [title, fn] of steps) {
-    clicks = 0; const t0 = Date.now(); let ok = true, note = '', cta = null, ctaName = '', extra = '', r_dw = null;
+    clicks = 0; S.note2 = ''; const t0 = Date.now(); let ok = true, note = '', cta = null, ctaName = '', extra = '', r_dw = null;
     try { const r = (await fn(S)) || {}; cta = r.cta || null; ctaName = r.ctaName || ''; note = r.note || ''; extra = r.extra || ''; r_dw = r.dw || null; if (r.fail) { ok = false; note = r.fail; } }
     catch (e) { ok = false; note = e.message.split('\n')[0].replace(/locator\.|page\./g, '').slice(0, 120); }
     const sec = (Date.now() - t0) / 1000;
@@ -136,7 +136,11 @@ function markSteps() {
       return { cta: c, ctaName: 'Show templates' }; }],
     ['Поиск «melodic techno»', async S => {
       let inp = vis(S.p, 'input#top-q, header input[type=search], input[type=search], input[name=s]');
-      if (!(await inp.count())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } await S.p.waitForTimeout(800); inp = vis(S.p, 'input#top-q, input[type=search], input[name=s]'); }
+      if (!(await inp.count())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } await S.p.waitForTimeout(800); }
+      // the page has two input#top-q (one 0×0) — mark the one a person actually sees
+      await S.p.waitForFunction(() => [...document.querySelectorAll('input#top-q, input[type=search], input[name=s]')].some(e => e.getBoundingClientRect().width > 20), null, { timeout: 10000 }).catch(() => {});
+      await S.p.evaluate(() => { const e = [...document.querySelectorAll('input#top-q, input[type=search], input[name=s]')].find(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }); if (e) e.setAttribute('data-persona-q', '1'); });
+      inp = S.p.locator('[data-persona-q]').first();
       await S.tapField(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
       const res = vis(S.p, 'a[href*="/product/"]'); const cnt = await S.p.locator('a[href*="/product/"]').count();
       if (!cnt) throw new Error('ничего не нашлось по «melodic techno»');
