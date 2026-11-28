@@ -31,7 +31,7 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode }}"
           if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/design-watch.txt | awk '{print $NF}'); fi
-          export MODE="${MODE:-run}"; echo "mode: $MODE"
+          [ "$MODE" = probe ] || MODE=run; export MODE; echo "mode: $MODE"
           node tools/bots/design-watch.js
       - name: Save report
         if: always()
