@@ -137,10 +137,13 @@ function markSteps() {
     ['Поиск «melodic techno»', async S => {
       const Q = 'input#top-q, header input[type=search], input[type=search], input[name=s]';
       const shown = () => S.p.evaluate(q => [...document.querySelectorAll(q)].some(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10 && r.bottom > 0 && r.top < innerHeight; }), Q);
-      if (!(await shown())) { const sb = vis(S.p, '.g-sbtn, button[aria-label="Search"], [aria-label*="earch" i]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }).catch(() => {}); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } }
+      if (!(await shown())) { const sb = vis(S.p, '#ssg .g-sbtn, .g-sbtn, button[aria-label="Search"]'); try { await S.click(sb, { timeout: 8000 }); } catch (e) { await sb.click({ force: true, timeout: 5000 }).catch(() => {}); S.note2 = 'кнопку поиска что-то перекрывает — нажал силой'; } }
+      // a second tap if the first one came before the header script was ready
+      if (!(await S.p.waitForFunction(q => [...document.querySelectorAll(q)].some(e => e.getBoundingClientRect().width > 20), Q, { timeout: 1500 }).then(() => 1, () => 0))) {
+        await S.p.waitForTimeout(1500); const sb2 = vis(S.p, '#ssg .g-sbtn, .g-sbtn'); if (await sb2.count()) { await sb2.click({ timeout: 5000 }).catch(() => {}); S.note2 = (S.note2 ? S.note2 + '; ' : '') + 'лупа открылась только со 2-го нажатия'; } }
       // the page has two input#top-q (one 0×0) — mark the one a person actually sees
       await S.p.waitForFunction(q => [...document.querySelectorAll(q)].some(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }), Q, { timeout: 10000 }).catch(() => {});
-      const got = await S.p.evaluate(q => { const all = [...document.querySelectorAll(q)]; const e = all.find(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }); if (e) { e.setAttribute('data-persona-q', '1'); return ''; } return all.map(e => { const r = e.getBoundingClientRect(); return (e.id || e.name || e.type) + ' ' + Math.round(r.width) + '×' + Math.round(r.height); }).join(', ') || 'полей нет'; }, Q);
+      const got = await S.p.evaluate(q => { const all = [...document.querySelectorAll(q)]; const e = all.find(e => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 10; }); if (e) { e.setAttribute('data-persona-q', '1'); return ''; } const b = document.querySelector('.g-sbtn'); return all.map(e => { const r = e.getBoundingClientRect(); return (e.id || e.name || e.type) + ' ' + Math.round(r.width) + '×' + Math.round(r.height); }).join(', ') + ' · лупа: ' + (b ? 'aria-expanded=' + b.getAttribute('aria-expanded') + ', ssg-msearch=' + document.documentElement.classList.contains('ssg-msearch') : 'нет .g-sbtn'); }, Q);
       if (got) throw new Error('поле поиска не появилось после нажатия на лупу (' + got + ')');
       const inp = S.p.locator('[data-persona-q]').first();
       await S.tapField(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
