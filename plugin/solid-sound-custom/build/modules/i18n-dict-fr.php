@@ -1139,7 +1139,7 @@ return json_decode( <<<'SSFR'
 "Claim exclusive ownership or authorship of the track without modifying original melodies": "Revendiquer la propriété exclusive ou la paternité du morceau sans modifier les mélodies d’origine",
 "Use for creating sample libraries and royalty-free music": "L’utiliser pour créer des banques de samples ou de la musique libre de droits",
 "Licensing FAQ": "FAQ sur la licence",
-"Can I render the template ‘as is’ and release it on a record label?": "Puis-je exporter le template « tel quel » et le sortir sur un label ?",
+"Can I render the template 'as is' and release it on a record label?": "Puis-je exporter le template « tel quel » et le sortir sur un label ?",
 "No, you can not. You should make significant changes into template. For example, change the root note, melody, sound processing, add your own ideas and sounds, etc. The main and minimum requirement is to change all the main melodies.": "Non. Vous devez modifier le template en profondeur : par exemple changer la tonalité, la mélodie, le traitement du son, ajouter vos propres idées et sons, etc. L’exigence principale et minimale est de changer toutes les mélodies principales.",
 "Are there any restrictions for using samples and presets from the template I purchased?": "Y a-t-il des restrictions sur l’utilisation des samples et presets du template acheté ?",
 "All samples and presets used in our products are royalty-free. You can use separate samples and presets in your own music productions. You are allowed to create the unlimited number of music productions based on one template. Any kind of separate distribution is strictly prohibited.": "Tous les samples et presets de nos produits sont libres de droits. Vous pouvez les utiliser séparément dans vos propres productions. Vous pouvez créer un nombre illimité de productions à partir d’un même template. Toute distribution séparée est strictement interdite.",
@@ -1237,7 +1237,9 @@ return json_decode( <<<'SSFR'
 "8. Governing Law": "8. Droit applicable",
 "8.1 This Agreement is governed by the same law as our": "8.1 Le présent Contrat est régi par le même droit que nos",
 "(section 10 \"Law and disputes\").": "(section 10 « Droit applicable et litiges »).",
-"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Les litiges sont traités comme décrit dans nos Conditions de vente. Si vous êtes un consommateur, rien dans le présent Contrat ne vous prive de la protection des règles impératives de votre pays de résidence ni de votre droit de saisir les tribunaux de ce pays."
+"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Les litiges sont traités comme décrit dans nos Conditions de vente. Si vous êtes un consommateur, rien dans le présent Contrat ne vous prive de la protection des règles impératives de votre pays de résidence ni de votre droit de saisir les tribunaux de ce pays.",
+"Voice search on, tap to turn off": "Recherche vocale activée – touchez pour l’arrêter",
+"What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.": "Ce que vous pouvez faire avec les templates Solid Sound et la musique créée à partir d’eux : usage personnel, pédagogique et commercial expliqué."
 }
 SSFR
 , true );

@@ -17,7 +17,7 @@ return array(
   'id' => 'ss-2610'
  ),
  'ss-foot-js' => array(
-  'f' => 'ss-foot-js.395fb5ab57.js',
+  'f' => 'ss-foot-js.2499a8d0d3.js',
   't' => 'js',
   'id' => 'ss-foot-js'
  ),
@@ -182,7 +182,7 @@ return array(
   'id' => null
  ),
  'ss-global' => array(
-  'f' => 'ss-global.117e5f0386.js',
+  'f' => 'ss-global.d748abc7f5.js',
   't' => 'js',
   'id' => null
  ),
