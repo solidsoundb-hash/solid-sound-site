@@ -1160,7 +1160,7 @@ return json_decode( <<<'SSDE'
 "Claim exclusive ownership or authorship of the track without modifying original melodies": "Ohne Änderung der Original-Melodien exklusives Eigentum oder Urheberschaft am Track beanspruchen",
 "Use for creating sample libraries and royalty-free music": "Daraus Sample-Libraries oder lizenzfreie Musik erstellen",
 "Licensing FAQ": "Fragen zur Lizenz",
-"Can I render the template ‘as is’ and release it on a record label?": "Darf ich das Template „wie es ist“ rendern und auf einem Label veröffentlichen?",
+"Can I render the template 'as is' and release it on a record label?": "Darf ich das Template „wie es ist“ rendern und auf einem Label veröffentlichen?",
 "No, you can not. You should make significant changes into template. For example, change the root note, melody, sound processing, add your own ideas and sounds, etc. The main and minimum requirement is to change all the main melodies.": "Nein. Du musst das Template deutlich verändern – zum Beispiel Grundton, Melodie und Soundbearbeitung ändern, eigene Ideen und Sounds hinzufügen usw. Die wichtigste Mindestanforderung: alle Hauptmelodien ändern.",
 "Are there any restrictions for using samples and presets from the template I purchased?": "Gibt es Einschränkungen für Samples und Presets aus dem gekauften Template?",
 "All samples and presets used in our products are royalty-free. You can use separate samples and presets in your own music productions. You are allowed to create the unlimited number of music productions based on one template. Any kind of separate distribution is strictly prohibited.": "Alle Samples und Presets in unseren Produkten sind lizenzfrei. Du darfst einzelne Samples und Presets in deinen eigenen Produktionen verwenden und auf Basis eines Templates beliebig viele Produktionen erstellen. Jede separate Weitergabe ist streng verboten.",
@@ -1257,7 +1257,9 @@ return json_decode( <<<'SSDE'
 "8. Governing Law": "8. Anwendbares Recht",
 "8.1 This Agreement is governed by the same law as our": "8.1 Für diese Vereinbarung gilt dasselbe Recht wie für unsere",
 "(section 10 \"Law and disputes\").": "(Abschnitt 10 „Recht und Streitigkeiten“).",
-"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Streitigkeiten werden wie in unseren Verkaufsbedingungen beschrieben behandelt. Wenn du Verbraucher bist, nimmt dir nichts in dieser Vereinbarung den Schutz der zwingenden Vorschriften deines Wohnsitzlandes oder dein Recht, dort vor Gericht zu gehen."
+"8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Streitigkeiten werden wie in unseren Verkaufsbedingungen beschrieben behandelt. Wenn du Verbraucher bist, nimmt dir nichts in dieser Vereinbarung den Schutz der zwingenden Vorschriften deines Wohnsitzlandes oder dein Recht, dort vor Gericht zu gehen.",
+"Voice search on, tap to turn off": "Sprachsuche an – tippen zum Ausschalten",
+"What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.": "Was du mit Solid Sound Templates und darauf basierender Musik machen darfst: private, Lern- und kommerzielle Nutzung erklärt."
 }
 SSDE
 , true );
