@@ -14,16 +14,16 @@ const PAINS = [
   ['lowend', 'Грязный низ, саб, бас гудит', /\b(muddy|muddiness|mud|low.?end|sub.?bass|boomy|bass (is|sounds?|gets?) (too )?(loud|muddy|lost|weak|boomy)|bass (and|&) (low|sub))\b/i, 'Сведение (от €69) · бесплатный разбор трека · шаблоны (как разведены kick и bass)'],
   ['kickbass', 'Кик и бас мешают друг другу, сайдчейн', /\b(kick (and|&|vs\.?|with) (the )?bass|bass (and|&) kick|side.?chain\w*|kick.{0,30}(clash|fight|mask)|ducking)\b/i, 'Шаблоны Kratos / Protos (видно связку kick + bass) · статья-гайд'],
   ['loud', 'Трек тихий, громкость, LUFS', /\b(loud(ness|er)?|lufs|limiter|limiting|too quiet|not loud|quiet(er)? (than|compared)|competitive (level|volume)|volume (of|on) (my )?(track|master))\b/i, 'Мастеринг (от €35)'],
-  ['translate', 'В машине, клубе, телефоне звучит иначе', /\b(translat\w*|sounds? (different|bad|weird|terrible|thin|great) (in|on) (the )?(car|club|phone|headphones|speakers|monitors|earbuds|airpods)|(car|club|phone) test)\b/i, 'Бесплатный разбор трека · мастеринг'],
+  ['translate', 'В машине, клубе, телефоне звучит иначе', /\b(translat\w* (to|on|across|between) (the )?(club|car|speakers|systems|phones?|headphones|monitors)|(mix|track) (doesn'?t|does not|won'?t) translate|sounds? (different|bad|weird|terrible|thin|great) (in|on) (the )?(car|club|phone|headphones|speakers|monitors|earbuds|airpods)|(car|club|phone) test)\b/i, 'Бесплатный разбор трека · мастеринг'],
   ['finish', 'Не могу закончить трек, застрял в лупе', /\b(finish(ing)? (a |my |the )?(tracks?|songs?|projects?)|loop.?itis|8.?bar loops?|stuck (in|on) (a |the )?loop|never finish|unfinished|(from )?loop to (a )?(full )?(track|song|arrangement))\b/i, 'Шаблоны (полная аранжировка) · бесплатный пак'],
-  ['arrange', 'Аранжировка: структура, брейк, дроп, переходы', /\b(arrang(e|ing|ement)|song structure|track structure|breakdowns?|build.?ups?|drops?\b|intros?\b|outros?|transitions?)\b/i, 'Шаблоны (разбор структуры) · статья «структура techno-трека»'],
+  ['arrange', 'Аранжировка: структура, брейк, дроп, переходы', /\b(?!arrangement (view|workflow|window|mode))(arrang(e|ing|ement)|song structure|track structure|breakdowns?|build.?ups?|drops?\b|intros?\b|outros?|transitions?)\b/i, 'Шаблоны (разбор структуры) · статья «структура techno-трека»'],
   ['eq', 'Эквализация: что резать, частоты', /\b(eq\b|eq'?ing|equali[sz]\w*|(cut|boost|clash\w*|mask\w*|problem|harsh|muddy) (the )?frequenc\w*|frequenc\w* (clash\w*|masking|to cut|to boost)|high.?pass|low.?pass|low.?cut|cut (the )?(lows|highs|mids))\b/i, 'Статья-гайд · шаблоны (настройки EQ видны)'],
   ['comp', 'Компрессия: атака, релиз, панч', /\b(compress\w*|attack (and|&) release|ratio|threshold|punch(y|iness)?|transients?|parallel compression|glue)\b/i, 'Статья-гайд · шаблоны'],
   ['space', 'Пространство: ревер, ширина, стерео, фаза', /\b(reverb|delays?|depth|stereo|width|wide(r|ness)?|mono (compat\w*|check)|phase|panning|spatial)\b/i, 'Статья-гайд · сведение'],
   ['vocal', 'Вокал: обработка, сидит в миксе', /\b(vocals?|voice|singer|sibilan\w*|de.?ess\w*|acapella|autotune|tuning)\b/i, 'Сведение · сэмплы вокала у авторов'],
   ['drums', 'Барабаны и грув: хэты, перкуссия, свинг', /\b(drums?|groove|swing|hi.?hats?|hats\b|percussion|snares?|claps?|shuffle|rimshot|toms?|drum (bus|programming|pattern))\b/i, 'Шаблоны (грув и перкуссия) · сэмплы'],
   ['synth', 'Саунд-дизайн: как сделать этот звук, синт, пресет', /\b(sound design|synth\w*|serum|vital|wavetable|patch(es)?|presets?|oscillat\w*|recreate (this|that|the) sound|how (do|to|can) (i |you )?(make|get|create) (this|that|a) (sound|bass|lead|pad))\b/i, 'Пресеты Serum · шаблоны (все звуки внутри)'],
-  ['harsh', 'Резко, режет уши, резонансы', /\b(harsh(ness)?|piercing|too bright|shrill|resonan\w*|ear fatigue|sibilant)\b/i, 'Сведение · бесплатный разбор'],
+  ['harsh', 'Резко, режет уши, резонансы', /\b(harsh(ness)?|piercing|too bright|shrill|(harsh|ringing|annoying|nasty|remov\w*|tam\w*) resonan\w*|resonan\w* (in|at) (the )?(mids|highs|\d)|ear fatigue|sibilant)\b/i, 'Сведение · бесплатный разбор'],
   ['gain', 'Гейн-стейджинг, запас, клип на мастере', /\b(gain.?stag\w*|headroom|clipping|clips? (on|at) (the )?master|levels? (too )?(hot|high)|red on (the )?master|dbfs)\b/i, 'Статья-гайд · мастеринг'],
   ['monitor', 'Мониторы, наушники, комната, референс', /\b(reference tracks?|referenc(e|ing)|monitors?|monitoring|headphones?|room (treatment|acoustics)|acoustic (panels|treatment)|nearfields?)\b/i, 'Статья «референс за 5 минут» · мастеринг'],
   ['master', 'Мастеринг сам / цепочка мастеринга', /\b(master(ing)? (my|a|the|your) (own )?(track|song|mix)|self.?master\w*|mastering chain|master bus|mastered)\b/i, 'Мастеринг (от €35) · Release Ready (от €99)'],
@@ -54,14 +54,14 @@ const LEMMY = ['music production', 'mixing help', 'mastering', 'ableton', 'techn
   fs.mkdirSync(OUT, { recursive: true });
   const now = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
   const items = []; const src = [];
-  const add = (it) => { const t = clean(it.text); const ids = classify(t + ' ' + clean(it.extra || '')); if (ids.length) items.push({ ...it, text: t.slice(0, 160), ids }); return ids.length; };
+  const add = (it) => { const t = clean(it.text); const ids = classify(t + ' ' + clean(it.extra || '')); if (ids.length) items.push({ ...it, text: t.slice(0, 160), ids }); return ids.length ? 1 : 0; };
   // 1) Stack Exchange: most-voted questions per tag (views = how many people had the same question)
   for (const [site, name, tags] of (MODE === 'probe' ? [[SE[0][0], SE[0][1], SE[0][2].slice(0, 2)]] : SE)) {
     let n = 0, hit = 0, err = '';
     for (const tag of tags) {
       const r = await getJ(`https://api.stackexchange.com/2.3/questions?order=desc&sort=votes&tagged=${encodeURIComponent(tag)}&site=${site}&pagesize=100`);
       if (!r || r.error || !r.items) { err = (r && (r.error || r.error_message)) || 'нет ответа'; continue; }
-      for (const q of r.items) { n++; hit += add({ src: 'Stack Exchange — ' + name, text: S.dec(q.title), extra: (q.tags || []).join(' '), views: q.view_count || 0, score: q.score || 0, url: safeLink(q.link) }); }
+      for (const q of r.items) { n++; hit += add({ src: 'Stack Exchange — ' + name, text: S.dec(q.title), extra: '', views: q.view_count || 0, score: q.score || 0, url: safeLink(q.link) }); }
     }
     src.push(`${'Stack Exchange — ' + name}: вопросов ${n}, с болью ${hit}${err ? ' (' + err + ')' : ''}`);
   }

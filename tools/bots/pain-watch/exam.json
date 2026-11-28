@@ -99,6 +99,31 @@
    "has": [
     "release"
    ]
+  },
+  {
+   "t": "Is this the correct translation of the Pattern workflow in FL Studio to Clip & Arrangement workflow in Ableton?",
+   "notHas": [
+    "translate",
+    "arrange"
+   ]
+  },
+  {
+   "t": "What is the difference between reverb and resonance?",
+   "notHas": [
+    "harsh"
+   ]
+  },
+  {
+   "t": "My mix does not translate to the club",
+   "has": [
+    "translate"
+   ]
+  },
+  {
+   "t": "How to tame harsh resonances in a synth lead",
+   "has": [
+    "harsh"
+   ]
   }
  ],
  "clean": [

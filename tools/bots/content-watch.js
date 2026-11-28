@@ -11,13 +11,14 @@ const { classify, PAINS } = require('./pain-watch.js');
 
 // Format of a piece by its title (first match wins)
 const FORMATS = [
-  ['новости/релиз/реклама', /\b(out now|new release|introducing|announc\w*|giveaway|sale|% off|black friday|cyber monday|free download|launch\w*|now available|bundle)\b/i],
-  ['разбор трека / «как у X»', /\b(how (to|i) make|in the style of|like (\w+ ){0,3}(does|did)|remake|recreate|breakdown of|making of|track breakdown|from scratch|start to finish|in \d+ minutes?|in 1 hour)\b/i],
-  ['«N ошибок / советов»', /^\s*\d+\s|\b\d+\s+(tips|tricks|mistakes|ways|things|reasons|secrets|steps|essential|best)\b/i],
+  ['новости/релиз/реклама', /\b(out now|new release|latest release|new:|releases|introducing|announc\w*|giveaway|win a|sale|sales|deals?|% off|black friday|cyber monday|free download|free \w+ samples|launch\w*|now available|available to pre.?order|pre.?order|bundle|megalist)\b|^\s*new\s*:/i],
+  ['боль → решение («Stuck in…? Stop…»)', /^\s*(stuck|stop|why (you|your)|tired of|struggling|can'?t|don'?t|is your|are you)\b/i],
+  ['разбор трека / «как у X»', /\b(how (to|i) make (a |an )?([\w-]+ ){0,2}(track|song|beat|techno|house|dubstep|trance|tune|banger)s?\b|in the style of|like (\w+ ){0,3}(does|did)|remake|recreate|breakdown of|making of|track breakdown|from scratch|start to finish|in \d+ minutes?|in 1 hour)\b/i],
+  ['«N ошибок / советов»', /^\s*\d+\s|\b\d+\s+(\w+\s+)?(tips|tricks|mistakes|ways|things|reasons|secrets|steps|techniques|essential|best)\b|\btips (you need|and tricks)\b/i],
   ['чек-лист', /\b(checklist|cheat ?sheet|step.by.step)\b/i],
   ['до / после', /\b(before (and|&|\/) after|before.after|vs\.?|versus|a\/b)\b/i],
-  ['гайд / how-to', /\b(how to|guide|tutorial|explained|beginner\w*|ultimate|complete|learn|masterclass|lesson|tips? for)\b/i],
-  ['интервью / артист', /\b(interview|q&a|in conversation|artist spotlight|meet the)\b/i],
+  ['гайд / how-to', /\b(how to|guide|tutorial|explained|beginner\w*|ultimate|complete|learn|masterclass|lesson|tips? for|anatomy of)\b/i],
+  ['интервью / артист', /\b(interview|q&a|in conversation|artist spotlight|meet the|behind the)\b|^[“"].+[”"]|^\s*([A-Z][\w'.-]*\s?){1,3}$/],
   ['подборка / обзор', /\b(best|top \d+|review|roundup|compared|picks)\b/i],
 ];
 function format(title) { const f = FORMATS.find(x => x[1].test(title)); return f ? f[0] : 'другое'; }
@@ -40,7 +41,15 @@ const PER = 8; // newest articles measured per blog
 const label = Object.fromEntries(PAINS.map(p => [p[0], p[1]]));
 const loc = (xml) => [...String(xml).matchAll(/<url>\s*<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?/g)].map(m => ({ u: S.dec(m[1]), d: m[2] || '' }));
 
-async function shopifyBlog(origin) {
+async function shopifyBlog(origin, homeHtml) {
+  // 1) Atom feed of each blog linked from the home page (title, date, full article HTML in one request)
+  const handles = [...new Set([...String(homeHtml).matchAll(/href="(?:https?:\/\/[^"/]+)?(?:\/[a-z]{2}(?:-[a-z]{2})?)?\/blogs\/([\w-]+)\/?"/gi)].map(m => m[1]))].slice(0, 3);
+  const fromAtom = [];
+  for (const h of handles) { const r = await S.get(`${origin}/blogs/${h}.atom`); if (r.status !== 200) continue;
+    for (const e of [...r.text.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].slice(0, PER)) { const x = e[1]; const g = (re) => (x.match(re) || [])[1] || '';
+      fromAtom.push({ title: S.dec(g(/<title[^>]*>([\s\S]*?)<\/title>/)), url: g(/<link[^>]*href="([^"]+)"/), date: g(/<published>([^<]{10})/), ...measure(S.dec(g(/<content[^>]*>([\s\S]*?)<\/content>/))) }); } }
+  if (fromAtom.length) return { total: null, items: fromAtom.sort((a, b) => b.date.localeCompare(a.date)).slice(0, PER) };
+  // 2) fallback: blog sitemap -> article pages
   const idx = await S.get(origin + '/sitemap.xml'); if (idx.error || idx.status !== 200) return { error: idx.error || 'sitemap ' + idx.status };
   const maps = [...idx.text.matchAll(/<loc>([^<]*sitemap_blogs[^<]*)<\/loc>/g)].map(m => S.dec(m[1]));
   if (!maps.length) return { error: 'блога нет в sitemap' };
@@ -80,7 +89,7 @@ async function youtube(origin, homeHtml) {
   const data = { date: now.slice(0, 10), sources: [] }; const allA = [], allV = [];
   for (const s of sources) {
     const origin = 'https://' + s.domain; const home = await S.get(origin + '/');
-    const blog = s.type === 'shopify' ? await shopifyBlog(origin) : await wpBlog(origin);
+    const blog = s.type === 'shopify' ? await shopifyBlog(origin, home.text || '') : await wpBlog(origin);
     const yt = s.youtube === false ? { error: 'не смотрим' } : await youtube(origin, home.text || '');
     const A = (blog.items || []).map(a => ({ ...a, src: s.name, fmt: format(a.title), top: topics(a.title) }));
     const V = (yt.items || []).map(v => ({ ...v, src: s.name, fmt: format(v.title), top: topics(v.title) }));
