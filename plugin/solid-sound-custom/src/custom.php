@@ -578,6 +578,7 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 			'wiki-es' => array( 'Solid Wiki — guías de producción musical | Solid Sound', 'Guías gratuitas de producción musical, mezcla, masterización y DJ del estudio Solid Sound: Ableton, voces, cables, bolos y mucho más.' ),
 			'wiki-it' => array( 'Solid Wiki — guide alla produzione musicale | Solid Sound', 'Guide gratuite su produzione musicale, mix, mastering e DJing dallo studio Solid Sound: Ableton, voce, cavi, serate e altro ancora.' ),
 			'faq' => array( 'FAQ – Payments, Licenses & Downloads | Solid Sound', 'Answers about payments, licenses, downloads and using Solid Sound templates in your own productions.' ),
+			'terms' => array( 'Terms of Sale | Solid Sound', 'Terms of sale for Solid Sound: digital downloads, licences, prices in EUR, delivery, right of withdrawal and online studio services.' ), /* 28.11 SEO: description was the start of the page text */
 			'license' => array( 'License Agreement – Royalty-Free Use | Solid Sound', 'What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.' ),
 			'services-prices' => array( 'Mixing, Mastering & Production Prices | Solid Sound', 'Online mixing from 69€, mastering from 35€, mix + master bundles, remixes and custom production. Pay 50 % to start — compare packages and order online.' ), /* 25.11 SEO: was 193 chars; DE/FR/ES dictionary keys renamed too */
 			/* 19.11 analytics: weak titles found ("All products – Solid Sound", "Free – Solid Sound") */

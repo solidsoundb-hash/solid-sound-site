@@ -1259,7 +1259,15 @@ return json_decode( <<<'SSDE'
 "(section 10 \"Law and disputes\").": "(Abschnitt 10 „Recht und Streitigkeiten“).",
 "8.2 Disputes are handled as described in our Terms of Sale. If you are a consumer, nothing in this Agreement takes away the protection of the mandatory rules of your country of residence or your right to go to the courts there.": "8.2 Streitigkeiten werden wie in unseren Verkaufsbedingungen beschrieben behandelt. Wenn du Verbraucher bist, nimmt dir nichts in dieser Vereinbarung den Schutz der zwingenden Vorschriften deines Wohnsitzlandes oder dein Recht, dort vor Gericht zu gehen.",
 "Voice search on, tap to turn off": "Sprachsuche an – tippen zum Ausschalten",
-"What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.": "Was du mit Solid Sound Templates und darauf basierender Musik machen darfst: private, Lern- und kommerzielle Nutzung erklärt."
+"What you can do with Solid Sound templates and template-based music: personal, educational and commercial use explained.": "Was du mit Solid Sound Templates und darauf basierender Musik machen darfst: private, Lern- und kommerzielle Nutzung erklärt.",
+"Free Ableton Templates, Presets & Track Feedback | Solid Sound": "Gratis Ableton-Templates, Presets & Track-Feedback | Solid Sound",
+"Free Ableton templates, presets and samples for producers, plus free track feedback from our mixing engineers.": "Kostenlose Ableton-Templates, Presets und Samples für Producer – plus kostenloses Track-Feedback von unseren Mixing-Engineers.",
+"Sell Your Music – Solid Sound": "Verkaufe deine Musik – Solid Sound",
+"Sell your Ableton templates, presets and sample packs on Solid Sound. Keep up to 85% per sale, no fees, non-exclusive, payouts from $25, approval within 24 hours.": "Verkaufe deine Ableton-Templates, Presets und Sample-Packs auf Solid Sound. Bis zu 85 % pro Verkauf, keine Gebühren, nicht exklusiv, Auszahlung ab 25 $, Freigabe in 24 Stunden.",
+"Terms of Sale | Solid Sound": "Verkaufsbedingungen | Solid Sound",
+"Terms of sale for Solid Sound: digital downloads, licences, prices in EUR, delivery, right of withdrawal and online studio services.": "Verkaufsbedingungen von Solid Sound: digitale Downloads, Lizenzen, Preise in EUR, Lieferung, Widerrufsrecht und Online-Studioleistungen.",
+"Cart – Solid Sound": "Warenkorb – Solid Sound",
+"Your cart at Solid Sound: royalty-free Ableton templates, Serum presets and music. Instant download after a secure checkout.": "Dein Warenkorb bei Solid Sound: lizenzfreie Ableton-Templates, Serum-Presets und Musik. Sofortiger Download nach sicherer Bezahlung."
 }
 SSDE
 , true );
