@@ -6,7 +6,7 @@ on:
     inputs:
       mode: { description: "probe / run", default: run }
   schedule:
-    - cron: "29 3 * * *"
+    - cron: "29 3 * * 1"   # 28.11 «Задачи»: рынок за день не меняется → раз в неделю
   push:
     branches: [main]
     paths: [".github/bundle-watch.txt"]
