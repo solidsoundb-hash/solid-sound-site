@@ -1,17 +1,45 @@
 {
- "updated": "2026-11-27T05:29:43.249Z",
+ "updated": "2026-11-28T05:23:18.309Z",
  "hours": 24,
  "orders": [],
  "funnel": {
-  "day": "2026-11-27",
-  "product": 5,
-  "cart": 4,
+  "day": "2026-11-28",
+  "product": 0,
+  "cart": 0,
   "checkout": 0,
   "thanks": 0,
   "orders": 0
  },
  "leads": [],
  "forum": [
+  {
+   "title": "RE: Hi, I'm Lena &#x1f44b;",
+   "url": "https://solid-sound.net/en/community/say-hi/hi-im-lena-%f0%9f%91%8b-2/",
+   "date": "2026-11-28T02:48:45.000Z",
+   "question": false,
+   "fresh": true
+  },
+  {
+   "title": "Hi, I'm Lena &#x1f44b;",
+   "url": "https://solid-sound.net/en/community/say-hi/hi-im-lena-%f0%9f%91%8b-2/",
+   "date": "2026-11-28T02:47:17.000Z",
+   "question": false,
+   "fresh": true
+  },
+  {
+   "title": "RE: Hi, I'm Lena &#x1f44b;",
+   "url": "https://solid-sound.net/en/community/say-hi/hi-im-lena-%f0%9f%91%8b/",
+   "date": "2026-11-28T02:40:54.000Z",
+   "question": false,
+   "fresh": true
+  },
+  {
+   "title": "Hi, I'm Lena &#x1f44b;",
+   "url": "https://solid-sound.net/en/community/say-hi/hi-im-lena-%f0%9f%91%8b/",
+   "date": "2026-11-28T02:39:37.000Z",
+   "question": false,
+   "fresh": true
+  },
   {
    "title": "Ideas & Suggestions",
    "url": "https://solid-sound.net/en/community/main-forum/ideas-suggestions/",
