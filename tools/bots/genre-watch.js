@@ -11,9 +11,11 @@ const { genresBest, kind } = require('./bundle-watch.js');
 // Focus genre of an item (most specific first), or null if not house / techno family
 function focus(it) { const g = genresBest(it); return CFG.focus.find(f => g.some(x => x.includes(f))) || null; }
 const isTemplate = (it) => kind(it.title + ' ' + (it.tags || '')) === 'шаблоны/проекты';
+// Our price vs the market median for the same genre and kind: < 0.7 = cheap, > 1.3 = expensive, else in the market
+function priceVerdict(ourUsd, med) { if (!(ourUsd > 0) || !(med > 0)) return null; const r = ourUsd / med; return { r: +r.toFixed(2), v: r < 0.7 ? 'дёшево' : r > 1.3 ? 'дорого' : 'в рынке' }; }
 const daysAgo = (d) => d ? (Date.now() - Date.parse(d)) / 864e5 : Infinity;
 
-if (require.main !== module) { module.exports = { focus, isTemplate }; return; }
+if (require.main !== module) { module.exports = { focus, isTemplate, priceVerdict }; return; }
 
 const MODE = process.env.MODE || 'run';
 const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs: CFG.pauseMs });
@@ -52,6 +54,15 @@ const S = require('./lib/shop.js').make({ maxRequests: CFG.maxRequests, pauseMs:
     L.push('', `## Наши шаблоны (${ours.length}, из них house/techno: ${ours.filter(x => x.g).length}) — кандидаты в бандл`, '');
     if (u.error) L.push('❌ ' + u.error);
     ours.filter(x => x.g).sort((a, b) => CFG.focus.indexOf(a.g) - CFG.focus.indexOf(b.g)).forEach(x => L.push(`- ${x.title} — $${x.price}${x.cmp ? ' (было $' + x.cmp + ')' : ''} · ${x.g}`));
+    // Our prices vs the market, product by product (weekly task from docs/team/monitoring.md)
+    const rate = CFG.eurUsd || 1;
+    const pv = ours.filter(x => x.g && byGenre[x.g]).map(x => { const b = byGenre[x.g], tpl = !/preset/i.test(x.title);
+      const m = med(tpl && b.tplPrices.length ? b.tplPrices : b.prices), usd = +(x.price * rate).toFixed(2), full = x.cmp ? +(x.cmp * rate).toFixed(2) : null;
+      return { t: x.title, g: x.g, kind: tpl ? 'шаблон' : 'пресеты', eur: x.price, wasEur: x.cmp || null, usd, med: m, now: priceVerdict(usd, m), full: full ? priceVerdict(full, m) : null }; });
+    data.priceVsMarket = pv;
+    L.push('', `## Наши цены против рынка (курс ≈ ${rate} $ за €, медиана того же жанра у конкурентов)`, '', '| Товар | Жанр | Сейчас | Медиана рынка | Сейчас к рынку | Без скидки к рынку |', '|---|---|---|---|---|---|');
+    pv.forEach(x => L.push(`| ${x.t} | ${x.g} (${x.kind}) | €${x.eur} ≈ $${x.usd} | $${x.med} | ${x.now ? x.now.v + ' (×' + x.now.r + ')' : '—'} | ${x.full ? '€' + x.wasEur + ': ' + x.full.v + ' (×' + x.full.r + ')' : '—'} |`));
+    L.push('', '_дёшево = меньше 0.7 медианы, дорого = больше 1.3. Шаблоны сравниваются с шаблонами, пресеты — со всеми товарами жанра. Это подсказка, цены меняет только владелец._');
     const other = ours.filter(x => !x.g); if (other.length) L.push('', 'Другие жанры: ' + other.map(x => `${x.title} $${x.price}`).join(' · '));
   }
   L.push('', `_Запросов: ${S.used()}._`);
