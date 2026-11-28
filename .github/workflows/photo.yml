@@ -20,7 +20,7 @@ jobs:
       matrix:
         shard: [0, 1, 2]     # the hosting slows down with more than ~3 robots at once (17.11)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
@@ -35,7 +35,7 @@ jobs:
     if: "!cancelled()"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/download-artifact@v4
         with: { path: dl }
       - name: Merge and save to branch shots
