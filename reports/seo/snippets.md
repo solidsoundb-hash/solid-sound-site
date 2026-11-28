@@ -1,17 +1,19 @@
-# SEO: сниппеты ключевых страниц — 2026-11-26 06:58 UTC
+# SEO: сниппеты ключевых страниц — 2026-11-28 02:40 UTC
 
 Экзамен: 10/10 ✅
 
-Страниц: 43. Большой обход всего сайта (битые ссылки, карта сайта, сироты, hreflang) — `reports/sitebots/seo.md` (по воскресеньям).
+Страниц: 50. Большой обход всего сайта (битые ссылки, карта сайта, сироты, hreflang) — `reports/sitebots/seo.md` (по воскресеньям).
 
-## Что поправить (1)
+## Что поправить (6)
 - 🟡 /en/ — title 62 зн.
+- 🟡 /en/wiki/how-much-do-djs-get-paid/ — title 67 зн.
+- 🟡 /en/wiki/how-much-do-djs-get-paid/ — нет ссылок на товары/услуги в тексте
+- 🟡 /en/wiki/how-to-promote-yourself-as-a-dj/ — нет ссылок на товары/услуги в тексте
+- 🟡 /en/wiki/how-to-get-booked-as-a-dj/ — title 62 зн.
+- 🟡 /en/wiki/how-to-get-booked-as-a-dj/ — нет ссылок на товары/услуги в тексте
 
-## Что изменилось с прошлого прогона (2026-11-25 17:26)
-- /en/all-products/ **h1**: «All products» → «Turn Your Ideas into Solid Sound»
-- /de/all-products/ **h1**: «Alle Produkte» → «Mach aus deinen Ideen Solid Sound»
-- /fr/all-products/ **h1**: «Tous les produits» → «Transforme tes idées en Solid Sound»
-- /fr/studio-calculator/ **title**: «Calculateur de prix studio – Mixage, Mastering, Remix | Solid Sound» → «Calculateur de prix – Mixage & Mastering | Solid Sound»
+## Что изменилось с прошлого прогона (2026-11-26 06:58)
+- ничего
 
 ## Все страницы
 | Страница | Язык | title | H1 | hreflang | Замечания |
@@ -53,6 +55,13 @@
 | Товар kratos | pt | Kratos – Techno Template Ableton Live ¦ Solid Sound | Kratos | 8 | ✅ |
 | Товар kratos | es | Kratos – Techno Plantilla Ableton Live ¦ Solid Sound | Kratos | 8 | ✅ |
 | Товар kratos | it | Kratos – Techno Template Ableton Live ¦ Solid Sound | Kratos | 8 | ✅ |
+| Вики | en | Vocal Mic Technique – Solid Sound | Vocal Mic Technique: 3 Rules for Clean Vocals at Home | 8 | ✅ |
+| Вики | en | Balanced vs Unbalanced Cables – Solid Sound | Balanced vs Unbalanced Cables: XLR, TRS and TS Explained | 8 | ✅ |
+| Вики | en | Audio Interface for Recording Vocals – Solid Sound | Audio Interface for Recording Vocals: Gain, 48V, Latency | 8 | ✅ |
+| Вики | en | Closed-Back Headphones for Recording Vocals – Solid Sound | Closed-Back Headphones for Recording Vocals: Stop Bleed | 8 | ✅ |
+| Вики | en | How Much Do DJs Get Paid? Fees From Bars to Festivals – Solid Sound | How Much Do DJs Get Paid? Fees From Bars to Festivals | 0 | title 67 зн.; нет ссылок на товары/услуги в тексте |
+| Вики | en | How to Start Promoting Yourself as a DJ – Solid Sound | How to Start Promoting Yourself as a DJ: Your First 90 Days | 0 | нет ссылок на товары/услуги в тексте |
+| Вики | en | How to Get Booked at Clubs and Festivals as a DJ – Solid Sound | How to Get Booked at Clubs and Festivals as a DJ | 0 | title 62 зн.; нет ссылок на товары/услуги в тексте |
 | видимые H1 | en | /en/ | | | ✅ 1 |
 | видимые H1 | en | /en/all-products/ | | | ✅ 1 |
 | видимые H1 | en | /en/services-prices/ | | | ✅ 1 |
