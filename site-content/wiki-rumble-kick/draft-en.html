@@ -1,0 +1,87 @@
+<style>
+.ssa{max-width:820px;margin:0 auto;padding:24px 16px 56px;font-size:17.5px;line-height:1.75;color:#e6e2dc}
+.ssa h1{font-size:clamp(30px,4.4vw,44px);line-height:1.15;margin:8px 0 14px;color:#fff}
+.ssa h2{font-size:clamp(24px,3vw,31px);line-height:1.25;margin:52px 0 14px;color:#fff;scroll-margin-top:90px}
+.ssa h3{font-size:20px;margin:30px 0 8px;color:#fff}
+.ssa p,.ssa ul,.ssa ol{margin:0 0 18px}
+.ssa a{color:#e09900;text-decoration:underline;text-underline-offset:3px}
+.ssa a:hover{color:#f5ad12}
+.ssa strong{color:#fff}
+.ssa .kick{display:inline-block;padding:4px 12px;border:1px solid rgba(224,153,0,.5);border-radius:999px;color:#e09900;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.ssa .lead{font-size:19.5px;color:#cfcac4}
+.ssa figure{margin:28px 0}
+.ssa figure img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+.ssa figcaption{margin-top:8px;font-size:14px;color:#9b9690;text-align:center}
+.ssa .box{padding:18px 22px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);margin:26px 0}
+.ssa .box.or{background:rgba(224,153,0,.08);border-color:rgba(224,153,0,.4)}
+.ssa .box h3{margin-top:0}
+.ssa .box ul,.ssa .box ol{margin-bottom:0}
+.ssa .toc ol{margin:0;padding-left:22px}
+.ssa .toc li{margin:3px 0}
+.ssa .check{list-style:none;padding:0}
+.ssa .check li{position:relative;padding:10px 12px 10px 44px;margin:8px 0;border-radius:10px;background:rgba(255,255,255,.04)}
+.ssa .check li:before{content:"\2713";position:absolute;left:14px;top:9px;width:20px;height:20px;border-radius:5px;background:#e09900;color:#111;font-weight:800;font-size:14px;line-height:20px;text-align:center}
+.ssa .fix{width:100%;border-collapse:collapse;margin:8px 0 22px;font-size:15.5px;line-height:1.5}
+.ssa .fix th,.ssa .fix td{color:#e6e2dc;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.09);text-align:left;vertical-align:top}
+.ssa .fix th{color:#fff !important;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.ssa .fix td:first-child{color:#fff !important;font-weight:700}
+.ssa .cta{padding:18px 22px;border-radius:14px;background:#1c1a18;border:1px solid rgba(224,153,0,.4);margin:26px 0}
+.ssa .cta b{display:block;color:#fff;margin-bottom:6px}
+.ssa .cta a{display:inline-block;margin-top:10px;padding:10px 18px;border-radius:10px;background:#e09900;color:#111;font-weight:700;text-decoration:none}
+.ssa details{border:1px solid rgba(255,255,255,.09);border-radius:12px;background:#1c1a18;margin:10px 0}
+.ssa summary{cursor:pointer;padding:14px 18px;font-weight:700;color:#fff}
+.ssa details p{padding:0 18px 4px;color:#cfcac4}
+.ssa .src{font-size:13.5px;color:#9b9690}
+@media(max-width:700px){.ssa{font-size:16.5px}.ssa .fix{font-size:14.5px}.ssa .fix th,.ssa .fix td{padding:8px 6px}}
+</style>
+<article class="ssa">
+<span class="kick">Solid Wiki · Ableton Live</span>
+<h1>Techno Rumble Kick in Ableton: 6 Steps, Stock Devices Only</h1>
+<p class="lead">A deep, rolling low end under your kick, made only with Ableton's own devices. Works in Live 10, 11 and 12, Standard or Suite.</p>
+<div class="box or"><b>Short answer:</b> send the kick to a return with a <strong>long, 100% wet Reverb</strong>, distort it with <strong>Saturator</strong>, cut everything above about <strong>150 Hz</strong> and below <strong>30 Hz</strong> with EQ Eight, then <strong>sidechain</strong> the rumble to the kick so it ducks on every hit and swells back in between. Mono it below 150 Hz.</div>
+<p>I'm a mixing and mastering engineer, and I make techno in Ableton. A weak or muddy rumble is one of the most common problems I hear in demos. Below is the method I use, step by step, with numbers you can copy.</p>
+<h2 id="step1">Step 1 — Start with a short, clean kick</h2>
+<p>The rumble is built from the kick, so the kick decides everything. Use a punchy kick with a <strong>short tail</strong> (about 150–300 ms) and a clear pitch. A long, boomy kick gives a messy rumble. Tune it to your track's key if you can: the rumble will follow.</p>
+<p><b>Settings:</b> kick tail 150–300 ms · fundamental around 45–60 Hz · kick peaks about −6 dB on its channel</p>
+<h2 id="step2">Step 2 — Send the kick to a return with a huge reverb</h2>
+<p>Create a return track (Ctrl/Cmd+Alt+T), name it RUMBLE and put <strong>Reverb</strong> on it. Turn the send on the kick channel up. The rumble is the reverb tail, so make it long and dark.</p>
+<p><b>Settings:</b> Reverb: Dry/Wet 100% · Decay 3–6 s · Size 100 · Pre-delay 0–20 ms · Hi Shelf on and pulled down · Diffusion high · Stereo 0% (or narrow) · send from the kick about −10 to −6 dB</p>
+<p>Prefer a darker, more "pumping" rumble? Put Reverb on an audio track that receives the kick, freeze or resample it and chop it later. The return-track version is faster to tweak.</p>
+<h2 id="step3">Step 3 — Distort the tail</h2>
+<p>A clean reverb tail is too soft for techno. After Reverb, add <strong>Saturator</strong> (or Drum Buss with Drive) to thicken it and bring out harmonics, so the rumble is heard on small speakers too.</p>
+<p><b>Settings:</b> Saturator: Analog Clip or Soft Sine · Drive 6–15 dB · Output down to match level · Dry/Wet 100% · optional second Saturator for more grit</p>
+<div class="cta"><b>Want to see a finished techno low end?</b>Grab our free producer pack and open the projects in Ableton to see how kick and bass are built.<br><a href="/en/free/?utm_source=wiki&amp;utm_medium=article&amp;utm_campaign=techno-rumble-kick-ableton&amp;utm_content=cta1">Get the free producer pack</a></div>
+<h2 id="step4">Step 4 — Carve the rumble with EQ Eight</h2>
+<p>Now keep only the low end. Put <strong>EQ Eight</strong> after the distortion and cut everything that isn't rumble. Too much top end turns into noise and fights your hats and synths.</p>
+<p><b>Settings:</b> EQ Eight: low cut (48 dB/oct) at 25–35 Hz · high cut (48 dB/oct) at 120–200 Hz · small dip of 2–4 dB at the kick fundamental (45–60 Hz) so kick and rumble don't stack</p>
+<h2 id="step5">Step 5 — Sidechain the rumble to the kick</h2>
+<p>This is what makes it roll. Add <strong>Compressor</strong> at the end of the return, open the sidechain, choose the kick as the source. On every kick the rumble ducks, then swells back in between: that's the groove.</p>
+<p><b>Settings:</b> Compressor: Sidechain on, source = kick (Pre FX or Post FX) · Ratio 4:1–∞:1 · Attack 0.1–1 ms · Release 80–200 ms (to taste, by tempo) · Threshold so the rumble drops 6–12 dB on each hit</p>
+<p>Alternative: an LFO tool or Auto Pan in a volume shape gives a more regular "pump" without depending on the kick level.</p>
+<h2 id="step6">Step 6 — Mono, level and check</h2>
+<p>Low end must be mono, or it collapses on club systems and phones. Add <strong>Utility</strong> after the compressor and set Width to 0%, or use Bass Mono (Live 11 and later) at about 150 Hz. Then set the level against the kick.</p>
+<p><b>Settings:</b> Utility: Width 0% or Bass Mono 120–150 Hz · rumble 3–8 dB quieter than the kick on the meter · check in mono and on headphones</p>
+<table class="fix"><thead><tr><th>Device</th><th>Main setting</th><th>Why</th></tr></thead><tbody>
+<tr><td>Reverb</td><td>100% wet, 3–6 s</td><td>Creates the tail</td></tr>
+<tr><td>Saturator</td><td>Drive 6–15 dB</td><td>Grit, audible on small speakers</td></tr>
+<tr><td>EQ Eight</td><td>Keep 30–150 Hz</td><td>Only low end, no mud</td></tr>
+<tr><td>Compressor</td><td>Sidechain from kick, fast attack</td><td>Ducks and rolls</td></tr>
+<tr><td>Utility</td><td>Width 0% / Bass Mono</td><td>Solid mono low end</td></tr>
+</tbody></table>
+<h2 id="mistakes">3 common mistakes</h2>
+<ul>
+<li><strong>Kick and rumble on the same note at the same time.</strong> They stack and clip. Duck the rumble harder or dip the kick frequency in the rumble's EQ.</li>
+<li><strong>Stereo low end.</strong> Wide reverb below 150 Hz sounds big in headphones and disappears in a club. Mono it.</li>
+<li><strong>Rumble louder than the kick.</strong> The kick leads, the rumble follows. Mix it 3–8 dB under.</li>
+</ul>
+<h2 id="done">Get the full project</h2>
+<p>See a whole techno track built with Ableton's stock devices: kick, low end, groove and arrangement, ready to open and learn from.</p>
+<div class="cta"><b>Dark techno Ableton templates</b>Full projects with native devices only: open, study, reshape into your own track.<br><a href="/product/intricate/?utm_source=wiki&amp;utm_medium=article&amp;utm_campaign=techno-rumble-kick-ableton&amp;utm_content=cta2">See the Intricate template</a></div>
+<p class="more"><b>Also:</b> <a href="/product/kratos/?utm_source=wiki&amp;utm_medium=article&amp;utm_campaign=techno-rumble-kick-ableton&amp;utm_content=cta2">Kratos</a> and <a href="/product/mutualism/?utm_source=wiki&amp;utm_medium=article&amp;utm_campaign=techno-rumble-kick-ableton&amp;utm_content=cta2">Mutualism</a> templates · <a href="/en/wiki/how-much-does-mixing-and-mastering-cost/">mixing and mastering prices</a>.</p>
+<h2 id="faq">FAQ</h2>
+<details><summary>What is a rumble kick in techno?</summary><p>A kick followed by a dark, distorted low-end tail, usually made from a long reverb on the kick that is EQ'd, saturated and sidechained so it ducks on each hit and rolls between them.</p></details>
+<details><summary>Can I make a rumble with stock Ableton devices?</summary><p>Yes. Reverb, Saturator, EQ Eight, Compressor and Utility come with Ableton Live Standard and Suite, so no third-party plugins are needed.</p></details>
+<details><summary>Why is my rumble muddy?</summary><p>Usually too much 150–400 Hz, a stereo low end, or kick and rumble peaking at the same time. Cut above ~150 Hz, mono it and sidechain it harder.</p></details>
+<details><summary>How loud should the rumble be?</summary><p>Roughly 3–8 dB quieter than the kick on the meter. Check on headphones, in mono and on a small speaker.</p></details>
+</article><script type="application/ld+json" class="ss-howto">{"@context": "https://schema.org", "@type": "HowTo", "name": "Techno Rumble Kick in Ableton: 6 Steps, Stock Devices Only", "description": "Make a deep techno rumble kick in Ableton with stock devices: reverb send, saturation, EQ and sidechain, with exact settings in 6 steps.", "step": [{"@type": "HowToStep", "name": "Start with a short, clean kick", "url": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/#step1"}, {"@type": "HowToStep", "name": "Send the kick to a return with a huge reverb", "url": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/#step2"}, {"@type": "HowToStep", "name": "Distort the tail", "url": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/#step3"}, {"@type": "HowToStep", "name": "Carve the rumble with EQ Eight", "url": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/#step4"}, {"@type": "HowToStep", "name": "Sidechain the rumble to the kick", "url": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/#step5"}, {"@type": "HowToStep", "name": "Mono, level and check", "url": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/#step6"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Techno Rumble Kick in Ableton: 6 Steps, Stock Devices Only", "author": {"@type": "Organization", "name": "Solid Sound", "url": "https://solid-sound.net/"}, "publisher": {"@type": "Organization", "name": "Solid Sound"}, "inLanguage": "en", "description": "Make a deep techno rumble kick in Ableton with stock devices: reverb send, saturation, EQ and sidechain, with exact settings in 6 steps.", "datePublished": "2026-11-28", "dateModified": "2026-11-28", "mainEntityOfPage": "https://solid-sound.net/en/wiki/techno-rumble-kick-ableton/"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a rumble kick in techno?", "acceptedAnswer": {"@type": "Answer", "text": "A kick followed by a dark, distorted low-end tail, usually made from a long reverb on the kick that is EQ'd, saturated and sidechained so it ducks on each hit and rolls between them."}}, {"@type": "Question", "name": "Can I make a rumble with stock Ableton devices?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Reverb, Saturator, EQ Eight, Compressor and Utility come with Ableton Live Standard and Suite, so no third-party plugins are needed."}}, {"@type": "Question", "name": "Why is my rumble muddy?", "acceptedAnswer": {"@type": "Answer", "text": "Usually too much 150–400 Hz, a stereo low end, or kick and rumble peaking at the same time. Cut above ~150 Hz, mono it and sidechain it harder."}}, {"@type": "Question", "name": "How loud should the rumble be?", "acceptedAnswer": {"@type": "Answer", "text": "Roughly 3–8 dB quieter than the kick on the meter. Check on headphones, in mono and on a small speaker."}}]}]}</script>
