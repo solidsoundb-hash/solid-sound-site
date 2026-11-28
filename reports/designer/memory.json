@@ -1,0 +1,124 @@
+{
+ "_note": "design-watch memory: runs, last values, noise (metric@page/dev that the Designer marked as useless — hidden from «Главное»), useful (marked helpful).",
+ "runs": [
+  {
+   "date": "2026-11-28 02:22 UTC",
+   "mode": "probe",
+   "sites": 2,
+   "ok": 12,
+   "minutes": 2.2,
+   "changes": 0
+  }
+ ],
+ "noise": [],
+ "useful": [],
+ "last": {
+  "Solid Sound home/pc": {
+   "sliders": 1,
+   "slides": 5,
+   "hdrH": 73,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Solid Sound catalog/pc": {
+   "sliders": 1,
+   "slides": 3,
+   "hdrH": 73,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Solid Sound product/pc": {
+   "buyColor": "#f59e0b",
+   "buyText": "BUY · €12",
+   "buyH": 54,
+   "pricePx": 30,
+   "sliders": 0,
+   "hdrH": 73,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Solid Sound home/phone": {
+   "sliders": 3,
+   "slides": 3,
+   "hdrH": 57,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Solid Sound catalog/phone": {
+   "sliders": 1,
+   "slides": 3,
+   "hdrH": 57,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Solid Sound product/phone": {
+   "buyColor": "#f59e0b",
+   "buyText": "BUY · €12",
+   "buyH": 54,
+   "pricePx": 24,
+   "sliders": 0,
+   "hdrH": 57,
+   "popup": null,
+   "oldPrice": true,
+   "badges": 0
+  },
+  "Scraps Audio home/pc": {
+   "sliders": 2,
+   "slides": 7,
+   "hdrH": 120,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Scraps Audio catalog/pc": {
+   "sliders": 0,
+   "hdrH": 120,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Scraps Audio product/pc": {
+   "buyColor": "#9a7ad4",
+   "buyText": "Buy Now",
+   "buyH": 62,
+   "pricePx": 25,
+   "sliders": 0,
+   "hdrH": 120,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Scraps Audio home/phone": {
+   "sliders": 2,
+   "slides": 7,
+   "hdrH": 72,
+   "popup": false,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Scraps Audio catalog/phone": {
+   "sliders": 0,
+   "hdrH": 72,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  },
+  "Scraps Audio product/phone": {
+   "buyColor": "#9a7ad4",
+   "buyText": "Buy Now",
+   "buyH": 62,
+   "pricePx": 25,
+   "sliders": 0,
+   "hdrH": 72,
+   "popup": null,
+   "oldPrice": false,
+   "badges": 0
+  }
+ },
+ "lastChanges": []
+}
