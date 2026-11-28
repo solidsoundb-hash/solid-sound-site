@@ -1,12 +1,12 @@
 {
  "mode": "full",
- "date": "2026-11-27T03:03:04.206Z",
+ "date": "2026-11-28T00:31:03.429Z",
  "stats": {
   "pages": 88,
-  "clicks": 414,
+  "clicks": 556,
   "sounds": 54,
   "links": 1036,
-  "blockedRequests": 38,
+  "blockedRequests": 36,
   "eyesTiles": 0,
   "eyesPages": 0,
   "audioFiles": 35,
@@ -20,7 +20,7 @@
    "title": "Кнопки/ссылки слишком маленькие для пальца (висит 16 проверок подряд)",
    "steps": [
     "Открыть https://solid-sound.net/en/ (телефон)",
-    "Где: input 18×18; a.ss-cp «Only an idea? Custom production →» 304×15; a «Time Goes Fast Documentary Piano (Cinema» 208×22; a «Infinity (Techno)» 208×22; a «Pitch (Techno)» 208×22"
+    "Где: input 18×18; a.ss-cp «Only an idea? Custom production →» 304×15; a «Kratos (Techno)» 208×22; a «Time Goes Fast Documentary Piano (Cinema» 208×22; a «Infinity (Techno)» 208×22"
    ],
    "expected": "Увеличить зону нажатия (padding).",
    "actual": "Почему важно: Промахиваются и жмут соседнюю кнопку. Норма — 44×44 px (Apple), 48 px (Google).",
@@ -70,7 +70,7 @@
     "телефон",
     "Samsung A31"
    ],
-   "shot": "shots/10_005.jpg",
+   "shot": "shots/10_003.jpg",
    "streak": 16,
    "isNew": false
   },
@@ -206,22 +206,22 @@
   },
   {
    "sev": "major",
-   "type": "bar-silent",
-   "title": "Нижний плеер показывает «играет», но звука нет",
+   "type": "kb-perf-weight",
+   "title": "↩ вернулся после исправления: Страница весит больше 3 МБ",
    "steps": [
-    "Нажать ▶ в нижнем плеере"
+    "Открыть https://solid-sound.net/en/my-account/edit-account/ (компьютер)"
    ],
-   "expected": "Играет трек",
-   "actual": "Тишина",
-   "sig": "barsilent",
+   "expected": "Смотреть, что самое тяжёлое.",
+   "actual": "Скачано 3.1 МБ. Почему важно: На 3G/4G в дороге — долго и дорого.",
+   "sig": "kb|kb-perf-weight|Страница весит больше 3 МБ",
    "where": [
-    "/en/",
-    "/en/templates/"
+    "/en/my-account/edit-account/"
    ],
    "devices": [
-    "компьютер"
+    "компьютер",
+    "телефон"
    ],
-   "shot": "shots/10_004.jpg",
+   "shot": "shots/19_004.jpg",
    "streak": 1,
    "isNew": true
   },
@@ -243,7 +243,7 @@
     "звук"
    ],
    "shot": "",
-   "streak": 4,
+   "streak": 5,
    "isNew": false
   },
   {
@@ -264,7 +264,7 @@
     "Клавиатура"
    ],
    "shot": "shots/22_001_keys_en_.jpg",
-   "streak": 2,
+   "streak": 3,
    "isNew": false
   },
   {
@@ -285,7 +285,7 @@
     "Клавиатура"
    ],
    "shot": "shots/22_005_keys_en_studio_calculator_.jpg",
-   "streak": 2,
+   "streak": 3,
    "isNew": false
   },
   {
@@ -306,7 +306,7 @@
     "Клавиатура"
    ],
    "shot": "shots/22_007_keys_en_sell_.jpg",
-   "streak": 2,
+   "streak": 3,
    "isNew": false
   },
   {
@@ -327,113 +327,10 @@
     "Клавиатура"
    ],
    "shot": "shots/22_007_keys_en_sell_.jpg",
-   "streak": 2,
+   "streak": 3,
    "isNew": false
-  },
-  {
-   "sev": "minor",
-   "type": "plus-focus-hidden",
-   "sig": "plus-fh|/en/all-products/",
-   "title": "Tab попадает на невидимые элементы",
-   "steps": [
-    "Открыть https://solid-sound.net/en/all-products/",
-    "Нажимать Tab"
-   ],
-   "expected": "Фокус только на видимых кнопках",
-   "actual": "a «Mutualism»",
-   "where": [
-    "/en/all-products/"
-   ],
-   "devices": [
-    "Клавиатура"
-   ],
-   "shot": "shots/22_002_keys_en_all_products_.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "check",
-   "type": "sound-slow",
-   "title": "Трек долго не начинает играть (больше 12 секунд)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/",
-    "Нажать ▶ «Play Infinity»"
-   ],
-   "expected": "Звук через 1–3 секунды",
-   "actual": "Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)",
-   "sig": "sndslow|/en/",
-   "where": [
-    "/en/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/10_003.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "check",
-   "type": "sound-slow",
-   "title": "Трек долго не начинает играть (больше 12 секунд)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/templates/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Звук через 1–3 секунды",
-   "actual": "Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)",
-   "sig": "sndslow|/en/templates/",
-   "where": [
-    "/en/templates/"
-   ],
-   "devices": [
-    "компьютер",
-    "телефон"
-   ],
-   "shot": "shots/16_005.jpg",
-   "streak": 1,
-   "isNew": true
-  },
-  {
-   "sev": "check",
-   "type": "sound-slow",
-   "title": "Трек долго не начинает играть (больше 12 секунд)",
-   "steps": [
-    "Открыть https://solid-sound.net/en/presets/",
-    "Нажать ▶ «Play»"
-   ],
-   "expected": "Звук через 1–3 секунды",
-   "actual": "Плеер запущен, но звук не идёт 12 секунд (медленная загрузка файла)",
-   "sig": "sndslow|/en/presets/",
-   "where": [
-    "/en/presets/"
-   ],
-   "devices": [
-    "компьютер"
-   ],
-   "shot": "shots/17_005.jpg",
-   "streak": 1,
-   "isNew": true
   }
  ],
- "notChecked": [
-  "Ссылка /product/pitch/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /fr/all-products/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /es/all-products/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/sitemap/?currency=GBP — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/sitemap/?currency=CAD — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/sitemap/?currency=AUD — сервер не ответил (защита от частых запросов)",
-  "Ссылка /de/kontakt/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /fr/contact/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /pt/contactos/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/wiki/how-to-get-booked-as-a-dj/?currency=JPY — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/wiki/how-to-get-booked-as-a-dj/?currency=NOK — сервер не ответил (защита от частых запросов)",
-  "Ссылка /en/wiki/how-to-get-booked-as-a-dj/?currency=NZD — сервер не ответил (защита от частых запросов)",
-  "Ссылка /ua/wiki-ua/balansni-nebalansni-kabeli-ua/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /de/wiki-de/symmetrische-unsymmetrische-kabel-de/ — сервер не ответил (защита от частых запросов)",
-  "Ссылка /fr/wiki-fr/cables-symetriques-asymetriques-fr/ — сервер не ответил (защита от частых запросов)",
-  "Сценарий «Корзина» прервался: page.$: Execution context was destroyed, most likely because of a navigation",
-  "Проверка остановлена по времени — часть ссылок/входов не проверена"
- ],
+ "notChecked": [],
  "l10nSkipped": 45
 }

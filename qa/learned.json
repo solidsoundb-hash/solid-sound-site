@@ -71,7 +71,6 @@
   "sndicon|PlayFeelingGoodclien|/en/services-prices/": "2026-11-23",
   "sndicon|PlayEscapeclienttrac|/en/services-prices/": "2026-11-23",
   "kb|kb-mob-input-zoom|Поле ввода с шрифтом меньше 16 px — iPhone сам увеличивает страницу": "2026-11-23",
-  "kb|kb-perf-weight|Страница весит больше 3 МБ": "2026-11-23",
   "menutr|desktop|ua": "2026-11-24",
   "menutr|phone|ua": "2026-11-24",
   "menutr|desktop|de": "2026-11-24",
@@ -97,7 +96,12 @@
   "clickerr|console: Permissions policy violation: compute-pressure is not allowed in this document.": "2026-11-27",
   "kb|kb-shop-zero-price|Товар за $0 / €0 виден покупателям (не бесплатный пакет)": "2026-11-27",
   "kb|kb-seo-h1|Нет главного заголовка H1 или их несколько": "2026-11-27",
-  "odd|WITHDRAW FROM CONTRACT HERE": "2026-11-27"
+  "odd|WITHDRAW FROM CONTRACT HERE": "2026-11-27",
+  "barsilent": "2026-11-28",
+  "plus-fh|/en/all-products/": "2026-11-28",
+  "sndslow|/en/": "2026-11-28",
+  "sndslow|/en/templates/": "2026-11-28",
+  "sndslow|/en/presets/": "2026-11-28"
  },
  "must": [
   {
