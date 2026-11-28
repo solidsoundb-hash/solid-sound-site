@@ -1,0 +1,46 @@
+# DESIGN-WATCH (Designer, 28.11.2026, owner via «Задачи»): competitors' design ↔ ours from the DOM — see header of tools/bots/design-watch.js.
+# Public pages only, robots.txt, pauses, no clicks/forms/login. Daily 01:53 UTC -> reports/designer/ + pictures on branch shots-design.
+# On demand: a line in .github/design-watch.txt whose last word is the mode (probe = ours + 1 competitor / run = all).
+name: design-watch robot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "probe / run", default: run }
+  schedule:
+    - cron: "53 1 * * *"
+  push:
+    branches: [main]
+    paths: [".github/design-watch.txt"]
+permissions:
+  contents: write
+concurrency: design-watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/design/exam.js
+      - run: npm i --no-save playwright@1.49.1
+      - name: Watch
+        env: { PW_CHANNEL: chrome, OUT: shots-design }
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/design-watch.txt | awk '{print $NF}'); fi
+          export MODE="${MODE:-run}"; echo "mode: $MODE"
+          node tools/bots/design-watch.js
+      - name: Save report
+        if: always()
+        run: |
+          BOT_NAME=design-watch bash .github/save.sh "design-watch: $(date -u +%F)" reports/designer
+      - name: Save pictures to branch shots-design
+        if: always()
+        run: |
+          [ -d shots-design ] || exit 0
+          cd shots-design && git init -q -b shots-design && git config user.name photographer && git config user.email actions@users.noreply.github.com
+          git add -A && git commit -qm "design-watch: $(date -u +%FT%TZ)"
+          git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shots-design
