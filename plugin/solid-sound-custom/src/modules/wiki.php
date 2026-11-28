@@ -148,6 +148,8 @@ function ss_wiki_cards() {
 		'how-to-promote-yourself-as-a-dj'     => array( 'flag', 'The first 90 days: your set, your press kit, your first gigs.', 6, 0 ),
 		'how-much-do-djs-get-paid'            => array( 'star', 'Rough fees from bar gigs to festival stages, and what moves you up.', 5, 0 ),
 		'how-to-get-booked-as-a-dj'           => array( 'bolt', 'Who books, when they book, and the message that gets answered.', 6, 0 ),
+		/* (28.11.2026) Mixing & Mastering */
+		'how-much-does-mixing-and-mastering-cost' => array( 'sliders', 'Real 2026 prices per song, what each tier gets you, and the hidden extras.', 7, 0 ),
 	);
 }
 function ss_wiki_index( $html ) {
@@ -158,11 +160,11 @@ function ss_wiki_index( $html ) {
 			. ( $c[1] ? '<span class="ws">' . esc_html( $c[1] ) . '</span>' : '' ) . '<span class="wm">' . ( $c[2] ? (int) $c[2] . ' min read · ' : '' ) . 'Read →</span></a>';
 	}, $html );
 	/* cards inside a topic in the order of the learning path */
-	$html = preg_replace_callback( '#<div class="grid">(.*?)</div>\s*</section>#s', function ( $m ) {
+	$html = preg_replace_callback( '#<div class="grid">((?:(?!</div>|</section>).)*)</div>#s', function ( $m ) {
 		preg_match_all( '#<a class="card wc"[^>]*data-step="(\d+)".*?</a>#s', $m[1], $all, PREG_SET_ORDER );
 		if ( count( $all ) < 2 ) return $m[0];
 		usort( $all, function ( $a, $b ) { return (int) $a[1] - (int) $b[1]; } );
-		return '<div class="grid">' . implode( '', array_map( function ( $x ) { return $x[0]; }, $all ) ) . '</div></section>';
+		return '<div class="grid">' . implode( '', array_map( function ( $x ) { return $x[0]; }, $all ) ) . '</div>';
 	}, $html );
 	/* start here: the 4 steps to record at home */
 	$steps = '';
