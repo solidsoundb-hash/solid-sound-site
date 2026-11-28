@@ -415,3 +415,4 @@
 2026-11-28 09:49:15 Тестировщик (просьба Копирайтера, ветка copy-article-vocals): карточка статьи о вокале и строка на главной — «6 steps» вместо «3 rules» (EN + 6 языков). Откат: git revert -m 1 <merge copy-article-vocals>
 2026-11-28T10:20:25Z SEO (задача «Задач»): полные переводы meta /free/ /sell/ /terms/ /cart/ на DE/FR/ES, свой description у Terms. Вид не меняется. Откат: revert
 2026-11-28T10:22:05Z SEO (задача «Задач»): hreflang у /studio-calculator/ на всех языках; IndexNow-ключ /<key>.txt (для Bing/Yandex). Вид не меняется. Откат: опция ss_indexnow_off; revert
+2026-11-28T10:28:27Z SEO: title статей вики «Вопрос? …» короче (режется после «?»). Вид не меняется. Откат: revert
