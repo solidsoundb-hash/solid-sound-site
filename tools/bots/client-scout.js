@@ -67,8 +67,8 @@ async function redditToken() {
 
 // Each source returns [{id, title, text, link, date}]
 const SOURCES = [
-  { id: 'se:avp', name: 'Stack Exchange — Audio-Video Production', fn: async () => {
-    const r = await getJson('https://api.stackexchange.com/2.3/questions?order=desc&sort=creation&site=avp&pagesize=50&filter=withbody');
+  { id: 'se:sound', name: 'Stack Exchange — Sound Design (audio)', fn: async () => {
+    const r = await getJson('https://api.stackexchange.com/2.3/questions?order=desc&sort=creation&site=sound&pagesize=50&filter=withbody');
     if (!r.ok) throw new Error(r.err);
     return (r.j.items || []).map((q) => ({ id: 'se-avp-' + q.question_id, title: strip(q.title), text: strip(q.title + ' ' + q.body).slice(0, 600), link: q.link, date: q.creation_date * 1000 }));
   } },

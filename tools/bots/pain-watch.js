@@ -24,7 +24,7 @@ const PAINS = [
   ['drums', 'Барабаны и грув: хэты, перкуссия, свинг', /\b(drums?|groove|swing|hi.?hats?|hats\b|percussion|snares?|claps?|shuffle|rimshot|toms?|drum (bus|programming|pattern))\b/i, 'Шаблоны (грув и перкуссия) · сэмплы'],
   ['synth', 'Саунд-дизайн: как сделать этот звук, синт, пресет', /\b(sound design|synth\w*|serum|vital|wavetable|patch(es)?|presets?|oscillat\w*|recreate (this|that|the) sound|how (do|to|can) (i |you )?(make|get|create) (this|that|a) (sound|bass|lead|pad))\b/i, 'Пресеты Serum · шаблоны (все звуки внутри)'],
   ['harsh', 'Резко, режет уши, резонансы', /\b(harsh(ness)?|piercing|too bright|shrill|resonan\w*|ear fatigue|sibilant)\b/i, 'Сведение · бесплатный разбор'],
-  ['gain', 'Гейн-стейджинг, запас, клип на мастере', /\b(gain.?stag\w*|headroom|clip(s|ping)?\b|clipping on (the )?master|levels? (too )?(hot|high)|red on (the )?master|dbfs)\b/i, 'Статья-гайд · мастеринг'],
+  ['gain', 'Гейн-стейджинг, запас, клип на мастере', /\b(gain.?stag\w*|headroom|clipping|clips? (on|at) (the )?master|levels? (too )?(hot|high)|red on (the )?master|dbfs)\b/i, 'Статья-гайд · мастеринг'],
   ['monitor', 'Мониторы, наушники, комната, референс', /\b(reference tracks?|referenc(e|ing)|monitors?|monitoring|headphones?|room (treatment|acoustics)|acoustic (panels|treatment)|nearfields?)\b/i, 'Статья «референс за 5 минут» · мастеринг'],
   ['master', 'Мастеринг сам / цепочка мастеринга', /\b(master(ing)? (my|a|the|your) (own )?(track|song|mix)|self.?master\w*|mastering chain|master bus|mastered)\b/i, 'Мастеринг (от €35) · Release Ready (от €99)'],
   ['mix', 'Микс звучит любительски, плоско, нужна обратная связь', /\b(my mix|mix(down)? (sounds?|is|feels) (bad|amateur\w*|unprofessional|flat|thin|weak|cluttered|empty)|professional (sound|mix)|feedback on (my )?(mix|track|song)|mix (critique|review|feedback)|how to mix)\b/i, 'Бесплатный разбор трека · сведение (от €69) · разбор/копродюсирование (от €29)'],
@@ -45,7 +45,7 @@ if (require.main !== module) { module.exports = { classify, clean, safeLink, PAI
 
 const MODE = process.env.MODE || 'run';
 const S = require('./lib/shop.js').make({ maxRequests: 70, pauseMs: 2000, ua: 'SolidSoundQA-Analyst/1.0 (+https://solid-sound.net; read-only research bot)' });
-const SE = [['avp', 'Audio-Video Production', ['mixing', 'mastering', 'equalizer', 'compression', 'ableton-live', 'reverb', 'daw', 'music-production']],
+const SE = [['sound', 'Sound Design (audio)', ['mixing', 'mastering', 'eq', 'compression', 'ableton-live', 'reverb', 'daw', 'music-production']],
   ['music', 'Music', ['production', 'mixing', 'electronic-music', 'ableton-live', 'synthesizer', 'daw']]];
 const getJ = async (u) => { const r = await S.get(u); if (r.error) return { error: r.error }; if (r.status !== 200) return { error: 'HTTP ' + r.status }; return S.json(r) || { error: 'не JSON' }; };
 const LEMMY = ['music production', 'mixing help', 'mastering', 'ableton', 'techno production', 'finish track'];
