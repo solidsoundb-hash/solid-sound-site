@@ -42,4 +42,5 @@ jobs:
           node tools/sitebots/persona.js "${W:-all}" both | tee -a $GITHUB_STEP_SUMMARY
       - name: Save
         if: always()
-        run: BOT_NAME=persona bash .github/save.sh "persona walk: $(date -u +%FT%TZ)" reports/tester
+        run: |
+          BOT_NAME=persona bash .github/save.sh "persona walk $(date -u +%FT%TZ)" reports/tester
