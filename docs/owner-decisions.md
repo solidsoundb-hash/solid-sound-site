@@ -5,7 +5,7 @@
 
 ## Ждут решения
 1. **Оплата** (главное, без неё 0 продаж): WooPayments, PayPal или Plata by mono. — Задачи
-2. **Бандл из 3–4 шаблонов** и его цена. Кандидаты: Pitch, Mutualism, Intricate, Kratos, Protos, Infinity. Вилка цены — сводка Аналитика 28.11 (`reports/analyst/bundles.md`, `genres.md`). — Аналитик
+2. **Бандл из 3–4 шаблонов** и его цена. Кандидаты: Pitch, Mutualism, Intricate, Kratos, Protos, Infinity. **Предложение 28.11:** A) Infinity + Kratos + Protos + Intricate — вилка **€29–39** (полная 4×€24=€96, сейчас 4×€12=€48); B) Infinity + Kratos + Protos — **€24–29**. У конкурентов бандл house/techno: медиана $39.99, скидка ~−60%. Решить: состав A или B и цену в вилке. Подробно: `reports/analyst/bundle-proposal-2026-11-28.md`. — Аналитик
 3. **Бесплатный мини-шаблон** в обмен на e-mail и отзыв (у конкурентов бесплатные паки собирают больше всего отзывов). — Аналитик
 4. **Видео Kratos и Protos на YouTube** — в названии «www.wemakedancemusic.com»: ваш сайт или чужой? Переименовать на Solid Sound (можете только вы). — Тестировщик
 5. **Посты Маркетолога 1, 4, 5** (`docs/marketing/ready-posts-2026-11-25.md`) — публикуете вы. — Маркетолог
