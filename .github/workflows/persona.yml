@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: npm i --no-save playwright@1.49.1
       - name: Test files for Lena (cover 1200x1200 JPG, ZIP, 4 s MP3)

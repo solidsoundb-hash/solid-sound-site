@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - name: Growth bots
         env:
@@ -63,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - name: Check the bots, statistics, development plan
         run: node tools/bots/supervisor.js
