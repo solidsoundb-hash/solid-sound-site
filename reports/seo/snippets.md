@@ -1,19 +1,19 @@
-# SEO: сниппеты ключевых страниц — 2026-11-28 02:40 UTC
+# SEO: сниппеты ключевых страниц — 2026-11-28 10:27 UTC
 
 Экзамен: 10/10 ✅
 
-Страниц: 50. Большой обход всего сайта (битые ссылки, карта сайта, сироты, hreflang) — `reports/sitebots/seo.md` (по воскресеньям).
+Страниц: 51. Большой обход всего сайта (битые ссылки, карта сайта, сироты, hreflang) — `reports/sitebots/seo.md` (по воскресеньям).
 
-## Что поправить (6)
+## Что поправить (4)
 - 🟡 /en/ — title 62 зн.
 - 🟡 /en/wiki/how-much-do-djs-get-paid/ — title 67 зн.
-- 🟡 /en/wiki/how-much-do-djs-get-paid/ — нет ссылок на товары/услуги в тексте
-- 🟡 /en/wiki/how-to-promote-yourself-as-a-dj/ — нет ссылок на товары/услуги в тексте
 - 🟡 /en/wiki/how-to-get-booked-as-a-dj/ — title 62 зн.
-- 🟡 /en/wiki/how-to-get-booked-as-a-dj/ — нет ссылок на товары/услуги в тексте
+- 🟡 /en/wiki/how-much-does-mixing-and-mastering-cost/ — title 74 зн.
 
-## Что изменилось с прошлого прогона (2026-11-26 06:58)
-- ничего
+## Что изменилось с прошлого прогона (2026-11-28 02:40)
+- /en/wiki/record-clean-vocals-at-home/ **title**: «Vocal Mic Technique – Solid Sound» → «How to Record Clean Vocals at Home – Solid Sound»
+- /en/wiki/record-clean-vocals-at-home/ **desc**: «Sing 10–15 cm from the mic, angle it 20–30° and lock your position. A mix engineer's guide to the 3 mic techniques behind clean home vocals.» → «Record clean vocals at home in 6 steps: sing 10–15 cm away, angle the mic 20–30°, set gain to −10…−6 dBFS and lock your position. No booth needed.»
+- /en/wiki/record-clean-vocals-at-home/ **h1**: «Vocal Mic Technique: 3 Rules for Clean Vocals at Home» → «How to Record Clean Vocals at Home: 6 Steps, No Vocal Booth»
 
 ## Все страницы
 | Страница | Язык | title | H1 | hreflang | Замечания |
@@ -31,7 +31,7 @@
 | Услуги | en | Mixing, Mastering & Production Prices ¦ Solid Sound | Services & Prices | 5 | ✅ |
 | Услуги | de | Mixing & Mastering Preise online ¦ Solid Sound | Leistungen & Preise | 5 | ✅ |
 | Услуги | fr | Prix mixage & mastering en ligne ¦ Solid Sound | Services & tarifs | 5 | ✅ |
-| Калькулятор | en | Studio Price Calculator – Mixing & Mastering ¦ Solid Sound | Studio price calculator | 0 | ✅ |
+| Калькулятор | en | Studio Price Calculator – Mixing & Mastering ¦ Solid Sound | Studio price calculator | 5 | ✅ |
 | Калькулятор | de | Studio-Preisrechner – Mixing, Mastering, Remix ¦ Solid Sound | Studio-Preisrechner | 5 | ✅ |
 | Калькулятор | fr | Calculateur de prix – Mixage & Mastering ¦ Solid Sound | Calculateur de prix studio | 5 | ✅ |
 | Товар infinity | en | Infinity – Techno Ableton Live Template ¦ Solid Sound | Infinity | 8 | ✅ |
@@ -55,13 +55,14 @@
 | Товар kratos | pt | Kratos – Techno Template Ableton Live ¦ Solid Sound | Kratos | 8 | ✅ |
 | Товар kratos | es | Kratos – Techno Plantilla Ableton Live ¦ Solid Sound | Kratos | 8 | ✅ |
 | Товар kratos | it | Kratos – Techno Template Ableton Live ¦ Solid Sound | Kratos | 8 | ✅ |
-| Вики | en | Vocal Mic Technique – Solid Sound | Vocal Mic Technique: 3 Rules for Clean Vocals at Home | 8 | ✅ |
+| Вики | en | How to Record Clean Vocals at Home – Solid Sound | How to Record Clean Vocals at Home: 6 Steps, No Vocal Booth | 8 | ✅ |
 | Вики | en | Balanced vs Unbalanced Cables – Solid Sound | Balanced vs Unbalanced Cables: XLR, TRS and TS Explained | 8 | ✅ |
 | Вики | en | Audio Interface for Recording Vocals – Solid Sound | Audio Interface for Recording Vocals: Gain, 48V, Latency | 8 | ✅ |
 | Вики | en | Closed-Back Headphones for Recording Vocals – Solid Sound | Closed-Back Headphones for Recording Vocals: Stop Bleed | 8 | ✅ |
-| Вики | en | How Much Do DJs Get Paid? Fees From Bars to Festivals – Solid Sound | How Much Do DJs Get Paid? Fees From Bars to Festivals | 0 | title 67 зн.; нет ссылок на товары/услуги в тексте |
-| Вики | en | How to Start Promoting Yourself as a DJ – Solid Sound | How to Start Promoting Yourself as a DJ: Your First 90 Days | 0 | нет ссылок на товары/услуги в тексте |
-| Вики | en | How to Get Booked at Clubs and Festivals as a DJ – Solid Sound | How to Get Booked at Clubs and Festivals as a DJ | 0 | title 62 зн.; нет ссылок на товары/услуги в тексте |
+| Вики | en | How Much Do DJs Get Paid? Fees From Bars to Festivals – Solid Sound | How Much Do DJs Get Paid? Fees From Bars to Festivals | 0 | title 67 зн. |
+| Вики | en | How to Start Promoting Yourself as a DJ – Solid Sound | How to Start Promoting Yourself as a DJ: Your First 90 Days | 0 | ✅ |
+| Вики | en | How to Get Booked at Clubs and Festivals as a DJ – Solid Sound | How to Get Booked at Clubs and Festivals as a DJ | 0 | title 62 зн. |
+| Вики | en | How Much Does Mixing and Mastering Cost in 2026? Real Prices – Solid Sound | How Much Does Mixing and Mastering Cost in 2026? Real Prices | 0 | title 74 зн. |
 | видимые H1 | en | /en/ | | | ✅ 1 |
 | видимые H1 | en | /en/all-products/ | | | ✅ 1 |
 | видимые H1 | en | /en/services-prices/ | | | ✅ 1 |
