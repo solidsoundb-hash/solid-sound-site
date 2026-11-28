@@ -23,6 +23,9 @@ jobs:
       - run: npm i --no-save playwright@1.49.1
       - run: node tools/seo/snippets.js
         env: { PW_CHANNEL: chrome }
+      - name: IndexNow
+        if: always()
+        run: node tools/seo/indexnow.js
       - name: Save
         if: always()
         run: |

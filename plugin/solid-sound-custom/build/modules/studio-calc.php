@@ -72,6 +72,13 @@ add_action( 'template_redirect', function () {
 	   This page exits here at priority 1, before i18n-pages starts its buffer at 9999, so start it here. */
 	$vl = function_exists( 'ss_vp_on' ) ? ss_vp_on() : '';
 	add_action( 'wp_head', function () use ( $vl ) { echo '<meta name="description" content="Instant prices for mixing, mastering (stereo, stem, multitrack), remix, ghost producing and post production. Pay 50% to start.">' . "\n" . '<link rel="canonical" href="' . esc_url( home_url( ( $vl ? '/' . $vl : '' ) . '/studio-calculator/' ) ) . '">'; }, 1 );
+	/* 28.11 SEO: hreflang (the page is outside ss_vp_page_ids, so i18n-pages printed none — seo bot: «hreflang 0») */
+	add_action( 'wp_head', function () {
+		$h = untrailingslashit( get_option( 'home' ) );
+		echo '<link rel="alternate" hreflang="en" href="' . esc_url( $h . '/studio-calculator/' ) . '">' . "\n";
+		foreach ( ( function_exists( 'ss_vp_langs' ) ? ss_vp_langs() : array() ) as $l ) echo '<link rel="alternate" hreflang="' . esc_attr( 'ua' === $l ? 'uk' : $l ) . '" href="' . esc_url( $h . '/' . $l . '/studio-calculator/' ) . '">' . "\n";
+		echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $h . '/studio-calculator/' ) . '">' . "\n";
+	}, 2 );
 	add_action( 'wp_head', function () { echo '<style>' . ss_sc_css() . '</style>'; } );
 	if ( $vl ) ob_start( function ( $html ) use ( $vl ) { return ss_vp_tr_html( $html, $vl ); } );
 	get_header();

@@ -144,3 +144,13 @@ add_action( 'wp_head', function () {
 	if ( $logo ) $a['publisher']['logo'] = array( '@type' => 'ImageObject', 'url' => $logo );
 	echo '<script type="application/ld+json">' . wp_json_encode( $a, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 6 );
+
+/* 28.11 SEO: IndexNow (Bing, Yandex, Seznam…) — the key is public by design (the protocol checks that the site serves it).
+   The robot tools/seo/indexnow.js sends the sitemap addresses. Off: option ss_indexnow_off. */
+if ( ! defined( 'SS_INDEXNOW_KEY' ) ) define( 'SS_INDEXNOW_KEY', '7e6856bc252d7ea66e6b2ac06afd1b4c' );
+add_action( 'init', function () {
+	if ( get_option( 'ss_indexnow_off' ) ) return;
+	$p = (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '', PHP_URL_PATH );
+	if ( '/' . SS_INDEXNOW_KEY . '.txt' !== $p ) return;
+	status_header( 200 ); header( 'Content-Type: text/plain; charset=utf-8' ); echo SS_INDEXNOW_KEY; exit;
+}, 0 );
