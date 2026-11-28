@@ -85,6 +85,8 @@ async function walk(browser, who, devKey, steps, setupCtx) {
   const d = DEV[devKey]; const mobile = devKey === 'a31';
   const ctx = await browser.newContext({ ...d.ctx, locale: 'en-US' });
   await ctx.addCookies([{ name: 'ss_cc', value: '1', domain: new URL(BASE).hostname, path: '/' }]);
+  // the site plays demos with new Audio() (not in the page): remember every media element that was started
+  await ctx.addInitScript(() => { window.__ssMedia = []; const pl = HTMLMediaElement.prototype.play; HTMLMediaElement.prototype.play = function () { if (!window.__ssMedia.includes(this)) window.__ssMedia.push(this); return pl.apply(this, arguments); }; });
   if (setupCtx) await setupCtx(ctx);
   const p = await ctx.newPage();
   if (mobile) { try { const c = await ctx.newCDPSession(p); await c.send('Network.enable'); await c.send('Network.emulateNetworkConditions', { offline: false, latency: 150, downloadThroughput: 1.6 * 1024 * 1024 / 8, uploadThroughput: 750 * 1024 / 8 }); await c.send('Emulation.setCPUThrottlingRate', { rate: 4 }); } catch (e) {} }
@@ -92,7 +94,9 @@ async function walk(browser, who, devKey, steps, setupCtx) {
   let n = 0; const rows = []; let clicks = 0; const S = { p, ctx, mobile, BASE };
   S.click = async (loc, opt) => { clicks++; await loc.click({ timeout: 20000, ...opt }); };
   S.go = async url => { const U = /^https?:/.test(url) ? url : BASE + url; const r = await p.goto(U, { waitUntil: 'domcontentloaded', timeout: 90000 }); if (r && r.status() === 429) { await sleep(45000); return p.goto(U, { waitUntil: 'domcontentloaded', timeout: 90000 }); } return r; };
-  S.settle = async () => { await p.waitForLoadState('load', { timeout: 30000 }).catch(() => {}); await p.waitForTimeout(600); };
+  S.settle = async () => { await p.waitForLoadState('load', { timeout: 30000 }).catch(() => {}); await p.waitForTimeout(600);
+    // a person answers the cookie bar once («Reject non-essential»); not counted as a step click
+    const no = p.locator('.ss-cc-no').filter({ visible: true }).first(); if (await no.count().catch(() => 0)) await no.click({ timeout: 3000 }).catch(() => {}); };
   for (const [title, fn] of steps) {
     clicks = 0; const t0 = Date.now(); let ok = true, note = '', cta = null, ctaName = '', extra = '', r_dw = null;
     try { const r = (await fn(S)) || {}; cta = r.cta || null; ctaName = r.ctaName || ''; note = r.note || ''; extra = r.extra || ''; r_dw = r.dw || null; if (r.fail) { ok = false; note = r.fail; } }
@@ -128,7 +132,7 @@ function markSteps() {
       return { cta: c, ctaName: 'Show templates' }; }],
     ['Поиск «melodic techno»', async S => {
       let inp = vis(S.p, 'input#top-q, header input[type=search], input[type=search], input[name=s]');
-      if (!(await inp.count())) { await S.click(vis(S.p, 'button[aria-label*="search" i], a[aria-label*="search" i], [class*="search" i] button')); await S.p.waitForTimeout(800); inp = vis(S.p, 'input#top-q, input[type=search], input[name=s]'); }
+      if (!(await inp.count())) { await S.click(vis(S.p, '.g-sbtn, button[aria-label="Search"]')); await S.p.waitForTimeout(800); inp = vis(S.p, 'input#top-q, input[type=search], input[name=s]'); }
       await S.click(inp); await inp.fill('melodic techno'); await inp.press('Enter'); await S.settle(); await S.p.waitForTimeout(1500);
       const res = vis(S.p, 'a[href*="/product/"]'); const cnt = await S.p.locator('a[href*="/product/"]').count();
       if (!cnt) throw new Error('ничего не нашлось по «melodic techno»');
@@ -142,10 +146,10 @@ function markSteps() {
     ['Послушать демо', async S => {
       const play = vis(S.p, '.summary [aria-label*="play" i], .product [aria-label*="play" i], button[aria-label*="play" i], .ss-play, :is(button,a)[class*="play-" i], :is(button,a)[class*="-play" i]');
       await S.click(play); const t0 = Date.now(); let ok = false;
-      while (Date.now() - t0 < 15000) { ok = await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].some(a => !a.paused && a.currentTime > 0.2)); if (ok) break; await S.p.waitForTimeout(300); }
+      while (Date.now() - t0 < 15000) { ok = await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].concat(window.__ssMedia || []).some(a => !a.paused && a.currentTime > 0.2)); if (ok) break; await S.p.waitForTimeout(300); }
       const t = ((Date.now() - t0) / 1000).toFixed(1);
       if (!ok) throw new Error('нажал ▶ — звука нет 15 с');
-      await S.p.evaluate(() => document.querySelectorAll('audio,video').forEach(a => a.pause()));
+      await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].concat(window.__ssMedia || []).forEach(a => a.pause()));
       return { cta: play, ctaName: '▶', note: `звук через ${t} с`, extra: +t > 3 ? `звук пошёл только через ${t} с` : '' }; }],
     ['В корзину', async S => { const b = S.p.locator('.single_add_to_cart_button, button[name="add-to-cart"]').filter({ visible: true }).first();
       const ans = S.p.waitForResponse(r => /cart\/add-item|add-to-cart|wc-ajax=add_to_cart/.test(r.url()) && r.request().method() === 'POST', { timeout: 30000 }).catch(() => null);
@@ -162,21 +166,24 @@ function markSteps() {
       const fields = await S.p.locator('form.checkout input:visible, .wc-block-checkout input:visible').count();
       return { cta: pay, ctaName: 'Place order', note: `полей на форме: ${fields}; оплату не нажимаю`, extra: fields > 8 ? `много полей (${fields})` : '' }; }],
     ['Услуги и цены', async S => { await S.go('/en/services-prices/'); await S.settle(); await S.p.evaluate(() => scrollTo(0, 0));
-      const c = S.p.getByRole('link', { name: /calculat|order|start|get .*price|quote/i }).or(S.p.getByRole('button', { name: /calculat|order|start|quote/i })).filter({ visible: true }).first();
+      const c = S.p.getByRole('link', { name: /calculat|get (a |your )?(quote|price)|order now/i }).or(S.p.getByRole('button', { name: /calculat|get (a |your )?quote|order now/i })).filter({ visible: true }).first();
       return { cta: c, ctaName: (await c.textContent().catch(() => '') || 'заказать').trim().slice(0, 30) }; }],
     ['Калькулятор студии', async S => { await S.go('/en/studio-calculator/'); await S.settle();
       const before = (await S.p.locator('#sc-total').textContent().catch(() => '')).trim();
-      for (const sel of ['[data-s]', '[data-t]', '[data-p]']) { const b = vis(S.p, sel); if (await b.count()) { await S.click(b); await S.p.waitForTimeout(400); } }
+      const miss = []; for (const sel of ['[data-s]:not(.on):not(.active)', '[data-t]', '[data-p]']) { const b = vis(S.p, sel); if (await b.count()) { try { await S.click(b, { timeout: 6000 }); await S.p.waitForTimeout(400); } catch (e) { miss.push(sel); } } }
       const after = (await S.p.locator('#sc-total').textContent().catch(() => '')).trim();
       if (!/\d/.test(after)) throw new Error('цена не появилась');
-      return { cta: S.p.locator('#sc-total'), ctaName: 'цена', note: `цена: ${after.replace(/\s+/g, ' ').slice(0, 40)}${before === after ? ' (не изменилась после выбора)' : ''}` }; }],
+      return { cta: S.p.locator('#sc-total'), ctaName: 'цена', note: `цена: ${after.replace(/\s+/g, ' ').slice(0, 40)}${before === after ? ' (не изменилась после выбора)' : ''}${miss.length ? '; не нажалось: ' + miss.join(' ') : ''}`, extra: miss.length ? 'часть кнопок калькулятора не нажимается' : '' }; }],
     ['Чат: написать вопрос (не отправляю)', async S => {
-      const fab = vis(S.p, 'button[aria-label*="chat" i], a[aria-label*="chat" i], [id*="chat" i] > button, button[class*="chat" i], [class*="chat-fab" i], [class*="chat" i][role=button]');
+      // the chat launcher = a round fixed button in the bottom-right corner (it has no stable id)
+      await S.p.evaluate(() => { const vw = innerWidth, vh = innerHeight; const c = [...document.querySelectorAll('button, a, [role=button], div')].filter(e => { const r = e.getBoundingClientRect(); if (r.width < 36 || r.width > 90 || Math.abs(r.width - r.height) > 8 || r.right < vw - 60 || r.bottom < vh - 260 || r.bottom > vh) return false;
+        let f = false; for (let n = e; n; n = n.parentElement) if (getComputedStyle(n).position === 'fixed') { f = true; break; } return f && parseFloat(getComputedStyle(e).borderRadius) >= r.width * 0.3 && !e.closest('[class*=player i], [id*=player i]'); }); const top = c.sort((a, b) => b.getBoundingClientRect().width - a.getBoundingClientRect().width)[0]; if (top) top.setAttribute('data-persona-fab', '1'); });
+      const fab = S.p.locator('[data-persona-fab]').first();
       if (!(await fab.count())) throw new Error('не нашёл кнопку чата');
       await S.click(fab); await S.p.waitForTimeout(1500);
-      const box = vis(S.p, '[class*="chat" i] textarea, [id*="chat" i] textarea, [class*="chat" i] input[type=text], [id*="chat" i] input[type=text], textarea');
+      const box = vis(S.p, 'textarea, [contenteditable=true], input[type=text]:not(#top-q)');
       await box.waitFor({ timeout: 15000 }); await S.click(box); await box.fill('Hi, can you master a melodic techno track by Friday?');
-      const send = S.p.locator('[class*="chat" i] button[type=submit], [id*="chat" i] button[type=submit], [class*="chat" i] button[aria-label*="send" i]').filter({ visible: true });
+      const send = S.p.locator('button[type=submit], button[aria-label*="send" i], button').filter({ hasText: /send|➤|→/i }).or(S.p.locator('button[aria-label*="send" i]')).filter({ visible: true });
       return { cta: send, ctaName: 'Send', note: 'текст набран, не отправлял' }; }],
   ];
 }
@@ -325,8 +332,8 @@ function cmpSteps(site, ours) {
       if (!el) { const c = S.p.locator('button, a, [role=button]').filter({ visible: true }).filter({ hasText: /^\s*(▶|►|play|listen|preview)\s*$/i }).first(); if (await c.count()) el = c; }
       if (!el) return { fail: 'не нашёл кнопку ▶' };
       await S.click(el).catch(() => {}); const t0 = Date.now(); let ok = false;
-      while (Date.now() - t0 < 15000) { ok = await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].some(a => !a.paused && a.currentTime > 0.2)); if (ok) break; await S.p.waitForTimeout(300); }
-      const t = ((Date.now() - t0) / 1000).toFixed(1); await S.p.evaluate(() => document.querySelectorAll('audio,video').forEach(a => a.pause())).catch(() => {});
+      while (Date.now() - t0 < 15000) { ok = await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].concat(window.__ssMedia || []).some(a => !a.paused && a.currentTime > 0.2)); if (ok) break; await S.p.waitForTimeout(300); }
+      const t = ((Date.now() - t0) / 1000).toFixed(1); await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].concat(window.__ssMedia || []).forEach(a => a.pause())).catch(() => {});
       return ok ? { cta: el, ctaName: '▶', note: `звук через ${t} с`, extra: +t > 3 ? `звук пошёл только через ${t} с` : '' } : { fail: 'нажал ▶ — звука нет 15 с (возможно, плеер во фрейме)' }; }],
     ['В корзину (без оформления)', async S => { const b = S.p.locator('[data-dw-buy]').first(); if (!(await b.count())) return { fail: 'нет кнопки «купить»' };
       const before = await S.p.evaluate(() => (document.querySelector('header') || document.body).innerText.match(/\d+/g) || []).catch(() => []);

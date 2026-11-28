@@ -1,3 +1,4 @@
 # Persona walk trigger: «date mark|lena|all»
 2026-11-28 mark
 2026-11-28 mark
+2026-11-28 all
