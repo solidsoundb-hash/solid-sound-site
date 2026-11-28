@@ -2,96 +2,558 @@
  "date": "2026-11-28",
  "mode": "probe",
  "sources": [
-  "Stack Exchange — Audio-Video Production: вопросов 16, с болью 7"
+  "Stack Exchange — Sound Design (audio): вопросов 200, с болью 141"
  ],
  "top": [
   {
-   "id": "gain",
-   "label": "Гейн-стейджинг, запас, клип на мастере",
-   "n": 3,
-   "views": 1110,
+   "id": "eq",
+   "label": "Эквализация: что резать, частоты",
+   "n": 24,
+   "views": 89073,
    "src": {
-    "Stack Exchange — Audio-Video Production": 3
+    "Stack Exchange — Sound Design (audio)": 24
    },
-   "ours": "Статья-гайд · мастеринг",
+   "ours": "Статья-гайд · шаблоны (настройки EQ видны)",
    "examples": [
     {
-     "t": "Final Cut Pro X — Connect audio clip to another audio (not video)",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 522,
-     "url": "https://video.stackexchange.com/questions/25434/final-cut-pro-x-connect-audio-clip-to-another-audio-not-video"
+     "t": "Should I use 44.1KHz, 48KHz or 96KHZ sampling frequency for hobby projects?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 15868,
+     "url": "https://sound.stackexchange.com/questions/25664/should-i-use-44-1khz-48khz-or-96khz-sampling-frequency-for-hobby-projects"
     },
     {
-     "t": "Free and simple video editor for Windows 10",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 347,
-     "url": "https://video.stackexchange.com/questions/20761/free-and-simple-video-editor-for-windows-10"
+     "t": "Bassline Not Audible on Laptop Speakers",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 15663,
+     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
     },
     {
-     "t": "How to automate sync of 80-120 audio clips recorded at home on mobile phones?",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 241,
-     "url": "https://video.stackexchange.com/questions/30295/how-to-automate-sync-of-80-120-audio-clips-recorded-at-home-on-mobile-phones"
+     "t": "Bassline Not Audible on Laptop Speakers",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 15663,
+     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
+    },
+    {
+     "t": "If hi-fi speakers color sound and studio speakers are flat, why don't we mix to get the sound of the hi-fi speakers on neutral speakers?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 8169,
+     "url": "https://sound.stackexchange.com/questions/21890/if-hi-fi-speakers-color-sound-and-studio-speakers-are-flat-why-dont-we-mix-to"
+    },
+    {
+     "t": "Mixing piano and guitar",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 6286,
+     "url": "https://sound.stackexchange.com/questions/25110/mixing-piano-and-guitar"
     }
    ]
   },
   {
-   "id": "vocal",
-   "label": "Вокал: обработка, сидит в миксе",
-   "n": 2,
-   "views": 1088,
+   "id": "comp",
+   "label": "Компрессия: атака, релиз, панч",
+   "n": 21,
+   "views": 37926,
    "src": {
-    "Stack Exchange — Audio-Video Production": 2
+    "Stack Exchange — Sound Design (audio)": 21
    },
-   "ours": "Сведение · сэмплы вокала у авторов",
+   "ours": "Статья-гайд · шаблоны",
    "examples": [
     {
-     "t": "Mix Voice to Video without losing video quality",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 861,
-     "url": "https://video.stackexchange.com/questions/10838/mix-voice-to-video-without-losing-video-quality"
+     "t": "Live rock band having issues with vocals being buried",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 16854,
+     "url": "https://sound.stackexchange.com/questions/24661/live-rock-band-having-issues-with-vocals-being-buried"
     },
     {
-     "t": "Are the voice and background tracks merged together when filming hollwood movies?",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 227,
-     "url": "https://video.stackexchange.com/questions/16417/are-the-voice-and-background-tracks-merged-together-when-filming-hollwood-movies"
-    }
-   ]
-  },
-  {
-   "id": "daw",
-   "label": "Ableton и DAW: роутинг, CPU, рабочий процесс",
-   "n": 1,
-   "views": 287,
-   "src": {
-    "Stack Exchange — Audio-Video Production": 1
-   },
-   "ours": "Шаблоны Ableton (рабочий процесс внутри)",
-   "examples": [
+     "t": "Completely cut frequencies below a certain threshold",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3661,
+     "url": "https://sound.stackexchange.com/questions/27665/completely-cut-frequencies-below-a-certain-threshold"
+    },
     {
-     "t": "routing rtmp ect streams via ffmpeg+python is it possible?",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 287,
-     "url": "https://video.stackexchange.com/questions/36021/routing-rtmp-ect-streams-via-ffmpegpython-is-it-possible"
+     "t": "Is it wrong to use compression on the master bus?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3626,
+     "url": "https://sound.stackexchange.com/questions/24667/is-it-wrong-to-use-compression-on-the-master-bus"
+    },
+    {
+     "t": "Is it wrong to use compression on the master bus?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3626,
+     "url": "https://sound.stackexchange.com/questions/24667/is-it-wrong-to-use-compression-on-the-master-bus"
+    },
+    {
+     "t": "Can compressed music files be adequately recovered by remastering?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 2300,
+     "url": "https://sound.stackexchange.com/questions/39807/can-compressed-music-files-be-adequately-recovered-by-remastering"
     }
    ]
   },
   {
    "id": "space",
    "label": "Пространство: ревер, ширина, стерео, фаза",
-   "n": 1,
-   "views": 62,
+   "n": 17,
+   "views": 40239,
    "src": {
-    "Stack Exchange — Audio-Video Production": 1
+    "Stack Exchange — Sound Design (audio)": 17
    },
    "ours": "Статья-гайд · сведение",
    "examples": [
     {
-     "t": "How to efficiently simulate three-dimensional spatial audio in a standard stereo project?",
-     "src": "Stack Exchange — Audio-Video Production",
-     "views": 62,
-     "url": "https://video.stackexchange.com/questions/38234/how-to-efficiently-simulate-three-dimensional-spatial-audio-in-a-standard-stereo"
+     "t": "General rules for panning?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 5269,
+     "url": "https://sound.stackexchange.com/questions/25842/general-rules-for-panning"
+    },
+    {
+     "t": "How to read and use a Phase / Vectorscope",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 4981,
+     "url": "https://sound.stackexchange.com/questions/25725/how-to-read-and-use-a-phase-vectorscope"
+    },
+    {
+     "t": "How to read and use a Phase / Vectorscope",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 4981,
+     "url": "https://sound.stackexchange.com/questions/25725/how-to-read-and-use-a-phase-vectorscope"
+    },
+    {
+     "t": "How do I use Adobe Audition for Spatial Audio Mixing?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 4400,
+     "url": "https://sound.stackexchange.com/questions/45149/how-do-i-use-adobe-audition-for-spatial-audio-mixing"
+    },
+    {
+     "t": "Early Reflections?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3144,
+     "url": "https://sound.stackexchange.com/questions/17243/early-reflections"
+    }
+   ]
+  },
+  {
+   "id": "daw",
+   "label": "Ableton и DAW: роутинг, CPU, рабочий процесс",
+   "n": 15,
+   "views": 49024,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 15
+   },
+   "ours": "Шаблоны Ableton (рабочий процесс внутри)",
+   "examples": [
+    {
+     "t": "What exactly does it mean to normalize a track/how it is done?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 14667,
+     "url": "https://sound.stackexchange.com/questions/25915/what-exactly-does-it-mean-to-normalize-a-track-how-it-is-done"
+    },
+    {
+     "t": "What exactly does it mean to normalize a track/how it is done?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 14667,
+     "url": "https://sound.stackexchange.com/questions/25915/what-exactly-does-it-mean-to-normalize-a-track-how-it-is-done"
+    },
+    {
+     "t": "Free Music for DAW Practice",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3425,
+     "url": "https://sound.stackexchange.com/questions/25976/free-music-for-daw-practice"
+    },
+    {
+     "t": "Ableton Live bypasses 3rd party plugins when exporting tracks to audio",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 2722,
+     "url": "https://sound.stackexchange.com/questions/48138/ableton-live-bypasses-3rd-party-plugins-when-exporting-tracks-to-audio"
+    },
+    {
+     "t": "Transpose a track 6 octaves in Ableton Live in realtime",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 2696,
+     "url": "https://sound.stackexchange.com/questions/27718/transpose-a-track-6-octaves-in-ableton-live-in-realtime"
+    }
+   ]
+  },
+  {
+   "id": "monitor",
+   "label": "Мониторы, наушники, комната, референс",
+   "n": 12,
+   "views": 70437,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 12
+   },
+   "ours": "Статья «референс за 5 минут» · мастеринг",
+   "examples": [
+    {
+     "t": "I have two computers with audio output, and I'd like to monitor both, simultaneously, with one set of speakers. What do I need?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 24080,
+     "url": "https://sound.stackexchange.com/questions/25822/i-have-two-computers-with-audio-output-and-id-like-to-monitor-both-simultaneo"
+    },
+    {
+     "t": "Would you rather use flat headphones for monitoring?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 15973,
+     "url": "https://sound.stackexchange.com/questions/1888/would-you-rather-use-flat-headphones-for-monitoring"
+    },
+    {
+     "t": "What is the best volume to work with studio monitors?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 9221,
+     "url": "https://sound.stackexchange.com/questions/25900/what-is-the-best-volume-to-work-with-studio-monitors"
+    },
+    {
+     "t": "What is the best volume to work with studio monitors?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 9221,
+     "url": "https://sound.stackexchange.com/questions/25900/what-is-the-best-volume-to-work-with-studio-monitors"
+    },
+    {
+     "t": "Mix sounds terrible in PC, while it actually sounded good with headphones in other devices",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 4017,
+     "url": "https://sound.stackexchange.com/questions/34362/mix-sounds-terrible-in-pc-while-it-actually-sounded-good-with-headphones-in-oth"
+    }
+   ]
+  },
+  {
+   "id": "vocal",
+   "label": "Вокал: обработка, сидит в миксе",
+   "n": 10,
+   "views": 48423,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 10
+   },
+   "ours": "Сведение · сэмплы вокала у авторов",
+   "examples": [
+    {
+     "t": "What are the correct audio levels for Voice and Music in a web promo video?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 17090,
+     "url": "https://sound.stackexchange.com/questions/28538/what-are-the-correct-audio-levels-for-voice-and-music-in-a-web-promo-video"
+    },
+    {
+     "t": "Live rock band having issues with vocals being buried",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 16854,
+     "url": "https://sound.stackexchange.com/questions/24661/live-rock-band-having-issues-with-vocals-being-buried"
+    },
+    {
+     "t": "How to blend vocals into music using Adobe Audition",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 9350,
+     "url": "https://sound.stackexchange.com/questions/40579/how-to-blend-vocals-into-music-using-adobe-audition"
+    },
+    {
+     "t": "How do I remove the vocals/bass/drums from a stereo mix?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1558,
+     "url": "https://sound.stackexchange.com/questions/48818/how-do-i-remove-the-vocals-bass-drums-from-a-stereo-mix"
+    },
+    {
+     "t": "How can I blend a voice recording more in with an instrumental track in Adobe Audition?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 987,
+     "url": "https://sound.stackexchange.com/questions/31422/how-can-i-blend-a-voice-recording-more-in-with-an-instrumental-track-in-adobe-au"
+    }
+   ]
+  },
+  {
+   "id": "master",
+   "label": "Мастеринг сам / цепочка мастеринга",
+   "n": 10,
+   "views": 10909,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 10
+   },
+   "ours": "Мастеринг (от €35) · Release Ready (от €99)",
+   "examples": [
+    {
+     "t": "Is it wrong to use compression on the master bus?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3626,
+     "url": "https://sound.stackexchange.com/questions/24667/is-it-wrong-to-use-compression-on-the-master-bus"
+    },
+    {
+     "t": "Is it wrong to use compression on the master bus?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3626,
+     "url": "https://sound.stackexchange.com/questions/24667/is-it-wrong-to-use-compression-on-the-master-bus"
+    },
+    {
+     "t": "What is a good mastering chain to use in a DAW?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1779,
+     "url": "https://sound.stackexchange.com/questions/25968/what-is-a-good-mastering-chain-to-use-in-a-daw"
+    },
+    {
+     "t": "Mastering chain effects",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 494,
+     "url": "https://sound.stackexchange.com/questions/19076/mastering-chain-effects"
+    },
+    {
+     "t": "What does mastered mean on a commercial library?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 356,
+     "url": "https://sound.stackexchange.com/questions/5040/what-does-mastered-mean-on-a-commercial-library"
+    }
+   ]
+  },
+  {
+   "id": "lowend",
+   "label": "Грязный низ, саб, бас гудит",
+   "n": 7,
+   "views": 42216,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 7
+   },
+   "ours": "Сведение (от €69) · бесплатный разбор трека · шаблоны (как разведены kick и bass)",
+   "examples": [
+    {
+     "t": "Bassline Not Audible on Laptop Speakers",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 15663,
+     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
+    },
+    {
+     "t": "Bassline Not Audible on Laptop Speakers",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 15663,
+     "url": "https://sound.stackexchange.com/questions/22219/bassline-not-audible-on-laptop-speakers"
+    },
+    {
+     "t": "Getting a sub bass and a 808 kick to play well together?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 6163,
+     "url": "https://sound.stackexchange.com/questions/31736/getting-a-sub-bass-and-a-808-kick-to-play-well-together"
+    },
+    {
+     "t": "How do I get a mix with two heavy bass elements to not sound muddy?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1981,
+     "url": "https://sound.stackexchange.com/questions/25929/how-do-i-get-a-mix-with-two-heavy-bass-elements-to-not-sound-muddy"
+    },
+    {
+     "t": "How to avoid a muddy mixdown?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1724,
+     "url": "https://sound.stackexchange.com/questions/25093/how-to-avoid-a-muddy-mixdown"
+    }
+   ]
+  },
+  {
+   "id": "loud",
+   "label": "Трек тихий, громкость, LUFS",
+   "n": 6,
+   "views": 124559,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 6
+   },
+   "ours": "Мастеринг (от €35)",
+   "examples": [
+    {
+     "t": "How loud is 0dB, and what is a good dB to mix to?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 78196,
+     "url": "https://sound.stackexchange.com/questions/3069/how-loud-is-0db-and-what-is-a-good-db-to-mix-to"
+    },
+    {
+     "t": "How to make tracks louder in Logic Pro X?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 41988,
+     "url": "https://sound.stackexchange.com/questions/40244/how-to-make-tracks-louder-in-logic-pro-x"
+    },
+    {
+     "t": "Completely cut frequencies below a certain threshold",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 3661,
+     "url": "https://sound.stackexchange.com/questions/27665/completely-cut-frequencies-below-a-certain-threshold"
+    },
+    {
+     "t": "Reference movies for mastering",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 351,
+     "url": "https://sound.stackexchange.com/questions/21876/reference-movies-for-mastering"
+    },
+    {
+     "t": "Decompressing a track during mastering?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 228,
+     "url": "https://sound.stackexchange.com/questions/48625/decompressing-a-track-during-mastering"
+    }
+   ]
+  },
+  {
+   "id": "release",
+   "label": "Релиз: лейбл, демо, стриминг, продвижение",
+   "n": 6,
+   "views": 40905,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 6
+   },
+   "ours": "Release Ready (от €99) · мастеринг",
+   "examples": [
+    {
+     "t": "Do you do any mastering to your film mixes?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 18684,
+     "url": "https://sound.stackexchange.com/questions/1984/do-you-do-any-mastering-to-your-film-mixes"
+    },
+    {
+     "t": "Do you do any mastering to your film mixes?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 18684,
+     "url": "https://sound.stackexchange.com/questions/1984/do-you-do-any-mastering-to-your-film-mixes"
+    },
+    {
+     "t": "prepping tracks for international release (M&E)",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 2720,
+     "url": "https://sound.stackexchange.com/questions/11721/prepping-tracks-for-international-release-me"
+    },
+    {
+     "t": "Logic Pro X / Mastering / Volume / Soundcloud",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 358,
+     "url": "https://sound.stackexchange.com/questions/44680/logic-pro-x-mastering-volume-soundcloud"
+    },
+    {
+     "t": "What are important considerations when mixing and mastering a track for vinyl distribution?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 232,
+     "url": "https://sound.stackexchange.com/questions/39567/what-are-important-considerations-when-mixing-and-mastering-a-track-for-vinyl-di"
+    }
+   ]
+  },
+  {
+   "id": "drums",
+   "label": "Барабаны и грув: хэты, перкуссия, свинг",
+   "n": 6,
+   "views": 5502,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 6
+   },
+   "ours": "Шаблоны (грув и перкуссия) · сэмплы",
+   "examples": [
+    {
+     "t": "How do I remove the vocals/bass/drums from a stereo mix?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1558,
+     "url": "https://sound.stackexchange.com/questions/48818/how-do-i-remove-the-vocals-bass-drums-from-a-stereo-mix"
+    },
+    {
+     "t": "Getting the kick drum to really come out in the mix?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1524,
+     "url": "https://sound.stackexchange.com/questions/23053/getting-the-kick-drum-to-really-come-out-in-the-mix"
+    },
+    {
+     "t": "Getting the kick drum to really come out in the mix?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1524,
+     "url": "https://sound.stackexchange.com/questions/23053/getting-the-kick-drum-to-really-come-out-in-the-mix"
+    },
+    {
+     "t": "Why are drums generally panned to the listener's perspective but piano panned to the player's perspective?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 479,
+     "url": "https://sound.stackexchange.com/questions/25283/why-are-drums-generally-panned-to-the-listeners-perspective-but-piano-panned-to"
+    },
+    {
+     "t": "Recording/mixing/mastering drums",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 309,
+     "url": "https://sound.stackexchange.com/questions/24669/recording-mixing-mastering-drums"
+    }
+   ]
+  },
+  {
+   "id": "gain",
+   "label": "Гейн-стейджинг, запас, клип на мастере",
+   "n": 3,
+   "views": 6146,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 3
+   },
+   "ours": "Статья-гайд · мастеринг",
+   "examples": [
+    {
+     "t": "What is the difference between dBFS and dBu?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 2999,
+     "url": "https://sound.stackexchange.com/questions/11331/what-is-the-difference-between-dbfs-and-dbu"
+    },
+    {
+     "t": "How to avoid clipping when explicitly adding audio tracks?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 2115,
+     "url": "https://sound.stackexchange.com/questions/25516/how-to-avoid-clipping-when-explicitly-adding-audio-tracks"
+    },
+    {
+     "t": "\"diagonal clipping\" in recent pop music productions?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 1032,
+     "url": "https://sound.stackexchange.com/questions/39465/diagonal-clipping-in-recent-pop-music-productions"
+    }
+   ]
+  },
+  {
+   "id": "synth",
+   "label": "Саунд-дизайн: как сделать этот звук, синт, пресет",
+   "n": 2,
+   "views": 1058,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 2
+   },
+   "ours": "Пресеты Serum · шаблоны (все звуки внутри)",
+   "examples": [
+    {
+     "t": "Sound Design and Sound Mix",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 614,
+     "url": "https://sound.stackexchange.com/questions/3801/sound-design-and-sound-mix"
+    },
+    {
+     "t": "What's a really good book to get deep into sound design??",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 444,
+     "url": "https://sound.stackexchange.com/questions/19502/whats-a-really-good-book-to-get-deep-into-sound-design"
+    }
+   ]
+  },
+  {
+   "id": "mix",
+   "label": "Микс звучит любительски, плоско, нужна обратная связь",
+   "n": 1,
+   "views": 13393,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 1
+   },
+   "ours": "Бесплатный разбор трека · сведение (от €69) · разбор/копродюсирование (от €29)",
+   "examples": [
+    {
+     "t": "Why is my mix sounding dull and amateurish?",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 13393,
+     "url": "https://sound.stackexchange.com/questions/32952/why-is-my-mix-sounding-dull-and-amateurish"
+    }
+   ]
+  },
+  {
+   "id": "legal",
+   "label": "Права на сэмплы, royalty-free, лицензия",
+   "n": 1,
+   "views": 106,
+   "src": {
+    "Stack Exchange — Sound Design (audio)": 1
+   },
+   "ours": "Лицензия royalty-free (наша страница лицензии)",
+   "examples": [
+    {
+     "t": "Remixes, Sampling and The Law",
+     "src": "Stack Exchange — Sound Design (audio)",
+     "views": 106,
+     "url": "https://sound.stackexchange.com/questions/22693/remixes-sampling-and-the-law"
     }
    ]
   }
