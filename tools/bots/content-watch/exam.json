@@ -1,0 +1,42 @@
+{
+ "format": [
+  {
+   "t": "5 Mistakes Every Techno Producer Makes",
+   "want": "«N ошибок / советов»"
+  },
+  {
+   "t": "How To Make Melodic Techno Like Afterlife",
+   "want": "разбор трека / «как у X»"
+  },
+  {
+   "t": "How to EQ a Kick Drum: Beginner Guide",
+   "want": "гайд / how-to"
+  },
+  {
+   "t": "Black Friday Sale: 70% off everything",
+   "want": "новости/релиз/реклама"
+  },
+  {
+   "t": "Mixing Checklist for Club Tracks",
+   "want": "чек-лист"
+  },
+  {
+   "t": "Before and After Mastering",
+   "want": "до / после"
+  },
+  {
+   "t": "Studio diary",
+   "want": "другое"
+  }
+ ],
+ "measure": [
+  {
+   "html": "<article><h2>A</h2><p>one two three</p><img src=x><iframe src=\"https://www.youtube.com/embed/x\"></iframe><audio src=a></audio><ul><li>x</li></ul></article><footer>lots of footer words here</footer>",
+   "words": 5,
+   "img": 1,
+   "video": 1,
+   "audio": 1,
+   "h2": 1
+  }
+ ]
+}

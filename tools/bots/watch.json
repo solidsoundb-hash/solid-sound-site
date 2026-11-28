@@ -123,5 +123,18 @@
   "logic project"
  ],
  "eurUsd": 1.05,
- "eurUsdNote": "approximate EUR->USD rate for comparing our EUR prices with competitors in USD; update by hand if it moves >5%"
+ "eurUsdNote": "approximate EUR->USD rate for comparing our EUR prices with competitors in USD; update by hand if it moves >5%",
+ "contentAuthors": [
+  {
+   "name": "Attack Magazine",
+   "domain": "www.attackmagazine.com",
+   "type": "wp"
+  },
+  {
+   "name": "EDMProd",
+   "domain": "www.edmprod.com",
+   "type": "wp"
+  }
+ ],
+ "contentAuthorsNote": "top niche authors for content-watch (public blogs); the Marketer may add more: name, domain, type wp|shopify, youtube:false to skip"
 }

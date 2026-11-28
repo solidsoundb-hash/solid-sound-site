@@ -1,0 +1,34 @@
+# CONTENT-WATCH (Analyst + Marketer, 28.11.2026, content pipeline step 2): see header of tools/bots/content-watch.js. Public pages only, no personal data.
+# Daily 04:19 UTC (after content-watch) -> reports/analyst/. On demand: a line in .github/content-watch.txt whose last word is the mode (probe / run).
+name: content-watch robot
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "probe / run", default: run }
+  push:
+    branches: [main]
+    paths: [".github/content-watch.txt"]
+permissions:
+  contents: write
+concurrency: content-watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Exam (docs/team/bots.md)
+        run: node tools/bots/content-watch/exam.js
+      - name: Watch
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "push" ]; then MODE=$(tail -n 1 .github/content-watch.txt | awk '{print $NF}'); fi
+          export MODE="${MODE:-run}"; echo "mode: $MODE"
+          node tools/bots/content-watch.js
+      - name: Save
+        if: always()
+        run: |
+          BOT_NAME=content-watch bash .github/save.sh "content-watch: $(date -u +%F)" reports/analyst
