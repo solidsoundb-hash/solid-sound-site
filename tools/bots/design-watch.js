@@ -204,6 +204,11 @@ async function run() {
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
   async function allowed(url) { const u = new URL(url); if (!(u.origin in robots)) { try { const r = await fetch(u.origin + '/robots.txt', { headers: { 'User-Agent': UA_PC }, signal: AbortSignal.timeout(20000) }); robots[u.origin] = r.status === 200 ? await r.text() : ''; } catch (e) { robots[u.origin] = ''; } }
     return robotsAllowed(robots[u.origin], u.pathname + u.search); }
+  // no product link on the catalog page → newest product from the shop's public JSON (Shopify /products.json, Woo Store API)
+  async function productFromJson(home) { const o = new URL(home).origin;
+    for (const [u, pick] of [[o + '/products.json?limit=1', j => j.products && j.products[0] && o + '/products/' + j.products[0].handle], [o + '/wp-json/wc/store/v1/products?per_page=1', j => Array.isArray(j) && j[0] && j[0].permalink]]) {
+      if (!(await allowed(u))) continue; try { const r = await fetch(u, { headers: { 'User-Agent': UA_PC }, signal: AbortSignal.timeout(20000) }); if (r.status !== 200) continue; const x = pick(await r.json()); if (x) return x; } catch (e) {} }
+    return ''; }
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   const data = { date: new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC', mode: MODE, sites: {} };
@@ -212,6 +217,7 @@ async function run() {
     for (const dev of DEVICES) {
       const ctx = await browser.newContext({ ...dev.o, locale: 'en-US' }); const page = await ctx.newPage();
       for (const kind of PAGES) {
+        if (kind === 'product' && !site.product && !S.urls.product) S.urls.product = await productFromJson(site.home);
         let url = kind === 'product' ? (site.product || S.urls.product) : site[kind];
         const key = kind + '/' + dev.id;
         if (!url) { S.pages[key] = { error: 'нет адреса товара (не нашёл ссылку в каталоге)' }; continue; }
@@ -239,7 +245,7 @@ async function run() {
           const re = /add to (cart|bag|basket)|buy|purchase|in den warenkorb/i; const buy = [...document.querySelectorAll('button, a, input[type=submit]')].some(e => { const r = e.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight && r.height > 20 && re.test(e.innerText || e.value || '') && /fixed|sticky/.test((function f(n) { for (; n && n.nodeType === 1; n = n.parentElement) { const p = getComputedStyle(n).position; if (p === 'fixed' || p === 'sticky') return p; } return ''; })(e)); });
           return { hdr, buy }; }).catch(() => ({}));
         if (kind === 'home') m.sticky = !!stick.hdr; if (kind === 'product') m.buyStick = !!stick.buy;
-        if (kind === 'catalog' && !site.product && !S.urls.product) S.urls.product = await page.evaluate((h) => { const a = [...document.querySelectorAll('a[href*="/products/"], a[href*="/product/"]')].map(a => a.href).find(x => { try { const u = new URL(x); return u.host === h && !/cart|review|#/.test(x) && /\/products?\/[^/?#]+/.test(u.pathname) && !/\/product\/?$/.test(u.pathname); } catch (e) { return false; } }); return a || ''; }, host).catch(() => '');
+        if (kind === 'catalog' && !site.product && !S.urls.product) S.urls.product = await page.evaluate(() => { const h = location.host; const a = [...document.querySelectorAll('a[href*="/products/"], a[href*="/product/"]')].map(a => a.href).find(x => { try { const u = new URL(x); return u.host === h && !/cart|review|#/.test(x) && /\/products?\/[^/?#]+/.test(u.pathname) && !/\/product\/?$/.test(u.pathname); } catch (e) { return false; } }); return a || ''; }).catch(() => '');
         const perf = await page.evaluate(() => { const p = performance.getEntriesByName('first-contentful-paint')[0]; return { fcp: p ? Math.round(p.startTime) : null, lcp: Math.round((window.__dw || {}).lcp || 0) || null }; }).catch(() => ({}));
         Object.assign(m, { kb: Math.round(kb / 1024), req, fcp: perf.fcp, lcp: perf.lcp, popup, jsErr: errs.length, shot, url: page.url() });
         if (m._buyFg) { m.buyContrast = contrast(m._buyFg, m._buyBg); m.buyBgPop = contrast(m._buyBg, m._pageBg); m.buyColor = hex(m._buyBg); }
@@ -279,8 +285,10 @@ function report(data, memory) {
   const flags = rows.filter(r => /⚠️/.test(r.verdict)); const stars = rows.filter(r => /⭐/.test(r.verdict));
   const noise = new Set((memory.noise || []).map(x => x.id));
   L.push(`## Главное`, ``); if (!flags.length) L.push(`- Отставаний не найдено.`);
-  for (const r of flags.filter(r => !noise.has(r.key + '@' + r.page + '/' + r.dev)).slice(0, 12)) L.push(`- ⚠️ ${PAGE_RU[r.page]}, ${r.dev === 'pc' ? 'ПК' : 'A31'}: ${r.label} — у нас **${fmt(r.ours, r.type)}**, у конкурентов ${r.type === 'bool' ? r.pct + ' % «да»' : 'медиана ' + fmt(r.median, r.type)} (n=${r.n})`);
-  for (const r of stars.slice(0, 6)) L.push(`- ⭐ ${PAGE_RU[r.page]}, ${r.dev === 'pc' ? 'ПК' : 'A31'}: ${r.label} — у нас ${fmt(r.ours, r.type)}, медиана ${fmt(r.median, r.type)}`);
+  const one = (list) => { const by = {}; list.forEach(r => { (by[r.key] = by[r.key] || []).push(r); }); return Object.values(by); };
+  for (const grp of one(flags.filter(r => !noise.has(r.key + '@' + r.page + '/' + r.dev))).slice(0, 12)) { const r = grp[0];
+    L.push(`- ⚠️ ${r.label}: ${grp.map(x => `${PAGE_RU[x.page]} ${x.dev === 'pc' ? 'ПК' : 'A31'} — у нас **${fmt(x.ours, x.type)}**, у них ${x.type === 'bool' ? x.pct + ' % «да»' : fmt(x.median, x.type)}`).join('; ')} (n=${r.n})${r.group === 'speed' ? ' _(робот в США, наш хостинг в Европе, у многих конкурентов CDN — часть разницы это расстояние)_' : ''}`); }
+  for (const grp of one(stars).slice(0, 6)) { const r = grp[0]; L.push(`- ⭐ ${r.label}: ${grp.map(x => `${PAGE_RU[x.page]} ${x.dev === 'pc' ? 'ПК' : 'A31'} — у нас ${fmt(x.ours, x.type)}, у них ${fmt(x.median, x.type)}`).join('; ')}`); }
   const ch = (memory.lastChanges || []); if (ch.length) { L.push(``, `Изменилось со вчера: ${ch.slice(0, 8).join('; ')}`); }
   let g0 = ''; for (const pg of PAGES) { L.push(``, `## ${PAGE_RU[pg]}`, ``, `| Что | Устр. | У конкурентов | У нас | |`, `|---|---|---|---|---|`);
     for (const r of rows.filter(r => r.page === pg)) { const c = r.type === 'num' ? `медиана ${fmt(r.median, 'num')} (${fmt(r.p25, 'num')}–${fmt(r.p75, 'num')})` : r.type === 'bool' ? `${r.pct == null ? '—' : r.pct + ' %'} сайтов` : (r.top || '—');
