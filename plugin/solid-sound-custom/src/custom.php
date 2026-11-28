@@ -650,6 +650,8 @@ if ( ! function_exists( 'ss_seo_pages' ) ) {
 		if ( empty( $p['title'] ) || ! is_singular() || ( function_exists( 'is_product' ) && is_product() ) ) return $p;
 		$t = wp_strip_all_tags( html_entity_decode( $p['title'], ENT_QUOTES, 'UTF-8' ) );
 		if ( mb_strlen( $t ) + 15 > 65 && false !== ( $i = mb_strpos( $t, ': ' ) ) && $i >= 15 ) $p['title'] = mb_substr( $t, 0, $i );
+		/* 28.11: also «Question? Rest» — keep the question («How Much Do DJs Get Paid?», «…Cost in 2026?») */
+		elseif ( mb_strlen( $t ) + 15 > 65 && false !== ( $i = mb_strpos( $t, '? ' ) ) && $i >= 15 ) $p['title'] = mb_substr( $t, 0, $i + 1 );
 		return $p;
 	}, 30 );
 
