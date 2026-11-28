@@ -5,8 +5,121 @@
    "name": "Scraps Audio",
    "kind": "shop",
    "blog": {
-    "total": 0,
-    "items": []
+    "total": null,
+    "items": [
+     {
+      "title": "Music Production Tips Every Beginner Should Know",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/music-production-tips-every-beginner-should-know",
+      "date": "2024-06-11",
+      "words": 1337,
+      "h2": 7,
+      "img": 1,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Scraps Audio",
+      "fmt": "гайд / how-to",
+      "top": []
+     },
+     {
+      "title": "Unlocking the Power of FLP: A Beginner's Guide",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/unlocking-the-power-of-flp-a-beginners-guide",
+      "date": "2024-04-24",
+      "words": 2022,
+      "h2": 4,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 15,
+      "src": "Scraps Audio",
+      "fmt": "гайд / how-to",
+      "top": []
+     },
+     {
+      "title": "Top 2024 Summer Music Festivals You Can't Miss",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/top-2024-summer-music-festivals-you-cant-miss",
+      "date": "2024-04-23",
+      "words": 2055,
+      "h2": 4,
+      "img": 1,
+      "audio": 0,
+      "video": 0,
+      "lists": 20,
+      "src": "Scraps Audio",
+      "fmt": "подборка / обзор",
+      "top": []
+     },
+     {
+      "title": "Producing Music With Minimal Gear: Optimize Your Creative Process",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/producing-music-with-minimal-gear-optimize-your-creative-process",
+      "date": "2024-04-22",
+      "words": 614,
+      "h2": 0,
+      "img": 1,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Scraps Audio",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "The Ultimate Guide to Hip Hop Music",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/the-ultimate-guide-to-hip-hop-music",
+      "date": "2024-04-20",
+      "words": 2533,
+      "h2": 4,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 24,
+      "src": "Scraps Audio",
+      "fmt": "гайд / how-to",
+      "top": []
+     },
+     {
+      "title": "Fl Studio Tutorial: Complete Beginners Guide",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/fl-studio-tutorial-complete-beginners-guide",
+      "date": "2024-04-19",
+      "words": 2114,
+      "h2": 4,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 15,
+      "src": "Scraps Audio",
+      "fmt": "гайд / how-to",
+      "top": []
+     },
+     {
+      "title": "How to Start Making EDM Music Today",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/how-to-start-making-edm-music-today",
+      "date": "2024-04-18",
+      "words": 1378,
+      "h2": 1,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 7,
+      "src": "Scraps Audio",
+      "fmt": "гайд / how-to",
+      "top": []
+     },
+     {
+      "title": "Reach new heights with LevelUp Publishing services",
+      "url": "https://scrapsaudio.com/blogs/scraps-blog/reach-new-heights-with-levelup-publishing-services",
+      "date": "2024-04-16",
+      "words": 1924,
+      "h2": 4,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 17,
+      "src": "Scraps Audio",
+      "fmt": "другое",
+      "top": []
+     }
+    ]
    },
    "youtube": {
     "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
@@ -17,8 +130,125 @@
    "name": "Production Music Live",
    "kind": "shop",
    "blog": {
-    "total": 0,
-    "items": []
+    "total": null,
+    "items": [
+     {
+      "title": "How to Sidechain Your Bass Properly (Free Max for Live Volume Ducker)",
+      "url": "https://www.productionmusiclive.com/blogs/news/how-to-sidechain-your-bass-volume-ducker",
+      "date": "2026-11-15",
+      "words": 561,
+      "h2": 9,
+      "img": 8,
+      "audio": 0,
+      "video": 0,
+      "lists": 3,
+      "src": "Production Music Live",
+      "fmt": "гайд / how-to",
+      "top": [
+       "kickbass"
+      ]
+     },
+     {
+      "title": "Free Ableton Template Afro House - Pierre Johnson - Vibey",
+      "url": "https://www.productionmusiclive.com/blogs/news/free-ableton-template-afro-house-pierre-johnson-vibey",
+      "date": "2026-11-14",
+      "words": 659,
+      "h2": 8,
+      "img": 4,
+      "audio": 0,
+      "video": 0,
+      "lists": 14,
+      "src": "Production Music Live",
+      "fmt": "другое",
+      "top": [
+       "daw"
+      ]
+     },
+     {
+      "title": "13 Melodic House Sounds That Make Your Track",
+      "url": "https://www.productionmusiclive.com/blogs/news/melodic-house-sounds",
+      "date": "2026-10-26",
+      "words": 807,
+      "h2": 17,
+      "img": 5,
+      "audio": 0,
+      "video": 0,
+      "lists": 28,
+      "src": "Production Music Live",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "8 Tricks Behind Emotional Leads",
+      "url": "https://www.productionmusiclive.com/blogs/news/lead-patterns",
+      "date": "2026-10-19",
+      "words": 861,
+      "h2": 12,
+      "img": 11,
+      "audio": 0,
+      "video": 0,
+      "lists": 31,
+      "src": "Production Music Live",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "5 Indie Dance Production Tips From Brunello, BLOND:ISH and Notre Dame",
+      "url": "https://www.productionmusiclive.com/blogs/news/indie-dance-production-tips",
+      "date": "2026-10-14",
+      "words": 672,
+      "h2": 8,
+      "img": 7,
+      "audio": 0,
+      "video": 0,
+      "lists": 32,
+      "src": "Production Music Live",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "5 Indie Dance Lessons from Notre Dame",
+      "url": "https://www.productionmusiclive.com/blogs/news/indie-dance-lessons-notre-dame",
+      "date": "2026-10-07",
+      "words": 589,
+      "h2": 8,
+      "img": 6,
+      "audio": 0,
+      "video": 0,
+      "lists": 31,
+      "src": "Production Music Live",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "How to Make Indie Dance: The Brunello Formula",
+      "url": "https://www.productionmusiclive.com/blogs/news/how-to-make-indie-dance",
+      "date": "2026-09-29",
+      "words": 717,
+      "h2": 8,
+      "img": 5,
+      "audio": 0,
+      "video": 0,
+      "lists": 28,
+      "src": "Production Music Live",
+      "fmt": "гайд / how-to",
+      "top": []
+     },
+     {
+      "title": "We Rebuilt 17 Famous Bassline Patterns. Here Is What We Learned",
+      "url": "https://www.productionmusiclive.com/blogs/news/bassline-patterns",
+      "date": "2026-09-28",
+      "words": 716,
+      "h2": 9,
+      "img": 8,
+      "audio": 0,
+      "video": 0,
+      "lists": 26,
+      "src": "Production Music Live",
+      "fmt": "другое",
+      "top": []
+     }
+    ]
    },
    "youtube": {
     "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
@@ -29,8 +259,129 @@
    "name": "Cymatics",
    "kind": "shop",
    "blog": {
-    "total": 0,
-    "items": []
+    "total": null,
+    "items": [
+     {
+      "title": "How to recreate “Un Coco” by Bad Bunny using Cymatics Samples",
+      "url": "https://cymatics.fm/blogs/production/bad-bunny-cymatics",
+      "date": "2023-09-06",
+      "words": 1950,
+      "h2": 4,
+      "img": 15,
+      "audio": 2,
+      "video": 0,
+      "lists": 39,
+      "src": "Cymatics",
+      "fmt": "разбор трека / «как у X»",
+      "top": []
+     },
+     {
+      "title": "5 Free Sample Packs For The Koala Sampler App",
+      "url": "https://cymatics.fm/blogs/production/5-free-sample-packs-for-the-koala-sampler-app",
+      "date": "2022-08-23",
+      "words": 111,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "Free 808 Mafia Style Sample Packs | Cymatics Trap Kits",
+      "url": "https://cymatics.fm/blogs/production/808-mafia-style-sample-packs",
+      "date": "2022-08-11",
+      "words": 92,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "The Best Free Ableton Live Sample Packs for 2022",
+      "url": "https://cymatics.fm/blogs/production/ableton-live-sample-packs",
+      "date": "2022-08-10",
+      "words": 96,
+      "h2": 1,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "подборка / обзор",
+      "top": [
+       "daw"
+      ]
+     },
+     {
+      "title": "The Best Free Sample Packs For Producers in FL Studio",
+      "url": "https://cymatics.fm/blogs/production/free-sample-packs-for-fl-studio",
+      "date": "2022-08-05",
+      "words": 156,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "подборка / обзор",
+      "top": []
+     },
+     {
+      "title": "Royalty Free Piano Samples and Loops for Producers",
+      "url": "https://cymatics.fm/blogs/production/ultimate-list-of-royalty-free-piano-samples-and-loops",
+      "date": "2022-06-30",
+      "words": 153,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "новости/релиз/реклама",
+      "top": [
+       "legal"
+      ]
+     },
+     {
+      "title": "Ultimate List of Royalty Free Sample Libraries",
+      "url": "https://cymatics.fm/blogs/production/ultimate-list-of-royalty-free-sample-libraries",
+      "date": "2022-06-27",
+      "words": 105,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "гайд / how-to",
+      "top": [
+       "legal"
+      ]
+     },
+     {
+      "title": "Free Drum Loops and Samples for DJ's",
+      "url": "https://cymatics.fm/blogs/production/free-drum-loops-and-samples-for-djs",
+      "date": "2022-06-27",
+      "words": 94,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Cymatics",
+      "fmt": "другое",
+      "top": [
+       "drums"
+      ]
+     }
+    ]
    },
    "youtube": {
     "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
@@ -108,7 +459,7 @@
       "video": 0,
       "lists": 0,
       "src": "Black Octopus",
-      "fmt": "другое",
+      "fmt": "интервью / артист",
       "top": []
      },
      {
@@ -122,7 +473,7 @@
       "video": 0,
       "lists": 0,
       "src": "Black Octopus",
-      "fmt": "интервью / артист",
+      "fmt": "другое",
       "top": []
      },
      {
@@ -136,7 +487,7 @@
       "video": 0,
       "lists": 0,
       "src": "Black Octopus",
-      "fmt": "интервью / артист",
+      "fmt": "другое",
       "top": []
      },
      {
@@ -150,7 +501,7 @@
       "video": 0,
       "lists": 0,
       "src": "Black Octopus",
-      "fmt": "другое",
+      "fmt": "интервью / артист",
       "top": []
      },
      {
@@ -164,7 +515,7 @@
       "video": 0,
       "lists": 0,
       "src": "Black Octopus",
-      "fmt": "другое",
+      "fmt": "интервью / артист",
       "top": []
      }
     ]
@@ -191,7 +542,7 @@
       "video": 1,
       "lists": 7,
       "src": "ADSR Sounds",
-      "fmt": "разбор трека / «как у X»",
+      "fmt": "гайд / how-to",
       "top": [
        "drums"
       ]
@@ -253,7 +604,7 @@
       "video": 1,
       "lists": 3,
       "src": "ADSR Sounds",
-      "fmt": "другое",
+      "fmt": "боль → решение («Stuck in…? Stop…»)",
       "top": [
        "master"
       ]
@@ -301,7 +652,7 @@
       "video": 1,
       "lists": 6,
       "src": "ADSR Sounds",
-      "fmt": "другое",
+      "fmt": "боль → решение («Stuck in…? Stop…»)",
       "top": [
        "arrange"
       ]
@@ -358,7 +709,7 @@
       "video": 0,
       "lists": 0,
       "src": "Sample Tools by Cr2",
-      "fmt": "разбор трека / «как у X»",
+      "fmt": "гайд / how-to",
       "top": []
      },
      {
@@ -372,7 +723,7 @@
       "video": 0,
       "lists": 0,
       "src": "Sample Tools by Cr2",
-      "fmt": "другое",
+      "fmt": "новости/релиз/реклама",
       "top": []
      },
      {
@@ -386,7 +737,7 @@
       "video": 0,
       "lists": 14,
       "src": "Sample Tools by Cr2",
-      "fmt": "другое",
+      "fmt": "новости/релиз/реклама",
       "top": []
      },
      {
@@ -400,7 +751,7 @@
       "video": 0,
       "lists": 0,
       "src": "Sample Tools by Cr2",
-      "fmt": "другое",
+      "fmt": "новости/релиз/реклама",
       "top": []
      },
      {
@@ -414,7 +765,7 @@
       "video": 0,
       "lists": 0,
       "src": "Sample Tools by Cr2",
-      "fmt": "другое",
+      "fmt": "новости/релиз/реклама",
       "top": [
        "vocal"
       ]
@@ -430,7 +781,7 @@
       "video": 0,
       "lists": 1,
       "src": "Sample Tools by Cr2",
-      "fmt": "другое",
+      "fmt": "«N ошибок / советов»",
       "top": [
        "daw"
       ]
@@ -529,7 +880,7 @@
       "video": 0,
       "lists": 0,
       "src": "Attack Magazine",
-      "fmt": "другое",
+      "fmt": "интервью / артист",
       "top": []
      },
      {
@@ -543,7 +894,7 @@
       "video": 1,
       "lists": 10,
       "src": "Attack Magazine",
-      "fmt": "другое",
+      "fmt": "новости/релиз/реклама",
       "top": [
        "space"
       ]
@@ -559,7 +910,7 @@
       "video": 0,
       "lists": 0,
       "src": "Attack Magazine",
-      "fmt": "другое",
+      "fmt": "интервью / артист",
       "top": []
      }
     ]
@@ -586,7 +937,7 @@
       "video": 1,
       "lists": 39,
       "src": "EDMProd",
-      "fmt": "другое",
+      "fmt": "«N ошибок / советов»",
       "top": [
        "space",
        "synth",
