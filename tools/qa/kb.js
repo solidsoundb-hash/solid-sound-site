@@ -180,7 +180,8 @@ function collect() {
     if (!vis(e) || e.closest('p, li p, .woocommerce-product-details__short-description, article p')) return; // links inside text are fine
     const r = e.getBoundingClientRect(); if (r.width >= 24 && r.height >= 24) return;
     { const a = getComputedStyle(e, '::after'); if (a.content !== 'none' && a.position === 'absolute') { const w = r.width - (parseFloat(a.left) || 0) - (parseFloat(a.right) || 0), h = r.height - (parseFloat(a.top) || 0) - (parseFloat(a.bottom) || 0); if (w >= 24 && h >= 24) return; } } // invisible ::after hit area (slider dots) counts (25.11)
-    { const lb = e.matches('input') && e.closest('label'); if (lb) { const q = lb.getBoundingClientRect(); if (q.width >= 24 && q.height >= 24) return; } } // the whole label is the tap target (25.11) if (r.width >= 120) return; /* long text links: wide enough to hit */ if (r.width < 4 || r.height < 4) return; if (e.closest('footer, .ssf, .l-footer')) return;
+    { const lb = e.matches('input') && e.closest('label'); if (lb) { const q = lb.getBoundingClientRect(); if (q.width >= 24 && q.height >= 24) return; } } // the whole label is the tap target (25.11)
+    if (r.width >= 120) return; /* long text links: wide enough to hit */ if (r.width < 4 || r.height < 4) return; if (e.closest('footer, .ssf, .l-footer')) return; // were inside the comment above until 28.11 — robot flagged product titles and footer links
     if (r.top > vh * 6) return; f.small.push(desc(e) + ` ${Math.round(r.width)}×${Math.round(r.height)}`);
   });
   // tiny text + contrast (sample)
