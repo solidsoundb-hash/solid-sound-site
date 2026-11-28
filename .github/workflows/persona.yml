@@ -1,0 +1,45 @@
+# PERSONA ROBOTS (owner 28.11.2026 via «Задачи», role «Тестировщик», docs/team/bots.md): «Mark» (customer) and «Lena» (creator)
+# walk the site like real people on a computer 1366 and a Samsung A31 (slow 4G, CPU ×4) and rate every step 1–5 from measurements.
+# Never pays, never sends a chat/form, never sends a product for review; Lena's test account + files are deleted at the end.
+# Manual run: a line «date mark|lena|all» in .github/persona.txt. Reports: reports/tester/persona-<name>.md (+ persona/*.jpg).
+name: Persona walk
+on:
+  workflow_dispatch:
+    inputs:
+      who: { description: "mark | lena | all", default: "all" }
+  push:
+    branches: [main]
+    paths: [".github/persona.txt"]
+permissions:
+  contents: write
+concurrency: { group: persona, cancel-in-progress: false }
+jobs:
+  walk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i --no-save playwright@1.49.1
+      - name: Test files for Lena (cover 1200x1200 JPG, ZIP, 4 s MP3)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg zip >/dev/null
+          mkdir -p assets-e2e && cd assets-e2e
+          ffmpeg -loglevel error -f lavfi -i color=c=0x7a2cff:s=1200x1200 -frames:v 1 cover.jpg
+          echo "persona test file" > readme.txt && zip -q project.zip readme.txt
+          ffmpeg -loglevel error -f lavfi -i "sine=frequency=440:duration=4" -b:a 96k demo.mp3
+      - name: Walk
+        env:
+          PW_CHANNEL: chrome
+          TEST_ADMIN_USER: ${{ secrets.TEST_ADMIN_USER }}
+          TEST_ADMIN_PASS: ${{ secrets.TEST_ADMIN_PASS }}
+        run: |
+          W="${{ github.event.inputs.who }}"
+          if [ -z "$W" ]; then W=$(tail -n 1 .github/persona.txt | awk '{print $2}'); fi
+          node tools/sitebots/persona.js --exam
+          node tools/sitebots/persona.js "${W:-all}" both | tee -a $GITHUB_STEP_SUMMARY
+      - name: Save
+        if: always()
+        run: BOT_NAME=persona bash .github/save.sh "persona walk: $(date -u +%FT%TZ)" reports/tester

@@ -1,0 +1,13 @@
+[
+ {"why":"быстро, кнопка видна, ПК","mobile":false,"m":{"ok":true,"sec":1.5,"clicks":1,"cta":true,"ctaFirst":true,"small":0,"contrast":7,"hScroll":false,"brokenImg":0,"covered":false},"want":{"easy":5,"fast":5,"clear":5,"pretty":5}},
+ {"why":"шаг упал","mobile":false,"m":{"ok":false,"sec":3,"clicks":2,"cta":false},"want":{"easy":1,"fast":1,"clear":1}},
+ {"why":"кнопка ниже экрана","mobile":false,"m":{"ok":true,"sec":2,"clicks":1,"cta":true,"ctaFirst":false,"contrast":6},"want":{"easy":4,"clear":4,"fast":5}},
+ {"why":"A31 норма ×1,6: 3 с = 1,9 → 5","mobile":true,"m":{"ok":true,"sec":3,"clicks":1,"cta":true,"ctaFirst":true,"small":2,"contrast":5},"want":{"fast":5,"easy":5}},
+ {"why":"A31 медленно 14 с","mobile":true,"m":{"ok":true,"sec":14,"clicks":1,"cta":true,"ctaFirst":true,"small":0,"contrast":5},"want":{"fast":1}},
+ {"why":"A31 много мелких касаний","mobile":true,"m":{"ok":true,"sec":2,"clicks":2,"cta":true,"ctaFirst":true,"small":12,"contrast":5},"want":{"easy":3}},
+ {"why":"блёклая кнопка + сдвиг вбок","mobile":false,"m":{"ok":true,"sec":2,"clicks":1,"cta":true,"ctaFirst":true,"contrast":2.5,"hScroll":true},"want":{"pretty":2}},
+ {"why":"нет главной кнопки — понятно 3","mobile":false,"m":{"ok":true,"sec":2,"clicks":1,"cta":false},"want":{"clear":3,"pretty":5}},
+ {"why":"ошибка на странице","mobile":false,"m":{"ok":true,"sec":2,"clicks":1,"cta":true,"ctaFirst":true,"contrast":6,"errMsg":"Invalid"},"want":{"clear":4}},
+ {"why":"6 нажатий","mobile":false,"m":{"ok":true,"sec":4,"clicks":6,"cta":true,"ctaFirst":true,"contrast":6},"want":{"easy":1,"fast":3}},
+ {"why":"кнопку перекрывают, картинка битая","mobile":false,"m":{"ok":true,"sec":2,"clicks":1,"cta":true,"ctaFirst":true,"contrast":6,"covered":true,"brokenImg":1},"want":{"pretty":3}}
+]
