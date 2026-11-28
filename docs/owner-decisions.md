@@ -11,7 +11,7 @@
 5. **Посты Маркетолога 1, 4, 5** (`docs/marketing/ready-posts-2026-11-25.md`) — публикуете вы. — Маркетолог
 6. **Жанр под названием товара** (например «Pitch» + «Techno Ableton Live Template») — да/нет. — SEO
 7. **Приглашения авторам** (`docs/authors/start-2026-11-25.md`) — «ок» на рассылку. — Менеджер авторов
-8. **Доступы**: Reddit (ключи REDDIT_ID/REDDIT_SECRET), Google Search Console, по желанию BRAVE_KEY для поиска; **YOUTUBE_KEY** — бесплатный ключ YouTube Data API (Google Cloud → API и сервисы → ключ API), без него робот content-watch не видит просмотры видео конкурентов: YouTube закрыл ленты для роботов. — Маркетолог, SEO, Аналитик
+8. **Доступы**: Reddit (ключи REDDIT_ID/REDDIT_SECRET), Google Search Console, по желанию BRAVE_KEY для поиска; **YOUTUBE_KEY** — бесплатный ключ YouTube Data API (Google Cloud → API и сервисы → ключ API), без него робот content-watch не видит просмотры видео конкурентов: YouTube закрыл ленты для роботов. — Маркетолог, SEO, Аналитик Search Console за 2 минуты: `docs/seo/search-console-2min.md` (SEO).
 9. **Продавец**: ФОП или micro-entreprise (для документов сайта). — Юрист
 10. **Медиатор** для споров (платно, цену назовёт Юрист). — Юрист
 11. **Обложки 1000 px** для 5 старых шаблонов (сейчас 800×800). — Менеджер авторов
