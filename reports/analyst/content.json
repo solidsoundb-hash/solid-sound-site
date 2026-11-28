@@ -1,0 +1,720 @@
+{
+ "date": "2026-11-28",
+ "sources": [
+  {
+   "name": "Scraps Audio",
+   "kind": "shop",
+   "blog": {
+    "total": 0,
+    "items": []
+   },
+   "youtube": {
+    "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
+    "items": []
+   }
+  },
+  {
+   "name": "Production Music Live",
+   "kind": "shop",
+   "blog": {
+    "total": 0,
+    "items": []
+   },
+   "youtube": {
+    "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
+    "items": []
+   }
+  },
+  {
+   "name": "Cymatics",
+   "kind": "shop",
+   "blog": {
+    "total": 0,
+    "items": []
+   },
+   "youtube": {
+    "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
+    "items": []
+   }
+  },
+  {
+   "name": "Zenhiser",
+   "kind": "shop",
+   "blog": {
+    "total": 0,
+    "items": []
+   },
+   "youtube": {
+    "error": "ссылки на YouTube на главной нет",
+    "items": []
+   }
+  },
+  {
+   "name": "Black Octopus",
+   "kind": "shop",
+   "blog": {
+    "total": null,
+    "items": [
+     {
+      "title": "Black Friday Ambient Week! 10 packs for $15!",
+      "url": "https://blackoctopus-sound.com/black-friday-ambient-week-10-packs-for-15/",
+      "date": "2026-11-16",
+      "words": 107,
+      "h2": 0,
+      "img": 1,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "Win a Sequential Fourm this Black Friday at Black Octopus Sound!",
+      "url": "https://blackoctopus-sound.com/win-a-sequential-fourm-this-black-friday-at-black-octopus-sound/",
+      "date": "2026-11-02",
+      "words": 449,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 13,
+      "src": "Black Octopus",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "The Black Friday Megalist 2026 – All sales in one place + win a FREE Sequential Fourm.",
+      "url": "https://blackoctopus-sound.com/the-black-friday-megalist-2026-all-sales-in-one-place-win-a-free-sequential-fourm/",
+      "date": "2026-11-02",
+      "words": 187,
+      "h2": 15,
+      "img": 20,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "Kisnou",
+      "url": "https://blackoctopus-sound.com/kisnou/",
+      "date": "2026-06-11",
+      "words": 613,
+      "h2": 4,
+      "img": 3,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "Behind the Octopus: Interview with Toby",
+      "url": "https://blackoctopus-sound.com/behind-the-octopus-interview-with-toby/",
+      "date": "2026-05-26",
+      "words": 1065,
+      "h2": 2,
+      "img": 3,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "интервью / артист",
+      "top": []
+     },
+     {
+      "title": "Behind the Octopus: Interview with Steve",
+      "url": "https://blackoctopus-sound.com/behind-the-octopus-interview-with-steve/",
+      "date": "2026-04-26",
+      "words": 1079,
+      "h2": 2,
+      "img": 4,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "интервью / артист",
+      "top": []
+     },
+     {
+      "title": "Basement Freaks",
+      "url": "https://blackoctopus-sound.com/basement-freaks/",
+      "date": "2026-02-23",
+      "words": 124,
+      "h2": 2,
+      "img": 5,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "AK",
+      "url": "https://blackoctopus-sound.com/ak-2/",
+      "date": "2026-02-23",
+      "words": 47,
+      "h2": 2,
+      "img": 5,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Black Octopus",
+      "fmt": "другое",
+      "top": []
+     }
+    ]
+   },
+   "youtube": {
+    "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
+    "items": []
+   }
+  },
+  {
+   "name": "ADSR Sounds",
+   "kind": "shop",
+   "blog": {
+    "total": null,
+    "items": [
+     {
+      "title": "How to Make Your Drums Groove: A Beginner’s Guide to Natural, Human-Feeling Rhythm",
+      "url": "https://www.adsrsounds.com/drums/how-to-make-your-drums-groove-a-beginners-guide-to-natural-human-feeling-rhythm/",
+      "date": "2025-12-07",
+      "words": 512,
+      "h2": 8,
+      "img": 3,
+      "audio": 0,
+      "video": 1,
+      "lists": 7,
+      "src": "ADSR Sounds",
+      "fmt": "разбор трека / «как у X»",
+      "top": [
+       "drums"
+      ]
+     },
+     {
+      "title": "5 Power Tips for Musical Filtering in Xfer Serum – Unlock Sound Design with Echo Sound Works",
+      "url": "https://www.adsrsounds.com/serum-tutorials/5-power-tips-for-musical-filtering-in-xfer-serum-unlock-sound-design-with-echo-sound-works/",
+      "date": "2025-12-04",
+      "words": 554,
+      "h2": 5,
+      "img": 4,
+      "audio": 0,
+      "video": 1,
+      "lists": 8,
+      "src": "ADSR Sounds",
+      "fmt": "«N ошибок / советов»",
+      "top": [
+       "synth"
+      ]
+     },
+     {
+      "title": "3 Essential Techniques to Eliminate “Bad Frequencies” and Clean Up Your Mix",
+      "url": "https://www.adsrsounds.com/mixing-tutorials/3-essential-techniques-to-eliminate-bad-frequencies-and-clean-up-your-mix/",
+      "date": "2025-12-03",
+      "words": 662,
+      "h2": 3,
+      "img": 3,
+      "audio": 0,
+      "video": 1,
+      "lists": 10,
+      "src": "ADSR Sounds",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "How to Make Deep Dubstep: Stranjah’s Essential Techniques for Sound Design & Processing",
+      "url": "https://www.adsrsounds.com/sound-design-tutorials/how-to-make-deep-dubstep-stranjahs-essential-techniques-for-sound-design-processing/",
+      "date": "2025-12-02",
+      "words": 882,
+      "h2": 5,
+      "img": 3,
+      "audio": 0,
+      "video": 1,
+      "lists": 10,
+      "src": "ADSR Sounds",
+      "fmt": "разбор трека / «как у X»",
+      "top": [
+       "synth"
+      ]
+     },
+     {
+      "title": "Stop Wasting Time: Why You Need a “Default” Mastering Chain",
+      "url": "https://www.adsrsounds.com/mixing-tutorials/stop-wasting-time-why-you-need-a-default-mastering-chain/",
+      "date": "2025-11-30",
+      "words": 614,
+      "h2": 3,
+      "img": 3,
+      "audio": 0,
+      "video": 1,
+      "lists": 3,
+      "src": "ADSR Sounds",
+      "fmt": "другое",
+      "top": [
+       "master"
+      ]
+     },
+     {
+      "title": "The Anatomy of an 808: The Ultimate Guide to Massive Low End",
+      "url": "https://www.adsrsounds.com/sound-design-tutorials/the-anatomy-of-an-808-the-ultimate-guide-to-massive-low-end/",
+      "date": "2025-11-28",
+      "words": 917,
+      "h2": 6,
+      "img": 6,
+      "audio": 0,
+      "video": 1,
+      "lists": 8,
+      "src": "ADSR Sounds",
+      "fmt": "гайд / how-to",
+      "top": [
+       "lowend"
+      ]
+     },
+     {
+      "title": "Unlock Infinite Chord Progressions with Cthulhu VST",
+      "url": "https://www.adsrsounds.com/music-theory-tutorials/unlock-infinite-chord-progressions-with-cthulhu-vst/",
+      "date": "2025-11-27",
+      "words": 1372,
+      "h2": 7,
+      "img": 4,
+      "audio": 0,
+      "video": 1,
+      "lists": 18,
+      "src": "ADSR Sounds",
+      "fmt": "другое",
+      "top": [
+       "theory"
+      ]
+     },
+     {
+      "title": "Stuck in a 4-Bar Loop? Stop Clicking and Start “Performing” Your Arrangement",
+      "url": "https://www.adsrsounds.com/ableton-live-tutorials/stuck-in-a-4-bar-loop-stop-clicking-and-start-performing-your-arrangement/",
+      "date": "2025-11-27",
+      "words": 727,
+      "h2": 5,
+      "img": 3,
+      "audio": 0,
+      "video": 1,
+      "lists": 6,
+      "src": "ADSR Sounds",
+      "fmt": "другое",
+      "top": [
+       "arrange"
+      ]
+     }
+    ]
+   },
+   "youtube": {
+    "error": "ссылки на YouTube на главной нет",
+    "items": []
+   }
+  },
+  {
+   "name": "Sample Tools by Cr2",
+   "kind": "shop",
+   "blog": {
+    "total": null,
+    "items": [
+     {
+      "title": "8 Tips To Improve Your Music Production Skills",
+      "url": "https://sampletoolsbycr2.com/8-tips-to-improve-your-music-production-skills/",
+      "date": "2021-09-23",
+      "words": 812,
+      "h2": 7,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Sample Tools by Cr2",
+      "fmt": "«N ошибок / советов»",
+      "top": []
+     },
+     {
+      "title": "Ways To Stay Creative During Lockdown",
+      "url": "https://sampletoolsbycr2.com/ways-to-stay-creative-during-lockdown/",
+      "date": "2021-07-02",
+      "words": 754,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Sample Tools by Cr2",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "How To Make Your Productions Sound Vintage",
+      "url": "https://sampletoolsbycr2.com/how-to-make-your-productions-sound-vintage/",
+      "date": "2021-06-21",
+      "words": 434,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Sample Tools by Cr2",
+      "fmt": "разбор трека / «как у X»",
+      "top": []
+     },
+     {
+      "title": "Latest Release: Modular Electronica",
+      "url": "https://sampletoolsbycr2.com/latest-release-modular-electronica/",
+      "date": "2021-04-26",
+      "words": 177,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Sample Tools by Cr2",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "Eats Everything Vol.1 – Available to Pre-Order! [Exclusive to Sample Tools by Cr2]",
+      "url": "https://sampletoolsbycr2.com/eatseverythingpreorder/",
+      "date": "2021-03-29",
+      "words": 772,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 14,
+      "src": "Sample Tools by Cr2",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "NEW: Acid Tech House",
+      "url": "https://sampletoolsbycr2.com/new-acid-tech-house/",
+      "date": "2021-03-23",
+      "words": 190,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Sample Tools by Cr2",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "Pirra (FREE Vocal Samples)",
+      "url": "https://sampletoolsbycr2.com/pirra-free-vocals/",
+      "date": "2021-03-09",
+      "words": 205,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Sample Tools by Cr2",
+      "fmt": "другое",
+      "top": [
+       "vocal"
+      ]
+     },
+     {
+      "title": "Workflow Tips you NEED to start using!",
+      "url": "https://sampletoolsbycr2.com/workflow-tips-you-need-to-start-using/",
+      "date": "2021-02-17",
+      "words": 962,
+      "h2": 0,
+      "img": 0,
+      "audio": 0,
+      "video": 0,
+      "lists": 1,
+      "src": "Sample Tools by Cr2",
+      "fmt": "другое",
+      "top": [
+       "daw"
+      ]
+     }
+    ]
+   },
+   "youtube": {
+    "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
+    "items": []
+   }
+  },
+  {
+   "name": "Attack Magazine",
+   "kind": "author",
+   "blog": {
+    "total": null,
+    "items": [
+     {
+      "title": "Black Friday 2026: The Deals Worth Your Time",
+      "url": "https://www.attackmagazine.com/news/black-friday-2026-the-deals-worth-your-time/",
+      "date": "2026-11-27",
+      "words": 911,
+      "h2": 2,
+      "img": 14,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Attack Magazine",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "LANDR, Reason Studios & Synchro Arts Launch Black Friday Sales",
+      "url": "https://www.attackmagazine.com/news/landr-reason-studios-synchro-arts-launch-black-friday-sales/",
+      "date": "2026-11-27",
+      "words": 486,
+      "h2": 2,
+      "img": 14,
+      "audio": 0,
+      "video": 0,
+      "lists": 11,
+      "src": "Attack Magazine",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "CRSSD Festival Announces Lineup For Spring 2027 Edition",
+      "url": "https://www.attackmagazine.com/news/crssd-festival-announces-lineup-for-spring-2027-edition/",
+      "date": "2026-11-26",
+      "words": 791,
+      "h2": 3,
+      "img": 16,
+      "audio": 0,
+      "video": 0,
+      "lists": 53,
+      "src": "Attack Magazine",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "Cassiopeia Production Suite 1 Bundle",
+      "url": "https://www.attackmagazine.com/reviews/gear-software/cassiopeia-production-suite-1-bundle/",
+      "date": "2026-11-24",
+      "words": 1926,
+      "h2": 7,
+      "img": 23,
+      "audio": 1,
+      "video": 0,
+      "lists": 0,
+      "src": "Attack Magazine",
+      "fmt": "новости/релиз/реклама",
+      "top": []
+     },
+     {
+      "title": "Davyboi: “Your Problems Are Someone Else’s Dreams”",
+      "url": "https://www.attackmagazine.com/features/introducing/davyboi-your-problems-are-someone-elses-dreams/",
+      "date": "2026-11-23",
+      "words": 1371,
+      "h2": 19,
+      "img": 15,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Attack Magazine",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "“You Don’t Belong Here”: How Rane Got Into Turntablism",
+      "url": "https://www.attackmagazine.com/features/interview/you-dont-belong-here-how-rane-got-into-turntablism/",
+      "date": "2026-11-20",
+      "words": 2159,
+      "h2": 2,
+      "img": 18,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Attack Magazine",
+      "fmt": "другое",
+      "top": []
+     },
+     {
+      "title": "Mntra Releases Living Sky, A GPU-powered Spatial Mixing Engine And Reverb",
+      "url": "https://www.attackmagazine.com/news/mntra-releases-living-sky-a-gpu-powered-spatial-mixing-engine-and-reverb/",
+      "date": "2026-11-20",
+      "words": 454,
+      "h2": 3,
+      "img": 0,
+      "audio": 0,
+      "video": 1,
+      "lists": 10,
+      "src": "Attack Magazine",
+      "fmt": "другое",
+      "top": [
+       "space"
+      ]
+     },
+     {
+      "title": "Dave Seaman",
+      "url": "https://www.attackmagazine.com/features/top-tracks/dave-seaman-a-lifelong-obsession-with-synth-music/",
+      "date": "2026-11-17",
+      "words": 733,
+      "h2": 2,
+      "img": 16,
+      "audio": 0,
+      "video": 0,
+      "lists": 0,
+      "src": "Attack Magazine",
+      "fmt": "другое",
+      "top": []
+     }
+    ]
+   },
+   "youtube": {
+    "error": "ждёт ключ YOUTUBE_KEY (бесплатный, YouTube Data API; robots.txt YouTube закрывает ленты)",
+    "items": []
+   }
+  },
+  {
+   "name": "EDMProd",
+   "kind": "author",
+   "blog": {
+    "total": null,
+    "items": [
+     {
+      "title": "Ableton Hybrid Reverb: 6 Creative Techniques for Space, Rhythm and Sound Design",
+      "url": "https://www.edmprod.com/ableton-hybrid-reverb-guide/",
+      "date": "2026-09-29",
+      "words": 3523,
+      "h2": 9,
+      "img": 11,
+      "audio": 9,
+      "video": 1,
+      "lists": 39,
+      "src": "EDMProd",
+      "fmt": "другое",
+      "top": [
+       "space",
+       "synth",
+       "daw"
+      ]
+     },
+     {
+      "title": "Ableton Sampler: The Complete Guide to Sampling and Sound Design",
+      "url": "https://www.edmprod.com/ableton-sampler-guide/",
+      "date": "2026-09-21",
+      "words": 8185,
+      "h2": 17,
+      "img": 31,
+      "audio": 23,
+      "video": 1,
+      "lists": 82,
+      "src": "EDMProd",
+      "fmt": "гайд / how-to",
+      "top": [
+       "synth",
+       "daw"
+      ]
+     },
+     {
+      "title": "Serum 2 Wavetable Editor: Build, Import, and Refine Your Own Sounds",
+      "url": "https://www.edmprod.com/serum-2-wavetable-editor/",
+      "date": "2026-09-14",
+      "words": 6404,
+      "h2": 12,
+      "img": 30,
+      "audio": 20,
+      "video": 1,
+      "lists": 24,
+      "src": "EDMProd",
+      "fmt": "другое",
+      "top": [
+       "synth"
+      ]
+     },
+     {
+      "title": "Serum 2 Filters: A Practical Guide to Sound Design",
+      "url": "https://www.edmprod.com/serum-2-filters/",
+      "date": "2026-09-10",
+      "words": 7128,
+      "h2": 12,
+      "img": 54,
+      "audio": 34,
+      "video": 1,
+      "lists": 22,
+      "src": "EDMProd",
+      "fmt": "гайд / how-to",
+      "top": [
+       "synth"
+      ]
+     },
+     {
+      "title": "Ableton Live Workflow Guide: From First Idea to Finished Arrangement",
+      "url": "https://www.edmprod.com/ableton-workflow-guide/",
+      "date": "2026-09-09",
+      "words": 8834,
+      "h2": 15,
+      "img": 49,
+      "audio": 9,
+      "video": 1,
+      "lists": 22,
+      "src": "EDMProd",
+      "fmt": "гайд / how-to",
+      "top": [
+       "arrange",
+       "daw"
+      ]
+     },
+     {
+      "title": "Ableton Operator: The Complete Guide to FM Sound Design",
+      "url": "https://www.edmprod.com/ableton-operator/",
+      "date": "2026-09-09",
+      "words": 12371,
+      "h2": 19,
+      "img": 45,
+      "audio": 22,
+      "video": 1,
+      "lists": 37,
+      "src": "EDMProd",
+      "fmt": "гайд / how-to",
+      "top": [
+       "synth",
+       "daw"
+      ]
+     },
+     {
+      "title": "Ableton Wavetable: The Complete Guide to Sound Design",
+      "url": "https://www.edmprod.com/ableton-wavetable/",
+      "date": "2026-09-07",
+      "words": 11435,
+      "h2": 24,
+      "img": 53,
+      "audio": 17,
+      "video": 1,
+      "lists": 57,
+      "src": "EDMProd",
+      "fmt": "гайд / how-to",
+      "top": [
+       "synth",
+       "daw"
+      ]
+     },
+     {
+      "title": "Serum 2 Arpeggiator: The Complete Guide to Patterns, Expression & Glide",
+      "url": "https://www.edmprod.com/serum-2-arpeggiator/",
+      "date": "2026-09-06",
+      "words": 5951,
+      "h2": 14,
+      "img": 27,
+      "audio": 11,
+      "video": 1,
+      "lists": 32,
+      "src": "EDMProd",
+      "fmt": "гайд / how-to",
+      "top": [
+       "synth"
+      ]
+     }
+    ]
+   },
+   "youtube": {
+    "error": "ссылки на YouTube на главной нет",
+    "items": []
+   }
+  }
+ ]
+}
