@@ -141,7 +141,7 @@ function pageMeasure(arg) {
     if (/(^|[\s_-])(compare(-at)?|was|old|regular)([\s_-]|$)/i.test(typeof n.className === 'string' ? n.className : '')) return true; } return false; };
   out.oldPrice = prices.some(e => struck(e) && R(e).y < vh * 3);
   if (arg.kind === 'product') { const main = prices.filter(e => !struck(e) && R(e).y < vh * 1.6).map(e => ({ e, r: R(e), px: parseFloat(st(e).fontSize) })).sort((a, z) => z.px - a.px)[0];
-    if (main) { out.pricePx = Math.round(main.px); out.priceFold = main.r.y + main.r.h / 2 < vh; if (out._buyY != null) { const dx = Math.max(0, Math.abs(main.r.x + main.r.w / 2 - out._buyX) - main.r.w / 2), dy = Math.max(0, Math.abs(main.r.y + main.r.h / 2 - out._buyY) - main.r.h / 2); out.priceGap = Math.round(Math.hypot(dx, dy)); } }
+    if (main) { out.pricePx = Math.round(main.px); out.priceFold = main.r.y + main.r.h / 2 < vh; if (out._buyY != null) { const dx = Math.max(0, Math.abs(main.r.x + main.r.w / 2 - out._buyX) - (main.r.w + out.buyW) / 2), dy = Math.max(0, Math.abs(main.r.y + main.r.h / 2 - out._buyY) - (main.r.h + out.buyH) / 2); out.priceGap = Math.round(Math.hypot(dx, dy)); } }
     else { out.priceFold = false; } }
   // sliders / carousels
   const SL = '.swiper, .swiper-container, .slick-slider, .splide, .flickity-enabled, .glide, .owl-carousel, .keen-slider, .embla, .flex-viewport, [aria-roledescription=carousel], [class*=slider], [class*=carousel], [class*=slideshow], [data-slider], [data-carousel]';
@@ -158,10 +158,11 @@ function pageMeasure(arg) {
     out.dots = q('.swiper-pagination-bullet, .slick-dots li, .splide__pagination__page, .flickity-page-dots .dot, .glide__bullet, .owl-dot, [class*=dots] > *, [class*=bullet], [class*=pagination] button, [role=tab]');
     e.setAttribute('data-dw-slider', '1'); }
   // cards and covers
-  // product card = a same-site link with a picture ≥80 px whose card box also shows a price (works for any shop URL scheme)
-  const imgs = []; const seen = new Set(); const boxOf = (a) => { for (let n = a, k = 0; n && n !== document.body && k < 6; n = n.parentElement, k++) if ([...n.querySelectorAll('span,div,p,strong,bdi,ins')].some(x => x.childElementCount === 0 && PRICE.test(T(x)))) return n; return null; };
-  [...document.querySelectorAll('a[href]')].filter(a => { try { return new URL(a.href).host === location.host && !inChrome(a) && !/cart|account|review|login/i.test(a.getAttribute('href')); } catch (e) { return false; } }).forEach(a => {
-    const i = [...a.querySelectorAll('img')].find(x => vis(x) && R(x).w >= 80 && R(x).h >= 60); if (!i || seen.has(i) || !boxOf(a)) return; seen.add(i); imgs.push(R(i)); });
+  // product card = from each visible price go up ≤6 parents to a box that also has a link and a picture ≥80 px (any shop markup)
+  const imgs = []; const seen = new Set();
+  prices.forEach(pe => { for (let n = pe.parentElement, k = 0; n && n !== document.body && k < 6; n = n.parentElement, k++) {
+    const i = [...n.querySelectorAll('img')].find(x => vis(x) && R(x).w >= 80 && R(x).h >= 60); if (!i) continue;
+    if (!n.querySelector('a[href]') && !n.closest('a[href]')) break; if (R(n).h > vh * 1.5) break; if (!seen.has(i)) { seen.add(i); imgs.push(R(i)); } break; } });
   out.cardsFold = imgs.filter(r => r.y < vh && r.y + r.h * 0.5 > 0 && r.x >= -5 && r.x + r.w <= vw + 5).length;
   if (imgs.length) { const ws = imgs.map(r => r.w).sort((a, z) => a - z); out.coverW = Math.round(ws[ws.length >> 1]); const rs = imgs.map(r => r.w / r.h).sort((a, z) => a - z); out.coverRatio = Math.round(rs[rs.length >> 1] * 100) / 100;
     const rows = {}; imgs.filter(r => r.x >= -5 && r.x + r.w <= vw + 5).forEach(r => { const k = Math.round(r.y / 20); rows[k] = (rows[k] || 0) + 1; }); out.perRow = Math.max(0, ...Object.values(rows)) || null; }
