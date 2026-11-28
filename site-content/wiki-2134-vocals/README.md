@@ -2,17 +2,13 @@
 
 Основание: задача владельца 13.11 (SYNC «Задачи от владельца» п.1: «переписать лучше; звук до/после плохой — убрать»), «Задачи» 28.11 (конвейер контента, шаг 5).
 
-Что изменено против живой версии:
-- убран блок «Hear the difference» (симуляция до/после — владелец: плохой звук);
-- новый раздел «What's wrong with my vocal? Symptom → cause → fix» — таблица болей словами клиента (эхо, плевки на P/B, резкие S, гул, скачки громкости, шум, перегруз);
-- новый раздел «Your 10-minute setup» — пошагово, со ссылками на статьи вики про интерфейс и наушники;
-- «Coming next» → «Read next» со ссылками на уже вышедшие статьи (кабели, интерфейс, наушники);
-- факты смягчены там, где источник — пересказ («widely reported» про SM7 на Thriller; AI de-reverb «reduce, not remove»);
-- 2 новых вопроса FAQ (тонкий/гулкий вокал; динамик или конденсатор) + в JSON-LD; dateModified 2026-11-28;
-- убраны 3 фото (U 87, pop filter, singer TLM 103) — статья короче, смысл держат схемы;
-- CTA: Services & Prices и бесплатный разбор вокала — как было.
-- Чек-лист — ul.check под заголовком «Checklist» (значки ставит ss-global, правило владельца 13.11).
+Формат: docs/marketing/article-format.md v0 (Маркетолог 28.11) — 1405 слов, 6 шагов H2 с «Settings» цифрами, короткий ответ на 1-м экране, 2 таблицы (симптом→шаг; стиль×тип микрофона), «3 common mistakes», CTA1 после шага 3 → /free-demo-feedback/, CTA2 в конце → /en/services-prices/ (оба с UTM utm_source=wiki&utm_medium=article&utm_campaign=record-clean-vocals-at-home&utm_content=cta1|cta2), FAQ 4 + JSON-LD HowTo/Article/FAQPage.
+Аудио-пример «результат» из формата не поставлен: владелец 13.11 — звук до/после плохой, убрать; нормальной записи нет.
 
-Не выложено: ждёт docs/marketing/article-format.md (формат Маркетолога) и права на выкладку.
-Выкладка: wp_update_post 2134 (post_content = draft-en.html, excerpt — ниже), снимки ПК + A31 до/после.
-Excerpt: Sing 10–15 cm from the mic, angle it 20–30° and keep the same position. A mix engineer's fixes for echoey, boomy and popping home vocals.
+Против живой версии: убран блок «Hear the difference»; убраны 4 фото (U 87, pop filter, singer TLM 103, SM7B, TLM 103) и диаграммы proximity/cardioid/side-mic — смысл в тексте; адрес /en/wiki/record-clean-vocals-at-home/ не меняется; форма PDF-чек-листа и ul.check под «Checklist» сохранены (значки ставит ss-global).
+Факты: закон обратных квадратов −6 дБ на удвоение расстояния (прямой звук); Billie Eilish — дебютный альбом записан в спальне Finneas (широко известно); SM7B требует много чистого усиления (общеизвестно). Без непроверяемых утверждений про Thriller.
+
+Выкладка (Тестировщик): wp_update_post 2134 — post_title, post_content = draft-en.html, post_excerpt ниже; снимки до/после ПК 1366 + A31 412×780/700; Rank Math title/description — SEO.
+Title (59): How to Record Clean Vocals at Home: 6 Steps, No Vocal Booth
+Excerpt/description (146): Record clean vocals at home in 6 steps: sing 10–15 cm away, angle the mic 20–30°, set gain to −10…−6 dBFS and lock your position. No booth needed.
+Откат: вернуть ревизию WP (wp_get_revisions 2134) или mcp_undo_change.
