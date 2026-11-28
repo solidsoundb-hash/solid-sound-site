@@ -91,15 +91,15 @@ async function walk(browser, who, devKey, steps, setupCtx) {
   const errs = []; p.on('pageerror', e => errs.push(e.message.slice(0, 140)));
   let n = 0; const rows = []; let clicks = 0; const S = { p, ctx, mobile, BASE };
   S.click = async (loc, opt) => { clicks++; await loc.click({ timeout: 20000, ...opt }); };
-  S.go = async url => { const r = await p.goto(BASE + url, { waitUntil: 'domcontentloaded', timeout: 90000 }); if (r && r.status() === 429) { await sleep(45000); return p.goto(BASE + url, { waitUntil: 'domcontentloaded', timeout: 90000 }); } return r; };
+  S.go = async url => { const U = /^https?:/.test(url) ? url : BASE + url; const r = await p.goto(U, { waitUntil: 'domcontentloaded', timeout: 90000 }); if (r && r.status() === 429) { await sleep(45000); return p.goto(U, { waitUntil: 'domcontentloaded', timeout: 90000 }); } return r; };
   S.settle = async () => { await p.waitForLoadState('load', { timeout: 30000 }).catch(() => {}); await p.waitForTimeout(600); };
   for (const [title, fn] of steps) {
-    clicks = 0; const t0 = Date.now(); let ok = true, note = '', cta = null, ctaName = '', extra = '';
-    try { const r = (await fn(S)) || {}; cta = r.cta || null; ctaName = r.ctaName || ''; note = r.note || ''; extra = r.extra || ''; }
+    clicks = 0; const t0 = Date.now(); let ok = true, note = '', cta = null, ctaName = '', extra = '', r_dw = null;
+    try { const r = (await fn(S)) || {}; cta = r.cta || null; ctaName = r.ctaName || ''; note = r.note || ''; extra = r.extra || ''; r_dw = r.dw || null; if (r.fail) { ok = false; note = r.fail; } }
     catch (e) { ok = false; note = e.message.split('\n')[0].replace(/locator\.|page\./g, '').slice(0, 120); }
     const sec = (Date.now() - t0) / 1000;
-    if (/Захищена сторінка/.test(await p.title().catch(() => ''))) { ok = false; note = 'хостинг показал капчу (не ошибка сайта)'; }
-    let m = { ok, sec, clicks, note, extra, cta: false };
+    if (/Захищена сторінка|Just a moment|Attention Required/.test(await p.title().catch(() => ''))) { ok = false; note = 'капча/защита хостинга (не ошибка сайта)'; }
+    let m = { ok, sec, clicks, note, extra, cta: false }; if (r_dw) m.dw = r_dw;
     try {
       if (cta) { await cta.first().scrollIntoViewIfNeeded({ timeout: 3000 }).catch(() => {}); await cta.first().evaluate(e => { window.__ssCta = e; }).catch(() => {}); }
       if (cta && !(await cta.first().isVisible().catch(() => false))) cta = null;
@@ -140,7 +140,7 @@ function markSteps() {
       await S.p.evaluate(() => scrollTo(0, 0));
       return { cta: S.p.locator('.single_add_to_cart_button, button[name="add-to-cart"]').filter({ visible: true }), ctaName: 'Add to cart', note: (await S.p.title()).slice(0, 50) }; }],
     ['Послушать демо', async S => {
-      const play = vis(S.p, '.summary [aria-label*="play" i], .product [aria-label*="play" i], button[aria-label*="play" i], .ss-play, [class*="play" i]:is(button,a)');
+      const play = vis(S.p, '.summary [aria-label*="play" i], .product [aria-label*="play" i], button[aria-label*="play" i], .ss-play, :is(button,a)[class*="play-" i], :is(button,a)[class*="-play" i]');
       await S.click(play); const t0 = Date.now(); let ok = false;
       while (Date.now() - t0 < 15000) { ok = await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].some(a => !a.paused && a.currentTime > 0.2)); if (ok) break; await S.p.waitForTimeout(300); }
       const t = ((Date.now() - t0) / 1000).toFixed(1);
@@ -291,6 +291,89 @@ function exam() {
   console.log(`экзамен: ${ok}/${ex.length}`); return ok === ex.length;
 }
 
+/* ---------------- «у них / у нас»: the same people on competitors' public pages ---------------- */
+// Mark: home → catalog → product → demo → add to cart (no checkout, no forms, no account). Lena: the public «sell with us» page.
+// Polite: robots.txt for SolidSoundQA, a pause between pages, cookie/e-mail popups hidden with CSS (never clicked).
+const DW = require('../bots/design-watch.js');
+const CMP = ['Scraps Audio', 'Production Music Live', 'Cymatics', 'Black Octopus', 'We Make Dance Music'];
+const robotsCache = {};
+async function allowed(url) {
+  const u = new URL(url); if (!(u.host in robotsCache)) { try { const r = await fetch(u.origin + '/robots.txt', { headers: { 'User-Agent': DEV.pc.ctx.userAgent } }); robotsCache[u.host] = r.ok ? await r.text() : ''; } catch (e) { robotsCache[u.host] = ''; } }
+  return DW.robotsAllowed(robotsCache[u.host], u.pathname);
+}
+function cmpSteps(site, ours) {
+  let product = site.product || ''; const pause = () => sleep(ours ? 500 : 4000);
+  const open = async (S, url) => { if (!(await allowed(url))) throw new Error('robots.txt запрещает ' + new URL(url).pathname); await pause(); await S.go(url); await S.settle(); await S.p.evaluate(DW.hideLayers).catch(() => {}); await S.p.evaluate(() => scrollTo(0, 0)); };
+  const meas = (S, kind) => S.p.evaluate(DW.pageMeasure, { buy: DW.BUY_RE.source, notBuy: DW.BUY_NOT_RE.source, price: DW.PRICE_RE.source, kind }).catch(() => ({}));
+  return [
+    ['Главная', async S => { await open(S, site.home);
+      const c = S.p.locator('main a, main button, a, button').filter({ hasText: /^\s*(shop( now| all| the sale)?|browse|show templates|all (products|templates)|explore|templates|view (all|collection))\s*$/i }).filter({ visible: true }).first();
+      return { cta: c, ctaName: 'в магазин', dw: await meas(S, 'home') }; }],
+    ['Каталог', async S => { await open(S, site.catalog); const host = new URL(site.catalog).host;
+      if (!product) product = await S.p.evaluate(h => { const a = [...document.querySelectorAll('a[href]')].find(a => { try { const u = new URL(a.href); return u.host === h && /\/products?\/[^/?#]+/.test(u.pathname) && a.querySelector('img') && a.getBoundingClientRect().width > 60; } catch (e) { return false; } }); return a ? a.href : ''; }, host);
+      if (!product) throw new Error('не нашёл карточку товара');
+      return { cta: S.p.locator(`a[href="${new URL(product).pathname}"], a[href="${product}"]`).filter({ visible: true }), ctaName: 'карточка', dw: await meas(S, 'catalog'), note: new URL(product).pathname.slice(0, 50) }; }],
+    ['Товар', async S => { await open(S, product); const dw = await meas(S, 'product');
+      const tips = [];
+      if (dw.pricePx && dw.pricePx < (S.mobile ? 18 : 20)) tips.push(`цена мелкая (${dw.pricePx} px)`);
+      if (dw.buyH && dw.buyH < (S.mobile ? 48 : 44)) tips.push(`кнопка «купить» низкая (${dw.buyH} px)`);
+      if (dw.priceFold === false) tips.push('цену не видно без прокрутки');
+      return { cta: S.p.locator('[data-dw-buy]'), ctaName: dw.buyText || 'купить', dw, extra: tips.join('; ') }; }],
+    ['Демо', async S => {
+      // «display-…» classes contain «play»: only aria/title «play», play-/‑play/play_ classes, or a button whose text is ▶/play/listen
+      let el = null; for (const sel of ['[aria-label*="play" i]:not([aria-label*="display" i]):not([aria-label*="playlist" i])', '[title*="play" i]:not([title*="display" i])', ':is(button,a,div,span)[class*="play-" i]:not([class*="display" i])', ':is(button,a,div,span)[class*="-play" i]:not([class*="display" i])', ':is(button,a)[class*="play_" i]']) { const l = S.p.locator(sel).filter({ visible: true }).first(); if (await l.count()) { el = l; break; } }
+      if (!el) { const c = S.p.locator('button, a, [role=button]').filter({ visible: true }).filter({ hasText: /^\s*(▶|►|play|listen|preview)\s*$/i }).first(); if (await c.count()) el = c; }
+      if (!el) return { fail: 'не нашёл кнопку ▶' };
+      await S.click(el).catch(() => {}); const t0 = Date.now(); let ok = false;
+      while (Date.now() - t0 < 15000) { ok = await S.p.evaluate(() => [...document.querySelectorAll('audio,video')].some(a => !a.paused && a.currentTime > 0.2)); if (ok) break; await S.p.waitForTimeout(300); }
+      const t = ((Date.now() - t0) / 1000).toFixed(1); await S.p.evaluate(() => document.querySelectorAll('audio,video').forEach(a => a.pause())).catch(() => {});
+      return ok ? { cta: el, ctaName: '▶', note: `звук через ${t} с`, extra: +t > 3 ? `звук пошёл только через ${t} с` : '' } : { fail: 'нажал ▶ — звука нет 15 с (возможно, плеер во фрейме)' }; }],
+    ['В корзину (без оформления)', async S => { const b = S.p.locator('[data-dw-buy]').first(); if (!(await b.count())) return { fail: 'нет кнопки «купить»' };
+      const before = await S.p.evaluate(() => (document.querySelector('header') || document.body).innerText.match(/\d+/g) || []).catch(() => []);
+      const u0 = S.p.url(); await S.click(b); await S.p.waitForTimeout(5000);
+      const after = await S.p.evaluate(() => ({ t: ((document.querySelector('header') || document.body).innerText.match(/\d+/g) || []), drawer: [...document.querySelectorAll('[class*=cart i], [id*=cart i]')].some(e => { const r = e.getBoundingClientRect(); return r.width > 200 && r.height > 200 && getComputedStyle(e).visibility !== 'hidden'; }) }));
+      const cookie = (await S.ctx.cookies()).some(c => /items_in_cart|^cart$|cart_ts|cart/.test(c.name));
+      const ok = after.drawer || /cart|checkout/.test(S.p.url()) && S.p.url() !== u0 || after.t.join() !== before.join() || cookie;
+      return ok ? { note: after.drawer ? 'открылась корзина сбоку' : /cart/.test(S.p.url()) ? 'перешёл в корзину' : 'счётчик корзины изменился' } : { fail: 'нажал — не видно, что товар в корзине' }; }],
+  ];
+}
+function lenaPublicSteps(site, ours) {
+  return [['Страница «продавать у нас»', async S => {
+    if (!(await allowed(site.home))) throw new Error('robots.txt запрещает'); await sleep(ours ? 500 : 4000);
+    let url = ours ? BASE + '/en/sell/' : '';
+    if (!url) { await S.go(site.home); await S.settle();
+      url = await S.p.evaluate(() => { const a = [...document.querySelectorAll('a[href]')].find(a => /\b(sell (with|on) us|become an? (artist|creator|seller|vendor|partner)|submit (your )?(music|sounds|demo)|artists? wanted|work with us|join (the|our) team|for (artists|creators))\b/i.test(a.innerText + ' ' + (a.getAttribute('aria-label') || ''))); return a ? a.href : ''; });
+      if (!url) return { fail: 'на главной нет ссылки для авторов («sell with us», «become an artist»…)' };
+      if (!(await allowed(url))) return { fail: 'robots.txt запрещает страницу авторов' }; }
+    await S.go(url); await S.settle(); await S.p.evaluate(DW.hideLayers).catch(() => {}); await S.p.evaluate(() => scrollTo(0, 0));
+    const info = await S.p.evaluate(() => { const t = document.body.innerText; return { words: t.split(/\s+/).length, pct: /\d{1,2}\s?%/.test(t), payout: /payout|paypal|stripe|royalt|commission|revenue share|earn/i.test(t) }; });
+    const c = S.p.locator('a, button').filter({ hasText: /^\s*(apply|sign up|submit|get started|join|become|start selling|register|contact)\b/i }).filter({ visible: true }).first();
+    return { cta: c, ctaName: 'Apply', note: `${new URL(url).pathname.slice(0, 40)} · слов ${info.words}${info.pct ? ' · есть % автору' : ' · % автору не назван'}${info.payout ? ' · про выплаты есть' : ''}`, extra: info.pct ? '' : 'не понял, сколько я получу с продажи' }; }]];
+}
+async function compare(browser, devs) {
+  const CFG = JSON.parse(fs.readFileSync(path.join(__dirname, '../bots/design/sites.json'), 'utf8'));
+  const sites = [{ ...CFG.ours, ours: true }].concat(CFG.competitors.filter(c => CMP.includes(c.name)));
+  const res = [];
+  for (const site of sites) for (const d of devs) {
+    const mk = await walk(browser, 'cmp-' + slug(site.name) + '-mark', d, cmpSteps(site, site.ours));
+    const le = await walk(browser, 'cmp-' + slug(site.name) + '-lena', d, lenaPublicSteps(site, site.ours));
+    res.push({ site: site.name, ours: !!site.ours, dev: d, rows: mk.rows.concat(le.rows) });
+  }
+  const at = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+  const titles = [...new Set(res.flatMap(r => r.rows.map(x => x.title)))];
+  let md = `# 🆚 Персоны «у них / у нас» — ${at}\n\nТе же «Марк» и «Лена» на публичных страницах ${sites.length - 1} конкурентов (\`tools/bots/design/sites.json\`): главная → каталог → товар → демо → в корзину (без оформления, форм и аккаунта); у «Лены» — страница для авторов, без регистрации. robots.txt, пауза 4 с, UA SolidSoundQA. Оценка = среднее четырёх (удобно/быстро/понятно/красиво), 1–5, из замеров.\n\n`;
+  for (const d of devs) {
+    md += `## ${DEV[d].label}\n\n| Шаг | ${res.filter(r => r.dev === d).map(r => r.ours ? '**Мы**' : r.site).join(' | ')} |\n|---|${res.filter(r => r.dev === d).map(() => '---').join('|')}|\n`;
+    for (const t of titles) md += `| ${t} | ${res.filter(r => r.dev === d).map(r => { const x = r.rows.find(y => y.title === t); return x ? `${x.m.ok ? AVG(x).toFixed(1) : '❌'} · ${x.m.sec.toFixed(1)} с` : '—'; }).join(' | ')} |\n`;
+    const dw = k => res.filter(r => r.dev === d).map(r => { const x = r.rows.find(y => y.title === 'Товар'); const v = x && x.m.dw && x.m.dw[k]; return v == null ? '—' : v === true ? 'да' : v === false ? 'нет' : v; }).join(' | ');
+    md += `| Цена, px | ${dw('pricePx')} |\n| Кнопка «купить», высота px | ${dw('buyH')} |\n| Цена на 1-м экране | ${dw('priceFold')} |\n| Кнопка на 1-м экране | ${dw('buyFold')} |\n| Шапка, px | ${dw('hdrH')} |\n| Текст, px | ${dw('bodyPx')} |\n| Шрифтов | ${dw('families')} |\n\n`;
+    md += '<details><summary>Что почувствовали (цитаты)</summary>\n\n' + res.filter(r => r.dev === d).map(r => `**${r.ours ? 'Мы' : r.site}:** ` + r.rows.map(x => `${x.title} — «${x.quote}» ([снимок](persona/${x.file}))`).join(' · ')).join('\n\n') + '\n\n</details>\n\n';
+  }
+  md += `---\nРобот \`tools/sitebots/persona.js compare\`; вручную — строка \`дата compare\` в \`.github/persona.txt\`. Выводы «нравится / красиво» по снимкам пишет Тестировщик в утренней смене (правило §0в).\n`;
+  fs.writeFileSync(path.join(OUT, 'persona-compare.md'), md); return md;
+}
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 20);
+
 if (require.main === module) (async () => {
   if (process.argv[2] === '--exam') process.exit(exam() ? 0 : 1);
   const who = (process.argv[2] || 'all').toLowerCase(); const devs = (process.argv[3] || 'both') === 'both' ? ['pc', 'a31'] : [process.argv[3]];
@@ -298,6 +381,7 @@ if (require.main === module) (async () => {
   const { chromium } = require('playwright');
   const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
   try {
+    if (who === 'compare') console.log(await compare(browser, devs));
     if (who === 'mark' || who === 'all') {
       const walks = []; for (const d of devs) walks.push(await walk(browser, 'mark', d, markSteps()));
       console.log(report('Марк', 'mark', 'Покупатель из `docs/customer-avatar.md`: продюсер house / melodic techno, сидит за компьютером, английский. Проходит покупку до кнопки оплаты (не платит), смотрит услуги, калькулятор и чат (пишет, но не отправляет).', walks));

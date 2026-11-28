@@ -302,5 +302,5 @@ function remember(mem, data) { // keep last values per site/page/metric → «И
   mem.last = Object.assign(mem.last || {}, now); mem.lastChanges = changes.slice(0, 30); return mem;
 }
 
-module.exports = { isBuyText, isPriceText, parseColor, contrast, hex, median, quart, verdict, robotsAllowed, stats, report, remember, METRICS };
+module.exports = { isBuyText, isPriceText, parseColor, contrast, hex, median, quart, verdict, robotsAllowed, stats, report, remember, METRICS, pageMeasure, hideLayers, BUY_RE, BUY_NOT_RE, PRICE_RE };
 if (require.main === module) run().catch(e => { console.error(e); process.exit(1); });
